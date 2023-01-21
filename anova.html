@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 14 - Introdução à estatística experimental: análise de variância (DIC e DBC) | _main.knit</title>
+  <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 14 - Introdução à estatística experimental: análise de variância (DIC e DBC) | _main.knit" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
+  <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 14 - Introdução à estatística experimental: análise de variância (DIC e DBC) | _main.knit" />
+  
+  <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="disc_fisher.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Índice</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section" id="toc-section"></a></li>
+<li class="chapter" data-level="1" data-path="historia.html"><a href="historia.html"><i class="fa fa-check"></i><b>1</b> - Introdução histórica da estatística</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="historia.html"><a href="historia.html#primeiros-levantamentos-estudos-e-publicações-demografia-e-aritmética-política"><i class="fa fa-check"></i><b>1.1</b> Primeiros levantamentos, estudos e publicações &amp; Demografia e aritmética política</a></li>
+<li class="chapter" data-level="1.2" data-path="historia.html"><a href="historia.html#visualização-de-dados-estudos-e-primeiras-publicações"><i class="fa fa-check"></i><b>1.2</b> Visualização de dados &amp; Estudos e primeiras publicações</a></li>
+<li class="chapter" data-level="1.3" data-path="historia.html"><a href="historia.html#nomes-notáveis"><i class="fa fa-check"></i><b>1.3</b> Nomes notáveis</a></li>
+<li class="chapter" data-level="1.4" data-path="historia.html"><a href="historia.html#revista-biometrika"><i class="fa fa-check"></i><b>1.4</b> Revista Biometrika</a></li>
+<li class="chapter" data-level="1.5" data-path="historia.html"><a href="historia.html#eugenia"><i class="fa fa-check"></i><b>1.5</b> Eugenia</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="conceitos_gerais.html"><a href="conceitos_gerais.html"><i class="fa fa-check"></i><b>2</b> - Introdução conceitual essencial</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="conceitos_gerais.html"><a href="conceitos_gerais.html#estatística-descritiva"><i class="fa fa-check"></i><b>2.1</b> Estatística descritiva</a></li>
+<li class="chapter" data-level="2.2" data-path="conceitos_gerais.html"><a href="conceitos_gerais.html#estatística-inferencial"><i class="fa fa-check"></i><b>2.2</b> Estatística inferencial</a></li>
+<li class="chapter" data-level="2.3" data-path="conceitos_gerais.html"><a href="conceitos_gerais.html#produção-de-conhecimento"><i class="fa fa-check"></i><b>2.3</b> Produção de conhecimento</a></li>
+<li class="chapter" data-level="2.4" data-path="conceitos_gerais.html"><a href="conceitos_gerais.html#população-universo-amostra"><i class="fa fa-check"></i><b>2.4</b> População (universo) &amp; amostra</a></li>
+<li class="chapter" data-level="2.5" data-path="conceitos_gerais.html"><a href="conceitos_gerais.html#parâmetros-e-estatísticas"><i class="fa fa-check"></i><b>2.5</b> Parâmetros e estatísticas</a></li>
+<li class="chapter" data-level="2.6" data-path="conceitos_gerais.html"><a href="conceitos_gerais.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>2.6</b> Tipos de variáveis</a></li>
+<li class="chapter" data-level="2.7" data-path="conceitos_gerais.html"><a href="conceitos_gerais.html#noções-básicas-sobre-somatórios-sigma"><i class="fa fa-check"></i><b>2.7</b> Noções básicas sobre somatórios (<span class="math inline">\(\Sigma\)</span>)}</a></li>
+<li class="chapter" data-level="2.8" data-path="conceitos_gerais.html"><a href="conceitos_gerais.html#noções-básicas-para-o-uso-de-calculadora-cassio-fx-82ms"><i class="fa fa-check"></i><b>2.8</b> Noções básicas para o uso de calculadora (Cassio fx-82MS)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="descritiva.html"><a href="descritiva.html"><i class="fa fa-check"></i><b>3</b> - Introdução à estatística descritiva</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="descritiva.html"><a href="descritiva.html#análise-exploratória"><i class="fa fa-check"></i><b>3.1</b> Análise exploratória</a></li>
+<li class="chapter" data-level="3.2" data-path="descritiva.html"><a href="descritiva.html#dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional"><i class="fa fa-check"></i><b>3.2</b> Dados brutos, em rol, diagrama de ramos &amp; folhas e de dispersão unidimensional</a></li>
+<li class="chapter" data-level="3.3" data-path="descritiva.html"><a href="descritiva.html#sínteses-numéricas-descritivas"><i class="fa fa-check"></i><b>3.3</b> Sínteses numéricas descritivas</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="descritiva.html"><a href="descritiva.html#medidas-de-tendência-central-posição"><i class="fa fa-check"></i><b>3.3.1</b> Medidas de tendência central (posição)</a></li>
+<li class="chapter" data-level="3.3.2" data-path="descritiva.html"><a href="descritiva.html#medidas-de-dispersão-variabilidade"><i class="fa fa-check"></i><b>3.3.2</b> Medidas de dispersão (variabilidade)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="descritiva.html"><a href="descritiva.html#medidas-de-subdivisão-separatrizes"><i class="fa fa-check"></i><b>3.3.3</b> Medidas de subdivisão (separatrizes)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="descritiva.html"><a href="descritiva.html#medidas-de-forma-assimetria-curtose"><i class="fa fa-check"></i><b>3.4</b> Medidas de forma (assimetria &amp; curtose)</a></li>
+<li class="chapter" data-level="3.5" data-path="descritiva.html"><a href="descritiva.html#apresentação-gráfica-de-dados"><i class="fa fa-check"></i><b>3.5</b> Apresentação gráfica de dados</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="descritiva.html"><a href="descritiva.html#barras"><i class="fa fa-check"></i><b>3.5.1</b> Barras</a></li>
+<li class="chapter" data-level="3.5.2" data-path="descritiva.html"><a href="descritiva.html#setores"><i class="fa fa-check"></i><b>3.5.2</b> Setores</a></li>
+<li class="chapter" data-level="3.5.3" data-path="descritiva.html"><a href="descritiva.html#box-plot"><i class="fa fa-check"></i><b>3.5.3</b> Box-plot</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="descritiva.html"><a href="descritiva.html#apresentação-tabular-de-dados-quantitativos"><i class="fa fa-check"></i><b>3.6</b> Apresentação tabular de dados quantitativos</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="descritiva.html"><a href="descritiva.html#média-1"><i class="fa fa-check"></i><b>3.6.1</b> Média</a></li>
+<li class="chapter" data-level="3.6.2" data-path="descritiva.html"><a href="descritiva.html#moda-1"><i class="fa fa-check"></i><b>3.6.2</b> Moda</a></li>
+<li class="chapter" data-level="3.6.3" data-path="descritiva.html"><a href="descritiva.html#variância"><i class="fa fa-check"></i><b>3.6.3</b> Variância</a></li>
+<li class="chapter" data-level="3.6.4" data-path="descritiva.html"><a href="descritiva.html#histograma"><i class="fa fa-check"></i><b>3.6.4</b> Histograma</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="descritiva.html"><a href="descritiva.html#apresentação-tabular-de-dados-qualitativos"><i class="fa fa-check"></i><b>3.7</b> Apresentação tabular de dados qualitativos</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="probabilidade.html"><a href="probabilidade.html"><i class="fa fa-check"></i><b>4</b> - Introdução ao cálculo de probabilidades</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="probabilidade.html"><a href="probabilidade.html#introdução-conceitual-essencial"><i class="fa fa-check"></i><b>4.1</b> Introdução conceitual essencial</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="probabilidade.html"><a href="probabilidade.html#experimentos-determinísticos-e-experimentos-probabilísticos-aleatórios"><i class="fa fa-check"></i><b>4.1.1</b> Experimentos determinísticos e experimentos probabilísticos (aleatórios)</a></li>
+<li class="chapter" data-level="4.1.2" data-path="probabilidade.html"><a href="probabilidade.html#espaço-amostral-e-seus-elementos"><i class="fa fa-check"></i><b>4.1.2</b> Espaço amostral e seus elementos</a></li>
+<li class="chapter" data-level="4.1.3" data-path="probabilidade.html"><a href="probabilidade.html#evento-de-interesse-sucesso"><i class="fa fa-check"></i><b>4.1.3</b> Evento de interesse (sucesso)</a></li>
+<li class="chapter" data-level="4.1.4" data-path="probabilidade.html"><a href="probabilidade.html#evento"><i class="fa fa-check"></i><b>4.1.4</b> Evento</a></li>
+<li class="chapter" data-level="4.1.5" data-path="probabilidade.html"><a href="probabilidade.html#operações-com-conjuntos-diagramas-de-venn"><i class="fa fa-check"></i><b>4.1.5</b> Operações com conjuntos &amp; Diagramas de Venn</a></li>
+<li class="chapter" data-level="4.1.6" data-path="probabilidade.html"><a href="probabilidade.html#eventos-equiprováveis-e-não-equiprováveis"><i class="fa fa-check"></i><b>4.1.6</b> Eventos equiprováveis e não equiprováveis</a></li>
+<li class="chapter" data-level="4.1.7" data-path="probabilidade.html"><a href="probabilidade.html#eventos-independentes"><i class="fa fa-check"></i><b>4.1.7</b> Eventos independentes</a></li>
+<li class="chapter" data-level="4.1.8" data-path="probabilidade.html"><a href="probabilidade.html#eventos-mutuamente-exclusivos"><i class="fa fa-check"></i><b>4.1.8</b> Eventos mutuamente exclusivos</a></li>
+<li class="chapter" data-level="4.1.9" data-path="probabilidade.html"><a href="probabilidade.html#eventos-complementares"><i class="fa fa-check"></i><b>4.1.9</b> Eventos complementares</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-1"><i class="fa fa-check"></i><b>4.2</b> Probabilidade</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="probabilidade.html"><a href="probabilidade.html#introdução-histórica"><i class="fa fa-check"></i><b>4.2.1</b> Introdução histórica</a></li>
+<li class="chapter" data-level="4.2.2" data-path="probabilidade.html"><a href="probabilidade.html#conceito-clássico-ou-a-priori"><i class="fa fa-check"></i><b>4.2.2</b> Conceito clássico ou <em>a priori</em></a></li>
+<li class="chapter" data-level="4.2.3" data-path="probabilidade.html"><a href="probabilidade.html#conceito-frequentista-ou-a-posteriori"><i class="fa fa-check"></i><b>4.2.3</b> Conceito frequentista ou <em>a posteriori</em></a></li>
+<li class="chapter" data-level="4.2.4" data-path="probabilidade.html"><a href="probabilidade.html#conceito-axiomático"><i class="fa fa-check"></i><b>4.2.4</b> Conceito axiomático</a></li>
+<li class="chapter" data-level="4.2.5" data-path="probabilidade.html"><a href="probabilidade.html#regra-geral-da-adição-de-probabilidades-de-eventos"><i class="fa fa-check"></i><b>4.2.5</b> Regra geral da adição de probabilidades de eventos</a></li>
+<li class="chapter" data-level="4.2.6" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-de-eventos-condicionados"><i class="fa fa-check"></i><b>4.2.6</b> Probabilidade de eventos condicionados</a></li>
+<li class="chapter" data-level="4.2.7" data-path="probabilidade.html"><a href="probabilidade.html#dependência-independência-de-eventos"><i class="fa fa-check"></i><b>4.2.7</b> Dependência &amp; independência de eventos</a></li>
+<li class="chapter" data-level="4.2.8" data-path="probabilidade.html"><a href="probabilidade.html#regra-geral-do-produto-das-probabilidades-para-eventos-independentes"><i class="fa fa-check"></i><b>4.2.8</b> Regra geral do produto das probabilidades para eventos independentes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="probabilidade.html"><a href="probabilidade.html#teorema-de-bayes"><i class="fa fa-check"></i><b>4.3</b> Teorema de Bayes</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="var_aleatoria.html"><a href="var_aleatoria.html"><i class="fa fa-check"></i><b>5</b> - Introdução a variáveis aleatórias</a></li>
+<li class="chapter" data-level="6" data-path="modelos_probabilidade.html"><a href="modelos_probabilidade.html"><i class="fa fa-check"></i><b>6</b> - Introdução a modelos teóricos de probabilidade</a></li>
+<li class="chapter" data-level="7" data-path="planejamento_pesquisas.html"><a href="planejamento_pesquisas.html"><i class="fa fa-check"></i><b>7</b> - Introdução ao planejamento de pesquisas</a></li>
+<li class="chapter" data-level="8" data-path="estatistica_epidemiologia.html"><a href="estatistica_epidemiologia.html"><i class="fa fa-check"></i><b>8</b> - Introdução à estatística na epidemiologia</a></li>
+<li class="chapter" data-level="9" data-path="dist_medias_amostrais.html"><a href="dist_medias_amostrais.html"><i class="fa fa-check"></i><b>9</b> - Introdução à distribuição das médias amostrais, suas diferenças e seus intervalos de confiança</a></li>
+<li class="chapter" data-level="10" data-path="dist_prop_amostrais.html"><a href="dist_prop_amostrais.html"><i class="fa fa-check"></i><b>10</b> - Introdução à distribuição das proporções amostrais, suas diferenças e seus intervalos de confiança</a></li>
+<li class="chapter" data-level="11" data-path="teste_hipoteses.html"><a href="teste_hipoteses.html"><i class="fa fa-check"></i><b>11</b> - Introdução a testes de hipóteses</a></li>
+<li class="chapter" data-level="12" data-path="reg_simples.html"><a href="reg_simples.html"><i class="fa fa-check"></i><b>12</b> - Introdução ao modelo clássico de regressão linear simples</a></li>
+<li class="chapter" data-level="13" data-path="disc_fisher.html"><a href="disc_fisher.html"><i class="fa fa-check"></i><b>13</b> - Introdução à análise multivariada: discriminante linear de Fisher</a></li>
+<li class="chapter" data-level="14" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>14</b> - Introdução à estatística experimental: análise de variância (DIC e DBC)</a></li>
+<li class="divider"></li>
+<li><a href="https://fjrcosta.github.io/apostila/" target="blank">FJCosta Github</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><div class="line-block">UNIVERSIDADE ESTADUAL DE LONDRINA<br />
+CCE - Centro de Ciências Exatas<br />
+DSTA - Departamento de Estatística<br />
+Apostila de Estatística<br />
+Prof. M.e Eng. Felinto Junior Da Costa</div></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="anova" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">Capítulo 14</span> - Introdução à estatística experimental: análise de variância (DIC e DBC)<a href="anova.html#anova" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="disc_fisher.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/14-anova_dic_dbc.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

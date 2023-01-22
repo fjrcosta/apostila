@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 4 - Introdução ao cálculo de probabilidades | apostila.knit</title>
+  <title>2.7 Noções básicas sobre somatórios (\(\Sigma\)) | apostila.knit</title>
   <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 4 - Introdução ao cálculo de probabilidades | apostila.knit" />
+  <meta property="og:title" content="2.7 Noções básicas sobre somatórios (\(\Sigma\)) | apostila.knit" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
   <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 4 - Introdução ao cálculo de probabilidades | apostila.knit" />
+  <meta name="twitter:title" content="2.7 Noções básicas sobre somatórios (\(\Sigma\)) | apostila.knit" />
   
   <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="apresentação-tabular-de-dados-qualitativos.html"/>
-<link rel="next" href="introdução-conceitual-essencial.html"/>
+<link rel="prev" href="tipos-de-variáveis.html"/>
+<link rel="next" href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -262,32 +262,75 @@ Prof. M.e Eng. Felinto Junior Da Costa</div></a>
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="probabilidade" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">Capítulo 4</span> - Introdução ao cálculo de probabilidades<a href="probabilidade.html#probabilidade" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="noções-básicas-sobre-somatórios-sigma" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Noções básicas sobre somatórios (<span class="math inline">\(\Sigma\)</span>)<a href="noções-básicas-sobre-somatórios-sigma.html#noções-básicas-sobre-somatórios-sigma" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Somatório é um operador matemático utilizado para simplificar expressões que envolvam soma de mais de um elemento.</p>
+<p>Digamos, por exemplo, que estamos interessados saber o total de comissões a pagar em um determinado setor de uma empresa.</p>
+<p>Admita que esse setor tenha 6 funcionários: Pedro, Guilherme, Lucas, Maria, Fernanda e Roberto e que suas comissões sejam R$ 3000; R$ 3300; R$ 3900; R$ 2950; R$ 3150 e R$ 3450.</p>
+<p>A representação da soma das comissões pode ser expressa de vários modos como, por exemplo, nesse extensa frase:</p>
+<p><br />
+</p>
 <blockquote>
-<p>_“Not everything that can be counted counts and not everything that counts can be counted […]” (Albert Einstein, 1879-1955)</p>
+<p>O total de comissões a pagar em um determinado setor de uma empresa é a Renda do Pedro mais a Renda do Guilherme mais a Renda do Lucas mais a Renda da Maria mais a Renda da Fernanda mais Renda do Roberto.</p>
 </blockquote>
-<p>Seria bom começar um curso sobre teoria das probabilidades, dando uma definição de probabilidade concisa, simples e intuitiva, mas rigorosa. Infelizmente, isto não será possível.</p>
-<p>Se por um lado, uma definição rigorosa de probabilidade requer um aparato matemático sofisticado e é bem pouco intuitiva; por outro lado, definições simples são frequentemente enganosas ou, na melhor das hipóteses, tautológicas .</p>
-<p>Por exemplo, poderíamos dizer que probabilidade:</p>
+<p><br />
+</p>
+<p>Atribuindo os valores para cada uma das rendas:</p>
+<p><br />
+</p>
 <blockquote>
-<p>é um <em>número</em> que quantifica, uma <em>medida da informação</em> disponível sobre a possibilidade de ocorrência de um determinado <em>evento</em> quando ainda não se sabe se ele ocorrerá ou não.</p>
+<p>O total de comissões a pagar em um determinado setor de uma empresa é: : R$ 3000 + R$ 3300 + R$ 3900 + R$ 2950 + R$ 3150 + R$ 3450.</p>
 </blockquote>
-<p>Essa definição é circular (<em>definiendum=definien</em> porque usa o conceito de probabilidade, que é um sinônimo de possibilidade, chance, esperança, viabilidade, exequibilidade, expectativa, ).</p>
-<p>Todavia ela nos introduz <strong>dois conceitos</strong> que iremos usar como ponto de partida:</p>
-<ol style="list-style-type: decimal">
-<li>probabilidade refere-se a <em>experimentos aleatórios</em> e seus <em>eventos</em>; e,</li>
-<li>probabilidade é um <em>número</em>.</li>
-</ol>
-<p>O <em>conceito clássico</em> de probabilidade será a seguir apresentado e, ao final será abordado o conceito de probabilidade como uma função matemática alicerçada em alguns postulados (<em>conceito axiomático</em>).</p>
+<p><br />
+</p>
+<p>Chamando-se “O total de comissões a pagar em um determinado setor de uma empresa é” de <span class="math inline">\(X\)</span>, teremos:</p>
+<p><br />
+</p>
+<blockquote>
+<p><span class="math inline">\(X\)</span> = R$ 3000 + R$ 3300 + R$ 3900 + R$ 2950 + R$ 3150 + R$ 3450.</p>
+</blockquote>
+<p><br />
+</p>
+<p>Para simplificar a representação dessa operação, vamos enumerar os funcionários: Pedro (1), Guilherme (2), Lucas (3), Maria (4), Fernanda (5) e Roberto (6). Além disso, vamos chamar a comissão a ser paga pela letra X.</p>
+<p>Para diferenciar a fração da comissão <span class="math inline">\(X\)</span> a ser paga a cada um dos funcionários podemos por um índice na letra <span class="math inline">\(X\)</span> para indicar a quem estamos nos referindo. Assim <span class="math inline">\(X_{1}\)</span> seria a comissão do Pedro, <span class="math inline">\(X_{2}\)</span> a do Guilherme, <span class="math inline">\(X_{3}\)</span> a do Lucas, <span class="math inline">\(X_{4}\)</span> a da Maria, <span class="math inline">\(X_{5}\)</span> a da Fernanda e <span class="math inline">\(X_{3}\)</span> a do Roberto.</p>
+<p>Com essa notação podemos representar matematicamente o total das comissões a pagar em um determinado setor de uma empresa por:</p>
+<blockquote>
+<p><span class="math inline">\(X=X_{1}+X_{2}+X_{3}+X_{4}+X_{5}+X_{6}\)</span></p>
+</blockquote>
+<p>Cada um desses fatores pode ser generalizado como um <span class="math inline">\(X_{i}\)</span>, a comissão de um <em>i-ésimo</em> funcionário qualquer. Sabendo que o setor tem apenas 6 funcionários (Pedro, Guilherme, Lucas, Maria, Fernanda e Roberto) então esse i irá variar de 1 a 6 (Pedro:1, Guilherme: 2, Lucas: 3, Maria: 4, Fernanda: 5 e Roberto: 6).</p>
+<p>Com todas essas considerações podemos representar a soma das comissões utilizando a notação matemática do somatório.</p>
+<p>A letra grega maiúscula <strong><span class="math inline">\(\Sigma\)</span> (sigma)</strong> é habitualmente adotada na matemática para representar o somatório de uma quantidade de fatores. Assim, nosso exemplo da soma de 6 fatores (comissões) pode ser representada matematicamente por:</p>
+<p><span class="math display">\[
+\sum_{i=1}^{6}{X_{i}} = X_{1}+X_{2}+X_{3}+X_{4}+X_{5}+X_{6}
+\]</span></p>
+<p>Observe que abaixo da letra <span class="math inline">\(\Sigma\)</span> vemos <span class="math inline">\(i=1\)</span> indicando que o índice dos fatores (X) a serem somados (a <em>i-ésima</em> comissão) irá se iniciar pela comissão do primeiro funcionário, quando então i = 1.</p>
+<p>Acima da letra <span class="math inline">\(\Sigma\)</span> vemos o número <span class="math inline">\(6\)</span> indicando que o índice dos fatores (X) a serem somados irá se dar até o valor da comissão do sexto funcionário, quando então i=6.</p>
+<p>Generalizando-se para uma soma de <span class="math inline">\(n\)</span> fatores <span class="math inline">\(X\)</span>:</p>
+<p><span class="math display">\[
+\sum_{i=1}^n{X_{i}}.
+\]</span></p>
+<p>A representação matemática do somatório pode ser inserida junto a qualquer outra operação como, por exemplo, podemos, depois de realizar a soma, dividi-la por um valor <span class="math inline">\(n\)</span> qualquer</p>
+<p><span class="math display">\[
+\frac{\sum_{i=1}^n{X_{i}}}{n} \\
+\]</span></p>
+<p>ou elevá-la ao quadrado:</p>
+<p><span class="math display">\[
+\left(\sum_{i=1}^n{X_{i}}\right)^{2}
+\]</span></p>
+<p>Atenção para a diferença entre essas duas operações:</p>
+<p><span class="math display">\[
+\left(\sum_{i=1}^n{X_{i}}\right)^{2}   \\
+\sum_{i=1}^n{X_{i}^{2}}
+\]</span></p>
+<p>A primeira indica que devemos realizar a soma dos fatores <strong>e só então elevar esse resultado ao quadrado</strong>. A segunda indica que devemos realizar a <strong>soma dos quadrados de cada um dos fatores</strong>.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="apresentação-tabular-de-dados-qualitativos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introdução-conceitual-essencial.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="tipos-de-variáveis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -318,7 +361,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-probabilidade.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-conceitos_gerais.Rmd",
 "text": "Edit"
 },
 "history": {

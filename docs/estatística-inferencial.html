@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 4 - Introdução ao cálculo de probabilidades | apostila.knit</title>
+  <title>2.2 Estatística inferencial | apostila.knit</title>
   <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 4 - Introdução ao cálculo de probabilidades | apostila.knit" />
+  <meta property="og:title" content="2.2 Estatística inferencial | apostila.knit" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
   <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 4 - Introdução ao cálculo de probabilidades | apostila.knit" />
+  <meta name="twitter:title" content="2.2 Estatística inferencial | apostila.knit" />
   
   <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="apresentação-tabular-de-dados-qualitativos.html"/>
-<link rel="next" href="introdução-conceitual-essencial.html"/>
+<link rel="prev" href="estatística-descritiva.html"/>
+<link rel="next" href="produção-de-conhecimento.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -262,32 +262,36 @@ Prof. M.e Eng. Felinto Junior Da Costa</div></a>
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="probabilidade" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">Capítulo 4</span> - Introdução ao cálculo de probabilidades<a href="probabilidade.html#probabilidade" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="estatística-inferencial" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Estatística inferencial<a href="estatística-inferencial.html#estatística-inferencial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>estatística inferencial</strong> tem o objetivo de estabelecer níveis de confiança da tomada de decisão de associar uma estimativa amostral a um parâmetro populacional. Divide-se em estimação e testes de significância.</p>
 <blockquote>
-<p>_“Not everything that can be counted counts and not everything that counts can be counted […]” (Albert Einstein, 1879-1955)</p>
+<p>“Dedução e indução são procedimentos racionais que nos levam do já conhecido ao ainda não conhecido; isto é, permitem que adquiramos conhecimentos novos graças a conhecimentos já adquiridos.[…]”</p>
 </blockquote>
-<p>Seria bom começar um curso sobre teoria das probabilidades, dando uma definição de probabilidade concisa, simples e intuitiva, mas rigorosa. Infelizmente, isto não será possível.</p>
-<p>Se por um lado, uma definição rigorosa de probabilidade requer um aparato matemático sofisticado e é bem pouco intuitiva; por outro lado, definições simples são frequentemente enganosas ou, na melhor das hipóteses, tautológicas .</p>
-<p>Por exemplo, poderíamos dizer que probabilidade:</p>
+<p>Dedução.</p>
+<p>Na dedução parte-se de uma verdade já conhecida para demonstrar que ela se aplica a todos os casos particulares iguais. Vai do geral ao particular.</p>
+<p>Indução.</p>
+<p>Na indução parte-se de alguns casos particulares iguais ou semelhantes para se estipular uma <strong>lei geral</strong>. Vai do particular ao geral.</p>
+<p>Na dedução, dado <strong>X</strong>, infiro (concluo) <strong>a</strong>, <strong>b</strong>, <strong>c</strong>, <strong>d</strong>.</p>
+<p>Na indução, dados <strong>a</strong>, <strong>b</strong>, <strong>c</strong>, <strong>d</strong>, infiro (concluo) <strong>X</strong>.</p>
 <blockquote>
-<p>é um <em>número</em> que quantifica, uma <em>medida da informação</em> disponível sobre a possibilidade de ocorrência de um determinado <em>evento</em> quando ainda não se sabe se ele ocorrerá ou não.</p>
+<p>Exemplo: testes de aceleração (0-60 mph) feitos com 6 carros importados em 1999 resultaram nas seguintes medidas: 12,9 s; 16,50 s; 11,30 s; 15,20 s; 18,20 s e 17,70 s. Um estudo descritivo poderia afirmar que:</p>
 </blockquote>
-<p>Essa definição é circular (<em>definiendum=definien</em> porque usa o conceito de probabilidade, que é um sinônimo de possibilidade, chance, esperança, viabilidade, exequibilidade, expectativa, ).</p>
-<p>Todavia ela nos introduz <strong>dois conceitos</strong> que iremos usar como ponto de partida:</p>
-<ol style="list-style-type: decimal">
-<li>probabilidade refere-se a <em>experimentos aleatórios</em> e seus <em>eventos</em>; e,</li>
-<li>probabilidade é um <em>número</em>.</li>
-</ol>
-<p>O <em>conceito clássico</em> de probabilidade será a seguir apresentado e, ao final será abordado o conceito de probabilidade como uma função matemática alicerçada em alguns postulados (<em>conceito axiomático</em>).</p>
+<ul>
+<li>metade dos dados coletados acelera de 0-60 mph em menos de 16,00 s; e</li>
+<li>a aceleração média de 0-60 mph é de 15,30 s.</li>
+</ul>
+<blockquote>
+<p>Mas, a partir dessa amostra concluir que a aceleração média de <strong>todos</strong> os carros importados em 1999 seja de 15,30 s; ou, que <strong>metade</strong> dos carros importados em 1999 acelerem de 0-60 mph em menos de 16,00 s são afirmações que pertencem à <strong>inferência estatística</strong>.</p>
+</blockquote>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="apresentação-tabular-de-dados-qualitativos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introdução-conceitual-essencial.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="estatística-descritiva.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="produção-de-conhecimento.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -318,7 +322,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-probabilidade.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-conceitos_gerais.Rmd",
 "text": "Edit"
 },
 "history": {

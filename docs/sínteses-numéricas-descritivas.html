@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.3 Sínteses numéricas descritivas | _main.knit</title>
+  <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.3 Sínteses numéricas descritivas | _main.knit" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
+  <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.3 Sínteses numéricas descritivas | _main.knit" />
+  
+  <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html"/>
+<link rel="next" href="medidas-de-forma-assimetria-curtose.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Índice</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section" id="toc-section"></a></li>
+<li class="chapter" data-level="1" data-path="historia.html"><a href="historia.html"><i class="fa fa-check"></i><b>1</b> - Introdução histórica da estatística</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="primeiros-levantamentos-estudos-e-publicações-demografia-e-aritmética-política.html"><a href="primeiros-levantamentos-estudos-e-publicações-demografia-e-aritmética-política.html"><i class="fa fa-check"></i><b>1.1</b> Primeiros levantamentos, estudos e publicações &amp; Demografia e aritmética política</a></li>
+<li class="chapter" data-level="1.2" data-path="visualização-de-dados-estudos-e-primeiras-publicações.html"><a href="visualização-de-dados-estudos-e-primeiras-publicações.html"><i class="fa fa-check"></i><b>1.2</b> Visualização de dados &amp; Estudos e primeiras publicações</a></li>
+<li class="chapter" data-level="1.3" data-path="nomes-notáveis.html"><a href="nomes-notáveis.html"><i class="fa fa-check"></i><b>1.3</b> Nomes notáveis</a></li>
+<li class="chapter" data-level="1.4" data-path="revista-biometrika.html"><a href="revista-biometrika.html"><i class="fa fa-check"></i><b>1.4</b> Revista Biometrika</a></li>
+<li class="chapter" data-level="1.5" data-path="eugenia.html"><a href="eugenia.html"><i class="fa fa-check"></i><b>1.5</b> Eugenia</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="conceitos_gerais.html"><a href="conceitos_gerais.html"><i class="fa fa-check"></i><b>2</b> - Introdução conceitual essencial</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="estatística-descritiva.html"><a href="estatística-descritiva.html"><i class="fa fa-check"></i><b>2.1</b> Estatística descritiva</a></li>
+<li class="chapter" data-level="2.2" data-path="estatística-inferencial.html"><a href="estatística-inferencial.html"><i class="fa fa-check"></i><b>2.2</b> Estatística inferencial</a></li>
+<li class="chapter" data-level="2.3" data-path="produção-de-conhecimento.html"><a href="produção-de-conhecimento.html"><i class="fa fa-check"></i><b>2.3</b> Produção de conhecimento</a></li>
+<li class="chapter" data-level="2.4" data-path="população-universo-amostra.html"><a href="população-universo-amostra.html"><i class="fa fa-check"></i><b>2.4</b> População (universo) &amp; amostra</a></li>
+<li class="chapter" data-level="2.5" data-path="parâmetros-e-estatísticas.html"><a href="parâmetros-e-estatísticas.html"><i class="fa fa-check"></i><b>2.5</b> Parâmetros e estatísticas</a></li>
+<li class="chapter" data-level="2.6" data-path="tipos-de-variáveis.html"><a href="tipos-de-variáveis.html"><i class="fa fa-check"></i><b>2.6</b> Tipos de variáveis</a></li>
+<li class="chapter" data-level="2.7" data-path="noções-básicas-sobre-somatórios-sigma.html"><a href="noções-básicas-sobre-somatórios-sigma.html"><i class="fa fa-check"></i><b>2.7</b> Noções básicas sobre somatórios (<span class="math inline">\(\Sigma\)</span>)}</a></li>
+<li class="chapter" data-level="2.8" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><i class="fa fa-check"></i><b>2.8</b> Análise combinatória: diagramas de árvore, permutações (arranjos) &amp; combinações</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html#permutações-ou-arranjos"><i class="fa fa-check"></i><b>2.8.1</b> Permutações ou arranjos</a></li>
+<li class="chapter" data-level="2.8.2" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html#combinações"><i class="fa fa-check"></i><b>2.8.2</b> Combinações</a></li>
+<li class="chapter" data-level="2.8.3" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html#observações-acerca-de-alguns-fatoriais"><i class="fa fa-check"></i><b>2.8.3</b> Observações acerca de alguns fatoriais</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="conectivos-lógicos.html"><a href="conectivos-lógicos.html"><i class="fa fa-check"></i><b>2.9</b> Conectivos lógicos</a></li>
+<li class="chapter" data-level="2.10" data-path="leis-de-de-morgan.html"><a href="leis-de-de-morgan.html"><i class="fa fa-check"></i><b>2.10</b> Leis de De Morgan</a></li>
+<li class="chapter" data-level="2.11" data-path="noções-básicas-para-o-uso-de-calculadora-cassio-fx-82ms.html"><a href="noções-básicas-para-o-uso-de-calculadora-cassio-fx-82ms.html"><i class="fa fa-check"></i><b>2.11</b> Noções básicas para o uso de calculadora (Cassio fx-82MS)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="descritiva.html"><a href="descritiva.html"><i class="fa fa-check"></i><b>3</b> - Introdução à estatística descritiva</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="análise-exploratória.html"><a href="análise-exploratória.html"><i class="fa fa-check"></i><b>3.1</b> Análise exploratória</a></li>
+<li class="chapter" data-level="3.2" data-path="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html"><a href="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html"><i class="fa fa-check"></i><b>3.2</b> Dados brutos, em rol, diagrama de ramos &amp; folhas e de dispersão unidimensional</a></li>
+<li class="chapter" data-level="3.3" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html"><i class="fa fa-check"></i><b>3.3</b> Sínteses numéricas descritivas</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html#medidas-de-tendência-central-posição"><i class="fa fa-check"></i><b>3.3.1</b> Medidas de tendência central (posição)</a></li>
+<li class="chapter" data-level="3.3.2" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html#medidas-de-dispersão-variabilidade"><i class="fa fa-check"></i><b>3.3.2</b> Medidas de dispersão (variabilidade)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html#medidas-de-subdivisão-separatrizes"><i class="fa fa-check"></i><b>3.3.3</b> Medidas de subdivisão (separatrizes)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="medidas-de-forma-assimetria-curtose.html"><a href="medidas-de-forma-assimetria-curtose.html"><i class="fa fa-check"></i><b>3.4</b> Medidas de forma (assimetria &amp; curtose)</a></li>
+<li class="chapter" data-level="3.5" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html"><i class="fa fa-check"></i><b>3.5</b> Apresentação gráfica de dados</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#barras"><i class="fa fa-check"></i><b>3.5.1</b> Barras</a></li>
+<li class="chapter" data-level="3.5.2" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#setores"><i class="fa fa-check"></i><b>3.5.2</b> Setores</a></li>
+<li class="chapter" data-level="3.5.3" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#box-plot"><i class="fa fa-check"></i><b>3.5.3</b> Box-plot</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="apresentação-tabular-de-dados-quantitativos.html"><a href="apresentação-tabular-de-dados-quantitativos.html"><i class="fa fa-check"></i><b>3.6</b> Apresentação tabular de dados quantitativos</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="apresentação-tabular-de-dados-quantitativos.html"><a href="apresentação-tabular-de-dados-quantitativos.html#média-1"><i class="fa fa-check"></i><b>3.6.1</b> Média</a></li>
+<li class="chapter" data-level="3.6.2" data-path="apresentação-tabular-de-dados-quantitativos.html"><a href="apresentação-tabular-de-dados-quantitativos.html#moda-1"><i class="fa fa-check"></i><b>3.6.2</b> Moda</a></li>
+<li class="chapter" data-level="3.6.3" data-path="apresentação-tabular-de-dados-quantitativos.html"><a href="apresentação-tabular-de-dados-quantitativos.html#variância"><i class="fa fa-check"></i><b>3.6.3</b> Variância</a></li>
+<li class="chapter" data-level="3.6.4" data-path="apresentação-tabular-de-dados-quantitativos.html"><a href="apresentação-tabular-de-dados-quantitativos.html#histograma"><i class="fa fa-check"></i><b>3.6.4</b> Histograma</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="apresentação-tabular-de-dados-qualitativos.html"><a href="apresentação-tabular-de-dados-qualitativos.html"><i class="fa fa-check"></i><b>3.7</b> Apresentação tabular de dados qualitativos</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="probabilidade.html"><a href="probabilidade.html"><i class="fa fa-check"></i><b>4</b> - Introdução ao cálculo de probabilidades</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="introdução-conceitual-essencial.html"><a href="introdução-conceitual-essencial.html"><i class="fa fa-check"></i><b>4.1</b> Introdução conceitual essencial</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="introdução-conceitual-essencial.html"><a href="introdução-conceitual-essencial.html#experimentos-determinísticos-e-experimentos-probabilísticos-aleatórios"><i class="fa fa-check"></i><b>4.1.1</b> Experimentos determinísticos e experimentos probabilísticos (aleatórios)</a></li>
+<li class="chapter" data-level="4.1.2" data-path="introdução-conceitual-essencial.html"><a href="introdução-conceitual-essencial.html#espaço-amostral-e-seus-elementos"><i class="fa fa-check"></i><b>4.1.2</b> Espaço amostral e seus elementos</a></li>
+<li class="chapter" data-level="4.1.3" data-path="introdução-conceitual-essencial.html"><a href="introdução-conceitual-essencial.html#evento-de-interesse-sucesso"><i class="fa fa-check"></i><b>4.1.3</b> Evento de interesse (sucesso)</a></li>
+<li class="chapter" data-level="4.1.4" data-path="introdução-conceitual-essencial.html"><a href="introdução-conceitual-essencial.html#evento"><i class="fa fa-check"></i><b>4.1.4</b> Evento</a></li>
+<li class="chapter" data-level="4.1.5" data-path="introdução-conceitual-essencial.html"><a href="introdução-conceitual-essencial.html#operações-com-conjuntos-diagramas-de-venn"><i class="fa fa-check"></i><b>4.1.5</b> Operações com conjuntos &amp; Diagramas de Venn</a></li>
+<li class="chapter" data-level="4.1.6" data-path="introdução-conceitual-essencial.html"><a href="introdução-conceitual-essencial.html#eventos-equiprováveis-e-não-equiprováveis"><i class="fa fa-check"></i><b>4.1.6</b> Eventos equiprováveis e não equiprováveis</a></li>
+<li class="chapter" data-level="4.1.7" data-path="introdução-conceitual-essencial.html"><a href="introdução-conceitual-essencial.html#eventos-independentes"><i class="fa fa-check"></i><b>4.1.7</b> Eventos independentes</a></li>
+<li class="chapter" data-level="4.1.8" data-path="introdução-conceitual-essencial.html"><a href="introdução-conceitual-essencial.html#eventos-mutuamente-exclusivos"><i class="fa fa-check"></i><b>4.1.8</b> Eventos mutuamente exclusivos</a></li>
+<li class="chapter" data-level="4.1.9" data-path="introdução-conceitual-essencial.html"><a href="introdução-conceitual-essencial.html#eventos-complementares"><i class="fa fa-check"></i><b>4.1.9</b> Eventos complementares</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="probabilidade-1.html"><a href="probabilidade-1.html"><i class="fa fa-check"></i><b>4.2</b> Probabilidade</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="probabilidade-1.html"><a href="probabilidade-1.html#introdução-histórica"><i class="fa fa-check"></i><b>4.2.1</b> Introdução histórica</a></li>
+<li class="chapter" data-level="4.2.2" data-path="probabilidade-1.html"><a href="probabilidade-1.html#conceito-clássico-ou-a-priori"><i class="fa fa-check"></i><b>4.2.2</b> Conceito clássico ou <em>a priori</em></a></li>
+<li class="chapter" data-level="4.2.3" data-path="probabilidade-1.html"><a href="probabilidade-1.html#conceito-frequentista-ou-a-posteriori"><i class="fa fa-check"></i><b>4.2.3</b> Conceito frequentista ou <em>a posteriori</em></a></li>
+<li class="chapter" data-level="4.2.4" data-path="probabilidade-1.html"><a href="probabilidade-1.html#conceito-axiomático"><i class="fa fa-check"></i><b>4.2.4</b> Conceito axiomático</a></li>
+<li class="chapter" data-level="4.2.5" data-path="probabilidade-1.html"><a href="probabilidade-1.html#regra-geral-da-adição-de-probabilidades-de-eventos"><i class="fa fa-check"></i><b>4.2.5</b> Regra geral da adição de probabilidades de eventos</a></li>
+<li class="chapter" data-level="4.2.6" data-path="probabilidade-1.html"><a href="probabilidade-1.html#probabilidade-de-eventos-condicionados"><i class="fa fa-check"></i><b>4.2.6</b> Probabilidade de eventos condicionados</a></li>
+<li class="chapter" data-level="4.2.7" data-path="probabilidade-1.html"><a href="probabilidade-1.html#dependência-independência-de-eventos"><i class="fa fa-check"></i><b>4.2.7</b> Dependência &amp; independência de eventos</a></li>
+<li class="chapter" data-level="4.2.8" data-path="probabilidade-1.html"><a href="probabilidade-1.html#regra-geral-do-produto-das-probabilidades-para-eventos-independentes"><i class="fa fa-check"></i><b>4.2.8</b> Regra geral do produto das probabilidades para eventos independentes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="teorema-de-bayes.html"><a href="teorema-de-bayes.html"><i class="fa fa-check"></i><b>4.3</b> Teorema de Bayes</a></li>
+<li class="chapter" data-level="4.4" data-path="demonstração-clássica-de-independência.html"><a href="demonstração-clássica-de-independência.html"><i class="fa fa-check"></i><b>4.4</b> Demonstração clássica de independência</a></li>
+<li class="chapter" data-level="4.5" data-path="demonstração-clássica-de-dependência.html"><a href="demonstração-clássica-de-dependência.html"><i class="fa fa-check"></i><b>4.5</b> Demonstração clássica de dependência</a></li>
+<li class="chapter" data-level="4.6" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html"><i class="fa fa-check"></i><b>4.6</b> Teoremas da Teoria das probabilidades</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-01"><i class="fa fa-check"></i><b>4.6.1</b> Teorema 01</a></li>
+<li class="chapter" data-level="4.6.2" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-02"><i class="fa fa-check"></i><b>4.6.2</b> Teorema 02</a></li>
+<li class="chapter" data-level="4.6.3" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-03"><i class="fa fa-check"></i><b>4.6.3</b> Teorema 03</a></li>
+<li class="chapter" data-level="4.6.4" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-04"><i class="fa fa-check"></i><b>4.6.4</b> Teorema 04</a></li>
+<li class="chapter" data-level="4.6.5" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-05"><i class="fa fa-check"></i><b>4.6.5</b> Teorema 05</a></li>
+<li class="chapter" data-level="4.6.6" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-06"><i class="fa fa-check"></i><b>4.6.6</b> Teorema 06</a></li>
+<li class="chapter" data-level="4.6.7" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-07"><i class="fa fa-check"></i><b>4.6.7</b> Teorema 07</a></li>
+<li class="chapter" data-level="4.6.8" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-08"><i class="fa fa-check"></i><b>4.6.8</b> Teorema 08</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="var_aleatoria.html"><a href="var_aleatoria.html"><i class="fa fa-check"></i><b>5</b> - Introdução a variáveis aleatórias</a></li>
+<li class="chapter" data-level="6" data-path="modelos_probabilidade.html"><a href="modelos_probabilidade.html"><i class="fa fa-check"></i><b>6</b> - Introdução a modelos teóricos de probabilidade</a></li>
+<li class="chapter" data-level="7" data-path="planejamento_pesquisas.html"><a href="planejamento_pesquisas.html"><i class="fa fa-check"></i><b>7</b> - Introdução ao planejamento de pesquisas</a></li>
+<li class="chapter" data-level="8" data-path="estatistica_epidemiologia.html"><a href="estatistica_epidemiologia.html"><i class="fa fa-check"></i><b>8</b> - Introdução à estatística na epidemiologia</a></li>
+<li class="chapter" data-level="9" data-path="dist_medias_amostrais.html"><a href="dist_medias_amostrais.html"><i class="fa fa-check"></i><b>9</b> - Introdução à distribuição das médias amostrais, suas diferenças e seus intervalos de confiança</a></li>
+<li class="chapter" data-level="10" data-path="dist_prop_amostrais.html"><a href="dist_prop_amostrais.html"><i class="fa fa-check"></i><b>10</b> - Introdução à distribuição das proporções amostrais, suas diferenças e seus intervalos de confiança</a></li>
+<li class="chapter" data-level="11" data-path="teste_hipoteses.html"><a href="teste_hipoteses.html"><i class="fa fa-check"></i><b>11</b> - Introdução a testes de hipóteses</a></li>
+<li class="chapter" data-level="12" data-path="reg_simples.html"><a href="reg_simples.html"><i class="fa fa-check"></i><b>12</b> - Introdução ao modelo clássico de regressão linear simples</a></li>
+<li class="chapter" data-level="13" data-path="disc_fisher.html"><a href="disc_fisher.html"><i class="fa fa-check"></i><b>13</b> - Introdução à análise multivariada: discriminante linear de Fisher</a></li>
+<li class="chapter" data-level="14" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>14</b> - Introdução à estatística experimental: análise de variância (DIC e DBC)</a></li>
+<li class="divider"></li>
+<li><a href="https://fjrcosta.github.io/apostila/" target="blank">FJCosta Github</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><div class="line-block">UNIVERSIDADE ESTADUAL DE LONDRINA<br />
+CCE - Centro de Ciências Exatas<br />
+DSTA - Departamento de Estatística<br />
+Apostila de Estatística<br />
+Prof. M.e Eng. Felinto Junior Da Costa</div></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sínteses-numéricas-descritivas" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Sínteses numéricas descritivas<a href="sínteses-numéricas-descritivas.html#sínteses-numéricas-descritivas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Além da apresentação elementar de algumas informações relacionadas aos dados brutos da amostra, tais como os valores <em>mínimo</em> e <em>máximo</em> observados, a estatística descritiva possui muitas outras ferramentas para <em>condensar</em> a informação contida nos dados.</p>
+<p>São chamadas de <em>sínteses numéricas</em>, medidas que condensam variados aspectos relacionados aos valores dos dados. As principais <em>sínteses numéricas</em> são:</p>
+<ul>
+<li>de tendência central (posição): média (simples ou aritmética, geométrica, harmônica, anarmônica, quadrática, biquadrática), moda e mediana;</li>
+<li>de dispersão (variabilidade): absolutas (amplitude total, variância e desvio padrão) ou relativas (coeficiente de variação, unidades padronizadas); e,</li>
+<li>de subdivisão (separatrizes, quantis): mediana (50%), quartis (25%, 50%, 75%), decis (10%, ….90%) e percentis (1%….99%).</li>
+</ul>
+<p>Uma medida de posição ou dispersão é dita <strong>resistente</strong> quando forem pouco afetadas pela alteração de uma pequena porção dos dados. A mediana é uma medida resistente, já a média e a variância não são.</p>
+<div id="medidas-de-tendência-central-posição" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Medidas de tendência central (posição)<a href="sínteses-numéricas-descritivas.html#medidas-de-tendência-central-posição" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="média" class="section level4 hasAnchor" number="3.3.1.1">
+<h4><span class="header-section-number">3.3.1.1</span> Média<a href="sínteses-numéricas-descritivas.html#média" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Sejam <span class="math inline">\(x_{1}, x_{2}, ..., x_{n}\)</span> os <span class="math inline">\(n\)</span> valores assumidos pela variável <span class="math inline">\(X\)</span> (dados brutos). A <em>média aritmética simples</em> será dada por:</p>
+<p><span class="math display">\[
+\stackrel{-}{x}=\frac{\sum _{i=1}^{n}{x}_{i}}{n}
+\]</span></p>
+<p>Propriedades da média aritmética:</p>
+<ul>
+<li>somando-se (ou subtraindo-se) cada um dos elementos do conjunto de dados por uma constante arbitrária qualquer <span class="math inline">\(k\)</span>, a média aritmética ficará adicionada (ou subtraída) dessa essa constante <span class="math inline">\(k\)</span></li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="sínteses-numéricas-descritivas.html#cb8-1" aria-hidden="true" tabindex="-1"></a>alturas_ad<span class="ot">=</span>alturas<span class="fl">+0.05</span></span>
+<span id="cb8-2"><a href="sínteses-numéricas-descritivas.html#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="sínteses-numéricas-descritivas.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb8-4"><a href="sínteses-numéricas-descritivas.html#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="sínteses-numéricas-descritivas.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(alturas,<span class="at">method =</span> <span class="st">&quot;stack&quot;</span>,  <span class="at">at=</span><span class="fl">0.5</span>, </span>
+<span id="cb8-6"><a href="sínteses-numéricas-descritivas.html#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb8-7"><a href="sínteses-numéricas-descritivas.html#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="at">col=</span><span class="st">&quot;blue&quot;</span>, <span class="at">cex=</span><span class="dv">1</span>, <span class="at">xlab=</span><span class="st">&quot;Alturas originais dos estudantes (m)&quot;</span>, </span>
+<span id="cb8-8"><a href="sínteses-numéricas-descritivas.html#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="at">ylab=</span><span class="st">&quot;Quantidades observadas (un)&quot;</span>)</span>
+<span id="cb8-9"><a href="sínteses-numéricas-descritivas.html#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(alturas), <span class="at">col=</span><span class="st">&quot;red&quot;</span>) </span>
+<span id="cb8-10"><a href="sínteses-numéricas-descritivas.html#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">mean</span>(alturas)<span class="sc">-</span><span class="fl">0.2</span>, <span class="dv">1</span>, <span class="st">&quot;Média=1,69 m&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>) </span>
+<span id="cb8-11"><a href="sínteses-numéricas-descritivas.html#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="sínteses-numéricas-descritivas.html#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(alturas_ad,<span class="at">method =</span> <span class="st">&quot;stack&quot;</span>,  <span class="at">at=</span><span class="fl">0.5</span>, </span>
+<span id="cb8-13"><a href="sínteses-numéricas-descritivas.html#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb8-14"><a href="sínteses-numéricas-descritivas.html#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="at">col=</span><span class="st">&quot;blue&quot;</span>, <span class="at">cex=</span><span class="dv">1</span>, <span class="at">xlab=</span><span class="st">&quot;Alt. dos estudantes (m) adic. de 5cm&quot;</span>, </span>
+<span id="cb8-15"><a href="sínteses-numéricas-descritivas.html#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="at">ylab=</span><span class="st">&quot;Quantidades observadas (un)&quot;</span>)</span>
+<span id="cb8-16"><a href="sínteses-numéricas-descritivas.html#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(alturas_ad), <span class="at">col=</span><span class="st">&quot;red&quot;</span>) </span>
+<span id="cb8-17"><a href="sínteses-numéricas-descritivas.html#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">mean</span>(alturas_ad)<span class="sc">-</span><span class="fl">0.2</span>, <span class="dv">1</span>, <span class="st">&quot;Média=1,74 m&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>) </span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-34"></span>
+<img src="_main_files/figure-html/unnamed-chunk-34-1.png" alt="Mudanças na média pela adição (subtração) de uma constante $k=0.05$" width="672" />
+<p class="caption">
+Figure 3.3: Mudanças na média pela adição (subtração) de uma constante <span class="math inline">\(k=0.05\)</span>
+</p>
+</div>
+<ul>
+<li>multiplicando-se (ou dividindo-se) cada um dos elementos do conjunto de dados por uma constante arbitrária <span class="math inline">\(k\)</span>, a média aritmética ficará multiplicada (ou dividida) por essa constante <span class="math inline">\(k\)</span></li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="sínteses-numéricas-descritivas.html#cb9-1" aria-hidden="true" tabindex="-1"></a>alturas_mult<span class="ot">=</span>alturas<span class="sc">*</span><span class="fl">1.2</span></span>
+<span id="cb9-2"><a href="sínteses-numéricas-descritivas.html#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="sínteses-numéricas-descritivas.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb9-4"><a href="sínteses-numéricas-descritivas.html#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="sínteses-numéricas-descritivas.html#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(alturas,<span class="at">method =</span> <span class="st">&quot;stack&quot;</span>,  <span class="at">at=</span><span class="fl">0.5</span>, </span>
+<span id="cb9-6"><a href="sínteses-numéricas-descritivas.html#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb9-7"><a href="sínteses-numéricas-descritivas.html#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="at">col=</span><span class="st">&quot;blue&quot;</span>,  <span class="at">xlab=</span><span class="st">&quot;Alturas originais dos estudantes (m)&quot;</span>, </span>
+<span id="cb9-8"><a href="sínteses-numéricas-descritivas.html#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="at">ylab=</span><span class="st">&quot;Quantidades observadas (un)&quot;</span>)</span>
+<span id="cb9-9"><a href="sínteses-numéricas-descritivas.html#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(alturas), <span class="at">col=</span><span class="st">&quot;red&quot;</span>) </span>
+<span id="cb9-10"><a href="sínteses-numéricas-descritivas.html#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">mean</span>(alturas)<span class="sc">-</span><span class="fl">0.1</span>, <span class="dv">1</span>, <span class="st">&quot;Média=1,69 m&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>) </span>
+<span id="cb9-11"><a href="sínteses-numéricas-descritivas.html#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="sínteses-numéricas-descritivas.html#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="sínteses-numéricas-descritivas.html#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(alturas_mult,<span class="at">method =</span> <span class="st">&quot;stack&quot;</span>,  <span class="at">at=</span><span class="fl">0.5</span>, </span>
+<span id="cb9-14"><a href="sínteses-numéricas-descritivas.html#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb9-15"><a href="sínteses-numéricas-descritivas.html#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="at">col=</span><span class="st">&quot;blue&quot;</span>,  <span class="at">xlab=</span><span class="st">&quot;Alt. dos estudantes (m) mult. por 1,2&quot;</span>, </span>
+<span id="cb9-16"><a href="sínteses-numéricas-descritivas.html#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="at">ylab=</span><span class="st">&quot;Quantidades observadas (un)&quot;</span>)</span>
+<span id="cb9-17"><a href="sínteses-numéricas-descritivas.html#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(alturas_mult), <span class="at">col=</span><span class="st">&quot;red&quot;</span>) </span>
+<span id="cb9-18"><a href="sínteses-numéricas-descritivas.html#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">mean</span>(alturas_mult)<span class="sc">-</span><span class="fl">0.1</span>, <span class="dv">1</span>, <span class="st">&quot;Média= 2,02 m&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>) </span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-35"></span>
+<img src="_main_files/figure-html/unnamed-chunk-35-1.png" alt="Mudanças na média pela multiplicação (divisão) de uma constante $k=1.2$" width="672" />
+<p class="caption">
+Figure 3.4: Mudanças na média pela multiplicação (divisão) de uma constante <span class="math inline">\(k=1.2\)</span>
+</p>
+</div>
+<ul>
+<li>a soma dos desvios observados entre cada um dos valores assumidos pela variável <span class="math inline">\(X\)</span> e sua média <span class="math inline">\(\stackrel{-}{x}\)</span> é nula;</li>
+<li>a soma dos quadrados dos desvios é mínima;</li>
+<li>em uma distribuição de frequências, a soma dos produtos dos desvios entre a média o valor médio de cada uma das classes, pelas respectivas frequências é nula; e,</li>
+<li>multiplicando-se (ou dividindo-se) todas as frequências de uma distribuição por uma constante arbitrária, a média aritmética não se altera.</li>
+</ul>
+<p>Usando os dados das medidas das alturas dos 60 estudantes teremos o seguinte valor para a <strong>média</strong>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="sínteses-numéricas-descritivas.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(alturas),<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1.69</code></pre>
+</div>
+<div id="moda" class="section level4 hasAnchor" number="3.3.1.2">
+<h4><span class="header-section-number">3.3.1.2</span> Moda<a href="sínteses-numéricas-descritivas.html#moda" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Moda é o valor que ocorre com maior frequência na amostra. Uma amostra pode se apresentar como:
+- unimodal;
+- bimodal;
+- plurimodal; ou,
+- amodal.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="sínteses-numéricas-descritivas.html#cb12-1" aria-hidden="true" tabindex="-1"></a>tab_alturas<span class="ot">=</span><span class="fu">table</span>(alturas)</span>
+<span id="cb12-2"><a href="sínteses-numéricas-descritivas.html#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="sínteses-numéricas-descritivas.html#cb12-3" aria-hidden="true" tabindex="-1"></a>tab_alturas</span></code></pre></div>
+<pre><code>## alturas
+## 1.41 1.44 1.47 1.54 1.55 1.56 1.57 1.58 1.61 1.62 1.63 1.64 1.65 1.66 1.67 1.68 
+##    1    1    1    1    1    3    1    2    1    2    1    2    4    5    4    3 
+## 1.69 1.71 1.72 1.73 1.74 1.75 1.76 1.77 1.78 1.79 1.82 1.83 1.84 1.85 1.86 1.93 
+##    1    2    2    5    1    1    2    1    2    1    1    2    1    1    1    1 
+## 1.95    2 
+##    1    1</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="sínteses-numéricas-descritivas.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(tab_alturas,</span>
+<span id="cb14-2"><a href="sínteses-numéricas-descritivas.html#cb14-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">main=</span><span class="st">&quot;Valores observados da alturas dos estudantes&quot;</span>,</span>
+<span id="cb14-3"><a href="sínteses-numéricas-descritivas.html#cb14-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">&quot;Altura (cm)&quot;</span>,</span>
+<span id="cb14-4"><a href="sínteses-numéricas-descritivas.html#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">&quot;Quantidade observada (un)&quot;</span>,</span>
+<span id="cb14-5"><a href="sínteses-numéricas-descritivas.html#cb14-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">6</span>),</span>
+<span id="cb14-6"><a href="sínteses-numéricas-descritivas.html#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb14-7"><a href="sínteses-numéricas-descritivas.html#cb14-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">las=</span><span class="dv">0</span>, </span>
+<span id="cb14-8"><a href="sínteses-numéricas-descritivas.html#cb14-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">hor=</span><span class="st">&quot;FALSE&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-37"></span>
+<img src="_main_files/figure-html/unnamed-chunk-37-1.png" alt="Bimodal: 1,66 m e 1,73 m" width="672" />
+<p class="caption">
+Figure 3.5: Bimodal: 1,66 m e 1,73 m
+</p>
+</div>
+<p>Usando os dados das medidas das alturas dos 60 estudantes teremos os seguintes valores para a <strong>moda</strong>:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="sínteses-numéricas-descritivas.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># função em R para extrair a moda:</span></span>
+<span id="cb15-2"><a href="sínteses-numéricas-descritivas.html#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="sínteses-numéricas-descritivas.html#cb15-3" aria-hidden="true" tabindex="-1"></a>Modes <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb15-4"><a href="sínteses-numéricas-descritivas.html#cb15-4" aria-hidden="true" tabindex="-1"></a>  ux <span class="ot">&lt;-</span> <span class="fu">unique</span>(x)</span>
+<span id="cb15-5"><a href="sínteses-numéricas-descritivas.html#cb15-5" aria-hidden="true" tabindex="-1"></a>  tab <span class="ot">&lt;-</span> <span class="fu">tabulate</span>(<span class="fu">match</span>(x, ux))</span>
+<span id="cb15-6"><a href="sínteses-numéricas-descritivas.html#cb15-6" aria-hidden="true" tabindex="-1"></a>  ux[tab <span class="sc">==</span> <span class="fu">max</span>(tab)]</span>
+<span id="cb15-7"><a href="sínteses-numéricas-descritivas.html#cb15-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-8"><a href="sínteses-numéricas-descritivas.html#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="sínteses-numéricas-descritivas.html#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">Modes</span>(alturas)</span></code></pre></div>
+<pre><code>## [1] 1.66 1.73</code></pre>
+</div>
+<div id="mediana" class="section level4 hasAnchor" number="3.3.1.3">
+<h4><span class="header-section-number">3.3.1.3</span> Mediana<a href="sínteses-numéricas-descritivas.html#mediana" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Mediana é o valor do <em>i-ésimo</em> dado da amostra que ocupa a posição central na distribuição ordenada de modo crescente (ou decrescente), dividindo-a em duas partes de <em>quantidades de dados iguais</em>.</p>
+<p>Sendo uma medida separatriz de 50%, equivale ao <span class="math inline">\(2^{o}\)</span> quartil, ao <span class="math inline">\(5^{o}\)</span> decil e ao <span class="math inline">\(50^{o}\)</span> percentil.</p>
+<p>1- amostra com um número <strong>ímpar</strong> (<span class="math inline">\(n\)</span>) de elementos: a mediana será o valor do _i-ésimo} elemento (elemento na posição central) da amostra ordenada:</p>
+<p><span class="math display">\[
+Md=x_{i}
+\]</span></p>
+<p>onde:</p>
+<ul>
+<li><span class="math inline">\(i=\frac{n+1}{2}\)</span> (<span class="math inline">\(n\)</span> é o número de observações);</li>
+</ul>
+<p>2- amostra com um número <strong>par</strong> (<span class="math inline">\(n\)</span>) de elementos: a mediana será a <em>média aritmética</em> dos elementos nas posições imediatamente anterior (<span class="math inline">\(i_{ant}\)</span>) e posterior (<span class="math inline">\(i_{post}\)</span>) à sua posição central virtual:</p>
+<p><span class="math display">\[
+Md=média(x_{i_{ant}} ; x_{i_{post}})
+\]</span></p>
+<p>onde:</p>
+<ul>
+<li><span class="math inline">\(i_{ant} = \frac{n}{2}\)</span> e <span class="math inline">\(i_{post} =\frac{n}{2}+1\)</span> (<span class="math inline">\(n\)</span> é o número de observações).</li>
+</ul>
+<p>Mediana para dados apresentados na forma de uma distribuição de frequências:</p>
+<p><span class="math display">\[
+Md = l_{inf} + [ \frac{(\frac{n}{2} -  F_{(i_{md}-1)})}{n_{md}} ]\times \Delta_{i}
+\]</span></p>
+<p>onde:</p>
+<ul>
+<li><span class="math inline">\(l_{inf}\)</span>: limite inferior da <strong>classe mediana</strong>: a classe que contem o elemento de ordem <span class="math inline">\(\frac{n}{2}\)</span>;</li>
+<li><span class="math inline">\(F_{(i_{md}-1)}\)</span>: é a frequência absoluta acumulada até a <strong>classe anterior à classe mediana</strong>;</li>
+<li><span class="math inline">\(n_{md}\)</span>: é a frequência absoluta da <strong>classe mediana</strong>; e,</li>
+<li><span class="math inline">\(\Delta_{i}\)</span>: é o intervalo de cada classe.</li>
+</ul>
+<p>Usando os dados das medidas das alturas dos 60 estudantes teremos o seguinte valor para a <strong>mediana</strong>:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="sínteses-numéricas-descritivas.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(alturas)</span></code></pre></div>
+<pre><code>##  [1] 1.41 1.44 1.47 1.54 1.55 1.56 1.56 1.56 1.57 1.58 1.58 1.61 1.62 1.62 1.63
+## [16] 1.64 1.64 1.65 1.65 1.65 1.65 1.66 1.66 1.66 1.66 1.66 1.67 1.67 1.67 1.67
+## [31] 1.68 1.68 1.68 1.69 1.71 1.71 1.72 1.72 1.73 1.73 1.73 1.73 1.73 1.74 1.75
+## [46] 1.76 1.76 1.77 1.78 1.78 1.79 1.82 1.83 1.83 1.84 1.85 1.86 1.93 1.95 2.00</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="sínteses-numéricas-descritivas.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(alturas)</span></code></pre></div>
+<pre><code>## [1] 1.675</code></pre>
+</div>
+<div id="diferentes-posições-da-média-moda-e-mediana" class="section level4 hasAnchor" number="3.3.1.4">
+<h4><span class="header-section-number">3.3.1.4</span> Diferentes posições da média, moda e mediana<a href="sínteses-numéricas-descritivas.html#diferentes-posições-da-média-moda-e-mediana" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Essas três medidas podem se apresentar com valores em posições alternadas quando as comparamos:</p>
+<ul>
+<li><p>quando a moda=mediana=média temos uma distribuição de frequências razoavelmente <strong>simétrica</strong>;</p></li>
+<li><p>quando a moda <span class="math inline">\(\leq\)</span> mediana <span class="math inline">\(\leq\)</span> média (há uma quantidade maior de dados com grandes valores, arrastando a média para a direita, para cima) temos uma distribuição de frequências <strong>positivamente assimétrica</strong>, ; e,<br />
+</p></li>
+<li><p>quando a moda <span class="math inline">\(\geq\)</span> mediana <span class="math inline">\(\geq\)</span> média (há uma quantidade maior de dados com pequenos valores, arrastando a média para a esquerda, para baixo) temos uma distribuição de frequências <strong>negativamente assimétrica</strong>.</p></li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="sínteses-numéricas-descritivas.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(tab_alturas,</span>
+<span id="cb21-2"><a href="sínteses-numéricas-descritivas.html#cb21-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">main=</span><span class="st">&quot;Valores observados da alturas dos estudantes&quot;</span>,</span>
+<span id="cb21-3"><a href="sínteses-numéricas-descritivas.html#cb21-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">&quot;Altura (cm)&quot;</span>,</span>
+<span id="cb21-4"><a href="sínteses-numéricas-descritivas.html#cb21-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">&quot;Quantidade observada (un)&quot;</span>,</span>
+<span id="cb21-5"><a href="sínteses-numéricas-descritivas.html#cb21-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">6</span>),</span>
+<span id="cb21-6"><a href="sínteses-numéricas-descritivas.html#cb21-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb21-7"><a href="sínteses-numéricas-descritivas.html#cb21-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">las=</span><span class="dv">0</span>, </span>
+<span id="cb21-8"><a href="sínteses-numéricas-descritivas.html#cb21-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">hor=</span><span class="st">&quot;FALSE&quot;</span>)</span>
+<span id="cb21-9"><a href="sínteses-numéricas-descritivas.html#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(<span class="fl">19.9</span>, <span class="fl">21.1</span>), <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb21-10"><a href="sínteses-numéricas-descritivas.html#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>( <span class="fu">mean</span>(<span class="fl">19.9</span>, <span class="fl">21.1</span>)<span class="sc">-</span><span class="fl">0.5</span>, <span class="dv">5</span>, <span class="st">&quot;Média=1,69 m&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>)</span>
+<span id="cb21-11"><a href="sínteses-numéricas-descritivas.html#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">median</span>(<span class="fl">18.7</span> , <span class="fl">19.9</span>), <span class="at">col=</span><span class="st">&quot;darkgreen&quot;</span>) </span>
+<span id="cb21-12"><a href="sínteses-numéricas-descritivas.html#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">median</span>(<span class="fl">18.7</span> , <span class="fl">19.9</span>)<span class="sc">-</span><span class="fl">0.5</span>, <span class="dv">5</span>, <span class="st">&quot;Mediana=1,675 m&quot;</span>, <span class="at">col =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>)</span>
+<span id="cb21-13"><a href="sínteses-numéricas-descritivas.html#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">c</span>(<span class="fl">16.3</span>, <span class="fl">23.5</span>), <span class="at">col=</span><span class="st">&quot;darkgrey&quot;</span>) </span>
+<span id="cb21-14"><a href="sínteses-numéricas-descritivas.html#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">c</span>(<span class="fl">16.3-0.5</span>, <span class="fl">23.5-0.5</span>), <span class="dv">5</span>, <span class="fu">c</span>(<span class="st">&quot;Moda=1,66&quot;</span>,<span class="st">&quot;Moda=1,73&quot;</span>), <span class="at">col =</span> <span class="st">&quot;darkgray&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-41"></span>
+<img src="_main_files/figure-html/unnamed-chunk-41-1.png" alt="Valores observados das alturas dos estudantes e as posições da média, moda e mediana" width="672" />
+<p class="caption">
+Figure 3.6: Valores observados das alturas dos estudantes e as posições da média, moda e mediana
+</p>
+</div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="sínteses-numéricas-descritivas.html#cb22-1" aria-hidden="true" tabindex="-1"></a>h1<span class="ot">=</span><span class="fu">hist</span>(alturas, <span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">1.30</span> , <span class="fl">2.10</span> , <span class="fl">0.1</span>), <span class="at">main=</span> <span class="st">&quot;Histograma das alturas dos estudantes&quot;</span>, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>, </span>
+<span id="cb22-2"><a href="sínteses-numéricas-descritivas.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="at">xlab=</span><span class="st">&quot;Classes de comprimento (cm)&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;Frequência absoluta observada (un)&quot;</span> , <span class="at">cex=</span><span class="fl">0.7</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30</span>))</span>
+<span id="cb22-3"><a href="sínteses-numéricas-descritivas.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(h1<span class="sc">$</span>mids,h1<span class="sc">$</span>counts,<span class="at">labels=</span>h1<span class="sc">$</span>counts, <span class="at">adj=</span><span class="fu">c</span>(<span class="fl">0.5</span>, <span class="sc">-</span><span class="fl">0.5</span>))</span>
+<span id="cb22-4"><a href="sínteses-numéricas-descritivas.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(alturas), <span class="at">col=</span><span class="st">&quot;red&quot;</span>) </span>
+<span id="cb22-5"><a href="sínteses-numéricas-descritivas.html#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">mean</span>(alturas)<span class="sc">-</span><span class="fl">0.01</span>, <span class="dv">28</span>, <span class="st">&quot;Média=1,69 m&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>)</span>
+<span id="cb22-6"><a href="sínteses-numéricas-descritivas.html#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">median</span>(alturas), <span class="at">col=</span><span class="st">&quot;darkgreen&quot;</span>) </span>
+<span id="cb22-7"><a href="sínteses-numéricas-descritivas.html#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">median</span>(alturas)<span class="sc">-</span><span class="fl">0.01</span>, <span class="fl">27.2</span>, <span class="st">&quot;Mediana=1,675 m&quot;</span>, <span class="at">col =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>)</span>
+<span id="cb22-8"><a href="sínteses-numéricas-descritivas.html#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">Modes</span>(alturas), <span class="at">col=</span><span class="st">&quot;darkgrey&quot;</span>) </span>
+<span id="cb22-9"><a href="sínteses-numéricas-descritivas.html#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">Modes</span>(alturas)<span class="sc">+</span><span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.01</span>, <span class="sc">-</span><span class="fl">0.01</span>), <span class="dv">27</span>, <span class="fu">c</span>(<span class="st">&quot;Moda=1,66&quot;</span>,<span class="st">&quot;Moda=1,73&quot;</span>), <span class="at">col =</span> <span class="st">&quot;darkgray&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-42"></span>
+<img src="_main_files/figure-html/unnamed-chunk-42-1.png" alt="Histograma das alturas dos estudantes com as posições da média, moda e mediana" width="672" />
+<p class="caption">
+Figure 3.7: Histograma das alturas dos estudantes com as posições da média, moda e mediana
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-43"></span>
+<img src="images3/comp_sinteses.jpg" alt="Quadro comparativo entre as medidas de tendência central (posição)" width="50%" />
+<p class="caption">
+Figure 3.8: Quadro comparativo entre as medidas de tendência central (posição)
+</p>
+</div>
+</div>
+</div>
+<div id="medidas-de-dispersão-variabilidade" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Medidas de dispersão (variabilidade)<a href="sínteses-numéricas-descritivas.html#medidas-de-dispersão-variabilidade" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>O conhecimento de uma medida de tendência central nos provê uma informação útil mas incompleta. As medidas de dispersão nos ajudam a ter uma perspectiva melhor dos dados.</p>
+<ul>
+<li>medidas absolutas: são expressas na mesma unidade de medida do fenômeno estudado.
+<ul>
+<li>amplitude total dos dados: diferença entre o maior e o menor dos valores observados; e,</li>
+<li>variância e desvio padrão: é considerada a mais útil das medidas de dispersão.</li>
+</ul></li>
+</ul>
+<p><br />
+</p>
+<ul>
+<li>medidas relativas: usadas para se comparar a variabilidade de duas ou mais distribuições, mesmo quando estas se refiram a diferentes fenômenos ou que sejam expressas em unidades diferentes.
+<ul>
+<li>coeficiente de variação; e,</li>
+<li>unidades padronizadas.</li>
+</ul></li>
+</ul>
+<div id="estimação-da-variância-e-desvio-padrão." class="section level4 hasAnchor" number="3.3.2.1">
+<h4><span class="header-section-number">3.3.2.1</span> Estimação da variância (e desvio padrão).<a href="sínteses-numéricas-descritivas.html#estimação-da-variância-e-desvio-padrão." class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Sejam <span class="math inline">\(x_{1}, x_{2}, ..., x_{n}\)</span> os <span class="math inline">\(n\)</span> valores assumidos pela variável <span class="math inline">\(X\)</span>. Dá-se o nome de desvios a contar da média as diferenças entre cada uma das observações e a média: <span class="math inline">\(x_{i} - \stackrel{-}{x}\)</span> com <span class="math inline">\(i=1,2,...,n\)</span>.</p>
+<p>Não é possível considerar a possibilidade de se adotar o valor médio desses desvios pois uma das propriedades da média é que a soma dos desvios em torno de si é nula.</p>
+<p><span class="math display">\[
+\stackrel{-}{d} = \frac{\sum _{i=1}^{n}\left(x_{i}-\stackrel{-}{x}\right)}{n}
+\]</span>
+<span class="math display">\[
+\sum _{i=1}^{n}\left(x_{i}-\stackrel{-}{x}\right)=0
+\]</span></p>
+<p>constitui-se numa restrição linear dos desvios porque qualquer <span class="math inline">\(n-1\)</span> deles completamente determina o outro. Tampouco se considera a possibilidade de se adotar o valor médio desses desvios em módulo, pelas dificuldades teóricas em problemas de inferência.</p>
+<p><span class="math display">\[
+\stackrel{-}{d}  = \frac{\sum _{i=1}^{n}\left|x_{i}-\stackrel{-}{x}\right|}{n}
+\]</span>
+Uma alternativa é adotar o valor médio do <strong>quadrado</strong> desses desvios.</p>
+<p><span class="math display">\[
+S^{2}=\frac{\sum _{i=1}^{n}\left(x_{i}-\stackrel{-}{x}\right)^{2}}{n-1}
+\]</span></p>
+<p>ou,</p>
+<p><span class="math display">\[
+S^{2}=\frac{1}{(n-1)} \times \left[ \sum _{i=1}^{n} (x_{i}^{2}) - \frac{({\sum _{i=1}^{n}x_{i})}^{2} }{n}\right]
+\]</span></p>
+<p>Diz-se que a variância amostral (variância <em>ajustada</em>) possui <span class="math inline">\((n-1)\)</span> graus de liberdade, denotado pela letra grega <span class="math inline">\(\nu\)</span>. A perda de <em>um</em> grau de liberdade deve-se à necessidade de se substituir a média populacional desconhecida (<span class="math inline">\(\mu\)</span>) por sua estimativa amostral (<span class="math inline">\(\stackrel{-}{x}\)</span>), deduzida a partir dos dados coletados.</p>
+<p>Pode-se demonstrar que em razão dessa restrição a melhor estimativa para a variância populacional é obtida dividindo-se a soma dos quadrados dos desvios por <span class="math inline">\((n-1)\)</span>. Assim <span class="math inline">\(S^{2}\)</span> será um estimador não tendencioso para a variância amostral ao ser dividido por <span class="math inline">\((n-1)\)</span>}.</p>
+<p>Uma medida de dispersão que apresenta a mesma unidade que a das observações originais é o <strong>desvio-padrão</strong>, definido como a raiz quadrada positiva da variância.</p>
+<p><span class="math display">\[
+S= \sqrt{\frac{\sum _{i=1}^{n}\left(x_{i}-\stackrel{-}{x}\right)^{2}}{n-1}}
+\]</span></p>
+<p>Tanto a variância quanto o desvio padrão indicam, em média, qual será o erro (desvio) cometido ao tentar substituir cada observação pela medida resumo do conjunto de dados (média).</p>
+<p>Usando os dados das medidas das alturas dos 60 estudantes teremos o seguinte valor para a <strong>variância</strong> (com unidade igual a <span class="math inline">\(m^{2}\)</span>) e o <strong>desvio padrão</strong> (com unidade igual a <span class="math inline">\(m\)</span>:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="sínteses-numéricas-descritivas.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variãncia</span></span>
+<span id="cb23-2"><a href="sínteses-numéricas-descritivas.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(alturas)</span></code></pre></div>
+<pre><code>## [1] 0.0130809</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="sínteses-numéricas-descritivas.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Desvio padrão</span></span>
+<span id="cb25-2"><a href="sínteses-numéricas-descritivas.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(alturas) </span></code></pre></div>
+<pre><code>## [1] 0.1143718</code></pre>
+<p>Propriedades da variância:</p>
+<ul>
+<li>somando-se (ou subtraindo-se) cada um dos elementos do conjunto de dados por uma constante arbitrária, a variância (e o desvio padrão) não se altera; e,</li>
+<li>multiplicando-se (ou dividindo-se) cada um dos elementos do conjunto de dados por uma constante arbitrária, a variância ficará multiplicada (ou dividida) pelo quadrado dessa constante. O desvio padrão fica multiplicado (ou dividido) por essa constante</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="sínteses-numéricas-descritivas.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionando-se uma constante k=0.05</span></span>
+<span id="cb27-2"><a href="sínteses-numéricas-descritivas.html#cb27-2" aria-hidden="true" tabindex="-1"></a>alturas_ad<span class="ot">=</span>alturas<span class="fl">+0.05</span></span>
+<span id="cb27-3"><a href="sínteses-numéricas-descritivas.html#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="sínteses-numéricas-descritivas.html#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Variância não se altera</span></span>
+<span id="cb27-5"><a href="sínteses-numéricas-descritivas.html#cb27-5" aria-hidden="true" tabindex="-1"></a>var_ad<span class="ot">=</span> <span class="fu">var</span>(alturas_ad)</span>
+<span id="cb27-6"><a href="sínteses-numéricas-descritivas.html#cb27-6" aria-hidden="true" tabindex="-1"></a>var_ad</span></code></pre></div>
+<pre><code>## [1] 0.0130809</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="sínteses-numéricas-descritivas.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiplicando-se uma constante k=1.2</span></span>
+<span id="cb29-2"><a href="sínteses-numéricas-descritivas.html#cb29-2" aria-hidden="true" tabindex="-1"></a>alturas_mult<span class="ot">=</span>alturas<span class="sc">*</span><span class="fl">1.2</span></span>
+<span id="cb29-3"><a href="sínteses-numéricas-descritivas.html#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="sínteses-numéricas-descritivas.html#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Variância fica multiplicada (dividida) pelo quadrado dessa constante)</span></span>
+<span id="cb29-5"><a href="sínteses-numéricas-descritivas.html#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(alturas_mult)</span></code></pre></div>
+<pre><code>## [1] 0.0188365</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="sínteses-numéricas-descritivas.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(<span class="fu">var</span>(alturas_mult), <span class="fu">var</span>(alturas)<span class="sc">*</span>(<span class="fl">1.2</span><span class="sc">^</span><span class="dv">2</span>)) </span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="coeficiente-de-variação." class="section level4 hasAnchor" number="3.3.2.2">
+<h4><span class="header-section-number">3.3.2.2</span> Coeficiente de variação.<a href="sínteses-numéricas-descritivas.html#coeficiente-de-variação." class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>O coeficiente de variação (uma medidad adimensional) é dado pela razão do desvio padrão pela média:</p>
+<p><span class="math display">\[
+CV= 100\cdot(\frac{s}{\stackrel{-}{x}})
+\]</span></p>
+</div>
+<div id="padronização-z-scores" class="section level4 hasAnchor" number="3.3.2.3">
+<h4><span class="header-section-number">3.3.2.3</span> Padronização (<em>z-scores</em>)<a href="sínteses-numéricas-descritivas.html#padronização-z-scores" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>À conversão do valor assumido por uma variável em unidades de desvio padrão acima (ou abaixo) do valor médio de sua distribuição é dado o nome de <em>padronização</em>. Essa métrica permite comparações com outras, procedentes de outros fenômenos.</p>
+<p>Para padronizar (achar o seu <em>z-score</em> Z) o valor de uma variável procede-se segundo a fórmula:</p>
+<p><span class="math display">\[
+Z=\frac{x_{i} - \stackrel{-}{x}}{s}
+\]</span></p>
+<p>O valor <span class="math inline">\(Z\)</span> expressa quantos desvios esse dado está acima (ou abaixo) da média da distribuição.</p>
+<p>Pelo <em>Teorema de Tchebichev</em> pode-se estimar a probabilidade mínima dos dados situados a certa distância de <span class="math inline">\(k\)</span> desvios da média dessa distribuição:</p>
+<p><span class="math display">\[
+P(|X-\mu|\ge k\sigma) \leq 1 - \frac{1}{k^{2}}
+\]</span>
+Assim, se <span class="math inline">\(k=2\)</span> <strong>ao menos</strong> 75% das observações devem estar entre a média e dois desvios padrões acima ou abaixo da média.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="sínteses-numéricas-descritivas.html#cb33-1" aria-hidden="true" tabindex="-1"></a>med<span class="ot">=</span><span class="fu">round</span>(<span class="fu">mean</span>(alturas),<span class="dv">2</span>)</span>
+<span id="cb33-2"><a href="sínteses-numéricas-descritivas.html#cb33-2" aria-hidden="true" tabindex="-1"></a>desv<span class="ot">=</span> <span class="fu">round</span>(<span class="fu">sd</span>(alturas),<span class="dv">2</span>)</span></code></pre></div>
+<p>No exemplo das alturas dos estudantes temos a média de 1.69 m e um desvio padrão de 0.11 m. Assim, <strong>ao menos</strong> 75% das alturas deverão estar entre 1.47 m e 1.91 m.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="sínteses-numéricas-descritivas.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(alturas)</span></code></pre></div>
+<pre><code>##  [1] 1.41 1.44 1.47 1.54 1.55 1.56 1.56 1.56 1.57 1.58 1.58 1.61 1.62 1.62 1.63
+## [16] 1.64 1.64 1.65 1.65 1.65 1.65 1.66 1.66 1.66 1.66 1.66 1.67 1.67 1.67 1.67
+## [31] 1.68 1.68 1.68 1.69 1.71 1.71 1.72 1.72 1.73 1.73 1.73 1.73 1.73 1.74 1.75
+## [46] 1.76 1.76 1.77 1.78 1.78 1.79 1.82 1.83 1.83 1.84 1.85 1.86 1.93 1.95 2.00</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="sínteses-numéricas-descritivas.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Duas observações menores que 1,47m e trẽs maiores que 1,91m.</span></span>
+<span id="cb36-2"><a href="sínteses-numéricas-descritivas.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Assim, 54 observações dentro do intervalo, equivalendo a 91,66% do total.</span></span></code></pre></div>
+</div>
+</div>
+<div id="medidas-de-subdivisão-separatrizes" class="section level3 hasAnchor" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Medidas de subdivisão (separatrizes)<a href="sínteses-numéricas-descritivas.html#medidas-de-subdivisão-separatrizes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Separatrizes (quantis) são valores que delimitam uma proporção de observações existentes de um conjunto de dados previamente ordenados menores que ele.</p>
+<p>De modo geral, um <em>quantil</em> de ordem <span class="math inline">\(p\)</span> (ou também <span class="math inline">\(p-quantil\)</span>, indicado por <span class="math inline">\(q_{p}\)</span>) é uma medida onde <span class="math inline">\(p\)</span> é uma proporção qualquer (limitada no intervalo 0 &lt; p &lt; 1), tal que 100<span class="math inline">\(p\)</span>% das observações sejam menores que seu valor <span class="math inline">\(q_{p}\)</span>. Os <em>quantis</em> mais relevantes são:</p>
+<ul>
+<li>1<span class="math inline">\(^{o}\)</span> Quartil (<span class="math inline">\(q_{0,25}\)</span>): 25% dos dados possuem valores abaixo desse valor e 75% estão acima;</li>
+<li>2<span class="math inline">\(^{o}\)</span> Quartil ou mediana (<span class="math inline">\(q_{0,50}\)</span>): 50% dos dados possuem valores abaixo desse valor e 50% estão acima; e,</li>
+<li>3<span class="math inline">\(^{o}\)</span> Quartil (<span class="math inline">\(q_{0,75}\)</span>): 75% dos dados possuem valores abaixo desse valor e 25% estão acima.</li>
+</ul>
+<p>Para se calcular a <strong>posição</strong> <em>L</em> de um quantil de ordem <em>p</em> em um rol de dados, pode-se usar a seguinte regra:</p>
+<p><span class="math display">\[
+L=\frac{p}{100} \times (n+1)
+\]</span></p>
+<p>Duas situações possíveis para a posição <strong>L</strong>: ser um número fracionário ou inteiro:</p>
+<ul>
+<li>se a posição <strong>L for fracionária</strong> deve-se fazer a média entre os dois valores que estão nas posições imediatamente anterior e imediatamente posterior à posição calculada;</li>
+<li>se a posição <strong>L for um inteiro</strong> essa será a posição do valor referente ao quantil desejado.</li>
+</ul>
+<p>Onde:</p>
+<ul>
+<li><em>p</em> é a <strong>ordem</strong> do quantil em % (50% no caso mediana, por exemplo);</li>
+<li><em>n</em> é o número de dados do rol; e,</li>
+<li><em>L</em> é a <strong>posição</strong> do valor referente ao quantil desejado.</li>
+</ul>
+<p>Juntamente com as observações mínima (<span class="math inline">\(x_{i}\)</span>) e máxima (<span class="math inline">\(x_{n}\)</span>), o 1<span class="math inline">\(^{o}\)</span>, 2<span class="math inline">\(^{o}\)</span> e 3<span class="math inline">\(^{o}\)</span> Quartis são importantes para se ter uma boa idéia da assimetria da distribuição dos dados.</p>
+<p>Para uma distribuição simétrica (ou aproximadamente simétrica) deveremos observar (Distribuição Gaussiana):</p>
+<ul>
+<li>a dispersão inferior: <span class="math inline">\(q_{2} - x_{1} \approx x_{n} - q_{2}\)</span> à dispersão superior ;</li>
+<li><span class="math inline">\(q_{2} - q_{1} \approx q_{3} - q_{2}\)</span>; e,</li>
+<li><span class="math inline">\(q_{1} - x_{1} \approx x_{n} - q_{3}\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="sínteses-numéricas-descritivas.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1000</span>)</span>
+<span id="cb37-2"><a href="sínteses-numéricas-descritivas.html#cb37-2" aria-hidden="true" tabindex="-1"></a>y_normal<span class="ot">=</span><span class="fu">rnorm</span>(<span class="dv">1000</span> , <span class="dv">20</span> , <span class="dv">5</span> )</span>
+<span id="cb37-3"><a href="sínteses-numéricas-descritivas.html#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(y_normal)</span></code></pre></div>
+<pre><code>## [1]  3.191432 33.350358</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="sínteses-numéricas-descritivas.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(y_normal)</span></code></pre></div>
+<pre><code>##        0%       25%       50%       75%      100% 
+##  3.191432 16.685004 20.112604 23.220489 33.350358</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="sínteses-numéricas-descritivas.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(y_normal, <span class="at">prob=</span><span class="cn">TRUE</span>, <span class="at">breaks=</span><span class="dv">20</span>, <span class="at">ylab=</span><span class="st">&quot;&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;&quot;</span>, <span class="at">yaxt=</span><span class="st">&quot;n&quot;</span>,  <span class="at">xaxt=</span><span class="st">&quot;n&quot;</span>, <span class="at">main=</span><span class="st">&quot;Histograma de uma variável com Distribuição Normal&quot;</span>)</span>
+<span id="cb41-2"><a href="sínteses-numéricas-descritivas.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="fu">mean</span>(y_normal), <span class="fu">sd</span>(y_normal)), <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">col=</span><span class="st">&quot;darkblue&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb41-3"><a href="sínteses-numéricas-descritivas.html#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="sínteses-numéricas-descritivas.html#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fl">3.19</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>) </span>
+<span id="cb41-5"><a href="sínteses-numéricas-descritivas.html#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fl">3.19</span> <span class="sc">-</span><span class="fl">0.6</span>, <span class="fl">0.02</span>, <span class="st">&quot;x(1)&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>)</span>
+<span id="cb41-6"><a href="sínteses-numéricas-descritivas.html#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fl">16.68</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>) </span>
+<span id="cb41-7"><a href="sínteses-numéricas-descritivas.html#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fl">16.68</span> <span class="sc">-</span><span class="fl">0.6</span>, <span class="fl">0.02</span>, <span class="st">&quot;1? Quartil&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>)</span>
+<span id="cb41-8"><a href="sínteses-numéricas-descritivas.html#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fl">20.11</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>) </span>
+<span id="cb41-9"><a href="sínteses-numéricas-descritivas.html#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fl">20.11</span> <span class="sc">-</span> <span class="fl">0.6</span>, <span class="fl">0.02</span>, <span class="st">&quot;2? Quartil&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>)</span>
+<span id="cb41-10"><a href="sínteses-numéricas-descritivas.html#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fl">23.22</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>) </span>
+<span id="cb41-11"><a href="sínteses-numéricas-descritivas.html#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fl">23.22</span> <span class="sc">-</span> <span class="fl">0.6</span>, <span class="fl">0.02</span>, <span class="st">&quot;3? Quartil&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>)</span>
+<span id="cb41-12"><a href="sínteses-numéricas-descritivas.html#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fl">33.35</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>) </span>
+<span id="cb41-13"><a href="sínteses-numéricas-descritivas.html#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fl">33.35</span> <span class="sc">-</span><span class="fl">0.6</span>, <span class="fl">0.02</span>, <span class="st">&quot;x(n)&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-48"></span>
+<img src="_main_files/figure-html/unnamed-chunk-48-1.png" alt="Histograma de uma variável com Distribuição Normal (média 20 e variãncia 5" width="672" />
+<p class="caption">
+Figure 3.9: Histograma de uma variável com Distribuição Normal (média 20 e variãncia 5
+</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="medidas-de-forma-assimetria-curtose.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-descritiva.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

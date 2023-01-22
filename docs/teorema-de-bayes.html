@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 12 - Introdução ao modelo clássico de regressão linear simples | _main.knit</title>
+  <title>4.3 Teorema de Bayes | _main.knit</title>
   <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 12 - Introdução ao modelo clássico de regressão linear simples | _main.knit" />
+  <meta property="og:title" content="4.3 Teorema de Bayes | _main.knit" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
   <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 12 - Introdução ao modelo clássico de regressão linear simples | _main.knit" />
+  <meta name="twitter:title" content="4.3 Teorema de Bayes | _main.knit" />
   
   <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="teste_hipoteses.html"/>
-<link rel="next" href="disc_fisher.html"/>
+<link rel="prev" href="probabilidade-1.html"/>
+<link rel="next" href="demonstração-clássica-de-independência.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -262,17 +262,416 @@ Prof. M.e Eng. Felinto Junior Da Costa</div></a>
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="reg_simples" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">Capítulo 12</span> - Introdução ao modelo clássico de regressão linear simples<a href="reg_simples.html#reg_simples" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-
+<div id="teorema-de-bayes" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Teorema de Bayes<a href="teorema-de-bayes.html#teorema-de-bayes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-72"></span>
+<img src="images4/thomas_bayes.jpg" alt="Thomas Bayes (1702 - 1761)" width="80%" />
+<p class="caption">
+Figure 4.12: Thomas Bayes (1702 - 1761)
+</p>
+</div>
+<p><br />
+</p>
+<p>Pela <strong>regra da probabilidade condicionada</strong> temos que</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(A|B) = \frac{P(A \cap B)}{ P(B)}
+\]</span></p>
+<p><br />
+</p>
+<p>e, de modo equivalente,</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(B|A) = \frac{P(B \cap A)}{ P(A)}
+\]</span><br />
+</p>
+<p>Pela igualdade <span class="math inline">\(P(A \cap B)=P(B \cap A)\)</span>, substituindo-se a segunda expressão na primeira chega-se a:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(B|A) = \frac{P(A|B) P(A)}{P(B)}
+\]</span></p>
+<p><br />
+</p>
+<p>uma <strong>relação</strong> entre duas probabilidades <em>inversamente</em> condicionadas conhecida como <strong>Teorema de Bayes</strong>.</p>
+<p><br />
+</p>
+<p>Para um espaço amostral mais amplo, de modo geral consideremos, inicialmente o diagrama da Figura <a href="teorema-de-bayes.html#fig:fig6">4.13</a> onde <span class="math inline">\(\Omega\)</span> é o espaço amostral de um experimento aleatório qualquer:</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig6"></span>
+<img src="images4/bayes_1.jpg" alt="Espaço amostral" width="80%" />
+<p class="caption">
+Figure 4.13: Espaço amostral
+</p>
+</div>
+<p><br />
+</p>
+<p>Admita que <span class="math inline">\(E_{1}\)</span>, <span class="math inline">\(E_{2}\)</span>, <span class="math inline">\(E_{3}\)</span> e <span class="math inline">\(E_{4}\)</span> formem a partição do espaço amostral <span class="math inline">\(\Omega\)</span> (seus elementos são <strong>mutuamente exclusivos</strong>) como exposto na Figura <a href="teorema-de-bayes.html#fig:fig7">4.14</a></p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig7"></span>
+<img src="images4/bayes_2.jpg" alt="Espaço amostral e suas partições" width="80%" />
+<p class="caption">
+Figure 4.14: Espaço amostral e suas partições
+</p>
+</div>
+<p><br />
+</p>
+<p>E seja <span class="math inline">\(B\)</span> um evento qualquer em <span class="math inline">\(\Omega\)</span> como ilustrado na Figura <a href="teorema-de-bayes.html#fig:fig8">4.15</a></p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig8"></span>
+<img src="images4/bayes_3.jpg" alt="Evento definido sobre o espaço amostral" width="80%" />
+<p class="caption">
+Figure 4.15: Evento definido sobre o espaço amostral
+</p>
+</div>
+<p><br />
+</p>
+<p>Delimitemos as interseções do evento <span class="math inline">\(B\)</span> com as partições <span class="math inline">\(E_{1}\)</span>, <span class="math inline">\(E_{2}\)</span>, <span class="math inline">\(E_{3}\)</span> e <span class="math inline">\(E_{4}\)</span> do espaço amostral <span class="math inline">\(\Omega\)</span>, como ilustrado na Figura <a href="teorema-de-bayes.html#fig:fig9">4.16</a></p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig9"></span>
+<img src="images4/bayes_4.jpg" alt="Interseções das partições do espaço amostral com o evento B" width="80%" />
+<p class="caption">
+Figure 4.16: Interseções das partições do espaço amostral com o evento B
+</p>
+</div>
+<p><br />
+</p>
+<p>Isso pode ser estendido, em uma forma geral, para <span class="math inline">\(i=1, \dots, n\)</span> partições como ilustrado na Figura <a href="teorema-de-bayes.html#fig:fig10">4.17</a></p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig10"></span>
+<img src="images4/bayes_5.jpg" alt="Interseções das n partições do espaço amostral com o evento B" width="80%" />
+<p class="caption">
+Figure 4.17: Interseções das n partições do espaço amostral com o evento B
+</p>
+</div>
+<p><br />
+</p>
+<p>Na representação esquemática da Figura <a href="teorema-de-bayes.html#fig:fig10">4.17</a> podemos identificar:</p>
+<p>\begin{itemize}</p>
+<p>1- <span class="math inline">\(E_{1}\)</span>, <span class="math inline">\(E_{2}\)</span>, , <span class="math inline">\(E_{i}\)</span>, , <span class="math inline">\(E_{n}\)</span> constituem-se em partições do espaço amostral <span class="math inline">\(\Omega\)</span>;<br />
+2- Todas as partições são mutuamente exclusivas: <span class="math inline">\(E_{i} \cap E_{j} = \varnothing\)</span>,<span class="math inline">\(\forall\)</span> <span class="math inline">\(i \neq j\)</span> (a interseção de quaisquer partições é vazia);<br />
+3- Sendo vazias as interseções entre quaisquer partições, o espaço amostral <span class="math inline">\(\Omega\)</span> será a simples união de todas elas: <span class="math inline">\(\Omega = E_{1} \cup E_{2} \cup E_{3} \cup E_{4}\cup \dots \cup E_{i} \dots \cup E_{n}\)</span>; e,<br />
+4- <strong>B</strong> é um evento qualquer definido sobre as partições de <span class="math inline">\(\Omega\)</span></p>
+<p><br />
+</p>
+<p>São conhecidas as probabilidades de ocorrência de cada um dos elementos do espaço amostral <span class="math inline">\(\Omega\)</span>:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(E_{1}); P(E_{2}); P(E_{3}); \dots;P(E_{i}); \dots; P(E_{n})
+\]</span></p>
+<p><br />
+</p>
+<p>e também as probabilidades do evento <span class="math inline">\(B\)</span> condicionadas a cada elemento do espaço amostral:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(B|E_{1}); P(B|E_{2});\dots;P(B|E_{i});\dots; P(B|E_{n})
+\]</span></p>
+<p><br />
+</p>
+<p>A <em>probabilidade de ocorrência</em> do evento B é dada pela soma das probabilidades de cada uma de suas interseções com os elementos do espaço amostral <span class="math inline">\(\Omega\)</span>:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(B) &amp; = P(E_{1} \cap B) + P(E_{2} \cap B) + \dots + P(E_{i} \cap B) + \dots  + P(E_{n} \cap B) \\
+P(B) &amp; = \sum _{i=1}^{n}P\left({E}_{i}\cap B\right)
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Pela <em>Regra do produto de eventos condicionados</em>, a probabilidade de ocorrência do evento <em>B}</em> <strong>posto</strong> ter ocorrido um evento <span class="math inline">\(E_{i}\)</span> é:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(B|E_{i}) &amp; = \frac{P(E_{i}\cap B)}{P(E_{i})} \\
+P(E_{i}\cap B) &amp; = P(E_{i}) \times P(B|E_{i})
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>com <span class="math inline">\(P(E) &gt; 0\)</span></p>
+<p><br />
+</p>
+<p>Aplicando-se na expressão anteriormente desenvolvida da <em>probabilidade de ocorrência do evento B</em> teremos:</p>
+<p><br />
+<span class="math display">\[\begin{align*}
+P(B) &amp; = P(E_{1} \cap B) + P(E_{2} \cap B) + \dots + P(E_{i} \cap B) + \dots  + P(E_{n} \cap B) \\
+P(B) &amp; = P(E_{1}) \times P(B|E_{1}) + P(E_{2}) \times P(B|E_{2}) + \\
+    &amp; \dots +P(E_{i}) \times P(B|E_{i}) + \\
+    &amp; \dots  + P(E_{n}) \times P(B|E_{n})
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Portanto a <strong>probabilidade total</strong> do evento <em>B</em> em <span class="math inline">\(\Omega\)</span> é dada pelo somatório:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(B) = \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\cdot P\left(B|{E}_{i}\right)\right]
+\]</span></p>
+<p><br />
+</p>
+<p>Pela <strong>Regra do produto de eventos condicionados</strong> a probabilidade de ocorrência de um evento <span class="math inline">\(E_{i}\)</span> posto ter ocorrido o evento <em>B</em> é:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(E_{i}|B) &amp; = \frac{P(E_{i} \cap B)}{P(B)} \\
+P(E_{i} \cap B) &amp; = P(B) \times P(E_{k}|B) \\
+P(B) &amp; = \frac{P(E_{i}\cap B)}{P(E_{k}|B)}
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>com <span class="math inline">\(P(B) &gt; 0\)</span></p>
+<p><br />
+</p>
+<p>Pela <strong>igualdade</strong> dos dois modos de se expressar a probabilidade total do evento <span class="math inline">\(B\)</span> desenvolvidos:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(B) = \frac{P(E_{i}\cap B)}{P(E_{i}|B)}
+\]</span></p>
+<p><br />
+</p>
+<p>e</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(B) = \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\cdot P\left(B|{E}_{i}\right)\right]
+\]</span></p>
+<p><br />
+</p>
+<p>tem-se</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+\frac{P(E_{i}\cap B)}{P(E_{i}|B)}=\sum _{i=1}^{n}\left[P\left({E}_{i}\right)\cdot P\left(B|{E}_{i}\right)\right]
+\]</span></p>
+<p><br />
+</p>
+<p>Rearranjando-se em termos da expressão anterior para exprimir a probabilidade de ocorrência de um evento <span class="math inline">\(E_{i}\)</span> posto ter ocorrido o evento <em>B</em> chegamos a:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(E_{i}|B) = \frac{P(E_{i}\cap B)}{\sum _{i=1}^{n}\left[P\left({E}_{i}\right)\cdot P\left(B|{E}_{i}\right)\right]}
+\]</span></p>
+<p><br />
+</p>
+<p>Sendo</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(E_{i} \cap B) = P(B) \times P(E_{i}|B)
+\]</span></p>
+<p><br />
+</p>
+<p>a expressão anterior pode ser reescrita como:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(E_{i}|B) = \frac{ P(E_{i}) \times P(B|E{i})   }{  \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]  }
+\]</span></p>
+<p>uma forma mais geral do <strong>Teorema de Bayes</strong>.</p>
+<p><br />
+</p>
+<p>O Teorema de Bayes é também chamado de <em>Teorema da probabilidade a posteriori</em> ao nos permitir calcular <span class="math inline">\(P(E_{i}|B)\)</span> em termos da ocorrência <span class="math inline">\(P(B|E_{i})\)</span></p>
+<p><br />
+</p>
+<p>É, de certo modo, uma conjugação do <em>teorema na probabilidade total</em> e da <em>regra do produto</em> de probabilidades.</p>
+<p><br />
+</p>
+<p>O denominador:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(B)=  \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]
+\]</span></p>
+<p><br />
+</p>
+<p>é a denominada <strong>probabilidade marginal</strong> de ocorrência do evento <span class="math inline">\(B\)</span> no espaço amostral <span class="math inline">\(\Omega\)</span> composto por <span class="math inline">\(n\)</span> elementos (partições).</p>
+<p><br />
+</p>
+<p>Na expressão do Teorema de Bayes:</p>
+<p><br />
+</p>
+<ul>
+<li><span class="math inline">\(P(E_{k}|B)\)</span> é a denominada probabilidade <em>a posteriori</em> do evento <span class="math inline">\(E_{k}\)</span> condicionada pela ocorrência anterior do evento B;<br />
+</li>
+<li><span class="math inline">\(P(E_{k})\)</span> é a denominada probabilidade <em>a priori</em> do evento <span class="math inline">\(E_{k}\)</span>;<br />
+</li>
+<li><span class="math inline">\(P(B|E_{k})\)</span> é a denominada probabilidade <em>a posteriori</em> do evento <span class="math inline">\(B\)</span> condicionada pela ocorrência anterior do evento <span class="math inline">\(E_{k}\)</span>;<br />
+</li>
+<li><span class="math inline">\(P(E_{i})\)</span> é a denominada probabilidade <em>a priori</em> de cada evento <span class="math inline">\(E_{i}\)</span>;<br />
+</li>
+<li><span class="math inline">\(P(B|E_{i})\)</span> é a denominada probabilidade <em>a posteriori</em> do evento <span class="math inline">\(B\)</span> condicionada pela ocorrência anterior de cada evento <span class="math inline">\(E_{i}\)</span>.</li>
+</ul>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Constatou-se que o aumento nas vendas de um certo produto comercializado por uma empresa num mês pode ocorrer <strong>somente</strong> por uma das quatro causas mutuamente exclusivas a seguir:</p>
+</blockquote>
+<p><br />
+</p>
+<p>1- ação de <em>marketing</em>;<br />
+2- propaganda;<br />
+3- flutuações na economia do país; ou,<br />
+4- efeitos sazonais.</p>
+<p><br />
+</p>
+<p>A probabilidade de haver uma ação da empresa no mês focada para o <em>marketing</em> é de 40%; e para propaganda é de 30%; as probabilidades de ocorrerem flutuações na economia do país é de 20% e de efeitos sazonais é de 10%. Uma pesquisa mostrou que a probabilidade de haver um aumento nas vendas do produto devido a uma ação de <em>marketing</em> é de 7%; devido à publicidade, de 7,5%, por flutuações na economia do país, de 3% e por sazonalidade de 2%.</p>
+<p><br />
+</p>
+<p>Em um determinado mês a empresa observou um considerável incremento nas vendas. Qual seria sua causa mais provável? Qual a probabilidade de incremento das vendas em um certo mês?</p>
+<p><br />
+</p>
+<p>Nosso experimento aleatório é a medida do <strong>incremento das vendas</strong> de um produto de uma certa empresa que ela o considera ser <strong>influenciado exclusivamente</strong> por quatro eventos - ações que ela pode adotar ou sofrer - independentes indicados como sendo:</p>
+<p><br />
+</p>
+<p>1- <em>marketing</em>;<br />
+2- propaganda;<br />
+3- flutuações na economia; ou,<br />
+4- efeitos sazonais.</p>
+<p>Cada um deles possui uma <strong>intensidade diferente</strong>.</p>
+<p><br />
+</p>
+<p>Da leitura do enunciado extraímos as probabilidades de ocorrência de cada um dos eventos influenciadores:</p>
+<p><br />
+</p>
+<ul>
+<li>Ação de <em>marketing</em> <span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(P(E_{1}) = 0,40\)</span>;<br />
+</li>
+<li>Ação de propaganda <span class="math inline">\(\rightarrow\)</span> $P(E_{2}) = 0,30 $;<br />
+</li>
+<li>Flutuações na economia <span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(P(E_{3}) = 0,20\)</span>; ou,<br />
+</li>
+<li>Sazonalidade <span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(P(E_{4}) = 0,10\)</span>.</li>
+</ul>
+<p><br />
+</p>
+<p>As probabilidades de incremento das vendas (<span class="math inline">\(B\)</span>) pela ocorrência dos eventos causadores são (<strong>posto ter ocorrido o evento <span class="math inline">\(E_{i}\)</span></strong>):</p>
+<p><br />
+</p>
+<ul>
+<li><span class="math inline">\(P(B|E_{1}) = 0,07\)</span> ;</li>
+<li><span class="math inline">\(P(B|E_{2}) = 0,075\)</span>;<br />
+</li>
+<li><span class="math inline">\(P(B|E_{3}) = 0,03\)</span>; e,<br />
+</li>
+<li><span class="math inline">\(P(B|E_{4}) = 0,02\)</span>.</li>
+</ul>
+<p><br />
+</p>
+<p>Para responder à indagação do problema ( <em>“Qual a causa mais provável?”</em>) podemos invertê-la e reformulá-la:</p>
+<p><br />
+</p>
+<p>“Qual a probabilidade de ter ocorrido cada um dos quatro eventos (<span class="math inline">\(E_{1}\)</span>, <span class="math inline">\(E_{2}\)</span>, <span class="math inline">\(E_{3}\)</span>, <span class="math inline">\(E_{4}\)</span>) <strong>posto</strong> (dado) ter ocorrido}** um incremento nas vendas”?</p>
+<p><br />
+</p>
+<p>Calculemos para cada um deles usando o Teorema de Bayes:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(E_{i}|B) = \frac{ P(E_{i}) \times P(B|E{i})   }{  \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]  }
+\]</span></p>
+<p><br />
+</p>
+<p>Probabilidade da empresa ter realizado uma ação de <em>marketing</em>, <strong>posto</strong> ter ocorrido um incremento nas vendas de seu produto:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(E_{1}|B) &amp;  = \frac{ P(E_{1}) \times P(B|E{1})   }{  \sum _{i=1}^{4}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right] } \\
+P(E_{1}|B) &amp; = \frac{0,40 \times 0,07} { (0,40 \times 0,07) + (0,30 \times 0,075) +(0,20 \times 0,03) +(0,10 \times 0,02) } \\
+P(E_{1}|B) &amp; = 0,478 \\
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Probabilidade da empresa ter realizado propaganda, <strong>posto</strong> ter ocorrido um incremento nas vendas de seu produto:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(E_{2}|B) &amp;  = \frac{ P(E_{2}) \times P(B|E{2})   }{  \sum _{i=1}^{4}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]  }  \\
+P(E_{2}|B) &amp; = \frac{0,30 \times 0,075} { (0,40 \times 0,07) + (0,30 \times 0,075) +(0,20 \times 0,03) +(0,10 \times 0,02) } \\
+P(E_{2}|B) &amp; = 0,385
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Probabilidade da empresa ter ocorrido flutuações na economia}, <strong>posto</strong> ter ocorrido um incremento nas vendas de seu produto:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(E_{3}|B) &amp; = \frac{ P(E_{3}) \times P(B|E{3})   }{  \sum _{i=1}^{4}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]  } \\
+P(E_{3}|B) &amp; = \frac{0,20 \times 0,03} { (0,40 \times 0,07) + (0,30 \times 0,075) +(0,20 \times 0,03) +(0,10 \times 0,02) } \\
+P(E_{3}|B) &amp; = 0,103
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Probabilidade da empresa ter ocorrido efeitos sazonais, <strong>posto</strong> ter ocorrido um incremento nas vendas de seu produto:</p>
+<p><br />
+<span class="math display">\[\begin{align*}
+P(E_{4}|B) &amp; = \frac{ P(E_{4}) \times P(B|E{4})   }{  \sum _{i=1}^{4}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]  } \\
+P(E_{4}|B) &amp; = \frac{0,10 \times 0,02} { (0,40 \times 0,07) + (0,30 \times 0,075) +(0,20 \times 0,03) +(0,10 \times 0,02) } \\
+P(E_{4}|B) &amp; = 0,034
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Respostas:</p>
+<p><br />
+</p>
+<p>1- Os cálculos indicam que o evento mais provável pelo incremento das vendas observado naquele mês foi o de uma <strong>ação de marketing</strong>;<br />
+2- A probabilidade de incremento das vendas em um determinado mês como resultado dos quatro possíveis eventos indicados é o <strong>próprio denominador do Teorema de Bayes</strong>: 0,058.</p>
+<blockquote>
+<p>Exemplo: Considere 5 urnas, cada uma delas contendo 6 bolas. Duas dessas urnas (urnas tipo <span class="math inline">\(C_{1}\)</span>) possuem 3 bolas brancas em seu interior. Duas outras (urnas tipo <span class="math inline">\(C_{2}\)</span>) possuem 2 bolas brancas em seu interior e a última (urnas tipo <span class="math inline">\(C_{3}\)</span>) possui 6 bolas brancas em seu interior (cf. Figura <a href="teorema-de-bayes.html#fig:fig11">4.18</a>).</p>
+</blockquote>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig11"></span>
+<img src="images4/exemplo_02_bayes.jpg" alt="Cinco urnas cada uma com 6 bolas em cores de diferentes quantidades da cor branca" width="50%" />
+<p class="caption">
+Figure 4.18: Cinco urnas cada uma com 6 bolas em cores de diferentes quantidades da cor branca
+</p>
+</div>
+<p><br />
+</p>
+<p>Escolhida aleatoriamente uma urna retira-se uma bola. Qual a probabilidade da urna escolhida ter sido a urna <span class="math inline">\(C_{3}\)</span> <strong>sabendo-se que a bola retirada foi branca</strong>}?</p>
+<p><br />
+</p>
+<p><strong>Desejamos determinar</strong> <span class="math inline">\(P(C_{3} | Branca)\)</span></p>
+<p><br />
+</p>
+<p>Da leitura do enunciado extraímos as seguintes informações:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(C_{1}) &amp; = \frac{2}{5} \\
+P(C_{2}) &amp; = \frac{2}{5} \\
+P(C_{3}) &amp; = \frac{1}{5} \\
+P(Branca | C_{1}) &amp; = \frac{1}{2} \\
+P(Branca | C_{2}) &amp; = \frac{1}{3} \\
+P(Branca | C_{3}) &amp; = 1
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(C_{3} | Branca) &amp; = \frac{ P(C_{3}) \times P(Branca | C_{3})  }{  \sum _{i=1}^{3}\left[P\left({C}_{i}\right)\times P\left(Branca | {C}_{i}\right)\right]  } \\
+P(C_{3} | Branca) &amp; = \frac{ 0,20 \times 1,00} { (0,40  \times 0,50 ) + (0,40 \times 0,33 ) +(0,20 \times 1,00)} \\
+P(C_{3} | Branca) &amp; = 0,375
+\end{align*}\]</span></p>
+<p><br />
+</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="teste_hipoteses.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="disc_fisher.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="probabilidade-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="demonstração-clássica-de-independência.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -303,7 +702,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/12-reg_simples.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-probabilidade.Rmd",
 "text": "Edit"
 },
 "history": {

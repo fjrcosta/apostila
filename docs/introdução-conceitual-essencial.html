@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 12 - Introdução ao modelo clássico de regressão linear simples | _main.knit</title>
+  <title>4.1 Introdução conceitual essencial | _main.knit</title>
   <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 12 - Introdução ao modelo clássico de regressão linear simples | _main.knit" />
+  <meta property="og:title" content="4.1 Introdução conceitual essencial | _main.knit" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
   <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 12 - Introdução ao modelo clássico de regressão linear simples | _main.knit" />
+  <meta name="twitter:title" content="4.1 Introdução conceitual essencial | _main.knit" />
   
   <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="teste_hipoteses.html"/>
-<link rel="next" href="disc_fisher.html"/>
+<link rel="prev" href="probabilidade.html"/>
+<link rel="next" href="probabilidade-1.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -262,17 +262,339 @@ Prof. M.e Eng. Felinto Junior Da Costa</div></a>
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="reg_simples" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">Capítulo 12</span> - Introdução ao modelo clássico de regressão linear simples<a href="reg_simples.html#reg_simples" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introdução-conceitual-essencial" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Introdução conceitual essencial<a href="introdução-conceitual-essencial.html#introdução-conceitual-essencial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><br />
+</p>
+<div id="experimentos-determinísticos-e-experimentos-probabilísticos-aleatórios" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Experimentos determinísticos e experimentos probabilísticos (aleatórios)<a href="introdução-conceitual-essencial.html#experimentos-determinísticos-e-experimentos-probabilísticos-aleatórios" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Aleatório provem do latim: <em>aleatorium</em>: fato cujo desfecho depende de um acontecimento futuro e incerto, resultado da sorte ou acaso, acidental.</p>
+<p><br />
+</p>
+<p>Ao contrário de um <strong>experimento determinístico</strong>, cujo resultado pode ser previamente determinado (como a reação de dois átomos de <em>H</em> com um átomo de <em>O</em> ou a distância percorrida - no vácuo sob velocidade constante e sem atrito - por um objeto <span class="math inline">\(S = V \times t\)</span>), o conceito de experimento aleatório é o que estabelece que seu resultado <strong>não pode ser previsto com certeza</strong>.</p>
+<p>Os resultados observados <strong>apresentam variações</strong> mesmo quando esses experimentos são repetidos indefinidamente e sob as mesmas condições; todavia, é possível estabelecer um conjunto cujos elementos compõem todos os possíveis resultados.</p>
+</div>
+<div id="espaço-amostral-e-seus-elementos" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Espaço amostral e seus elementos<a href="introdução-conceitual-essencial.html#espaço-amostral-e-seus-elementos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+A primeira coisa que fazemos quando começamos a pensar sobre a probabilidade de ocorrência de um certo resultado em um <strong>experimento aleatório</strong> é listar <strong>todos os resultados com possibilidade de ocorrência</strong>.</p>
+<p>Esses resultados são os elementos de um conjunto a que denominamos de <em>espaço amostral</em> e, usualmente o representamos pela letra grega maiúscula <span class="math inline">\(\Omega\)</span>.</p>
+<p>Para que <span class="math inline">\(\Omega\)</span> seja considerado o <em>espaço amostral</em> desse experimento aleatório ele precisa apresentar duas propriedades:</p>
+<p>1- <strong>apenas um</strong> de seus elementos pode ocorrer ao se realizar o <em>experimento aleatório</em> (<strong>resultado</strong>); e,
+2- <strong>ao menos um</strong> dos possíveis resultados deverá ocorrer.</p>
+<p>Tais propriedades são equivalentes a se dizer que os elementos do espaço amostral, os <strong>resultados</strong>listados como possibilidades de se verificar ao se realizar um <strong>experimento aleatório</strong> são <strong>mutuamente exclusivos e exaustivos</strong>.</p>
+<p>Exemplos clássicos de experimentos aleatórios são o <em>lançamento de moedas</em>, <em>dados</em> ou extração de <em>cartas de um baralho</em>.</p>
+<p>Os possíveis resultados como a face de uma moeda ou o número que um dado irá expor ao ser lançado, <strong>embora não possam ser antecipados com certeza</strong>, encontram-se limitados a um conjunto de todas as uas possibilidades, seu <strong>espaço amostral</strong>.</p>
+<p>Para o lançamento de um dado:</p>
+<p><span class="math display">\[
+\Omega = \{ 1,2,3,4,5,6\}
+\]</span></p>
+<p>e para o lançamento de uma moeda</p>
+<p><span class="math display">\[\Omega=\{\text{cara}, \text{coroa}\}
+\]</span>.</p>
+<p>Um espaço amostral consiste então da enumeração (finita ou infinita) de todos os resultados possíveis de serem gerados em um experimento aleatório, generalizado como sendo o conjunto</p>
+<p><span class="math display">\[
+\Omega = \{\omega_{1}, \omega_{2}, \omega_{3}, ..., \omega_{n}, \dots \}
+\]</span></p>
+<p><strong>Cada um</strong> dos possíveis resultados de um experimento aleatório com espaço amostral <span class="math inline">\(\Omega\)</span> é chamado de um <strong>elemento</strong> desse espaço amostral e é denotado pela letra grega: <span class="math inline">\(\omega_{n}\)</span>.</p>
+</div>
+<div id="evento-de-interesse-sucesso" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Evento de interesse (sucesso)<a href="introdução-conceitual-essencial.html#evento-de-interesse-sucesso" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+</div>
+<div id="evento" class="section level3 hasAnchor" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> Evento<a href="introdução-conceitual-essencial.html#evento" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Denomina-se como <strong>evento</strong> um <strong>subconjunto</strong> finito do <strong>espaço amostral</strong> composto por um ou mais de seus elementos, e que <strong>satisfazem (atendem)</strong> ao enunciado definido no experimento aleatório desejado.</p>
+<p>A expressão <strong>evento de interesse</strong> (ou sucesso) define, para o cálculo de probabilidades, a ocorrência de um resultado previamente definido no experimento aleatório.</p>
+<p>Admita um <strong>experimento aleatório</strong> que consiste em se lançar um dado uma vez. Um <strong>evento de interesse</strong> pode ser definido como sendo obter um número par. A partir dessas condições, pode-se calcular-se a probabilidade de se obter <strong>sucesso</strong> no experimento aleatório; isto é, obter-se um número par ao se lançar um dado uma vez.</p>
+<p>Admita umoutro experimento aleatório que agora consiste em se lançar uma moeda duas vezes.</p>
+<p>O <strong>espaço amostral</strong> desse experimento aleatório (<strong>todos os possíveis resultados</strong>) será um conjunto composto por quatro elementos:</p>
+<p><span class="math display">\[
+\Omega = \{\omega_{1}, \omega_{2}, \omega_{3}, \omega_{4}\}
+\]</span></p>
+<p>onde:</p>
+<p><span class="math display">\[\begin{align*}
+\omega_{1} &amp; = (\text{Cara}, \text{Coroa})\\
+\omega_{2} &amp; = (\text{Coroa}, \text{Cara})\\
+\omega_{3} &amp; = (\text{Cara}, \text{Cara}) \\
+\omega_{4} &amp; = (\text{Coroa}, \text{Coroa})
+\end{align*}\]</span></p>
+<p>Se definirmos como <strong>sucesso</strong> nesse experimento aleatório obter-se</p>
+<p><span class="math display">\[
+E=\{(Cara, Cara)\}
+\]</span>,</p>
+<p>dizemos que <span class="math inline">\(E\)</span> é um <strong>evento simples</strong> pois é formado por apenas <strong>um</strong> elemento do espaço amostral.</p>
+<p>Por outro lado, se definimos nosso sucesso como sendo obter</p>
+<p><span class="math display">\[
+E_{1}=\{(Cara, Coroa) ou (Coroa, Cara)\}
+\]</span></p>
+<p><span class="math inline">\(E_{1}\)</span> será um <strong>evento composto</strong> pois é formado por <strong>dois</strong> elementos do espaço amostral.</p>
+<p>Se codificarmos <strong>Cara: 1</strong> e <strong>Coroa: 0</strong>, podemos representar simultaneamente o espaço amostral <span class="math inline">\(\Omega\)</span> do experimento aleatório e o **evento de sucesso* <span class="math inline">\(E_{1}\)</span> de modo grafico.</p>
+<br />
 
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-61"></span>
+<img src="images4/evento_grafico.jpg" alt="Representação gráfico do espaço amostral do experimento aleatório e do evento de interesse definido" width="50%" />
+<p class="caption">
+Figure 4.1: Representação gráfico do espaço amostral do experimento aleatório e do evento de interesse definido
+</p>
+</div>
+<p>Admita agora um outro experimento aleatório, estabelecido como a soma dos valores das faces de dois dados (ou um dado laçado duas vezes) aleatoriamente lançados. O espaço amostral desse experimento aleatório será um conjunto formado por 11 elementos.</p>
+<p><span class="math display">\[
+\Omega = \{\omega_{1}, \omega_{2}, \omega_{3}, \omega_{4}, \omega_{5}, \omega_{6}, \omega_{7}, \omega_{8}, \omega_{9}, \omega_{10}, \omega_{11}\}
+\]</span></p>
+<p>onde:</p>
+<p><span class="math display">\[\begin{align*}
+\omega_{1} &amp; =  2\\
+\omega_{2} &amp; =  3\\
+\omega_{3} &amp; = 4\\
+\omega_{4} &amp; = 5\\
+\omega_{5} &amp; = 6\\
+\omega_{6} &amp; = 7 \\
+\omega_{7} &amp; = 8\\
+\omega_{8} &amp; = 9\\
+\omega_{9} &amp; = 10\\
+\omega_{10} &amp; = 11\\
+\omega_{11} &amp; = 12     
+\end{align*}\]</span></p>
+<p>Cada um dos elementos que compõem o espaço amostral, a soma dos valores numéricos das faces no lançamento de um dado por duas vezes, poderá resultar de diferentes combinações de valores. A Tabela <a href="introdução-conceitual-essencial.html#tab:table1">4.1</a> abaixo apresenta todas as combinações possíveis de serem obtidas, bem como as proporções em relação ao total para cada elemento do espaço amostral.</p>
+<p><br />
+</p>
+<table style="width:100%;">
+<caption><span id="tab:table1">Table 4.1: </span> Quadro dos possíveis resultados de um experimento aleatório: somas dos valores numéricos das faces no lançamento de um dado por duas vezes</caption>
+<colgroup>
+<col width="23%" />
+<col width="42%" />
+<col width="17%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Soma</th>
+<th>Possíveis combinações de resultados nos lançamentos</th>
+<th>Frequência (<span class="math inline">\(n_{i}\)</span>)</th>
+<th>Proporção (<span class="math inline">\(f_{i}\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>(primeiro,segundo)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>(1,1)</td>
+<td>1</td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>(1,2); (2,1)</td>
+<td>2</td>
+<td><span class="math inline">\(\frac{2}{36}\)</span></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>(1,3); (2,2); (3,1)</td>
+<td>3</td>
+<td><span class="math inline">\(\frac{3}{36}\)</span></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>(1,4); (2,3); (3,2); (4,1)</td>
+<td>4</td>
+<td><span class="math inline">\(\frac{4}{36}\)</span></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>(1,5); (2,4); (3,3); (4,2); (5,1)</td>
+<td>5</td>
+<td><span class="math inline">\(\frac{5}{36}\)</span></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>(1,6); (2,5); (3,4); (4,3); (5,2); (6,1)</td>
+<td>6</td>
+<td><span class="math inline">\(\frac{6}{36}\)</span></td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>(2,6); (3,5); (4,4); (5,3); (6,2)</td>
+<td>5</td>
+<td><span class="math inline">\(\frac{5}{36}\)</span></td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>(3,6); (4,5); (5,4); (6,3)</td>
+<td>4</td>
+<td><span class="math inline">\(\frac{4}{36}\)</span></td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>(4,6); (5,5); (6,4)</td>
+<td>3</td>
+<td><span class="math inline">\(\frac{3}{36}\)</span></td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>(5,6); (6, 5)</td>
+<td>2</td>
+<td><span class="math inline">\(\frac{2}{36}\)</span></td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>(6,6)</td>
+<td>1</td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Totais</td>
+<td></td>
+<td>36</td>
+<td><span class="math inline">\(\frac{1}{36}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>Se agora definimos nosso evento de interesse como sendo <strong>“obter uma soma ímpar”</strong>, nosso sucesso será verificado se ocorrer qualquer um desses elemetos do espaço amostral:</p>
+<p><span class="math display">\[
+F=\{3;5;7;9;11\}
+\]</span>
+Nosso evento de interesse é um <em>evento composto</em> pois é formado por 5 elementos do <em>espaço amostral</em> <span class="math inline">\(\Omega\)</span>.</p>
+<p>Um evento de interesse <span class="math inline">\(G\)</span> sobre o espaço amostral <span class="math inline">\(\Omega\)</span> tal que</p>
+<p><span class="math display">\[
+G=\Omega
+\]</span></p>
+<p>expressa que qualquer um dos elementos de <span class="math inline">\(\Omega\)</span> atende ao evento <span class="math inline">\(G\)</span> e assim, a chance de ocorrência do evento <span class="math inline">\(G\)</span> será absoluta. Esse tipo de evento é chamado de <strong>evento certo</strong>.</p>
+<p>Se definirmos em evento de interesse <span class="math inline">\(I\)</span> com um resultado não pertencente aos possíveis resutados representados no <em>espaço amostral</em> <span class="math inline">\(\Omega\)</span>, como, por exemplo, 13, ou então um conjunto vazio <span class="math inline">\(\varnothing\)</span>, esse evento será impossível de ocorrer. Esse tipo de evento é chamado de <strong>evento impossível</strong>.</p>
+<p>Desse modo temos diferentes tipos de eventos de inetersse:</p>
+<p>1- <em>simples</em>: composto por apenas um elemento do espaço amostral;
+2- <em>composto</em>: composto por dois ou mais elementos do espaço amostral;
+3- <em>certo</em>: composto por todos os elementos do espaço amostral;<br />
+4- <em>impossível</em>: composto por um elemento que não integra o espaço amostral.</p>
+</div>
+<div id="operações-com-conjuntos-diagramas-de-venn" class="section level3 hasAnchor" number="4.1.5">
+<h3><span class="header-section-number">4.1.5</span> Operações com conjuntos &amp; Diagramas de Venn<a href="introdução-conceitual-essencial.html#operações-com-conjuntos-diagramas-de-venn" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Em muitos dos problemas de probabilidade, o evento de interesse pode residir em <strong>combinações de dois ou elementos</strong> do conjunto que representa o espaço amostral. Uniões, interseções e complementos são alguns termos que, doravante, serão muito utilizados.</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-62"></span>
+<img src="images4/venn.jpg" alt="Diagrames de Venn" width="80%" />
+<p class="caption">
+Figure 4.2: Diagrames de Venn
+</p>
+</div>
+<p><br />
+</p>
+<div id="união-a-cup-b" class="section level4 hasAnchor" number="4.1.5.1">
+<h4><span class="header-section-number">4.1.5.1</span> União <span class="math inline">\(A \cup B\)</span><a href="introdução-conceitual-essencial.html#união-a-cup-b" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Sejam <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> dois subconjuntos finitos de um espaço amostral <span class="math inline">\(Omega=\{1,2,3,4,5,6\}\)</span> tais que <span class="math inline">\(A=\{1,2,3\}\)</span> e <span class="math inline">\(B=\{2,4,6\}\)</span>.</p>
+<p>Sua <em>união</em>, representada por <span class="math inline">\(A \cup B\)</span>, é o subconjunto do espaço amostral <span class="math inline">\(\Omega\)</span> que contém os elementos que pertençam <strong>a <span class="math inline">\(A\)</span>, ou a <span class="math inline">\(B\)</span> ou a ambos</strong>. Desse modo, <span class="math inline">\(A \cup B =\{1,2,3,4,6\}\)</span> e o Diagrama de Venn correspondente será:</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-63"></span>
+<img src="images4/A_UN_B.jpg" alt="União: $A \cup B$" width="80%" />
+<p class="caption">
+Figure 4.3: União: <span class="math inline">\(A \cup B\)</span>
+</p>
+</div>
+<p><br />
+</p>
+</div>
+<div id="interseção-a-cap-b" class="section level4 hasAnchor" number="4.1.5.2">
+<h4><span class="header-section-number">4.1.5.2</span> Interseção <span class="math inline">\(A \cap B\)</span><a href="introdução-conceitual-essencial.html#interseção-a-cap-b" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Sua <em>interseção</em>, representada por <span class="math inline">\(A \cap B\)</span>, é o subconjunto do espaço amostral <span class="math inline">\(\Omega\)</span> que contém todos os elementos que pertencem <strong>a ambos simultaneamente</strong>. Desse modo, <span class="math inline">\(A \cap B =\{2\}\)</span> e o Diagrama de Venn correspondente será:</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-64"></span>
+<img src="images4/A_INTER_B.jpg" alt="Interseção: $A \cap B$" width="80%" />
+<p class="caption">
+Figure 4.4: Interseção: <span class="math inline">\(A \cap B\)</span>
+</p>
+</div>
+<p><br />
+</p>
+<p>Caso não exista nenhum elemento na interseção (ela é vazia) tem-se :</p>
+<p><span class="math display">\[
+A \cap B = \varnothing
+\]</span></p>
+</div>
+<div id="complemmento-ac" class="section level4 hasAnchor" number="4.1.5.3">
+<h4><span class="header-section-number">4.1.5.3</span> Complemmento <span class="math inline">\(A^{c}\)</span><a href="introdução-conceitual-essencial.html#complemmento-ac" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>O <em>complemento</em> de <span class="math inline">\(A\)</span>, representado por <span class="math inline">\(A^{c}\)</span> (ou <span class="math inline">\(\stackrel{-}{A}\)</span>), é o subconjunto do espaço amostral <span class="math inline">\(\Omega\)</span> composto por todos os elementos que <strong>não pertencem</strong> a <span class="math inline">\(A\)</span>. Desse modo, <span class="math inline">\(\stackrel{-}{A} =\{4,5,6\}\)</span> e o Diagrama de Venn correspondente será:</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-65"></span>
+<img src="images4/COMP_A.jpg" alt="Complementar  $A^{c}$" width="80%" />
+<p class="caption">
+Figure 4.5: Complementar <span class="math inline">\(A^{c}\)</span>
+</p>
+</div>
+<p><br />
+</p>
+<p>O <em>complemento</em>} de <span class="math inline">\(B\)</span>, representado por <span class="math inline">\(B^{c}\)</span> (ou <span class="math inline">\(\stackrel{-}{B}\)</span>), é o subconjunto do espaço amostral <span class="math inline">\(\Omega\)</span> composto por todos os elementos que <strong>não pertencem</strong> a <span class="math inline">\(B\)</span>. Desse modo, <span class="math inline">\(\stackrel{-}{B} =\{1,3,5\}\)</span> e o Diagrama de Venn correspondente será :</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-66"></span>
+<img src="images4/COMP_B.jpg" alt="Complementar de B" width="80%" />
+<p class="caption">
+Figure 4.6: Complementar de B
+</p>
+</div>
+</div>
+</div>
+<div id="eventos-equiprováveis-e-não-equiprováveis" class="section level3 hasAnchor" number="4.1.6">
+<h3><span class="header-section-number">4.1.6</span> Eventos equiprováveis e não equiprováveis<a href="introdução-conceitual-essencial.html#eventos-equiprováveis-e-não-equiprováveis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Se todos os elementos que compõem um espaço amostral finito de um experimento aleatório possuem a mesma probabilidade de ocorrência é dito que esse espaço amostral é <strong>uniforme</strong> ou que seus elementos são <strong>equiprováveis</strong>.</p>
+<p>No experimento de se lançar um dado e anotar o valor numérico de sua face todos os possíveis resultados apresentam a mesma probabilidade: <span class="math inline">\(\frac{1}{6}\)</span>.</p>
+<p>Já no experimento de se lançar dois dados e se anotar a soma dos valores numéricos de suas faces as probabilidades são diferentes.</p>
+<p>Um significativo resultado é que a soma das probabilidades associadas a cada um desses possíveis resultados é um (1) (antecipando um dos postulados do conceito axiomático de probabilidade).</p>
+</div>
+<div id="eventos-independentes" class="section level3 hasAnchor" number="4.1.7">
+<h3><span class="header-section-number">4.1.7</span> Eventos independentes<a href="introdução-conceitual-essencial.html#eventos-independentes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Quando a possibilidade de ocorrência de um evento de interesse (sucesso) em um determinado exeprimento aleatório não é afetada pelo resultado <strong>prévio</strong> de outro diz-se que esses dois eventos são <strong>independentes</strong>}. Caso contrário são ditos dependentes ou condicionados. Mais adiante esse conceito será introduzido de um modo mais detalhado.</p>
+</div>
+<div id="eventos-mutuamente-exclusivos" class="section level3 hasAnchor" number="4.1.8">
+<h3><span class="header-section-number">4.1.8</span> Eventos mutuamente exclusivos<a href="introdução-conceitual-essencial.html#eventos-mutuamente-exclusivos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dois eventos que nunca poderão ocorrer simultaneamente são ditos mutuamente exclusivos. No experimento do lançamento da moeda por uma vez, nunca observaremos simultaneamente os eventos: <span class="math inline">\(E=\{(Cara)\}\)</span> <strong>e</strong> <span class="math inline">\(F=\{(Coroa)\}\)</span> e assim sua interseção é vazia:</p>
+<p><span class="math display">\[
+E \cap F = \varnothing
+\]</span></p>
+<p>E por essa razão, se chamarmos de <span class="math inline">\(P(E)\)</span> e <span class="math inline">\(P(F)\)</span> as probabilidades de ocorrência desses reultados veremos que :</p>
+<p><span class="math display">\[
+P(E) \cap P(F) = 0
+\]</span></p>
+</div>
+<div id="eventos-complementares" class="section level3 hasAnchor" number="4.1.9">
+<h3><span class="header-section-number">4.1.9</span> Eventos complementares<a href="introdução-conceitual-essencial.html#eventos-complementares" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Definido um evento de interesse qualquer pode-se observar apenas dois resultados: <strong>ocorrer</strong> ou <strong>não</strong> o sucesso; ou seja, um ou outro deverá forçosamente ocorrer.</p>
+<p>Chama-se de evento complementar (<span class="math inline">\(E^{c}\)</span> ou <span class="math inline">\(\stackrel{-}{E}\)</span>) a um evento (<span class="math inline">\(E\)</span>), aquele cuja probabilidade de sucesso seja:</p>
+<p><span class="math display">\[
+P(E^{c}) = 1 - P(E)
+\]</span></p>
+<p>Se a probabilidade de sucesso de que ele ocorra for <span class="math inline">\(P(E)=p\)</span> e a de que ele não ocorra for <span class="math inline">\(P(E^{c}= q)\)</span> vê-se que a soma dessas quantidades deverá ser <span class="math inline">\(p + q =1\)</span> (novamente antecipando um dos postulados do conceito axiomático de probabilidade).</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="teste_hipoteses.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="disc_fisher.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="probabilidade.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="probabilidade-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -303,7 +625,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/12-reg_simples.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-probabilidade.Rmd",
 "text": "Edit"
 },
 "history": {

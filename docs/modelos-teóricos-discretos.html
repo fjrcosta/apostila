@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 12 - Introdução ao modelo clássico de regressão linear simples | apostila.knit</title>
+  <title>6.1 Modelos teóricos discretos | apostila.knit</title>
   <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 12 - Introdução ao modelo clássico de regressão linear simples | apostila.knit" />
+  <meta property="og:title" content="6.1 Modelos teóricos discretos | apostila.knit" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
   <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 12 - Introdução ao modelo clássico de regressão linear simples | apostila.knit" />
+  <meta name="twitter:title" content="6.1 Modelos teóricos discretos | apostila.knit" />
   
   <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="teste_hipoteses.html"/>
-<link rel="next" href="disc_fisher.html"/>
+<link rel="prev" href="modelos_probabilidade.html"/>
+<link rel="next" href="modelos-téoricos-do-tempo-de-espera.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -282,17 +282,421 @@ Prof. M.e Eng. Felinto Junior Da Costa</div></a>
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="reg_simples" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">Capítulo 12</span> - Introdução ao modelo clássico de regressão linear simples<a href="reg_simples.html#reg_simples" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-
+<div id="modelos-teóricos-discretos" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Modelos teóricos discretos<a href="modelos-teóricos-discretos.html#modelos-teóricos-discretos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="bernoulli" class="section level3 hasAnchor" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Bernoulli<a href="modelos-teóricos-discretos.html#bernoulli" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Variável aleatória com distribuição <em>Bernoulli</em> é uma variável definida por um experimento probabilístico em que os resultados possíveis se resumem a apenas dois: <strong>sucesso</strong> ou <strong>fracasso</strong> (ocorrência ou não).</p>
+<p> </p>
+<p>Caracterização de uma variável aleatória <span class="math inline">\(X\)</span> com distribuição de Bernoulli: <span class="math inline">\(X\sim Ber(p)\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>i</em></sub></span>
+</th>
+<th style="text-align: center;">
+Evento
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>P</em>(<em>X</em>=<em>x</em><sub><em>i</em></sub>)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+1
+</td>
+<td style="text-align: center;">
+Sucesso
+</td>
+<td style="text-align: center;">
+p
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+0
+</td>
+<td style="text-align: center;">
+Fracasso
+</td>
+<td style="text-align: center;">
+q=(1-p)
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+<span class="math inline"><em>Σ</em></span>
+</td>
+<td style="text-align: center;">
+-
+</td>
+<td style="text-align: center;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>Para uma variável de Bernoulli:</p>
+<ul>
+<li>Esperança: <span class="math inline">\(E(X)=p\)</span><br />
+</li>
+<li>Variância: <span class="math inline">\(VAR(X)=p(1-p)\)</span></li>
+</ul>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Seja <span class="math inline">\(X\)</span> uma variável aleatória resultante do lançamento de um dado uma única vez e cujo sucesso está definido como <strong>obter a face com 5 pontos</strong>. Calcule a probabilidade de sucesso e fracasso, assim como sua variância.</p>
+</blockquote>
+<p><br />
+</p>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>i</em></sub></span>
+</td>
+<td style="text-align: center;">
+Evento
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>P</em>(<em>X</em>=<em>x</em><sub><em>i</em></sub>)</span>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+(face 5 no lançamento de um dado)
+</td>
+<td style="text-align: center;">
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+1
+</td>
+<td style="text-align: center;">
+Sucesso
+</td>
+<td style="text-align: center;">
+p=1/6
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+0
+</td>
+<td style="text-align: center;">
+Fracasso
+</td>
+<td style="text-align: center;">
+q=5/6
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+<span class="math inline"><em>Σ</em></span>
+</td>
+<td style="text-align: center;">
+-
+</td>
+<td style="text-align: center;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<ul>
+<li>Esperança: <span class="math inline">\(E(X)= \frac{1}{6}\)</span><br />
+</li>
+<li>Variância: <span class="math inline">\(VAR(X)= \frac{5}{36}\)</span></li>
+</ul>
+<p><br />
+</p>
+<p>Admita agora <span class="math inline">\(X\)</span> uma variável aleatória resultante de realização de <span class="math inline">\(n\)</span> tentativas (repetições) de Bernoulli e definindo <span class="math inline">\(x\)</span> como sendo o número de sucessos verificados nessas <span class="math inline">\(n\)</span> tentativas. Desse modo, proporção de sucessos observada após <span class="math inline">\(n\)</span> repetições é expressa como <span class="math inline">\(\frac{x}{n}\)</span>.</p>
+<p><br />
+</p>
+<p>Se <span class="math inline">\(p\)</span> é a probabilidade de sucesso a cada repetição e se <span class="math inline">\(\epsilon\)</span> é um número qualquer positivo, tem-se:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+\underset{n\to \infty }{lim}P\left(\left|\frac{x}{n}-p\right|\ge \epsilon \right)=0
+\]</span><br />
+</p>
+<p>A Lei dos grandes números para infinitas repetições de Bernoulli afirma que, após um (<span class="math inline">\(n\)</span>), a proporção de sucessos observada (<span class="math inline">\(\frac{x}{n}\)</span>) da probabilidade teórica da variável aleatória de Bernoulli <span class="math inline">\(p\)</span>.</p>
+</div>
+<div id="geométrica" class="section level3 hasAnchor" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Geométrica<a href="modelos-teóricos-discretos.html#geométrica" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Variável aleatória com distribuição Geométrica é uma variável resultante da repetição de um <strong>experimento modelado por uma variável de Bernoulli</strong> (isto é, a cada repetição apenas dois resultados podem ocorrer: sucesso ou fracasso).</p>
+<p><br />
+</p>
+<p>Para que <span class="math inline">\(X\)</span> seja uma variável aleatória com distribuição Geométrica: <span class="math inline">\(X\sim b(n,p)\)</span> é necessário que:</p>
+<p><br />
+- o experimento deve ser realizado um número <span class="math inline">\(n\)</span> finito de vezes;<br />
+- cada repetição deve ser independente das demais;<br />
+- cada repetição é, em essência, um ensaio de Bernoulli onde só pode haver dois resultados: sucesso ou fracasso;<br />
+- a probabilidade de sucesso <span class="math inline">\(p\)</span> em cada repetição é <strong>sempre a mesma</strong>; e, consequentemente,<br />
+- a probabilidade de fracasso <span class="math inline">\(q=1-p\)</span> em cada repetição é <strong>também a mesma</strong>.</p>
+<p><br />
+</p>
+<p>Considerem o diagrama de árvore ilustrado na Figura <a href="modelos-teóricos-discretos.html#fig:fig14">6.1</a> que representa, esquematicamente, 3 repetições independentes de um evento modelado por uma variável de Bernoulli, com probabilidade individual de sucesso <span class="math inline">\(P(X=1)=p\)</span> e, de fracasso, <span class="math inline">\(P(X=0)=1-p=q\)</span>.</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig14"></span>
+<img src="images6/arv_bin.jpg" alt="Três repetições independentes de um experimento aleatório modelado por uma variável de Bernoulli" width="60%" />
+<p class="caption">
+Figure 6.1: Três repetições independentes de um experimento aleatório modelado por uma variável de Bernoulli
+</p>
+</div>
+<p><br />
+</p>
+<p>Se <span class="math inline">\(p\)</span> é a probabilidade de se verificar sucesso em qualquer uma das <span class="math inline">\(n\)</span> repetições de Bernoulli realizadas no experimento aletório então uma variável aleatória Geométrica <span class="math inline">\(X\)</span> definida sobre esse experimento apresentará <span class="math inline">\(k\)</span> sucessos após <span class="math inline">\(n\)</span> repetições independentes e terá a seguinte função de probabilidade:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+f(k) &amp; = P(X=k)  \\
+f(k) &amp; = {C}_{k}^{n}. {p}^{k}. {q}^{(n-k)} \\
+f(k) &amp; = \frac{n!}{k!. (n-k)!} . {p}^{k}. {q}^{(n-k)}   
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Sendo a probabilidade <span class="math inline">\(p\)</span> de sucesso, igual em todas as repetições, então:</p>
+<p><br />
+</p>
+<ul>
+<li>Esperança: <span class="math inline">\(E\left(X\right)=\sum _{i=1}^{n}{x}_{i}. P\left(X={x}_{i}\right)=n. p\)</span><br />
+</li>
+<li>Variância: <span class="math inline">\(V\left(X\right)=E\left({X}^{2}\right)-{\left[E\left(X\right)\right]}^{2} = n . p . q\)</span></li>
+</ul>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Numa prova com 6 questões, a probabilidade de que um aluno acerte cada uma delas é de 0,30. Admitindo que a resolução dessas 6 questões é feita de modo independente, qual a probabilidade desse aluno acertar 4 questões?</p>
+</blockquote>
+<p><br />
+</p>
+<p>1- cada questão apresenta apenas duas possibilidades: <strong>acertar ou errar</strong>; assim, esse experimento aleatório pode seguir o modelo teórico de Bernoulli tendo o evento de sucesso definido como: <strong>a chance de acertar uma prova</strong>, com probabilidade de ocorrẽncia <span class="math inline">\(p=0,30\)</span>;<br />
+2- ao se repetir esse experimento <span class="math inline">\(n=6\)</span> (pois este é o número de questões a serem resolvidas) o experimento passa seguir o modelo teórico Geométrica pois nos foi assegurada a independência entre cada repetição bem como a constância da probabilidade <span class="math inline">\(p\)</span>.</p>
+<p><br />
+</p>
+<p>A probabilidade de se acertar <span class="math inline">\(k=4\)</span> questões em <span class="math inline">\(n-6\)</span> repetições independentes tendo cada uma uma probabilidade de sucesso <span class="math inline">\(p=0,30\)</span> será então:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P\left(X=k\right) &amp; = {C}_{k}^{n}. {p}^{k}. {q}^{n-k} \\
+P\left(X=4\right) &amp; = 15 . 0,30^{4} . 0,70^{(6-4)} \\
+&amp; = 0,0595
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Conclusão: a probabilidade de um aluno acertar 4 questões das 6 resolvidas, considerando a probabilidade associada ao acerto de cada questão, é de 0,0595.</p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Ainda utilizando a construções teórica desse experimento, admitamos que nosso interesse reside em obter as seguintes probabilidades a ele associadas:
+1- probabilidade do aluno não acertar nenhuma questão;<br />
+2- probabilidade do aluno acertar todas as questões;<br />
+3- probabilidade do aluno acertar no mínimo 2 questões; e a<br />
+4- probabilidade do aluno acertar no máximo 2 questões.</p>
+</blockquote>
+<p><br />
+</p>
+<p>A resposta aos dois primeiros itens é imediata pela simples aplicação dos dados ao odelo, pois o número de sucessos desejado é <span class="math inline">\(k=0\)</span> no primeiro e <span class="math inline">\(k=6\)</span> no segundo (e <span class="math inline">\(p=0,30\)</span> para todos) . Assim:</p>
+<p><span class="math display">\[\begin{align*}
+P\left(X=k\right) &amp; ={C}_{k}^{n}. {p}^{k}. {q}^{n-k} \\
+P\left(X=0\right) &amp; = 1 . 0,30^{0} . 0,70^{(6-0)} \\
+                  &amp; = 0,1176
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P\left(X=k\right) &amp; ={C}_{k}^{n}. {p}^{k}. {q}^{n-k} \\
+P\left(X=6\right) &amp; = 1 . 0,30^{6} . 0,70^{(6-6)} \\
+                 &amp; = 0,000729
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>A resposta aos dois últimos itens irá demandar o uso da <strong>regra da adição de probabilidades</strong> e, como cada evento é disjunto dos demais, essa regra recai sobre a simples adição das probabilidades envolvidas.</p>
+<p><br />
+</p>
+<p>Ao perguntar qual a probabilidade do aluno acertar no <strong>mínimo</strong> 2 questões (<span class="math inline">\(P(X\ge2)\)</span>) equivale a se perguntar qual a probabilidade do aluno acertar 2 <strong>OU</strong> 3 <strong>OU</strong> 4 <strong>OU</strong> 5 <strong>OU</strong> 6 questões. Assim, temos como elementos desses eventos de sucesso <span class="math inline">\({2, 3, 4, 5, 6}\)</span>. Assim a solução passará pelo cálculo das probabilidades individuais para <strong>cada</strong> um desses eventos de sucesso que serão simplesmente somadas pois, a ocorrência de cada um desses eventos de sucesso é disjunta dos demais (se ocorrer 2 não ocorre simultaneamente 3).</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P\left(X=k\right) &amp; ={C}_{k}^{n}. {p}^{k}. {q}^{n-k} \\
+P\left(X=2\right) &amp; = 15 . 0,30^{2} . 0,70^{(6-2)} \\
+                  &amp; = 0,3241
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P\left(X=k\right) &amp; ={C}_{k}^{n}. {p}^{k}. {q}^{n-k} \\
+P\left(X=3\right) &amp; = 20 . 0,30^{3} . 0,70^{(6-3)} \\
+                  &amp; = 0,1852
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P\left(X=k\right) &amp; ={C}_{k}^{n}. {p}^{k}. {q}^{n-k} \\
+P\left(X=4\right) &amp; = 15 . 0,30^{4} . 0,70^{(6-4)} \\
+                  &amp; = 0,0595
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P\left(X=k\right) &amp; ={C}_{k}^{n}. {p}^{k}. {q}^{n-k} \\
+P\left(X=5\right) &amp; = 6 . 0,30^{5} . 0,70^{(6-5)} \\
+                  &amp; = 0,01020
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P\left(X=k\right) &amp; ={C}_{k}^{n}. {p}^{k}. {q}^{n-k} \\
+P\left(X=6\right) &amp; = 1 . 0,30^{6} . 0,70^{(6-6)} \\
+                  &amp; = 0,000729
+\end{align*}\]</span></p>
+<p>Assim, <span class="math inline">\(P\left(X\ge2\right)=0,3241+0,1852+0,0595+0,01020+0,00079=0,5797\)</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Uma pessoa trabalha em 3 empregos onde desenvolve atividades iguais, sendo remunerada também igualmente nos três lugares. A probabilidade de que o pagamento saia até o 2<span class="math inline">\(^{o}\)</span> dia útil nos três empregos é de 0,85. Qual a probabilidade de apenas um salário sair até o 2<span class="math inline">\(^{o}\)</span> dia útil?</p>
+</blockquote>
+<p><br />
+</p>
+<p>1- a probabilidade de ocorrência do pagamento até o 2<span class="math inline">\(^{o}\)</span> dia útil em cada emprego pode ser modelada por uma variável aleatória de Bernoulli pois apresenta apenas duas possibilidades: ocorrer ou não, cuja probabilidade de sucesso nos foi dada: <span class="math inline">\(p=0,85\)</span>;<br />
+2- os três empregos podem ser considerados como repetições desse experimento básico;<br />
+3- esse experimento final pode ter as probabilidades modelaas por uma variável aleatória Geométrica com evento de sucesso definido como <strong>chance de se receber apenas um pagamento até o 2<span class="math inline">\(^{o}\)</span> dia útil</strong> (<span class="math inline">\(k=1\)</span>) pois consiste na repetição de (<span class="math inline">\(n=3\)</span>) experimentos de Bernoulli independentes e com probabilidade individual constante (<span class="math inline">\(p-0,85\)</span>).</p>
+<p><br />
+</p>
+<p>A probabilidade de se receber o pagamento até o 2<span class="math inline">\(^{o}\)</span> dia útil <strong>em apenas um emprego será dada por</strong>:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P\left(X=k\right) &amp; ={C}_{k}^{n}. {p}^{k}. {q}^{n-k} \\
+P\left(X=1\right) &amp; =3 . 0,85^{1} . 0,15^{2} \\
+                  &amp; = 0,0574
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Conclusão: a probabilidade desse trabalhador receber <strong>apenas um salário</strong> até o 2<span class="math inline">\(^{o}\)</span> dia útil do mês é de 0,0574.</p>
+</div>
+<div id="poisson" class="section level3 hasAnchor" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> Poisson<a href="modelos-teóricos-discretos.html#poisson" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A distribuição de <em>Poisson</em> (assim chamada em homenagem a Siméon Denis Poisson que a descobriu no início do século XIX) é largamente empregada quando se deseja <strong>contar o número de eventos raros</strong> cuja probabilidade m[edia seja dada em termos de um <strong>intervalo de tempo</strong>, ou em uma <strong>determinada extensão</strong>, <strong>área</strong> ou <strong>volume</strong></p>
+<p><br />
+</p>
+<p>Uma variável aleatória discreta <span class="math inline">\(X\)</span> com Distribuição de <em>Poisson</em> é aquela que pode assumir <strong>infinitos valores numeráveis</strong> (<span class="math inline">\(k=0,1,2, .s, \infty\)</span>). Sua representação é: <span class="math inline">\(X \sim Pois (\lambda)\)</span> e sua função de probabilidade para esses valores é:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+f(k) = &amp; P(X=k) \\
+     = &amp; \frac{\lambda ^{k}. \epsilon^{-\lambda}} {k!}
+\end{align*}\]</span></p>
+<p>Com <span class="math inline">\(\epsilon= 2,718\)</span> (número irracional de Euler).</p>
+<p><br />
+</p>
+<p>A esperança e a variância de uma variável aleatória discreta com Distribuição de <em>Poisson</em> são dados pelo seu parãmetro <span class="math inline">\(\lambda\)</span> que expressa o número médio de eventos ocorrendo no <strong>intervalo de tempo</strong>, ou em uma <strong>determinada extensão</strong>, <strong>área</strong> ou <strong>volume</strong> :</p>
+<ul>
+<li>Esperança: <span class="math inline">\(E(X) = \lambda\)</span>;<br />
+</li>
+<li>Variância: <span class="math inline">\(Var(X) = \lambda\)</span></li>
+</ul>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo:Uma central telefônica recebe em média 5 chamadas por minuto. Supondo que a Distribuição de Poisson seja adequada a esse contexto, obter as probabilidade de que essa central não receba chamadas num intervalo de 1 e que receba no máximo duas chamadas em 4 minutos.</p>
+</blockquote>
+<p><br />
+</p>
+<p>Dados do problema:</p>
+<p>1- <span class="math inline">\(\lambda=\)</span> é o parãmetro da distribuição de Poisson (a esperança, a média); assim temos <span class="math inline">\(\lambda=5\)</span> chamadas por <strong>minuto</strong> (é importante atentar para qual é a unidade associada ao valor do <span class="math inline">\(\lambda\)</span>);<br />
+2- <strong>não receber</strong> chamada alguma equivale a um <span class="math inline">\(k=0\)</span>;<br />
+3- ao se perguntar na sequência as probabilidades de se receber <strong>no máximo</strong> duas chamadas em <strong>4 minutos</strong> equivale a não receber chamada alguma <strong>OU</strong> uma chamada <strong>OU</strong> duas chamadas (soma das probabilidades de eventos mutuamente excludentes);<br />
+4- <strong>MAS</strong> é necessário reestimar o valor de <span class="math inline">\(\lambda\)</span> pois agora o intervalo de tempo é de <strong>4 minutos</strong> e o valor que nos foi dado é para <strong>1 minuto</strong> (o que é feito mediante uma simples regra de três: 5 chamadas em <strong>um ninuto</strong> passam a ser 20 chamadas em <strong>quatro minnutos</strong>)</p>
+<p><br />
+</p>
+<p>Probabilidade de <strong>não receber chamada alguma</strong>:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(X=k) &amp; = \frac{\lambda ^{k}. \epsilon^{-\lambda}} {k!} \\
+P(X=0) &amp; = \frac{5^{0}. \epsilon^{-5}} {0!} \\
+P(X=0) &amp; = \frac{1 . 0,00673}{1}\\
+       &amp; = 0,00673
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Probabilidade de receber no <strong>máximo 2</strong> chamadas em 4 minutos (<span class="math inline">\(\lambda = 20\)</span> chamadas por 4 minutos):</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(X=0) &amp; = \frac{20^{0}. \epsilon^{-20}} {0!} = 2,061154e-09 \\
+P(X=1) &amp; = \frac{20^{1}. \epsilon^{-20}} {1!} = 4,122307e-08 \\
+P(X=2) &amp; = \frac{20^{2}. \epsilon^{-20}} {2!} = 4,122307e-07 \\
+\end{align*}\]</span></p>
+<p><span class="math inline">\(P(X \leq 2)=P(X=0)+P(X=1)+P(X=2)=4,554699e-7\)</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Um posto de bombeiros recebe em média 3 chamadas por dia. Admitindo que as probabilidades associadas ao recebimento de diferentes números de chamadas podem ser modeladas por uma variável aleatória de <em>Poisson</em> qual seria a probabilidade desse posto receber 4 chamadas em 2 dias?</p>
+</blockquote>
+<p><br />
+</p>
+<p>A unidade da esperança dessa variável de <em>Poisson</em> (<span class="math inline">\(\lambda\)</span>) de chamadas nos foi dada <strong>por dia</strong> ao passo que a probabilidade pedida está associada a um período de <strong>dois dias</strong>, exigindo que a esperança <span class="math inline">\(\lambda\)</span> seja convertida para essa nova unidade (uma simples regra de trẽs: 3 chamadas por dia, então para 2 dias, 6 chamadas). Assim, a probabilidade pedida será:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(X=k) &amp; = \frac{\lambda ^{k}. \epsilon^{-\lambda}} {k!}\\
+P(X=4) &amp; = \frac{6^{4}. \epsilon^{-6}} {4!} \\
+       &amp; = 0,1338
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Por um posto de pedágio passam, em média, 5 carros por minuto. Qual a probabilidade de passarem exatamente 3 carros em 1 minuto?</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(X=k) &amp; = \frac{\lambda ^{k}. \epsilon^{-\lambda}} {k!} \\
+P(X=3) &amp; = \frac{5^{3}. \epsilon^{-5}} {3!} \\
+       &amp; = 0,1404
+\end{align*}\]</span></p>
+<p>Uma variável aleatória discreta de <em>Poisson</em> modela muito bem eventos raros; ou seja, aqueles que não acontecem com grande frequência para qualquer intervalo considerado (tempo, extensão, área, volume). Trata-se de uma caso de variável Geométrica no qual <span class="math inline">\(n \to \infty\)</span> e <span class="math inline">\(p\)</span> é pequeno (<span class="math inline">\(n \geq 50\)</span> e <span class="math inline">\(n . p \leq (5,7)\)</span>). Nesse cenário pode-se demonstrar que:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+lim_{n \to \infty} P(X) = {C}_{k}^{n}. {p}^{k}. {q}^{n-k}
+\]</span></p>
+<p><br />
+</p>
+<p>é igual a:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(X=k) = \frac{\lambda ^{k}. \epsilon^{-\lambda}} {k!}
+\]</span></p>
+<p><br />
+</p>
+<p>Tal aproximação era, tempos atrás (antes da era computacional), bastante útil pois, para um <span class="math inline">\(n\)</span> muito grande o cálculo fatorial era trabalhoso! Nesse contexto pode-se modelar o experimento acima, de modo bem aproximado, por uma variável aleatória de Poisson com <span class="math inline">\(\lambda=n . p\)</span>:</p>
+<p><span class="math display">\[
+f(k) = P(X=k) = \frac{n . p^{k}. \epsilon^{- n . p}} {k!}
+\]</span></p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="teste_hipoteses.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="disc_fisher.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="modelos_probabilidade.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modelos-téoricos-do-tempo-de-espera.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -323,7 +727,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/12-reg_simples.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-modelos_probabilidade.Rmd",
 "text": "Edit"
 },
 "history": {

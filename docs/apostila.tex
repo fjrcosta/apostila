@@ -152,7 +152,7 @@ DSTA - Departamento de Estatística\\
 Apostila de Estatística\\
 Prof.~M.e Eng. Felinto Junior Da Costa}
 \author{}
-\date{\vspace{-2.5em}Londrina, 22 de janeiro de 2023.}
+\date{\vspace{-2.5em}Londrina, 24 de janeiro de 2023.}
 
 \begin{document}
 \maketitle
@@ -5507,27 +5507,1666 @@ P( A \cup B \cup C ) & = \\
 \hypertarget{var_aleatoria}{%
 \chapter{- Introdução a variáveis aleatórias}\label{var_aleatoria}}
 
-\hypertarget{modelos_probabilidade}{%
-\chapter{- Introdução a modelos teóricos de probabilidade}\label{modelos_probabilidade}}
+\hypertarget{funuxe7uxe3o-discreta-de-distribuiuxe7uxe3o-de-probabilidade}{%
+\section{Função discreta de distribuição de probabilidade}\label{funuxe7uxe3o-discreta-de-distribuiuxe7uxe3o-de-probabilidade}}
 
-\begin{table}[h]
-\centering
-\caption{Independent Samples T-Test}
-\label{tab:independentSamplesT-Test}
-{
-\begin{tabular}{lrrrrrr}
-\toprule
-\multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{2}{c}{95\% CI for Cohen} \\
-cline{6-7}
-& t & df & p & Cohen & Lower & Upper  \\
-\cmidrule[0.4pt]{1-7}
-engagement & 2.365 & 38 & 0.023 & 0.748 & 0.101 & 1.385  \\
-\bottomrule
-% \addlinespace[1ex]
-% \multicolumn{7}{p{0.5\linewidth}}{\textit{Note.} Student} \\
+~
+
+Seja \(E\) um experimento aleatório e \(\Omega\) seu espaço amostral. Uma função (\(X\)) que associe cada elemento \(\omega\) pertencente a \(\Omega\) a um número real \(X(\omega)=x\), é denominada mais apropriadamente de função aleatória ou função estocástica.
+
+~
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{images5/v_aleatoria} 
+
+}
+
+\caption{Função discreta de distribuição de probabilidade}\label{fig:unnamed-chunk-77}
+\end{figure}
+
+~
+
+Considere \(X\) uma variável aleatória discreta e suponha que os valores que ela pode assumir são dados por \(x_{1},x_{2},x_{3}, \dots\) dispostos em alguma ordem. Suponha que esses valores são assumidos tendo probabilidades de ocorrência dadas por:
+
+\hfill\break
+
+\[
+P (X=x_{k}) = f(x_{k})
+\]
+
+\hfill\break
+
+com \(k=1, 2, \dots\)
+
+~
+
+Uma \emph{função discreta de probabilidade} pode ser definida associando cada um dos possíveis valores da variável aleatória à sua probabilidade:
+
+\hfill\break
+\[
+P (X=x) = f(x)
+\]
+
+~
+
+Para \(x = x_{k}\),
+
+\[
+P (X=x_{k}) = f(x_{k})
+\]
+
+~
+
+Para que uma \emph{função} \(f(x)\) possa ser considerada uma \textbf{função (discreta ou contínua)} de distribuição de probabilidade, ela precisa necessariamente atender a:
+
+~
+
+\[
+0 \leq f(x_{k}) \leq 1
+\]
+
+para qualquer \(x_{k} \in \Omega\); e também que
+
+\[
+\sum _{k=1}^{n}f\left(x_{k}\right) = 1.
+\]
+
+~
+
+A probabilidade de ocorrência de um dos valores da variável aleatória deverá estar sempre compreendida entre \(0 \leq P(X = x_{k}) \leq 1\): \textbf{postulado do intervalo}.
+
+~
+
+A soma das probabilidades de todos os possíveis valores que a variável aleatória poderá assumir deverá ser sempre \(1\): \textbf{postulado da probabilidade do evento certo}.
+
+~
+
+\begin{quote}
+Exemplo: Suponha que uma moeda seja lançada duas vezes e que \(X\) seja a variável aleatória que represente o número de \(caras\) verificado. Defina o espaço amostral, associe para cada evento possível o valor da variável aleatória e definda uma função discreta de probabilidade correspondente.
+\end{quote}
+
+~
+
+O espaço amostral desse experimento é \emph{S = \{(cara,cara), (cara,coroa), (coroa,cara), (coroa,coroa)\}} e a tabela abaixo relaciona o número de \textbf{caras} (o valor da variável aleatória \(X\)) associado a cada evento possível desse experimento:
+
+~
+
+\begin{table}[]
+\resizebox{\linewidth}{!}{
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Ponto amostral  & (cara,cara) & (cara,coroa) & (coroa,cara) & (coroa,coroa) \\
+\hline
+$X$ & 2 & 1 & 1 & 0  \\ 
+\hline
 \end{tabular}
 }
 \end{table}
+
+~
+
+As probabilidades de ocorrência de cada um desses eventos é:
+
+~
+
+\begin{align*}
+P(cara,cara) & = \frac{1}{4} \\
+P(cara,coroa) & = \frac{1}{4}\\  
+P(coroa,cara) & = \frac{1}{4} \\
+P(coroa,coroa) & = \frac{1}{4}\\
+\end{align*}
+
+~
+
+Para definir uma \emph{função discreta de distribuição de probabilidade} deveremos associar a cada valor que a variável aleatória \(X\) assume sua correspondente \emph{probabilidade de ocorrência}.
+
+\begin{align*}
+P(X=0) & = P(coroa,coroa) = \frac{1}{4} \\  
+P(X=1) & = P[(cara,coroa) \cup (coroa,cara)] \\
+       & = P(cara,coroa) + P(coroa,cara)\\
+       & = \frac{1}{4} + \frac{1}{4} \\
+       & = \frac{1}{2} \\
+P(X=2) & = P(cara,cara) = \frac{1}{4}
+\end{align*}
+
+~
+
+\begin{table}[]
+\caption*{Função discreta de probabilidades da variável aleatória X}
+\resizebox{0.8\linewidth}{!}{
+\begin{tabular}{|c|c|c|c|}
+\hline
+$x_{k}$   & 0  & 1  & 2 \\
+\hline
+$P(X=x_{k})=f(x_{k})$ & 1/4  & 1/2 & 1/4  \\ 
+\hline
+\end{tabular}
+}
+\end{table}
+
+~
+
+Uma \emph{função de distribuição cumulativa} \(F\) para uma variável aleatória \(X\) exprime a probabilidade de que a variável aleatória \(X\) \emph{assuma um valor inferior ou igual a determinado \(x\)} e é definida por:
+
+\hfill\break
+
+\[
+F(x) = P(X \leq x)
+\]
+
+~
+
+Propriedades:
+
+~
+
+1- \(0 \leq F(x) \leq 1\);\\
+2- \(F(x)\) é não decrescente: \(F(x) \leq F(y)\) se \(x \leq y\);\\
+3- \(F(- \infty) = \underset{x\to -\infty }{lim}F\left(x\right)=0\);\\
+4- \(F(+ \infty) = \underset{x\to \infty }{lim}F\left(x\right)=1\)
+
+~
+
+A função de probabilidade \(f\) para uma variável aleatória discreta \(X\) pode ser obtida de sua função de probabilidade cumulativa \(F\) pois para todo \(x\) em \((-\infty, \infty)\) :
+
+\hfill\break
+
+\[
+F\left(x\right)=P\left(X\le x\right)=\sum _{u\le n}f\left(u\right)
+\]
+
+~
+
+Equivale dizer que é a \emph{soma sobre todos os valores \(u\) assumidos por \(X\) para os quais \(u \leq x\).}
+
+~
+
+Se \(X\) é discreta e assume um número finito de valores \(x_{1},x_{2}, \dots, x_{n}\), então sua função de probabilidade cumulativa \(F(x)\) será dada por:
+
+\hfill\break
+
+\begin{align}   
+F(x)=
+\begin{cases}
+        0 \hspace{1cm} -\infty < x < x_{1} \\
+        f(x_{1}) \hspace{1cm} x_{1} \leq x <  x_{2}  \\
+        f(x_{1}) + f(x_{2}) \hspace{1cm} x_{2} \leq x <  x_{3}  \\
+        ...                    \\
+        f(x_{1}) + ...+ f(x_{n}) \hspace{1cm} x_{n} \leq x <  x_{\infty}
+\end{cases}
+\end{align}
+
+~
+
+\begin{quote}
+Exemplo: Suponha que uma moeda seja lançada duas vezes e que \(X\) seja a variável aleatória que represente o número de \textbf{caras} verificado. Especifique sua função de probabilidade cumulativa dessa variável aleatória e apresente seu gráfico.
+\end{quote}
+
+~
+
+\begin{table}[]
+\resizebox{0.6\linewidth}{!}{
+\begin{tabular}{|c|c|c|c|}
+\hline
+$x_{k}$  & 0 & 1 &  2  \\
+\hline
+$P(X=x_{k})=f(x_{k})$ & 1/4  & 1/2 & 1/4  \\
+\hline
+\end{tabular}
+}
+\end{table}
+
+~
+
+Sua função de probabilidade cumulativa é dada por:
+
+~
+
+\begin{flalign}
+F(x)=
+\begin{cases}
+        0                \hspace{1cm} x < 0 \\
+        \frac{1}{4}  \hspace{1cm} 0 \leq x < 1  \\
+        \frac{3}{4}  \hspace{1cm} 1  \leq x <  2 \\
+        1                \hspace{1cm} 2 \leq x
+\end{cases}
+\end{flalign}
+
+~
+
+O gráfico de sua função de probabilidade cumulativa é:
+
+~
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{images5/func_dist_cum} 
+
+}
+
+\caption{xxxxxxxxxxxx}\label{fig:unnamed-chunk-81}
+\end{figure}
+
+\hypertarget{funuxe7uxe3o-de-densidade-de-probabilidade}{%
+\section{Função de densidade de probabilidade}\label{funuxe7uxe3o-de-densidade-de-probabilidade}}
+
+~
+
+Considerem os espaços amostrais a seguir (\(\Omega_{1},\Omega_{2},\Omega_{3},\Omega_{4},\Omega_{5}\)) representativos de 4 experimentos aleatórios e admitam também que todos os eventos possíveis são equiprováveis.
+
+~
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{images5/var_discret_cont} 
+
+}
+
+\caption{Diferentes espaços amostrais de um experimento aleatório (por razões gráficas desprezem o espaço fora dos círculos}\label{fig:unnamed-chunk-82}
+\end{figure}
+
+~
+
+Interpretem o último deles como um espaço amostral formado por \(\infty\) pontos amostrais.
+
+~
+
+Os eventos que compõem os quatro primeiros espaços amostrais são variável aleatória discretas.
+
+\hfill\break
+
+Discretas pois permitem a contagem dos possíveis valores (finitos ou infinitos contáveis) aleatórios que o experimento pode assumir. Mas no quinto espaço amostral temos incontáveis possibilidades.
+
+~
+
+Um \emph{espaço amostral} com essa característica é representativo de uma \emph{variável aleatória contínua}.
+
+~
+
+Sendo todos os eventos representados nos espaços amostrais \textbf{equiprováveis}, comparemos as probabilidades associadas a cada um desses possíveis resultados.
+
+Em \(\Omega_{1}\), \(P(\omega_{1})=1\)
+
+\hfill\break
+
+Em \(\Omega_{2}\), \(P(\omega_{1})=P(\omega_{2})=P(\omega_{3})=P(\omega_{4})=0,50\)
+
+\hfill\break
+
+Em \(\Omega_{3}\), \(P(\omega_{1})=P(\omega_{2})=...=P(\omega_{16})=0,0625\)
+
+\hfill\break
+
+Em \(\Omega_{4}\), \(P(\omega_{1})=P(\omega_{2})=...=P(\omega_{64})=0,015625\)
+
+\hfill\break
+
+Em \(\Omega_{5}\), \(P(\omega_{n}) \rightarrow 0\), à medida que o número de eventos \(n \rightarrow \infty\)
+
+\hfill\break
+
+A probabilidade individual de qualquer evento do quinto espaço amostral ocorrer \(\rightarrow 0\).
+
+Por essa razão com variáveis aleatórias contínuas não há sentido em se falar de uma \emph{probabilidade pontual exata} (associada a um resultado específico).
+
+\hfill\break
+
+Com variáveis aleatórias contínuas considera-se a probabilidade de realização de um \emph{intervalo de valores} que ela assume e, ao estabelecermos sua função de probabilidade contínua ela apresentará as seguintes propriedades:
+
+\hfill\break
+
+\[
+f(x) \geq 0
+\]
+
+para todo \(x \in (-\infty, \infty)\)
+
+\[
+\underset{-\infty }{\overset{\infty }{\int }}f\left(x\right)dx = 1.
+\]
+
+\hfill\break
+
+Se \(X\) é uma variável aleatória contínua então a probabilidade de que \(X\) assuma qualquer valor em particular é zero, enquanto que a \emph{probabilidade intervalar} de que \(X\) esteja entre dois valores diferentes, digamos, \(a\) e \(b\) será dada por:
+
+\hfill\break
+
+\[
+P(a < X < b) = \underset{a}{\overset{b}{\int }}f\left(x\right)dx
+\]
+
+\hfill\break
+
+A interpretação gráfica de uma função de probabilidade de uma variável contínua é dada pela área sob a curva entre os limites de interesse: \(a\) e \(b\).
+
+\hfill\break
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{images5/func_dist_cont} 
+
+}
+
+\caption{xxxxxxxxxxxxxxxxxxx}\label{fig:unnamed-chunk-83}
+\end{figure}
+
+\hfill\break
+
+Como \(f(x) \geq 0\), essa curva estará acima do eixo \(x\) e a totalidade da área será igual a \(1\) posto que \(\underset{-\infty }{\overset{\infty }{\int }}f\left(x\right)dx = 1\).
+
+\hfill\break
+
+A função de probabilidade cumulativa: \(F(x) = P(X \leq x)\) assumirá igualmente a forma de uma curva, crescente, aumentando de \(0\) para \(1\).
+
+\hfill\break
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{images5/func_dist_cont_cum} 
+
+}
+
+\caption{xxxxxxxxxxxxxxxxxxx}\label{fig:unnamed-chunk-84}
+\end{figure}
+
+\hfill\break
+
+\begin{quote}
+Exemplo: Seja a seguinte função e verifique se a função \(f(x)\) pode ser a \emph{função de densidade de probabilidade} da variável aleatória contínua \(X\) e determine qual a probabilidade associada a valores compreendidos no intervalo \(0 \leq X \leq \frac{1}{2}\).
+\end{quote}
+
+\hfill\break
+
+\begin{flalign}
+f(x)=
+\begin{cases}
+        2.x    \hspace{1cm} \text{para} \hspace{1cm} 0 \leq x \leq 1 \\
+        0             \hspace{1.7cm} \text{fora desse intervalo} \\
+\end{cases}
+\end{flalign}
+
+\hfill\break
+
+A resolução deste exemplo será feita de um modo \emph{geométrico}.
+
+\hfill\break
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{images5/exer_var_cont} 
+
+}
+
+\caption{xxxxxxxxxxxxxxxx}\label{fig:unnamed-chunk-85}
+\end{figure}
+
+\hfill\break
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Verificações para se aceitar a função como uma função de densidade de probabilidade para a variável aleatória \(X\):
+\end{enumerate}
+
+\hfill\break
+
+\[
+f(x) \geq 0
+\]
+
+e,
+
+\[\underset{-\infty }{\overset{\infty }{\int }}f\left(x\right)dx = 1
+\]
+
+\hfill\break
+
+Resp.: Atende às duas condições (não assume valores menores que zero e a área sob a reta dessa função é unitária)
+
+\hfill\break
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Cálculo da probabilidade para o intervalo \(0 \leq X \leq \frac{1}{2}\) a partir da área do triângulo hachurado (\(\frac{base \times altura}{2}\)):
+\end{enumerate}
+
+\hfill\break
+
+\[
+P ( 0 \leq X \leq \frac{1}{2}) = \frac{1}{2} \times (\frac{1}{2} \times 1 ) = \frac{1}{4} 
+\]
+
+\hypertarget{esperanuxe7a-e-variuxe2ncia-de-uma-variuxe1vel-aleatuxf3ria-discreta}{%
+\section{Esperança e variância de uma variável aleatória discreta}\label{esperanuxe7a-e-variuxe2ncia-de-uma-variuxe1vel-aleatuxf3ria-discreta}}
+
+~
+
+Coletando-se dados podemos analisá-los, por exemplo, em termos de sua distribuição, pelas estatísticas da média e variância.
+
+De maneira análoga procedemos com variáveis aleatórias (discretas ou contínuas) onde dispomos das \emph{probabilidades} de ocorrência associadas a cada um dos valores (discretos ou infinitos numeráveis) que ela pode assumir.
+
+\hfill\break
+
+A \emph{esperança matemática} (valor esperado ou expectância) de uma variável aleatória discreta é dada pela \emph{somatória do produto} de cada um dos valores que ela pode assumir pela probabilidade associada a cada um desses valores.
+
+\hfill\break
+
+Seja \(X\) uma variável aleatória discreta que pode assumir os valores \(x_{1},x_{2}, \dots x_{n}\); e sejam \(P_{1},P_{2}, \dots, P_{n}\) as respectivas probabilidades associadas às suas ocorrências.
+
+\hfill\break
+
+A esperança da variável \(X\), denotada por \(E(X)\) será:
+
+\hfill\break
+
+\[
+E\left(X\right)=\sum _{i=1}^{n}{x}_{i}.{P}_{i}
+\]
+
+\hfill\break
+
+Com \emph{n} sendo o número de possíveis resultados que a variável \(X\) pode assumir.
+
+\hfill\break
+
+A expressão anterior é semelhante àquela usada para se calcular a média para frequências de dados sendo que agora, no lugar de se utilizar a frequência relativa a cada dado observado, temos as probabilidades dadas por um modelo teórico pressuposto.
+
+\hfill\break
+
+Algumas propriedades envolvendo a esperança:
+
+~\\
+1- Se \(c\) é uma contante qualquer, então: \(E(c) = c\) (\(c \in \mathbb{R}\));\\
+2- Se \(c\) é uma contante qualquer, então: \(E(c X) = c . E(X)\) (\(c \in \mathbb{R}\));\\
+3- Se \(c\) é uma contante qualquer, então: \(E(X \frac{+}{-} c) = E(X) \frac{+}{-} c\) (\(c \in \mathbb{R}\));\\
+4- Se \(X\) e \(Y\) são duas variáveis aleatórias quaisquer, então: \(E(X +/- Y) = E(X) +/- E(Y)\);\\
+5- Se \(X\) e \(Y\) são duas variáveis aleatórias independentes quaisquer, então: \(E(X . Y) = E(X). E(Y)\).
+
+\hfill\break
+
+A variância de uma variável aleatória qualquer \(X\), denotada por \(Var(X)\), será dada por:
+
+\hfill\break
+
+\begin{align*}
+Var\left(X\right) & = E(X^{2}) - [E(X)]^{2} \\
+Var\left(X\right) & = \sum_{i=1}^{n} [{x}_{i} - E(X)]^{2}.{P}_{i} 
+\end{align*}
+
+\hfill\break
+
+Algumas propriedades envolvendo a variância:
+
+~
+
+1- Se \(c\) é uma contante qualquer, então: \(Var(c)=0\) (\(c\in\mathbb{R}\));
+
+2- Se \(c\) é uma contante qualquer, então: \(Var(cX)=c^{2}.Var(X)\) (\(c\in\mathbb{R}\));
+
+3- Se \(X\) e \(Y\) são duas variáveis aleatórias \textbf{independentes} quaisquer, então: \(Var(X \pm Y)=Var(X)+Var(Y)\);
+
+4- Se \(X\) e \(Y\) são duas variáveis aleatórias \textbf{quaisquer}, então: \(Var(X \pm Y)=Var(X)+Var(Y) \pm 2Cov(X,Y)\) (também).
+
+\hfill\break
+
+A covariância (\(Cov(X,Y)\)) entre duas variáveis aleatórias quaisquer \(X\) e \(Y\) é dada por:
+
+\hfill\break
+
+\[
+Cov \left(X,Y\right)= E(XY) - E(X)E(Y)
+\]
+
+\hfill\break
+
+\hfill\break
+
+\begin{quote}
+Exemplo: Seja \(X\) uma variável aleatória discreta que indica o \emph{número de pontos observados na face superior de um dado} quando ele é lançado. Calcule a esperança e a variância dessa variável aleatória.
+\end{quote}
+
+\hfill\break
+
+\begin{table}[htbp]
+\centering
+\caption*{Função discreta de distribuição de probabilidades de $X$}
+\begin{tabular}{|c|c|}
+\hline
+$x_{i}$  & $P(X=x_{i})$ \\
+\hline
+1 & 1/6 \\
+\hline
+2 & 1/6 \\
+\hline
+3 & 1/6 \\
+\hline
+4 & 1/6 \\
+\hline
+5 & 1/6 \\
+\hline
+6 & 1/6 \\
+\hline
+Total & 1  \\
+\hline
+\end{tabular}
+\end{table}
+
+\hfill\break
+
+\(E(X) = \frac{1}{6} . (1+2+3+4+5+6) = 3,50\)
+
+~
+
+\begin{align*}
+Var(X) & = (1-3,50)^{2}.(\frac{1}{6}) + (2-3,50)^{2}.(\frac{1}{6}) +\\
+       & (3-3,50)^{2}.(\frac{1}{6}) + (4-3,50)^{2}.(\frac{1}{6}) + (5-3,50)^{2}.(\frac{1}{6}) + \\
+       & (6-3,50)^{2}.(\frac{1}{6}) \\
+       & = 2,90
+\end{align*}
+
+\hfill\break
+
+\begin{quote}
+Exemplo: Uma empresa de caminhões de aluguel possui uma frota composta de 4 veículos. O aluguel é cobrado por diária de uso de um caminhão e a função de distribuição de probabilidade de locações diárias está a seguir especificada. Calcule a esperança e a variância de locação diária dessa empresa.
+\end{quote}
+
+\hfill\break
+
+\begin{table}[htbp]
+\centering
+\caption*{Função discreta de distribuição de probabilidade de locações diárias}
+\begin{tabular}{|c|c|}
+\hline
+$x_{i}$  & $P(X=x_{i})$  \\
+\hline
+0 & 0,10 \\
+\hline
+1 & 0,20 \\
+\hline
+2 & 0,30 \\
+\hline
+3 & 0,30 \\
+\hline
+4 & 0,10 \\
+\hline
+\end{tabular}
+\end{table}
+
+\hfill\break
+
+\(E(X) = (0 . 0,10) + (1 . 0,20) + 2 . 0,30) + (3 . 0,30) + (4 . 0,10) = 2,10\) (caminhões por dia)
+
+\hfill\break
+
+\begin{align*}
+Var(X) & = (0-2,10)^{2}.0,10 + (1-2,10)^{2}.0,20 + (2-2,10)^{2}.0,30 + \\
+       & (3-2,10)^{2}.0,30 + (4-2,10)^{2}.0,10 \\
+       & = 1,29^{1}
+\end{align*}
+
+\(^{1}\): (caminhões por dia)\(^{2}\)
+
+\hypertarget{esperanuxe7a-e-variuxe2ncia-de-uma-variuxe1vel-aleatuxf3ria-contuxednua}{%
+\section{Esperança e variância de uma variável aleatória contínua}\label{esperanuxe7a-e-variuxe2ncia-de-uma-variuxe1vel-aleatuxf3ria-contuxednua}}
+
+~
+
+A esperança e a variância de uma variável aleatória contínua são dadas, respectivamente, por:
+
+\hfill\break
+
+\[
+E(X) = \underset{-\infty }{\overset{\infty }{\int }}x.f\left(x\right)dx
+\]
+
+\hfill\break
+
+\[
+Var(X) = \underset{-\infty }{\overset{\infty }{\int }} (x-E(X))^{2}.f\left(x\right)dx
+\]
+
+\hypertarget{modelos_probabilidade}{%
+\chapter{- Introdução a modelos teóricos de probabilidade}\label{modelos_probabilidade}}
+
+Existem variáveis aleatórias discretas ou contínuas, que apresentam certas características ou padrões de comportamento. Para essas variáveis, com base nesses comportamentos típicos, foram estruturados modelos teóricos de distribuições de probabilidade (variáveis discretas) e de densidade de probabilidade (variáveis contínuas) e derivadas as expressões de suas esperanças e variâncias.
+
+\hypertarget{modelos-teuxf3ricos-discretos}{%
+\section{Modelos teóricos discretos}\label{modelos-teuxf3ricos-discretos}}
+
+\hypertarget{bernoulli}{%
+\subsection{Bernoulli}\label{bernoulli}}
+
+Variável aleatória com distribuição \emph{Bernoulli} é uma variável definida por um experimento probabilístico em que os resultados possíveis se resumem a apenas dois: \textbf{sucesso} ou \textbf{fracasso} (ocorrência ou não).
+
+~
+
+Caracterização de uma variável aleatória \(X\) com distribuição de Bernoulli: \(X\sim Ber(p)\)
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline 
+$x_{i}$ & Evento & $P(X=x_{i})$ \\ 
+\hline 
+1 & Sucesso & p \\ 
+\hline 
+0 & Fracasso & q=1-p \\ 
+\hline 
+$\Sigma$ & - & 1 \\ 
+\hline 
+\end{tabular} 
+\end{table}
+
+\hfill\break
+
+Para uma variável de Bernoulli:
+
+\begin{itemize}
+\tightlist
+\item
+  Esperança: \(E(X)=p\)\\
+\item
+  Variância: \(VAR(X)=p(1-p)\)
+\end{itemize}
+
+\hfill\break
+
+\begin{quote}
+Exemplo: Seja \(X\) uma variável aleatória resultante do lançamento de um dado uma única vez e cujo sucesso está definido como \textbf{obter a face com 5 pontos}. Calcule a probabilidade de sucesso e fracasso, assim como sua variância.
+\end{quote}
+
+\hfill\break
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline 
+$x_{i}$ & Evento & $P(X=x_{i})$ \\ 
+(face $5$ no lançamento de um dado) &  &  \\ 
+\hline 
+1 & Sucesso & p=1/6 \\ 
+\hline 
+0 & Fracasso & q=5/6 \\ 
+\hline 
+$\Sigma$ & - & 1 \\ 
+\hline 
+\end{tabular} 
+\end{table}
+
+~
+
+\begin{itemize}
+\tightlist
+\item
+  Esperança: \(E(X)= \frac{1}{6}\)\\
+\item
+  Variância: \(VAR(X)= \frac{5}{36}\)
+\end{itemize}
+
+\hfill\break
+
+Admita agora \(X\) uma variável aleatória resultante de realização de \(n\) tentativas (repetições) de Bernoulli e definindo \(x\) como sendo o número de sucessos verificados nessas \(n\) tentativas. Desse modo, proporção de sucessos observada após \(n\) repetições é expressa como \(\frac{x}{n}\).
+
+\hfill\break
+
+Se \(p\) é a probabilidade de sucesso a cada repetição e se \(\epsilon\) é um número qualquer positivo, tem-se:
+
+\hfill\break
+
+\[
+\underset{n\to \infty }{lim}P\left(\left|\frac{x}{n}-p\right|\ge \epsilon \right)=0
+\]\\
+
+A Lei dos grandes números para infinitas repetições de Bernoulli afirma que, após um \textbf{grande número de repetições} (\(n\)), a proporção de sucessos observada (\(\frac{x}{n}\)) \textbf{irá se aproximar} da probabilidade teórica da variável aleatória de Bernoulli \(p\).
+
+\hypertarget{geomuxe9trica}{%
+\subsection{Geométrica}\label{geomuxe9trica}}
+
+Variável aleatória com distribuição Geométrica é uma variável resultante da repetição de um \textbf{experimento modelado por uma variável de Bernoulli} (isto é, a cada repetição apenas dois resultados podem ocorrer: sucesso ou fracasso).
+
+\hfill\break
+
+Para que \(X\) seja uma variável aleatória com distribuição Geométrica: \(X\sim b(n,p)\) é necessário que:
+
+\hfill\break
+- o experimento deve ser realizado um número \(n\) finito de vezes;\\
+- cada repetição deve ser independente das demais;\\
+- cada repetição é, em essência, um ensaio de Bernoulli onde só pode haver dois resultados: sucesso ou fracasso;\\
+- a probabilidade de sucesso \(p\) em cada repetição é \textbf{sempre a mesma}; e, consequentemente,\\
+- a probabilidade de fracasso \(q=1-p\) em cada repetição é \textbf{também a mesma}.
+
+\hfill\break
+
+Considerem o diagrama de árvore ilustrado na Figura \ref{fig:fig14} que representa, esquematicamente, 3 repetições independentes de um evento modelado por uma variável de Bernoulli, com probabilidade individual de sucesso \(P(X=1)=p\) e, de fracasso, \(P(X=0)=1-p=q\).
+
+\hfill\break
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{images6/arv_bin} 
+
+}
+
+\caption{Três repetições independentes de um experimento aleatório modelado por uma variável de Bernoulli}\label{fig:fig14}
+\end{figure}
+
+\hfill\break
+
+\begin{table}[!htb]
+    \caption*{Função discreta de probabilidade da variável $X\sim b(n,p)$ com $n=3$ (repetições)}
+    \resizebox{\linewidth}{!}{
+\begin{tabular}{|c|c|c|}
+    \hline 
+    Número de sucessos & Probabilidade & Probabilidade \textbf{se $p=0,50$} \\ 
+    \hline 
+    0 & $q^{3}$ & $\frac{1}{8}$ \\ 
+    \hline 
+    1 & $3pq^{2}$ & $\frac{3}{8}$ \\ 
+    \hline 
+    2 & $3p^{2}q$ & $\frac{3}{8}$ \\ 
+    \hline 
+    3 & $p^{3}$  & $\frac{1}{8}$ \\ 
+    \hline 
+\end{tabular} 
+}
+\end{table}
+
+Se \(p\) é a probabilidade de se verificar sucesso em qualquer uma das \(n\) repetições de Bernoulli realizadas no experimento aletório então uma variável aleatória Geométrica \(X\) definida sobre esse experimento apresentará \(k\) sucessos após \(n\) repetições independentes e terá a seguinte função de probabilidade:
+
+\hfill\break
+
+\begin{align*}
+f(k) & = P(X=k)  \\
+f(k) & = {C}_{k}^{n}. {p}^{k}. {q}^{(n-k)} \\
+f(k) & = \frac{n!}{k!. (n-k)!} . {p}^{k}. {q}^{(n-k)}   
+\end{align*}
+
+\hfill\break
+
+Sendo a probabilidade \(p\) de sucesso, igual em todas as repetições, então:
+
+\hfill\break
+
+\begin{itemize}
+\tightlist
+\item
+  Esperança: \(E\left(X\right)=\sum _{i=1}^{n}{x}_{i}. P\left(X={x}_{i}\right)=n. p\)\\
+\item
+  Variância: \(V\left(X\right)=E\left({X}^{2}\right)-{\left[E\left(X\right)\right]}^{2} = n . p . q\)
+\end{itemize}
+
+\hfill\break
+
+\begin{quote}
+Exemplo: Numa prova com 6 questões, a probabilidade de que um aluno acerte cada uma delas é de 0,30. Admitindo que a resolução dessas 6 questões é feita de modo independente, qual a probabilidade desse aluno acertar 4 questões?
+\end{quote}
+
+\hfill\break
+
+1- cada questão apresenta apenas duas possibilidades: \textbf{acertar ou errar}; assim, esse experimento aleatório pode seguir o modelo teórico de Bernoulli tendo o evento de sucesso definido como: \textbf{a chance de acertar uma prova}, com probabilidade de ocorrẽncia \(p=0,30\);\\
+2- ao se repetir esse experimento \(n=6\) (pois este é o número de questões a serem resolvidas) o experimento passa seguir o modelo teórico Geométrica pois nos foi assegurada a independência entre cada repetição bem como a constância da probabilidade \(p\).
+
+\hfill\break
+
+A probabilidade de se acertar \(k=4\) questões em \(n-6\) repetições independentes tendo cada uma uma probabilidade de sucesso \(p=0,30\) será então:
+
+\hfill\break
+
+\begin{align*}
+P\left(X=k\right) & = {C}_{k}^{n}. {p}^{k}. {q}^{n-k} \\
+P\left(X=4\right) & = 15 . 0,30^{4} . 0,70^{(6-4)} \\
+ & = 0,0595
+\end{align*}
+
+\hfill\break
+
+Conclusão: a probabilidade de um aluno acertar 4 questões das 6 resolvidas, considerando a probabilidade associada ao acerto de cada questão, é de 0,0595.
+
+\hfill\break
+
+\begin{quote}
+Exemplo: Ainda utilizando a construções teórica desse experimento, admitamos que nosso interesse reside em obter as seguintes probabilidades a ele associadas:
+1- probabilidade do aluno não acertar nenhuma questão;\\
+2- probabilidade do aluno acertar todas as questões;\\
+3- probabilidade do aluno acertar no mínimo 2 questões; e a\\
+4- probabilidade do aluno acertar no máximo 2 questões.
+\end{quote}
+
+\hfill\break
+
+A resposta aos dois primeiros itens é imediata pela simples aplicação dos dados ao odelo, pois o número de sucessos desejado é \(k=0\) no primeiro e \(k=6\) no segundo (e \(p=0,30\) para todos) . Assim:
+
+\begin{align*}
+P\left(X=k\right) & ={C}_{k}^{n}. {p}^{k}. {q}^{n-k} \\ 
+P\left(X=0\right) & = 1 . 0,30^{0} . 0,70^{(6-0)} \\
+                  & = 0,1176
+\end{align*}
+
+\hfill\break
+
+\begin{align*}
+P\left(X=k\right) & ={C}_{k}^{n}. {p}^{k}. {q}^{n-k} \\ 
+P\left(X=6\right) & = 1 . 0,30^{6} . 0,70^{(6-6)} \\
+                 & = 0,000729
+\end{align*}
+
+\hfill\break
+
+A resposta aos dois últimos itens irá demandar o uso da \textbf{regra da adição de probabilidades} e, como cada evento é disjunto dos demais, essa regra recai sobre a simples adição das probabilidades envolvidas.
+
+\hfill\break
+
+Ao perguntar qual a probabilidade do aluno acertar no \textbf{mínimo} 2 questões (\(P(X\ge2)\)) equivale a se perguntar qual a probabilidade do aluno acertar 2 \textbf{OU} 3 \textbf{OU} 4 \textbf{OU} 5 \textbf{OU} 6 questões. Assim, temos como elementos desses eventos de sucesso \({2, 3, 4, 5, 6}\). Assim a solução passará pelo cálculo das probabilidades individuais para \textbf{cada} um desses eventos de sucesso que serão simplesmente somadas pois, a ocorrência de cada um desses eventos de sucesso é disjunta dos demais (se ocorrer 2 não ocorre simultaneamente 3).
+
+\hfill\break
+
+\begin{align*}
+P\left(X=k\right) & ={C}_{k}^{n}. {p}^{k}. {q}^{n-k} \\
+P\left(X=2\right) & = 15 . 0,30^{2} . 0,70^{(6-2)} \\
+                  & = 0,3241
+\end{align*}
+
+\hfill\break
+
+\begin{align*}
+P\left(X=k\right) & ={C}_{k}^{n}. {p}^{k}. {q}^{n-k} \\
+P\left(X=3\right) & = 20 . 0,30^{3} . 0,70^{(6-3)} \\
+                  & = 0,1852
+\end{align*}
+
+\hfill\break
+
+\begin{align*}
+P\left(X=k\right) & ={C}_{k}^{n}. {p}^{k}. {q}^{n-k} \\
+P\left(X=4\right) & = 15 . 0,30^{4} . 0,70^{(6-4)} \\
+                  & = 0,0595
+\end{align*}
+
+\hfill\break
+
+\begin{align*}
+P\left(X=k\right) & ={C}_{k}^{n}. {p}^{k}. {q}^{n-k} \\
+P\left(X=5\right) & = 6 . 0,30^{5} . 0,70^{(6-5)} \\
+                  & = 0,01020
+\end{align*}
+
+\hfill\break
+
+\begin{align*}
+P\left(X=k\right) & ={C}_{k}^{n}. {p}^{k}. {q}^{n-k} \\
+P\left(X=6\right) & = 1 . 0,30^{6} . 0,70^{(6-6)} \\
+                  & = 0,000729
+\end{align*}
+
+Assim, \(P\left(X\ge2\right)=0,3241+0,1852+0,0595+0,01020+0,00079=0,5797\)
+
+\hfill\break
+
+\begin{quote}
+Exemplo: Uma pessoa trabalha em 3 empregos onde desenvolve atividades iguais, sendo remunerada também igualmente nos três lugares. A probabilidade de que o pagamento saia até o 2\(^{o}\) dia útil nos três empregos é de 0,85. Qual a probabilidade de apenas um salário sair até o 2\(^{o}\) dia útil?
+\end{quote}
+
+\hfill\break
+
+1- a probabilidade de ocorrência do pagamento até o 2\(^{o}\) dia útil em cada emprego pode ser modelada por uma variável aleatória de Bernoulli pois apresenta apenas duas possibilidades: ocorrer ou não, cuja probabilidade de sucesso nos foi dada: \(p=0,85\);\\
+2- os três empregos podem ser considerados como repetições desse experimento básico;\\
+3- esse experimento final pode ter as probabilidades modelaas por uma variável aleatória Geométrica com evento de sucesso definido como \textbf{chance de se receber apenas um pagamento até o 2\(^{o}\) dia útil} (\(k=1\)) pois consiste na repetição de (\(n=3\)) experimentos de Bernoulli independentes e com probabilidade individual constante (\(p-0,85\)).
+
+\hfill\break
+
+A probabilidade de se receber o pagamento até o 2\(^{o}\) dia útil \textbf{em apenas um emprego será dada por}:
+
+\hfill\break
+
+\begin{align*}
+P\left(X=k\right) & ={C}_{k}^{n}. {p}^{k}. {q}^{n-k} \\
+P\left(X=1\right) & =3 . 0,85^{1} . 0,15^{2} \\
+                  & = 0,0574
+\end{align*}
+
+\hfill\break
+
+Conclusão: a probabilidade desse trabalhador receber \textbf{apenas um salário} até o 2\(^{o}\) dia útil do mês é de 0,0574.
+
+\hypertarget{poisson}{%
+\subsection{Poisson}\label{poisson}}
+
+A distribuição de \emph{Poisson} (assim chamada em homenagem a Siméon Denis Poisson que a descobriu no início do século XIX) é largamente empregada quando se deseja \textbf{contar o número de eventos raros} cuja probabilidade m{[}edia seja dada em termos de um \textbf{intervalo de tempo}, ou em uma \textbf{determinada extensão}, \textbf{área} ou \textbf{volume}
+
+\hfill\break
+
+Uma variável aleatória discreta \(X\) com Distribuição de \emph{Poisson} é aquela que pode assumir \textbf{infinitos valores numeráveis} (\(k=0,1,2, .s, \infty\)). Sua representação é: \(X \sim Pois (\lambda)\) e sua função de probabilidade para esses valores é:
+
+\hfill\break
+
+\begin{align*}
+f(k) = & P(X=k) \\
+     = & \frac{\lambda ^{k}. \epsilon^{-\lambda}} {k!} 
+\end{align*}
+
+Com \(\epsilon= 2,718\) (número irracional de Euler).
+
+\hfill\break
+
+A esperança e a variância de uma variável aleatória discreta com Distribuição de \emph{Poisson} são dados pelo seu parãmetro \(\lambda\) que expressa o número médio de eventos ocorrendo no \textbf{intervalo de tempo}, ou em uma \textbf{determinada extensão}, \textbf{área} ou \textbf{volume} :
+
+\begin{itemize}
+\tightlist
+\item
+  Esperança: \(E(X) = \lambda\);\\
+\item
+  Variância: \(Var(X) = \lambda\)
+\end{itemize}
+
+\hfill\break
+
+\begin{quote}
+Exemplo:Uma central telefônica recebe em média 5 chamadas por minuto. Supondo que a Distribuição de Poisson seja adequada a esse contexto, obter as probabilidade de que essa central não receba chamadas num intervalo de 1 e que receba no máximo duas chamadas em 4 minutos.
+\end{quote}
+
+\hfill\break
+
+Dados do problema:
+
+1- \(\lambda=\) é o parãmetro da distribuição de Poisson (a esperança, a média); assim temos \(\lambda=5\) chamadas por \textbf{minuto} (é importante atentar para qual é a unidade associada ao valor do \(\lambda\));\\
+2- \textbf{não receber} chamada alguma equivale a um \(k=0\);\\
+3- ao se perguntar na sequência as probabilidades de se receber \textbf{no máximo} duas chamadas em \textbf{4 minutos} equivale a não receber chamada alguma \textbf{OU} uma chamada \textbf{OU} duas chamadas (soma das probabilidades de eventos mutuamente excludentes);\\
+4- \textbf{MAS} é necessário reestimar o valor de \(\lambda\) pois agora o intervalo de tempo é de \textbf{4 minutos} e o valor que nos foi dado é para \textbf{1 minuto} (o que é feito mediante uma simples regra de três: 5 chamadas em \textbf{um ninuto} passam a ser 20 chamadas em \textbf{quatro minnutos})
+
+\hfill\break
+
+Probabilidade de \textbf{não receber chamada alguma}:
+
+\hfill\break
+
+\begin{align*}
+P(X=k) & = \frac{\lambda ^{k}. \epsilon^{-\lambda}} {k!} \\
+P(X=0) & = \frac{5^{0}. \epsilon^{-5}} {0!} \\
+P(X=0) & = \frac{1 . 0,00673}{1}\\
+       & = 0,00673
+\end{align*}
+
+\hfill\break
+
+Probabilidade de receber no \textbf{máximo 2} chamadas em 4 minutos (\(\lambda = 20\) chamadas por 4 minutos):
+
+\hfill\break
+
+\begin{align*}
+P(X=0) & = \frac{20^{0}. \epsilon^{-20}} {0!} = 2,061154e-09 \\
+P(X=1) & = \frac{20^{1}. \epsilon^{-20}} {1!} = 4,122307e-08 \\
+P(X=2) & = \frac{20^{2}. \epsilon^{-20}} {2!} = 4,122307e-07 \\
+\end{align*}
+
+\(P(X \leq 2)=P(X=0)+P(X=1)+P(X=2)=4,554699e-7\)
+
+\hfill\break
+
+\begin{quote}
+Exemplo: Um posto de bombeiros recebe em média 3 chamadas por dia. Admitindo que as probabilidades associadas ao recebimento de diferentes números de chamadas podem ser modeladas por uma variável aleatória de \emph{Poisson} qual seria a probabilidade desse posto receber 4 chamadas em 2 dias?
+\end{quote}
+
+\hfill\break
+
+A unidade da esperança dessa variável de \emph{Poisson} (\(\lambda\)) de chamadas nos foi dada \textbf{por dia} ao passo que a probabilidade pedida está associada a um período de \textbf{dois dias}, exigindo que a esperança \(\lambda\) seja convertida para essa nova unidade (uma simples regra de trẽs: 3 chamadas por dia, então para 2 dias, 6 chamadas). Assim, a probabilidade pedida será:
+
+\hfill\break
+
+\begin{align*}
+P(X=k) & = \frac{\lambda ^{k}. \epsilon^{-\lambda}} {k!}\\
+P(X=4) & = \frac{6^{4}. \epsilon^{-6}} {4!} \\
+       & = 0,1338
+\end{align*}
+
+\hfill\break
+
+\begin{quote}
+Exemplo: Por um posto de pedágio passam, em média, 5 carros por minuto. Qual a probabilidade de passarem exatamente 3 carros em 1 minuto?
+\end{quote}
+
+\hfill\break
+
+\begin{align*}
+P(X=k) & = \frac{\lambda ^{k}. \epsilon^{-\lambda}} {k!} \\
+P(X=3) & = \frac{5^{3}. \epsilon^{-5}} {3!} \\
+       & = 0,1404
+\end{align*}
+
+Uma variável aleatória discreta de \emph{Poisson} modela muito bem eventos raros; ou seja, aqueles que não acontecem com grande frequência para qualquer intervalo considerado (tempo, extensão, área, volume). Trata-se de uma caso de variável Geométrica no qual \(n \to \infty\) e \(p\) é pequeno (\(n \geq 50\) e \(n . p \leq (5,7)\)). Nesse cenário pode-se demonstrar que:
+
+\hfill\break
+
+\[
+lim_{n \to \infty} P(X) = {C}_{k}^{n}. {p}^{k}. {q}^{n-k}
+\]
+
+\hfill\break
+
+é igual a:
+
+\hfill\break
+
+\[
+P(X=k) = \frac{\lambda ^{k}. \epsilon^{-\lambda}} {k!}
+\]
+
+\hfill\break
+
+Tal aproximação era, tempos atrás (antes da era computacional), bastante útil pois, para um \(n\) muito grande o cálculo fatorial era trabalhoso! Nesse contexto pode-se modelar o experimento acima, de modo bem aproximado, por uma variável aleatória de Poisson com \(\lambda=n . p\):
+
+\[
+f(k) = P(X=k) = \frac{n . p^{k}. \epsilon^{- n . p}} {k!}
+\]
+
+\hypertarget{modelos-tuxe9oricos-do-tempo-de-espera}{%
+\section{Modelos téoricos do tempo de espera}\label{modelos-tuxe9oricos-do-tempo-de-espera}}
+
+As distribuições do tempo de espera é outra importante classe de problemas associados com a quantidade de tempo que leva para a ocorrência de um evento específico de interesse. Dentro dessa classe de problemas se enquadram duas distribuições bastante conhecidas, são elas: geométrica e Geométrica negativa.
+
+\hypertarget{geomuxe9trica-1}{%
+\subsection{Geométrica}\label{geomuxe9trica-1}}
+
+Enquanto uma variável aleatória com distribuição Geométrica é uma variável que conta o número de sucessos ocorridos com a repetição de um experimento de Bernoulli (que apresenta duas possibilidades apenas) de modo independente, uma variável aleatória geométrica conta o número de tentativas até que \textbf{se verifique o primeiro sucesso}, atendendo também a:
+
+~
+
+1- cada experimento é um ensaio de Bernoulli (só poderá haver dois resultados possíveis: sucesso ou fracasso);\\
+2- cada repetição deve ter seu resultado independente do resuluado das demais;\\
+3- a probabilidade de sucesso (\(p\)) é constante para todas as repetições;\\
+4- consequentemente, a probabilidade de fracasso (\(q=1-p\)) também o é; e,\\
+5- o experimento é repetido segue até que se verifique o primeiro sucesso.
+
+~
+
+Considere o experimento aelatório de se lançar uma moeda \textbf{não honesta}, com probabilidade \(p\) de ocorrência de \emph{Cara} e \((1-p)\) de ocorrência de \emph{Coroa}. Se definimos nõsso evento de sucesso como sendo obter \emph{Cara} no lançamento, quantos lançamentos serão necessários para se verificar a ocorrência de sucesso?
+
+~
+
+Admita uma sequência de \(n\) lançamentos: \emph{\{Coroa, Coroa, \ldots, Coroa, Cara\}} onde no \(n-ésimo\) lançamento verificou-se o sucesso. Assim sendo, podemos definir \(j=(n-1)\) como o número de tentativas \textbf{anteriores} fracassadas.
+
+~
+
+Uma variável aleatória \(X\) com Distribuição Geométrica, com parâmetro \(p\) (\(0 \leq p \leq1\)), é aquela que pode assumir \textbf{infinitos valores numeráveis} (\(j=0,1,2, .s, \infty\)) para a quantidade \(j\) de tentativas que \textbf{precedem o primeiro sucesso}, que será observado na tentativa seguinte (\(j+1\)). Sua representação é \(X\sim Geo(p)\) e sua função de probabilidade é:
+
+\hfill\break
+
+\begin{align*}
+f(X=x; p) & = P(X=j) = p . (1-p)^{j} \\
+f(X=x; p) & = P(X=j) = p . q^{j}
+\end{align*}
+
+\hfill\break
+
+O Modelo geométrico pode ser escrito sub uma ``forma complementar'': o \textbf{número de tentativas \(n\) até se observar o primeiro sucesso}, agora com \(x=n=1, 2, ...\).\}.
+
+\hfill\break
+
+\begin{align*}
+f(X=x; p) & = P(X=n) = p . (1-p)^{(n-1)} \\
+f(X=x; p) & = P(X=n) = p . q^{(n-1)}  
+\end{align*}
+
+~
+
+A esperança e a variância de uma variável aleatória discreta com Distribuição geométrica (\(X\sim Geo(p)\)) são:
+
+\hfill\break
+
+\begin{itemize}
+\tightlist
+\item
+  Esperança: \(E(X) = \frac{1}{p}\)\\
+\item
+  Variância: \(Var(X) = \frac{(1-p)}{p^{2}} = \frac{q}{p^{2}}\).
+\end{itemize}
+
+\hfill\break
+
+\begin{quote}
+Lembrando que uma variável aleatória Geométrica é uma contagem de número de sucessos \(k\) em \(n\) tentativas de Bernoulli; ou seja, o número de tentativas \(n\) é \textbf{fixo} e o número de sucessos \(k\) é \textbf{aleatório}.
+\end{quote}
+
+\hfill\break
+
+\begin{quote}
+Já uma variável aleatória Geométrica é uma contagem do número de tentativas \(j\) até se observar o primeiro sucesso; isto é, o número de sucessos \(k\) é \textbf{fixo} e o número de tentativas \(j\) é \textbf{aleatório}.
+\end{quote}
+
+\hfill\break
+
+Uma variável aleatória geométrica é definida como o número de tentativas até que o primeiro sucesso fosse encontrado e, como essas tentativas são independentes entre si; ie., a probabilidade \(p\) não se altera em razão de terem sido realizadas tentativas anteriores, a contagem do número de tentativas até o próximo sucesso pode ser começada em qualquer tentativa sem alterar a distribuição de probabilidades da variável aleatória. A consequência de usar um modelo geométrico é que o sistema presumivelmente não será desgastado, a probabilidade permanece constante.
+
+\hfill\break
+
+Nesse sentido à distribuição geométrica é dita \textbf{faltar qualquer memória}.
+
+\hfill\break
+
+\begin{quote}
+Exemplo: A probabilidade de que um \emph{bit} transmitido através de um canal digital seja recebido \textbf{com erro} é de 0,1. Considere que as transmissões sejam eventos independentes e o erro relativamente raro. Uma variável aleatória discreta pode ser definida como \(X\sim Geo(p)\). Qual a probabilidade de que \textbf{o primeiro erro} na transmissão de um \emph{bit} ocorra na \textbf{quinta} transmissão?
+\end{quote}
+
+\hfill\break
+
+Uma variável aleatória discreta com Distribuição geométrica pode ser definida para modelar a probabilidade desse experiment aleatório como \(X\sim Geo(p)\), onde \(p\) é a probabilidade individual de sucesso (no nosso caso, que o \_bitseja transmitido com erro).
+
+\hfill\break
+
+Dados do problema:
+
+1- a probabilidade de ocorrência de um sucesso (aqui bem entendido como sendo a transmissão de um \emph{bit} com erro) é \(p=0,1\); e,\\
+2- a probabilidade pedida é a de se observar a ocorrência do primeiro sucesso com 5 repetições (bem entendido aqui que o número de tentativas \textbf{sem se observar sucesso} será \(j=4\) e, em \(j+1=5\) teremos sucesso).
+
+\hfill\break
+
+\begin{align*}
+f(X=x; p) & = P(X=j) = (1-p)^{j} .  p \\
+P(X=4) & = (1-0,1)^{4} . 0,1 \\
+P(X=4) & = 0,0656
+\end{align*}
+
+\hfill\break
+
+A probabilidade de que na \textbf{quinta transmissão} de um \emph{bit} ocorra um erro é de 6,56\%.
+
+~
+
+\begin{quote}
+Exemplo: Uma linha de produção está sendo analisada para fins de controle da qualidade das peças produzidas. Tendo em vista o alto padrão requerido, a produção é interrompida para regulagem \textbf{toda vez que uma peça defeituosa é observada}. Se 0,01 é a probabilidade da peça ser defeituosa, determine a probabilidade de ocorrer uma peça defeituosa entre a \(4^{a}\) e \(6^{a}\) peças produzidas.
+\end{quote}
+
+~
+
+Uma variável aleatória discreta com Distribuição geométrica pode ser definida para modelar esse experimento aleatório como \(X\sim Geo(p)\) onde \(p\) é a probabilidade individual de sucesso (no caso, a produção de uma peça defeituosa). Pede-se a probabiidade de que essa ocorrência se verifique \textbf{OU} na quarta \textbf{OU} na quinta \textbf{OU} na setxa peça produzida.
+
+\hfill\break
+
+Dados do problema:
+
+\begin{itemize}
+\tightlist
+\item
+  a probabilidade de ocorrência de um sucesso (aqui bem entendido como sendo a produção de uma peça defeituosa) é \(p=0,01\); e,\\
+\item
+  a probabilidade pedida é a de se observar a ocorrência da produção da primeira peça defeituosa com 4, 5 \textbf{OU} 6 repetições.
+\end{itemize}
+
+Assim sendo o número de tentativas \textbf{sem se ter nenhuma peça produzida com defeito} é de \(3 \leq j \leq 5\) porque assim, em \(j+1\), teremos sucesso na quarta, quinta ou sexta peça produzidas.
+
+\hfill\break
+
+Considerando-se que os eventos são disjuntos (ocorrerá na quarta, na quinta ou na sexta), probabilidade pedida será:
+
+\[
+P(X=j)_{3 \leq j \leq 5}= P(X=3) + P(X=4) + P(X=5)
+\]
+
+\hfill\break
+
+A probabilidade de verificarnos sucesso na \(4^{a}\) peça produzida (peça produzida com defeito) será:
+
+\hfill\break
+
+\begin{align*}
+f(X=x; p) & = P(X=j) \\
+P(X=j)    & = (1-p)^{j} . p  \\
+P(X=3)    & = (1-0,01)^{3} . 0,01 \\
+P(X=3)    & = 0,009702
+\end{align*}
+
+~
+
+A probabilidade de verificarnos sucesso na \(5^{a}\) peça produzida (peça produzida com defeito) será:
+
+\begin{align*}
+f(X=x; p) & = P(X=j) \\
+P(X=j)    & = (1-p)^{j} . p \\
+P(X=4)    & = (1-0,01)^{4} . 0,01 \\
+P(X=4)   & = 0,009605
+\end{align*}
+
+~
+
+A probabilidade de verificarnos sucesso na \(6^{a}\) peça produzida (peça produzida com defeito) será:
+
+\begin{align*}
+f(X=x; p) & = P(X=j) \\
+P(X=j)   & = (1-p)^{k} . p \\
+P(X=5)    & = (1-0,01)^{5} . 0,01 \\
+P(X=5)    & = 0,009809    
+\end{align*}
+
+\hfill\break
+
+A probabilidade de termos uma peça \textbf{produzida com defeito} na quarta \textbf{OU} na quinta \textbf{OU} na sexta das peças produzidas será:
+
+\begin{align*}
+P(3 \leq j \leq 5)  &  = P(X=3) + P(X=4) + P(X=5) \\
+P(3 \leq j \leq 5)  &  = 0,009702) + 0,009605 + 0,009809 \\
+P(3 \leq j \leq 5)  &  = 0,029116 
+\end{align*}
+
+\hfill\break
+
+A probabilidade de termos uma \textbf{peça defeituosa} na quarta \textbf{OU} na quinta \textbf{OU} na sexta das peças produzidas é de 2,9116\%.
+
+\hfill\break
+
+\begin{quote}
+Exemplo 9 A probabilidade de um alinhamento ótico bem sucedido na montagem de produto de armazenamento de dados é de 0,80. Assuma que as tentativas são independentes e responda:
+1- Qual é a probabilidade de que o primeiro alinhamento bem sucedido requeira exatamente quatro tentativas?\\
+2- Qual é a probabilidade de que o primeiro alinhamento bem sucedido requeira no máximo quatro tentativas?\\
+3- Qual é a probabilidade de que o primeiro alinhamento bem sucedido requeira ao menos quatro tentativas?
+\end{quote}
+
+\hfill\break
+
+Uma variável aleatória discreta com Distribuição geométrica pode ser definida para modelar esse experimento aleatório como \(X\sim Geo(p)\) onde \(p\) é a probabilidade individual de sucesso .
+
+\hfill\break
+
+Dados do problema:
+
+\begin{itemize}
+\tightlist
+\item
+  a probabilidade de ocorrência de um sucesso (alinhamento ótico bem sucedido na montagem de produto de armazenamento de dados) é \(p=0,80\);\\
+\item
+  o item (1) pede a probabilidade de verificar o primeiro sucesso com exatamente \textbf{quatro repetições}; assim, o número de tentativas \textbf{sem se observar sucesso} é \(j=3\) (em \(j+1=4\) verifica-se sucesso);\\
+\item
+  o item (2) pede a probabilidade de se verificar o primeiro sucesso com \textbf{no máximo} quatro repetições; assim, o número de tentativas \textbf{sem se observar} sucesso é de \(0 \leq j \leq 3\) (em \(j+1\) teremos sucesso: no primeiro \textbf{OU} no segundo \textbf{OU} no terceiro \textbf{OU} no quarto alinhamentos realizados); e,\\
+\item
+  o item (3) pede a probabilidade de se observar o primeiro sucesso com \textbf{no mínimo quatro} repetições; assim, o número de tentativas \textbf{sem se observar sucesso} é de \$3 \leq j \leq \infty \$ (em \(j+1\) teremos sucesso: no quarto \textbf{OU* no quinto }OU** sexto .s, alinhamentos realizados).
+\end{itemize}
+
+~
+
+Para o item (1) a probabilidade de termos a ocorrência de um sucesso (ou seja, um alinhamento ótico bem sucedido) na \(4^{a}\) montagem será:
+
+\hfill\break
+
+\begin{align*}
+f(X=x; p) & = P(X=j) \\
+P(X=j)  & = (1-p)^{j} . p \\
+P(X=3) & = (1-0,80)^{3} . 0,20 \\
+P(X=3) & = 0,0064
+\end{align*}
+
+\hfill\break
+
+Para o item (2) considerando-se que as repetições são independentes, a probabilidade pedida será:
+
+\hfill\break
+
+\[
+P(X=j)_{0 \leq j \leq 3} = P(X=0) + P(X=1) + P(X=2) + P(X=3)
+\]
+
+\hfill\break
+
+\begin{align*}
+f(X=x; p) & = P(X=j) \\
+P(X=j) & =  (1-p)^{j} . p \\
+P(X=0) & =  (1-0,80)^{0} . 0,20 \\
+P(X=0) &  =  0,80 
+\end{align*}
+
+\hfill\break
+
+\begin{align*}
+f(X=x; p) & =  P(X=j) \\
+P(X=j) & =  (1-p)^{j} . p \\
+P(X=1) & =  (1-0,80)^{1} . 0,20 \\
+P(X=1) & = 0,16
+\end{align*}
+
+\hfill\break
+
+\begin{align*}
+f(X=x; p) & =   P(X=j) \\
+P(X=j) & =  (1-p)^{j} . p \\
+P(X=2) & =  (1-0,80)^{2} . 0,20 \\
+P(X=2) & = 0,032
+\end{align*}
+
+\hfill\break
+
+\begin{align*}
+f(X=x; p) & =  P(X=j) \\
+ P(X=j) & =  (1-p)^{j} . p \\
+P(X=3) & =  (1-0,80)^{3} . 0,20 \\
+P(X=3) & = 0,0064
+\end{align*}
+
+\hfill\break
+
+A probabilidade pedida é de:
+
+\begin{align*}
+P(X=j)_{0 \leq j \leq 3} & = P(X=0) + P(X=1) + P(X=2) + P(X=3) \\
+P(X=j)_{0 \leq j \leq 3} & =  0,9984
+\end{align*}
+
+\hfill\break
+
+Para o item (3) considerando-se que os eventos pedidos são disjuntos a probabiildade pedida deverá ser calculada a partir do complemento da probabilidade total menos os eventos que não são de interesse:
+
+\hfill\break
+
+\[
+P(X=j)_{3 \leq j \leq \infty} = 1 - P(X=0) + P(X=1) + P(X=2)
+\]
+
+\hfill\break
+
+\begin{align*}
+f(X=x; p) & =  P(X=j) \\
+P(X=j) & = (1-p)^{j} . p \\
+P(X=0) & = (1-0,80)^{0} . 0,20 \\
+P(X=0) & =  0,80 
+\end{align*}
+
+\hfill\break
+
+\begin{align*}
+f(X=x; p) & =  P(X=j) \\
+P(X=j) & =  (1-p)^{j} . p \\
+P(X=1) & =  (1-0,80)^{1} . 0,20 \\
+P(X=1) & =  0,16
+\end{align*}
+
+\hfill\break
+
+\begin{align*}
+f(X=x; p) & =   P(X=j) \\
+P(X=j) & =  (1-p)^{j} . p \\
+P(X=2) & =  (1-0,80)^{2} . 0,20 \\
+P(X=2) & =  0,032
+\end{align*}
+
+\hfill\break
+
+A probabilidade é de:
+
+\begin{align*}
+P(X=j)_{3 \leq j \leq \infty} &  =  1 - P(X=0) + P(X=1) + P(X=2) \\
+P(X=j)_{3 \leq j \leq \infty} &  = 1 - (0,80 + 0,16 + 0,032) \\
+P(X=j)_{3 \leq j \leq \infty} &  = 0,008
+\end{align*}
+
+\hypertarget{binomial-negativa}{%
+\subsection{Binomial Negativa}\label{binomial-negativa}}
+
+\hfill\break
+
+Uma variável aleatória discreta que segue uma distribuição Binomial Negativa (também conhecida como de Distribuição de Pascal em homenagem ao matemático francês Blaise Pascal) pode ser considerada como uma generalização da variável Geométrica, na qual agora é considerada a situação em que se modelam as probabilidades de se verificar mais de um evento de sucesso.
+
+\hfill\break
+
+Ao se realizar repetidos experimentos de Bernoulli, uma variável aleatória Binomial Negativa modela as probabilidades relacionadas ao número de repetições necessárias para se observar \(r\) sucessos.
+
+\hfill\break
+
+Um experimento que apresenta uma distribuição Binomial Negativa satisfaz aos seguintes pressupostos:
+
+\hfill\break
+
+1- cada repetição é um ensaio de Bernoulli (só poderá haver dois resultados possíveis: sucesso ou fracasso);\\
+2- cada repetição não altera a probabilidad das demais (há independência);\\
+3- a probabilidade de sucesso (\(p\)) em cada repetição é constante;\\
+4- consequentemente, a probabilidade de fracasso (\(q=1-p\)) em cada repetição também é constante; e,\\
+5- o experimento aleatório prossegue até que sejam verificados \(r\) sucessos.
+
+Considere o experimento aelatório de se lançar uma moeda \textbf{não honesta}, com probabilidade \(p\) de ocorrência de \emph{Cara} e \((1-p)\) de ocorrência de \emph{Coroa}. Se definimos nosso evento de sucesso como sendo obter \emph{Cara} no lançamento, quantos lançamentos serão necessários para serão necessários para se observar \(r\) \emph{Caras}?
+
+\hfill\break
+
+Se arbitramos \(r=3\) e observarmos a sequência: \emph{\{Cara, Coroa, Coroa, Cara, Coroa, Coroa, Cara\}}, então \(n=7\): foram necessárias sete repetições até que três \emph{Caras} fosse observadas.
+
+\hfill\break
+
+A notação de uma variável aleatória Binomial Negativa é \(X\sim bn(p,r)\), onde o parâmetro \(p\) (\(0 \leq p \leq1\)) indica a probabilidade individual de sucesso a cada repetição de Bernoulli e \(r\) o número total de sucessos desejado (estabelecido \emph{a priori}).
+
+\hfill\break
+
+Sua função discreta de probabilidade calcula a probabilidade de se observar um total de \(r\) sucessos (estabelecido \emph{a priori}) após \(n\) de ensaios de Bernoulli realizados é a seguinte:
+
+\begin{align*}
+f(X=x; p; r) & = P(X=n) = {C}_{r-1}^{n-1} . {p}^{r} . {q}^{(n-r)} \\
+f(X=x; p; r) & = \frac{(n-1)!}{ (r-1)!. (n-r-2)!} . {p}^{r}. {q}^{(n-r)}
+\end{align*}
+
+Pela razão óbvia de se necessitar no mínimo \(r\) tentativas para se obter \(r\) sucessos, a faixa de \(x=n={r, r+1, r+2 ...}\)).
+
+\hfill\break
+
+A esperança e a variância de uma variável aleatória discreta com Distribuição Binomial Negativa são:
+
+\begin{itemize}
+\tightlist
+\item
+  Esperança: \(E(X) = \frac{r}{p}\) ;\\
+\item
+  Variância: \(Var(X) = \frac{r \times (1-p)}{p^{2}} = \frac{q \times r}{p^{2}}\).
+\end{itemize}
+
+\hfill\break
+
+\begin{quote}
+Uma variável aleatória Binomial é uma contagem de número de sucessos \(k\) em \(n\) tentativas de Bernoulli; ou seja, o número de tentativas \(n\) é predeterminado (fixo) e o número de sucessos \(k\) é aleatório e em \(n\) tentativas a probabilidade de se observar \(k\) sucessos é medida pela sua função de distribuição discreta de probabilidades.
+\end{quote}
+
+\begin{quote}
+Uma variável aleatória Binomial Negativa é uma contagem do número de tentativas até se obter \(r\) sucessos; isto é, o número de sucessos \(r\) é predeterminado (fixo) e o número de tentativas é aleatório e a probabilidade de se observar \(r\) sucessos a cada \(n\) tentativas é calculada por sua função de distribuição discreta de probabilidades.
+\end{quote}
+
+\hfill\break
+
+\begin{quote}
+Exemplo: A probabilidade com que um \emph{bit} transmitido através de um canal digital de transmissão seja recebido com erro é de 0,1 e que as transmissões sejam eventos independentes. Qual a probabilidade de que nas dez primeiras transmissões ocorram quatro erros?
+\end{quote}
+
+\hfill\break
+
+Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse experiment aleatório, tal que \(X\sim bn(p,r)\) onde \(p\) é a probabilidade individual de sucesso e \(r\) o total de sucessos.
+
+\hfill\break
+
+Dados do problema:
+
+\hfill\break
+
+1- a probabilidade de ocorrência de um sucesso (aqui bem entendido como sendo a recepção errada de um \emph{bit} transmitido) é \(p=0,1\); e,\\
+2- o número de sucessos (aqui bem entendido como sendo a recepção errada de um \emph{bit} transmitido) está definido \emph{a priori} \(r=4\).
+
+\hfill\break
+
+Pede-se a probabilidade de se observar \textbf{quatro} sucessos (\(r=4\)) em \textbf{dez} (\(n=10\)) transmissões.
+
+\hfill\break
+
+A probabilidade de se obter \(r=4\) sucessos ao se realizar \(n=10\) tentativas é dada pela função discreta de probabilidade da variável aleatória Binomial Negativa:
+
+\begin{align*}
+f(X=x; p; r) = P(X=n) & = {C}_{r-1}^{n-1} . {p}^{r}. {q}^{n-r} \\
+f(X=x; p; r) = P(X=n) & = \frac{(n-1)!}{ (r-1)!. (n-r-2)!} . {p}^{r}. {q}^{n-r} \\ 
+f(X=10; p=0,10 ; r=4) = P(X=10) & = \frac{(10-1)!}{ (4-1)!. (10-4-2)!} . {0,1}^{4}. {0,9}^{10-4} \\
+P(X=10) & = 0,004464104
+\end{align*}
+
+A probabilidade de se observar 4 sucessos em 10 tentativas é de 0,4464104\%.
+
+\hfill\break
+
+\begin{quote}
+Exemplo 11: Bob é um jogador de basquete de uma escola. Ele é um lançador de arremessos livres e sua probabilidade de acertar é igual a 70\%. Durante uma partida qualquer, qual a probabilidade de que Bob acerte seu \textbf{terceiro} arremesso livre na seu \textbf{quinta} tentativa?
+\end{quote}
+
+\hfill\break
+
+Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse experimento aleatório tal que \(X\sim bn(p,r)\) onde \(p\) é a probabilidade individual de sucesso e \(r\) o total de sucessos.
+
+\hfill\break
+
+Dados do problema:
+
+\hfill\break
+
+1- a probabilidade de ocorrência de um sucessoé \(p=0,70\), e\\
+2- o número de sucessos fixado \emph{a priori} é \(r=3\).
+
+\hfill\break
+
+Pede-se a probabilidade de se observar três sucessos em 5 arremessos \(n=5\).
+
+\hfill\break
+
+A probabilidade de se obter \(r=3\) sucessos ao se realizar \(n=5\) tentativas é dada pela função discreta de probabilidade da variável Binomial Negativa:
+
+\hfill\break
+
+\begin{align*}
+f(X=x; p; r) = P(X=n) & = {C}_{r-1}^{n-1} . {p}^{r}. {q}^{n-r} \\
+f(X=x; p; r) = P(X=n) & = \frac{(n-1)!}{ (r-1)!. (n-r-2)!} . {p}^{r}. {q}^{n-r} \\
+f(X=5; p=0,70 ; r=3) = P(X=5) & = \frac{(5-1)!}{ (3-1)!. (5-3-2)!} . {0,70}^{3}. {0,9}^{5-3} \\
+P(X=5) & = 0,18522
+\end{align*}
+
+A probabilidade de Bob acertar 3 arremessos em 5 tentativas é de 18,522\%.
+
+\hfill\break
+
+\begin{quote}
+\{Exemplo: Lançamos repetidas vezes uma moeda. Seja \(X\) o número de caras até que consigamos sete coroas. Qual é a probabilidade de que o número de caras seja igual a cinco até que consigamos as sete coroas?
+\end{quote}
+
+\hfill\break
+
+Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse fenômeno como \(X\sim bn(p,r)\) onde \(p\) é a probabilidade individual de sucesso e \(r\) o total de sucessos.
+
+~
+
+Dados do problema:
+
+\hfill\break
+
+\begin{itemize}
+\tightlist
+\item
+  a probabilidade de ocorrência de um sucesso é \(p=0,5\), e,\\
+\item
+  o número de sucessos fixado \emph{a priori} é \(r=7\).
+\end{itemize}
+
+\hfill\break
+
+Pede-se a probabilidade de se observar sete sucessos em doze (5+7) tentativas \(n=12\).
+
+\hfill\break
+
+A probabilidade de se obter \(r=7\) sucessos ao se realizar \(n=12\) tentativas é dada pela função discreta de probabilidade da variável Binomial Negativa:
+
+\begin{align*}
+f(X=x; p; r) = P(X=n) & = {C}_{r-1}^{n-1} . {p}^{r}. {q}^{n-r} \\
+f(X=x; p; r) = P(X=n) & = \frac{(n-1)!}{ (r-1)!. (n-r-2)!} . {p}^{r}. {q}^{n-r} \\
+f(X=5; p=0,50 ; r=7) = P(X=12) & = \frac{(12-1)!}{ (7-1)!. (12-7-2)!} . {0,50}^{7}. {0,50}^{12-7} \\
+P(X=5) & = 0,1128
+\end{align*}
+
+A probabilidade de se obter 7 sucessos em 12 tentativas é de 11,28\%.
+
+\hfill\break
+
+\begin{quote}
+Exemplo: Considere o tempo para recarregar o flash de uma câmera de celular. Assuma que a probabilidade de que uma câmera instalada no celular durante sua montagem passe no teste seja de 0.80 e que cada câmera é montada de modo que a probabilidade não se altere (independência). Determine as seguintes probabilidades:
+1- de que a segunda falha ocorra na décima câmera testada;
+2- de que a segunda falha ocorra no teste de quatro ou menos câmeras; e,\\
+3- o valor esperado do número de câmeras testadas para obter a terceira falha.
+\end{quote}
+
+\hfill\break
+
+Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse experimento aleatório tal que \(X\sim bn(p,r)\) onde \(p\) é a probabilidade individual de sucesso e \(r\) o total de sucessos.
+
+\hfill\break
+
+Dados do problema:
+
+\hfill\break
+
+\begin{itemize}
+\tightlist
+\item
+  probabilidade de que a câmera montada no celular passe no teste é \(p=0,80\); logo, a probabilidade de não passar será de (\(q=1-0,80\)) \(=0,20\);\\
+\item
+  fica bem entendido que o \textbf{sucesso} é a câmera montada no celular \textbf{não passar} no teste, logo \(p=0,20\);\\
+\item
+  no item (1) pede-se a probabilidade de se observar um número de sucessos fixado \emph{a priori} \(r=2\) em \(n=10\);\\
+\item
+  no item (2) pede-se a probabilidade de se observar um número de sucessos também fixado \emph{a priori} em \(r=2\) mas agora em \(n \leq 4\) câmeras testadas; e,\\
+\item
+  o valor esperado para o número de câmeras testadas (\(n=?\)) para que se observem \(r=3\) sucessos.
+\end{itemize}
+
+\hfill\break
+
+A probabilidade de se obter \(r=2\) sucessos ao se realizar \(n=10\) tentativas é dada pela função discreta de probabilidade da variável Binomial Negativa:
+
+\begin{align*}
+f(X=x; p; r) = P(X=n) & = {C}_{r-1}^{n-1} . {p}^{r}. {q}^{n-r} \\
+f(X=10; p=0,20 ; r=2) = P(X=10) & = {C}_{2-1}^{10-1} . {0,20}^{2}. {0,80}^{10-2} \\ 
+P(X=10) & = 0,06039
+\end{align*}
+
+A probabilidade de se obter \(r=2\) sucessos em \(n=10\) tentativas é de 6,039\%.
+
+\hfill\break
+
+As probabilidades de se obter \(r=2\) sucessos ao se realizar \(n \leq 4\) tentativas é dada pela função discreta de probabilidade da variável Binomial Negativa aplicada a:
+
+\begin{align*}
+f(X=x; p; r) = P(X=n) & = {C}_{r-1}^{n-1} . {p}^{r}. {q}^{n-r} \\
+f(X=2; p=0,20 ; r=2) = P(X=2)  & = {C}_{2-1}^{2-1} . {0,20}^{2}. {0,80}^{2-2} \\ 
+P(X=2) & = 0,04
+\end{align*}
+
+\hfill\break
+
+\begin{align*}
+f(X=x; p; r) = P(X=n) & = {C}_{r-1}^{n-1} . {p}^{r}. {q}^{n-r} \\
+f(X=3; p=0,20 ; r=2) = P(X=2) & = {C}_{2-1}^{3-1} . {0,20}^{2}. {0,80}^{3-2} \\ 
+P(X=3) & = 0,064
+\end{align*}
+
+\hfill\break
+
+\begin{align*}
+f(X=x; p; r) = P(X=n) & = {C}_{r-1}^{n-1} . {p}^{r}. {q}^{n-r} \\
+f(X=4; p=0,20 ; r=2) = P(X=2) & = {C}_{2-1}^{4-1} . {0,20}^{2}. {0,80}^{4-2} \\  
+P(X=4) & = 0,0768
+\end{align*}
+
+A probabilidade de se obter \(r=2\) sucessos em \(n \leq 4\) tentativas é de (\(0,032+0,064+0,0768\)) 18,08\%.
+
+\hfill\break
+
+O valor esperado (esperança) do número de câmeras testadas para que se observem \(r=3\) sucessos é dado
+
+\begin{align*}
+E(X) &  = \frac{r}{p} \\
+E(X) & = \frac{3}{0,2} \\
+     & =15
+\end{align*}
+
+O valor esperado (esperança) do número \(n\) de câmeras testadas para que se observem \(r=3\) sucessos é 15
+
+\hypertarget{modelos-teuxf3ricos-contuxednuos}{%
+\section{Modelos teóricos contínuos}\label{modelos-teuxf3ricos-contuxednuos}}
 
 \hypertarget{planejamento_pesquisas}{%
 \chapter{- Introdução ao planejamento de pesquisas}\label{planejamento_pesquisas}}

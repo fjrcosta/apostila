@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.3 Teorema de Bayes | apostila.knit</title>
+  <title>6.2 Modelos téoricos do tempo de espera | apostila.knit</title>
   <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.3 Teorema de Bayes | apostila.knit" />
+  <meta property="og:title" content="6.2 Modelos téoricos do tempo de espera | apostila.knit" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
   <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.3 Teorema de Bayes | apostila.knit" />
+  <meta name="twitter:title" content="6.2 Modelos téoricos do tempo de espera | apostila.knit" />
   
   <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="probabilidade-1.html"/>
-<link rel="next" href="demonstração-clássica-de-independência.html"/>
+<link rel="prev" href="modelos-teóricos-discretos.html"/>
+<link rel="next" href="modelos-teóricos-contínuos.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -282,416 +282,481 @@ Prof. M.e Eng. Felinto Junior Da Costa</div></a>
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="teorema-de-bayes" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Teorema de Bayes<a href="teorema-de-bayes.html#teorema-de-bayes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br />
-</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-71"></span>
-<img src="images4/thomas_bayes.jpg" alt="Thomas Bayes (1702 - 1761)" width="80%" />
-<p class="caption">
-Figure 4.12: Thomas Bayes (1702 - 1761)
-</p>
-</div>
-<p><br />
-</p>
-<p>Pela <strong>regra da probabilidade condicionada</strong> temos que</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-P(A|B) = \frac{P(A \cap B)}{ P(B)}
-\]</span></p>
-<p><br />
-</p>
-<p>e, de modo equivalente,</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-P(B|A) = \frac{P(B \cap A)}{ P(A)}
-\]</span><br />
-</p>
-<p>Pela igualdade <span class="math inline">\(P(A \cap B)=P(B \cap A)\)</span>, substituindo-se a segunda expressão na primeira chega-se a:</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-P(B|A) = \frac{P(A|B) P(A)}{P(B)}
-\]</span></p>
-<p><br />
-</p>
-<p>uma <strong>relação</strong> entre duas probabilidades <em>inversamente</em> condicionadas conhecida como <strong>Teorema de Bayes</strong>.</p>
-<p><br />
-</p>
-<p>Para um espaço amostral mais amplo, de modo geral consideremos, inicialmente o diagrama da Figura <a href="teorema-de-bayes.html#fig:fig6">4.13</a> onde <span class="math inline">\(\Omega\)</span> é o espaço amostral de um experimento aleatório qualquer:</p>
-<p><br />
-</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig6"></span>
-<img src="images4/bayes_1.jpg" alt="Espaço amostral" width="80%" />
-<p class="caption">
-Figure 4.13: Espaço amostral
-</p>
-</div>
-<p><br />
-</p>
-<p>Admita que <span class="math inline">\(E_{1}\)</span>, <span class="math inline">\(E_{2}\)</span>, <span class="math inline">\(E_{3}\)</span> e <span class="math inline">\(E_{4}\)</span> formem a partição do espaço amostral <span class="math inline">\(\Omega\)</span> (seus elementos são <strong>mutuamente exclusivos</strong>) como exposto na Figura <a href="teorema-de-bayes.html#fig:fig7">4.14</a></p>
-<p><br />
-</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig7"></span>
-<img src="images4/bayes_2.jpg" alt="Espaço amostral e suas partições" width="80%" />
-<p class="caption">
-Figure 4.14: Espaço amostral e suas partições
-</p>
-</div>
-<p><br />
-</p>
-<p>E seja <span class="math inline">\(B\)</span> um evento qualquer em <span class="math inline">\(\Omega\)</span> como ilustrado na Figura <a href="teorema-de-bayes.html#fig:fig8">4.15</a></p>
-<p><br />
-</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig8"></span>
-<img src="images4/bayes_3.jpg" alt="Evento definido sobre o espaço amostral" width="80%" />
-<p class="caption">
-Figure 4.15: Evento definido sobre o espaço amostral
-</p>
-</div>
-<p><br />
-</p>
-<p>Delimitemos as interseções do evento <span class="math inline">\(B\)</span> com as partições <span class="math inline">\(E_{1}\)</span>, <span class="math inline">\(E_{2}\)</span>, <span class="math inline">\(E_{3}\)</span> e <span class="math inline">\(E_{4}\)</span> do espaço amostral <span class="math inline">\(\Omega\)</span>, como ilustrado na Figura <a href="teorema-de-bayes.html#fig:fig9">4.16</a></p>
-<p><br />
-</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig9"></span>
-<img src="images4/bayes_4.jpg" alt="Interseções das partições do espaço amostral com o evento B" width="80%" />
-<p class="caption">
-Figure 4.16: Interseções das partições do espaço amostral com o evento B
-</p>
-</div>
-<p><br />
-</p>
-<p>Isso pode ser estendido, em uma forma geral, para <span class="math inline">\(i=1, \dots, n\)</span> partições como ilustrado na Figura <a href="teorema-de-bayes.html#fig:fig10">4.17</a></p>
-<p><br />
-</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig10"></span>
-<img src="images4/bayes_5.jpg" alt="Interseções das n partições do espaço amostral com o evento B" width="80%" />
-<p class="caption">
-Figure 4.17: Interseções das n partições do espaço amostral com o evento B
-</p>
-</div>
-<p><br />
-</p>
-<p>Na representação esquemática da Figura <a href="teorema-de-bayes.html#fig:fig10">4.17</a> podemos identificar:</p>
-<p>\begin{itemize}</p>
-<p>1- <span class="math inline">\(E_{1}\)</span>, <span class="math inline">\(E_{2}\)</span>, , <span class="math inline">\(E_{i}\)</span>, , <span class="math inline">\(E_{n}\)</span> constituem-se em partições do espaço amostral <span class="math inline">\(\Omega\)</span>;<br />
-2- Todas as partições são mutuamente exclusivas: <span class="math inline">\(E_{i} \cap E_{j} = \varnothing\)</span>,<span class="math inline">\(\forall\)</span> <span class="math inline">\(i \neq j\)</span> (a interseção de quaisquer partições é vazia);<br />
-3- Sendo vazias as interseções entre quaisquer partições, o espaço amostral <span class="math inline">\(\Omega\)</span> será a simples união de todas elas: <span class="math inline">\(\Omega = E_{1} \cup E_{2} \cup E_{3} \cup E_{4}\cup \dots \cup E_{i} \dots \cup E_{n}\)</span>; e,<br />
-4- <strong>B</strong> é um evento qualquer definido sobre as partições de <span class="math inline">\(\Omega\)</span></p>
-<p><br />
-</p>
-<p>São conhecidas as probabilidades de ocorrência de cada um dos elementos do espaço amostral <span class="math inline">\(\Omega\)</span>:</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-P(E_{1}); P(E_{2}); P(E_{3}); \dots;P(E_{i}); \dots; P(E_{n})
-\]</span></p>
-<p><br />
-</p>
-<p>e também as probabilidades do evento <span class="math inline">\(B\)</span> condicionadas a cada elemento do espaço amostral:</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-P(B|E_{1}); P(B|E_{2});\dots;P(B|E_{i});\dots; P(B|E_{n})
-\]</span></p>
-<p><br />
-</p>
-<p>A <em>probabilidade de ocorrência</em> do evento B é dada pela soma das probabilidades de cada uma de suas interseções com os elementos do espaço amostral <span class="math inline">\(\Omega\)</span>:</p>
+<div id="modelos-téoricos-do-tempo-de-espera" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Modelos téoricos do tempo de espera<a href="modelos-téoricos-do-tempo-de-espera.html#modelos-téoricos-do-tempo-de-espera" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As distribuições do tempo de espera é outra importante classe de problemas associados com a quantidade de tempo que leva para a ocorrência de um evento específico de interesse. Dentro dessa classe de problemas se enquadram duas distribuições bastante conhecidas, são elas: geométrica e Geométrica negativa.</p>
+<div id="geométrica-1" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Geométrica<a href="modelos-téoricos-do-tempo-de-espera.html#geométrica-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Enquanto uma variável aleatória com distribuição Geométrica é uma variável que conta o número de sucessos ocorridos com a repetição de um experimento de Bernoulli (que apresenta duas possibilidades apenas) de modo independente, uma variável aleatória geométrica conta o número de tentativas até que <strong>se verifique o primeiro sucesso</strong>, atendendo também a:</p>
+<p> </p>
+<p>1- cada experimento é um ensaio de Bernoulli (só poderá haver dois resultados possíveis: sucesso ou fracasso);<br />
+2- cada repetição deve ter seu resultado independente do resuluado das demais;<br />
+3- a probabilidade de sucesso (<span class="math inline">\(p\)</span>) é constante para todas as repetições;<br />
+4- consequentemente, a probabilidade de fracasso (<span class="math inline">\(q=1-p\)</span>) também o é; e,<br />
+5- o experimento é repetido segue até que se verifique o primeiro sucesso.</p>
+<p> </p>
+<p>Considere o experimento aelatório de se lançar uma moeda <strong>não honesta</strong>, com probabilidade <span class="math inline">\(p\)</span> de ocorrência de <em>Cara</em> e <span class="math inline">\((1-p)\)</span> de ocorrência de <em>Coroa</em>. Se definimos nõsso evento de sucesso como sendo obter <em>Cara</em> no lançamento, quantos lançamentos serão necessários para se verificar a ocorrência de sucesso?</p>
+<p> </p>
+<p>Admita uma sequência de <span class="math inline">\(n\)</span> lançamentos: <em>{Coroa, Coroa, …, Coroa, Cara}</em> onde no <span class="math inline">\(n-ésimo\)</span> lançamento verificou-se o sucesso. Assim sendo, podemos definir <span class="math inline">\(j=(n-1)\)</span> como o número de tentativas <strong>anteriores</strong> fracassadas.</p>
+<p> </p>
+<p>Uma variável aleatória <span class="math inline">\(X\)</span> com Distribuição Geométrica, com parâmetro <span class="math inline">\(p\)</span> (<span class="math inline">\(0 \leq p \leq1\)</span>), é aquela que pode assumir <strong>infinitos valores numeráveis</strong> (<span class="math inline">\(j=0,1,2, .s, \infty\)</span>) para a quantidade <span class="math inline">\(j\)</span> de tentativas que <strong>precedem o primeiro sucesso</strong>, que será observado na tentativa seguinte (<span class="math inline">\(j+1\)</span>). Sua representação é <span class="math inline">\(X\sim Geo(p)\)</span> e sua função de probabilidade é:</p>
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-P(B) &amp; = P(E_{1} \cap B) + P(E_{2} \cap B) + \dots + P(E_{i} \cap B) + \dots  + P(E_{n} \cap B) \\
-P(B) &amp; = \sum _{i=1}^{n}P\left({E}_{i}\cap B\right)
+f(X=x; p) &amp; = P(X=j) = p . (1-p)^{j} \\
+f(X=x; p) &amp; = P(X=j) = p . q^{j}
 \end{align*}\]</span></p>
 <p><br />
 </p>
-<p>Pela <em>Regra do produto de eventos condicionados</em>, a probabilidade de ocorrência do evento <em>B}</em> <strong>posto</strong> ter ocorrido um evento <span class="math inline">\(E_{i}\)</span> é:</p>
+<p>O Modelo geométrico pode ser escrito sub uma “forma complementar”: o <strong>número de tentativas <span class="math inline">\(n\)</span> até se observar o primeiro sucesso</strong>, agora com <span class="math inline">\(x=n=1, 2, ...\)</span>.}.</p>
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-P(B|E_{i}) &amp; = \frac{P(E_{i}\cap B)}{P(E_{i})} \\
-P(E_{i}\cap B) &amp; = P(E_{i}) \times P(B|E_{i})
+f(X=x; p) &amp; = P(X=n) = p . (1-p)^{(n-1)} \\
+f(X=x; p) &amp; = P(X=n) = p . q^{(n-1)}  
 \end{align*}\]</span></p>
-<p><br />
-</p>
-<p>com <span class="math inline">\(P(E) &gt; 0\)</span></p>
-<p><br />
-</p>
-<p>Aplicando-se na expressão anteriormente desenvolvida da <em>probabilidade de ocorrência do evento B</em> teremos:</p>
-<p><br />
-<span class="math display">\[\begin{align*}
-P(B) &amp; = P(E_{1} \cap B) + P(E_{2} \cap B) + \dots + P(E_{i} \cap B) + \dots  + P(E_{n} \cap B) \\
-P(B) &amp; = P(E_{1}) \times P(B|E_{1}) + P(E_{2}) \times P(B|E_{2}) + \\
-    &amp; \dots +P(E_{i}) \times P(B|E_{i}) + \\
-    &amp; \dots  + P(E_{n}) \times P(B|E_{n})
-\end{align*}\]</span></p>
-<p><br />
-</p>
-<p>Portanto a <strong>probabilidade total</strong> do evento <em>B</em> em <span class="math inline">\(\Omega\)</span> é dada pelo somatório:</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-P(B) = \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\cdot P\left(B|{E}_{i}\right)\right]
-\]</span></p>
-<p><br />
-</p>
-<p>Pela <strong>Regra do produto de eventos condicionados</strong> a probabilidade de ocorrência de um evento <span class="math inline">\(E_{i}\)</span> posto ter ocorrido o evento <em>B</em> é:</p>
-<p><br />
-</p>
-<p><span class="math display">\[\begin{align*}
-P(E_{i}|B) &amp; = \frac{P(E_{i} \cap B)}{P(B)} \\
-P(E_{i} \cap B) &amp; = P(B) \times P(E_{k}|B) \\
-P(B) &amp; = \frac{P(E_{i}\cap B)}{P(E_{k}|B)}
-\end{align*}\]</span></p>
-<p><br />
-</p>
-<p>com <span class="math inline">\(P(B) &gt; 0\)</span></p>
-<p><br />
-</p>
-<p>Pela <strong>igualdade</strong> dos dois modos de se expressar a probabilidade total do evento <span class="math inline">\(B\)</span> desenvolvidos:</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-P(B) = \frac{P(E_{i}\cap B)}{P(E_{i}|B)}
-\]</span></p>
-<p><br />
-</p>
-<p>e</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-P(B) = \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\cdot P\left(B|{E}_{i}\right)\right]
-\]</span></p>
-<p><br />
-</p>
-<p>tem-se</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-\frac{P(E_{i}\cap B)}{P(E_{i}|B)}=\sum _{i=1}^{n}\left[P\left({E}_{i}\right)\cdot P\left(B|{E}_{i}\right)\right]
-\]</span></p>
-<p><br />
-</p>
-<p>Rearranjando-se em termos da expressão anterior para exprimir a probabilidade de ocorrência de um evento <span class="math inline">\(E_{i}\)</span> posto ter ocorrido o evento <em>B</em> chegamos a:</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-P(E_{i}|B) = \frac{P(E_{i}\cap B)}{\sum _{i=1}^{n}\left[P\left({E}_{i}\right)\cdot P\left(B|{E}_{i}\right)\right]}
-\]</span></p>
-<p><br />
-</p>
-<p>Sendo</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-P(E_{i} \cap B) = P(B) \times P(E_{i}|B)
-\]</span></p>
-<p><br />
-</p>
-<p>a expressão anterior pode ser reescrita como:</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-P(E_{i}|B) = \frac{ P(E_{i}) \times P(B|E{i})   }{  \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]  }
-\]</span></p>
-<p>uma forma mais geral do <strong>Teorema de Bayes</strong>.</p>
-<p><br />
-</p>
-<p>O Teorema de Bayes é também chamado de <em>Teorema da probabilidade a posteriori</em> ao nos permitir calcular <span class="math inline">\(P(E_{i}|B)\)</span> em termos da ocorrência <span class="math inline">\(P(B|E_{i})\)</span></p>
-<p><br />
-</p>
-<p>É, de certo modo, uma conjugação do <em>teorema na probabilidade total</em> e da <em>regra do produto</em> de probabilidades.</p>
-<p><br />
-</p>
-<p>O denominador:</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-P(B)=  \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]
-\]</span></p>
-<p><br />
-</p>
-<p>é a denominada <strong>probabilidade marginal</strong> de ocorrência do evento <span class="math inline">\(B\)</span> no espaço amostral <span class="math inline">\(\Omega\)</span> composto por <span class="math inline">\(n\)</span> elementos (partições).</p>
-<p><br />
-</p>
-<p>Na expressão do Teorema de Bayes:</p>
+<p> </p>
+<p>A esperança e a variância de uma variável aleatória discreta com Distribuição geométrica (<span class="math inline">\(X\sim Geo(p)\)</span>) são:</p>
 <p><br />
 </p>
 <ul>
-<li><span class="math inline">\(P(E_{k}|B)\)</span> é a denominada probabilidade <em>a posteriori</em> do evento <span class="math inline">\(E_{k}\)</span> condicionada pela ocorrência anterior do evento B;<br />
+<li>Esperança: <span class="math inline">\(E(X) = \frac{1}{p}\)</span><br />
 </li>
-<li><span class="math inline">\(P(E_{k})\)</span> é a denominada probabilidade <em>a priori</em> do evento <span class="math inline">\(E_{k}\)</span>;<br />
-</li>
-<li><span class="math inline">\(P(B|E_{k})\)</span> é a denominada probabilidade <em>a posteriori</em> do evento <span class="math inline">\(B\)</span> condicionada pela ocorrência anterior do evento <span class="math inline">\(E_{k}\)</span>;<br />
-</li>
-<li><span class="math inline">\(P(E_{i})\)</span> é a denominada probabilidade <em>a priori</em> de cada evento <span class="math inline">\(E_{i}\)</span>;<br />
-</li>
-<li><span class="math inline">\(P(B|E_{i})\)</span> é a denominada probabilidade <em>a posteriori</em> do evento <span class="math inline">\(B\)</span> condicionada pela ocorrência anterior de cada evento <span class="math inline">\(E_{i}\)</span>.</li>
+<li>Variância: <span class="math inline">\(Var(X) = \frac{(1-p)}{p^{2}} = \frac{q}{p^{2}}\)</span>.</li>
 </ul>
 <p><br />
 </p>
 <blockquote>
-<p>Exemplo: Constatou-se que o aumento nas vendas de um certo produto comercializado por uma empresa num mês pode ocorrer <strong>somente</strong> por uma das quatro causas mutuamente exclusivas a seguir:</p>
+<p>Lembrando que uma variável aleatória Geométrica é uma contagem de número de sucessos <span class="math inline">\(k\)</span> em <span class="math inline">\(n\)</span> tentativas de Bernoulli; ou seja, o número de tentativas <span class="math inline">\(n\)</span> é <strong>fixo</strong> e o número de sucessos <span class="math inline">\(k\)</span> é <strong>aleatório</strong>.</p>
 </blockquote>
 <p><br />
 </p>
-<p>1- ação de <em>marketing</em>;<br />
-2- propaganda;<br />
-3- flutuações na economia do país; ou,<br />
-4- efeitos sazonais.</p>
+<blockquote>
+<p>Já uma variável aleatória Geométrica é uma contagem do número de tentativas <span class="math inline">\(j\)</span> até se observar o primeiro sucesso; isto é, o número de sucessos <span class="math inline">\(k\)</span> é <strong>fixo</strong> e o número de tentativas <span class="math inline">\(j\)</span> é <strong>aleatório</strong>.</p>
+</blockquote>
 <p><br />
 </p>
-<p>A probabilidade de haver uma ação da empresa no mês focada para o <em>marketing</em> é de 40%; e para propaganda é de 30%; as probabilidades de ocorrerem flutuações na economia do país é de 20% e de efeitos sazonais é de 10%. Uma pesquisa mostrou que a probabilidade de haver um aumento nas vendas do produto devido a uma ação de <em>marketing</em> é de 7%; devido à publicidade, de 7,5%, por flutuações na economia do país, de 3% e por sazonalidade de 2%.</p>
+<p>Uma variável aleatória geométrica é definida como o número de tentativas até que o primeiro sucesso fosse encontrado e, como essas tentativas são independentes entre si; ie., a probabilidade <span class="math inline">\(p\)</span> não se altera em razão de terem sido realizadas tentativas anteriores, a contagem do número de tentativas até o próximo sucesso pode ser começada em qualquer tentativa sem alterar a distribuição de probabilidades da variável aleatória. A consequência de usar um modelo geométrico é que o sistema presumivelmente não será desgastado, a probabilidade permanece constante.</p>
 <p><br />
 </p>
-<p>Em um determinado mês a empresa observou um considerável incremento nas vendas. Qual seria sua causa mais provável? Qual a probabilidade de incremento das vendas em um certo mês?</p>
+<p>Nesse sentido à distribuição geométrica é dita <strong>faltar qualquer memória</strong>.</p>
 <p><br />
 </p>
-<p>Nosso experimento aleatório é a medida do <strong>incremento das vendas</strong> de um produto de uma certa empresa que ela o considera ser <strong>influenciado exclusivamente</strong> por quatro eventos - ações que ela pode adotar ou sofrer - independentes indicados como sendo:</p>
+<blockquote>
+<p>Exemplo: A probabilidade de que um <em>bit</em> transmitido através de um canal digital seja recebido <strong>com erro</strong> é de 0,1. Considere que as transmissões sejam eventos independentes e o erro relativamente raro. Uma variável aleatória discreta pode ser definida como <span class="math inline">\(X\sim Geo(p)\)</span>. Qual a probabilidade de que <strong>o primeiro erro</strong> na transmissão de um <em>bit</em> ocorra na <strong>quinta</strong> transmissão?</p>
+</blockquote>
 <p><br />
 </p>
-<p>1- <em>marketing</em>;<br />
-2- propaganda;<br />
-3- flutuações na economia; ou,<br />
-4- efeitos sazonais.</p>
-<p>Cada um deles possui uma <strong>intensidade diferente</strong>.</p>
+<p>Uma variável aleatória discreta com Distribuição geométrica pode ser definida para modelar a probabilidade desse experiment aleatório como <span class="math inline">\(X\sim Geo(p)\)</span>, onde <span class="math inline">\(p\)</span> é a probabilidade individual de sucesso (no nosso caso, que o _bitseja transmitido com erro).</p>
 <p><br />
 </p>
-<p>Da leitura do enunciado extraímos as probabilidades de ocorrência de cada um dos eventos influenciadores:</p>
+<p>Dados do problema:</p>
+<p>1- a probabilidade de ocorrência de um sucesso (aqui bem entendido como sendo a transmissão de um <em>bit</em> com erro) é <span class="math inline">\(p=0,1\)</span>; e,<br />
+2- a probabilidade pedida é a de se observar a ocorrência do primeiro sucesso com 5 repetições (bem entendido aqui que o número de tentativas <strong>sem se observar sucesso</strong> será <span class="math inline">\(j=4\)</span> e, em <span class="math inline">\(j+1=5\)</span> teremos sucesso).</p>
 <p><br />
 </p>
+<p><span class="math display">\[\begin{align*}
+f(X=x; p) &amp; = P(X=j) = (1-p)^{j} .  p \\
+P(X=4) &amp; = (1-0,1)^{4} . 0,1 \\
+P(X=4) &amp; = 0,0656
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>A probabilidade de que na <strong>quinta transmissão</strong> de um <em>bit</em> ocorra um erro é de 6,56%.</p>
+<p> </p>
+<blockquote>
+<p>Exemplo: Uma linha de produção está sendo analisada para fins de controle da qualidade das peças produzidas. Tendo em vista o alto padrão requerido, a produção é interrompida para regulagem <strong>toda vez que uma peça defeituosa é observada</strong>. Se 0,01 é a probabilidade da peça ser defeituosa, determine a probabilidade de ocorrer uma peça defeituosa entre a <span class="math inline">\(4^{a}\)</span> e <span class="math inline">\(6^{a}\)</span> peças produzidas.</p>
+</blockquote>
+<p> </p>
+<p>Uma variável aleatória discreta com Distribuição geométrica pode ser definida para modelar esse experimento aleatório como <span class="math inline">\(X\sim Geo(p)\)</span> onde <span class="math inline">\(p\)</span> é a probabilidade individual de sucesso (no caso, a produção de uma peça defeituosa). Pede-se a probabiidade de que essa ocorrência se verifique <strong>OU</strong> na quarta <strong>OU</strong> na quinta <strong>OU</strong> na setxa peça produzida.</p>
+<p><br />
+</p>
+<p>Dados do problema:</p>
 <ul>
-<li>Ação de <em>marketing</em> <span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(P(E_{1}) = 0,40\)</span>;<br />
+<li>a probabilidade de ocorrência de um sucesso (aqui bem entendido como sendo a produção de uma peça defeituosa) é <span class="math inline">\(p=0,01\)</span>; e,<br />
 </li>
-<li>Ação de propaganda <span class="math inline">\(\rightarrow\)</span> $P(E_{2}) = 0,30 $;<br />
-</li>
-<li>Flutuações na economia <span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(P(E_{3}) = 0,20\)</span>; ou,<br />
-</li>
-<li>Sazonalidade <span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(P(E_{4}) = 0,10\)</span>.</li>
+<li>a probabilidade pedida é a de se observar a ocorrência da produção da primeira peça defeituosa com 4, 5 <strong>OU</strong> 6 repetições.</li>
 </ul>
+<p>Assim sendo o número de tentativas <strong>sem se ter nenhuma peça produzida com defeito</strong> é de <span class="math inline">\(3 \leq j \leq 5\)</span> porque assim, em <span class="math inline">\(j+1\)</span>, teremos sucesso na quarta, quinta ou sexta peça produzidas.</p>
 <p><br />
 </p>
-<p>As probabilidades de incremento das vendas (<span class="math inline">\(B\)</span>) pela ocorrência dos eventos causadores são (<strong>posto ter ocorrido o evento <span class="math inline">\(E_{i}\)</span></strong>):</p>
-<p><br />
-</p>
-<ul>
-<li><span class="math inline">\(P(B|E_{1}) = 0,07\)</span> ;</li>
-<li><span class="math inline">\(P(B|E_{2}) = 0,075\)</span>;<br />
-</li>
-<li><span class="math inline">\(P(B|E_{3}) = 0,03\)</span>; e,<br />
-</li>
-<li><span class="math inline">\(P(B|E_{4}) = 0,02\)</span>.</li>
-</ul>
-<p><br />
-</p>
-<p>Para responder à indagação do problema ( <em>“Qual a causa mais provável?”</em>) podemos invertê-la e reformulá-la:</p>
-<p><br />
-</p>
-<p>“Qual a probabilidade de ter ocorrido cada um dos quatro eventos (<span class="math inline">\(E_{1}\)</span>, <span class="math inline">\(E_{2}\)</span>, <span class="math inline">\(E_{3}\)</span>, <span class="math inline">\(E_{4}\)</span>) <strong>posto</strong> (dado) ter ocorrido}** um incremento nas vendas”?</p>
-<p><br />
-</p>
-<p>Calculemos para cada um deles usando o Teorema de Bayes:</p>
-<p><br />
-</p>
+<p>Considerando-se que os eventos são disjuntos (ocorrerá na quarta, na quinta ou na sexta), probabilidade pedida será:</p>
 <p><span class="math display">\[
-P(E_{i}|B) = \frac{ P(E_{i}) \times P(B|E{i})   }{  \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]  }
+P(X=j)_{3 \leq j \leq 5}= P(X=3) + P(X=4) + P(X=5)
 \]</span></p>
 <p><br />
 </p>
-<p>Probabilidade da empresa ter realizado uma ação de <em>marketing</em>, <strong>posto</strong> ter ocorrido um incremento nas vendas de seu produto:</p>
+<p>A probabilidade de verificarnos sucesso na <span class="math inline">\(4^{a}\)</span> peça produzida (peça produzida com defeito) será:</p>
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-P(E_{1}|B) &amp;  = \frac{ P(E_{1}) \times P(B|E{1})   }{  \sum _{i=1}^{4}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right] } \\
-P(E_{1}|B) &amp; = \frac{0,40 \times 0,07} { (0,40 \times 0,07) + (0,30 \times 0,075) +(0,20 \times 0,03) +(0,10 \times 0,02) } \\
-P(E_{1}|B) &amp; = 0,478 \\
+f(X=x; p) &amp; = P(X=j) \\
+P(X=j)    &amp; = (1-p)^{j} . p  \\
+P(X=3)    &amp; = (1-0,01)^{3} . 0,01 \\
+P(X=3)    &amp; = 0,009702
 \end{align*}\]</span></p>
-<p><br />
-</p>
-<p>Probabilidade da empresa ter realizado propaganda, <strong>posto</strong> ter ocorrido um incremento nas vendas de seu produto:</p>
-<p><br />
-</p>
+<p> </p>
+<p>A probabilidade de verificarnos sucesso na <span class="math inline">\(5^{a}\)</span> peça produzida (peça produzida com defeito) será:</p>
 <p><span class="math display">\[\begin{align*}
-P(E_{2}|B) &amp;  = \frac{ P(E_{2}) \times P(B|E{2})   }{  \sum _{i=1}^{4}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]  }  \\
-P(E_{2}|B) &amp; = \frac{0,30 \times 0,075} { (0,40 \times 0,07) + (0,30 \times 0,075) +(0,20 \times 0,03) +(0,10 \times 0,02) } \\
-P(E_{2}|B) &amp; = 0,385
+f(X=x; p) &amp; = P(X=j) \\
+P(X=j)    &amp; = (1-p)^{j} . p \\
+P(X=4)    &amp; = (1-0,01)^{4} . 0,01 \\
+P(X=4)   &amp; = 0,009605
 \end{align*}\]</span></p>
-<p><br />
-</p>
-<p>Probabilidade da empresa ter ocorrido flutuações na economia}, <strong>posto</strong> ter ocorrido um incremento nas vendas de seu produto:</p>
-<p><br />
-</p>
+<p> </p>
+<p>A probabilidade de verificarnos sucesso na <span class="math inline">\(6^{a}\)</span> peça produzida (peça produzida com defeito) será:</p>
 <p><span class="math display">\[\begin{align*}
-P(E_{3}|B) &amp; = \frac{ P(E_{3}) \times P(B|E{3})   }{  \sum _{i=1}^{4}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]  } \\
-P(E_{3}|B) &amp; = \frac{0,20 \times 0,03} { (0,40 \times 0,07) + (0,30 \times 0,075) +(0,20 \times 0,03) +(0,10 \times 0,02) } \\
-P(E_{3}|B) &amp; = 0,103
+f(X=x; p) &amp; = P(X=j) \\
+P(X=j)   &amp; = (1-p)^{k} . p \\
+P(X=5)    &amp; = (1-0,01)^{5} . 0,01 \\
+P(X=5)    &amp; = 0,009809    
 \end{align*}\]</span></p>
 <p><br />
 </p>
-<p>Probabilidade da empresa ter ocorrido efeitos sazonais, <strong>posto</strong> ter ocorrido um incremento nas vendas de seu produto:</p>
-<p><br />
-<span class="math display">\[\begin{align*}
-P(E_{4}|B) &amp; = \frac{ P(E_{4}) \times P(B|E{4})   }{  \sum _{i=1}^{4}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]  } \\
-P(E_{4}|B) &amp; = \frac{0,10 \times 0,02} { (0,40 \times 0,07) + (0,30 \times 0,075) +(0,20 \times 0,03) +(0,10 \times 0,02) } \\
-P(E_{4}|B) &amp; = 0,034
+<p>A probabilidade de termos uma peça na quarta <strong>OU</strong> na quinta <strong>OU</strong> na sexta das peças produzidas será:</p>
+<p><span class="math display">\[\begin{align*}
+P(3 \leq j \leq 5)  &amp;  = P(X=3) + P(X=4) + P(X=5) \\
+P(3 \leq j \leq 5)  &amp;  = 0,009702) + 0,009605 + 0,009809 \\
+P(3 \leq j \leq 5)  &amp;  = 0,029116
 \end{align*}\]</span></p>
 <p><br />
 </p>
-<p>Respostas:</p>
+<p>A probabilidade de termos uma na quarta <strong>OU</strong> na quinta <strong>OU</strong> na sexta das peças produzidas é de 2,9116%.</p>
 <p><br />
 </p>
-<p>1- Os cálculos indicam que o evento mais provável pelo incremento das vendas observado naquele mês foi o de uma <strong>ação de marketing</strong>;<br />
-2- A probabilidade de incremento das vendas em um determinado mês como resultado dos quatro possíveis eventos indicados é o <strong>próprio denominador do Teorema de Bayes</strong>: 0,058.</p>
 <blockquote>
-<p>Exemplo: Considere 5 urnas, cada uma delas contendo 6 bolas. Duas dessas urnas (urnas tipo <span class="math inline">\(C_{1}\)</span>) possuem 3 bolas brancas em seu interior. Duas outras (urnas tipo <span class="math inline">\(C_{2}\)</span>) possuem 2 bolas brancas em seu interior e a última (urnas tipo <span class="math inline">\(C_{3}\)</span>) possui 6 bolas brancas em seu interior (cf. Figura <a href="teorema-de-bayes.html#fig:fig11">4.18</a>).</p>
+<p>Exemplo 9 A probabilidade de um alinhamento ótico bem sucedido na montagem de produto de armazenamento de dados é de 0,80. Assuma que as tentativas são independentes e responda:
+1- Qual é a probabilidade de que o primeiro alinhamento bem sucedido requeira exatamente quatro tentativas?<br />
+2- Qual é a probabilidade de que o primeiro alinhamento bem sucedido requeira no máximo quatro tentativas?<br />
+3- Qual é a probabilidade de que o primeiro alinhamento bem sucedido requeira ao menos quatro tentativas?</p>
 </blockquote>
 <p><br />
 </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig11"></span>
-<img src="images4/exemplo_02_bayes.jpg" alt="Cinco urnas cada uma com 6 bolas em cores de diferentes quantidades da cor branca" width="50%" />
-<p class="caption">
-Figure 4.18: Cinco urnas cada uma com 6 bolas em cores de diferentes quantidades da cor branca
+<p>Uma variável aleatória discreta com Distribuição geométrica pode ser definida para modelar esse experimento aleatório como <span class="math inline">\(X\sim Geo(p)\)</span> onde <span class="math inline">\(p\)</span> é a probabilidade individual de sucesso .</p>
+<p><br />
 </p>
+<p>Dados do problema:</p>
+<ul>
+<li>a probabilidade de ocorrência de um sucesso (alinhamento ótico bem sucedido na montagem de produto de armazenamento de dados) é <span class="math inline">\(p=0,80\)</span>;<br />
+</li>
+<li>o item (1) pede a probabilidade de verificar o primeiro sucesso com exatamente <strong>quatro repetições</strong>; assim, o número de tentativas <strong>sem se observar sucesso</strong> é <span class="math inline">\(j=3\)</span> (em <span class="math inline">\(j+1=4\)</span> verifica-se sucesso);<br />
+</li>
+<li>o item (2) pede a probabilidade de se verificar o primeiro sucesso com <strong>no máximo</strong> quatro repetições; assim, o número de tentativas <strong>sem se observar</strong> sucesso é de <span class="math inline">\(0 \leq j \leq 3\)</span> (em <span class="math inline">\(j+1\)</span> teremos sucesso: no primeiro <strong>OU</strong> no segundo <strong>OU</strong> no terceiro <strong>OU</strong> no quarto alinhamentos realizados); e,<br />
+</li>
+<li>o item (3) pede a probabilidade de se observar o primeiro sucesso com <strong>no mínimo quatro</strong> repetições; assim, o número de tentativas <strong>sem se observar sucesso</strong> é de $3 j $ (em <span class="math inline">\(j+1\)</span> teremos sucesso: no quarto <strong>OU* no quinto </strong>OU** sexto .s, alinhamentos realizados).</li>
+</ul>
+<p> </p>
+<p>Para o item (1) a probabilidade de termos a ocorrência de um sucesso (ou seja, um alinhamento ótico bem sucedido) na <span class="math inline">\(4^{a}\)</span> montagem será:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+f(X=x; p) &amp; = P(X=j) \\
+P(X=j)  &amp; = (1-p)^{j} . p \\
+P(X=3) &amp; = (1-0,80)^{3} . 0,20 \\
+P(X=3) &amp; = 0,0064
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Para o item (2) considerando-se que as repetições são independentes, a probabilidade pedida será:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(X=j)_{0 \leq j \leq 3} = P(X=0) + P(X=1) + P(X=2) + P(X=3)
+\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+f(X=x; p) &amp; = P(X=j) \\
+P(X=j) &amp; =  (1-p)^{j} . p \\
+P(X=0) &amp; =  (1-0,80)^{0} . 0,20 \\
+P(X=0) &amp;  =  0,80
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+f(X=x; p) &amp; =  P(X=j) \\
+P(X=j) &amp; =  (1-p)^{j} . p \\
+P(X=1) &amp; =  (1-0,80)^{1} . 0,20 \\
+P(X=1) &amp; = 0,16
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+f(X=x; p) &amp; =   P(X=j) \\
+P(X=j) &amp; =  (1-p)^{j} . p \\
+P(X=2) &amp; =  (1-0,80)^{2} . 0,20 \\
+P(X=2) &amp; = 0,032
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+f(X=x; p) &amp; =  P(X=j) \\
+P(X=j) &amp; =  (1-p)^{j} . p \\
+P(X=3) &amp; =  (1-0,80)^{3} . 0,20 \\
+P(X=3) &amp; = 0,0064
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>A probabilidade pedida é de:</p>
+<p><span class="math display">\[\begin{align*}
+P(X=j)_{0 \leq j \leq 3} &amp; = P(X=0) + P(X=1) + P(X=2) + P(X=3) \\
+P(X=j)_{0 \leq j \leq 3} &amp; =  0,9984
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Para o item (3) considerando-se que os eventos pedidos são disjuntos a probabiildade pedida deverá ser calculada a partir do complemento da probabilidade total menos os eventos que não são de interesse:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(X=j)_{3 \leq j \leq \infty} = 1 - P(X=0) + P(X=1) + P(X=2)
+\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+f(X=x; p) &amp; =  P(X=j) \\
+P(X=j) &amp; = (1-p)^{j} . p \\
+P(X=0) &amp; = (1-0,80)^{0} . 0,20 \\
+P(X=0) &amp; =  0,80
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+f(X=x; p) &amp; =  P(X=j) \\
+P(X=j) &amp; =  (1-p)^{j} . p \\
+P(X=1) &amp; =  (1-0,80)^{1} . 0,20 \\
+P(X=1) &amp; =  0,16
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+f(X=x; p) &amp; =   P(X=j) \\
+P(X=j) &amp; =  (1-p)^{j} . p \\
+P(X=2) &amp; =  (1-0,80)^{2} . 0,20 \\
+P(X=2) &amp; =  0,032
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>A probabilidade é de:</p>
+<p><span class="math display">\[\begin{align*}
+P(X=j)_{3 \leq j \leq \infty} &amp;  =  1 - P(X=0) + P(X=1) + P(X=2) \\
+P(X=j)_{3 \leq j \leq \infty} &amp;  = 1 - (0,80 + 0,16 + 0,032) \\
+P(X=j)_{3 \leq j \leq \infty} &amp;  = 0,008
+\end{align*}\]</span></p>
 </div>
+<div id="binomial-negativa" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Binomial Negativa<a href="modelos-téoricos-do-tempo-de-espera.html#binomial-negativa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><br />
 </p>
-<p>Escolhida aleatoriamente uma urna retira-se uma bola. Qual a probabilidade da urna escolhida ter sido a urna <span class="math inline">\(C_{3}\)</span> <strong>sabendo-se que a bola retirada foi branca</strong>}?</p>
+<p>Uma variável aleatória discreta que segue uma distribuição Binomial Negativa (também conhecida como de Distribuição de Pascal em homenagem ao matemático francês Blaise Pascal) pode ser considerada como uma generalização da variável Geométrica, na qual agora é considerada a situação em que se modelam as probabilidades de se verificar mais de um evento de sucesso.</p>
 <p><br />
 </p>
-<p><strong>Desejamos determinar</strong> <span class="math inline">\(P(C_{3} | Branca)\)</span></p>
+<p>Ao se realizar repetidos experimentos de Bernoulli, uma variável aleatória Binomial Negativa modela as probabilidades relacionadas ao número de repetições necessárias para se observar <span class="math inline">\(r\)</span> sucessos.</p>
 <p><br />
 </p>
-<p>Da leitura do enunciado extraímos as seguintes informações:</p>
+<p>Um experimento que apresenta uma distribuição Binomial Negativa satisfaz aos seguintes pressupostos:</p>
+<p><br />
+</p>
+<p>1- cada repetição é um ensaio de Bernoulli (só poderá haver dois resultados possíveis: sucesso ou fracasso);<br />
+2- cada repetição não altera a probabilidad das demais (há independência);<br />
+3- a probabilidade de sucesso (<span class="math inline">\(p\)</span>) em cada repetição é constante;<br />
+4- consequentemente, a probabilidade de fracasso (<span class="math inline">\(q=1-p\)</span>) em cada repetição também é constante; e,<br />
+5- o experimento aleatório prossegue até que sejam verificados <span class="math inline">\(r\)</span> sucessos.</p>
+<p>Considere o experimento aelatório de se lançar uma moeda <strong>não honesta</strong>, com probabilidade <span class="math inline">\(p\)</span> de ocorrência de <em>Cara</em> e <span class="math inline">\((1-p)\)</span> de ocorrência de <em>Coroa</em>. Se definimos nosso evento de sucesso como sendo obter <em>Cara</em> no lançamento, quantos lançamentos serão necessários para serão necessários para se observar <span class="math inline">\(r\)</span> <em>Caras</em>?</p>
+<p><br />
+</p>
+<p>Se arbitramos <span class="math inline">\(r=3\)</span> e observarmos a sequência: <em>{Cara, Coroa, Coroa, Cara, Coroa, Coroa, Cara}</em>, então <span class="math inline">\(n=7\)</span>: foram necessárias sete repetições até que três <em>Caras</em> fosse observadas.</p>
+<p><br />
+</p>
+<p>A notação de uma variável aleatória Binomial Negativa é <span class="math inline">\(X\sim bn(p,r)\)</span>, onde o parâmetro <span class="math inline">\(p\)</span> (<span class="math inline">\(0 \leq p \leq1\)</span>) indica a probabilidade individual de sucesso a cada repetição de Bernoulli e <span class="math inline">\(r\)</span> o número total de sucessos desejado (estabelecido <em>a priori</em>).</p>
+<p><br />
+</p>
+<p>Sua função discreta de probabilidade calcula a probabilidade de se observar um total de <span class="math inline">\(r\)</span> sucessos (estabelecido <em>a priori</em>) após <span class="math inline">\(n\)</span> de ensaios de Bernoulli realizados é a seguinte:</p>
+<p><span class="math display">\[\begin{align*}
+f(X=x; p; r) &amp; = P(X=n) = {C}_{r-1}^{n-1} . {p}^{r} . {q}^{(n-r)} \\
+f(X=x; p; r) &amp; = \frac{(n-1)!}{ (r-1)!. (n-r-2)!} . {p}^{r}. {q}^{(n-r)}
+\end{align*}\]</span></p>
+<p>Pela razão óbvia de se necessitar no mínimo <span class="math inline">\(r\)</span> tentativas para se obter <span class="math inline">\(r\)</span> sucessos, a faixa de <span class="math inline">\(x=n={r, r+1, r+2 ...}\)</span>).</p>
+<p><br />
+</p>
+<p>A esperança e a variância de uma variável aleatória discreta com Distribuição Binomial Negativa são:</p>
+<ul>
+<li>Esperança: <span class="math inline">\(E(X) = \frac{r}{p}\)</span> ;<br />
+</li>
+<li>Variância: <span class="math inline">\(Var(X) = \frac{r \times (1-p)}{p^{2}} = \frac{q \times r}{p^{2}}\)</span>.</li>
+</ul>
+<p><br />
+</p>
+<blockquote>
+<p>Uma variável aleatória Binomial é uma contagem de número de sucessos <span class="math inline">\(k\)</span> em <span class="math inline">\(n\)</span> tentativas de Bernoulli; ou seja, o número de tentativas <span class="math inline">\(n\)</span> é predeterminado (fixo) e o número de sucessos <span class="math inline">\(k\)</span> é aleatório e em <span class="math inline">\(n\)</span> tentativas a probabilidade de se observar <span class="math inline">\(k\)</span> sucessos é medida pela sua função de distribuição discreta de probabilidades.</p>
+</blockquote>
+<blockquote>
+<p>Uma variável aleatória Binomial Negativa é uma contagem do número de tentativas até se obter <span class="math inline">\(r\)</span> sucessos; isto é, o número de sucessos <span class="math inline">\(r\)</span> é predeterminado (fixo) e o número de tentativas é aleatório e a probabilidade de se observar <span class="math inline">\(r\)</span> sucessos a cada <span class="math inline">\(n\)</span> tentativas é calculada por sua função de distribuição discreta de probabilidades.</p>
+</blockquote>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: A probabilidade com que um <em>bit</em> transmitido através de um canal digital de transmissão seja recebido com erro é de 0,1 e que as transmissões sejam eventos independentes. Qual a probabilidade de que nas dez primeiras transmissões ocorram quatro erros?</p>
+</blockquote>
+<p><br />
+</p>
+<p>Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse experiment aleatório, tal que <span class="math inline">\(X\sim bn(p,r)\)</span> onde <span class="math inline">\(p\)</span> é a probabilidade individual de sucesso e <span class="math inline">\(r\)</span> o total de sucessos.</p>
+<p><br />
+</p>
+<p>Dados do problema:</p>
+<p><br />
+</p>
+<p>1- a probabilidade de ocorrência de um sucesso (aqui bem entendido como sendo a recepção errada de um <em>bit</em> transmitido) é <span class="math inline">\(p=0,1\)</span>; e,<br />
+2- o número de sucessos (aqui bem entendido como sendo a recepção errada de um <em>bit</em> transmitido) está definido <em>a priori</em> <span class="math inline">\(r=4\)</span>.</p>
+<p><br />
+</p>
+<p>Pede-se a probabilidade de se observar <strong>quatro</strong> sucessos (<span class="math inline">\(r=4\)</span>) em <strong>dez</strong> (<span class="math inline">\(n=10\)</span>) transmissões.</p>
+<p><br />
+</p>
+<p>A probabilidade de se obter <span class="math inline">\(r=4\)</span> sucessos ao se realizar <span class="math inline">\(n=10\)</span> tentativas é dada pela função discreta de probabilidade da variável aleatória Binomial Negativa:</p>
+<p><span class="math display">\[\begin{align*}
+f(X=x; p; r) = P(X=n) &amp; = {C}_{r-1}^{n-1} . {p}^{r}. {q}^{n-r} \\
+f(X=x; p; r) = P(X=n) &amp; = \frac{(n-1)!}{ (r-1)!. (n-r-2)!} . {p}^{r}. {q}^{n-r} \\
+f(X=10; p=0,10 ; r=4) = P(X=10) &amp; = \frac{(10-1)!}{ (4-1)!. (10-4-2)!} . {0,1}^{4}. {0,9}^{10-4} \\
+P(X=10) &amp; = 0,004464104
+\end{align*}\]</span></p>
+<p>A probabilidade de se observar 4 sucessos em 10 tentativas é de 0,4464104%.</p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo 11: Bob é um jogador de basquete de uma escola. Ele é um lançador de arremessos livres e sua probabilidade de acertar é igual a 70%. Durante uma partida qualquer, qual a probabilidade de que Bob acerte seu <strong>terceiro</strong> arremesso livre na seu <strong>quinta</strong> tentativa?</p>
+</blockquote>
+<p><br />
+</p>
+<p>Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse experimento aleatório tal que <span class="math inline">\(X\sim bn(p,r)\)</span> onde <span class="math inline">\(p\)</span> é a probabilidade individual de sucesso e <span class="math inline">\(r\)</span> o total de sucessos.</p>
+<p><br />
+</p>
+<p>Dados do problema:</p>
+<p><br />
+</p>
+<p>1- a probabilidade de ocorrência de um sucessoé <span class="math inline">\(p=0,70\)</span>, e<br />
+2- o número de sucessos fixado <em>a priori</em> é <span class="math inline">\(r=3\)</span>.</p>
+<p><br />
+</p>
+<p>Pede-se a probabilidade de se observar três sucessos em 5 arremessos <span class="math inline">\(n=5\)</span>.</p>
+<p><br />
+</p>
+<p>A probabilidade de se obter <span class="math inline">\(r=3\)</span> sucessos ao se realizar <span class="math inline">\(n=5\)</span> tentativas é dada pela função discreta de probabilidade da variável Binomial Negativa:</p>
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-P(C_{1}) &amp; = \frac{2}{5} \\
-P(C_{2}) &amp; = \frac{2}{5} \\
-P(C_{3}) &amp; = \frac{1}{5} \\
-P(Branca | C_{1}) &amp; = \frac{1}{2} \\
-P(Branca | C_{2}) &amp; = \frac{1}{3} \\
-P(Branca | C_{3}) &amp; = 1
+f(X=x; p; r) = P(X=n) &amp; = {C}_{r-1}^{n-1} . {p}^{r}. {q}^{n-r} \\
+f(X=x; p; r) = P(X=n) &amp; = \frac{(n-1)!}{ (r-1)!. (n-r-2)!} . {p}^{r}. {q}^{n-r} \\
+f(X=5; p=0,70 ; r=3) = P(X=5) &amp; = \frac{(5-1)!}{ (3-1)!. (5-3-2)!} . {0,70}^{3}. {0,9}^{5-3} \\
+P(X=5) &amp; = 0,18522
+\end{align*}\]</span></p>
+<p>A probabilidade de Bob acertar 3 arremessos em 5 tentativas é de 18,522%.</p>
+<p><br />
+</p>
+<blockquote>
+<p>{Exemplo: Lançamos repetidas vezes uma moeda. Seja <span class="math inline">\(X\)</span> o número de caras até que consigamos sete coroas. Qual é a probabilidade de que o número de caras seja igual a cinco até que consigamos as sete coroas?</p>
+</blockquote>
+<p><br />
+</p>
+<p>Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse fenômeno como <span class="math inline">\(X\sim bn(p,r)\)</span> onde <span class="math inline">\(p\)</span> é a probabilidade individual de sucesso e <span class="math inline">\(r\)</span> o total de sucessos.</p>
+<p> </p>
+<p>Dados do problema:</p>
+<p><br />
+</p>
+<ul>
+<li>a probabilidade de ocorrência de um sucesso é <span class="math inline">\(p=0,5\)</span>, e,<br />
+</li>
+<li>o número de sucessos fixado <em>a priori</em> é <span class="math inline">\(r=7\)</span>.</li>
+</ul>
+<p><br />
+</p>
+<p>Pede-se a probabilidade de se observar sete sucessos em doze (5+7) tentativas <span class="math inline">\(n=12\)</span>.</p>
+<p><br />
+</p>
+<p>A probabilidade de se obter <span class="math inline">\(r=7\)</span> sucessos ao se realizar <span class="math inline">\(n=12\)</span> tentativas é dada pela função discreta de probabilidade da variável Binomial Negativa:</p>
+<p><span class="math display">\[\begin{align*}
+f(X=x; p; r) = P(X=n) &amp; = {C}_{r-1}^{n-1} . {p}^{r}. {q}^{n-r} \\
+f(X=x; p; r) = P(X=n) &amp; = \frac{(n-1)!}{ (r-1)!. (n-r-2)!} . {p}^{r}. {q}^{n-r} \\
+f(X=5; p=0,50 ; r=7) = P(X=12) &amp; = \frac{(12-1)!}{ (7-1)!. (12-7-2)!} . {0,50}^{7}. {0,50}^{12-7} \\
+P(X=5) &amp; = 0,1128
+\end{align*}\]</span></p>
+<p>A probabilidade de se obter 7 sucessos em 12 tentativas é de 11,28%.</p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Considere o tempo para recarregar o flash de uma câmera de celular. Assuma que a probabilidade de que uma câmera instalada no celular durante sua montagem passe no teste seja de 0.80 e que cada câmera é montada de modo que a probabilidade não se altere (independência). Determine as seguintes probabilidades:
+1- de que a segunda falha ocorra na décima câmera testada;
+2- de que a segunda falha ocorra no teste de quatro ou menos câmeras; e,<br />
+3- o valor esperado do número de câmeras testadas para obter a terceira falha.</p>
+</blockquote>
+<p><br />
+</p>
+<p>Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse experimento aleatório tal que <span class="math inline">\(X\sim bn(p,r)\)</span> onde <span class="math inline">\(p\)</span> é a probabilidade individual de sucesso e <span class="math inline">\(r\)</span> o total de sucessos.</p>
+<p><br />
+</p>
+<p>Dados do problema:</p>
+<p><br />
+</p>
+<ul>
+<li>probabilidade de que a câmera montada no celular passe no teste é <span class="math inline">\(p=0,80\)</span>; logo, a probabilidade de não passar será de (<span class="math inline">\(q=1-0,80\)</span>) <span class="math inline">\(=0,20\)</span>;<br />
+</li>
+<li>fica bem entendido que o <strong>sucesso</strong> é a câmera montada no celular <strong>não passar</strong> no teste, logo <span class="math inline">\(p=0,20\)</span>;<br />
+</li>
+<li>no item (1) pede-se a probabilidade de se observar um número de sucessos fixado <em>a priori</em> <span class="math inline">\(r=2\)</span> em <span class="math inline">\(n=10\)</span>;<br />
+</li>
+<li>no item (2) pede-se a probabilidade de se observar um número de sucessos também fixado <em>a priori</em> em <span class="math inline">\(r=2\)</span> mas agora em <span class="math inline">\(n \leq 4\)</span> câmeras testadas; e,<br />
+</li>
+<li>o valor esperado para o número de câmeras testadas (<span class="math inline">\(n=?\)</span>) para que se observem <span class="math inline">\(r=3\)</span> sucessos.</li>
+</ul>
+<p><br />
+</p>
+<p>A probabilidade de se obter <span class="math inline">\(r=2\)</span> sucessos ao se realizar <span class="math inline">\(n=10\)</span> tentativas é dada pela função discreta de probabilidade da variável Binomial Negativa:</p>
+<p><span class="math display">\[\begin{align*}
+f(X=x; p; r) = P(X=n) &amp; = {C}_{r-1}^{n-1} . {p}^{r}. {q}^{n-r} \\
+f(X=10; p=0,20 ; r=2) = P(X=10) &amp; = {C}_{2-1}^{10-1} . {0,20}^{2}. {0,80}^{10-2} \\
+P(X=10) &amp; = 0,06039
+\end{align*}\]</span></p>
+<p>A probabilidade de se obter <span class="math inline">\(r=2\)</span> sucessos em <span class="math inline">\(n=10\)</span> tentativas é de 6,039%.</p>
+<p><br />
+</p>
+<p>As probabilidades de se obter <span class="math inline">\(r=2\)</span> sucessos ao se realizar <span class="math inline">\(n \leq 4\)</span> tentativas é dada pela função discreta de probabilidade da variável Binomial Negativa aplicada a:</p>
+<p><span class="math display">\[\begin{align*}
+f(X=x; p; r) = P(X=n) &amp; = {C}_{r-1}^{n-1} . {p}^{r}. {q}^{n-r} \\
+f(X=2; p=0,20 ; r=2) = P(X=2)  &amp; = {C}_{2-1}^{2-1} . {0,20}^{2}. {0,80}^{2-2} \\
+P(X=2) &amp; = 0,04
 \end{align*}\]</span></p>
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-P(C_{3} | Branca) &amp; = \frac{ P(C_{3}) \times P(Branca | C_{3})  }{  \sum _{i=1}^{3}\left[P\left({C}_{i}\right)\times P\left(Branca | {C}_{i}\right)\right]  } \\
-P(C_{3} | Branca) &amp; = \frac{ 0,20 \times 1,00} { (0,40  \times 0,50 ) + (0,40 \times 0,33 ) +(0,20 \times 1,00)} \\
-P(C_{3} | Branca) &amp; = 0,375
+f(X=x; p; r) = P(X=n) &amp; = {C}_{r-1}^{n-1} . {p}^{r}. {q}^{n-r} \\
+f(X=3; p=0,20 ; r=2) = P(X=2) &amp; = {C}_{2-1}^{3-1} . {0,20}^{2}. {0,80}^{3-2} \\
+P(X=3) &amp; = 0,064
 \end{align*}\]</span></p>
 <p><br />
 </p>
+<p><span class="math display">\[\begin{align*}
+f(X=x; p; r) = P(X=n) &amp; = {C}_{r-1}^{n-1} . {p}^{r}. {q}^{n-r} \\
+f(X=4; p=0,20 ; r=2) = P(X=2) &amp; = {C}_{2-1}^{4-1} . {0,20}^{2}. {0,80}^{4-2} \\  
+P(X=4) &amp; = 0,0768
+\end{align*}\]</span></p>
+<p>A probabilidade de se obter <span class="math inline">\(r=2\)</span> sucessos em <span class="math inline">\(n \leq 4\)</span> tentativas é de (<span class="math inline">\(0,032+0,064+0,0768\)</span>) 18,08%.</p>
+<p><br />
+</p>
+<p>O valor esperado (esperança) do número de câmeras testadas para que se observem <span class="math inline">\(r=3\)</span> sucessos é dado</p>
+<p><span class="math display">\[\begin{align*}
+E(X) &amp;  = \frac{r}{p} \\
+E(X) &amp; = \frac{3}{0,2} \\
+     &amp; =15
+\end{align*}\]</span></p>
+<p>O valor esperado (esperança) do número <span class="math inline">\(n\)</span> de câmeras testadas para que se observem <span class="math inline">\(r=3\)</span> sucessos é 15</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="probabilidade-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="demonstração-clássica-de-independência.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="modelos-teóricos-discretos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modelos-teóricos-contínuos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -722,7 +787,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-probabilidade.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-modelos_probabilidade.Rmd",
 "text": "Edit"
 },
 "history": {

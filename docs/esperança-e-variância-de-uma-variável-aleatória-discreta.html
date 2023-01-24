@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 12 - Introdução ao modelo clássico de regressão linear simples | apostila.knit</title>
+  <title>5.3 Esperança e variância de uma variável aleatória discreta | apostila.knit</title>
   <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 12 - Introdução ao modelo clássico de regressão linear simples | apostila.knit" />
+  <meta property="og:title" content="5.3 Esperança e variância de uma variável aleatória discreta | apostila.knit" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
   <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 12 - Introdução ao modelo clássico de regressão linear simples | apostila.knit" />
+  <meta name="twitter:title" content="5.3 Esperança e variância de uma variável aleatória discreta | apostila.knit" />
   
   <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="teste_hipoteses.html"/>
-<link rel="next" href="disc_fisher.html"/>
+<link rel="prev" href="função-de-densidade-de-probabilidade.html"/>
+<link rel="next" href="esperança-e-variância-de-uma-variável-aleatória-contínua.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -282,17 +282,241 @@ Prof. M.e Eng. Felinto Junior Da Costa</div></a>
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="reg_simples" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">Capítulo 12</span> - Introdução ao modelo clássico de regressão linear simples<a href="reg_simples.html#reg_simples" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-
+<div id="esperança-e-variância-de-uma-variável-aleatória-discreta" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Esperança e variância de uma variável aleatória discreta<a href="esperança-e-variância-de-uma-variável-aleatória-discreta.html#esperança-e-variância-de-uma-variável-aleatória-discreta" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p> </p>
+<p>Coletando-se dados podemos analisá-los, por exemplo, em termos de sua distribuição, pelas estatísticas da média e variância.</p>
+<p>De maneira análoga procedemos com variáveis aleatórias (discretas ou contínuas) onde dispomos das <em>probabilidades</em> de ocorrência associadas a cada um dos valores (discretos ou infinitos numeráveis) que ela pode assumir.</p>
+<p><br />
+</p>
+<p>A <em>esperança matemática</em> (valor esperado ou expectância) de uma variável aleatória discreta é dada pela <em>somatória do produto</em> de cada um dos valores que ela pode assumir pela probabilidade associada a cada um desses valores.</p>
+<p><br />
+</p>
+<p>Seja <span class="math inline">\(X\)</span> uma variável aleatória discreta que pode assumir os valores <span class="math inline">\(x_{1},x_{2}, \dots x_{n}\)</span>; e sejam <span class="math inline">\(P_{1},P_{2}, \dots, P_{n}\)</span> as respectivas probabilidades associadas às suas ocorrências.</p>
+<p><br />
+</p>
+<p>A esperança da variável <span class="math inline">\(X\)</span>, denotada por <span class="math inline">\(E(X)\)</span> será:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+E\left(X\right)=\sum _{i=1}^{n}{x}_{i}.{P}_{i}
+\]</span></p>
+<p><br />
+</p>
+<p>Com <em>n</em> sendo o número de possíveis resultados que a variável <span class="math inline">\(X\)</span> pode assumir.</p>
+<p><br />
+</p>
+<p>A expressão anterior é semelhante àquela usada para se calcular a média para frequências de dados sendo que agora, no lugar de se utilizar a frequência relativa a cada dado observado, temos as probabilidades dadas por um modelo teórico pressuposto.</p>
+<p><br />
+</p>
+<p>Algumas propriedades envolvendo a esperança:</p>
+<p> <br />
+1- Se <span class="math inline">\(c\)</span> é uma contante qualquer, então: <span class="math inline">\(E(c) = c\)</span> (<span class="math inline">\(c \in \mathbb{R}\)</span>);<br />
+2- Se <span class="math inline">\(c\)</span> é uma contante qualquer, então: <span class="math inline">\(E(c X) = c . E(X)\)</span> (<span class="math inline">\(c \in \mathbb{R}\)</span>);<br />
+3- Se <span class="math inline">\(c\)</span> é uma contante qualquer, então: <span class="math inline">\(E(X \frac{+}{-} c) = E(X) \frac{+}{-} c\)</span> (<span class="math inline">\(c \in \mathbb{R}\)</span>);<br />
+4- Se <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> são duas variáveis aleatórias quaisquer, então: <span class="math inline">\(E(X +/- Y) = E(X) +/- E(Y)\)</span>;<br />
+5- Se <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> são duas variáveis aleatórias independentes quaisquer, então: <span class="math inline">\(E(X . Y) = E(X). E(Y)\)</span>.</p>
+<p><br />
+</p>
+<p>A variância de uma variável aleatória qualquer <span class="math inline">\(X\)</span>, denotada por <span class="math inline">\(Var(X)\)</span>, será dada por:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+Var\left(X\right) &amp; = E(X^{2}) - [E(X)]^{2} \\
+Var\left(X\right) &amp; = \sum_{i=1}^{n} [{x}_{i} - E(X)]^{2}.{P}_{i}
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Algumas propriedades envolvendo a variância:</p>
+<p> </p>
+<p>1- Se <span class="math inline">\(c\)</span> é uma contante qualquer, então: <span class="math inline">\(Var(c)=0\)</span> (<span class="math inline">\(c\in\mathbb{R}\)</span>);</p>
+<p>2- Se <span class="math inline">\(c\)</span> é uma contante qualquer, então: <span class="math inline">\(Var(cX)=c^{2}.Var(X)\)</span> (<span class="math inline">\(c\in\mathbb{R}\)</span>);</p>
+<p>3- Se <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> são duas variáveis aleatórias <strong>independentes</strong> quaisquer, então: <span class="math inline">\(Var(X \pm Y)=Var(X)+Var(Y)\)</span>;</p>
+<p>4- Se <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> são duas variáveis aleatórias <strong>quaisquer</strong>, então: <span class="math inline">\(Var(X \pm Y)=Var(X)+Var(Y) \pm 2Cov(X,Y)\)</span> (também).</p>
+<p><br />
+</p>
+<p>A covariância (<span class="math inline">\(Cov(X,Y)\)</span>) entre duas variáveis aleatórias quaisquer <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> é dada por:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+Cov \left(X,Y\right)= E(XY) - E(X)E(Y)
+\]</span></p>
+<p><br />
+</p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Seja <span class="math inline">\(X\)</span> uma variável aleatória discreta que indica o <em>número de pontos observados na face superior de um dado</em> quando ele é lançado. Calcule a esperança e a variância dessa variável aleatória.</p>
+</blockquote>
+<p><br />
+</p>
+<table>
+<caption>
+Função discreta de distribuição de probabilidades de <span class="math inline"><em>X</em></span>
+</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>i</em></sub></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>P</em>(<em>X</em>=<em>x</em><sub><em>i</em></sub>)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+1
+</td>
+<td style="text-align: center;">
+1/6
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+2
+</td>
+<td style="text-align: center;">
+1/6
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+3
+</td>
+<td style="text-align: center;">
+1/6
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+4
+</td>
+<td style="text-align: center;">
+1/6
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+5
+</td>
+<td style="text-align: center;">
+1/6
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+6
+</td>
+<td style="text-align: center;">
+1/6
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+Total
+</td>
+<td style="text-align: center;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p><span class="math inline">\(E(X) = \frac{1}{6} . (1+2+3+4+5+6) = 3,50\)</span></p>
+<p> </p>
+<p><span class="math display">\[\begin{align*}
+Var(X) &amp; = (1-3,50)^{2}.(\frac{1}{6}) + (2-3,50)^{2}.(\frac{1}{6}) +\\
+       &amp; (3-3,50)^{2}.(\frac{1}{6}) + (4-3,50)^{2}.(\frac{1}{6}) + (5-3,50)^{2}.(\frac{1}{6}) + \\
+       &amp; (6-3,50)^{2}.(\frac{1}{6}) \\
+       &amp; = 2,90
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Uma empresa de caminhões de aluguel possui uma frota composta de 4 veículos. O aluguel é cobrado por diária de uso de um caminhão e a função de distribuição de probabilidade de locações diárias está a seguir especificada. Calcule a esperança e a variância de locação diária dessa empresa.</p>
+</blockquote>
+<p><br />
+</p>
+<table>
+<caption>
+Função discreta de distribuição de probabilidade de locações
+diárias
+</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>i</em></sub></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>P</em>(<em>X</em>=<em>x</em><sub><em>i</em></sub>)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+0
+</td>
+<td style="text-align: center;">
+0,10
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+1
+</td>
+<td style="text-align: center;">
+0,20
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+2
+</td>
+<td style="text-align: center;">
+0,30
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+3
+</td>
+<td style="text-align: center;">
+0,30
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+4
+</td>
+<td style="text-align: center;">
+0,10
+</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p><span class="math inline">\(E(X) = (0 . 0,10) + (1 . 0,20) + 2 . 0,30) + (3 . 0,30) + (4 . 0,10) = 2,10\)</span> (caminhões por dia)</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+Var(X) &amp; = (0-2,10)^{2}.0,10 + (1-2,10)^{2}.0,20 + (2-2,10)^{2}.0,30 + \\
+       &amp; (3-2,10)^{2}.0,30 + (4-2,10)^{2}.0,10 \\
+       &amp; = 1,29^{1}
+\end{align*}\]</span></p>
+<p><span class="math inline">\(^{1}\)</span>: (caminhões por dia)<span class="math inline">\(^{2}\)</span></p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="teste_hipoteses.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="disc_fisher.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="função-de-densidade-de-probabilidade.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="esperança-e-variância-de-uma-variável-aleatória-contínua.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -323,7 +547,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/12-reg_simples.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-var_aleatorias.Rmd",
 "text": "Edit"
 },
 "history": {

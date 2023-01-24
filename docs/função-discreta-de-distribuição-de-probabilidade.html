@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 12 - Introdução ao modelo clássico de regressão linear simples | apostila.knit</title>
+  <title>5.1 Função discreta de distribuição de probabilidade | apostila.knit</title>
   <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 12 - Introdução ao modelo clássico de regressão linear simples | apostila.knit" />
+  <meta property="og:title" content="5.1 Função discreta de distribuição de probabilidade | apostila.knit" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
   <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 12 - Introdução ao modelo clássico de regressão linear simples | apostila.knit" />
+  <meta name="twitter:title" content="5.1 Função discreta de distribuição de probabilidade | apostila.knit" />
   
   <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="teste_hipoteses.html"/>
-<link rel="next" href="disc_fisher.html"/>
+<link rel="prev" href="var_aleatoria.html"/>
+<link rel="next" href="função-de-densidade-de-probabilidade.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -282,17 +282,253 @@ Prof. M.e Eng. Felinto Junior Da Costa</div></a>
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="reg_simples" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">Capítulo 12</span> - Introdução ao modelo clássico de regressão linear simples<a href="reg_simples.html#reg_simples" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-
+<div id="função-discreta-de-distribuição-de-probabilidade" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Função discreta de distribuição de probabilidade<a href="função-discreta-de-distribuição-de-probabilidade.html#função-discreta-de-distribuição-de-probabilidade" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p> </p>
+<p>Seja <span class="math inline">\(E\)</span> um experimento aleatório e <span class="math inline">\(\Omega\)</span> seu espaço amostral. Uma função (<span class="math inline">\(X\)</span>) que associe cada elemento <span class="math inline">\(\omega\)</span> pertencente a <span class="math inline">\(\Omega\)</span> a um número real <span class="math inline">\(X(\omega)=x\)</span>, é denominada mais apropriadamente de função aleatória ou função estocástica.</p>
+<p> </p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-77"></span>
+<img src="images5/v_aleatoria.jpg" alt="Função discreta de distribuição de probabilidade" width="60%" />
+<p class="caption">
+Figure 5.1: Função discreta de distribuição de probabilidade
+</p>
+</div>
+<p> </p>
+<p>Considere <span class="math inline">\(X\)</span> uma variável aleatória discreta e suponha que os valores que ela pode assumir são dados por <span class="math inline">\(x_{1},x_{2},x_{3}, \dots\)</span> dispostos em alguma ordem. Suponha que esses valores são assumidos tendo probabilidades de ocorrência dadas por:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P (X=x_{k}) = f(x_{k})
+\]</span></p>
+<p><br />
+</p>
+<p>com <span class="math inline">\(k=1, 2, \dots\)</span></p>
+<p> </p>
+<p>Uma <em>função discreta de probabilidade</em> pode ser definida associando cada um dos possíveis valores da variável aleatória à sua probabilidade:</p>
+<p><br />
+<span class="math display">\[
+P (X=x) = f(x)
+\]</span></p>
+<p> </p>
+<p>Para <span class="math inline">\(x = x_{k}\)</span>,</p>
+<p><span class="math display">\[
+P (X=x_{k}) = f(x_{k})
+\]</span></p>
+<p> </p>
+<p>Para que uma <em>função</em> <span class="math inline">\(f(x)\)</span> possa ser considerada uma <strong>função (discreta ou contínua)</strong> de distribuição de probabilidade, ela precisa necessariamente atender a:</p>
+<p> </p>
+<p><span class="math display">\[
+0 \leq f(x_{k}) \leq 1
+\]</span></p>
+<p>para qualquer <span class="math inline">\(x_{k} \in \Omega\)</span>; e também que</p>
+<p><span class="math display">\[
+\sum _{k=1}^{n}f\left(x_{k}\right) = 1.
+\]</span></p>
+<p> </p>
+<p>A probabilidade de ocorrência de um dos valores da variável aleatória deverá estar sempre compreendida entre <span class="math inline">\(0 \leq P(X = x_{k}) \leq 1\)</span>: <strong>postulado do intervalo</strong>.</p>
+<p> </p>
+<p>A soma das probabilidades de todos os possíveis valores que a variável aleatória poderá assumir deverá ser sempre <span class="math inline">\(1\)</span>: <strong>postulado da probabilidade do evento certo</strong>.</p>
+<p> </p>
+<blockquote>
+<p>Exemplo: Suponha que uma moeda seja lançada duas vezes e que <span class="math inline">\(X\)</span> seja a variável aleatória que represente o número de <span class="math inline">\(caras\)</span> verificado. Defina o espaço amostral, associe para cada evento possível o valor da variável aleatória e definda uma função discreta de probabilidade correspondente.</p>
+</blockquote>
+<p> </p>
+<p>O espaço amostral desse experimento é <em>S = {(cara,cara), (cara,coroa), (coroa,cara), (coroa,coroa)}</em> e a tabela abaixo relaciona o número de <strong>caras</strong> (o valor da variável aleatória <span class="math inline">\(X\)</span>) associado a cada evento possível desse experimento:</p>
+<p> </p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">
+Ponto amostral
+</th>
+<th style="text-align: center;">
+(cara,cara)
+</th>
+<th style="text-align: center;">
+(cara,coroa)
+</th>
+<th style="text-align: center;">
+(coroa,cara)
+</th>
+<th style="text-align: center;">
+(coroa,coroa)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+<span class="math inline"><em>X</em></span>
+</td>
+<td style="text-align: center;">
+2
+</td>
+<td style="text-align: center;">
+1
+</td>
+<td style="text-align: center;">
+1
+</td>
+<td style="text-align: center;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p>As probabilidades de ocorrência de cada um desses eventos é:</p>
+<p> </p>
+<p><span class="math display">\[\begin{align*}
+P(cara,cara) &amp; = \frac{1}{4} \\
+P(cara,coroa) &amp; = \frac{1}{4}\\  
+P(coroa,cara) &amp; = \frac{1}{4} \\
+P(coroa,coroa) &amp; = \frac{1}{4}\\
+\end{align*}\]</span></p>
+<p> </p>
+<p>Para definir uma <em>função discreta de distribuição de probabilidade</em> deveremos associar a cada valor que a variável aleatória <span class="math inline">\(X\)</span> assume sua correspondente <em>probabilidade de ocorrência</em>.</p>
+<p><span class="math display">\[\begin{align*}
+P(X=0) &amp; = P(coroa,coroa) = \frac{1}{4} \\  
+P(X=1) &amp; = P[(cara,coroa) \cup (coroa,cara)] \\
+       &amp; = P(cara,coroa) + P(coroa,cara)\\
+       &amp; = \frac{1}{4} + \frac{1}{4} \\
+       &amp; = \frac{1}{2} \\
+P(X=2) &amp; = P(cara,cara) = \frac{1}{4}
+\end{align*}\]</span></p>
+<p> </p>
+<table>
+<caption>
+Função discreta de probabilidades da variável aleatória
+X
+</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>k</em></sub></span>
+</th>
+<th style="text-align: center;">
+0
+</th>
+<th style="text-align: center;">
+1
+</th>
+<th style="text-align: center;">
+2
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+<span class="math inline"><em>P</em>(<em>X</em>=<em>x</em><sub><em>k</em></sub>) = <em>f</em>(<em>x</em><sub><em>k</em></sub>)</span>
+</td>
+<td style="text-align: center;">
+1/4
+</td>
+<td style="text-align: center;">
+1/2
+</td>
+<td style="text-align: center;">
+1/4
+</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p>Uma <em>função de distribuição cumulativa</em> <span class="math inline">\(F\)</span> para uma variável aleatória <span class="math inline">\(X\)</span> exprime a probabilidade de que a variável aleatória <span class="math inline">\(X\)</span> <em>assuma um valor inferior ou igual a determinado <span class="math inline">\(x\)</span></em> e é definida por:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+F(x) = P(X \leq x)
+\]</span></p>
+<p> </p>
+<p>Propriedades:</p>
+<p> </p>
+<p>1- <span class="math inline">\(0 \leq F(x) \leq 1\)</span>;<br />
+2- <span class="math inline">\(F(x)\)</span> é não decrescente: <span class="math inline">\(F(x) \leq F(y)\)</span> se <span class="math inline">\(x \leq y\)</span>;<br />
+3- <span class="math inline">\(F(- \infty) = \underset{x\to -\infty }{lim}F\left(x\right)=0\)</span>;<br />
+4- <span class="math inline">\(F(+ \infty) = \underset{x\to \infty }{lim}F\left(x\right)=1\)</span></p>
+<p> </p>
+<p>A função de probabilidade <span class="math inline">\(f\)</span> para uma variável aleatória discreta <span class="math inline">\(X\)</span> pode ser obtida de sua função de probabilidade cumulativa <span class="math inline">\(F\)</span> pois para todo <span class="math inline">\(x\)</span> em <span class="math inline">\((-\infty, \infty)\)</span> :</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+F\left(x\right)=P\left(X\le x\right)=\sum _{u\le n}f\left(u\right)
+\]</span></p>
+<p> </p>
+<p>Equivale dizer que é a <em>soma sobre todos os valores <span class="math inline">\(u\)</span> assumidos por <span class="math inline">\(X\)</span> para os quais <span class="math inline">\(u \leq x\)</span>.</em></p>
+<p> </p>
+<p>Se <span class="math inline">\(X\)</span> é discreta e assume um número finito de valores <span class="math inline">\(x_{1},x_{2}, \dots, x_{n}\)</span>, então sua função de probabilidade cumulativa <span class="math inline">\(F(x)\)</span> será dada por:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align}   
+F(x)=
+\begin{cases}
+        0 \hspace{1cm} -\infty &lt; x &lt; x_{1} \\
+        f(x_{1}) \hspace{1cm} x_{1} \leq x &lt;  x_{2}  \\
+        f(x_{1}) + f(x_{2}) \hspace{1cm} x_{2} \leq x &lt;  x_{3}  \\
+        ...                    \\
+        f(x_{1}) + ...+ f(x_{n}) \hspace{1cm} x_{n} \leq x &lt;  x_{\infty}
+\end{cases}
+\end{align}\]</span></p>
+<p> </p>
+<blockquote>
+<p>Exemplo: Suponha que uma moeda seja lançada duas vezes e que <span class="math inline">\(X\)</span> seja a variável aleatória que represente o número de <strong>caras</strong> verificado. Especifique sua função de probabilidade cumulativa dessa variável aleatória e apresente seu gráfico.</p>
+</blockquote>
+<p> </p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>k</em></sub></span>
+</th>
+<th style="text-align: center;">
+0
+</th>
+<th style="text-align: center;">
+1
+</th>
+<th style="text-align: center;">
+2
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+<span class="math inline"><em>P</em>(<em>X</em>=<em>x</em><sub><em>k</em></sub>) = <em>f</em>(<em>x</em><sub><em>k</em></sub>)</span>
+</td>
+<td style="text-align: center;">
+1/4
+</td>
+<td style="text-align: center;">
+1/2
+</td>
+<td style="text-align: center;">
+1/4
+</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p>Sua função de probabilidade cumulativa é dada por:</p>
+<p> </p>
+<p> </p>
+<p>O gráfico de sua função de probabilidade cumulativa é:</p>
+<p> </p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-81"></span>
+<img src="images5/func_dist_cum.jpg" alt="xxxxxxxxxxxx" width="60%" />
+<p class="caption">
+Figure 5.2: xxxxxxxxxxxx
+</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="teste_hipoteses.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="disc_fisher.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="var_aleatoria.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="função-de-densidade-de-probabilidade.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -323,7 +559,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/12-reg_simples.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-var_aleatorias.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5.1 Função discreta de distribuição de probabilidade | apostila.knit</title>
+  <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5.1 Função discreta de distribuição de probabilidade | apostila.knit" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
+  <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5.1 Função discreta de distribuição de probabilidade | apostila.knit" />
+  
+  <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introdução-a-variáveis-aleatórias.html"/>
+<link rel="next" href="função-de-densidade-de-probabilidade.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Índice</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section" id="toc-section"></a></li>
+<li class="chapter" data-level="1" data-path="introdução-histórica-da-estatística.html"><a href="introdução-histórica-da-estatística.html"><i class="fa fa-check"></i><b>1</b> Introdução histórica da estatística</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="primeiros-levantamentos-estudos-e-publicações-demografia-e-aritmética-política.html"><a href="primeiros-levantamentos-estudos-e-publicações-demografia-e-aritmética-política.html"><i class="fa fa-check"></i><b>1.1</b> Primeiros levantamentos, estudos e publicações &amp; Demografia e aritmética política</a></li>
+<li class="chapter" data-level="1.2" data-path="visualização-de-dados-estudos-e-primeiras-publicações.html"><a href="visualização-de-dados-estudos-e-primeiras-publicações.html"><i class="fa fa-check"></i><b>1.2</b> Visualização de dados &amp; Estudos e primeiras publicações</a></li>
+<li class="chapter" data-level="1.3" data-path="nomes-notáveis.html"><a href="nomes-notáveis.html"><i class="fa fa-check"></i><b>1.3</b> Nomes notáveis</a></li>
+<li class="chapter" data-level="1.4" data-path="revista-biometrika.html"><a href="revista-biometrika.html"><i class="fa fa-check"></i><b>1.4</b> Revista Biometrika</a></li>
+<li class="chapter" data-level="1.5" data-path="eugenia.html"><a href="eugenia.html"><i class="fa fa-check"></i><b>1.5</b> Eugenia</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introdução-conceitual-essencial.html"><a href="introdução-conceitual-essencial.html"><i class="fa fa-check"></i><b>2</b> Introdução conceitual essencial</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="estatística-descritiva.html"><a href="estatística-descritiva.html"><i class="fa fa-check"></i><b>2.1</b> Estatística descritiva</a></li>
+<li class="chapter" data-level="2.2" data-path="estatística-inferencial.html"><a href="estatística-inferencial.html"><i class="fa fa-check"></i><b>2.2</b> Estatística inferencial</a></li>
+<li class="chapter" data-level="2.3" data-path="produção-de-conhecimento.html"><a href="produção-de-conhecimento.html"><i class="fa fa-check"></i><b>2.3</b> Produção de conhecimento</a></li>
+<li class="chapter" data-level="2.4" data-path="população-universo-amostra.html"><a href="população-universo-amostra.html"><i class="fa fa-check"></i><b>2.4</b> População (universo) &amp; amostra</a></li>
+<li class="chapter" data-level="2.5" data-path="parâmetros-e-estatísticas.html"><a href="parâmetros-e-estatísticas.html"><i class="fa fa-check"></i><b>2.5</b> Parâmetros e estatísticas</a></li>
+<li class="chapter" data-level="2.6" data-path="tipos-de-variáveis.html"><a href="tipos-de-variáveis.html"><i class="fa fa-check"></i><b>2.6</b> Tipos de variáveis</a></li>
+<li class="chapter" data-level="2.7" data-path="indexação-de-dados-i.html"><a href="indexação-de-dados-i.html"><i class="fa fa-check"></i><b>2.7</b> Indexação de dados (<span class="math inline">\(i\)</span>)</a></li>
+<li class="chapter" data-level="2.8" data-path="noções-básicas-sobre-somatórios-sigma.html"><a href="noções-básicas-sobre-somatórios-sigma.html"><i class="fa fa-check"></i><b>2.8</b> Noções básicas sobre somatórios (<span class="math inline">\(\Sigma\)</span>)</a></li>
+<li class="chapter" data-level="2.9" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><i class="fa fa-check"></i><b>2.9</b> Análise combinatória: diagramas de árvore, permutações (arranjos) &amp; combinações</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html#permutações-ou-arranjos"><i class="fa fa-check"></i><b>2.9.1</b> Permutações ou arranjos</a></li>
+<li class="chapter" data-level="2.9.2" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html#combinações"><i class="fa fa-check"></i><b>2.9.2</b> Combinações</a></li>
+<li class="chapter" data-level="2.9.3" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html#observações-acerca-de-alguns-fatoriais"><i class="fa fa-check"></i><b>2.9.3</b> Observações acerca de alguns fatoriais</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="conectivos-lógicos.html"><a href="conectivos-lógicos.html"><i class="fa fa-check"></i><b>2.10</b> Conectivos lógicos</a></li>
+<li class="chapter" data-level="2.11" data-path="leis-de-de-morgan.html"><a href="leis-de-de-morgan.html"><i class="fa fa-check"></i><b>2.11</b> Leis de De Morgan</a></li>
+<li class="chapter" data-level="2.12" data-path="noções-básicas-para-o-uso-de-calculadora-cassio-fx-82ms.html"><a href="noções-básicas-para-o-uso-de-calculadora-cassio-fx-82ms.html"><i class="fa fa-check"></i><b>2.12</b> Noções básicas para o uso de calculadora (Cassio fx-82MS)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introdução-à-estatística-descritiva.html"><a href="introdução-à-estatística-descritiva.html"><i class="fa fa-check"></i><b>3</b> Introdução à estatística descritiva</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="análise-exploratória.html"><a href="análise-exploratória.html"><i class="fa fa-check"></i><b>3.1</b> Análise exploratória</a></li>
+<li class="chapter" data-level="3.2" data-path="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html"><a href="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html"><i class="fa fa-check"></i><b>3.2</b> Dados brutos, em rol, diagrama de ramos &amp; folhas e de dispersão unidimensional</a></li>
+<li class="chapter" data-level="3.3" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html"><i class="fa fa-check"></i><b>3.3</b> Sínteses numéricas descritivas</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html#medidas-de-tendência-central-posição"><i class="fa fa-check"></i><b>3.3.1</b> Medidas de tendência central (posição)</a></li>
+<li class="chapter" data-level="3.3.2" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html#medidas-de-dispersão-variabilidade"><i class="fa fa-check"></i><b>3.3.2</b> Medidas de dispersão (variabilidade)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html#medidas-de-subdivisão-separatrizes"><i class="fa fa-check"></i><b>3.3.3</b> Medidas de subdivisão (separatrizes)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="medidas-de-forma-assimetria-curtose.html"><a href="medidas-de-forma-assimetria-curtose.html"><i class="fa fa-check"></i><b>3.4</b> Medidas de forma (assimetria &amp; curtose)</a></li>
+<li class="chapter" data-level="3.5" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html"><i class="fa fa-check"></i><b>3.5</b> Apresentação tabular de dados</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#apresentação-tabular-de-dados-qualitativos"><i class="fa fa-check"></i><b>3.5.1</b> Apresentação tabular de dados qualitativos</a></li>
+<li class="chapter" data-level="3.5.2" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#apresentação-tabular-de-dados-quantitativos"><i class="fa fa-check"></i><b>3.5.2</b> Apresentação tabular de dados quantitativos</a></li>
+<li class="chapter" data-level="3.5.3" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#média-1"><i class="fa fa-check"></i><b>3.5.3</b> Média</a></li>
+<li class="chapter" data-level="3.5.4" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#moda-1"><i class="fa fa-check"></i><b>3.5.4</b> Moda</a></li>
+<li class="chapter" data-level="3.5.5" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#variância"><i class="fa fa-check"></i><b>3.5.5</b> Variância</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html"><i class="fa fa-check"></i><b>3.6</b> Apresentação gráfica de dados</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#barras"><i class="fa fa-check"></i><b>3.6.1</b> Barras</a></li>
+<li class="chapter" data-level="3.6.2" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#histograma"><i class="fa fa-check"></i><b>3.6.2</b> Histograma</a></li>
+<li class="chapter" data-level="3.6.3" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#setores"><i class="fa fa-check"></i><b>3.6.3</b> Setores</a></li>
+<li class="chapter" data-level="3.6.4" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#box-plot"><i class="fa fa-check"></i><b>3.6.4</b> Box-plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introdução-ao-cálculo-de-probabilidades.html"><a href="introdução-ao-cálculo-de-probabilidades.html"><i class="fa fa-check"></i><b>4</b> Introdução ao cálculo de probabilidades</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html"><i class="fa fa-check"></i><b>4.1</b> Introdução conceitual essencial</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#experimentos-determinísticos-e-experimentos-probabilísticos-aleatórios"><i class="fa fa-check"></i><b>4.1.1</b> Experimentos determinísticos e experimentos probabilísticos (aleatórios)</a></li>
+<li class="chapter" data-level="4.1.2" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#espaço-amostral-e-seus-elementos"><i class="fa fa-check"></i><b>4.1.2</b> Espaço amostral e seus elementos</a></li>
+<li class="chapter" data-level="4.1.3" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#evento-de-interesse-sucesso"><i class="fa fa-check"></i><b>4.1.3</b> Evento de interesse (sucesso)</a></li>
+<li class="chapter" data-level="4.1.4" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#evento"><i class="fa fa-check"></i><b>4.1.4</b> Evento</a></li>
+<li class="chapter" data-level="4.1.5" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#operações-com-conjuntos-e-diagramas-de-venn"><i class="fa fa-check"></i><b>4.1.5</b> Operações com conjuntos e Diagramas de Venn</a></li>
+<li class="chapter" data-level="4.1.6" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#eventos-equiprováveis-e-não-equiprováveis"><i class="fa fa-check"></i><b>4.1.6</b> Eventos equiprováveis e não equiprováveis</a></li>
+<li class="chapter" data-level="4.1.7" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#eventos-independentes"><i class="fa fa-check"></i><b>4.1.7</b> Eventos independentes</a></li>
+<li class="chapter" data-level="4.1.8" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#eventos-mutuamente-exclusivos"><i class="fa fa-check"></i><b>4.1.8</b> Eventos mutuamente exclusivos</a></li>
+<li class="chapter" data-level="4.1.9" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#eventos-complementares"><i class="fa fa-check"></i><b>4.1.9</b> Eventos complementares</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="probabilidade.html"><a href="probabilidade.html"><i class="fa fa-check"></i><b>4.2</b> Probabilidade</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="probabilidade.html"><a href="probabilidade.html#introdução-histórica"><i class="fa fa-check"></i><b>4.2.1</b> Introdução histórica</a></li>
+<li class="chapter" data-level="4.2.2" data-path="probabilidade.html"><a href="probabilidade.html#conceito-clássico-ou-a-priori"><i class="fa fa-check"></i><b>4.2.2</b> Conceito clássico ou <em>a priori</em></a></li>
+<li class="chapter" data-level="4.2.3" data-path="probabilidade.html"><a href="probabilidade.html#conceito-frequentista-ou-a-posteriori"><i class="fa fa-check"></i><b>4.2.3</b> Conceito frequentista ou <em>a posteriori</em></a></li>
+<li class="chapter" data-level="4.2.4" data-path="probabilidade.html"><a href="probabilidade.html#conceito-axiomático"><i class="fa fa-check"></i><b>4.2.4</b> Conceito axiomático</a></li>
+<li class="chapter" data-level="4.2.5" data-path="probabilidade.html"><a href="probabilidade.html#regra-geral-da-adição-de-probabilidades-de-eventos"><i class="fa fa-check"></i><b>4.2.5</b> Regra geral da adição de probabilidades de eventos</a></li>
+<li class="chapter" data-level="4.2.6" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-de-eventos-condicionados"><i class="fa fa-check"></i><b>4.2.6</b> Probabilidade de eventos condicionados</a></li>
+<li class="chapter" data-level="4.2.7" data-path="probabilidade.html"><a href="probabilidade.html#dependência-e-independência-de-eventos"><i class="fa fa-check"></i><b>4.2.7</b> Dependência e independência de eventos</a></li>
+<li class="chapter" data-level="4.2.8" data-path="probabilidade.html"><a href="probabilidade.html#regra-geral-do-produto-das-probabilidades-para-eventos-independentes"><i class="fa fa-check"></i><b>4.2.8</b> Regra geral do produto das probabilidades para eventos independentes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="teorema-de-bayes.html"><a href="teorema-de-bayes.html"><i class="fa fa-check"></i><b>4.3</b> Teorema de Bayes</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="teorema-de-bayes.html"><a href="teorema-de-bayes.html#demonstração-clássica-de-independência"><i class="fa fa-check"></i><b>4.3.1</b> Demonstração clássica de independência</a></li>
+<li class="chapter" data-level="4.3.2" data-path="teorema-de-bayes.html"><a href="teorema-de-bayes.html#demonstração-clássica-de-dependência"><i class="fa fa-check"></i><b>4.3.2</b> Demonstração clássica de dependência</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html"><i class="fa fa-check"></i><b>4.4</b> Teoremas da Teoria das probabilidades</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-01"><i class="fa fa-check"></i><b>4.4.1</b> Teorema 01</a></li>
+<li class="chapter" data-level="4.4.2" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-02"><i class="fa fa-check"></i><b>4.4.2</b> Teorema 02</a></li>
+<li class="chapter" data-level="4.4.3" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-03"><i class="fa fa-check"></i><b>4.4.3</b> Teorema 03</a></li>
+<li class="chapter" data-level="4.4.4" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-04"><i class="fa fa-check"></i><b>4.4.4</b> Teorema 04</a></li>
+<li class="chapter" data-level="4.4.5" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-05"><i class="fa fa-check"></i><b>4.4.5</b> Teorema 05</a></li>
+<li class="chapter" data-level="4.4.6" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-06"><i class="fa fa-check"></i><b>4.4.6</b> Teorema 06</a></li>
+<li class="chapter" data-level="4.4.7" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-07"><i class="fa fa-check"></i><b>4.4.7</b> Teorema 07</a></li>
+<li class="chapter" data-level="4.4.8" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-08"><i class="fa fa-check"></i><b>4.4.8</b> Teorema 08</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="introdução-a-variáveis-aleatórias.html"><a href="introdução-a-variáveis-aleatórias.html"><i class="fa fa-check"></i><b>5</b> Introdução a variáveis aleatórias</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="função-discreta-de-distribuição-de-probabilidade.html"><a href="função-discreta-de-distribuição-de-probabilidade.html"><i class="fa fa-check"></i><b>5.1</b> Função discreta de distribuição de probabilidade</a></li>
+<li class="chapter" data-level="5.2" data-path="função-de-densidade-de-probabilidade.html"><a href="função-de-densidade-de-probabilidade.html"><i class="fa fa-check"></i><b>5.2</b> Função de densidade de probabilidade</a></li>
+<li class="chapter" data-level="5.3" data-path="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><a href="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><i class="fa fa-check"></i><b>5.3</b> Esperança e variância de uma variável aleatória discreta</a></li>
+<li class="chapter" data-level="5.4" data-path="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><a href="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><i class="fa fa-check"></i><b>5.4</b> Esperança e variância de uma variável aleatória contínua</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="introdução-a-modelos-teóricos-de-probabilidade.html"><a href="introdução-a-modelos-teóricos-de-probabilidade.html"><i class="fa fa-check"></i><b>6</b> Introdução a modelos teóricos de probabilidade</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="modelos-teóricos-discretos.html"><a href="modelos-teóricos-discretos.html"><i class="fa fa-check"></i><b>6.1</b> Modelos teóricos discretos</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="modelos-teóricos-discretos.html"><a href="modelos-teóricos-discretos.html#bernoulli"><i class="fa fa-check"></i><b>6.1.1</b> Bernoulli</a></li>
+<li class="chapter" data-level="6.1.2" data-path="modelos-teóricos-discretos.html"><a href="modelos-teóricos-discretos.html#geométrica"><i class="fa fa-check"></i><b>6.1.2</b> Geométrica</a></li>
+<li class="chapter" data-level="6.1.3" data-path="modelos-teóricos-discretos.html"><a href="modelos-teóricos-discretos.html#poisson"><i class="fa fa-check"></i><b>6.1.3</b> Poisson</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="modelos-téoricos-do-tempo-de-espera.html"><a href="modelos-téoricos-do-tempo-de-espera.html"><i class="fa fa-check"></i><b>6.2</b> Modelos téoricos do tempo de espera</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="modelos-téoricos-do-tempo-de-espera.html"><a href="modelos-téoricos-do-tempo-de-espera.html#geométrica-1"><i class="fa fa-check"></i><b>6.2.1</b> Geométrica</a></li>
+<li class="chapter" data-level="6.2.2" data-path="modelos-téoricos-do-tempo-de-espera.html"><a href="modelos-téoricos-do-tempo-de-espera.html#binomial-negativa"><i class="fa fa-check"></i><b>6.2.2</b> Binomial Negativa</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html"><i class="fa fa-check"></i><b>6.3</b> Modelos teóricos contínuos</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#uniforme"><i class="fa fa-check"></i><b>6.3.1</b> Uniforme</a></li>
+<li class="chapter" data-level="6.3.2" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#exponencial"><i class="fa fa-check"></i><b>6.3.2</b> Exponencial</a></li>
+<li class="chapter" data-level="6.3.3" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#normal"><i class="fa fa-check"></i><b>6.3.3</b> Normal</a></li>
+<li class="chapter" data-level="6.3.4" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#student-t"><i class="fa fa-check"></i><b>6.3.4</b> Student “t”</a></li>
+<li class="chapter" data-level="6.3.5" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#qui-quadrado"><i class="fa fa-check"></i><b>6.3.5</b> Qui-Quadrado</a></li>
+<li class="chapter" data-level="6.3.6" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#fisher-snedecor-f"><i class="fa fa-check"></i><b>6.3.6</b> Fisher-Snedecor “F”</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="tabelas.html"><a href="tabelas.html"><i class="fa fa-check"></i><b>6.4</b> Tabelas</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="planejamento_pesquisas.html"><a href="planejamento_pesquisas.html"><i class="fa fa-check"></i><b>7</b> Introdução ao planejamento de pesquisas</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="planejamento-de-pesquisas.html"><a href="planejamento-de-pesquisas.html"><i class="fa fa-check"></i><b>7.1</b> Planejamento de pesquisas</a></li>
+<li class="chapter" data-level="7.2" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html"><i class="fa fa-check"></i><b>7.2</b> Tipos de pesquisas</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-à-finalidade"><i class="fa fa-check"></i><b>7.2.1</b> Quanto à finalidade</a></li>
+<li class="chapter" data-level="7.2.2" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-à-forma-de-abordagem"><i class="fa fa-check"></i><b>7.2.2</b> Quanto à forma de abordagem</a></li>
+<li class="chapter" data-level="7.2.3" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-aos-objetivos"><i class="fa fa-check"></i><b>7.2.3</b> Quanto aos objetivos</a></li>
+<li class="chapter" data-level="7.2.4" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-ao-desenvolvimento-no-tempo"><i class="fa fa-check"></i><b>7.2.4</b> Quanto ao desenvolvimento no tempo</a></li>
+<li class="chapter" data-level="7.2.5" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-à-natureza"><i class="fa fa-check"></i><b>7.2.5</b> Quanto à natureza</a></li>
+<li class="chapter" data-level="7.2.6" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-à-forma-de-obtenção-dos-dados"><i class="fa fa-check"></i><b>7.2.6</b> Quanto à forma de obtenção dos dados</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="principais-etapas-de-uma-pesquisa.html"><a href="principais-etapas-de-uma-pesquisa.html"><i class="fa fa-check"></i><b>7.3</b> Principais etapas de uma pesquisa:</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="principais-etapas-de-uma-pesquisa.html"><a href="principais-etapas-de-uma-pesquisa.html#objetivo"><i class="fa fa-check"></i><b>7.3.1</b> Objetivo</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="população.html"><a href="população.html"><i class="fa fa-check"></i><b>7.4</b> População</a></li>
+<li class="chapter" data-level="7.5" data-path="censo.html"><a href="censo.html"><i class="fa fa-check"></i><b>7.5</b> Censo</a></li>
+<li class="chapter" data-level="7.6" data-path="amostra.html"><a href="amostra.html"><i class="fa fa-check"></i><b>7.6</b> Amostra</a></li>
+<li class="chapter" data-level="7.7" data-path="planejamento-do-levantamento-amostral.html"><a href="planejamento-do-levantamento-amostral.html"><i class="fa fa-check"></i><b>7.7</b> Planejamento do levantamento amostral</a></li>
+<li class="chapter" data-level="7.8" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html"><i class="fa fa-check"></i><b>7.8</b> Elaboração dos questionários</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html#tipos-de-perguntas"><i class="fa fa-check"></i><b>7.8.1</b> Tipos de perguntas:</a></li>
+<li class="chapter" data-level="7.8.2" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html#execução-do-levantamento-amostral"><i class="fa fa-check"></i><b>7.8.2</b> Execução do levantamento amostral</a></li>
+<li class="chapter" data-level="7.8.3" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html#análise-exploratória-dos-dados"><i class="fa fa-check"></i><b>7.8.3</b> Análise exploratória dos dados</a></li>
+<li class="chapter" data-level="7.8.4" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html#resultados-e-conclusões"><i class="fa fa-check"></i><b>7.8.4</b> Resultados e conclusões</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="técnicas-de-amostragem.html"><a href="técnicas-de-amostragem.html"><i class="fa fa-check"></i><b>7.9</b> Técnicas de amostragem</a></li>
+<li class="chapter" data-level="7.10" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html"><i class="fa fa-check"></i><b>7.10</b> Amostragem probabilística</a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html#amostragem-aleatória-simples-aas"><i class="fa fa-check"></i><b>7.10.1</b> Amostragem aleatória simples (AAS)</a></li>
+<li class="chapter" data-level="7.10.2" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html#amostragem-aleatória-sistemática"><i class="fa fa-check"></i><b>7.10.2</b> Amostragem aleatória sistemática</a></li>
+<li class="chapter" data-level="7.10.3" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html#amostragem-aleatória-estratificada"><i class="fa fa-check"></i><b>7.10.3</b> Amostragem aleatória estratificada</a></li>
+<li class="chapter" data-level="7.10.4" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html#amostragem-aleatória-por-conglomerados"><i class="fa fa-check"></i><b>7.10.4</b> Amostragem aleatória por conglomerados</a></li>
+</ul></li>
+<li class="chapter" data-level="7.11" data-path="amostragem-não-probabilística.html"><a href="amostragem-não-probabilística.html"><i class="fa fa-check"></i><b>7.11</b> Amostragem não probabilística</a>
+<ul>
+<li class="chapter" data-level="7.11.1" data-path="amostragem-não-probabilística.html"><a href="amostragem-não-probabilística.html#amostragem-por-conveniência"><i class="fa fa-check"></i><b>7.11.1</b> Amostragem por conveniência</a></li>
+<li class="chapter" data-level="7.11.2" data-path="amostragem-não-probabilística.html"><a href="amostragem-não-probabilística.html#amostragem-por-cotas"><i class="fa fa-check"></i><b>7.11.2</b> Amostragem por cotas</a></li>
+</ul></li>
+<li class="chapter" data-level="7.12" data-path="dimensionamento-de-amostras.html"><a href="dimensionamento-de-amostras.html"><i class="fa fa-check"></i><b>7.12</b> Dimensionamento de amostras</a>
+<ul>
+<li class="chapter" data-level="7.12.1" data-path="dimensionamento-de-amostras.html"><a href="dimensionamento-de-amostras.html#erros"><i class="fa fa-check"></i><b>7.12.1</b> Erros</a></li>
+<li class="chapter" data-level="7.12.2" data-path="dimensionamento-de-amostras.html"><a href="dimensionamento-de-amostras.html#determinação-do-tamanho-de-uma-amostra-para-estimação-da-média-populacional"><i class="fa fa-check"></i><b>7.12.2</b> Determinação do tamanho de uma amostra para estimação da média populacional</a></li>
+<li class="chapter" data-level="7.12.3" data-path="dimensionamento-de-amostras.html"><a href="dimensionamento-de-amostras.html#determinação-do-tamanho-de-uma-amostra-para-estimação-da-proporção-populacional"><i class="fa fa-check"></i><b>7.12.3</b> Determinação do tamanho de uma amostra para estimação da proporção populacional</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="introdução-às-estatísticas-epidemiológicas.html"><a href="introdução-às-estatísticas-epidemiológicas.html"><i class="fa fa-check"></i><b>8</b> Introdução às estatísticas epidemiológicas</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="terminologia.html"><a href="terminologia.html"><i class="fa fa-check"></i><b>8.1</b> Terminologia</a></li>
+<li class="chapter" data-level="8.2" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html"><i class="fa fa-check"></i><b>8.2</b> Medidas de risco, morte, associação e correlação</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#incidência"><i class="fa fa-check"></i><b>8.2.1</b> Incidência</a></li>
+<li class="chapter" data-level="8.2.2" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#prevalência"><i class="fa fa-check"></i><b>8.2.2</b> Prevalência</a></li>
+<li class="chapter" data-level="8.2.3" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#relação-entre-prevalência-e-incidência"><i class="fa fa-check"></i><b>8.2.3</b> Relação entre prevalência e incidência</a></li>
+<li class="chapter" data-level="8.2.4" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#quadro-comparativo-entre-medidas-de-incidência-e-de-prevalência"><i class="fa fa-check"></i><b>8.2.4</b> Quadro comparativo entre medidas de incidência e de prevalência</a></li>
+<li class="chapter" data-level="8.2.5" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#incidência-cumulativa---ic-risco"><i class="fa fa-check"></i><b>8.2.5</b> Incidência cumulativa - IC (Risco)}</a></li>
+<li class="chapter" data-level="8.2.6" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#quadro-comparativo-entre-medidas-de-risco-e-prevalência"><i class="fa fa-check"></i><b>8.2.6</b> Quadro comparativo entre medidas de risco e prevalência</a></li>
+<li class="chapter" data-level="8.2.7" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#fatalidade-dos-casos-fc"><i class="fa fa-check"></i><b>8.2.7</b> Fatalidade dos Casos (FC)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="sobrevida.html"><a href="sobrevida.html"><i class="fa fa-check"></i><b>8.3</b> Sobrevida</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="sobrevida.html"><a href="sobrevida.html#taxas-de-mortalidade-tm"><i class="fa fa-check"></i><b>8.3.1</b> Taxas de mortalidade (TM)</a></li>
+<li class="chapter" data-level="8.3.2" data-path="sobrevida.html"><a href="sobrevida.html#taxas-mais-específicas"><i class="fa fa-check"></i><b>8.3.2</b> Taxas mais específicas</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html"><i class="fa fa-check"></i><b>8.4</b> Medidas de associação</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#incidência-observada-de-nascimentos-com-baixo-peso-entre-mães-expostas-ao-risco-fumantes"><i class="fa fa-check"></i><b>8.4.1</b> Incidência observada de nascimentos com baixo peso entre mães expostas ao risco (fumantes)</a></li>
+<li class="chapter" data-level="8.4.2" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#incidência-observada-de-nascimentos-com-baixo-peso-entre-mães-não-expostas-ao-risco-não-fumantes"><i class="fa fa-check"></i><b>8.4.2</b> Incidência observada de nascimentos com baixo peso entre mães não expostas ao risco (não fumantes)</a></li>
+<li class="chapter" data-level="8.4.3" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#prevalência-de-nascimentos-com-baixo-peso-na-população-estudada"><i class="fa fa-check"></i><b>8.4.3</b> Prevalência de nascimentos com baixo peso na população estudada</a></li>
+<li class="chapter" data-level="8.4.4" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#diferença-de-risco-risco-atribuível---ra"><i class="fa fa-check"></i><b>8.4.4</b> Diferença de risco (Risco atribuível - RA)</a></li>
+<li class="chapter" data-level="8.4.5" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#razão-de-risco-risco-relativo---rr"><i class="fa fa-check"></i><b>8.4.5</b> Razão de risco (Risco relativo - RR)</a></li>
+<li class="chapter" data-level="8.4.6" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#risco-atribuível-proporcional-fração-etiológica---fe"><i class="fa fa-check"></i><b>8.4.6</b> Risco atribuível proporcional (Fração etiológica - FE)</a></li>
+<li class="chapter" data-level="8.4.7" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#odds-ratio-razão-das-chances"><i class="fa fa-check"></i><b>8.4.7</b> <em>Odds ratio</em> (Razão das chances)</a></li>
+<li class="chapter" data-level="8.4.8" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#correlação-linear-de-pearson"><i class="fa fa-check"></i><b>8.4.8</b> Correlação linear de Pearson</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="intervalos-de-confiança.html"><a href="intervalos-de-confiança.html"><i class="fa fa-check"></i><b>8.5</b> Intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="intervalos-de-confiança.html"><a href="intervalos-de-confiança.html#razão-de-risco-risco-relativo---rr-1"><i class="fa fa-check"></i><b>8.5.1</b> Razão de risco (Risco relativo - RR)</a></li>
+<li class="chapter" data-level="8.5.2" data-path="intervalos-de-confiança.html"><a href="intervalos-de-confiança.html#razão-de-chances-odds-ratio---or"><i class="fa fa-check"></i><b>8.5.2</b> Razão de chances ( <em>odds ratio</em> - OR)</a></li>
+<li class="chapter" data-level="8.5.3" data-path="intervalos-de-confiança.html"><a href="intervalos-de-confiança.html#diferença-de-risco-risco-atribuível---ra-1"><i class="fa fa-check"></i><b>8.5.3</b> Diferença de risco (Risco atribuível - RA)</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://fjrcosta.github.io/apostila/" target="blank">FJCosta Github</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><div class="line-block">UNIVERSIDADE ESTADUAL DE LONDRINA<br />
+CCE - Centro de Ciências Exatas<br />
+DSTA - Departamento de Estatística<br />
+Apostila de Estatística<br />
+Prof. M.e Eng. Felinto Junior Da Costa</div></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="função-discreta-de-distribuição-de-probabilidade" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Função discreta de distribuição de probabilidade<a href="função-discreta-de-distribuição-de-probabilidade.html#função-discreta-de-distribuição-de-probabilidade" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p> </p>
+<p>Seja <span class="math inline">\(E\)</span> um experimento aleatório e <span class="math inline">\(\Omega\)</span> seu espaço amostral. Uma função (<span class="math inline">\(X\)</span>) que associe cada elemento <span class="math inline">\(\omega\)</span> pertencente a <span class="math inline">\(\Omega\)</span> a um número real <span class="math inline">\(X(\omega)=x\)</span>, é denominada mais apropriadamente de função aleatória ou função estocástica.</p>
+<p> </p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-71"></span>
+<img src="images5/v_aleatoria.jpg" alt="Função discreta de distribuição de probabilidade" width="60%" />
+<p class="caption">
+Figure 5.1: Função discreta de distribuição de probabilidade
+</p>
+</div>
+<p> </p>
+<p>Considere <span class="math inline">\(X\)</span> uma variável aleatória discreta e suponha que os valores que ela pode assumir são dados por <span class="math inline">\(x_{1},x_{2},x_{3}, \dots\)</span> dispostos em alguma ordem. Suponha que esses valores são assumidos tendo probabilidades de ocorrência dadas por:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P (X=x_{k}) = f(x_{k})
+\]</span></p>
+<p><br />
+</p>
+<p>com <span class="math inline">\(k=1, 2, \dots\)</span></p>
+<p> </p>
+<p>Uma <em>função discreta de probabilidade</em> pode ser definida associando cada um dos possíveis valores da variável aleatória à sua probabilidade:</p>
+<p><br />
+<span class="math display">\[
+P (X=x) = f(x)
+\]</span></p>
+<p> </p>
+<p>Para <span class="math inline">\(x = x_{k}\)</span>,</p>
+<p><span class="math display">\[
+P (X=x_{k}) = f(x_{k})
+\]</span></p>
+<p> </p>
+<p>Para que uma <em>função</em> <span class="math inline">\(f(x)\)</span> possa ser considerada uma <strong>função (discreta ou contínua)</strong> de distribuição de probabilidade, ela precisa necessariamente atender a:</p>
+<p> </p>
+<p><span class="math display">\[
+0 \leq f(x_{k}) \leq 1
+\]</span></p>
+<p>para qualquer <span class="math inline">\(x_{k} \in \Omega\)</span>; e também que</p>
+<p><span class="math display">\[
+\sum _{k=1}^{n}f\left(x_{k}\right) = 1.
+\]</span></p>
+<p> </p>
+<p>A probabilidade de ocorrência de um dos valores da variável aleatória deverá estar sempre compreendida entre <span class="math inline">\(0 \leq P(X = x_{k}) \leq 1\)</span>: <strong>postulado do intervalo</strong>.</p>
+<p> </p>
+<p>A soma das probabilidades de todos os possíveis valores que a variável aleatória poderá assumir deverá ser sempre <span class="math inline">\(1\)</span>: <strong>postulado da probabilidade do evento certo</strong>.</p>
+<p> </p>
+<blockquote>
+<p>Exemplo: Suponha que uma moeda seja lançada duas vezes e que <span class="math inline">\(X\)</span> seja a variável aleatória que represente o número de <span class="math inline">\(caras\)</span> verificado. Defina o espaço amostral, associe para cada evento possível o valor da variável aleatória e definda uma função discreta de probabilidade correspondente.</p>
+</blockquote>
+<p> </p>
+<p>O espaço amostral desse experimento é <em>S = {(cara,cara), (cara,coroa), (coroa,cara), (coroa,coroa)}</em> e a tabela abaixo relaciona o número de <strong>caras</strong> (o valor da variável aleatória <span class="math inline">\(X\)</span>) associado a cada evento possível desse experimento:</p>
+<p> </p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">
+Ponto amostral
+</th>
+<th style="text-align: center;">
+(cara,cara)
+</th>
+<th style="text-align: center;">
+(cara,coroa)
+</th>
+<th style="text-align: center;">
+(coroa,cara)
+</th>
+<th style="text-align: center;">
+(coroa,coroa)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+<span class="math inline"><em>X</em></span>
+</td>
+<td style="text-align: center;">
+2
+</td>
+<td style="text-align: center;">
+1
+</td>
+<td style="text-align: center;">
+1
+</td>
+<td style="text-align: center;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p>As probabilidades de ocorrência de cada um desses eventos é:</p>
+<p> </p>
+<p><span class="math display">\[\begin{align*}
+P(cara,cara) &amp; = \frac{1}{4} \\
+P(cara,coroa) &amp; = \frac{1}{4}\\  
+P(coroa,cara) &amp; = \frac{1}{4} \\
+P(coroa,coroa) &amp; = \frac{1}{4}\\
+\end{align*}\]</span></p>
+<p> </p>
+<p>Para definir uma <em>função discreta de distribuição de probabilidade</em> deveremos associar a cada valor que a variável aleatória <span class="math inline">\(X\)</span> assume sua correspondente <em>probabilidade de ocorrência</em>.</p>
+<p><span class="math display">\[\begin{align*}
+P(X=0) &amp; = P(coroa,coroa) = \frac{1}{4} \\  
+P(X=1) &amp; = P[(cara,coroa) \cup (coroa,cara)] \\
+       &amp; = P(cara,coroa) + P(coroa,cara)\\
+       &amp; = \frac{1}{4} + \frac{1}{4} \\
+       &amp; = \frac{1}{2} \\
+P(X=2) &amp; = P(cara,cara) = \frac{1}{4}
+\end{align*}\]</span></p>
+<p> </p>
+<table>
+<caption>
+Função discreta de probabilidades da variável aleatória
+X
+</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>k</em></sub></span>
+</th>
+<th style="text-align: center;">
+0
+</th>
+<th style="text-align: center;">
+1
+</th>
+<th style="text-align: center;">
+2
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+<span class="math inline"><em>P</em>(<em>X</em>=<em>x</em><sub><em>k</em></sub>) = <em>f</em>(<em>x</em><sub><em>k</em></sub>)</span>
+</td>
+<td style="text-align: center;">
+1/4
+</td>
+<td style="text-align: center;">
+1/2
+</td>
+<td style="text-align: center;">
+1/4
+</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p>Uma <em>função de distribuição cumulativa</em> <span class="math inline">\(F\)</span> para uma variável aleatória <span class="math inline">\(X\)</span> exprime a probabilidade de que a variável aleatória <span class="math inline">\(X\)</span> <em>assuma um valor inferior ou igual a determinado <span class="math inline">\(x\)</span></em> e é definida por:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+F(x) = P(X \leq x)
+\]</span></p>
+<p> </p>
+<p>Propriedades:</p>
+<p> </p>
+<p>1- <span class="math inline">\(0 \leq F(x) \leq 1\)</span>;<br />
+2- <span class="math inline">\(F(x)\)</span> é não decrescente: <span class="math inline">\(F(x) \leq F(y)\)</span> se <span class="math inline">\(x \leq y\)</span>;<br />
+3- <span class="math inline">\(F(- \infty) = \underset{x\to -\infty }{lim}F\left(x\right)=0\)</span>;<br />
+4- <span class="math inline">\(F(+ \infty) = \underset{x\to \infty }{lim}F\left(x\right)=1\)</span></p>
+<p> </p>
+<p>A função de probabilidade <span class="math inline">\(f\)</span> para uma variável aleatória discreta <span class="math inline">\(X\)</span> pode ser obtida de sua função de probabilidade cumulativa <span class="math inline">\(F\)</span> pois para todo <span class="math inline">\(x\)</span> em <span class="math inline">\((-\infty, \infty)\)</span> :</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+F\left(x\right)=P\left(X\le x\right)=\sum _{u\le n}f\left(u\right)
+\]</span></p>
+<p> </p>
+<p>Equivale dizer que é a <em>soma sobre todos os valores <span class="math inline">\(u\)</span> assumidos por <span class="math inline">\(X\)</span> para os quais <span class="math inline">\(u \leq x\)</span>.</em></p>
+<p> </p>
+<p>Se <span class="math inline">\(X\)</span> é discreta e assume um número finito de valores <span class="math inline">\(x_{1},x_{2}, \dots, x_{n}\)</span>, então sua função de probabilidade cumulativa <span class="math inline">\(F(x)\)</span> será dada por:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align}   
+F(x)=
+\begin{cases}
+        0 \hspace{1cm} -\infty &lt; x &lt; x_{1} \\
+        f(x_{1}) \hspace{1cm} x_{1} \leq x &lt;  x_{2}  \\
+        f(x_{1}) + f(x_{2}) \hspace{1cm} x_{2} \leq x &lt;  x_{3}  \\
+        ...                    \\
+        f(x_{1}) + ...+ f(x_{n}) \hspace{1cm} x_{n} \leq x &lt;  x_{\infty}
+\end{cases}
+\end{align}\]</span></p>
+<p> </p>
+<blockquote>
+<p>Exemplo: Suponha que uma moeda seja lançada duas vezes e que <span class="math inline">\(X\)</span> seja a variável aleatória que represente o número de <strong>caras</strong> verificado. Especifique sua função de probabilidade cumulativa dessa variável aleatória e apresente seu gráfico.</p>
+</blockquote>
+<p> </p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>k</em></sub></span>
+</th>
+<th style="text-align: center;">
+0
+</th>
+<th style="text-align: center;">
+1
+</th>
+<th style="text-align: center;">
+2
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+<span class="math inline"><em>P</em>(<em>X</em>=<em>x</em><sub><em>k</em></sub>) = <em>f</em>(<em>x</em><sub><em>k</em></sub>)</span>
+</td>
+<td style="text-align: center;">
+1/4
+</td>
+<td style="text-align: center;">
+1/2
+</td>
+<td style="text-align: center;">
+1/4
+</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p>Sua função de probabilidade cumulativa é dada por:</p>
+<p> </p>
+<p> </p>
+<p>O gráfico de sua função de probabilidade cumulativa é:</p>
+<p> </p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-75"></span>
+<img src="images5/func_dist_cum.jpg" alt="xxxxxxxxxxxx" width="60%" />
+<p class="caption">
+Figure 5.2: xxxxxxxxxxxx
+</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introdução-a-variáveis-aleatórias.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="função-de-densidade-de-probabilidade.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-var_aleatorias.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["apostila.pdf", "apostila.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

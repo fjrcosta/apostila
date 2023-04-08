@@ -1,0 +1,2618 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>11.14 Testes não paramétricos | apostila.knit</title>
+  <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="11.14 Testes não paramétricos | apostila.knit" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
+  <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="11.14 Testes não paramétricos | apostila.knit" />
+  
+  <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="roteiro-para-testes-de-hipóteses-para-a-proporção-de-uma-população.html"/>
+<link rel="next" href="fluxograma-auxiliar-para-escolha-da-estatística-do-teste-de-hipóteses.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Índice</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section" id="toc-section"></a></li>
+<li class="chapter" data-level="1" data-path="introdução-histórica-da-estatística.html"><a href="introdução-histórica-da-estatística.html"><i class="fa fa-check"></i><b>1</b> Introdução histórica da estatística</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="primeiros-levantamentos-estudos-e-publicações-demografia-e-aritmética-política.html"><a href="primeiros-levantamentos-estudos-e-publicações-demografia-e-aritmética-política.html"><i class="fa fa-check"></i><b>1.1</b> Primeiros levantamentos, estudos e publicações &amp; Demografia e aritmética política</a></li>
+<li class="chapter" data-level="1.2" data-path="visualização-de-dados-estudos-e-primeiras-publicações.html"><a href="visualização-de-dados-estudos-e-primeiras-publicações.html"><i class="fa fa-check"></i><b>1.2</b> Visualização de dados &amp; Estudos e primeiras publicações</a></li>
+<li class="chapter" data-level="1.3" data-path="nomes-notáveis.html"><a href="nomes-notáveis.html"><i class="fa fa-check"></i><b>1.3</b> Nomes notáveis</a></li>
+<li class="chapter" data-level="1.4" data-path="revista-biometrika.html"><a href="revista-biometrika.html"><i class="fa fa-check"></i><b>1.4</b> Revista Biometrika</a></li>
+<li class="chapter" data-level="1.5" data-path="eugenia.html"><a href="eugenia.html"><i class="fa fa-check"></i><b>1.5</b> Eugenia</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introdução-conceitual-essencial.html"><a href="introdução-conceitual-essencial.html"><i class="fa fa-check"></i><b>2</b> Introdução conceitual essencial</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="estatística-descritiva.html"><a href="estatística-descritiva.html"><i class="fa fa-check"></i><b>2.1</b> Estatística descritiva</a></li>
+<li class="chapter" data-level="2.2" data-path="estatística-inferencial.html"><a href="estatística-inferencial.html"><i class="fa fa-check"></i><b>2.2</b> Estatística inferencial</a></li>
+<li class="chapter" data-level="2.3" data-path="produção-de-conhecimento.html"><a href="produção-de-conhecimento.html"><i class="fa fa-check"></i><b>2.3</b> Produção de conhecimento</a></li>
+<li class="chapter" data-level="2.4" data-path="população-universo-amostra.html"><a href="população-universo-amostra.html"><i class="fa fa-check"></i><b>2.4</b> População (universo) &amp; amostra</a></li>
+<li class="chapter" data-level="2.5" data-path="parâmetros-e-estatísticas.html"><a href="parâmetros-e-estatísticas.html"><i class="fa fa-check"></i><b>2.5</b> Parâmetros e estatísticas</a></li>
+<li class="chapter" data-level="2.6" data-path="tipos-de-variáveis.html"><a href="tipos-de-variáveis.html"><i class="fa fa-check"></i><b>2.6</b> Tipos de variáveis</a></li>
+<li class="chapter" data-level="2.7" data-path="indexação-de-dados-i.html"><a href="indexação-de-dados-i.html"><i class="fa fa-check"></i><b>2.7</b> Indexação de dados (<span class="math inline">\(i\)</span>)</a></li>
+<li class="chapter" data-level="2.8" data-path="noções-básicas-sobre-somatórios-sigma.html"><a href="noções-básicas-sobre-somatórios-sigma.html"><i class="fa fa-check"></i><b>2.8</b> Noções básicas sobre somatórios (<span class="math inline">\(\Sigma\)</span>)</a></li>
+<li class="chapter" data-level="2.9" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><i class="fa fa-check"></i><b>2.9</b> Análise combinatória: diagramas de árvore, permutações (arranjos) &amp; combinações</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html#permutações-ou-arranjos"><i class="fa fa-check"></i><b>2.9.1</b> Permutações ou arranjos</a></li>
+<li class="chapter" data-level="2.9.2" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html#combinações"><i class="fa fa-check"></i><b>2.9.2</b> Combinações</a></li>
+<li class="chapter" data-level="2.9.3" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html#observações-acerca-de-alguns-fatoriais"><i class="fa fa-check"></i><b>2.9.3</b> Observações acerca de alguns fatoriais</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="conectivos-lógicos.html"><a href="conectivos-lógicos.html"><i class="fa fa-check"></i><b>2.10</b> Conectivos lógicos</a></li>
+<li class="chapter" data-level="2.11" data-path="leis-de-de-morgan.html"><a href="leis-de-de-morgan.html"><i class="fa fa-check"></i><b>2.11</b> Leis de De Morgan</a></li>
+<li class="chapter" data-level="2.12" data-path="noções-básicas-para-o-uso-de-calculadora-cassio-fx-82ms.html"><a href="noções-básicas-para-o-uso-de-calculadora-cassio-fx-82ms.html"><i class="fa fa-check"></i><b>2.12</b> Noções básicas para o uso de calculadora (Cassio fx-82MS)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introdução-à-estatística-descritiva.html"><a href="introdução-à-estatística-descritiva.html"><i class="fa fa-check"></i><b>3</b> Introdução à estatística descritiva</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="análise-exploratória.html"><a href="análise-exploratória.html"><i class="fa fa-check"></i><b>3.1</b> Análise exploratória</a></li>
+<li class="chapter" data-level="3.2" data-path="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html"><a href="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html"><i class="fa fa-check"></i><b>3.2</b> Dados brutos, em rol, diagrama de ramos &amp; folhas e de dispersão unidimensional</a></li>
+<li class="chapter" data-level="3.3" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html"><i class="fa fa-check"></i><b>3.3</b> Sínteses numéricas descritivas</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html#medidas-de-tendência-central-posição"><i class="fa fa-check"></i><b>3.3.1</b> Medidas de tendência central (posição)</a></li>
+<li class="chapter" data-level="3.3.2" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html#medidas-de-dispersão-variabilidade"><i class="fa fa-check"></i><b>3.3.2</b> Medidas de dispersão (variabilidade)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html#medidas-de-subdivisão-separatrizes"><i class="fa fa-check"></i><b>3.3.3</b> Medidas de subdivisão (separatrizes)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="medidas-de-forma-assimetria-curtose.html"><a href="medidas-de-forma-assimetria-curtose.html"><i class="fa fa-check"></i><b>3.4</b> Medidas de forma (assimetria &amp; curtose)</a></li>
+<li class="chapter" data-level="3.5" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html"><i class="fa fa-check"></i><b>3.5</b> Apresentação tabular de dados</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#apresentação-tabular-de-dados-qualitativos"><i class="fa fa-check"></i><b>3.5.1</b> Apresentação tabular de dados qualitativos</a></li>
+<li class="chapter" data-level="3.5.2" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#apresentação-tabular-de-dados-quantitativos"><i class="fa fa-check"></i><b>3.5.2</b> Apresentação tabular de dados quantitativos</a></li>
+<li class="chapter" data-level="3.5.3" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#média-1"><i class="fa fa-check"></i><b>3.5.3</b> Média</a></li>
+<li class="chapter" data-level="3.5.4" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#moda-1"><i class="fa fa-check"></i><b>3.5.4</b> Moda</a></li>
+<li class="chapter" data-level="3.5.5" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#variância"><i class="fa fa-check"></i><b>3.5.5</b> Variância</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html"><i class="fa fa-check"></i><b>3.6</b> Apresentação gráfica de dados</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#barras"><i class="fa fa-check"></i><b>3.6.1</b> Barras</a></li>
+<li class="chapter" data-level="3.6.2" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#histograma"><i class="fa fa-check"></i><b>3.6.2</b> Histograma</a></li>
+<li class="chapter" data-level="3.6.3" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#setores"><i class="fa fa-check"></i><b>3.6.3</b> Setores</a></li>
+<li class="chapter" data-level="3.6.4" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#box-plot"><i class="fa fa-check"></i><b>3.6.4</b> Box-plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introdução-ao-cálculo-de-probabilidades.html"><a href="introdução-ao-cálculo-de-probabilidades.html"><i class="fa fa-check"></i><b>4</b> Introdução ao cálculo de probabilidades</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html"><i class="fa fa-check"></i><b>4.1</b> Introdução conceitual essencial</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#experimentos-determinísticos-e-experimentos-probabilísticos-aleatórios"><i class="fa fa-check"></i><b>4.1.1</b> Experimentos determinísticos e experimentos probabilísticos (aleatórios)</a></li>
+<li class="chapter" data-level="4.1.2" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#espaço-amostral-e-seus-elementos"><i class="fa fa-check"></i><b>4.1.2</b> Espaço amostral e seus elementos</a></li>
+<li class="chapter" data-level="4.1.3" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#evento-de-interesse-sucesso"><i class="fa fa-check"></i><b>4.1.3</b> Evento de interesse (sucesso)</a></li>
+<li class="chapter" data-level="4.1.4" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#evento"><i class="fa fa-check"></i><b>4.1.4</b> Evento</a></li>
+<li class="chapter" data-level="4.1.5" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#operações-com-conjuntos-e-diagramas-de-venn"><i class="fa fa-check"></i><b>4.1.5</b> Operações com conjuntos e Diagramas de Venn</a></li>
+<li class="chapter" data-level="4.1.6" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#eventos-equiprováveis-e-não-equiprováveis"><i class="fa fa-check"></i><b>4.1.6</b> Eventos equiprováveis e não equiprováveis</a></li>
+<li class="chapter" data-level="4.1.7" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#eventos-independentes"><i class="fa fa-check"></i><b>4.1.7</b> Eventos independentes</a></li>
+<li class="chapter" data-level="4.1.8" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#eventos-mutuamente-exclusivos"><i class="fa fa-check"></i><b>4.1.8</b> Eventos mutuamente exclusivos</a></li>
+<li class="chapter" data-level="4.1.9" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#eventos-complementares"><i class="fa fa-check"></i><b>4.1.9</b> Eventos complementares</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="probabilidade.html"><a href="probabilidade.html"><i class="fa fa-check"></i><b>4.2</b> Probabilidade</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="probabilidade.html"><a href="probabilidade.html#introdução-histórica"><i class="fa fa-check"></i><b>4.2.1</b> Introdução histórica</a></li>
+<li class="chapter" data-level="4.2.2" data-path="probabilidade.html"><a href="probabilidade.html#conceito-clássico-ou-a-priori"><i class="fa fa-check"></i><b>4.2.2</b> Conceito clássico ou <em>a priori</em></a></li>
+<li class="chapter" data-level="4.2.3" data-path="probabilidade.html"><a href="probabilidade.html#conceito-frequentista-ou-a-posteriori"><i class="fa fa-check"></i><b>4.2.3</b> Conceito frequentista ou <em>a posteriori</em></a></li>
+<li class="chapter" data-level="4.2.4" data-path="probabilidade.html"><a href="probabilidade.html#conceito-axiomático"><i class="fa fa-check"></i><b>4.2.4</b> Conceito axiomático</a></li>
+<li class="chapter" data-level="4.2.5" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-da-união-de-eventos"><i class="fa fa-check"></i><b>4.2.5</b> Probabilidade da união de eventos</a></li>
+<li class="chapter" data-level="4.2.6" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-de-eventos-condicionados"><i class="fa fa-check"></i><b>4.2.6</b> Probabilidade de eventos condicionados</a></li>
+<li class="chapter" data-level="4.2.7" data-path="probabilidade.html"><a href="probabilidade.html#dependência-e-independência-de-eventos"><i class="fa fa-check"></i><b>4.2.7</b> Dependência e independência de eventos</a></li>
+<li class="chapter" data-level="4.2.8" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-da-interseção-de-eventos-independentes"><i class="fa fa-check"></i><b>4.2.8</b> Probabilidade da interseção de eventos independentes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="teorema-de-bayes.html"><a href="teorema-de-bayes.html"><i class="fa fa-check"></i><b>4.3</b> Teorema de Bayes</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="teorema-de-bayes.html"><a href="teorema-de-bayes.html#demonstração-clássica-de-independência"><i class="fa fa-check"></i><b>4.3.1</b> Demonstração clássica de independência</a></li>
+<li class="chapter" data-level="4.3.2" data-path="teorema-de-bayes.html"><a href="teorema-de-bayes.html#demonstração-clássica-de-dependência"><i class="fa fa-check"></i><b>4.3.2</b> Demonstração clássica de dependência</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html"><i class="fa fa-check"></i><b>4.4</b> Teoremas da Teoria das probabilidades</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-01"><i class="fa fa-check"></i><b>4.4.1</b> Teorema 01</a></li>
+<li class="chapter" data-level="4.4.2" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-02"><i class="fa fa-check"></i><b>4.4.2</b> Teorema 02</a></li>
+<li class="chapter" data-level="4.4.3" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-03"><i class="fa fa-check"></i><b>4.4.3</b> Teorema 03</a></li>
+<li class="chapter" data-level="4.4.4" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-04"><i class="fa fa-check"></i><b>4.4.4</b> Teorema 04</a></li>
+<li class="chapter" data-level="4.4.5" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-05"><i class="fa fa-check"></i><b>4.4.5</b> Teorema 05</a></li>
+<li class="chapter" data-level="4.4.6" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-06"><i class="fa fa-check"></i><b>4.4.6</b> Teorema 06</a></li>
+<li class="chapter" data-level="4.4.7" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-07"><i class="fa fa-check"></i><b>4.4.7</b> Teorema 07</a></li>
+<li class="chapter" data-level="4.4.8" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-08"><i class="fa fa-check"></i><b>4.4.8</b> Teorema 08</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="introdução-a-variáveis-aleatórias.html"><a href="introdução-a-variáveis-aleatórias.html"><i class="fa fa-check"></i><b>5</b> Introdução a variáveis aleatórias</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="função-discreta-de-distribuição-de-probabilidade.html"><a href="função-discreta-de-distribuição-de-probabilidade.html"><i class="fa fa-check"></i><b>5.1</b> Função discreta de distribuição de probabilidade</a></li>
+<li class="chapter" data-level="5.2" data-path="função-de-densidade-de-probabilidade.html"><a href="função-de-densidade-de-probabilidade.html"><i class="fa fa-check"></i><b>5.2</b> Função de densidade de probabilidade</a></li>
+<li class="chapter" data-level="5.3" data-path="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><a href="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><i class="fa fa-check"></i><b>5.3</b> Esperança e variância de uma variável aleatória discreta</a></li>
+<li class="chapter" data-level="5.4" data-path="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><a href="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><i class="fa fa-check"></i><b>5.4</b> Esperança e variância de uma variável aleatória contínua</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="introdução-a-modelos-teóricos-de-probabilidade.html"><a href="introdução-a-modelos-teóricos-de-probabilidade.html"><i class="fa fa-check"></i><b>6</b> Introdução a modelos teóricos de probabilidade</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="modelos-teóricos-discretos.html"><a href="modelos-teóricos-discretos.html"><i class="fa fa-check"></i><b>6.1</b> Modelos teóricos discretos</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="modelos-teóricos-discretos.html"><a href="modelos-teóricos-discretos.html#bernoulli"><i class="fa fa-check"></i><b>6.1.1</b> Bernoulli</a></li>
+<li class="chapter" data-level="6.1.2" data-path="modelos-teóricos-discretos.html"><a href="modelos-teóricos-discretos.html#binomial"><i class="fa fa-check"></i><b>6.1.2</b> Binomial</a></li>
+<li class="chapter" data-level="6.1.3" data-path="modelos-teóricos-discretos.html"><a href="modelos-teóricos-discretos.html#poisson"><i class="fa fa-check"></i><b>6.1.3</b> Poisson</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="modelos-téoricos-do-tempo-de-espera.html"><a href="modelos-téoricos-do-tempo-de-espera.html"><i class="fa fa-check"></i><b>6.2</b> Modelos téoricos do tempo de espera</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="modelos-téoricos-do-tempo-de-espera.html"><a href="modelos-téoricos-do-tempo-de-espera.html#geométrica"><i class="fa fa-check"></i><b>6.2.1</b> Geométrica</a></li>
+<li class="chapter" data-level="6.2.2" data-path="modelos-téoricos-do-tempo-de-espera.html"><a href="modelos-téoricos-do-tempo-de-espera.html#binomial-negativa"><i class="fa fa-check"></i><b>6.2.2</b> Binomial Negativa</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html"><i class="fa fa-check"></i><b>6.3</b> Modelos teóricos contínuos</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#uniforme"><i class="fa fa-check"></i><b>6.3.1</b> Uniforme</a></li>
+<li class="chapter" data-level="6.3.2" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#exponencial"><i class="fa fa-check"></i><b>6.3.2</b> Exponencial</a></li>
+<li class="chapter" data-level="6.3.3" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#normal"><i class="fa fa-check"></i><b>6.3.3</b> Normal</a></li>
+<li class="chapter" data-level="6.3.4" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#student-t"><i class="fa fa-check"></i><b>6.3.4</b> Student “t”</a></li>
+<li class="chapter" data-level="6.3.5" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#qui-quadrado"><i class="fa fa-check"></i><b>6.3.5</b> Qui-Quadrado</a></li>
+<li class="chapter" data-level="6.3.6" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#fisher-snedecor-f"><i class="fa fa-check"></i><b>6.3.6</b> Fisher-Snedecor “F”</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="tabelas.html"><a href="tabelas.html"><i class="fa fa-check"></i><b>6.4</b> Tabelas</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="planejamento_pesquisas.html"><a href="planejamento_pesquisas.html"><i class="fa fa-check"></i><b>7</b> Introdução ao planejamento de pesquisas</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="planejamento-de-pesquisas.html"><a href="planejamento-de-pesquisas.html"><i class="fa fa-check"></i><b>7.1</b> Planejamento de pesquisas</a></li>
+<li class="chapter" data-level="7.2" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html"><i class="fa fa-check"></i><b>7.2</b> Tipos de pesquisas</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-à-finalidade"><i class="fa fa-check"></i><b>7.2.1</b> Quanto à finalidade</a></li>
+<li class="chapter" data-level="7.2.2" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-à-forma-de-abordagem"><i class="fa fa-check"></i><b>7.2.2</b> Quanto à forma de abordagem</a></li>
+<li class="chapter" data-level="7.2.3" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-aos-objetivos"><i class="fa fa-check"></i><b>7.2.3</b> Quanto aos objetivos</a></li>
+<li class="chapter" data-level="7.2.4" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-ao-desenvolvimento-no-tempo"><i class="fa fa-check"></i><b>7.2.4</b> Quanto ao desenvolvimento no tempo</a></li>
+<li class="chapter" data-level="7.2.5" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-à-natureza"><i class="fa fa-check"></i><b>7.2.5</b> Quanto à natureza</a></li>
+<li class="chapter" data-level="7.2.6" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-à-forma-de-obtenção-dos-dados"><i class="fa fa-check"></i><b>7.2.6</b> Quanto à forma de obtenção dos dados</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="principais-etapas-de-uma-pesquisa.html"><a href="principais-etapas-de-uma-pesquisa.html"><i class="fa fa-check"></i><b>7.3</b> Principais etapas de uma pesquisa:</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="principais-etapas-de-uma-pesquisa.html"><a href="principais-etapas-de-uma-pesquisa.html#objetivo"><i class="fa fa-check"></i><b>7.3.1</b> Objetivo</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="população.html"><a href="população.html"><i class="fa fa-check"></i><b>7.4</b> População</a></li>
+<li class="chapter" data-level="7.5" data-path="censo.html"><a href="censo.html"><i class="fa fa-check"></i><b>7.5</b> Censo</a></li>
+<li class="chapter" data-level="7.6" data-path="amostra.html"><a href="amostra.html"><i class="fa fa-check"></i><b>7.6</b> Amostra</a></li>
+<li class="chapter" data-level="7.7" data-path="planejamento-do-levantamento-amostral.html"><a href="planejamento-do-levantamento-amostral.html"><i class="fa fa-check"></i><b>7.7</b> Planejamento do levantamento amostral</a></li>
+<li class="chapter" data-level="7.8" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html"><i class="fa fa-check"></i><b>7.8</b> Elaboração dos questionários</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html#tipos-de-perguntas"><i class="fa fa-check"></i><b>7.8.1</b> Tipos de perguntas:</a></li>
+<li class="chapter" data-level="7.8.2" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html#execução-do-levantamento-amostral"><i class="fa fa-check"></i><b>7.8.2</b> Execução do levantamento amostral</a></li>
+<li class="chapter" data-level="7.8.3" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html#análise-exploratória-dos-dados"><i class="fa fa-check"></i><b>7.8.3</b> Análise exploratória dos dados</a></li>
+<li class="chapter" data-level="7.8.4" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html#resultados-e-conclusões"><i class="fa fa-check"></i><b>7.8.4</b> Resultados e conclusões</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="técnicas-de-amostragem.html"><a href="técnicas-de-amostragem.html"><i class="fa fa-check"></i><b>7.9</b> Técnicas de amostragem</a></li>
+<li class="chapter" data-level="7.10" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html"><i class="fa fa-check"></i><b>7.10</b> Amostragem probabilística</a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html#amostragem-aleatória-simples-aas"><i class="fa fa-check"></i><b>7.10.1</b> Amostragem aleatória simples (AAS)</a></li>
+<li class="chapter" data-level="7.10.2" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html#amostragem-aleatória-sistemática"><i class="fa fa-check"></i><b>7.10.2</b> Amostragem aleatória sistemática</a></li>
+<li class="chapter" data-level="7.10.3" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html#amostragem-aleatória-estratificada"><i class="fa fa-check"></i><b>7.10.3</b> Amostragem aleatória estratificada</a></li>
+<li class="chapter" data-level="7.10.4" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html#amostragem-aleatória-por-conglomerados"><i class="fa fa-check"></i><b>7.10.4</b> Amostragem aleatória por conglomerados</a></li>
+</ul></li>
+<li class="chapter" data-level="7.11" data-path="amostragem-não-probabilística.html"><a href="amostragem-não-probabilística.html"><i class="fa fa-check"></i><b>7.11</b> Amostragem não probabilística</a>
+<ul>
+<li class="chapter" data-level="7.11.1" data-path="amostragem-não-probabilística.html"><a href="amostragem-não-probabilística.html#amostragem-por-conveniência"><i class="fa fa-check"></i><b>7.11.1</b> Amostragem por conveniência</a></li>
+<li class="chapter" data-level="7.11.2" data-path="amostragem-não-probabilística.html"><a href="amostragem-não-probabilística.html#amostragem-por-cotas"><i class="fa fa-check"></i><b>7.11.2</b> Amostragem por cotas</a></li>
+</ul></li>
+<li class="chapter" data-level="7.12" data-path="dimensionamento-de-amostras.html"><a href="dimensionamento-de-amostras.html"><i class="fa fa-check"></i><b>7.12</b> Dimensionamento de amostras</a>
+<ul>
+<li class="chapter" data-level="7.12.1" data-path="dimensionamento-de-amostras.html"><a href="dimensionamento-de-amostras.html#erros"><i class="fa fa-check"></i><b>7.12.1</b> Erros</a></li>
+<li class="chapter" data-level="7.12.2" data-path="dimensionamento-de-amostras.html"><a href="dimensionamento-de-amostras.html#determinação-do-tamanho-de-uma-amostra-para-estimação-da-média-populacional"><i class="fa fa-check"></i><b>7.12.2</b> Determinação do tamanho de uma amostra para estimação da média populacional</a></li>
+<li class="chapter" data-level="7.12.3" data-path="dimensionamento-de-amostras.html"><a href="dimensionamento-de-amostras.html#determinação-do-tamanho-de-uma-amostra-para-estimação-da-proporção-populacional"><i class="fa fa-check"></i><b>7.12.3</b> Determinação do tamanho de uma amostra para estimação da proporção populacional</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="introdução-às-estatísticas-epidemiológicas.html"><a href="introdução-às-estatísticas-epidemiológicas.html"><i class="fa fa-check"></i><b>8</b> Introdução às estatísticas epidemiológicas</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="terminologia.html"><a href="terminologia.html"><i class="fa fa-check"></i><b>8.1</b> Terminologia</a></li>
+<li class="chapter" data-level="8.2" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html"><i class="fa fa-check"></i><b>8.2</b> Medidas de risco, morte, associação e correlação</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#incidência"><i class="fa fa-check"></i><b>8.2.1</b> Incidência</a></li>
+<li class="chapter" data-level="8.2.2" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#prevalência"><i class="fa fa-check"></i><b>8.2.2</b> Prevalência</a></li>
+<li class="chapter" data-level="8.2.3" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#relação-entre-prevalência-e-incidência"><i class="fa fa-check"></i><b>8.2.3</b> Relação entre prevalência e incidência</a></li>
+<li class="chapter" data-level="8.2.4" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#quadro-comparativo-entre-medidas-de-incidência-e-de-prevalência"><i class="fa fa-check"></i><b>8.2.4</b> Quadro comparativo entre medidas de incidência e de prevalência</a></li>
+<li class="chapter" data-level="8.2.5" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#incidência-cumulativa---ic-risco"><i class="fa fa-check"></i><b>8.2.5</b> Incidência cumulativa - IC (Risco)}</a></li>
+<li class="chapter" data-level="8.2.6" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#quadro-comparativo-entre-medidas-de-risco-e-prevalência"><i class="fa fa-check"></i><b>8.2.6</b> Quadro comparativo entre medidas de risco e prevalência</a></li>
+<li class="chapter" data-level="8.2.7" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#fatalidade-dos-casos-fc"><i class="fa fa-check"></i><b>8.2.7</b> Fatalidade dos Casos (FC)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="sobrevida.html"><a href="sobrevida.html"><i class="fa fa-check"></i><b>8.3</b> Sobrevida</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="sobrevida.html"><a href="sobrevida.html#taxas-de-mortalidade-tm"><i class="fa fa-check"></i><b>8.3.1</b> Taxas de mortalidade (TM)</a></li>
+<li class="chapter" data-level="8.3.2" data-path="sobrevida.html"><a href="sobrevida.html#taxas-mais-específicas"><i class="fa fa-check"></i><b>8.3.2</b> Taxas mais específicas</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html"><i class="fa fa-check"></i><b>8.4</b> Medidas de associação</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#incidência-observada-de-nascimentos-com-baixo-peso-entre-mães-expostas-ao-risco-fumantes"><i class="fa fa-check"></i><b>8.4.1</b> Incidência observada de nascimentos com baixo peso entre mães expostas ao risco (fumantes)</a></li>
+<li class="chapter" data-level="8.4.2" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#incidência-observada-de-nascimentos-com-baixo-peso-entre-mães-não-expostas-ao-risco-não-fumantes"><i class="fa fa-check"></i><b>8.4.2</b> Incidência observada de nascimentos com baixo peso entre mães não expostas ao risco (não fumantes)</a></li>
+<li class="chapter" data-level="8.4.3" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#prevalência-de-nascimentos-com-baixo-peso-na-população-estudada"><i class="fa fa-check"></i><b>8.4.3</b> Prevalência de nascimentos com baixo peso na população estudada</a></li>
+<li class="chapter" data-level="8.4.4" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#diferença-de-risco-risco-atribuível---ra"><i class="fa fa-check"></i><b>8.4.4</b> Diferença de risco (Risco atribuível - RA)</a></li>
+<li class="chapter" data-level="8.4.5" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#razão-de-risco-risco-relativo---rr"><i class="fa fa-check"></i><b>8.4.5</b> Razão de risco (Risco relativo - RR)</a></li>
+<li class="chapter" data-level="8.4.6" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#risco-atribuível-proporcional-fração-etiológica---fe"><i class="fa fa-check"></i><b>8.4.6</b> Risco atribuível proporcional (Fração etiológica - FE)</a></li>
+<li class="chapter" data-level="8.4.7" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#odds-ratio-razão-das-chances"><i class="fa fa-check"></i><b>8.4.7</b> <em>Odds ratio</em> (Razão das chances)</a></li>
+<li class="chapter" data-level="8.4.8" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#correlação-linear-de-pearson"><i class="fa fa-check"></i><b>8.4.8</b> Correlação linear de Pearson</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="intervalos-de-confiança.html"><a href="intervalos-de-confiança.html"><i class="fa fa-check"></i><b>8.5</b> Intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="intervalos-de-confiança.html"><a href="intervalos-de-confiança.html#razão-de-risco-risco-relativo---rr-1"><i class="fa fa-check"></i><b>8.5.1</b> Razão de risco (Risco relativo - RR)</a></li>
+<li class="chapter" data-level="8.5.2" data-path="intervalos-de-confiança.html"><a href="intervalos-de-confiança.html#razão-de-chances-odds-ratio---or"><i class="fa fa-check"></i><b>8.5.2</b> Razão de chances ( <em>odds ratio</em> - OR)</a></li>
+<li class="chapter" data-level="8.5.3" data-path="intervalos-de-confiança.html"><a href="intervalos-de-confiança.html#diferença-de-risco-risco-atribuível---ra-1"><i class="fa fa-check"></i><b>8.5.3</b> Diferença de risco (Risco atribuível - RA)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="introdução-à-distribuição-das-médias-e-diferenças-entre-médias-amostrais-e-seus-intervalos-de-confiança.html"><a href="introdução-à-distribuição-das-médias-e-diferenças-entre-médias-amostrais-e-seus-intervalos-de-confiança.html"><i class="fa fa-check"></i><b>9</b> Introdução à distribuição das médias e diferenças entre médias amostrais e seus intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="distribuições-amostrais.html"><a href="distribuições-amostrais.html"><i class="fa fa-check"></i><b>9.1</b> Distribuições amostrais</a></li>
+<li class="chapter" data-level="9.2" data-path="intervalos-de-confiança-1.html"><a href="intervalos-de-confiança-1.html"><i class="fa fa-check"></i><b>9.2</b> Intervalos de confiança</a></li>
+<li class="chapter" data-level="9.3" data-path="distribuição-das-médias-amostrais.html"><a href="distribuição-das-médias-amostrais.html"><i class="fa fa-check"></i><b>9.3</b> Distribuição das médias amostrais</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="distribuição-das-médias-amostrais.html"><a href="distribuição-das-médias-amostrais.html#fator-de-correção-para-populações-finitas"><i class="fa fa-check"></i><b>9.3.1</b> Fator de correção para populações finitas</a></li>
+<li class="chapter" data-level="9.3.2" data-path="distribuição-das-médias-amostrais.html"><a href="distribuição-das-médias-amostrais.html#intervalo-de-confiança-para-médias-amostrais"><i class="fa fa-check"></i><b>9.3.2</b> Intervalo de confiança para médias amostrais</a></li>
+<li class="chapter" data-level="9.3.3" data-path="distribuição-das-médias-amostrais.html"><a href="distribuição-das-médias-amostrais.html#intervalo-de-confiança-bilateral-para-uma-média-amostral-sob-variância-populacional-conhecida-figura-reffigfig28"><i class="fa fa-check"></i><b>9.3.3</b> Intervalo de confiança bilateral para uma média amostral sob variância populacional conhecida (Figura @ref(fig:fig28))</a></li>
+<li class="chapter" data-level="9.3.4" data-path="distribuição-das-médias-amostrais.html"><a href="distribuição-das-médias-amostrais.html#intervalo-de-confiança-para-uma-média-amostral-sob-variância-populacional-desconhecida-mas-amostras-não-tão-pequenas-n-ge-30-figura-reffigfig55"><i class="fa fa-check"></i><b>9.3.4</b> Intervalo de confiança para uma média amostral sob variância populacional desconhecida mas amostras não tão pequenas: <span class="math inline">\(n \ge 30\)</span> (Figura @ref(fig:fig55))</a></li>
+<li class="chapter" data-level="9.3.5" data-path="distribuição-das-médias-amostrais.html"><a href="distribuição-das-médias-amostrais.html#intervalo-de-confiança-para-uma-média-amostral-sob-variância-populacional-desconhecida-e-amostras-de-qualquer-tamanho-figura-reffigfig58"><i class="fa fa-check"></i><b>9.3.5</b> Intervalo de confiança para uma média amostral sob variância populacional desconhecida e amostras de qualquer tamanho (Figura @ref(fig:fig58))</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="distribuição-das-diferenças-de-médias-amostrais-independentes.html"><a href="distribuição-das-diferenças-de-médias-amostrais-independentes.html"><i class="fa fa-check"></i><b>9.4</b> Distribuição das diferenças de médias amostrais independentes</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="distribuição-das-diferenças-de-médias-amostrais-independentes.html"><a href="distribuição-das-diferenças-de-médias-amostrais-independentes.html#intervalos-de-confiança-para-a-diferença-entre-duas-médias-amostrais-com-variância-populacionais-conhecidas"><i class="fa fa-check"></i><b>9.4.1</b> Intervalos de confiança para a diferença entre duas médias amostrais com variância populacionais conhecidas</a></li>
+<li class="chapter" data-level="9.4.2" data-path="distribuição-das-diferenças-de-médias-amostrais-independentes.html"><a href="distribuição-das-diferenças-de-médias-amostrais-independentes.html#intervalos-de-confiança-para-a-diferença-entre-duas-médias-amostrais-com-variâncias-populacionais-desconhecidas-mas-admitidas-iguais"><i class="fa fa-check"></i><b>9.4.2</b> Intervalos de confiança para a diferença entre duas médias amostrais com variâncias populacionais desconhecidas mas admitidas iguais</a></li>
+<li class="chapter" data-level="9.4.3" data-path="distribuição-das-diferenças-de-médias-amostrais-independentes.html"><a href="distribuição-das-diferenças-de-médias-amostrais-independentes.html#intervalos-de-confiança-para-a-diferença-entre-duas-médias-amostrais-com-variâncias-populacionais-desconhecidas-e-desiguais"><i class="fa fa-check"></i><b>9.4.3</b> Intervalos de confiança para a diferença entre duas médias amostrais com variâncias populacionais desconhecidas e desiguais</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="distribuição-das-diferenças-de-médias-amostrais-dependentes.html"><a href="distribuição-das-diferenças-de-médias-amostrais-dependentes.html"><i class="fa fa-check"></i><b>9.5</b> Distribuição das diferenças de médias amostrais dependentes</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="introdução-à-distribuição-das-proporções-amostrais-e-seus-intervalos-de-confiança.html"><a href="introdução-à-distribuição-das-proporções-amostrais-e-seus-intervalos-de-confiança.html"><i class="fa fa-check"></i><b>10</b> Introdução à distribuição das proporções amostrais e seus intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="conceito-elementar-de-uma-proporção.html"><a href="conceito-elementar-de-uma-proporção.html"><i class="fa fa-check"></i><b>10.1</b> Conceito elementar de uma proporção</a></li>
+<li class="chapter" data-level="10.2" data-path="proporção-amostral-como-uma-uma-variável-binomial.html"><a href="proporção-amostral-como-uma-uma-variável-binomial.html"><i class="fa fa-check"></i><b>10.2</b> Proporção amostral como uma uma variável Binomial</a></li>
+<li class="chapter" data-level="10.3" data-path="distribuição-das-proporções-amostrais.html"><a href="distribuição-das-proporções-amostrais.html"><i class="fa fa-check"></i><b>10.3</b> Distribuição das proporções amostrais</a></li>
+<li class="chapter" data-level="10.4" data-path="intervalo-de-confiança-para-proporções-amostrais.html"><a href="intervalo-de-confiança-para-proporções-amostrais.html"><i class="fa fa-check"></i><b>10.4</b> Intervalo de confiança para proporções amostrais</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="intervalo-de-confiança-para-proporções-amostrais.html"><a href="intervalo-de-confiança-para-proporções-amostrais.html#intervalos-de-confiança-para-a-diferença-entre-duas-proporções-amostrais"><i class="fa fa-check"></i><b>10.4.1</b> Intervalos de confiança para a diferença entre duas proporções amostrais</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="teste_hipoteses.html"><a href="teste_hipoteses.html"><i class="fa fa-check"></i><b>11</b> Introdução a testes de hipóteses</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="epistemologia.html"><a href="epistemologia.html"><i class="fa fa-check"></i><b>11.1</b> Epistemologia</a></li>
+<li class="chapter" data-level="11.2" data-path="histórico.html"><a href="histórico.html"><i class="fa fa-check"></i><b>11.2</b> Histórico</a></li>
+<li class="chapter" data-level="11.3" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html"><i class="fa fa-check"></i><b>11.3</b> Conceitos iniciais</a></li>
+<li class="chapter" data-level="11.4" data-path="efeito-do-limite-central.html"><a href="efeito-do-limite-central.html"><i class="fa fa-check"></i><b>11.4</b> Efeito do limite central</a></li>
+<li class="chapter" data-level="11.5" data-path="erro-global.html"><a href="erro-global.html"><i class="fa fa-check"></i><b>11.5</b> Erro global</a></li>
+<li class="chapter" data-level="11.6" data-path="diretrizes-gerais-de-um-teste-de-hipóteses.html"><a href="diretrizes-gerais-de-um-teste-de-hipóteses.html"><i class="fa fa-check"></i><b>11.6</b> Diretrizes gerais de um teste de hipóteses</a></li>
+<li class="chapter" data-level="11.7" data-path="formulação-e-estruturação-de-um-teste-de-hipóteses.html"><a href="formulação-e-estruturação-de-um-teste-de-hipóteses.html"><i class="fa fa-check"></i><b>11.7</b> Formulação e estruturação de um teste de hipóteses</a></li>
+<li class="chapter" data-level="11.8" data-path="natureza-dos-erros-envolvidos-em-um-teste-de-hipóteses.html"><a href="natureza-dos-erros-envolvidos-em-um-teste-de-hipóteses.html"><i class="fa fa-check"></i><b>11.8</b> Natureza dos erros envolvidos em um teste de hipóteses</a></li>
+<li class="chapter" data-level="11.9" data-path="a-probabilidade-do-valor-observado-da-estatística-do-teste.html"><a href="a-probabilidade-do-valor-observado-da-estatística-do-teste.html"><i class="fa fa-check"></i><b>11.9</b> A probabilidade do valor observado da estatística do teste</a></li>
+<li class="chapter" data-level="11.10" data-path="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html"><a href="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html"><i class="fa fa-check"></i><b>11.10</b> Tipos de testes quanto à afirmação da hipótese alternativa</a>
+<ul>
+<li class="chapter" data-level="11.10.1" data-path="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html"><a href="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html#teste-de-hipóteses-bilateral"><i class="fa fa-check"></i><b>11.10.1</b> Teste de hipóteses Bilateral</a></li>
+<li class="chapter" data-level="11.10.2" data-path="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html"><a href="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html#teste-de-hipóteses-unilateral-à-esquerda"><i class="fa fa-check"></i><b>11.10.2</b> Teste de hipóteses Unilateral à esquerda</a></li>
+<li class="chapter" data-level="11.10.3" data-path="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html"><a href="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html#teste-de-hipóteses-unilateral-à-direita"><i class="fa fa-check"></i><b>11.10.3</b> Teste de hipóteses Unilateral à direita</a></li>
+</ul></li>
+<li class="chapter" data-level="11.11" data-path="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html"><i class="fa fa-check"></i><b>11.11</b> Roteiro para testes de hipóteses para a média de uma população</a>
+<ul>
+<li class="chapter" data-level="11.11.1" data-path="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html#estruturas-possíveis-para-as-hipóteses"><i class="fa fa-check"></i><b>11.11.1</b> Estruturas possíveis para as hipóteses</a></li>
+<li class="chapter" data-level="11.11.2" data-path="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html#cenários-possíveis"><i class="fa fa-check"></i><b>11.11.2</b> Cenários possíveis</a></li>
+<li class="chapter" data-level="11.11.3" data-path="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html#probabilidade-dos-intervalos-de-confiança-para-os-testes-de-hipóteses-com-o-uso-da-estatística-z-z-sim-mathcaln01"><i class="fa fa-check"></i><b>11.11.3</b> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística Z (<span class="math inline">\(Z \sim \mathcal{N}(0,1)\)</span>):</a></li>
+<li class="chapter" data-level="11.11.4" data-path="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html#probabilidade-dos-intervalos-de-confiança-para-os-testes-de-hipóteses-com-o-uso-da-estatística-t-tsim-t_n-1"><i class="fa fa-check"></i><b>11.11.4</b> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística T (<span class="math inline">\(T\sim t_{(n-1)}\)</span>):</a></li>
+</ul></li>
+<li class="chapter" data-level="11.12" data-path="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html"><i class="fa fa-check"></i><b>11.12</b> Roteiros de testes de hipóteses para as médias amostrais independentes de duas populações Normais</a>
+<ul>
+<li class="chapter" data-level="11.12.1" data-path="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html#as-estruturas-possíveis-dos-testes-de-hipóteses-relacionados-às-suas-médias-serão"><i class="fa fa-check"></i><b>11.12.1</b> As estruturas possíveis dos testes de hipóteses relacionados às suas médias serão:</a></li>
+<li class="chapter" data-level="11.12.2" data-path="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html#testes-de-hipóteses-para-as-médias-de-duas-populações-com-variâncias-conhecidas-ou-não-conhecidas-mas-o-tamanho-das-amostras-é-grande"><i class="fa fa-check"></i><b>11.12.2</b> Testes de hipóteses para as médias de duas populações com variâncias conhecidas (ou não conhecidas mas o tamanho das amostras é grande)</a></li>
+<li class="chapter" data-level="11.12.3" data-path="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html#testes-de-hipóteses-para-as-médias-de-duas-populações-com-variâncias-desconhecidas-mas-admitidas-iguais-e-o-tamanho-das-amostras-é-diminuto"><i class="fa fa-check"></i><b>11.12.3</b> Testes de hipóteses para as médias de duas populações com variâncias desconhecidas (mas admitidas iguais) e o tamanho das amostras é diminuto</a></li>
+<li class="chapter" data-level="11.12.4" data-path="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html#teste-de-hipóteses-para-as-médias-de-duas-populações-independentes-com-variâncias-desconhecidas-e-o-tamanho-das-amostras-é-diminuto"><i class="fa fa-check"></i><b>11.12.4</b> Teste de hipóteses para as médias de duas populações independentes com variâncias desconhecidas e o tamanho das amostras é diminuto</a></li>
+</ul></li>
+<li class="chapter" data-level="11.13" data-path="roteiro-para-testes-de-hipóteses-para-a-proporção-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-proporção-de-uma-população.html"><i class="fa fa-check"></i><b>11.13</b> Roteiro para testes de hipóteses para a proporção de uma população</a>
+<ul>
+<li class="chapter" data-level="11.13.1" data-path="roteiro-para-testes-de-hipóteses-para-a-proporção-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-proporção-de-uma-população.html#estruturas-possíveis-para-as-hipóteses-1"><i class="fa fa-check"></i><b>11.13.1</b> Estruturas possíveis para as hipóteses</a></li>
+<li class="chapter" data-level="11.13.2" data-path="roteiro-para-testes-de-hipóteses-para-a-proporção-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-proporção-de-uma-população.html#probabilidade-dos-intervalos-de-confiança-para-os-testes-de-hipóteses-com-o-uso-da-estatística-z-z-sim-mathcaln01-1"><i class="fa fa-check"></i><b>11.13.2</b> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística Z (<span class="math inline">\(Z \sim \mathcal{N}(0,1)\)</span>):</a></li>
+</ul></li>
+<li class="chapter" data-level="11.14" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html"><i class="fa fa-check"></i><b>11.14</b> Testes não paramétricos</a>
+<ul>
+<li class="chapter" data-level="11.14.1" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html#teste-qui-quadrado-para-verificação-da-independência-homogeneidade"><i class="fa fa-check"></i><b>11.14.1</b> Teste Qui-quadrado para verificação da independência (homogeneidade)</a></li>
+<li class="chapter" data-level="11.14.2" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html#correção-de-continuidade-em-tabelas-2x2"><i class="fa fa-check"></i><b>11.14.2</b> Correção de continuidade em tabelas 2x2</a></li>
+<li class="chapter" data-level="11.14.3" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html#coeficiente-de-contingência-de-pearson-modificado-c"><i class="fa fa-check"></i><b>11.14.3</b> Coeficiente de contingência de Pearson (modificado: <span class="math inline">\(C^{*})\)</span> }</a></li>
+<li class="chapter" data-level="11.14.4" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html#teste-qui-quadrado-para-verificação-da-qualidade-do-ajuste-a-uma-distribuição-teórica-de-probabilidade"><i class="fa fa-check"></i><b>11.14.4</b> Teste Qui-quadrado para verificação da qualidade do ajuste a uma distribuição teórica de probabilidade</a></li>
+<li class="chapter" data-level="11.14.5" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html#teste-de-significância-para-as-médias-de-duas-populações-dependentes"><i class="fa fa-check"></i><b>11.14.5</b> Teste de significância para as médias de duas populações dependentes</a></li>
+</ul></li>
+<li class="chapter" data-level="11.15" data-path="fluxograma-auxiliar-para-escolha-da-estatística-do-teste-de-hipóteses.html"><a href="fluxograma-auxiliar-para-escolha-da-estatística-do-teste-de-hipóteses.html"><i class="fa fa-check"></i><b>11.15</b> Fluxograma auxiliar para escolha da estatística do teste de hipóteses</a></li>
+<li class="chapter" data-level="11.16" data-path="tabelas-1.html"><a href="tabelas-1.html"><i class="fa fa-check"></i><b>11.16</b> Tabelas</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://fjrcosta.github.io/apostila/" target="blank">FJCosta Github</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><div class="line-block">UNIVERSIDADE ESTADUAL DE LONDRINA<br />
+CCE - Centro de Ciências Exatas<br />
+DSTA - Departamento de Estatística<br />
+Apostila de Estatística<br />
+Prof. M.e Eng. Felinto Junior Da Costa</div></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="testes-não-paramétricos" class="section level2 hasAnchor" number="11.14">
+<h2><span class="header-section-number">11.14</span> Testes não paramétricos<a href="testes-não-paramétricos.html#testes-não-paramétricos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Um teste não paramétrico (às vezes chamado de teste livre de distribuição) não assume nada sobre a distribuição subjacente (por exemplo, que os dados vêm de uma distribuição Normal ). Isso não equivale a dizer que não se saiba nada sobre a população de origem. Geralmente significa que se sabe que os dados populacionais não são de uma distribuição Normal .</p>
+<p><br />
+</p>
+<p>Tipos de testes não paramétricos</p>
+<p><br />
+</p>
+<ul>
+<li>Teste de sinal;</li>
+<li>Teste de Sinal de Wilcoxon;</li>
+<li>Teste de Friedman;</li>
+<li>Teste de Mann-Whitney;</li>
+<li>Teste de Kruskal Wallis; e,<br />
+</li>
+<li>Teste qui-quadrado.</li>
+</ul>
+<p><br />
+</p>
+<p>Há um conjunto importante de testes de hipóteses que possibilita a análise de frequências que ocorrem nas classes de um fator.</p>
+<p><br />
+</p>
+<p>Esses testes de hipóteses são muitas vezes referenciados como testes qui-quadrado porque a estatística do teste possui, de modo assintótico, distribuição qui-quadrado.</p>
+<p><br />
+Embora esses testes se enquadrem em categorias distintas, compartilham algumas características comuns:</p>
+<p><br />
+</p>
+<ul>
+<li>Em cada situação considera-se a amostra aleatória, gerada por um ou mais experimentos multinomiais, independentes, de uma ou mais populações multinomiais. Obviamente, a população Bernoulli e a população binomial são casos particulares.<br />
+</li>
+<li>A amostra aleatória é formada pelas frequências observadas nas classes, definidas pela classificação de cada uma das unidades de observação de acordo com um ou mais critérios de interesse. Em todas as situações, a estatística do teste envolve a comparação entre <strong>frequências observadas</strong> e <strong>frequências esperadas</strong>, obtidas sob a hipótese de nulidade. Na essência, o teste qui-quadrado verifica hipóteses sobre as probabilidades e utiliza a <strong>discrepância</strong> existente entre as <strong>frequências observadas</strong> e as <strong>frequências esperadas</strong> para concluir sobre elas. Basicamente, dispõe-se de observações (contidas na amostra) sobre uma ou mais populações e busca-se determinar de qual população multinomial essa amostra veio. A hipótese de nulidade especifica a população de interesse.</li>
+<li>Se as probabilidades não forem completamente especificadas, algumas probabilidades (e, consequentemente, frequências esperadas) deverão ser estimadas pelos dados, reduzindo os graus de liberdade da distribuição limite.<br />
+</li>
+<li>Como mencionado, a distribuição limite da estatística do teste é a distribuição qui-quadrado. Uma regra usualmente exigida para uma boa aproximação da distribuição qui-quadrado é que a <strong>frequência esperada seja maior ou igual a 5</strong>. Evidentemente, quanto maiores forem as frequências esperadas, melhor será a aproximação.</li>
+</ul>
+<p><br />
+</p>
+<p>Testes paramétricos exigem que a variável seja numérica e várias hipóteses relativas aos parâmetros sejam satisfeitas, tais como que os dados tenham uma distribuição Normal (ou a sigam assintoticamente) ou ainda, em alguns casos que, suas variâncias sejam homogêneas (homocedasticidade) e as amostras tenham um certo tamanho ou frequência observada mínimos.</p>
+<p><br />
+</p>
+<p>Testes não paramétricos não assumem nenhum tipo de distribuição e são menos <strong>exigentes</strong>, podendo também trabalhar com variáveis não numéricas. Como regra geral, opta-se por testes não paramétricos quando:</p>
+<p><br />
+</p>
+<ul>
+<li>os valores observados forem extraídos de populações que não possuem uma aproximação com a distribuição Normal;<br />
+</li>
+<li>as populações de origem não possuem homogeneidade de variâncias (heterocedasticidade); e,<br />
+</li>
+<li>as variáveis em estudo não apresentem medidas intervalares que possibilitem o cálculo de estatísticas tais como a média e desvios.</li>
+</ul>
+<p><br />
+</p>
+<div id="teste-qui-quadrado-para-verificação-da-independência-homogeneidade" class="section level3 hasAnchor" number="11.14.1">
+<h3><span class="header-section-number">11.14.1</span> Teste Qui-quadrado para verificação da independência (homogeneidade)<a href="testes-não-paramétricos.html#teste-qui-quadrado-para-verificação-da-independência-homogeneidade" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>O Teste Qui-quadrado de homogeneidade (ou independência) é um teste estatístico aplicado a dados categóricos para avaliar quão provável é que qualquer diferença observada nas proporções observadas entre os vários níveis de uma variável categórica em populações diferentes (ou níveis de uma segunda variável categórica) seja simples decorrência do acaso; ou seja, o teste Qui-quadrado é geralmente usado verificar quão homogêneas são entre si as frequências observadas não havendo, portanto, diferença estatisticamente significativa entre as populações (ou variáveis).</p>
+<p><br />
+</p>
+<p>Diferenças entre o teste Qui-quadrado de homogeneidade e de independência:</p>
+<p><br />
+</p>
+<ul>
+<li><strong>Teste Qui-quadrado de homogeneidade</strong>: selecionamos uma amostra de elementos de cada uma das populações e distribuímos os elementos de cada uma dessas amostras segundo as categorias da variável estudada; e,<br />
+</li>
+<li><strong>Teste Qui-quadrado de independência</strong>: distribuímos uma amostra de <em>n</em> elementos de apenas uma população segundo as categorias da primeira variável categórica <em>A</em> e as da segunda variável categórica <em>B</em>.</li>
+</ul>
+<p><br />
+</p>
+<p>Esse tipo de investigação equivale à realização de Teste de Hipóteses onde a hipótese nula que pressupõe que exista homogeneidade (independência) na distribuição das contagens observadas em cada uma das categorias da variável nas populações amostradas (ou níveis da outra variável, no teste Qui-quadrado de Independência) será confrontada com a hipótese alternativa, de que não são homogêneas (dependência) e as flutuações não são podem ser atribuídas ao acaso.</p>
+<p><br />
+Desse modo o foco será buscar evidência estatística robusta o suficiente que confirmem que as frequências observadas entre as diferentes populações (ou níveis da outra variável, no teste Qui-quadrado de Independência) podem ser consideradas homogêneas (independentes) sob um dado nível de significância <span class="math inline">\(\alpha\)</span>.</p>
+<p><br />
+</p>
+<p>Consideremos para isso a tabela genérica para a realização do Teste Qui-quadrado onde em cada célula (habitualmente chamada de <em>casela</em>) temos uma frequência (uma quantidade) observada na Tabela a seguir.</p>
+<p><br />
+</p>
+<p><br />
+</p>
+<table>
+<caption>
+Tabela (<span class="math inline"><em>r</em> × <em>s</em></span>) de frequências
+observadas
+</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+</td>
+<td style="text-align: center;">
+</td>
+<td style="text-align: center;">
+</td>
+<td style="text-align: center;">
+</td>
+<td style="text-align: center;">
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+Variável categórica
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>B</em><sub>1</sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>B</em><sub>2</sub></span>
+</td>
+<td style="text-align: center;">
+…
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>B</em><em>s</em></span>
+</td>
+<td style="text-align: center;">
+Total
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+<span class="math inline"><em>A</em><sub>1</sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>n</em><sub>(1,1)</sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>n</em><sub>(1,2)</sub></span>
+</td>
+<td style="text-align: center;">
+…
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>n</em><sub>(1,<em>s</em>)</sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>n</em><sub>(1,.)</sub></span>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+<span class="math inline"><em>A</em><sub>2</sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>n</em><sub>(2,1)</sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>n</em><sub>(2,2)</sub></span>
+</td>
+<td style="text-align: center;">
+…
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>n</em><sub>(2,<em>s</em>)</sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>n</em><sub>(2,.)</sub></span>
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+…
+</td>
+<td style="text-align: center;">
+…
+</td>
+<td style="text-align: center;">
+…
+</td>
+<td style="text-align: center;">
+…
+</td>
+<td style="text-align: center;">
+…
+</td>
+<td style="text-align: center;">
+…
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+<span class="math inline"><em>A</em><sub><em>r</em></sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>n</em><sub>(<em>r</em>,1)</sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>n</em><sub>(<em>r</em>,2)</sub></span>
+</td>
+<td style="text-align: center;">
+…
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>n</em><sub>(<em>r</em>,<em>s</em>)</sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>n</em><sub>(<em>r</em>,.)</sub></span>
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+Totais
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>n</em><sub>(.,1)</sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>n</em><sub>(.,2)</sub></span>
+</td>
+<td style="text-align: center;">
+…
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>n</em><sub>(.,<em>s</em>)</sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>n</em><sub>(.,.)</sub></span>
+</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<blockquote>
+<p>Notação utilizada na tabela:</p>
+</blockquote>
+<p><br />
+</p>
+<ul>
+<li><span class="math inline">\(r\)</span> é o número de linhas da tabela;<br />
+</li>
+<li><span class="math inline">\(s\)</span> é o número de colunas da tabela;<br />
+</li>
+<li><span class="math inline">\(i\)</span> indexa a <em>i-ésima</em> linha da tabela;<br />
+</li>
+<li><span class="math inline">\(j\)</span> indexa a <em>j-ésima</em> coluna da tabela;<br />
+</li>
+<li><span class="math inline">\(n_{i,j}\)</span> indica o elemento localizado na casela situada na <em>i-ésima</em> linha e <em>j-ésima</em> coluna;<br />
+</li>
+<li><span class="math inline">\(n_{(1,.)}\)</span> indica o último elemento da primeira linha;<br />
+</li>
+<li><span class="math inline">\(n_{(.,1)}\)</span> indica o último elemento da primeira coluna;e,<br />
+</li>
+<li><span class="math inline">\(n_{(.,.)}\)</span> indica o último elemento simultaneamente das linhas e colunas da tabela.</li>
+</ul>
+<p><br />
+</p>
+<blockquote>
+<p>Quantas observações devemos ter em cada casela da tabela acima para que as proporções observadas de <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> sejam consideradas estatisticamente homogêneas (independentes)?</p>
+</blockquote>
+<p><br />
+</p>
+<p>Se <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> forem independentes então <span class="math inline">\(P(A_{i} \cap B_{j})= P(A_{i}) \times P(B_{j})\)</span>.</p>
+<p><br />
+</p>
+<p>O número esperado de observações com as características (<span class="math inline">\(A_{i}\)</span> e <span class="math inline">\(B_{j}\)</span>) entre as <span class="math inline">\(n_{.,.}\)</span> observações - <strong>sob a hipótese de homogeneidade (independência) da distribuição das contagens observadas entre das variáveis (ou da variável nas populações)</strong> - em cada casela deverá ser:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+E_{(i,j)} &amp; = n_{(.,.)} \times p_{(i,j)} \\
+          &amp; = n_{(.,.)} \times p_{(i,.)} \times p_{(.,j)}  \\
+          &amp; = n_{(.,.)} \times \frac{n_{(i,.)}}{n_{(.,.)}} \times \frac{n_{(.,j)}}{n_{(.,.)}}\\
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Assim, o valor esperado - <strong>sob a hipótese de homogeneidade (independência) da distribuição das contagens observadas entre as variáveis (ou da variável nas populações)</strong> <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> - em cada célula deverá ser:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+E_{(i,j)} = \frac{n_{(i,.)} \times n_{(.,j)}}{n_{(.,.)}}
+\]</span></p>
+<p><br />
+</p>
+<p>Em que:</p>
+<ul>
+<li><span class="math inline">\(E_{(i,j)}\)</span> é o valor esperado na casela <span class="math inline">\((i,j)\)</span>;<br />
+</li>
+<li><span class="math inline">\(n_{(i,.)}\)</span> é o total observado na linha <span class="math inline">\(i\)</span>;<br />
+</li>
+<li><span class="math inline">\(n_{(.,j)}\)</span> é o total observado na coluna <span class="math inline">\(j\)</span>; e,<br />
+</li>
+<li><span class="math inline">\(n_{(.,.)}\)</span> é o total geral observado.</li>
+</ul>
+<p><br />
+</p>
+<p>Para a aplicação do teste <span class="math inline">\(\chi{2}\)</span> exige-se que:</p>
+<p><br />
+</p>
+<ul>
+<li>preferencialmente as amostras sejam grandes (<span class="math inline">\(n \ge 30\)</span>);<br />
+</li>
+<li>no máximo 20% das caselas tenham uma frequência esperada <strong>menor</strong> que 5; e,<br />
+</li>
+<li>em nenhuma casela a frequência esperada pode ser menor que <strong>1</strong>.</li>
+</ul>
+<p><br />
+</p>
+<p>A estatística (<span class="math inline">\(X\)</span>) do Teste Qui-quadrado de homogeneidade (independência) baseia-se na diferença (dsitância) entre as contagens observados e as contagens esperadas sob a suposição de homogeneidade (independência) pode ser definida da seguinte maneira:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+X=\sum_{i=1}^r\sum_{j=1}^s \frac{(O_{(i,j)} - E_{(i,j)})^2}{E_{(i,j)}}   \sim \chi^{2}_{((r-1)\times(s-1))}
+\]</span></p>
+<p><br />
+</p>
+<p>e sua correspondente distribuição:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+X\sim \chi^{2}_{((r-1)\times(s-1))}
+\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>A <strong>hipótese nula</strong> postula que não há associação: as variáveis são independentes. A flutuação observada nas contagens é devida apenas a fatores puramente aleatórios.</p>
+</blockquote>
+<blockquote>
+<p>A <strong>hipótese alternativa</strong> a contradiz, afirmando existir algum fator não aleatório (alguma forma de associação) que resulta na distribuição não homogênea entre as contagens observadas: há dependência entre as variáveis.</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math display">\[
+\begin{cases}
+H_{0}: \text{ as variáveis são independentes (a flutuação nas contagens é aleatória}) \\
+H_{1}: \text{ as variáveis não são independentes (há alguma associação})
+\end{cases}
+\]</span></p>
+<p><br />
+</p>
+<p>A distribuição de referência que permite julgar se um determinado valor da estatística <span class="math inline">\(X\)</span> pode ser considerado grande o suficiente para rejeitar <span class="math inline">\(H_{0}\)</span> em favor de <span class="math inline">\(H_{1}\)</span> é a chamada distribuição Qui-quadrado: <span class="math inline">\(\chi^{2}\)</span>.</p>
+<p><br />
+</p>
+<p>Formulação do teste:</p>
+<p><br />
+</p>
+<ul>
+<li>teste de hipóteses unilateral à direita (tipo: maior que):</li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P[X_{calc} \le {\chi^{2}}_{tab \left(\alpha ;(r-1)\times(s-1) \right)} | IND]&amp; =(1-\alpha)\\
+P(X_{calc}  \le  \chi^{2}_{tab \left(\alpha ;(r-1)\times(s-1) \right)})&amp;=(1-\alpha)
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>A região de não rejeição da hipótese nula pode ser vista na Figura <a href="testes-não-paramétricos.html#fig:fig95">11.28</a>.</p>
+<p><br />
+</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="testes-não-paramétricos.html#cb138-1" aria-hidden="true" tabindex="-1"></a>prob_desejada<span class="ot">=</span><span class="fl">0.95</span></span>
+<span id="cb138-2"><a href="testes-não-paramétricos.html#cb138-2" aria-hidden="true" tabindex="-1"></a>r<span class="ot">=</span><span class="dv">4</span></span>
+<span id="cb138-3"><a href="testes-não-paramétricos.html#cb138-3" aria-hidden="true" tabindex="-1"></a>s<span class="ot">=</span><span class="dv">3</span></span>
+<span id="cb138-4"><a href="testes-não-paramétricos.html#cb138-4" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span>(r<span class="dv">-1</span>)<span class="sc">*</span>(s<span class="dv">-1</span>)</span>
+<span id="cb138-5"><a href="testes-não-paramétricos.html#cb138-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-6"><a href="testes-não-paramétricos.html#cb138-6" aria-hidden="true" tabindex="-1"></a>q_desejado<span class="ot">=</span><span class="fu">round</span>(<span class="fu">qchisq</span>(prob_desejada,df), <span class="dv">4</span>)</span>
+<span id="cb138-7"><a href="testes-não-paramétricos.html#cb138-7" aria-hidden="true" tabindex="-1"></a>d_desejada<span class="ot">=</span><span class="fu">dchisq</span>(q_desejado,df)</span>
+<span id="cb138-8"><a href="testes-não-paramétricos.html#cb138-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-9"><a href="testes-não-paramétricos.html#cb138-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-10"><a href="testes-não-paramétricos.html#cb138-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-11"><a href="testes-não-paramétricos.html#cb138-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">30</span>)), <span class="fu">aes</span>(x)) <span class="sc">+</span></span>
+<span id="cb138-12"><a href="testes-não-paramétricos.html#cb138-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dchisq,</span>
+<span id="cb138-13"><a href="testes-não-paramétricos.html#cb138-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">geom =</span> <span class="st">&quot;area&quot;</span>,</span>
+<span id="cb138-14"><a href="testes-não-paramétricos.html#cb138-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">fill =</span> <span class="st">&quot;lightgrey&quot;</span>,</span>
+<span id="cb138-15"><a href="testes-não-paramétricos.html#cb138-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,q_desejado),</span>
+<span id="cb138-16"><a href="testes-não-paramétricos.html#cb138-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">colour=</span><span class="st">&quot;black&quot;</span>,</span>
+<span id="cb138-17"><a href="testes-não-paramétricos.html#cb138-17" aria-hidden="true" tabindex="-1"></a>                <span class="at">args=</span><span class="fu">list</span>(<span class="at">df=</span>df) )<span class="sc">+</span></span>
+<span id="cb138-18"><a href="testes-não-paramétricos.html#cb138-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dchisq,</span>
+<span id="cb138-19"><a href="testes-não-paramétricos.html#cb138-19" aria-hidden="true" tabindex="-1"></a>                <span class="at">geom =</span> <span class="st">&quot;area&quot;</span>,</span>
+<span id="cb138-20"><a href="testes-não-paramétricos.html#cb138-20" aria-hidden="true" tabindex="-1"></a>                <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb138-21"><a href="testes-não-paramétricos.html#cb138-21" aria-hidden="true" tabindex="-1"></a>                <span class="at">xlim =</span> <span class="fu">c</span>(q_desejado,<span class="dv">30</span>),</span>
+<span id="cb138-22"><a href="testes-não-paramétricos.html#cb138-22" aria-hidden="true" tabindex="-1"></a>                <span class="at">colour=</span><span class="st">&quot;black&quot;</span>,</span>
+<span id="cb138-23"><a href="testes-não-paramétricos.html#cb138-23" aria-hidden="true" tabindex="-1"></a>                <span class="at">args =</span> <span class="fu">list</span>(<span class="at">df =</span> df))<span class="sc">+</span></span>
+<span id="cb138-24"><a href="testes-não-paramétricos.html#cb138-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">&quot;Densidade&quot;</span>) <span class="sc">+</span></span>
+<span id="cb138-25"><a href="testes-não-paramétricos.html#cb138-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">#scale_x_continuous(name=&quot;Valores score (f)&quot;, breaks = c(f_desejado1, f_desejado2))+  </span></span>
+<span id="cb138-26"><a href="testes-não-paramétricos.html#cb138-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name=</span><span class="st">&quot;Valores score (X)&quot;</span>)<span class="sc">+</span>  </span>
+<span id="cb138-27"><a href="testes-não-paramétricos.html#cb138-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Curva da função densidade </span><span class="sc">\n</span><span class="st">Distribuição Qui-quadrado&quot;</span>, </span>
+<span id="cb138-28"><a href="testes-não-paramétricos.html#cb138-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">subtitle =</span> <span class="st">&quot;P(0; x crítico)=(1-\u03b1) em cinza (nível de confiança) </span><span class="sc">\n</span><span class="st">P(x crítico ; \U221e)= \u03b1 em vermelho (nível de significância) &quot;</span>)<span class="sc">+</span></span>
+<span id="cb138-29"><a href="testes-não-paramétricos.html#cb138-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> q_desejado, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> q_desejado, <span class="at">yend =</span> d_desejada), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb138-30"><a href="testes-não-paramétricos.html#cb138-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>q_desejado<span class="fl">+0.5</span>, <span class="at">y=</span>d_desejada, <span class="at">label=</span><span class="st">&quot;x crítico&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">4</span>)<span class="sc">+</span></span>
+<span id="cb138-31"><a href="testes-não-paramétricos.html#cb138-31" aria-hidden="true" tabindex="-1"></a> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>q_desejado<span class="sc">+</span><span class="dv">5</span>, <span class="at">y=</span>d_desejada, <span class="at">label=</span><span class="st">&quot;Zona de rejeição </span><span class="sc">\n</span><span class="st">(para x calculado)&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb138-32"><a href="testes-não-paramétricos.html#cb138-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>q_desejado<span class="dv">-5</span>, <span class="at">y=</span>d_desejada, <span class="at">label=</span><span class="st">&quot;Zona de não rejeição  </span><span class="sc">\n</span><span class="st">(para x calculado)&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb138-33"><a href="testes-não-paramétricos.html#cb138-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig95"></span>
+<img src="apostila_files/figure-html/fig95-1.png" alt="Região de rejeição da hipótese nula para o teste uniletaral à direita (tipo: menor que): a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $x_{crit}$ para o nível de significância pretendido ($\alpha$ em uma cauda) e ($df$) graus de liberdade." width="100%" />
+<p class="caption">
+Figure 11.28: Região de rejeição da hipótese nula para o teste uniletaral à direita (tipo: menor que): a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: <span class="math inline">\(x_{crit}\)</span> para o nível de significância pretendido (<span class="math inline">\(\alpha\)</span> em uma cauda) e (<span class="math inline">\(df\)</span>) graus de liberdade.
+</p>
+</div>
+<blockquote>
+<p>Exemplo: verifique a independência (homogeneidade) nas contagens da intenção de voto de quatro candidatos distintos em amostras de três diferentes bairros, partindo das informações consolidadas na tabela abaixo.</p>
+</blockquote>
+<p><br />
+</p>
+<p><br />
+</p>
+<table>
+<caption>
+Pesquisa sobre intenção de votos nos bairros “A”, “B” e
+“C”
+</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">
+Candidato
+</th>
+<th colspan="3" style="text-align: center;">
+Bairros
+</th>
+<th style="text-align: center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+</td>
+<td style="text-align: center;">
+“A”
+</td>
+<td style="text-align: center;">
+“B”
+</td>
+<td style="text-align: center;">
+“C”
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+Candidato “A”
+</td>
+<td style="text-align: center;">
+70
+</td>
+<td style="text-align: center;">
+44
+</td>
+<td style="text-align: center;">
+86
+</td>
+<td style="text-align: center;">
+200
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+Candidato “B”
+</td>
+<td style="text-align: center;">
+50
+</td>
+<td style="text-align: center;">
+30
+</td>
+<td style="text-align: center;">
+45
+</td>
+<td style="text-align: center;">
+125
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+Candidato “C”
+</td>
+<td style="text-align: center;">
+10
+</td>
+<td style="text-align: center;">
+6
+</td>
+<td style="text-align: center;">
+34
+</td>
+<td style="text-align: center;">
+50
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+Candidato “D”
+</td>
+<td style="text-align: center;">
+20
+</td>
+<td style="text-align: center;">
+20
+</td>
+<td style="text-align: center;">
+85
+</td>
+<td style="text-align: center;">
+125
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+Totais
+</td>
+<td style="text-align: center;">
+150
+</td>
+<td style="text-align: center;">
+100
+</td>
+<td style="text-align: center;">
+250
+</td>
+<td style="text-align: center;">
+500
+</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>estrutura das hipóteses para o teste a um nível de significância: 0,05</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+\begin{cases}
+H_{0}: \text{as contagens são homogêneas} \\
+H_{1}: \text{as contagens não são homogêneas}
+\end{cases}
+\]</span><br />
+</p>
+<p>Equivale dizer que há independência entre a escolha de um ou outro candidato e o bairro em questão (não há relação entre um determinado bairro e um determinado candidato)</p>
+<p><br />
+</p>
+<p>Estatística do teste e sua distribuição:</p>
+<p><span class="math display">\[
+X=\sum_{i=1}^r\sum_{j=1}^s \frac{(O_{(i,j)} - E_{(i,j)})^2}{E_{(i,j)}}   \sim \chi^{2}_{((r-1)\times(s-1))}
+\]</span></p>
+<p><br />
+</p>
+<p>Cálculo da frequência esperada em cada casela (<span class="math inline">\(E_{(i,j)}\)</span>):</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+E_{(i,j)} = \frac{n_{(i,.)} \times n_{(.,j)}}{n_{(.,.)}}
+\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[
+\frac{\text{soma da linha i} \times \text{soma da coluna j}}{\text{total de observações}}
+\]</span><br />
+</p>
+<p>As frequências esperadas em cada casela (<span class="math inline">\(i,j\)</span>) serão calculadas pela fórmula acima seguir e estão apresentadas na tabela a segui, em conjunto com as frequências observadas.</p>
+<p><br />
+</p>
+<p><br />
+</p>
+<table>
+<caption>
+Pesquisa sobre intenção de voto nos bairros “A”, “B” e “C”:
+frequências observadas (e entre parênteses e negrito as frequências
+esperadas)
+</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">
+Candidato
+</th>
+<th colspan="3" style="text-align: center;">
+Bairros
+</th>
+<th style="text-align: center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+</td>
+<td style="text-align: center;">
+“A”
+</td>
+<td style="text-align: center;">
+“B”
+</td>
+<td style="text-align: center;">
+“C”
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+Candidato “A”
+</td>
+<td style="text-align: center;">
+70 <strong>(60)</strong>
+</td>
+<td style="text-align: center;">
+44 <strong>(40)</strong>
+</td>
+<td style="text-align: center;">
+86 <strong>(100)</strong>
+</td>
+<td style="text-align: center;">
+200
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+Candidato “B”
+</td>
+<td style="text-align: center;">
+50 <strong>(37,5)</strong>
+</td>
+<td style="text-align: center;">
+30 <strong>(25)</strong>
+</td>
+<td style="text-align: center;">
+45 <strong>(62,5)</strong>
+</td>
+<td style="text-align: center;">
+125
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+Candidato “C”
+</td>
+<td style="text-align: center;">
+10 <strong>(15)</strong>
+</td>
+<td style="text-align: center;">
+6 (<strong>10)</strong>
+</td>
+<td style="text-align: center;">
+34 <strong>(25)</strong>
+</td>
+<td style="text-align: center;">
+50
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+Candidato “D”
+</td>
+<td style="text-align: center;">
+20 <strong>(37,5)</strong>
+</td>
+<td style="text-align: center;">
+20 <strong>(25)</strong>
+</td>
+<td style="text-align: center;">
+85 <strong>(62,5)</strong>
+</td>
+<td style="text-align: center;">
+125
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+Totais
+</td>
+<td style="text-align: center;">
+150
+</td>
+<td style="text-align: center;">
+100
+</td>
+<td style="text-align: center;">
+250
+</td>
+<td style="text-align: center;">
+500
+</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>Nenhuma casela teve frequência esperada menor que 1 nem tampouco observou-se casela com frequência inferior a 5.</p>
+<p><br />
+</p>
+<p>Cálculo da estatística do teste:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+X=\sum_{i=1}^4\sum_{j=1}^3 \frac{(O_{(i,j)} - E_{(i,j)})^2}{E_{(i,j)}} = 37,88
+\]</span></p>
+<p><br />
+</p>
+<p>Da tabela <span class="math inline">\(\chi^{2}\)</span> para o total de graus de liberdade <span class="math inline">\(((r-1)\times(s-1))=(4-1)\times(3-1)=6\)</span> obtemos o valor crítico da estatística do teste (<span class="math inline">\(\chi^{2}_{crit(6)}=12,60\)</span>).</p>
+<p><br />
+</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="testes-não-paramétricos.html#cb139-1" aria-hidden="true" tabindex="-1"></a>prob_desejada<span class="ot">=</span><span class="fl">0.95</span></span>
+<span id="cb139-2"><a href="testes-não-paramétricos.html#cb139-2" aria-hidden="true" tabindex="-1"></a>r<span class="ot">=</span><span class="dv">4</span></span>
+<span id="cb139-3"><a href="testes-não-paramétricos.html#cb139-3" aria-hidden="true" tabindex="-1"></a>s<span class="ot">=</span><span class="dv">3</span></span>
+<span id="cb139-4"><a href="testes-não-paramétricos.html#cb139-4" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span>(r<span class="dv">-1</span>)<span class="sc">*</span>(s<span class="dv">-1</span>)</span>
+<span id="cb139-5"><a href="testes-não-paramétricos.html#cb139-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-6"><a href="testes-não-paramétricos.html#cb139-6" aria-hidden="true" tabindex="-1"></a>q_desejado<span class="ot">=</span><span class="fu">round</span>(<span class="fu">qchisq</span>(prob_desejada,df), <span class="dv">4</span>)</span>
+<span id="cb139-7"><a href="testes-não-paramétricos.html#cb139-7" aria-hidden="true" tabindex="-1"></a>d_desejada<span class="ot">=</span><span class="fu">dchisq</span>(q_desejado,df)</span>
+<span id="cb139-8"><a href="testes-não-paramétricos.html#cb139-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-9"><a href="testes-não-paramétricos.html#cb139-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-10"><a href="testes-não-paramétricos.html#cb139-10" aria-hidden="true" tabindex="-1"></a>q_calculado<span class="ot">=</span><span class="fl">37.88</span></span>
+<span id="cb139-11"><a href="testes-não-paramétricos.html#cb139-11" aria-hidden="true" tabindex="-1"></a>d_calculado<span class="ot">=</span><span class="fu">dchisq</span>(q_calculado,df)</span>
+<span id="cb139-12"><a href="testes-não-paramétricos.html#cb139-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-13"><a href="testes-não-paramétricos.html#cb139-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-14"><a href="testes-não-paramétricos.html#cb139-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">50</span>)), <span class="fu">aes</span>(x)) <span class="sc">+</span></span>
+<span id="cb139-15"><a href="testes-não-paramétricos.html#cb139-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dchisq,</span>
+<span id="cb139-16"><a href="testes-não-paramétricos.html#cb139-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">geom =</span> <span class="st">&quot;area&quot;</span>,</span>
+<span id="cb139-17"><a href="testes-não-paramétricos.html#cb139-17" aria-hidden="true" tabindex="-1"></a>                <span class="at">fill =</span> <span class="st">&quot;lightgrey&quot;</span>,</span>
+<span id="cb139-18"><a href="testes-não-paramétricos.html#cb139-18" aria-hidden="true" tabindex="-1"></a>                <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,q_desejado),</span>
+<span id="cb139-19"><a href="testes-não-paramétricos.html#cb139-19" aria-hidden="true" tabindex="-1"></a>                <span class="at">colour=</span><span class="st">&quot;black&quot;</span>,</span>
+<span id="cb139-20"><a href="testes-não-paramétricos.html#cb139-20" aria-hidden="true" tabindex="-1"></a>                <span class="at">args=</span><span class="fu">list</span>(<span class="at">df=</span>df) )<span class="sc">+</span></span>
+<span id="cb139-21"><a href="testes-não-paramétricos.html#cb139-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dchisq,</span>
+<span id="cb139-22"><a href="testes-não-paramétricos.html#cb139-22" aria-hidden="true" tabindex="-1"></a>                <span class="at">geom =</span> <span class="st">&quot;area&quot;</span>,</span>
+<span id="cb139-23"><a href="testes-não-paramétricos.html#cb139-23" aria-hidden="true" tabindex="-1"></a>                <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb139-24"><a href="testes-não-paramétricos.html#cb139-24" aria-hidden="true" tabindex="-1"></a>                <span class="at">xlim =</span> <span class="fu">c</span>(q_desejado,<span class="dv">40</span>),</span>
+<span id="cb139-25"><a href="testes-não-paramétricos.html#cb139-25" aria-hidden="true" tabindex="-1"></a>                <span class="at">colour=</span><span class="st">&quot;black&quot;</span>,</span>
+<span id="cb139-26"><a href="testes-não-paramétricos.html#cb139-26" aria-hidden="true" tabindex="-1"></a>                <span class="at">args =</span> <span class="fu">list</span>(<span class="at">df =</span> df))<span class="sc">+</span></span>
+<span id="cb139-27"><a href="testes-não-paramétricos.html#cb139-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">&quot;Densidade&quot;</span>) <span class="sc">+</span></span>
+<span id="cb139-28"><a href="testes-não-paramétricos.html#cb139-28" aria-hidden="true" tabindex="-1"></a>  <span class="co">#scale_x_continuous(name=&quot;Valores score (f)&quot;, breaks = c(f_desejado1, f_desejado2))+  </span></span>
+<span id="cb139-29"><a href="testes-não-paramétricos.html#cb139-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name=</span><span class="st">&quot;Valores score (X)&quot;</span>)<span class="sc">+</span>  </span>
+<span id="cb139-30"><a href="testes-não-paramétricos.html#cb139-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Curva da função densidade </span><span class="sc">\n</span><span class="st">Distribuição Qui-quadrado&quot;</span>, </span>
+<span id="cb139-31"><a href="testes-não-paramétricos.html#cb139-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">subtitle =</span> <span class="st">&quot;P(0; 12,60)=(1-\u03b1) em cinza (nível de confiança) </span><span class="sc">\n</span><span class="st">P(12,60 ; \U221e)= \u03b1 em vermelho (nível de significância) &quot;</span>)<span class="sc">+</span></span>
+<span id="cb139-32"><a href="testes-não-paramétricos.html#cb139-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> q_desejado, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> q_desejado, <span class="at">yend =</span> d_desejada), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb139-33"><a href="testes-não-paramétricos.html#cb139-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>q_desejado<span class="fl">+0.5</span>, <span class="at">y=</span>d_desejada, <span class="at">label=</span><span class="st">&quot;x crítico=12,60&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">4</span>)<span class="sc">+</span></span>
+<span id="cb139-34"><a href="testes-não-paramétricos.html#cb139-34" aria-hidden="true" tabindex="-1"></a> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>q_desejado<span class="sc">+</span><span class="dv">5</span>, <span class="at">y=</span>d_desejada, <span class="at">label=</span><span class="st">&quot;Zona de rejeição </span><span class="sc">\n</span><span class="st">(para x calculado)&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb139-35"><a href="testes-não-paramétricos.html#cb139-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>q_desejado<span class="dv">-5</span>, <span class="at">y=</span>d_desejada, <span class="at">label=</span><span class="st">&quot;Zona de não rejeição  </span><span class="sc">\n</span><span class="st">(para x calculado)&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb139-36"><a href="testes-não-paramétricos.html#cb139-36" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> q_calculado, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> q_calculado, <span class="at">yend =</span> d_calculado), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb139-37"><a href="testes-não-paramétricos.html#cb139-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>q_calculado<span class="fl">+0.5</span>, <span class="at">y=</span>d_calculado, <span class="at">label=</span><span class="st">&quot;x calculado=37,88&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">4</span>)<span class="sc">+</span></span>
+<span id="cb139-38"><a href="testes-não-paramétricos.html#cb139-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig96"></span>
+<img src="apostila_files/figure-html/fig96-1.png" alt="Região de rejeição da hipótese nula para o teste uniletaral à direita (tipo: menor que): a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $x_{crit}=12,60$ para o nível de significância pretendido ($\alpha=0,05$ em uma cauda)  e ($df=6$) graus de liberdade." width="100%" />
+<p class="caption">
+Figure 11.29: Região de rejeição da hipótese nula para o teste uniletaral à direita (tipo: menor que): a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: <span class="math inline">\(x_{crit}=12,60\)</span> para o nível de significância pretendido (<span class="math inline">\(\alpha=0,05\)</span> em uma cauda) e (<span class="math inline">\(df=6\)</span>) graus de liberdade.
+</p>
+</div>
+<p><br />
+</p>
+<blockquote>
+<p>Conclusão: face aos dados trazidos à análise rejeitamos a proposição de que a preferência por um determinado candidato não esteja de algum modo associada ao bairro pesquisado sob um nível de significância de 5% (a probabilidade de cometimento de um erro tipo I. Há alguma relação entre a preferência por um ou outro candidato e os bairros (Figura <a href="testes-não-paramétricos.html#fig:fig96">11.29</a>).
+.</p>
+</blockquote>
+<p><br />
+</p>
+</div>
+<div id="correção-de-continuidade-em-tabelas-2x2" class="section level3 hasAnchor" number="11.14.2">
+<h3><span class="header-section-number">11.14.2</span> Correção de continuidade em tabelas 2x2<a href="testes-não-paramétricos.html#correção-de-continuidade-em-tabelas-2x2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Em tabelas de dimensão 2x2, especialmente quando as amostras não forem muito grandes, recomenda-se aplicar a chamada correção de continuidade de Yates, que consiste em reduzir 0,5 unidade nas diferenças absolutas entre as frequências observadas e esperadas:</p>
+<p><br />
+<span class="math display">\[
+X=\sum_{i=1}^r\sum_{j=1}^s \frac{(|O_{(i,j)} - E_{(i,j)}|-0,5)^2}{E_{(i,j)}}
+\]</span></p>
+<p><br />
+</p>
+<p>Ou seja, em cada casela, depois de calculada a diferença entre a frequência observada e a frequência esperada, tomamos o módulo dessa operação (isto é, despreza-se o sinal <span class="math inline">\(\pm\)</span> ) e reduz-se esse valor em 0,5 unidade para, em seguida, elevamos ao quadrado e então dividir-se pela frequência esperada da célula.</p>
+<p><br />
+</p>
+</div>
+<div id="coeficiente-de-contingência-de-pearson-modificado-c" class="section level3 hasAnchor" number="11.14.3">
+<h3><span class="header-section-number">11.14.3</span> Coeficiente de contingência de Pearson (modificado: <span class="math inline">\(C^{*})\)</span> }<a href="testes-não-paramétricos.html#coeficiente-de-contingência-de-pearson-modificado-c" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Como vimos, a aplicação do teste qui-quadrado permite verificar se existe associação entre duas variáveis, com base em um conjunto de observações. A intensidade dessa associação pode ser quantificada por coeficientes que têm por objetivo medir a força da associação entre duas variáveis categorizadas. Um deles é o chamado coeficiente de contingência de Pearson modificado (uma correção em razão da dimensão da tabela).</p>
+<p><br />
+</p>
+<p>Um coeficiente de associação, aplicado a uma tabela de contingência, produz um valor numérico que descreve se os dados se aproximam mais de uma situação de independência (<span class="math inline">\(C^{*}=0\)</span>) ou de uma situação de associação ou dependência perfeita (<span class="math inline">\(C^{*}=1\)</span>).</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+C^{*} =  \sqrt{ \frac{k \times X^{2}}{(k-1)\times (n + X^{2}) } }
+\]</span></p>
+<p><br />
+</p>
+<p>em que:</p>
+<p><br />
+</p>
+<ul>
+<li><span class="math inline">\(k\)</span> é o menor valor entre o número de linhas (l) e de colunas (c) da tabela;<br />
+</li>
+<li><span class="math inline">\(n\)</span> é o número de elementos da tabela; e,<br />
+</li>
+<li><span class="math inline">\(X{2}\)</span>: valor calculado da estatística do teste qui-quadrado.</li>
+</ul>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: no exercício resolvido anteriormente (<span class="math inline">\(X^{2}=37,88\)</span> e uma tabela <span class="math inline">\(3 \times 4\)</span> com 500 observaçoes) teremos o seguinte valor para o coeficiente de contingência modificado (<span class="math inline">\(C^{*}\)</span>:)</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+C^{*} &amp; =  \sqrt{ \frac{k \times X^{2}}{(k-1)\times (n + X^{2}) } }\\   
+&amp; =  \sqrt{ \frac{3 \times 37,88}{(3-1)\times (500 + 37,88) } }\\
+&amp; =  \sqrt{ \frac{113,64}{(2)\times (537,88) } }\\
+&amp; =  \sqrt{0,105637}\\
+&amp; =  0,325
+\end{align*}\]</span></p>
+<p><br />
+</p>
+</div>
+<div id="teste-qui-quadrado-para-verificação-da-qualidade-do-ajuste-a-uma-distribuição-teórica-de-probabilidade" class="section level3 hasAnchor" number="11.14.4">
+<h3><span class="header-section-number">11.14.4</span> Teste Qui-quadrado para verificação da qualidade do ajuste a uma distribuição teórica de probabilidade<a href="testes-não-paramétricos.html#teste-qui-quadrado-para-verificação-da-qualidade-do-ajuste-a-uma-distribuição-teórica-de-probabilidade" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>O teste de ajuste de qui-quadrado é um teste não paramétrico usado para descobrir como o valor observado de um dado fenômeno é significativamente diferente do valor esperado.</p>
+<p><br />
+</p>
+<p>No teste de ajuste do qui-quadrado, o termo qualidade de ajuste ( <em>goodness-of-fit</em> ) é usado para comparar a distribuição da amostra observada com uma distribuição teórica de probabilidade esperada. O teste de ajuste do qui-quadrado determina quão bem a distribuição teórica (como Normal, binomial ou Poisson) se encaixa na distribuição empírica.</p>
+<p><br />
+</p>
+<p>No teste de ajuste do qui-quadrado, os dados da amostra são divididos em intervalos. Em seguida, os números de pontos que se enquadram no intervalo são comparados, com o número esperado de pontos em cada intervalo. Considere-se a seguinte tabela com as observações agrupadas em classes.</p>
+<p><br />
+</p>
+<p><br />
+</p>
+<table>
+<caption>
+Dados observados agrupados em classes
+</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">
+ID
+</th>
+<th style="text-align: left;">
+Classes
+</th>
+<th style="text-align: center;">
+Frequência observada (<span class="math inline"><em>f</em><sub><em>o</em><em>b</em><em>s</em><sub><em>i</em></sub></sub></span>)
+</th>
+<th style="text-align: center;">
+Frequência teórica esperada (<span class="math inline"><em>f</em><sub><em>e</em><em>s</em><em>p</em><sub><em>i</em></sub></sub></span>)
+</th>
+<th style="text-align: center;">
+<span class="math inline"><span class="math inline">\(\frac{(f_{obs_i} - f_{esp_i})^{2}}{f_{esp_i}}\)</span></span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">
+1
+</td>
+<td style="text-align: left;">
+<span class="math inline"><em>l</em><em>i</em><em>m</em><sub><em>i</em><em>n</em><em>f</em></sub> ⊢ <em>l</em><em>i</em><em>m</em><sub><em>s</em><em>u</em><em>p</em></sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>f</em><sub><em>o</em><em>b</em><em>s</em><sub>1</sub></sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>f</em><sub><em>e</em><em>s</em><em>p</em><sub>1</sub></sub></span>
+</td>
+<td style="text-align: center;">
+…..
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+2
+</td>
+<td style="text-align: left;">
+<span class="math inline"><em>l</em><em>i</em><em>m</em><sub><em>i</em><em>n</em><em>f</em></sub> ⊢ <em>l</em><em>i</em><em>m</em><sub><em>s</em><em>u</em><em>p</em></sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>f</em><sub><em>o</em><em>b</em><em>s</em><sub>2</sub></sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>f</em><sub><em>e</em><em>s</em><em>p</em><sub>2</sub></sub></span>
+</td>
+<td style="text-align: center;">
+…..
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+…
+</td>
+<td style="text-align: left;">
+…
+</td>
+<td style="text-align: center;">
+…
+</td>
+<td style="text-align: center;">
+….
+</td>
+<td style="text-align: center;">
+….
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+<span class="math inline"><em>k</em></span>
+</td>
+<td style="text-align: left;">
+<span class="math inline"><em>l</em><em>i</em><em>m</em><sub><em>i</em><em>n</em><em>f</em></sub> ⊢ <em>l</em><em>i</em><em>m</em><sub><em>s</em><em>u</em><em>p</em></sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>f</em><sub><em>o</em><em>b</em><em>s</em><sub><em>k</em></sub></sub></span>
+</td>
+<td style="text-align: center;">
+<span class="math inline"><em>f</em><sub><em>e</em><em>s</em><em>p</em><sub><em>k</em></sub></sub></span>
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+Totais
+</td>
+<td style="text-align: left;">
+-
+</td>
+<td style="text-align: center;">
+<span class="math inline"><span class="math inline">\(\sum_{i=1}^{k}f_{obs_i}\)</span></span>
+</td>
+<td style="text-align: center;">
+-
+</td>
+<td style="text-align: center;">
+<span class="math inline"><span class="math inline">\(X_{calc}= \sum_{i=1}^{k} \frac{(f_{obs_i} - f_{esp_i})^{2}}{f_{esp_i}}\)</span></span> 
+</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>A frequência esperada em cada classe, sob a suposição de que os dados seguem uma distribuição Normal: <span class="math inline">\(X \sim \mathcal{N}(\mu, \sigma)\)</span> é dada por:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+f_{esp_{i}} &amp; = P[ lim_{inf_{i}} \le X \le lim_{sup_{i}}  ]\times \sum_{i=1}^kf_{obs_{i}}\\
+&amp; = P[ \frac{(lim_{inf_{i}}-\mu)}{\sigma}  \le Z \le \frac{(lim_{sup_{i}}-\mu)}{\sigma}  ]\times \sum_{i=1}^kf_{obs_{i}}\\
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Há de se considerar duas situações: <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma\)</span> conhecidos, ou estimados a partir dos dados da amostra.</p>
+<p><br />
+</p>
+<p>Caso sejam conhecidos, demonstra-se que <span class="math inline">\(X_{calc} \sim \chi^{2}_{(k-1)}\)</span>; na outra situação, se forem estimados a partir da amostra (usando-se <span class="math inline">\(\stackrel{-}{x}\)</span> e <span class="math inline">\(s\)</span>) então, igualmente, tem-se que <span class="math inline">\(X_{calc} \sim \chi^{2}_{(k-1-2)}\)</span>, apenas com a perda de dois graus de liberdade pelas estimações feitas.</p>
+<p><br />
+</p>
+<p>A estatística do teste qui-quadrado de qualidade de ajuste baseia-se na distância entre as frequências observadas e as frequências esperados sob a distribuição de probabilidade considerada e pode então ser definida, bem como o teste de hipóteses, da seguinte maneira:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+X_{calc}=    \sum_{i=1}^k \frac{(f_{obs_i} - f_{esp_i})^2}{f_{esp_i}}
+\]</span></p>
+<p><br />
+</p>
+<p>Demonstra-se que para uma amostra grande e com classes com frequências esperadas (<span class="math inline">\(f_{esp_i}\ge 5\)</span>) que <span class="math inline">\(X_{calc} \sim \chi^{2} (k-1)\)</span> e o correspondente teste de hipóteses assume a estrutura seguinte:</p>
+<p><span class="math display">\[
+\begin{cases}
+H_{0}: \text{X segue o modelo teórico proposto} \\
+H_{1}: \text{X não segue o modelo proposto}
+\end{cases}
+\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Formulação do teste:</p>
+</blockquote>
+<p><br />
+</p>
+<ul>
+<li>Teste de hipóteses unilateral à direita (tipo: maior que):</li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P[X_{calc} \le {\chi^{2}}_{tab \left(\alpha ;(k-1) \right)} | X \sim  \mathcal{N}] &amp; =(1-\alpha) \\  
+P(X_{calc}  \le  \chi^{2}_{tab \left(\alpha ;(k-1) \right)}) &amp; =(1-\alpha)
+\end{align*}\]</span></p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="testes-não-paramétricos.html#cb140-1" aria-hidden="true" tabindex="-1"></a>prob_desejada<span class="ot">=</span><span class="fl">0.95</span></span>
+<span id="cb140-2"><a href="testes-não-paramétricos.html#cb140-2" aria-hidden="true" tabindex="-1"></a>r<span class="ot">=</span><span class="dv">4</span></span>
+<span id="cb140-3"><a href="testes-não-paramétricos.html#cb140-3" aria-hidden="true" tabindex="-1"></a>s<span class="ot">=</span><span class="dv">3</span></span>
+<span id="cb140-4"><a href="testes-não-paramétricos.html#cb140-4" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span>(r<span class="dv">-1</span>)<span class="sc">*</span>(s<span class="dv">-1</span>)</span>
+<span id="cb140-5"><a href="testes-não-paramétricos.html#cb140-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-6"><a href="testes-não-paramétricos.html#cb140-6" aria-hidden="true" tabindex="-1"></a>q_desejado<span class="ot">=</span><span class="fu">round</span>(<span class="fu">qchisq</span>(prob_desejada,df), <span class="dv">4</span>)</span>
+<span id="cb140-7"><a href="testes-não-paramétricos.html#cb140-7" aria-hidden="true" tabindex="-1"></a>d_desejada<span class="ot">=</span><span class="fu">dchisq</span>(q_desejado,df)</span>
+<span id="cb140-8"><a href="testes-não-paramétricos.html#cb140-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-9"><a href="testes-não-paramétricos.html#cb140-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-10"><a href="testes-não-paramétricos.html#cb140-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-11"><a href="testes-não-paramétricos.html#cb140-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">30</span>)), <span class="fu">aes</span>(x)) <span class="sc">+</span></span>
+<span id="cb140-12"><a href="testes-não-paramétricos.html#cb140-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dchisq,</span>
+<span id="cb140-13"><a href="testes-não-paramétricos.html#cb140-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">geom =</span> <span class="st">&quot;area&quot;</span>,</span>
+<span id="cb140-14"><a href="testes-não-paramétricos.html#cb140-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">fill =</span> <span class="st">&quot;lightgrey&quot;</span>,</span>
+<span id="cb140-15"><a href="testes-não-paramétricos.html#cb140-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,q_desejado),</span>
+<span id="cb140-16"><a href="testes-não-paramétricos.html#cb140-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">colour=</span><span class="st">&quot;black&quot;</span>,</span>
+<span id="cb140-17"><a href="testes-não-paramétricos.html#cb140-17" aria-hidden="true" tabindex="-1"></a>                <span class="at">args=</span><span class="fu">list</span>(<span class="at">df=</span>df) )<span class="sc">+</span></span>
+<span id="cb140-18"><a href="testes-não-paramétricos.html#cb140-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dchisq,</span>
+<span id="cb140-19"><a href="testes-não-paramétricos.html#cb140-19" aria-hidden="true" tabindex="-1"></a>                <span class="at">geom =</span> <span class="st">&quot;area&quot;</span>,</span>
+<span id="cb140-20"><a href="testes-não-paramétricos.html#cb140-20" aria-hidden="true" tabindex="-1"></a>                <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb140-21"><a href="testes-não-paramétricos.html#cb140-21" aria-hidden="true" tabindex="-1"></a>                <span class="at">xlim =</span> <span class="fu">c</span>(q_desejado,<span class="dv">30</span>),</span>
+<span id="cb140-22"><a href="testes-não-paramétricos.html#cb140-22" aria-hidden="true" tabindex="-1"></a>                <span class="at">colour=</span><span class="st">&quot;black&quot;</span>,</span>
+<span id="cb140-23"><a href="testes-não-paramétricos.html#cb140-23" aria-hidden="true" tabindex="-1"></a>                <span class="at">args =</span> <span class="fu">list</span>(<span class="at">df =</span> df))<span class="sc">+</span></span>
+<span id="cb140-24"><a href="testes-não-paramétricos.html#cb140-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">&quot;Densidade&quot;</span>) <span class="sc">+</span></span>
+<span id="cb140-25"><a href="testes-não-paramétricos.html#cb140-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">#scale_x_continuous(name=&quot;Valores score (f)&quot;, breaks = c(f_desejado1, f_desejado2))+  </span></span>
+<span id="cb140-26"><a href="testes-não-paramétricos.html#cb140-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name=</span><span class="st">&quot;Valores score (X)&quot;</span>)<span class="sc">+</span>  </span>
+<span id="cb140-27"><a href="testes-não-paramétricos.html#cb140-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Curva da função densidade </span><span class="sc">\n</span><span class="st">Distribuição Qui-quadrado&quot;</span>, </span>
+<span id="cb140-28"><a href="testes-não-paramétricos.html#cb140-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">subtitle =</span> <span class="st">&quot;P(0; x crítico)=(1-\u03b1) em cinza (nível de confiança) </span><span class="sc">\n</span><span class="st">P(x crítico ; \U221e)= \u03b1 em vermelho (nível de significância) &quot;</span>)<span class="sc">+</span></span>
+<span id="cb140-29"><a href="testes-não-paramétricos.html#cb140-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> q_desejado, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> q_desejado, <span class="at">yend =</span> d_desejada), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb140-30"><a href="testes-não-paramétricos.html#cb140-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>q_desejado<span class="fl">+0.5</span>, <span class="at">y=</span>d_desejada, <span class="at">label=</span><span class="st">&quot;x crítico&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">4</span>)<span class="sc">+</span></span>
+<span id="cb140-31"><a href="testes-não-paramétricos.html#cb140-31" aria-hidden="true" tabindex="-1"></a> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>q_desejado<span class="sc">+</span><span class="dv">5</span>, <span class="at">y=</span>d_desejada, <span class="at">label=</span><span class="st">&quot;Zona de rejeição </span><span class="sc">\n</span><span class="st">(para x calculado)&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb140-32"><a href="testes-não-paramétricos.html#cb140-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>q_desejado<span class="dv">-8</span>, <span class="at">y=</span>d_desejada, <span class="at">label=</span><span class="st">&quot;Zona de não rejeição  </span><span class="sc">\n</span><span class="st">(para x calculado)&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb140-33"><a href="testes-não-paramétricos.html#cb140-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig97"></span>
+<img src="apostila_files/figure-html/fig97-1.png" alt="Região de rejeição da hipótese nula para o teste uniletaral à direita (tipo: menor que): a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $x_{crit}$ para o nível de significância pretendido ($\alpha$ em uma cauda)  e ($df$) graus de liberdade." width="100%" />
+<p class="caption">
+Figure 11.30: Região de rejeição da hipótese nula para o teste uniletaral à direita (tipo: menor que): a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: <span class="math inline">\(x_{crit}\)</span> para o nível de significância pretendido (<span class="math inline">\(\alpha\)</span> em uma cauda) e (<span class="math inline">\(df\)</span>) graus de liberdade.
+</p>
+</div>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: deseja-se verificar a afirmação de que a porcentagem de cinzas (material estranh ao produtoo) contidas em café torrado e moído produzido por certa empresa de torrefação segue uma distribuição Normal. Os dados abaixo representam a quantidade percentual desse material encontradas em 250 amostras analisadas em laboratório. Faça um teste qui-quadrado de adequação das frequências observadas a essa distribuição com um nível de significância <span class="math inline">\(\alpha=0.04\)</span>.</p>
+</blockquote>
+<p><br />
+</p>
+<table>
+<caption>
+Análise da presença de cinzas em café torrado e moído
+</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">
+ID
+</td>
+<td style="text-align: left;">
+Cinzas de material
+</td>
+<td style="text-align: center;">
+Frequência observada
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+(k)
+</td>
+<td style="text-align: left;">
+estranho (%)
+</td>
+<td style="text-align: center;">
+(<span class="math inline"><em>f</em><sub><em>o</em><em>b</em><em>s</em><sub><em>i</em></sub></sub></span>)
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+1
+</td>
+<td style="text-align: left;">
+<span class="math inline">9, 50 ⊢ 10, 50</span>
+</td>
+<td style="text-align: center;">
+2
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+2
+</td>
+<td style="text-align: left;">
+<span class="math inline">10, 50 ⊢ 11, 50</span>
+</td>
+<td style="text-align: center;">
+5
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+3
+</td>
+<td style="text-align: left;">
+<span class="math inline">11, 50 ⊢ 12, 50</span>
+</td>
+<td style="text-align: center;">
+16
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+4
+</td>
+<td style="text-align: left;">
+<span class="math inline">12, 50 ⊢ 13, 50</span>
+</td>
+<td style="text-align: center;">
+42
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+5
+</td>
+<td style="text-align: left;">
+<span class="math inline">13, 50<em>d</em><em>a</em><em>s</em><em>h</em>14, 50</span>
+</td>
+<td style="text-align: center;">
+69
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+6
+</td>
+<td style="text-align: left;">
+<span class="math inline">14, 50 ⊢ 15, 50</span>
+</td>
+<td style="text-align: center;">
+51
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+7
+</td>
+<td style="text-align: left;">
+<span class="math inline">15, 50 ⊢ 16, 50</span>
+</td>
+<td style="text-align: center;">
+32
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+8
+</td>
+<td style="text-align: left;">
+<span class="math inline">16, 50 ⊢ 17, 50</span>
+</td>
+<td style="text-align: center;">
+23
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+9
+</td>
+<td style="text-align: left;">
+<span class="math inline">17, 50 ⊢ 18, 50</span>
+</td>
+<td style="text-align: center;">
+9
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+10
+</td>
+<td style="text-align: left;">
+<span class="math inline">18, 50 ⊢ 19, 50</span>
+</td>
+<td style="text-align: center;">
+1
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+Totais
+</td>
+<td style="text-align: left;">
+</td>
+<td style="text-align: center;">
+250
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+</td>
+<td style="text-align: left;">
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>Análise do problema: verificar se as frequências observadas nas classes diferem das que seriam esperadas se a distribuição dessa variável seguisse uma distribuição Normal com parâmetros <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma\)</span> (não informados pelo enunciado do problema).</p>
+<p><br />
+</p>
+<p>Essa omissão nos força a utilizar a média e o desvio padrão amostrais (<span class="math inline">\(\stackrel{-}{x}\)</span> e <span class="math inline">\(S\)</span>) como suas estimativas.</p>
+<p><br />
+</p>
+<p>Isso irá nos impor a perda adicional de mais dois graus de liberdade na estatística do teste: <span class="math inline">\(\chi^{2}_{(k-1-2)}\)</span>.</p>
+<p><br />
+</p>
+<p>Para dados agrupados em classes a média e a variância são calculados por:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+\sum_{i=1}^k \frac{\stackrel{-}{x_{i}} \cdot f_{obs_{i}}}{n} = 14,512
+\]</span></p>
+<p><br />
+</p>
+<p>e<br />
+</p>
+<p><span class="math display">\[
+S^{2} =    \frac{\sum_{i=1}^k (\stackrel{-}{x_{i}} -\stackrel{-}{x})^{2} \times f_{obs_{i}}}{n-1} = 2,701
+\]</span></p>
+<p><br />
+</p>
+<p>Na sequência, calculam-se as frequências esperadas para cada classe sob a premissa de Normalidade. Abaixo mostramos o cálculo para a primeira classe:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+f_{esp_{i}} &amp; = P[ lim_{inf_{i}} \le X \le lim_{sup_{i}}  ].\sum_{i=1}^{k}f_{obs_{i}} \\
+&amp; = P[ 9,50 \le X \le 10,50  ] \times 250\\
+&amp; = P[ \frac{(lim_{inf_{i}}-\mu)}{\sigma}  \le Z \le \frac{(lim_{sup_{i}}-\mu)}{\sigma}  ] \times \sum_{i=1}^kf_{obs_{i}}\\
+&amp; = P[ \frac{(9,50-14,512)}{\sqrt{2,701}}  \le Z \le \frac{(10,50-14,512)}{\sqrt{2,701}}  ]\times 250\\
+&amp; = P[ \frac{(9,50-14,512)}{\sqrt{2,701}}  \le Z \le \frac{(10,50-14,512)}{\sqrt{2,701}}  ]\times 250\\
+&amp; = P[-3,0496  \le Z \le -2,4412  ]\times 250\\
+&amp; = (0,4989-0,4927) \times 250\\
+&amp; = (0,0062) \times 250\\
+&amp; = 1,55\\
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<table>
+<caption>
+Análise da presença de cinzas em café torrado e moído
+</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">
+ID
+</td>
+<td style="text-align: left;">
+Cinzas de material
+</td>
+<td style="text-align: center;">
+Frequência
+</td>
+<td style="text-align: center;">
+Frequência
+</td>
+<td style="text-align: center;">
+<span class="math inline"><span class="math inline">\(\frac{(f_{obs_{i}} - f_{esp_i})^2}{f_{esp_i}}\)</span></span>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+(k)
+</td>
+<td style="text-align: left;">
+estranho (%)
+</td>
+<td style="text-align: center;">
+observada (<span class="math inline"><em>f</em><sub><em>o</em><em>b</em><em>s</em><sub><em>i</em></sub></sub></span>)
+</td>
+<td style="text-align: center;">
+teórica esperada (<span class="math inline"><em>f</em><sub><em>e</em><em>s</em><em>p</em><sub><em>i</em></sub></sub></span>)
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+1
+</td>
+<td style="text-align: left;">
+<span class="math inline">9, 50 ⊢ 10, 50</span>
+</td>
+<td style="text-align: center;">
+2
+</td>
+<td style="text-align: center;">
+<span style="color: red">1,543559</span>
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+2
+</td>
+<td style="text-align: left;">
+<span class="math inline">10, 50 ⊢ 11, 50</span>
+</td>
+<td style="text-align: center;">
+5
+</td>
+<td style="text-align: center;">
+6,525845
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+3
+</td>
+<td style="text-align: left;">
+<span class="math inline">11, 50 ⊢ 12, 50</span>
+</td>
+<td style="text-align: center;">
+16
+</td>
+<td style="text-align: center;">
+19,25203
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+4
+</td>
+<td style="text-align: left;">
+<span class="math inline">12, 50 ⊢ 13, 50</span>
+</td>
+<td style="text-align: center;">
+42
+</td>
+<td style="text-align: center;">
+39,648
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+5
+</td>
+<td style="text-align: left;">
+<span class="math inline">13, 50 ⊢ 14, 50</span>
+</td>
+<td style="text-align: center;">
+69
+</td>
+<td style="text-align: center;">
+57,01595
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+6
+</td>
+<td style="text-align: left;">
+<span class="math inline">14, 50 ⊢ 15, 50</span>
+</td>
+<td style="text-align: center;">
+51
+</td>
+<td style="text-align: center;">
+57,26207
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+7
+</td>
+<td style="text-align: left;">
+<span class="math inline">15, 50 ⊢ 16, 50</span>
+</td>
+<td style="text-align: center;">
+32
+</td>
+<td style="text-align: center;">
+40,16374
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+8
+</td>
+<td style="text-align: left;">
+<span class="math inline">16, 50 ⊢ 17, 50</span>
+</td>
+<td style="text-align: center;">
+23
+</td>
+<td style="text-align: center;">
+19,67134
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+9
+</td>
+<td style="text-align: left;">
+<span class="math inline">17, 50 ⊢ 18, 50</span>
+</td>
+<td style="text-align: center;">
+9
+</td>
+<td style="text-align: center;">
+6,725776
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+10
+</td>
+<td style="text-align: left;">
+<span class="math inline">18, 50 ⊢ 19, 50</span>
+</td>
+<td style="text-align: center;">
+1
+</td>
+<td style="text-align: center;">
+<span style="color: red">1,604656</span>
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+Totais
+</td>
+<td style="text-align: left;">
+</td>
+<td style="text-align: center;">
+250
+</td>
+<td style="text-align: center;">
+-
+</td>
+<td style="text-align: center;">
+<ul>
+<li> 
+</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+<p><br />
+</p>
+<p>As frequências esperadas para as classes 1 e 10 são menores que 5 (<span class="math inline">\(f_{esp_i}\ge 5\)</span>) impondo que essas duas classes sejam agrupadas às classes imediatamente adjacentes.</p>
+<p><br />
+</p>
+<table>
+<caption>
+Análise da presença de cinzas em café torrado e moído
+</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">
+ID
+</td>
+<td style="text-align: left;">
+Cinzas de material
+</td>
+<td style="text-align: center;">
+Frequência
+</td>
+<td style="text-align: center;">
+Frequência
+</td>
+<td style="text-align: center;">
+<span class="math inline"><span class="math inline">\(\frac{(f_{obs_{i}} - f_{esp_i})^2}{f_{esp_i}}\)</span></span>
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+(k)
+</td>
+<td style="text-align: left;">
+estranho (%)
+</td>
+<td style="text-align: center;">
+observada (<span class="math inline"><em>f</em><sub><em>o</em><em>b</em><em>s</em><sub><em>i</em></sub></sub></span>)
+</td>
+<td style="text-align: center;">
+teórica esperada (<span class="math inline"><em>f</em><sub><em>e</em><em>s</em><em>p</em><sub><em>i</em></sub></sub></span>)
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+1-2
+</td>
+<td style="text-align: left;">
+<span class="math inline">9, 50 ⊢ 11, 50</span>
+</td>
+<td style="text-align: center;">
+7
+</td>
+<td style="text-align: center;">
+8,069404
+</td>
+<td style="text-align: center;">
+0,141724
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+3
+</td>
+<td style="text-align: left;">
+<span class="math inline">11, 50 ⊢ 12, 50</span>
+</td>
+<td style="text-align: center;">
+16
+</td>
+<td style="text-align: center;">
+19,25203
+</td>
+<td style="text-align: center;">
+0,549329
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+4
+</td>
+<td style="text-align: left;">
+<span class="math inline">12, 50 ⊢ 13, 50</span>
+</td>
+<td style="text-align: center;">
+42
+</td>
+<td style="text-align: center;">
+39,648
+</td>
+<td style="text-align: center;">
+0,139525
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+5
+</td>
+<td style="text-align: left;">
+<span class="math inline">13, 50 ⊢ 14, 50</span>
+</td>
+<td style="text-align: center;">
+69
+</td>
+<td style="text-align: center;">
+57,01595
+</td>
+<td style="text-align: center;">
+2,518900
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+6
+</td>
+<td style="text-align: left;">
+<span class="math inline">14, 50 ⊢ 15, 50</span>
+</td>
+<td style="text-align: center;">
+51
+</td>
+<td style="text-align: center;">
+57,26207
+</td>
+<td style="text-align: center;">
+0,684808
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+7
+</td>
+<td style="text-align: left;">
+<span class="math inline">15, 50 ⊢ 16, 50</span>
+</td>
+<td style="text-align: center;">
+32
+</td>
+<td style="text-align: center;">
+40,16374
+</td>
+<td style="text-align: center;">
+1,659374
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+8
+</td>
+<td style="text-align: left;">
+<span class="math inline">16, 50 ⊢ 17, 50</span>
+</td>
+<td style="text-align: center;">
+23
+</td>
+<td style="text-align: center;">
+19,67134
+</td>
+<td style="text-align: center;">
+0,563255
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+9-10
+</td>
+<td style="text-align: left;">
+<span class="math inline">17, 50 ⊢ 19, 50</span>
+</td>
+<td style="text-align: center;">
+10
+</td>
+<td style="text-align: center;">
+8,330432
+</td>
+<td style="text-align: center;">
+0,334611
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+Totais
+</td>
+<td style="text-align: left;">
+</td>
+<td style="text-align: center;">
+250
+</td>
+<td style="text-align: center;">
+-
+</td>
+<td style="text-align: center;">
+6,591525
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+</td>
+<td style="text-align: left;">
+</td>
+<td style="text-align: center;">
+</td>
+<td style="text-align: center;">
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>Estrutura do teste: teste de hipóteses unilateral à direita (tipo: maior que):</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+\begin{cases}
+    H_{0}: X \sim \mathcal{N} (\stackrel{-}{x}, S) \\
+    H_{1}: \text{X não segue o modelo proposto}
+\end{cases}
+\]</span></p>
+<p><br />
+</p>
+<p>A hipótese nula postula que a variável <em>X</em> segue a distribuição Normal (<span class="math inline">\(X \sim \mathcal{N}(\stackrel{-}{x}, S)\)</span>)</p>
+<p><br />
+</p>
+<p>Estatística do teste:</p>
+<p><span class="math display">\[
+x_{calc}= \sum_{i=1}^k \frac{(f_{obs_{i}} - f_{esp_i})^2}{f_{esp_i}}=6,59
+\]</span></p>
+<p><br />
+</p>
+<p>Valor crítico da estatística de teste <span class="math inline">\(\chi^{2}_{(\alpha), (k-1-2)}\)</span>:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+\chi^{2}_{(0,04), (8-1-2)}=11,64
+\]</span></p>
+<p><br />
+</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="testes-não-paramétricos.html#cb141-1" aria-hidden="true" tabindex="-1"></a>prob_desejada<span class="ot">=</span><span class="fl">0.96</span></span>
+<span id="cb141-2"><a href="testes-não-paramétricos.html#cb141-2" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span><span class="dv">5</span></span>
+<span id="cb141-3"><a href="testes-não-paramétricos.html#cb141-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb141-4"><a href="testes-não-paramétricos.html#cb141-4" aria-hidden="true" tabindex="-1"></a>q_desejado<span class="ot">=</span><span class="fu">round</span>(<span class="fu">qchisq</span>(prob_desejada,df), <span class="dv">4</span>)</span>
+<span id="cb141-5"><a href="testes-não-paramétricos.html#cb141-5" aria-hidden="true" tabindex="-1"></a>d_desejada<span class="ot">=</span><span class="fu">dchisq</span>(q_desejado,df)</span>
+<span id="cb141-6"><a href="testes-não-paramétricos.html#cb141-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb141-7"><a href="testes-não-paramétricos.html#cb141-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb141-8"><a href="testes-não-paramétricos.html#cb141-8" aria-hidden="true" tabindex="-1"></a>q_calculado<span class="ot">=</span><span class="fu">round</span>(<span class="fl">6.59</span>, <span class="dv">4</span>)</span>
+<span id="cb141-9"><a href="testes-não-paramétricos.html#cb141-9" aria-hidden="true" tabindex="-1"></a>d_calculada<span class="ot">=</span><span class="fu">dchisq</span>(q_calculado,df)</span>
+<span id="cb141-10"><a href="testes-não-paramétricos.html#cb141-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb141-11"><a href="testes-não-paramétricos.html#cb141-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb141-12"><a href="testes-não-paramétricos.html#cb141-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">30</span>)), <span class="fu">aes</span>(x)) <span class="sc">+</span></span>
+<span id="cb141-13"><a href="testes-não-paramétricos.html#cb141-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dchisq,</span>
+<span id="cb141-14"><a href="testes-não-paramétricos.html#cb141-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">geom =</span> <span class="st">&quot;area&quot;</span>,</span>
+<span id="cb141-15"><a href="testes-não-paramétricos.html#cb141-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">fill =</span> <span class="st">&quot;lightgrey&quot;</span>,</span>
+<span id="cb141-16"><a href="testes-não-paramétricos.html#cb141-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,q_desejado),</span>
+<span id="cb141-17"><a href="testes-não-paramétricos.html#cb141-17" aria-hidden="true" tabindex="-1"></a>                <span class="at">colour=</span><span class="st">&quot;black&quot;</span>,</span>
+<span id="cb141-18"><a href="testes-não-paramétricos.html#cb141-18" aria-hidden="true" tabindex="-1"></a>                <span class="at">args=</span><span class="fu">list</span>(<span class="at">df=</span>df) )<span class="sc">+</span></span>
+<span id="cb141-19"><a href="testes-não-paramétricos.html#cb141-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dchisq,</span>
+<span id="cb141-20"><a href="testes-não-paramétricos.html#cb141-20" aria-hidden="true" tabindex="-1"></a>                <span class="at">geom =</span> <span class="st">&quot;area&quot;</span>,</span>
+<span id="cb141-21"><a href="testes-não-paramétricos.html#cb141-21" aria-hidden="true" tabindex="-1"></a>                <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb141-22"><a href="testes-não-paramétricos.html#cb141-22" aria-hidden="true" tabindex="-1"></a>                <span class="at">xlim =</span> <span class="fu">c</span>(q_desejado,<span class="dv">30</span>),</span>
+<span id="cb141-23"><a href="testes-não-paramétricos.html#cb141-23" aria-hidden="true" tabindex="-1"></a>                <span class="at">colour=</span><span class="st">&quot;black&quot;</span>,</span>
+<span id="cb141-24"><a href="testes-não-paramétricos.html#cb141-24" aria-hidden="true" tabindex="-1"></a>                <span class="at">args =</span> <span class="fu">list</span>(<span class="at">df =</span> df))<span class="sc">+</span></span>
+<span id="cb141-25"><a href="testes-não-paramétricos.html#cb141-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">&quot;Densidade&quot;</span>) <span class="sc">+</span></span>
+<span id="cb141-26"><a href="testes-não-paramétricos.html#cb141-26" aria-hidden="true" tabindex="-1"></a>  <span class="co">#scale_x_continuous(name=&quot;Valores score (f)&quot;, breaks = c(f_desejado1, f_desejado2))+  </span></span>
+<span id="cb141-27"><a href="testes-não-paramétricos.html#cb141-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name=</span><span class="st">&quot;Valores score (X)&quot;</span>)<span class="sc">+</span>  </span>
+<span id="cb141-28"><a href="testes-não-paramétricos.html#cb141-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Curva da função densidade </span><span class="sc">\n</span><span class="st">Distribuição Qui-quadrado&quot;</span>, </span>
+<span id="cb141-29"><a href="testes-não-paramétricos.html#cb141-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">subtitle =</span> <span class="st">&quot;P(0; 11,64)=0,96 em cinza (nível de confiança) </span><span class="sc">\n</span><span class="st">P(11,64 ; \U221e)= 0,04 em vermelho (nível de significância) &quot;</span>)<span class="sc">+</span></span>
+<span id="cb141-30"><a href="testes-não-paramétricos.html#cb141-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> q_desejado, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> q_desejado, <span class="at">yend =</span> d_desejada), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb141-31"><a href="testes-não-paramétricos.html#cb141-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>q_desejado<span class="fl">+0.5</span>, <span class="at">y=</span>d_desejada, <span class="at">label=</span><span class="st">&quot;x crítico=11,64&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">4</span>)<span class="sc">+</span></span>
+<span id="cb141-32"><a href="testes-não-paramétricos.html#cb141-32" aria-hidden="true" tabindex="-1"></a> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>q_desejado<span class="sc">+</span><span class="dv">5</span>, <span class="at">y=</span>d_desejada, <span class="at">label=</span><span class="st">&quot;Zona de rejeição </span><span class="sc">\n</span><span class="st">(para x calculado)&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb141-33"><a href="testes-não-paramétricos.html#cb141-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>q_desejado<span class="dv">-8</span>, <span class="at">y=</span>d_desejada, <span class="at">label=</span><span class="st">&quot;Zona de não rejeição  </span><span class="sc">\n</span><span class="st">(para x calculado)&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb141-34"><a href="testes-não-paramétricos.html#cb141-34" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> q_calculado, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> q_calculado, <span class="at">yend =</span> d_calculada), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb141-35"><a href="testes-não-paramétricos.html#cb141-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>q_calculado<span class="fl">+0.5</span>, <span class="at">y=</span>d_calculada, <span class="at">label=</span><span class="st">&quot;x calculado=6,59&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">4</span>)<span class="sc">+</span></span>
+<span id="cb141-36"><a href="testes-não-paramétricos.html#cb141-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig98"></span>
+<img src="apostila_files/figure-html/fig98-1.png" alt="Região de rejeição da hipótese nula para o teste uniletaral à direita (tipo: menor que): a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $x_{crit}=11,64$ para o nível de significância pretendido ($\alpha$ em uma cauda)  e ($df$) graus de liberdade." width="100%" />
+<p class="caption">
+Figure 11.31: Região de rejeição da hipótese nula para o teste uniletaral à direita (tipo: menor que): a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: <span class="math inline">\(x_{crit}=11,64\)</span> para o nível de significância pretendido (<span class="math inline">\(\alpha\)</span> em uma cauda) e (<span class="math inline">\(df\)</span>) graus de liberdade.
+</p>
+</div>
+<p><br />
+</p>
+<p>Conclusão:</p>
+<p><br />
+</p>
+<p>O resultado do teste de hipóteses realizado com as amostras trazidas à análise não nos permite rejeitar a afirmação de que os seus valores procedem de uma distribuição Normal (<span class="math inline">\(X \sim \mathcal{N}(\stackrel{-}{x}=14,512, S=1,6435)\)</span>) a um nível de significância de 4% (Figura <a href="testes-não-paramétricos.html#fig:fig98">11.31</a>).</p>
+<p><br />
+</p>
+</div>
+<div id="teste-de-significância-para-as-médias-de-duas-populações-dependentes" class="section level3 hasAnchor" number="11.14.5">
+<h3><span class="header-section-number">11.14.5</span> Teste de significância para as médias de duas populações dependentes<a href="testes-não-paramétricos.html#teste-de-significância-para-as-médias-de-duas-populações-dependentes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>O Teste ``t’’ emparelhado é usado quando dados das duas amostras são colhidas de um mesmo indivíduo (ensaio clínico) ou em uma mesma unidade experimental (experimento agronômico) havendo, portanto, dependência entre os valores observados.</p>
+<p><br />
+</p>
+<p>As possívies estruturas dos testes de hipóteses para duas médias dependentes (amostras emparelhadas) são:</p>
+<p><br />
+</p>
+<ul>
+<li>Teste de hipóteses bilateral (tipo: diferente de):</li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[
+\begin{cases}
+  H_{0}: \mu_{\text{dif}} = \Delta_{0} \\
+  H_{1}: \mu_{\text{dif}} \ne \Delta_{0}
+\end{cases}
+\]</span></p>
+<p><br />
+</p>
+<ul>
+<li>Teste de hipóteses unilateral à esquerda (tipo: menor que):</li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[
+\begin{cases}
+  H_{0}: \mu_{\text{dif}} \ge \Delta_{0} \\
+  H_{1}: \mu_{\text{dif}} &lt; \Delta_{0}  
+\end{cases}
+\]</span></p>
+<p><br />
+</p>
+<ul>
+<li>Teste de hipóteses unilateral à direita (tipo: maior que):</li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[
+\begin{cases}
+  H_{0}: \mu_{\text{dif}} \le \Delta_{0} \\
+  H_{1}: \mu_{\text{dif}} &gt; \Delta_{0}  
+\end{cases}
+\]</span></p>
+<p><br />
+em que:</p>
+<p><br />
+</p>
+<ul>
+<li><span class="math inline">\(\Delta_{0}\)</span> é, usualmente, 0 (as médias são iguais); e,<br />
+</li>
+<li><span class="math inline">\(\mu_{\text{dif}} = \mu_{1} - \mu_{2}\)</span> é a diferença entre os pares de observaçõe.;</li>
+</ul>
+<p><br />
+</p>
+<p>Estatística do teste para amostras Normais (<span class="math inline">\(n_{1}\)</span> e <span class="math inline">\(n_{2}\)</span> quaisquer) ou amostras de outras distribuições, mas desde que <span class="math inline">\(n_{1}\)</span> e <span class="math inline">\(n_{2}\)</span> $ $:</p>
+<p><br />
+</p>
+<ul>
+<li><span class="math inline">\(t_{cal} = \frac{\sqrt{n}\cdot \left({\stackrel{-}{x}}_{dif}-{\Delta }_{0}\right)}{{S}_{dif}}\)</span></li>
+<li><span class="math inline">\(\stackrel{-}{x}_{dif}\)</span>: valor médio das diferenças entre as observações (amostra)</li>
+<li><span class="math inline">\(S_{dif}\)</span>: desvio padrão das diferenças entre as observações (amostra)</li>
+<li><span class="math inline">\({t}_{tab\left(\frac{\alpha }{2}; n-1 \right)}\)</span> ou <span class="math inline">\({t}_{tab\left(\alpha ; n-1\right)}\)</span>: o quantil associado na distribuição ``t’’ de <em>Student</em> ao nível de significância pretendido no teste, com <span class="math inline">\((n-1)\)</span> graus de liberdade.</li>
+</ul>
+<p><br />
+</p>
+<p>Formulação dos testes com a estatística T (<span class="math inline">\(T \sim t_{(n-1)}\)</span>):</p>
+<p><br />
+</p>
+<ul>
+<li>Teste de hipóteses bilateral (tipo: diferente de):</li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P[\left|t_{calc}\right| \ge {t}_{tab\left(\frac{\alpha }{2}; n-1 \right)}|\mu_{\text{dif}}=0] &amp; =(1-\alpha)\\
+P ( - {t}_{tab\left(\frac{\alpha }{2}; n-1 \right)}   \le t_{calc}  \le {t}_{tab\left(\frac{\alpha }{2}; n-1 \right)}) &amp; = (1-\alpha)\\
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>As regiões de rejeição (regiões críticas) da hipótese nula podem ser vistas na Figura <a href="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html#fig:fig76">11.12</a>.</p>
+<p><br />
+</p>
+<ul>
+<li>Teste de hipóteses unilateral à esquerda (tipo: menor que):</li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P[t_{calc} \ge {t}_{tab\left(\alpha ; n-1\right)} |\mu_{\text{dif}}=0] &amp;  =(1-\alpha)\\
+P(t_{calc}  \ge {t}_{tab\left(\alpha ; n-1\right)}) &amp; = (1-\alpha) \\
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>A região de rejeição (região crítica) da hipótese nula pode ser vista na Figura <a href="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html#fig:fig77">11.13</a>.</p>
+<p><br />
+</p>
+<ul>
+<li>Teste de hipóteses unilateral à direita (tipo: maior que):</li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P[t_{calc} \le {t}_{tab\left(\alpha ; n-1\right)}|\mu_{\text{dif}}=0]  &amp; = (1-\alpha)\\  
+P( t_{calc}  \le  {t}_{tab\left(\alpha ; n-1\right)}) &amp; = (1-\alpha)\\
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>A região de rejeição (região crítica) da hipótese nula pode ser vista na Figura <a href="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html#fig:fig78">11.14</a>.</p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Uma empresa precisa tomar a decisão de adquirir uma nova máquinas de usinagem. Contudo, o fornecedor apresentou dois modelos (A e B) de preços diferentes. Para tomar a decisão, convocou 5 de seus funcionários mais experientes e os despachou para a fábrica, que os treinou a executar a mesma tarefa em ambas as máquinas. A tabela abaixo apresenta os tempos gastos pelos funcionários em ambas as máquinas (cf. tabela <span class="math inline">\(\ref{tab7}\)</span>). No nível de significância de 10% podemos afirmar que a tarefa realizada na máquina <span class="math inline">\(A\)</span> demora mais que na máquina <span class="math inline">\(B\)</span>?</p>
+</blockquote>
+<p><br />
+</p>
+<table>
+<caption>
+Tempo necessário para usinagem de uma mesma peça em duas
+máquinas diferentes, por 5 operadores diferentes
+</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">
+Funcionário
+</th>
+<th style="text-align: center;">
+Máquina A (h)
+</th>
+<th style="text-align: center;">
+Máquina B (h)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+A
+</td>
+<td style="text-align: center;">
+80
+</td>
+<td style="text-align: center;">
+75
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+B
+</td>
+<td style="text-align: center;">
+72
+</td>
+<td style="text-align: center;">
+70
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+C
+</td>
+<td style="text-align: center;">
+65
+</td>
+<td style="text-align: center;">
+60
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+D
+</td>
+<td style="text-align: center;">
+78
+</td>
+<td style="text-align: center;">
+72
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+E
+</td>
+<td style="text-align: center;">
+85
+</td>
+<td style="text-align: center;">
+78
+</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>O enunciado do problema deixa bastante claro que as medidas, os tempos gastos para a realização da tarefa nas máquinas A e B foram tomados no mesmo grupo de funcionários, de tal sorte que não nos é possível afirmar que há independência. O Teste ``t’’ é usado quando dados das duas amostras são colhidas de um mesmo sujeito, havendo, portanto dependência entre as amostras. A tabela a seguir apresenta as diferenças de tempo de usinagem entre as máquinas, para cada operador.</p>
+<p><br />
+</p>
+<table>
+<caption>
+Diferenças nos tempos de usinagem
+</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">
+Funcionário
+</th>
+<th style="text-align: center;">
+Diferença: A-B (h)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+A
+</td>
+<td style="text-align: center;">
+5
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+B
+</td>
+<td style="text-align: center;">
+2
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+C
+</td>
+<td style="text-align: center;">
+5
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+D
+</td>
+<td style="text-align: center;">
+6
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+E
+</td>
+<td style="text-align: center;">
+7
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+Média
+</td>
+<td style="text-align: center;">
+5,00
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+Desvio padrão
+</td>
+<td style="text-align: center;">
+1,8708
+</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>Estrutura do teste: teste de hipóteses unilateral à direita (tipo: maior que):</p>
+<p><span class="math display">\[
+\begin{cases}
+        H_{0}:  \mu_{\text{dif}} (\mu_{A} - \mu_{B}) \le 0 \\
+        H_{1}:  \mu_{\text{dif}} (\mu_{A} - \mu_{B}) &gt; 0
+\end{cases}
+\]</span></p>
+<p><br />
+</p>
+<p>A hipótese nula afirma que o tempo médio <span class="math inline">\(\mu_{A}\)</span> é igual ou menor que o tempo médio <span class="math inline">\(\mu_{B}\)</span>; já a hipótese alternativa, contrariamente, afirma que o tempo médio <span class="math inline">\(\mu_{A}\)</span> é maior que o tempo médio <span class="math inline">\(\mu_{B}\)</span>. Estatística do teste:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+t_{cal} = \frac{\sqrt{n} \times \left({\stackrel{-}{x}}_{dif}\right)}{{S}_{dif}}
+\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[
+t_{calc}  &gt;  {t}_{tab\left(\alpha ; (n-1)\right)}
+\]</span></p>
+<p><br />
+</p>
+<p>em que:</p>
+<p><br />
+</p>
+<ul>
+<li><span class="math inline">\(n=5\)</span>;<br />
+</li>
+<li><span class="math inline">\({t}_{tab\left(0,10 ; (5-1) \right)} = 1,533\)</span> é o quantil associado na distribuição ``t’’ de <em>Student</em> no nível de significância pretendido no teste e com <span class="math inline">\((n-1)\)</span> graus de liberdade (valor crítico monocaudal);<br />
+</li>
+<li><span class="math inline">\(t_{cal} = \frac{\sqrt{n}\cdot \left({\stackrel{-}{x}}_{dif}\right)}{{S}_{dif}} = 5,97\)</span>;<br />
+</li>
+<li><span class="math inline">\(\stackrel{-}{x}_{dif} = 5,00\)</span> é o valor médio das diferenças entre as observações amostrais;<br />
+</li>
+<li><span class="math inline">\(S_{dif} = 1,87\)</span>: desvio padrão das diferenças entre as observações amostrais.</li>
+</ul>
+<p><br />
+</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="testes-não-paramétricos.html#cb142-1" aria-hidden="true" tabindex="-1"></a>alfa<span class="ot">=</span><span class="fl">0.90</span></span>
+<span id="cb142-2"><a href="testes-não-paramétricos.html#cb142-2" aria-hidden="true" tabindex="-1"></a>prob_desejada<span class="ot">=</span>alfa</span>
+<span id="cb142-3"><a href="testes-não-paramétricos.html#cb142-3" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span><span class="dv">4</span></span>
+<span id="cb142-4"><a href="testes-não-paramétricos.html#cb142-4" aria-hidden="true" tabindex="-1"></a>t_desejado<span class="ot">=</span><span class="fu">round</span>(<span class="fu">qt</span>(prob_desejada,df ),<span class="dv">4</span>)</span>
+<span id="cb142-5"><a href="testes-não-paramétricos.html#cb142-5" aria-hidden="true" tabindex="-1"></a>d_desejada<span class="ot">=</span><span class="fu">dt</span>(t_desejado,df)</span>
+<span id="cb142-6"><a href="testes-não-paramétricos.html#cb142-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb142-7"><a href="testes-não-paramétricos.html#cb142-7" aria-hidden="true" tabindex="-1"></a>t_calculado<span class="ot">=</span><span class="fl">5.97</span></span>
+<span id="cb142-8"><a href="testes-não-paramétricos.html#cb142-8" aria-hidden="true" tabindex="-1"></a>d_calculado<span class="ot">=</span><span class="fu">dt</span>(t_calculado,df)</span>
+<span id="cb142-9"><a href="testes-não-paramétricos.html#cb142-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb142-10"><a href="testes-não-paramétricos.html#cb142-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb142-11"><a href="testes-não-paramétricos.html#cb142-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">7</span>,<span class="dv">7</span>))) <span class="sc">+</span></span>
+<span id="cb142-12"><a href="testes-não-paramétricos.html#cb142-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">&quot;function&quot;</span>, </span>
+<span id="cb142-13"><a href="testes-não-paramétricos.html#cb142-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">fun =</span> dt,</span>
+<span id="cb142-14"><a href="testes-não-paramétricos.html#cb142-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">args=</span><span class="fu">list</span>(df), </span>
+<span id="cb142-15"><a href="testes-não-paramétricos.html#cb142-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">&quot;lightgrey&quot;</span>, </span>
+<span id="cb142-16"><a href="testes-não-paramétricos.html#cb142-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">7</span>, t_desejado),</span>
+<span id="cb142-17"><a href="testes-não-paramétricos.html#cb142-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb142-18"><a href="testes-não-paramétricos.html#cb142-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">&quot;function&quot;</span>, </span>
+<span id="cb142-19"><a href="testes-não-paramétricos.html#cb142-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">fun =</span> dt, </span>
+<span id="cb142-20"><a href="testes-não-paramétricos.html#cb142-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">args=</span><span class="fu">list</span>(df), </span>
+<span id="cb142-21"><a href="testes-não-paramétricos.html#cb142-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb142-22"><a href="testes-não-paramétricos.html#cb142-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(t_desejado,<span class="dv">7</span>),</span>
+<span id="cb142-23"><a href="testes-não-paramétricos.html#cb142-23" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb142-24"><a href="testes-não-paramétricos.html#cb142-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">&quot;Densidade&quot;</span>) <span class="sc">+</span></span>
+<span id="cb142-25"><a href="testes-não-paramétricos.html#cb142-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name=</span><span class="st">&quot;Valores de t&quot;</span>, <span class="at">breaks =</span> <span class="fu">c</span>(t_desejado))  <span class="sc">+</span></span>
+<span id="cb142-26"><a href="testes-não-paramétricos.html#cb142-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span> </span>
+<span id="cb142-27"><a href="testes-não-paramétricos.html#cb142-27" aria-hidden="true" tabindex="-1"></a>         <span class="st">&quot;Regiões críticas sob a curva da função densidade da </span><span class="sc">\n</span><span class="st">distribuição apropriada ao teste&quot;</span>, </span>
+<span id="cb142-28"><a href="testes-não-paramétricos.html#cb142-28" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;P(-\U221e; 1,53)=(1-\u03b1) em cinza (nível de confiança=0,90) </span><span class="sc">\n</span><span class="st">P(1,53; \U221e)= \u03b1 em vermelho (nível de significância=0,10) &quot;</span>)<span class="sc">+</span> </span>
+<span id="cb142-29"><a href="testes-não-paramétricos.html#cb142-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> t_desejado, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> t_desejado, <span class="at">yend =</span> d_desejada), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb142-30"><a href="testes-não-paramétricos.html#cb142-30" aria-hidden="true" tabindex="-1"></a>   <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>t_desejado<span class="fl">-0.1</span>, <span class="at">y=</span>d_desejada, <span class="at">label=</span><span class="st">&quot;Valor crítico da estatística do teste=1,53&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb142-31"><a href="testes-não-paramétricos.html#cb142-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>t_desejado<span class="dv">-3</span>, <span class="at">y=</span><span class="fl">0.1</span>, <span class="at">label=</span><span class="st">&quot;Região de não rejeição da hipótese nula </span><span class="sc">\n</span><span class="st">probabilidade=\u03b1&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb142-32"><a href="testes-não-paramétricos.html#cb142-32" aria-hidden="true" tabindex="-1"></a> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>t_desejado<span class="sc">+</span><span class="dv">1</span>, <span class="at">y=</span><span class="fl">0.1</span>, <span class="at">label=</span><span class="st">&quot;Região de rejeição da hipótese nula </span><span class="sc">\n</span><span class="st">probabilidade= (1-\u03b1)&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb142-33"><a href="testes-não-paramétricos.html#cb142-33" aria-hidden="true" tabindex="-1"></a> <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> t_calculado, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> t_calculado, <span class="at">yend =</span> d_calculado), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb142-34"><a href="testes-não-paramétricos.html#cb142-34" aria-hidden="true" tabindex="-1"></a> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>t_calculado<span class="fl">-0.1</span>, <span class="at">y=</span>d_calculado, <span class="at">label=</span><span class="st">&quot;Valor da estatística do teste=5,97&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb142-35"><a href="testes-não-paramétricos.html#cb142-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig99"></span>
+<img src="apostila_files/figure-html/fig99-1.png" alt="Região de rejeição da hipótese nula para o teste unilateral à direita (tipo: maior que) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $t_{crit} = 1,53$. O valor calculado da estatística ($t_{calc}=5,97$) situa-se na faixa de significância do teste, não possibilitando a rejeição da hipótese nula sob aquele nível de confiança" width="100%" />
+<p class="caption">
+Figure 11.32: Região de rejeição da hipótese nula para o teste unilateral à direita (tipo: maior que) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: <span class="math inline">\(t_{crit} = 1,53\)</span>. O valor calculado da estatística (<span class="math inline">\(t_{calc}=5,97\)</span>) situa-se na faixa de significância do teste, não possibilitando a rejeição da hipótese nula sob aquele nível de confiança
+</p>
+</div>
+<p><br />
+</p>
+<p>Conclusão:</p>
+<p><br />
+</p>
+<p>O resultado do teste de hipóteses realizado com as amostras trazidas à análise não nos permite suportar a afirmação de que o tempo médio para a realização da tarefa na máquina <span class="math inline">\(A\)</span> seja menor ou igual ao tempo médio gasto na máquina <span class="math inline">\(B\)</span> a um nível de significância de 10%. O tempo médio na máquina <span class="math inline">\(A\)</span> é maior (Figura <a href="testes-não-paramétricos.html#fig:fig99">11.32</a>).</p>
+<p><br />
+</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="roteiro-para-testes-de-hipóteses-para-a-proporção-de-uma-população.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="fluxograma-auxiliar-para-escolha-da-estatística-do-teste-de-hipóteses.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/11-teste_hipoteses.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["apostila.pdf", "apostila.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

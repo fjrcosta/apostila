@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4.2 Probabilidade | apostila.knit</title>
+  <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4.2 Probabilidade | apostila.knit" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
+  <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4.2 Probabilidade | apostila.knit" />
+  
+  <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introdução-conceitual-essencial-1.html"/>
+<link rel="next" href="teorema-de-bayes.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Índice</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section" id="toc-section"></a></li>
+<li class="chapter" data-level="1" data-path="introdução-histórica-da-estatística.html"><a href="introdução-histórica-da-estatística.html"><i class="fa fa-check"></i><b>1</b> Introdução histórica da estatística</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="primeiros-levantamentos-estudos-e-publicações-demografia-e-aritmética-política.html"><a href="primeiros-levantamentos-estudos-e-publicações-demografia-e-aritmética-política.html"><i class="fa fa-check"></i><b>1.1</b> Primeiros levantamentos, estudos e publicações &amp; Demografia e aritmética política</a></li>
+<li class="chapter" data-level="1.2" data-path="visualização-de-dados-estudos-e-primeiras-publicações.html"><a href="visualização-de-dados-estudos-e-primeiras-publicações.html"><i class="fa fa-check"></i><b>1.2</b> Visualização de dados &amp; Estudos e primeiras publicações</a></li>
+<li class="chapter" data-level="1.3" data-path="nomes-notáveis.html"><a href="nomes-notáveis.html"><i class="fa fa-check"></i><b>1.3</b> Nomes notáveis</a></li>
+<li class="chapter" data-level="1.4" data-path="revista-biometrika.html"><a href="revista-biometrika.html"><i class="fa fa-check"></i><b>1.4</b> Revista Biometrika</a></li>
+<li class="chapter" data-level="1.5" data-path="eugenia.html"><a href="eugenia.html"><i class="fa fa-check"></i><b>1.5</b> Eugenia</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introdução-conceitual-essencial.html"><a href="introdução-conceitual-essencial.html"><i class="fa fa-check"></i><b>2</b> Introdução conceitual essencial</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="estatística-descritiva.html"><a href="estatística-descritiva.html"><i class="fa fa-check"></i><b>2.1</b> Estatística descritiva</a></li>
+<li class="chapter" data-level="2.2" data-path="estatística-inferencial.html"><a href="estatística-inferencial.html"><i class="fa fa-check"></i><b>2.2</b> Estatística inferencial</a></li>
+<li class="chapter" data-level="2.3" data-path="produção-de-conhecimento.html"><a href="produção-de-conhecimento.html"><i class="fa fa-check"></i><b>2.3</b> Produção de conhecimento</a></li>
+<li class="chapter" data-level="2.4" data-path="população-universo-amostra.html"><a href="população-universo-amostra.html"><i class="fa fa-check"></i><b>2.4</b> População (universo) &amp; amostra</a></li>
+<li class="chapter" data-level="2.5" data-path="parâmetros-e-estatísticas.html"><a href="parâmetros-e-estatísticas.html"><i class="fa fa-check"></i><b>2.5</b> Parâmetros e estatísticas</a></li>
+<li class="chapter" data-level="2.6" data-path="tipos-de-variáveis.html"><a href="tipos-de-variáveis.html"><i class="fa fa-check"></i><b>2.6</b> Tipos de variáveis</a></li>
+<li class="chapter" data-level="2.7" data-path="indexação-de-dados-i.html"><a href="indexação-de-dados-i.html"><i class="fa fa-check"></i><b>2.7</b> Indexação de dados (<span class="math inline">\(i\)</span>)</a></li>
+<li class="chapter" data-level="2.8" data-path="noções-básicas-sobre-somatórios-sigma.html"><a href="noções-básicas-sobre-somatórios-sigma.html"><i class="fa fa-check"></i><b>2.8</b> Noções básicas sobre somatórios (<span class="math inline">\(\Sigma\)</span>)</a></li>
+<li class="chapter" data-level="2.9" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><i class="fa fa-check"></i><b>2.9</b> Análise combinatória: diagramas de árvore, permutações (arranjos) &amp; combinações</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html#permutações-ou-arranjos"><i class="fa fa-check"></i><b>2.9.1</b> Permutações ou arranjos</a></li>
+<li class="chapter" data-level="2.9.2" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html#combinações"><i class="fa fa-check"></i><b>2.9.2</b> Combinações</a></li>
+<li class="chapter" data-level="2.9.3" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html#observações-acerca-de-alguns-fatoriais"><i class="fa fa-check"></i><b>2.9.3</b> Observações acerca de alguns fatoriais</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="conectivos-lógicos.html"><a href="conectivos-lógicos.html"><i class="fa fa-check"></i><b>2.10</b> Conectivos lógicos</a></li>
+<li class="chapter" data-level="2.11" data-path="leis-de-de-morgan.html"><a href="leis-de-de-morgan.html"><i class="fa fa-check"></i><b>2.11</b> Leis de De Morgan</a></li>
+<li class="chapter" data-level="2.12" data-path="noções-básicas-para-o-uso-de-calculadora-cassio-fx-82ms.html"><a href="noções-básicas-para-o-uso-de-calculadora-cassio-fx-82ms.html"><i class="fa fa-check"></i><b>2.12</b> Noções básicas para o uso de calculadora (Cassio fx-82MS)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introdução-à-estatística-descritiva.html"><a href="introdução-à-estatística-descritiva.html"><i class="fa fa-check"></i><b>3</b> Introdução à estatística descritiva</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="análise-exploratória.html"><a href="análise-exploratória.html"><i class="fa fa-check"></i><b>3.1</b> Análise exploratória</a></li>
+<li class="chapter" data-level="3.2" data-path="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html"><a href="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html"><i class="fa fa-check"></i><b>3.2</b> Dados brutos, em rol, diagrama de ramos &amp; folhas e de dispersão unidimensional</a></li>
+<li class="chapter" data-level="3.3" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html"><i class="fa fa-check"></i><b>3.3</b> Sínteses numéricas descritivas</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html#medidas-de-tendência-central-posição"><i class="fa fa-check"></i><b>3.3.1</b> Medidas de tendência central (posição)</a></li>
+<li class="chapter" data-level="3.3.2" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html#medidas-de-dispersão-variabilidade"><i class="fa fa-check"></i><b>3.3.2</b> Medidas de dispersão (variabilidade)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html#medidas-de-subdivisão-separatrizes"><i class="fa fa-check"></i><b>3.3.3</b> Medidas de subdivisão (separatrizes)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="medidas-de-forma-assimetria-curtose.html"><a href="medidas-de-forma-assimetria-curtose.html"><i class="fa fa-check"></i><b>3.4</b> Medidas de forma (assimetria &amp; curtose)</a></li>
+<li class="chapter" data-level="3.5" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html"><i class="fa fa-check"></i><b>3.5</b> Apresentação tabular de dados</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#apresentação-tabular-de-dados-qualitativos"><i class="fa fa-check"></i><b>3.5.1</b> Apresentação tabular de dados qualitativos</a></li>
+<li class="chapter" data-level="3.5.2" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#apresentação-tabular-de-dados-quantitativos"><i class="fa fa-check"></i><b>3.5.2</b> Apresentação tabular de dados quantitativos</a></li>
+<li class="chapter" data-level="3.5.3" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#média-1"><i class="fa fa-check"></i><b>3.5.3</b> Média</a></li>
+<li class="chapter" data-level="3.5.4" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#moda-1"><i class="fa fa-check"></i><b>3.5.4</b> Moda</a></li>
+<li class="chapter" data-level="3.5.5" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#variância"><i class="fa fa-check"></i><b>3.5.5</b> Variância</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html"><i class="fa fa-check"></i><b>3.6</b> Apresentação gráfica de dados</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#barras"><i class="fa fa-check"></i><b>3.6.1</b> Barras</a></li>
+<li class="chapter" data-level="3.6.2" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#histograma"><i class="fa fa-check"></i><b>3.6.2</b> Histograma</a></li>
+<li class="chapter" data-level="3.6.3" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#setores"><i class="fa fa-check"></i><b>3.6.3</b> Setores</a></li>
+<li class="chapter" data-level="3.6.4" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#box-plot"><i class="fa fa-check"></i><b>3.6.4</b> Box-plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introdução-ao-cálculo-de-probabilidades.html"><a href="introdução-ao-cálculo-de-probabilidades.html"><i class="fa fa-check"></i><b>4</b> Introdução ao cálculo de probabilidades</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html"><i class="fa fa-check"></i><b>4.1</b> Introdução conceitual essencial</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#experimentos-determinísticos-e-experimentos-probabilísticos-aleatórios"><i class="fa fa-check"></i><b>4.1.1</b> Experimentos determinísticos e experimentos probabilísticos (aleatórios)</a></li>
+<li class="chapter" data-level="4.1.2" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#espaço-amostral-e-seus-elementos"><i class="fa fa-check"></i><b>4.1.2</b> Espaço amostral e seus elementos</a></li>
+<li class="chapter" data-level="4.1.3" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#evento-de-interesse-sucesso"><i class="fa fa-check"></i><b>4.1.3</b> Evento de interesse (sucesso)</a></li>
+<li class="chapter" data-level="4.1.4" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#evento"><i class="fa fa-check"></i><b>4.1.4</b> Evento</a></li>
+<li class="chapter" data-level="4.1.5" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#operações-com-conjuntos-e-diagramas-de-venn"><i class="fa fa-check"></i><b>4.1.5</b> Operações com conjuntos e Diagramas de Venn</a></li>
+<li class="chapter" data-level="4.1.6" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#eventos-equiprováveis-e-não-equiprováveis"><i class="fa fa-check"></i><b>4.1.6</b> Eventos equiprováveis e não equiprováveis</a></li>
+<li class="chapter" data-level="4.1.7" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#eventos-independentes"><i class="fa fa-check"></i><b>4.1.7</b> Eventos independentes</a></li>
+<li class="chapter" data-level="4.1.8" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#eventos-mutuamente-exclusivos"><i class="fa fa-check"></i><b>4.1.8</b> Eventos mutuamente exclusivos</a></li>
+<li class="chapter" data-level="4.1.9" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#eventos-complementares"><i class="fa fa-check"></i><b>4.1.9</b> Eventos complementares</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="probabilidade.html"><a href="probabilidade.html"><i class="fa fa-check"></i><b>4.2</b> Probabilidade</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="probabilidade.html"><a href="probabilidade.html#introdução-histórica"><i class="fa fa-check"></i><b>4.2.1</b> Introdução histórica</a></li>
+<li class="chapter" data-level="4.2.2" data-path="probabilidade.html"><a href="probabilidade.html#conceito-clássico-ou-a-priori"><i class="fa fa-check"></i><b>4.2.2</b> Conceito clássico ou <em>a priori</em></a></li>
+<li class="chapter" data-level="4.2.3" data-path="probabilidade.html"><a href="probabilidade.html#conceito-frequentista-ou-a-posteriori"><i class="fa fa-check"></i><b>4.2.3</b> Conceito frequentista ou <em>a posteriori</em></a></li>
+<li class="chapter" data-level="4.2.4" data-path="probabilidade.html"><a href="probabilidade.html#conceito-axiomático"><i class="fa fa-check"></i><b>4.2.4</b> Conceito axiomático</a></li>
+<li class="chapter" data-level="4.2.5" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-da-união-de-eventos"><i class="fa fa-check"></i><b>4.2.5</b> Probabilidade da união de eventos</a></li>
+<li class="chapter" data-level="4.2.6" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-de-eventos-condicionados"><i class="fa fa-check"></i><b>4.2.6</b> Probabilidade de eventos condicionados</a></li>
+<li class="chapter" data-level="4.2.7" data-path="probabilidade.html"><a href="probabilidade.html#dependência-e-independência-de-eventos"><i class="fa fa-check"></i><b>4.2.7</b> Dependência e independência de eventos</a></li>
+<li class="chapter" data-level="4.2.8" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-da-interseção-de-eventos-independentes"><i class="fa fa-check"></i><b>4.2.8</b> Probabilidade da interseção de eventos independentes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="teorema-de-bayes.html"><a href="teorema-de-bayes.html"><i class="fa fa-check"></i><b>4.3</b> Teorema de Bayes</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="teorema-de-bayes.html"><a href="teorema-de-bayes.html#demonstração-clássica-de-independência"><i class="fa fa-check"></i><b>4.3.1</b> Demonstração clássica de independência</a></li>
+<li class="chapter" data-level="4.3.2" data-path="teorema-de-bayes.html"><a href="teorema-de-bayes.html#demonstração-clássica-de-dependência"><i class="fa fa-check"></i><b>4.3.2</b> Demonstração clássica de dependência</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html"><i class="fa fa-check"></i><b>4.4</b> Teoremas da Teoria das probabilidades</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-01"><i class="fa fa-check"></i><b>4.4.1</b> Teorema 01</a></li>
+<li class="chapter" data-level="4.4.2" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-02"><i class="fa fa-check"></i><b>4.4.2</b> Teorema 02</a></li>
+<li class="chapter" data-level="4.4.3" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-03"><i class="fa fa-check"></i><b>4.4.3</b> Teorema 03</a></li>
+<li class="chapter" data-level="4.4.4" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-04"><i class="fa fa-check"></i><b>4.4.4</b> Teorema 04</a></li>
+<li class="chapter" data-level="4.4.5" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-05"><i class="fa fa-check"></i><b>4.4.5</b> Teorema 05</a></li>
+<li class="chapter" data-level="4.4.6" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-06"><i class="fa fa-check"></i><b>4.4.6</b> Teorema 06</a></li>
+<li class="chapter" data-level="4.4.7" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-07"><i class="fa fa-check"></i><b>4.4.7</b> Teorema 07</a></li>
+<li class="chapter" data-level="4.4.8" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-08"><i class="fa fa-check"></i><b>4.4.8</b> Teorema 08</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="introdução-a-variáveis-aleatórias.html"><a href="introdução-a-variáveis-aleatórias.html"><i class="fa fa-check"></i><b>5</b> Introdução a variáveis aleatórias</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="função-discreta-de-distribuição-de-probabilidade.html"><a href="função-discreta-de-distribuição-de-probabilidade.html"><i class="fa fa-check"></i><b>5.1</b> Função discreta de distribuição de probabilidade</a></li>
+<li class="chapter" data-level="5.2" data-path="função-de-densidade-de-probabilidade.html"><a href="função-de-densidade-de-probabilidade.html"><i class="fa fa-check"></i><b>5.2</b> Função de densidade de probabilidade</a></li>
+<li class="chapter" data-level="5.3" data-path="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><a href="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><i class="fa fa-check"></i><b>5.3</b> Esperança e variância de uma variável aleatória discreta</a></li>
+<li class="chapter" data-level="5.4" data-path="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><a href="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><i class="fa fa-check"></i><b>5.4</b> Esperança e variância de uma variável aleatória contínua</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="introdução-a-modelos-teóricos-de-probabilidade.html"><a href="introdução-a-modelos-teóricos-de-probabilidade.html"><i class="fa fa-check"></i><b>6</b> Introdução a modelos teóricos de probabilidade</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="modelos-teóricos-discretos.html"><a href="modelos-teóricos-discretos.html"><i class="fa fa-check"></i><b>6.1</b> Modelos teóricos discretos</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="modelos-teóricos-discretos.html"><a href="modelos-teóricos-discretos.html#bernoulli"><i class="fa fa-check"></i><b>6.1.1</b> Bernoulli</a></li>
+<li class="chapter" data-level="6.1.2" data-path="modelos-teóricos-discretos.html"><a href="modelos-teóricos-discretos.html#binomial"><i class="fa fa-check"></i><b>6.1.2</b> Binomial</a></li>
+<li class="chapter" data-level="6.1.3" data-path="modelos-teóricos-discretos.html"><a href="modelos-teóricos-discretos.html#poisson"><i class="fa fa-check"></i><b>6.1.3</b> Poisson</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="modelos-téoricos-do-tempo-de-espera.html"><a href="modelos-téoricos-do-tempo-de-espera.html"><i class="fa fa-check"></i><b>6.2</b> Modelos téoricos do tempo de espera</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="modelos-téoricos-do-tempo-de-espera.html"><a href="modelos-téoricos-do-tempo-de-espera.html#geométrica"><i class="fa fa-check"></i><b>6.2.1</b> Geométrica</a></li>
+<li class="chapter" data-level="6.2.2" data-path="modelos-téoricos-do-tempo-de-espera.html"><a href="modelos-téoricos-do-tempo-de-espera.html#binomial-negativa"><i class="fa fa-check"></i><b>6.2.2</b> Binomial Negativa</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html"><i class="fa fa-check"></i><b>6.3</b> Modelos teóricos contínuos</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#uniforme"><i class="fa fa-check"></i><b>6.3.1</b> Uniforme</a></li>
+<li class="chapter" data-level="6.3.2" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#exponencial"><i class="fa fa-check"></i><b>6.3.2</b> Exponencial</a></li>
+<li class="chapter" data-level="6.3.3" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#normal"><i class="fa fa-check"></i><b>6.3.3</b> Normal</a></li>
+<li class="chapter" data-level="6.3.4" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#student-t"><i class="fa fa-check"></i><b>6.3.4</b> Student “t”</a></li>
+<li class="chapter" data-level="6.3.5" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#qui-quadrado"><i class="fa fa-check"></i><b>6.3.5</b> Qui-Quadrado</a></li>
+<li class="chapter" data-level="6.3.6" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#fisher-snedecor-f"><i class="fa fa-check"></i><b>6.3.6</b> Fisher-Snedecor “F”</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="tabelas.html"><a href="tabelas.html"><i class="fa fa-check"></i><b>6.4</b> Tabelas</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="planejamento_pesquisas.html"><a href="planejamento_pesquisas.html"><i class="fa fa-check"></i><b>7</b> Introdução ao planejamento de pesquisas</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="planejamento-de-pesquisas.html"><a href="planejamento-de-pesquisas.html"><i class="fa fa-check"></i><b>7.1</b> Planejamento de pesquisas</a></li>
+<li class="chapter" data-level="7.2" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html"><i class="fa fa-check"></i><b>7.2</b> Tipos de pesquisas</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-à-finalidade"><i class="fa fa-check"></i><b>7.2.1</b> Quanto à finalidade</a></li>
+<li class="chapter" data-level="7.2.2" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-à-forma-de-abordagem"><i class="fa fa-check"></i><b>7.2.2</b> Quanto à forma de abordagem</a></li>
+<li class="chapter" data-level="7.2.3" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-aos-objetivos"><i class="fa fa-check"></i><b>7.2.3</b> Quanto aos objetivos</a></li>
+<li class="chapter" data-level="7.2.4" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-ao-desenvolvimento-no-tempo"><i class="fa fa-check"></i><b>7.2.4</b> Quanto ao desenvolvimento no tempo</a></li>
+<li class="chapter" data-level="7.2.5" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-à-natureza"><i class="fa fa-check"></i><b>7.2.5</b> Quanto à natureza</a></li>
+<li class="chapter" data-level="7.2.6" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-à-forma-de-obtenção-dos-dados"><i class="fa fa-check"></i><b>7.2.6</b> Quanto à forma de obtenção dos dados</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="principais-etapas-de-uma-pesquisa.html"><a href="principais-etapas-de-uma-pesquisa.html"><i class="fa fa-check"></i><b>7.3</b> Principais etapas de uma pesquisa:</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="principais-etapas-de-uma-pesquisa.html"><a href="principais-etapas-de-uma-pesquisa.html#objetivo"><i class="fa fa-check"></i><b>7.3.1</b> Objetivo</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="população.html"><a href="população.html"><i class="fa fa-check"></i><b>7.4</b> População</a></li>
+<li class="chapter" data-level="7.5" data-path="censo.html"><a href="censo.html"><i class="fa fa-check"></i><b>7.5</b> Censo</a></li>
+<li class="chapter" data-level="7.6" data-path="amostra.html"><a href="amostra.html"><i class="fa fa-check"></i><b>7.6</b> Amostra</a></li>
+<li class="chapter" data-level="7.7" data-path="planejamento-do-levantamento-amostral.html"><a href="planejamento-do-levantamento-amostral.html"><i class="fa fa-check"></i><b>7.7</b> Planejamento do levantamento amostral</a></li>
+<li class="chapter" data-level="7.8" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html"><i class="fa fa-check"></i><b>7.8</b> Elaboração dos questionários</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html#tipos-de-perguntas"><i class="fa fa-check"></i><b>7.8.1</b> Tipos de perguntas:</a></li>
+<li class="chapter" data-level="7.8.2" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html#execução-do-levantamento-amostral"><i class="fa fa-check"></i><b>7.8.2</b> Execução do levantamento amostral</a></li>
+<li class="chapter" data-level="7.8.3" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html#análise-exploratória-dos-dados"><i class="fa fa-check"></i><b>7.8.3</b> Análise exploratória dos dados</a></li>
+<li class="chapter" data-level="7.8.4" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html#resultados-e-conclusões"><i class="fa fa-check"></i><b>7.8.4</b> Resultados e conclusões</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="técnicas-de-amostragem.html"><a href="técnicas-de-amostragem.html"><i class="fa fa-check"></i><b>7.9</b> Técnicas de amostragem</a></li>
+<li class="chapter" data-level="7.10" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html"><i class="fa fa-check"></i><b>7.10</b> Amostragem probabilística</a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html#amostragem-aleatória-simples-aas"><i class="fa fa-check"></i><b>7.10.1</b> Amostragem aleatória simples (AAS)</a></li>
+<li class="chapter" data-level="7.10.2" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html#amostragem-aleatória-sistemática"><i class="fa fa-check"></i><b>7.10.2</b> Amostragem aleatória sistemática</a></li>
+<li class="chapter" data-level="7.10.3" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html#amostragem-aleatória-estratificada"><i class="fa fa-check"></i><b>7.10.3</b> Amostragem aleatória estratificada</a></li>
+<li class="chapter" data-level="7.10.4" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html#amostragem-aleatória-por-conglomerados"><i class="fa fa-check"></i><b>7.10.4</b> Amostragem aleatória por conglomerados</a></li>
+</ul></li>
+<li class="chapter" data-level="7.11" data-path="amostragem-não-probabilística.html"><a href="amostragem-não-probabilística.html"><i class="fa fa-check"></i><b>7.11</b> Amostragem não probabilística</a>
+<ul>
+<li class="chapter" data-level="7.11.1" data-path="amostragem-não-probabilística.html"><a href="amostragem-não-probabilística.html#amostragem-por-conveniência"><i class="fa fa-check"></i><b>7.11.1</b> Amostragem por conveniência</a></li>
+<li class="chapter" data-level="7.11.2" data-path="amostragem-não-probabilística.html"><a href="amostragem-não-probabilística.html#amostragem-por-cotas"><i class="fa fa-check"></i><b>7.11.2</b> Amostragem por cotas</a></li>
+</ul></li>
+<li class="chapter" data-level="7.12" data-path="dimensionamento-de-amostras.html"><a href="dimensionamento-de-amostras.html"><i class="fa fa-check"></i><b>7.12</b> Dimensionamento de amostras</a>
+<ul>
+<li class="chapter" data-level="7.12.1" data-path="dimensionamento-de-amostras.html"><a href="dimensionamento-de-amostras.html#erros"><i class="fa fa-check"></i><b>7.12.1</b> Erros</a></li>
+<li class="chapter" data-level="7.12.2" data-path="dimensionamento-de-amostras.html"><a href="dimensionamento-de-amostras.html#determinação-do-tamanho-de-uma-amostra-para-estimação-da-média-populacional"><i class="fa fa-check"></i><b>7.12.2</b> Determinação do tamanho de uma amostra para estimação da média populacional</a></li>
+<li class="chapter" data-level="7.12.3" data-path="dimensionamento-de-amostras.html"><a href="dimensionamento-de-amostras.html#determinação-do-tamanho-de-uma-amostra-para-estimação-da-proporção-populacional"><i class="fa fa-check"></i><b>7.12.3</b> Determinação do tamanho de uma amostra para estimação da proporção populacional</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="introdução-às-estatísticas-epidemiológicas.html"><a href="introdução-às-estatísticas-epidemiológicas.html"><i class="fa fa-check"></i><b>8</b> Introdução às estatísticas epidemiológicas</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="terminologia.html"><a href="terminologia.html"><i class="fa fa-check"></i><b>8.1</b> Terminologia</a></li>
+<li class="chapter" data-level="8.2" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html"><i class="fa fa-check"></i><b>8.2</b> Medidas de risco, morte, associação e correlação</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#incidência"><i class="fa fa-check"></i><b>8.2.1</b> Incidência</a></li>
+<li class="chapter" data-level="8.2.2" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#prevalência"><i class="fa fa-check"></i><b>8.2.2</b> Prevalência</a></li>
+<li class="chapter" data-level="8.2.3" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#relação-entre-prevalência-e-incidência"><i class="fa fa-check"></i><b>8.2.3</b> Relação entre prevalência e incidência</a></li>
+<li class="chapter" data-level="8.2.4" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#quadro-comparativo-entre-medidas-de-incidência-e-de-prevalência"><i class="fa fa-check"></i><b>8.2.4</b> Quadro comparativo entre medidas de incidência e de prevalência</a></li>
+<li class="chapter" data-level="8.2.5" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#incidência-cumulativa---ic-risco"><i class="fa fa-check"></i><b>8.2.5</b> Incidência cumulativa - IC (Risco)}</a></li>
+<li class="chapter" data-level="8.2.6" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#quadro-comparativo-entre-medidas-de-risco-e-prevalência"><i class="fa fa-check"></i><b>8.2.6</b> Quadro comparativo entre medidas de risco e prevalência</a></li>
+<li class="chapter" data-level="8.2.7" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#fatalidade-dos-casos-fc"><i class="fa fa-check"></i><b>8.2.7</b> Fatalidade dos Casos (FC)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="sobrevida.html"><a href="sobrevida.html"><i class="fa fa-check"></i><b>8.3</b> Sobrevida</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="sobrevida.html"><a href="sobrevida.html#taxas-de-mortalidade-tm"><i class="fa fa-check"></i><b>8.3.1</b> Taxas de mortalidade (TM)</a></li>
+<li class="chapter" data-level="8.3.2" data-path="sobrevida.html"><a href="sobrevida.html#taxas-mais-específicas"><i class="fa fa-check"></i><b>8.3.2</b> Taxas mais específicas</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html"><i class="fa fa-check"></i><b>8.4</b> Medidas de associação</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#incidência-observada-de-nascimentos-com-baixo-peso-entre-mães-expostas-ao-risco-fumantes"><i class="fa fa-check"></i><b>8.4.1</b> Incidência observada de nascimentos com baixo peso entre mães expostas ao risco (fumantes)</a></li>
+<li class="chapter" data-level="8.4.2" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#incidência-observada-de-nascimentos-com-baixo-peso-entre-mães-não-expostas-ao-risco-não-fumantes"><i class="fa fa-check"></i><b>8.4.2</b> Incidência observada de nascimentos com baixo peso entre mães não expostas ao risco (não fumantes)</a></li>
+<li class="chapter" data-level="8.4.3" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#prevalência-de-nascimentos-com-baixo-peso-na-população-estudada"><i class="fa fa-check"></i><b>8.4.3</b> Prevalência de nascimentos com baixo peso na população estudada</a></li>
+<li class="chapter" data-level="8.4.4" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#diferença-de-risco-risco-atribuível---ra"><i class="fa fa-check"></i><b>8.4.4</b> Diferença de risco (Risco atribuível - RA)</a></li>
+<li class="chapter" data-level="8.4.5" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#razão-de-risco-risco-relativo---rr"><i class="fa fa-check"></i><b>8.4.5</b> Razão de risco (Risco relativo - RR)</a></li>
+<li class="chapter" data-level="8.4.6" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#risco-atribuível-proporcional-fração-etiológica---fe"><i class="fa fa-check"></i><b>8.4.6</b> Risco atribuível proporcional (Fração etiológica - FE)</a></li>
+<li class="chapter" data-level="8.4.7" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#odds-ratio-razão-das-chances"><i class="fa fa-check"></i><b>8.4.7</b> <em>Odds ratio</em> (Razão das chances)</a></li>
+<li class="chapter" data-level="8.4.8" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#correlação-linear-de-pearson"><i class="fa fa-check"></i><b>8.4.8</b> Correlação linear de Pearson</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="intervalos-de-confiança.html"><a href="intervalos-de-confiança.html"><i class="fa fa-check"></i><b>8.5</b> Intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="intervalos-de-confiança.html"><a href="intervalos-de-confiança.html#razão-de-risco-risco-relativo---rr-1"><i class="fa fa-check"></i><b>8.5.1</b> Razão de risco (Risco relativo - RR)</a></li>
+<li class="chapter" data-level="8.5.2" data-path="intervalos-de-confiança.html"><a href="intervalos-de-confiança.html#razão-de-chances-odds-ratio---or"><i class="fa fa-check"></i><b>8.5.2</b> Razão de chances ( <em>odds ratio</em> - OR)</a></li>
+<li class="chapter" data-level="8.5.3" data-path="intervalos-de-confiança.html"><a href="intervalos-de-confiança.html#diferença-de-risco-risco-atribuível---ra-1"><i class="fa fa-check"></i><b>8.5.3</b> Diferença de risco (Risco atribuível - RA)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="introdução-à-distribuição-das-médias-e-diferenças-entre-médias-amostrais-e-seus-intervalos-de-confiança.html"><a href="introdução-à-distribuição-das-médias-e-diferenças-entre-médias-amostrais-e-seus-intervalos-de-confiança.html"><i class="fa fa-check"></i><b>9</b> Introdução à distribuição das médias e diferenças entre médias amostrais e seus intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="distribuições-amostrais.html"><a href="distribuições-amostrais.html"><i class="fa fa-check"></i><b>9.1</b> Distribuições amostrais</a></li>
+<li class="chapter" data-level="9.2" data-path="intervalos-de-confiança-1.html"><a href="intervalos-de-confiança-1.html"><i class="fa fa-check"></i><b>9.2</b> Intervalos de confiança</a></li>
+<li class="chapter" data-level="9.3" data-path="distribuição-das-médias-amostrais.html"><a href="distribuição-das-médias-amostrais.html"><i class="fa fa-check"></i><b>9.3</b> Distribuição das médias amostrais</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="distribuição-das-médias-amostrais.html"><a href="distribuição-das-médias-amostrais.html#fator-de-correção-para-populações-finitas"><i class="fa fa-check"></i><b>9.3.1</b> Fator de correção para populações finitas</a></li>
+<li class="chapter" data-level="9.3.2" data-path="distribuição-das-médias-amostrais.html"><a href="distribuição-das-médias-amostrais.html#intervalo-de-confiança-para-médias-amostrais"><i class="fa fa-check"></i><b>9.3.2</b> Intervalo de confiança para médias amostrais</a></li>
+<li class="chapter" data-level="9.3.3" data-path="distribuição-das-médias-amostrais.html"><a href="distribuição-das-médias-amostrais.html#intervalo-de-confiança-bilateral-para-uma-média-amostral-sob-variância-populacional-conhecida-figura-reffigfig28"><i class="fa fa-check"></i><b>9.3.3</b> Intervalo de confiança bilateral para uma média amostral sob variância populacional conhecida (Figura @ref(fig:fig28))</a></li>
+<li class="chapter" data-level="9.3.4" data-path="distribuição-das-médias-amostrais.html"><a href="distribuição-das-médias-amostrais.html#intervalo-de-confiança-para-uma-média-amostral-sob-variância-populacional-desconhecida-mas-amostras-não-tão-pequenas-n-ge-30-figura-reffigfig55"><i class="fa fa-check"></i><b>9.3.4</b> Intervalo de confiança para uma média amostral sob variância populacional desconhecida mas amostras não tão pequenas: <span class="math inline">\(n \ge 30\)</span> (Figura @ref(fig:fig55))</a></li>
+<li class="chapter" data-level="9.3.5" data-path="distribuição-das-médias-amostrais.html"><a href="distribuição-das-médias-amostrais.html#intervalo-de-confiança-para-uma-média-amostral-sob-variância-populacional-desconhecida-e-amostras-de-qualquer-tamanho-figura-reffigfig58"><i class="fa fa-check"></i><b>9.3.5</b> Intervalo de confiança para uma média amostral sob variância populacional desconhecida e amostras de qualquer tamanho (Figura @ref(fig:fig58))</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="distribuição-das-diferenças-de-médias-amostrais-independentes.html"><a href="distribuição-das-diferenças-de-médias-amostrais-independentes.html"><i class="fa fa-check"></i><b>9.4</b> Distribuição das diferenças de médias amostrais independentes</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="distribuição-das-diferenças-de-médias-amostrais-independentes.html"><a href="distribuição-das-diferenças-de-médias-amostrais-independentes.html#intervalos-de-confiança-para-a-diferença-entre-duas-médias-amostrais-com-variância-populacionais-conhecidas"><i class="fa fa-check"></i><b>9.4.1</b> Intervalos de confiança para a diferença entre duas médias amostrais com variância populacionais conhecidas</a></li>
+<li class="chapter" data-level="9.4.2" data-path="distribuição-das-diferenças-de-médias-amostrais-independentes.html"><a href="distribuição-das-diferenças-de-médias-amostrais-independentes.html#intervalos-de-confiança-para-a-diferença-entre-duas-médias-amostrais-com-variâncias-populacionais-desconhecidas-mas-admitidas-iguais"><i class="fa fa-check"></i><b>9.4.2</b> Intervalos de confiança para a diferença entre duas médias amostrais com variâncias populacionais desconhecidas mas admitidas iguais</a></li>
+<li class="chapter" data-level="9.4.3" data-path="distribuição-das-diferenças-de-médias-amostrais-independentes.html"><a href="distribuição-das-diferenças-de-médias-amostrais-independentes.html#intervalos-de-confiança-para-a-diferença-entre-duas-médias-amostrais-com-variâncias-populacionais-desconhecidas-e-desiguais"><i class="fa fa-check"></i><b>9.4.3</b> Intervalos de confiança para a diferença entre duas médias amostrais com variâncias populacionais desconhecidas e desiguais</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="distribuição-das-diferenças-de-médias-amostrais-dependentes.html"><a href="distribuição-das-diferenças-de-médias-amostrais-dependentes.html"><i class="fa fa-check"></i><b>9.5</b> Distribuição das diferenças de médias amostrais dependentes</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="introdução-à-distribuição-das-proporções-amostrais-e-seus-intervalos-de-confiança.html"><a href="introdução-à-distribuição-das-proporções-amostrais-e-seus-intervalos-de-confiança.html"><i class="fa fa-check"></i><b>10</b> Introdução à distribuição das proporções amostrais e seus intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="conceito-elementar-de-uma-proporção.html"><a href="conceito-elementar-de-uma-proporção.html"><i class="fa fa-check"></i><b>10.1</b> Conceito elementar de uma proporção</a></li>
+<li class="chapter" data-level="10.2" data-path="proporção-amostral-como-uma-uma-variável-binomial.html"><a href="proporção-amostral-como-uma-uma-variável-binomial.html"><i class="fa fa-check"></i><b>10.2</b> Proporção amostral como uma uma variável Binomial</a></li>
+<li class="chapter" data-level="10.3" data-path="distribuição-das-proporções-amostrais.html"><a href="distribuição-das-proporções-amostrais.html"><i class="fa fa-check"></i><b>10.3</b> Distribuição das proporções amostrais</a></li>
+<li class="chapter" data-level="10.4" data-path="intervalo-de-confiança-para-proporções-amostrais.html"><a href="intervalo-de-confiança-para-proporções-amostrais.html"><i class="fa fa-check"></i><b>10.4</b> Intervalo de confiança para proporções amostrais</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="intervalo-de-confiança-para-proporções-amostrais.html"><a href="intervalo-de-confiança-para-proporções-amostrais.html#intervalos-de-confiança-para-a-diferença-entre-duas-proporções-amostrais"><i class="fa fa-check"></i><b>10.4.1</b> Intervalos de confiança para a diferença entre duas proporções amostrais</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="teste_hipoteses.html"><a href="teste_hipoteses.html"><i class="fa fa-check"></i><b>11</b> Introdução a testes de hipóteses</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="epistemologia.html"><a href="epistemologia.html"><i class="fa fa-check"></i><b>11.1</b> Epistemologia</a></li>
+<li class="chapter" data-level="11.2" data-path="histórico.html"><a href="histórico.html"><i class="fa fa-check"></i><b>11.2</b> Histórico</a></li>
+<li class="chapter" data-level="11.3" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html"><i class="fa fa-check"></i><b>11.3</b> Conceitos iniciais</a></li>
+<li class="chapter" data-level="11.4" data-path="efeito-do-limite-central.html"><a href="efeito-do-limite-central.html"><i class="fa fa-check"></i><b>11.4</b> Efeito do limite central</a></li>
+<li class="chapter" data-level="11.5" data-path="erro-global.html"><a href="erro-global.html"><i class="fa fa-check"></i><b>11.5</b> Erro global</a></li>
+<li class="chapter" data-level="11.6" data-path="diretrizes-gerais-de-um-teste-de-hipóteses.html"><a href="diretrizes-gerais-de-um-teste-de-hipóteses.html"><i class="fa fa-check"></i><b>11.6</b> Diretrizes gerais de um teste de hipóteses</a></li>
+<li class="chapter" data-level="11.7" data-path="formulação-e-estruturação-de-um-teste-de-hipóteses.html"><a href="formulação-e-estruturação-de-um-teste-de-hipóteses.html"><i class="fa fa-check"></i><b>11.7</b> Formulação e estruturação de um teste de hipóteses</a></li>
+<li class="chapter" data-level="11.8" data-path="natureza-dos-erros-envolvidos-em-um-teste-de-hipóteses.html"><a href="natureza-dos-erros-envolvidos-em-um-teste-de-hipóteses.html"><i class="fa fa-check"></i><b>11.8</b> Natureza dos erros envolvidos em um teste de hipóteses</a></li>
+<li class="chapter" data-level="11.9" data-path="a-probabilidade-do-valor-observado-da-estatística-do-teste.html"><a href="a-probabilidade-do-valor-observado-da-estatística-do-teste.html"><i class="fa fa-check"></i><b>11.9</b> A probabilidade do valor observado da estatística do teste</a></li>
+<li class="chapter" data-level="11.10" data-path="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html"><a href="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html"><i class="fa fa-check"></i><b>11.10</b> Tipos de testes quanto à afirmação da hipótese alternativa</a>
+<ul>
+<li class="chapter" data-level="11.10.1" data-path="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html"><a href="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html#teste-de-hipóteses-bilateral"><i class="fa fa-check"></i><b>11.10.1</b> Teste de hipóteses Bilateral</a></li>
+<li class="chapter" data-level="11.10.2" data-path="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html"><a href="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html#teste-de-hipóteses-unilateral-à-esquerda"><i class="fa fa-check"></i><b>11.10.2</b> Teste de hipóteses Unilateral à esquerda</a></li>
+<li class="chapter" data-level="11.10.3" data-path="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html"><a href="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html#teste-de-hipóteses-unilateral-à-direita"><i class="fa fa-check"></i><b>11.10.3</b> Teste de hipóteses Unilateral à direita</a></li>
+</ul></li>
+<li class="chapter" data-level="11.11" data-path="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html"><i class="fa fa-check"></i><b>11.11</b> Roteiro para testes de hipóteses para a média de uma população</a>
+<ul>
+<li class="chapter" data-level="11.11.1" data-path="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html#estruturas-possíveis-para-as-hipóteses"><i class="fa fa-check"></i><b>11.11.1</b> Estruturas possíveis para as hipóteses</a></li>
+<li class="chapter" data-level="11.11.2" data-path="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html#cenários-possíveis"><i class="fa fa-check"></i><b>11.11.2</b> Cenários possíveis</a></li>
+<li class="chapter" data-level="11.11.3" data-path="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html#probabilidade-dos-intervalos-de-confiança-para-os-testes-de-hipóteses-com-o-uso-da-estatística-z-z-sim-mathcaln01"><i class="fa fa-check"></i><b>11.11.3</b> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística Z (<span class="math inline">\(Z \sim \mathcal{N}(0,1)\)</span>):</a></li>
+<li class="chapter" data-level="11.11.4" data-path="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html#probabilidade-dos-intervalos-de-confiança-para-os-testes-de-hipóteses-com-o-uso-da-estatística-t-tsim-t_n-1"><i class="fa fa-check"></i><b>11.11.4</b> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística T (<span class="math inline">\(T\sim t_{(n-1)}\)</span>):</a></li>
+</ul></li>
+<li class="chapter" data-level="11.12" data-path="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html"><i class="fa fa-check"></i><b>11.12</b> Roteiros de testes de hipóteses para as médias amostrais independentes de duas populações Normais</a>
+<ul>
+<li class="chapter" data-level="11.12.1" data-path="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html#as-estruturas-possíveis-dos-testes-de-hipóteses-relacionados-às-suas-médias-serão"><i class="fa fa-check"></i><b>11.12.1</b> As estruturas possíveis dos testes de hipóteses relacionados às suas médias serão:</a></li>
+<li class="chapter" data-level="11.12.2" data-path="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html#testes-de-hipóteses-para-as-médias-de-duas-populações-com-variâncias-conhecidas-ou-não-conhecidas-mas-o-tamanho-das-amostras-é-grande"><i class="fa fa-check"></i><b>11.12.2</b> Testes de hipóteses para as médias de duas populações com variâncias conhecidas (ou não conhecidas mas o tamanho das amostras é grande)</a></li>
+<li class="chapter" data-level="11.12.3" data-path="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html#testes-de-hipóteses-para-as-médias-de-duas-populações-com-variâncias-desconhecidas-mas-admitidas-iguais-e-o-tamanho-das-amostras-é-diminuto"><i class="fa fa-check"></i><b>11.12.3</b> Testes de hipóteses para as médias de duas populações com variâncias desconhecidas (mas admitidas iguais) e o tamanho das amostras é diminuto</a></li>
+<li class="chapter" data-level="11.12.4" data-path="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html#teste-de-hipóteses-para-as-médias-de-duas-populações-independentes-com-variâncias-desconhecidas-e-o-tamanho-das-amostras-é-diminuto"><i class="fa fa-check"></i><b>11.12.4</b> Teste de hipóteses para as médias de duas populações independentes com variâncias desconhecidas e o tamanho das amostras é diminuto</a></li>
+</ul></li>
+<li class="chapter" data-level="11.13" data-path="roteiro-para-testes-de-hipóteses-para-a-proporção-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-proporção-de-uma-população.html"><i class="fa fa-check"></i><b>11.13</b> Roteiro para testes de hipóteses para a proporção de uma população</a>
+<ul>
+<li class="chapter" data-level="11.13.1" data-path="roteiro-para-testes-de-hipóteses-para-a-proporção-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-proporção-de-uma-população.html#estruturas-possíveis-para-as-hipóteses-1"><i class="fa fa-check"></i><b>11.13.1</b> Estruturas possíveis para as hipóteses</a></li>
+<li class="chapter" data-level="11.13.2" data-path="roteiro-para-testes-de-hipóteses-para-a-proporção-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-proporção-de-uma-população.html#probabilidade-dos-intervalos-de-confiança-para-os-testes-de-hipóteses-com-o-uso-da-estatística-z-z-sim-mathcaln01-1"><i class="fa fa-check"></i><b>11.13.2</b> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística Z (<span class="math inline">\(Z \sim \mathcal{N}(0,1)\)</span>):</a></li>
+</ul></li>
+<li class="chapter" data-level="11.14" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html"><i class="fa fa-check"></i><b>11.14</b> Testes não paramétricos</a>
+<ul>
+<li class="chapter" data-level="11.14.1" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html#teste-qui-quadrado-para-verificação-da-independência-homogeneidade"><i class="fa fa-check"></i><b>11.14.1</b> Teste Qui-quadrado para verificação da independência (homogeneidade)</a></li>
+<li class="chapter" data-level="11.14.2" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html#correção-de-continuidade-em-tabelas-2x2"><i class="fa fa-check"></i><b>11.14.2</b> Correção de continuidade em tabelas 2x2</a></li>
+<li class="chapter" data-level="11.14.3" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html#coeficiente-de-contingência-de-pearson-modificado-c"><i class="fa fa-check"></i><b>11.14.3</b> Coeficiente de contingência de Pearson (modificado: <span class="math inline">\(C^{*})\)</span> }</a></li>
+<li class="chapter" data-level="11.14.4" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html#teste-qui-quadrado-para-verificação-da-qualidade-do-ajuste-a-uma-distribuição-teórica-de-probabilidade"><i class="fa fa-check"></i><b>11.14.4</b> Teste Qui-quadrado para verificação da qualidade do ajuste a uma distribuição teórica de probabilidade</a></li>
+<li class="chapter" data-level="11.14.5" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html#teste-de-significância-para-as-médias-de-duas-populações-dependentes"><i class="fa fa-check"></i><b>11.14.5</b> Teste de significância para as médias de duas populações dependentes</a></li>
+</ul></li>
+<li class="chapter" data-level="11.15" data-path="fluxograma-auxiliar-para-escolha-da-estatística-do-teste-de-hipóteses.html"><a href="fluxograma-auxiliar-para-escolha-da-estatística-do-teste-de-hipóteses.html"><i class="fa fa-check"></i><b>11.15</b> Fluxograma auxiliar para escolha da estatística do teste de hipóteses</a></li>
+<li class="chapter" data-level="11.16" data-path="tabelas-1.html"><a href="tabelas-1.html"><i class="fa fa-check"></i><b>11.16</b> Tabelas</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://fjrcosta.github.io/apostila/" target="blank">FJCosta Github</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><div class="line-block">UNIVERSIDADE ESTADUAL DE LONDRINA<br />
+CCE - Centro de Ciências Exatas<br />
+DSTA - Departamento de Estatística<br />
+Apostila de Estatística<br />
+Prof. M.e Eng. Felinto Junior Da Costa</div></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="probabilidade" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Probabilidade<a href="probabilidade.html#probabilidade" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introdução-histórica" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Introdução histórica<a href="probabilidade.html#introdução-histórica" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>De acordo com alguns historiadores, a Teoria das probabilidades teve início como um ramo da Matemática com as célebres cartas entre Blaise Pascal (1623-1662) e Pierre de Fermat (1607-1665), após uma consulta feita por um nobre cavaleiro (Antoine Gombaud, o <em>Chevalier de Méré</em>) a Pascal, relacionadas a como repartir um montante apostado em um jogo de dados caso ele tenha que ser interrompido antes de sua conclusão. Todavia o estudo não formal remonta a alguns séculos atrás.</p>
+<p><br />
+</p>
+<p>Probabilidade tem sido definida como sendo o estudo da frequência de aparição de um fenômeno em relação a todas as suas possíveis alternativas; ou seja, seu objeto é o estudo das possibilidades dos fenômenos aleatórios. O estudo das probabilidades possui, digamos assim, duas raízes históricas:</p>
+<p><br />
+</p>
+<p>1- a solução de problemas relacionados a jogos; e,<br />
+2- a análise estatística de dados atuariais.</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-60"></span>
+<img src="images4/astralagus.jpeg" alt="Astralagus (um dos ossos que compõem o calcanhar, usado no Egito antigo como um dado rudimentar)" width="80%" />
+<p class="caption">
+Figure 4.7: Astralagus (um dos ossos que compõem o calcanhar, usado no Egito antigo como um dado rudimentar)
+</p>
+</div>
+</div>
+<div id="conceito-clássico-ou-a-priori" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Conceito clássico ou <em>a priori</em><a href="probabilidade.html#conceito-clássico-ou-a-priori" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sob uma visão intuitiva, a probabilidade como uma medida da informação que temos sobre a possibilidade de ocorrência de um evento aleatório, pode ser definida como a medida numérica expressa em termos relativos (percentuais), obtida pela razão (proporção) entre o número de eventos favoráveis (sucessos) pelo número total de eventos prováveis no experimento (espaço amostral). Esse conceito de probabilidade é denominado <em>clássico</em> ou <em>a priori</em>:</p>
+<p><br />
+</p>
+<p>A distribuição de frequências é um instrumento importante para a análise da variabilidade de experimentos aleatórios e, em particular, as frequências relativas são estimativas das probabilidades.</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(E)= \frac{\text{número de resultados de interesse (sucessos)}}{\text{número total de resultados possíveis no espaço amostral}}
+\]</span></p>
+<p><br />
+</p>
+<p>Com o estabelecimento de suposições adequadas, um modelo teórico de probabilidade pode ser estabelecido sem a observação <em>a priori</em> dos resultados de experimento aleatório, reproduzindo de modo razoável a distribuição das frequências quando o experimento é diretamente observado.</p>
+<p><br />
+</p>
+<p>Consideremos o exemplo do experimento que consiste em se lançar um dado e observar o valor numérico de sua face. As suposições que deveriam ser estabelecidas <em>a priori</em> são:</p>
+<p><br />
+</p>
+<ul>
+<li>só pode ocorrer uma das seis faces; e,</li>
+<li>o dado utilizado não possui viés algum (não favorece face alguma).</li>
+</ul>
+<p><br />
+</p>
+<p>Como todos os <span class="math inline">\(N\)</span> resultados do espaço amostral apresentam uma <strong>mesma probabilidade</strong> de ocorrência, então a proporção teórica de ocorrência de qualquer um desse resultados poderá ser apresentado na forma vista na na forma vista na Tabela <a href="probabilidade.html#tab:table2">4.2</a>.</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(E)= \frac{1}{N}
+\]</span></p>
+<p><br />
+</p>
+<table style="width:100%;">
+<caption><span id="tab:table2">Table 4.2: </span> Distribuição das proporções teóricas do um experimento aleatório: lançamento de um dado</caption>
+<colgroup>
+<col width="14%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="4%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Face</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Proporção teórica</td>
+<td><span class="math inline">\(\frac{1}{6}\)</span></td>
+<td><span class="math inline">\(\frac{1}{6}\)</span></td>
+<td><span class="math inline">\(\frac{1}{6}\)</span></td>
+<td><span class="math inline">\(\frac{1}{6}\)</span></td>
+<td><span class="math inline">\(\frac{1}{6}\)</span></td>
+<td><span class="math inline">\(\frac{1}{6}\)</span></td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>Sendo equiprováveis todos os elementos do espaço amostral, todos terão a mesma probabilidade de ocorrência que será:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(E) = &amp; \frac{1}{N} \\
+     = &amp;  \frac{1}{6} \\
+     = &amp; \frac{1}{6}    
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Por essa razão sabe-se, <em>a priori</em> a probabilidade de ocorrência de qualquer evento ao se realizar esse tipo de experimento aleatório uma única vez.</p>
+<p><br />
+</p>
+</div>
+<div id="conceito-frequentista-ou-a-posteriori" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Conceito frequentista ou <em>a posteriori</em><a href="probabilidade.html#conceito-frequentista-ou-a-posteriori" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Todavia, se realizarmos o experimento aleatório anterior algumas vezes apenas, tal regularidade poderá não ser, naturalmente, observada: as frequências observadas (as quantidades obtidas para cada um dos valores numéricos das faces) apresentarão uma <strong>grande irregularidade</strong> diferindo das ferquência teóricas definidas.</p>
+<p><br />
+</p>
+<p>Observa-se que os resultados das frequências observadas irá se estabilizar, aproximando-se das frequências teóricas, à medida que se repite esse experimento um número suficientemente grande de vezes.</p>
+<p><br />
+</p>
+<p>Ao se repetir o experimento aleatório um grande número de vezes ( <span class="math inline">\(n\)</span> tendendo a infinitas vezes), a quantidade de vezes que um determinado resultado foi verificado dividida por o número de repetições realizadas (<span class="math inline">\(n\)</span>) irá se aproximar de sua proporção teórica.</p>
+<p><br />
+</p>
+<p>É o que se denomina como <em>regularidade estatística dos resultados</em> por essa propriedade não mais se necessita que os eventos sejam <em>equiprováveis</em>.</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
+\]</span></p>
+<p><br />
+</p>
+<p>onde:</p>
+<p><br />
+</p>
+<ul>
+<li><span class="math inline">\(P(E)\)</span> é a probabilidade de ocorrência do evento <span class="math inline">\(E\)</span>;<br />
+</li>
+<li><span class="math inline">\(F(E)\)</span> é a frequência observada do evento <span class="math inline">\(E\)</span> (o número de vezes que ele ocorre em <em>n</em> repetições); e,<br />
+</li>
+<li><span class="math inline">\(n\)</span> é o número de repetições do experimento.</li>
+</ul>
+<p><br />
+</p>
+<p>Essa é a definição frequencial (<em>a posteriori</em>):</p>
+<p><br />
+</p>
+<p>1- refere-se à probabilidade empírica observada <em>a posteriori</em>;
+2- tem por objetivo estabelecer um modelo adequado à interpretação de alguns tipos de experimentos aleatórios; e,
+3- é a base para se formular um modelo teórico de distribuição de probabilidades como os que serão abordados mais adiante.</p>
+<p><br />
+</p>
+</div>
+<div id="conceito-axiomático" class="section level3 hasAnchor" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> Conceito axiomático<a href="probabilidade.html#conceito-axiomático" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<blockquote>
+<p>Um <em>axioma</em> é uma premissa considerada necessariamente evidente e verdadeira, fundamento de uma demonstração, porém ela mesma indemonstrável, originada, segundo a tradição racionalista, de princípios inatos da consciência ou, segundo os empiristas, de generalizações da observação empírica.</p>
+</blockquote>
+<p><br />
+</p>
+<p>Admita <span class="math inline">\(P\)</span> uma função que opera sobre o espaço <span class="math inline">\(\Omega\)</span>; isto é, uma função que associa uma quantidade <span class="math inline">\(P(\Omega)\)</span> a cada elemento <span class="math inline">\(\omega\)</span> <span class="math inline">\(\in\)</span> <span class="math inline">\(\Omega\)</span>.</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-61"></span>
+<img src="images4/funcao_probabilidade.jpg" alt="Representação gráfica da função $P(\Omega)$" width="80%" />
+<p class="caption">
+Figure 4.8: Representação gráfica da função <span class="math inline">\(P(\Omega)\)</span>
+</p>
+</div>
+<p><br />
+</p>
+<p>Essa função <span class="math inline">\(P\)</span> será uma <strong>função de probabilidade</strong> se, e somente se, satisfizer a <strong>três axiomas</strong> (postulados: conceitos iniciais necessários à construção ou aceitação de uma teoria) estabelecidos por Andrey Kolmogorov (1933).</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-62"></span>
+<img src="images4/kolmogorov.jpeg" alt="Andrey Nikolaevich Kolmogorov  (1903-1987)" width="40%" />
+<p class="caption">
+Figure 4.9: Andrey Nikolaevich Kolmogorov (1903-1987)
+</p>
+</div>
+<p><br />
+</p>
+<p>Kolmogoroff afirmou que uma <em>Teoria das probabilidades</em> poderia ser desenvolvida a partir de <em>axiomas</em>, da
+mesma forma que a geometria e a álgebra, e a considerou como caso especial da <em>Teoria da medida e integração</em> desenvolvida por Lebesgue, Borel e Fréchet. Ele estabeleceu como postulados as propriedades comuns das noções de probabilidade clássica e frequentista que, desta forma, viraram casos particulares da definição axiomática.</p>
+<p><br />
+</p>
+<div id="postulado-do-intervalo" class="section level4 hasAnchor" number="4.2.4.1">
+<h4><span class="header-section-number">4.2.4.1</span> Postulado do intervalo<a href="probabilidade.html#postulado-do-intervalo" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A probabilidade de qualquer <span class="math inline">\(E\)</span> <strong>é um número real entre 0 e 1</strong> (pode-se entender isso como uma convenção, onde então se estabelece a medida da probabilidade é um número positivo e que qualquer evento pode ter probabilidade de, no máximo, 1). Esse postulado está plenamente de acordo com a interpretação frequentista de probabilidade.</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+0 \hspace{0.5cm} \le P(\Omega) \hspace{0.5cm} \le 1
+\]</span></p>
+<p><br />
+</p>
+</div>
+<div id="postulado-da-certeza" class="section level4 hasAnchor" number="4.2.4.2">
+<h4><span class="header-section-number">4.2.4.2</span> Postulado da certeza<a href="probabilidade.html#postulado-da-certeza" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>O segundo postulado refere-se à probabilidade do <strong>evento certo</strong> ser igua a 1. No que diz respeito à interpretação frequentista, uma probabilidade de 1 implica que o evento em questão ocorrerá 100% do tempo ou, em outras palavras, <strong>que é certo que ele ocorra</strong> (como, p. exemplo, um experimento aleatório de se lançar dois dados e somar o valor de suas faces o evento certo poderia ser definido como observar uym valor menor que 13 ou maior que 2)</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(\Omega) = 1
+\]</span></p>
+<p><br />
+</p>
+</div>
+<div id="postulado-da-aditividade-para-eventos-mutuamente-exclusivos" class="section level4 hasAnchor" number="4.2.4.3">
+<h4><span class="header-section-number">4.2.4.3</span> Postulado da aditividade para eventos mutuamente exclusivos<a href="probabilidade.html#postulado-da-aditividade-para-eventos-mutuamente-exclusivos" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><span class="math display">\[
+P\left(\bigcup _{n=1}^{\infty }{\omega}_{n}\right)=\sum _{n=1}^{\infty }P\left({\omega}_{n}\right)
+\]</span></p>
+<p><br />
+</p>
+<p>para qualquer sequência de eventos <strong>mutuamente exclusivos</strong> <span class="math inline">\(\{\omega_{1}, \omega_{2}, \omega_{3}, ..., \omega_{n}, ...\}\)</span> (isto é, tal que <span class="math inline">\(\omega_{i} \cap \omega_{j} \varnothing\)</span> se <span class="math inline">\(i \neq j\)</span>)</p>
+<p><br />
+</p>
+<p>Tomando o terceiro postulado no caso mais simples, isto é, para <strong>dois</strong> eventos mutuamente exclusivos <span class="math inline">\(\omega_{1}\)</span> e <span class="math inline">\(\omega_{2}\)</span>, pode ser facilmente visto que é satisfeito pela interpretação frequentista.</p>
+<p><br />
+</p>
+<p>Se um evento ocorrer, digamos, 28% das vezes, outro evento ocorrerá 39%, <strong>e os dois eventos não podem ocorrer ao mesmo tempo (ou seja, são mutuamente exclusivos)</strong>, então um <strong>ou outro</strong> evento} ocorrerão em 28 + 39 = 67% das vezes. Assim, o terceiro postulado é satisfeito, e o mesmo tipo de argumento se aplica quando há mais de dois eventos mutuamente exclusivos.</p>
+<p><br />
+</p>
+<p><strong>Recapitulando</strong></p>
+<p><br />
+</p>
+<p>1- foi definido o conceito de <strong>experimento aleatório</strong> como sendo aquele cujos resultados não podem ser determinados com certeza antes de sua realização;<br />
+2- foi definido o conceito de <strong>espaço amostral</strong> de um experimento aleatório como sendo o conjunto de <strong>todos os possíveis resultados</strong> que ele pode apresentar;<br />
+3- foi definido que um <strong>evento de interesse</strong> é um subconjunto do espaço amostral no qual estamos particularmente interessados;<br />
+4- foi definida uma <strong>função</strong> que tem como domínio o espaço amostral e associa uma quantidade (entre <strong>0</strong> e <strong>1</strong>) a <strong>cada elemento</strong> do espaço amostral; e, por fim,<br />
+5- estabelecemos que <strong>se</strong> essa função atende a <strong>três postulados</strong> então ela será uma <strong>medida da probabilidade</strong> de ocorrẽncia de cada evento do espaço amostral em questão.</p>
+<p><br />
+</p>
+<p>Assim, quando uma função <span class="math inline">\(P\)</span> associa uma quantidade <span class="math inline">\(P(\Omega)\)</span> a um evento <span class="math inline">\(\omega\)</span> e <span class="math inline">\(P(\Omega)\)</span> atende aos três axiomas anteriormente estabelecidos, diz-se que que ela é a <strong>função de probabilidade</strong> de <span class="math inline">\(\Omega\)</span>.</p>
+<p><br />
+</p>
+</div>
+</div>
+<div id="probabilidade-da-união-de-eventos" class="section level3 hasAnchor" number="4.2.5">
+<h3><span class="header-section-number">4.2.5</span> Probabilidade da união de eventos<a href="probabilidade.html#probabilidade-da-união-de-eventos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Considerem agora a Tabela <a href="probabilidade.html#tab:table3">4.3</a> de dupla entrada onde vemos a distribuição de alunos conforme seu sexo e o curso escolhido:</p>
+<p><br />
+</p>
+<table>
+<caption><span id="tab:table3">Table 4.3: </span> Distribuição da quantidade de alunos segundo seu sexo e curso escolhido</caption>
+<colgroup>
+<col width="34%" />
+<col width="36%" />
+<col width="19%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Curso</th>
+<th>Sexo</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>Masculino (M)</td>
+<td>Feminino (F)</td>
+<td>Total</td>
+</tr>
+<tr class="even">
+<td>Matemática pura (M)</td>
+<td>70</td>
+<td>40</td>
+<td>110</td>
+</tr>
+<tr class="odd">
+<td>Matemática aplicada (A)</td>
+<td>15</td>
+<td>15</td>
+<td>30</td>
+</tr>
+<tr class="even">
+<td>Estatística (E)</td>
+<td>10</td>
+<td>20</td>
+<td>30</td>
+</tr>
+<tr class="odd">
+<td>Computação (C)</td>
+<td>20</td>
+<td>10</td>
+<td>30</td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td>115</td>
+<td>85</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>Essa tabela nos possibilita calcular a probabilidade de ocorrência de diversos eventos de interesse que desejemos estabelecer.</p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: seja o experimento aleatório de se escolher, aleatoriamente, um estudante qualquer desses quatro cursos. Assim, se definimos nosso evento de interesse <span class="math inline">\(M\)</span> como sendo <strong>M:sexo masculino</strong>, a probabilidade de sucesso (que o indivíduo sorteado aleatoriamente seja do sexo masculino) será:</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(M) = \frac{115}{200}
+\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: se nosso evento de interesse <span class="math inline">\(A\)</span> como sendo <strong><span class="math inline">\(A:\)</span> curso de matemática aplicada</strong> , a probabilidade de sucesso (que o indivíduo sorteado aleatoriamente seja do curso de matemática aplicada será):</p>
+</blockquote>
+<p><span class="math display">\[
+P(A) = \frac{30}{200}
+\]</span></p>
+<p><br />
+</p>
+<p>A partir dos eventos de interesse anteriormente estabelecidos, podemos definir outros eventos na forma de uniões (<span class="math inline">\(\cup\)</span>) e interseções (<span class="math inline">\(\cap\)</span>):</p>
+<p><br />
+</p>
+<ul>
+<li>uma união entre os dois eventos de interesse anteriores <span class="math inline">\(A\)</span> e <span class="math inline">\(M\)</span> é representada por <span class="math inline">\(A \cup M\)</span> (alternativamente lê-se também <strong>ou</strong>) e representa um evento onde <strong>pelo menos</strong> um dos dois eventos básicos pode ocorrer: <strong>ou</strong> <span class="math inline">\(A\)</span>, <strong>ou</strong> <span class="math inline">\(M\)</span> <strong>ou ambos</strong>; e,<br />
+</li>
+<li>uma interseção dos dois eventos de interesse anteriores <span class="math inline">\(A\)</span> e <span class="math inline">\(M\)</span> é representada por <span class="math inline">\(A \cap M\)</span> (alternativamente lê-se também <strong>e</strong>) e representa um evento onde <strong>os dois eventos</strong> básicos devem ocorrer: <span class="math inline">\(A\)</span> <strong>e</strong> <span class="math inline">\(M\)</span>.</li>
+</ul>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: se definimos nosso evento de interesse (<span class="math inline">\(P(A \cap M)\)</span>) como sendo <strong>sexo masculino e cursando matemática aplicada</strong>. Facilmente podemos visualizar na Tabela <a href="probabilidade.html#tab:table3">4.3</a> que apenas 15 alunos do curso do evento de interesse (matemática aplicada) são do sexo do segundo evento de interesse (masculino), em relação a todo espaço amostral e assim:</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(A \cap M) = \frac{15}{200}
+\]</span>.</p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: consideremos agora o evento de interesse (<span class="math inline">\(P(A \cup M)\)</span>) como sendo <strong>sexo masculino ou cursando matemática aplicada</strong>.</p>
+</blockquote>
+<p><br />
+</p>
+<p>Na Tabela <a href="probabilidade.html#tab:table3">4.3</a> temos as duas probabilidades <strong>marginais</strong>:</p>
+<p><br />
+</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(P(A)=\frac{30}{200}\)</span> (curso: matemática aplicada); e,
+2- <span class="math inline">\(P(M)=\frac{115}{200}\)</span> (sexo masc).</li>
+</ol>
+<p><br />
+</p>
+<p>Poderíamos intuir equivocadamente que:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(A \cup M) = P(A) + P(M) = \frac{30}{200} + \frac{115}{200} = \frac{145}{200}
+\]</span></p>
+<p><br />
+</p>
+<p>Tal raciocínio é errado pois iria considerar por <strong>duas vezes</strong> os alunos do <strong>sexo masculino</strong>. Uma fração da quantidade global (115) de alunos do <strong>sexo masculino</strong> já considera aqueles que estão matriculados no curso de <strong>matemática aplicada</strong> (15). É preciso <strong>subtrair</strong> da soma das probabilidades marginais essa <strong>parcela em comum</strong> que é a interseção dos dois eventos básicos.</p>
+<p>A resposta correta será:</p>
+<p><span class="math display">\[
+P(A \cup M) = P(A) + P(M) - P(A \cap M) = \frac{30}{200} + \frac{115}{200} -\frac{15}{200} = \frac{130}{200}
+\]</span>.</p>
+<p><br />
+</p>
+<p>Portanto, para quaisquer eventos de intersse <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span>, podemos estabelecer uma <strong>regra geral da pobabilidade da união de dois eventos quaiquer</strong> como:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(A \cup B) = P(A) + P(B) - P(A \cap B)
+\]</span></p>
+<p><br />
+</p>
+<p>Se <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> forem <strong>mutuamente exclusivos</strong>, a interseção entre eles será vazia (<span class="math inline">\(A \cap B =\varnothing\)</span>) e, assim, essa probabiidade é zero. Nessa situação, a probabilidade de <span class="math inline">\(P(A \cup B)\)</span> fica reduzida a uma <strong>regra particular para a adição de probabilidades de eventos mutuamente exclusivos</strong>:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(A \cup B) = P(A) + P(B)
+\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Seja o experimento aleatório de se lançar um dado (com seis faces) e observar o valor numérico da face que ficar exposta. Qual a probabilidade de se observar os valores <span class="math inline">\(1\)</span> <strong>ou</strong> <span class="math inline">\(4\)</span>?</p>
+</blockquote>
+<p><br />
+</p>
+<p>Definindo os eventos de interesse:</p>
+<p><br />
+</p>
+<p>1- <span class="math inline">\(E_{1}=\text{sair face 1}\)</span> (<span class="math inline">\(P(E_{1})=\frac{1}{6}\)</span>); e,<br />
+2- <span class="math inline">\(E_{4}=\text{sair face 4}\)</span> (<span class="math inline">\(P(E_{4})=\frac{1}{6}\)</span>).</p>
+<p><br />
+</p>
+<p>Pede-se <span class="math inline">\(P(E_{1} \cup E_{4})\)</span>.</p>
+<p><br />
+</p>
+<p>Como <span class="math inline">\(E_{1}\)</span> e <span class="math inline">\(E_{4}\)</span> são *eventos mutuamente exclusivos**: <span class="math inline">\(E_{1} \cap E_{4}=\varnothing\)</span> (portanto a probabilidade é zero), então <span class="math inline">\(P(E_{1} \cup E_{4}) = P(E_{1}) + P(E_{4}) = \frac{1}{6} + \frac{1}{6}= \frac{1}{3}\)</span>.</p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Uma população é composta por 20 pessoas que consomem o produto <strong>A</strong>, 30 pessoas que consomem o produto <strong>B</strong> e 50 pessoas que consomem o produto <strong>C</strong> . Um pesquisador de mercado seleciona aleatoriamente uma pessoa desta população. <strong>Sabendo que uma pessoa não consome mais de um produto ao mesmo tempo</strong>, qual a probabilidade de ter sido selecionada uma pessoa que consome os produtos <strong>A ou C</strong>?</p>
+</blockquote>
+<p><br />
+</p>
+<p>Solução:</p>
+<p><br />
+</p>
+<p>Definindo os eventos de interesse e as probabilidades associadas:</p>
+<p><br />
+</p>
+<p>1- <span class="math inline">\(E_{A}=\text{consumidor do produto A}\)</span>: <span class="math inline">\(P(E_{A}=\frac{20}{100}\)</span>);<br />
+2- <span class="math inline">\(E_{B}=\text{consumidor do produto B}\)</span>: <span class="math inline">\(P(E_{B}=\frac{30}{100}\)</span>); e,<br />
+3- <span class="math inline">\(E_{C}=\text{consumidor do produto C}\)</span>: <span class="math inline">\(P(E_{C}=\frac{50}{100}\)</span>).</p>
+<p><br />
+</p>
+<p>Pela regra geral da probabilidade da união de dois eventos quaiquer sabemos que:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(E_{A} \cup E_{C}) = P(E_{A}) + P(E_{C}) - P(E_{A} \cap E_{C})
+\]</span></p>
+<p><br />
+</p>
+<p>Como foi estabelecido no enunciado que uma pessoa <strong>não</strong> consome mais de um produto ao mesmo tempo (esses eventos são, portanto, <strong>mutuamente exclusivos</strong>: <span class="math inline">\(E_{A} \cap E_{C}=\varnothing\)</span>) a probabilidade pedida será:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(E_{A} \cup E_{C}) &amp; = P(E_{A}) + P(E_{C}) - P(E_{A} \cap E_{C}) \\
+                    &amp; = \frac{20}{10} + \frac{50}{100} - 0 \\
+                    &amp; =  \frac{70}{100} \\
+                    &amp; =  0,70    
+\end{align*}\]</span></p>
+<p><br />
+</p>
+</div>
+<div id="probabilidade-de-eventos-condicionados" class="section level3 hasAnchor" number="4.2.6">
+<h3><span class="header-section-number">4.2.6</span> Probabilidade de eventos condicionados<a href="probabilidade.html#probabilidade-de-eventos-condicionados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dois eventos <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> de um experimento aleatório qualquer são ditos <strong>condicionados</strong> quando a ocorrência prévia de um deles impõe <strong>uma restrição</strong> no espaço amostral do segundo.</p>
+<p><br />
+</p>
+<p>A <strong>probabilidade</strong> de um evento qualquer <span class="math inline">\(A\)</span> <strong>condicionada</strong> a um segundo evento <span class="math inline">\(B\)</span> é representada como <span class="math inline">\(P(A|B)\)</span>. A <em>barra</em> verical pode ser “lida” adotando-se termos correlatos que facilitam o entendimento da relação existente, tais como :</p>
+<p><br />
+</p>
+<ul>
+<li>probabilidade de <span class="math inline">\(A\)</span> <strong>posto que</strong> ocorreo <span class="math inline">\(B\)</span>;</li>
+<li>probabilidade de <span class="math inline">\(A\)</span> <strong>admitindo-se</strong> que ocorreu <span class="math inline">\(B\)</span>;</li>
+<li>probabilidade de <span class="math inline">\(A\)</span> <strong>considerando-se</strong> que ocorreu <span class="math inline">\(B\)</span>,</li>
+</ul>
+<p><br />
+</p>
+<p>e seu cálculo é feito pela <strong>regra geral da probabilidade de dois eventos condicionados</strong>:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(A|B) &amp; = \frac{ P(A\cap B)}{ P(B)} \\
+P(B|A) &amp; = \frac{ P(B\cap A)}{ P(A)}
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>sendo <span class="math inline">\(P(B)&gt;0\)</span> e <span class="math inline">\(P(A)&gt;0\)</span> nas expressões acima.</p>
+<p><br />
+</p>
+<p>De modo geral, admita que os eventos <span class="math inline">\(E_{1}\)</span>, <span class="math inline">\(E_{2}\)</span>,…,<span class="math inline">\(E_{n}\)</span> formam uma partição do espaço amostral.</p>
+<p><br />
+</p>
+<p>Os eventos não têm interseções entre si e a união destes é igual ao espaço amostral e seja <span class="math inline">\(A\)</span> um evento qualquer desse espaço.</p>
+<p><br />
+</p>
+<p>Então a probabilidade de ocorrência desse evento será dada por:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(A) &amp; = P(A \cap E_{1}) +  P(A \cap E_{2}) + \dots + P(A \cap E_{n}) \\
+     &amp; = P(E_{1}) \times P(A|E_{1}) + P(E_{2}) \times P(A|E_{2}) + \dots + \\
+     &amp; P(E_{n}) \times P(A|E_{n})\\
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Consideremos a Tabela <a href="probabilidade.html#tab:table3">4.3</a> que apresenta informações cruzadas do sexo dos alunos e seus respectivos cursos. Vamos definir os eventos <strong>Fem:sexo feminino</strong> e <strong>Est: cursar estatística</strong>. Como calcular a probabilidade condicionada de nosso evento de interesse <strong>P(Fem|Est)</strong> (a probabilidade de um aluno aleatoriamente escolhido ser do sexo <strong>feminino</strong>, <strong>dado</strong> que ele cursa <strong>estatística</strong>)?</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(Fem|Est) &amp; = \frac{ P(Fem \cap Est)}{ P(Est)} \\
+           &amp; = \frac{20}{30} = \frac{2}{3}    
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Esse cálculo é facilmente entendido observando-se as celulas da distribuição de frequências na Tabela <a href="probabilidade.html#tab:table3">4.3</a>.</p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Considerem a Tabela <a href="probabilidade.html#tab:table4">4.4</a> que relaciona a ida à praia de uma certa pessoa às condições climáticas do dia.</p>
+</blockquote>
+<p><br />
+</p>
+<table>
+<caption><span id="tab:table4">Table 4.4: </span> Condicionamento de passeios à praia em relação às condições climáticas observadas</caption>
+<thead>
+<tr class="header">
+<th>Dia</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Foi à praia?</td>
+<td>N</td>
+<td>S</td>
+<td>N</td>
+<td>S</td>
+<td>S</td>
+<td>S</td>
+<td>N</td>
+<td>N</td>
+<td>S</td>
+<td>S</td>
+</tr>
+<tr class="even">
+<td>Fez sol?</td>
+<td>N</td>
+<td>S</td>
+<td>N</td>
+<td>S</td>
+<td>N</td>
+<td>S</td>
+<td>S</td>
+<td>N</td>
+<td>S</td>
+<td>S</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>Baseado nos dados coletados responda:</p>
+<p><br />
+</p>
+<p>1- Qual a probabilidade dessa pessoa ir à praia?<br />
+2- Sabendo-se que fez Sol, qual a probabilidade dessa pessoa ir à praia?<br />
+3- Os eventos <strong>ir à praia</strong> e <strong>fazer Sol</strong> são independentes ou condicionados?</p>
+<p><br />
+</p>
+<p>Da Tabela <a href="probabilidade.html#tab:table4">4.4</a> extraímos as seguintes probabilidades:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(IP) &amp; = \frac{6}{10}= 0,60 \\
+P(FS) &amp; = \frac{6}{10}= 0,60 \\
+P(IP \cap FS) &amp; = \frac{5}{10} \\
+    &amp; = 0,50
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>A partir delas podemos calcular a seguinte probabilidade condicionada:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(IP|FS) &amp; = \frac{ P(IP \cap F)}{ P(FS)} \\
+       &amp; = \frac{5}{6} \\
+       &amp; = 0,83     
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>A probabilidade dessa pessoa ir à praia (<span class="math inline">\(P(IP)\)</span>) é 0,60; <strong>mas</strong> quando faz Sol a probabilidade (<span class="math inline">\(P(IP|FS)\)</span>) dela aumenta para 0,83.</p>
+<p><br />
+</p>
+<p>Assim, os eventos <span class="math inline">\(IP\)</span> e <span class="math inline">\(FS\)</span> são condicionados: essa pessoa vai à praia 60% dos dias analisados; mas, <strong>quando faz sol</strong>, ela vai em 83% dos dias (a presença de Sol altera a probabilidade dela ir à praia).</p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Em uma cidade existem 15.000 usuários de telefonia, dos quais 10.000 possuem telefones fixos, 8.000 telefones móveis e 3.000 telefones fixos e móveis. Seja o experimento aleatório de uma operadora de telefone móvel selecionar uma pessoa dessa cidade para oferecer uma promoção do tipo “Fale Grátis de seu Móvel para seu Fixo”.</p>
+</blockquote>
+<p><br />
+</p>
+<p>Responda:</p>
+<p><br />
+</p>
+<p>1- Sorteando-se aleatoriamente um cliente dessa operadora, se soubermos antecipadamente que ele tem telefone móvel, qual a probabilidade de esse cliente tenha telefone fixo também?<br />
+2- Sabendo-se que ele tem telefone fixo, qual a probabilidade de ele tenha telefone móvel também?</p>
+<p><br />
+</p>
+<p>O espaço amostral de todos esses possíveis eventos pode ser ilustrado pelo diagrama de Venn abaixo:</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:venn"></span>
+<img src="images4/exercicio.jpg" alt="Diagrama de Venn do espaço amostral" width="50%" />
+<p class="caption">
+Figure 4.10: Diagrama de Venn do espaço amostral
+</p>
+</div>
+<p><br />
+</p>
+<p>Do diagrama apresentado na Figura<a href="probabilidade.html#fig:venn">4.10</a> podemos extrair imediatamente as probabilidades pedidas:</p>
+<p><br />
+</p>
+<ul>
+<li><span class="math inline">\(P(F|M)\)</span> (probabilidade de ter uma linha fixa sabendo que possui um telefone móvel); e,</li>
+<li><span class="math inline">\(P(M|F)\)</span> (probabilidade de ter uma linha móvel sabendo que possui um telefone fixo):</li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(F|M) &amp; = \frac{n(MF)}{n(M)}\\
+       &amp; =\frac{3000}{8000}\\
+       &amp; = 0,375
+\end{align*}\]</span><br />
+</p>
+<p>e</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(M|F) &amp; = \frac{n(MF)}{n(F)} \\
+       &amp; =\frac{3000}{10000} \\
+       &amp; = 0,300
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Mas também podemos calcular as probablidades do modo como explicado no começo desta sessão. Definindo-se os eventos <strong><span class="math inline">\(F:\)</span> telefone fixo</strong> e <strong><span class="math inline">\(M:\)</span> telefone móvel</strong>, a primeira pergunta pede <span class="math inline">\(P(F|M)\)</span>:probabilidade de ter um telefone fixo sabendo que ele tem um telefone móvel:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(F|M) &amp; =  \frac{P(F \cap M)}{P(M)} \\
+       &amp; = \frac{ \frac{3000}{15000} }{\frac{8000}{15000} }\\
+       &amp; = 0,375.
+\end{align*}\]</span><br />
+</p>
+<p>A segunda pede <span class="math inline">\(P(M|F)\)</span>: probabilidade de ter um telefone móvel sabendo que ele tem um telefone fixo:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(M|F) &amp; = \frac{P(M \cap F)}{P(F)} \\
+       &amp; = \frac{ \frac{3000}{15000} }{\frac{10000}{15000} } \\
+       &amp; = 0,300
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Considere a Tabela <a href="probabilidade.html#tab:table5">4.5</a> onde são expostos os resultados de uma pesquisa relacionada ao gosto pela prática de tênis entre alunos e alunas. Definindo-se os eventos <strong><span class="math inline">\(A\)</span>:“gostar de tênis”</strong> e <strong><span class="math inline">\(B\)</span>:“ser do sexo feminino”</strong>, calcule as probabilidade pedidas ao se sortear, aleatoriamente, uma das pessoas pesquisadas.</p>
+</blockquote>
+<p><br />
+</p>
+<p>1- Qual a probabilidade de que goste de tênis (<span class="math inline">\(P(T)\)</span>)?<br />
+2- Qual probabilidade de que não goste de tênis (<span class="math inline">\(P(T^{c})\)</span>)?<br />
+3- Qual a probabilidade de que seja do sexo feminino <strong>ou</strong> goste de tênis: (<span class="math inline">\(P(F \cup T)\)</span>)?<br />
+4- Sabendo-se que foi sorteada uma aluna, qual a probabilidade de que goste de tênis (<span class="math inline">\(P(T|F))\)</span>?<br />
+5- Verifique se os eventos <strong><span class="math inline">\(T\)</span>: “gostar de tênis”</strong> e <strong><span class="math inline">\(F\)</span>:“ser do sexo feminino”</strong> são condicionados ou independentes (<span class="math inline">\(P(T \cap F) \stackrel{?}{=} P(T) \times P(F)\)</span>))</p>
+<p><br />
+</p>
+<table>
+<caption><span id="tab:table5">Table 4.5: </span> Distribuição da quantidade de alunos segundo seu sexo e a preferência por tênis</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th>Sexo</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Curso</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Masculino (M)</td>
+<td>Feminino (F)</td>
+<td>Total</td>
+</tr>
+<tr class="odd">
+<td>Gostam de tênis (T)</td>
+<td>400</td>
+<td>200</td>
+<td>600</td>
+</tr>
+<tr class="even">
+<td>Não gostam de tênis (NT)</td>
+<td>50</td>
+<td>50</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>450</td>
+<td>250</td>
+<td>700</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="dependência-e-independência-de-eventos" class="section level3 hasAnchor" number="4.2.7">
+<h3><span class="header-section-number">4.2.7</span> Dependência e independência de eventos<a href="probabilidade.html#dependência-e-independência-de-eventos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Pela <strong>regra geral da probabilidade de dois eventos eventos condicionados</strong>:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(A|B) &amp; = \frac{ P(A\cap B)}{ P(B)} \\
+P(B|A) &amp; = \frac{ P(B\cap A)}{ P(A)}
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Como a probabilidade de interseção não se altera (<span class="math inline">\(P(A\cap B)=P(B\cap A)\)</span>), podemos reescrever essas duas expressões:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(A \cap B) &amp; =   P(A|B) \times P(B)  \\
+P(A\cap B)  &amp; =   P(B|A) \times P(A)    
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>com <span class="math inline">\(P(B)&gt;0\)</span> e <span class="math inline">\(P(A)&gt;0\)</span> nas expressões acima.</p>
+<p><br />
+</p>
+<p>Se os eventos <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> são guardam nenhuma relação de condicionamento eles são chamadas de <strong>eventos independentes</strong>. Equivale dizer que <span class="math inline">\(P(A|B)=P(A)\)</span> (ou <span class="math inline">\(P(B|A)=P(B)\)</span>), a probabilidade de <span class="math inline">\(A\)</span> não se altera pela prévia ocorrência de <span class="math inline">\(B\)</span> (ou a de <span class="math inline">\(B\)</span> pelo de <span class="math inline">\(A\)</span>).</p>
+<p><br />
+</p>
+<p>Portanto, <strong>dois eventos são denominados independentes se, e somente se</strong>:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P (A \cap B)= P(A) \times P(B)
+\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p><strong>Independência e correlação</strong>: se duas variáveis aleatórias são <strong>independentes</strong> não há associação de natureza alguma entre elas, <strong>inclusive a linear</strong>, um caso particular de correlação. Todavia uma <strong>correlação linear nula</strong> não implica em <strong>independência</strong> posto existirem várias outras formas outras de relacionamento (quadrática, cúbica, ).</p>
+</blockquote>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-63"></span>
+<img src="images4/indepn_correlacao.jpg" alt="Independência implica em ausência de qualquer tipo de associação (a recíproca não se aplica" width="50%" />
+<p class="caption">
+Figure 4.11: Independência implica em ausência de qualquer tipo de associação (a recíproca não se aplica
+</p>
+</div>
+<p><br />
+</p>
+</div>
+<div id="probabilidade-da-interseção-de-eventos-independentes" class="section level3 hasAnchor" number="4.2.8">
+<h3><span class="header-section-number">4.2.8</span> Probabilidade da interseção de eventos independentes<a href="probabilidade.html#probabilidade-da-interseção-de-eventos-independentes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Se <span class="math inline">\(E_{1}\)</span>, <span class="math inline">\(E_{2}\)</span>, …, <span class="math inline">\(E_{n}\)</span> são eventos totalmente independentes <strong>entre si</strong>, então:</p>
+<p><br />
+</p>
+<p><br />
+</p>
+<p>Para que isso se verifique, a independência entre cada um e todos os eventos deve se verificada. Numa situação de três eventos, por exemplo, teríamos que observar:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P (E_{1} \cap E_{2})= P(E_{1}) \times P(E_{2})
+\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P (E_{1} \cap E_{3})= P(E_{1}) \times P(E_{3})
+\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P (E_{2} \cap E_{3})= P(E_{2}) \times P(E_{3})
+\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P (E_{1} \cap E_{2} \cap E_{3} )= P(E_{1}) \times P(E_{2}) \times P(E_{3})
+\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: considere o experimento aleatório de se lançar dois dados e obter o valor <strong>1</strong> no primeiro deles e <strong>5</strong> no segundo (defina os eventos <span class="math inline">\(E_{1}= \text{sair face 1}\)</span> e <span class="math inline">\(E_{5}=\text{sair face 5}\)</span>).</p>
+</blockquote>
+<p><br />
+</p>
+<p>Solução:</p>
+<p><br />
+</p>
+<p>Quando lançamos dois dados o resultado obtido em um deles (o valor numérico da face) <strong>não condiciona ou altera</strong> o resultado obtido no outro: os resultados são <strong>são independentes</strong>. Desse modo, sendo <span class="math inline">\(P(E_{1})=\frac{1}{6}\)</span> e <span class="math inline">\(P(E_{5})=\frac{1}{6}\)</span>:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(E_{1} \cap E_{5}) &amp; = \frac{1}{6} \times \frac{1}{6}\\
+                    &amp; = \frac{1}{36}.
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Uma empresa que compra produtos de dois fabricantes diferentes (<strong>Fabricante 1</strong> e <strong>Fabricante 2}</strong>) adquiriu 168 unidades do primeiro e 84 do segundo. Sabendo que 8 unidades fabricadas pelo primeiro fornecedor não atenderam às especificações e apenas 4 do segundo, verifique se o fato de uma amostra ter atendido às especificações independe de ter sido produzida pelo <strong>Fabricante 1</strong>.</p>
+</blockquote>
+<p><br />
+</p>
+<p>Solução:</p>
+<p><br />
+</p>
+<p>Para a primeira verificação pedida defina os eventos <strong><span class="math inline">\(Fab1:\)</span> ter sido produzida pelo Fabricante 1</strong>, <strong><span class="math inline">\(Aprov:\)</span> ter atendido às especificações</strong> e <strong><span class="math inline">\(Fab2:\)</span> ter sido produzida pelo Fabricante 2</strong>. Na sequência podemos calcular as seguintes probabilidades:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(Fab1)   &amp; = \frac{168}{252} \\
+          &amp; = 0,6666 \\
+P(Aprov)  &amp; = \frac{240}{252} \\
+          &amp; = 0,9523 \\
+P(Fab1 \cap Aprov) &amp; = \frac{160}{252} \\
+          &amp; =  0,6349  
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p><strong>Se</strong> o fato de uma amostra ter sido aprovada <strong>independe</strong> de ter sido produzida pelo Fabricante 1 <strong>então</strong> <span class="math inline">\(P(Aprov|Fab1) = P(Aprov)\)</span>:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(Aprov|Fab1) &amp; = \frac{P(Aprov \cap Fab1)}{P(Fab1)} \\
+              &amp; = \frac{0,6349}{0,6666} \\
+              &amp; =  0,9523.
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Como <span class="math inline">\(P(Aprov|Fab1) = P(Aprov)\)</span>, verifica-se que o fato de uma amostra aleatoriamente sorteada entre as peças do fabricante 1 não condiciona sua aprovação.</p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: A probabilidade de um consumidor (<span class="math inline">\(C_{1}\)</span>) ficar satisfeito com o desempenho de certa marca de produto é de 25%. A probabilidade de um outro consumidor (<span class="math inline">\(C_{2}\)</span>) ficar satisfeito com a mesma marca é de 40%. Admitamos que os dois consumidores irão consumir o produto num mesmo momento e de <strong>forma independente (incomunicáveis)</strong>. Qual a probabilidade de <strong>os dois</strong> consumidores ficarem satisfeitos simultaneamente?</p>
+</blockquote>
+<p><br />
+</p>
+<p>Solução:</p>
+<p><br />
+</p>
+<p>As probabilidades individuais dos consumidores 1 <strong>e</strong> 2 ficarem satisfeitos com o desempenho da marca do produto são:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(C_{1}) &amp; = 0,25\\
+P(C_{2}) &amp; = 0,40
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>A probabilidade de <strong>ambos</strong> ficarem satisfeitos, dado que o enunciado afirma que esses eventos são <strong>independente</strong> será:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(C_{1} \cap C_{2}) &amp; = 0,25 \times 0,40\\
+                    &amp; = 0,10.
+\end{align*}\]</span></p>
+<p><br />
+</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introdução-conceitual-essencial-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="teorema-de-bayes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-probabilidade.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["apostila.pdf", "apostila.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

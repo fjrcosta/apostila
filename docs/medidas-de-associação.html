@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8.4 Medidas de associação | apostila.knit</title>
+  <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8.4 Medidas de associação | apostila.knit" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
+  <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8.4 Medidas de associação | apostila.knit" />
+  
+  <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="sobrevida.html"/>
+<link rel="next" href="intervalos-de-confiança.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Índice</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section" id="toc-section"></a></li>
+<li class="chapter" data-level="1" data-path="introdução-histórica-da-estatística.html"><a href="introdução-histórica-da-estatística.html"><i class="fa fa-check"></i><b>1</b> Introdução histórica da estatística</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="primeiros-levantamentos-estudos-e-publicações-demografia-e-aritmética-política.html"><a href="primeiros-levantamentos-estudos-e-publicações-demografia-e-aritmética-política.html"><i class="fa fa-check"></i><b>1.1</b> Primeiros levantamentos, estudos e publicações &amp; Demografia e aritmética política</a></li>
+<li class="chapter" data-level="1.2" data-path="visualização-de-dados-estudos-e-primeiras-publicações.html"><a href="visualização-de-dados-estudos-e-primeiras-publicações.html"><i class="fa fa-check"></i><b>1.2</b> Visualização de dados &amp; Estudos e primeiras publicações</a></li>
+<li class="chapter" data-level="1.3" data-path="nomes-notáveis.html"><a href="nomes-notáveis.html"><i class="fa fa-check"></i><b>1.3</b> Nomes notáveis</a></li>
+<li class="chapter" data-level="1.4" data-path="revista-biometrika.html"><a href="revista-biometrika.html"><i class="fa fa-check"></i><b>1.4</b> Revista Biometrika</a></li>
+<li class="chapter" data-level="1.5" data-path="eugenia.html"><a href="eugenia.html"><i class="fa fa-check"></i><b>1.5</b> Eugenia</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introdução-conceitual-essencial.html"><a href="introdução-conceitual-essencial.html"><i class="fa fa-check"></i><b>2</b> Introdução conceitual essencial</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="estatística-descritiva.html"><a href="estatística-descritiva.html"><i class="fa fa-check"></i><b>2.1</b> Estatística descritiva</a></li>
+<li class="chapter" data-level="2.2" data-path="estatística-inferencial.html"><a href="estatística-inferencial.html"><i class="fa fa-check"></i><b>2.2</b> Estatística inferencial</a></li>
+<li class="chapter" data-level="2.3" data-path="produção-de-conhecimento.html"><a href="produção-de-conhecimento.html"><i class="fa fa-check"></i><b>2.3</b> Produção de conhecimento</a></li>
+<li class="chapter" data-level="2.4" data-path="população-universo-amostra.html"><a href="população-universo-amostra.html"><i class="fa fa-check"></i><b>2.4</b> População (universo) &amp; amostra</a></li>
+<li class="chapter" data-level="2.5" data-path="parâmetros-e-estatísticas.html"><a href="parâmetros-e-estatísticas.html"><i class="fa fa-check"></i><b>2.5</b> Parâmetros e estatísticas</a></li>
+<li class="chapter" data-level="2.6" data-path="tipos-de-variáveis.html"><a href="tipos-de-variáveis.html"><i class="fa fa-check"></i><b>2.6</b> Tipos de variáveis</a></li>
+<li class="chapter" data-level="2.7" data-path="indexação-de-dados-i.html"><a href="indexação-de-dados-i.html"><i class="fa fa-check"></i><b>2.7</b> Indexação de dados (<span class="math inline">\(i\)</span>)</a></li>
+<li class="chapter" data-level="2.8" data-path="noções-básicas-sobre-somatórios-sigma.html"><a href="noções-básicas-sobre-somatórios-sigma.html"><i class="fa fa-check"></i><b>2.8</b> Noções básicas sobre somatórios (<span class="math inline">\(\Sigma\)</span>)</a></li>
+<li class="chapter" data-level="2.9" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><i class="fa fa-check"></i><b>2.9</b> Análise combinatória: diagramas de árvore, permutações (arranjos) &amp; combinações</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html#permutações-ou-arranjos"><i class="fa fa-check"></i><b>2.9.1</b> Permutações ou arranjos</a></li>
+<li class="chapter" data-level="2.9.2" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html#combinações"><i class="fa fa-check"></i><b>2.9.2</b> Combinações</a></li>
+<li class="chapter" data-level="2.9.3" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html#observações-acerca-de-alguns-fatoriais"><i class="fa fa-check"></i><b>2.9.3</b> Observações acerca de alguns fatoriais</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="conectivos-lógicos.html"><a href="conectivos-lógicos.html"><i class="fa fa-check"></i><b>2.10</b> Conectivos lógicos</a></li>
+<li class="chapter" data-level="2.11" data-path="leis-de-de-morgan.html"><a href="leis-de-de-morgan.html"><i class="fa fa-check"></i><b>2.11</b> Leis de De Morgan</a></li>
+<li class="chapter" data-level="2.12" data-path="noções-básicas-para-o-uso-de-calculadora-cassio-fx-82ms.html"><a href="noções-básicas-para-o-uso-de-calculadora-cassio-fx-82ms.html"><i class="fa fa-check"></i><b>2.12</b> Noções básicas para o uso de calculadora (Cassio fx-82MS)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introdução-à-estatística-descritiva.html"><a href="introdução-à-estatística-descritiva.html"><i class="fa fa-check"></i><b>3</b> Introdução à estatística descritiva</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="análise-exploratória.html"><a href="análise-exploratória.html"><i class="fa fa-check"></i><b>3.1</b> Análise exploratória</a></li>
+<li class="chapter" data-level="3.2" data-path="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html"><a href="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html"><i class="fa fa-check"></i><b>3.2</b> Dados brutos, em rol, diagrama de ramos &amp; folhas e de dispersão unidimensional</a></li>
+<li class="chapter" data-level="3.3" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html"><i class="fa fa-check"></i><b>3.3</b> Sínteses numéricas descritivas</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html#medidas-de-tendência-central-posição"><i class="fa fa-check"></i><b>3.3.1</b> Medidas de tendência central (posição)</a></li>
+<li class="chapter" data-level="3.3.2" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html#medidas-de-dispersão-variabilidade"><i class="fa fa-check"></i><b>3.3.2</b> Medidas de dispersão (variabilidade)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html#medidas-de-subdivisão-separatrizes"><i class="fa fa-check"></i><b>3.3.3</b> Medidas de subdivisão (separatrizes)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="medidas-de-forma-assimetria-curtose.html"><a href="medidas-de-forma-assimetria-curtose.html"><i class="fa fa-check"></i><b>3.4</b> Medidas de forma (assimetria &amp; curtose)</a></li>
+<li class="chapter" data-level="3.5" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html"><i class="fa fa-check"></i><b>3.5</b> Apresentação tabular de dados</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#apresentação-tabular-de-dados-qualitativos"><i class="fa fa-check"></i><b>3.5.1</b> Apresentação tabular de dados qualitativos</a></li>
+<li class="chapter" data-level="3.5.2" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#apresentação-tabular-de-dados-quantitativos"><i class="fa fa-check"></i><b>3.5.2</b> Apresentação tabular de dados quantitativos</a></li>
+<li class="chapter" data-level="3.5.3" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#média-1"><i class="fa fa-check"></i><b>3.5.3</b> Média</a></li>
+<li class="chapter" data-level="3.5.4" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#moda-1"><i class="fa fa-check"></i><b>3.5.4</b> Moda</a></li>
+<li class="chapter" data-level="3.5.5" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#variância"><i class="fa fa-check"></i><b>3.5.5</b> Variância</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html"><i class="fa fa-check"></i><b>3.6</b> Apresentação gráfica de dados</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#barras"><i class="fa fa-check"></i><b>3.6.1</b> Barras</a></li>
+<li class="chapter" data-level="3.6.2" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#histograma"><i class="fa fa-check"></i><b>3.6.2</b> Histograma</a></li>
+<li class="chapter" data-level="3.6.3" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#setores"><i class="fa fa-check"></i><b>3.6.3</b> Setores</a></li>
+<li class="chapter" data-level="3.6.4" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#box-plot"><i class="fa fa-check"></i><b>3.6.4</b> Box-plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introdução-ao-cálculo-de-probabilidades.html"><a href="introdução-ao-cálculo-de-probabilidades.html"><i class="fa fa-check"></i><b>4</b> Introdução ao cálculo de probabilidades</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html"><i class="fa fa-check"></i><b>4.1</b> Introdução conceitual essencial</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#experimentos-determinísticos-e-experimentos-probabilísticos-aleatórios"><i class="fa fa-check"></i><b>4.1.1</b> Experimentos determinísticos e experimentos probabilísticos (aleatórios)</a></li>
+<li class="chapter" data-level="4.1.2" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#espaço-amostral-e-seus-elementos"><i class="fa fa-check"></i><b>4.1.2</b> Espaço amostral e seus elementos</a></li>
+<li class="chapter" data-level="4.1.3" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#evento-de-interesse-sucesso"><i class="fa fa-check"></i><b>4.1.3</b> Evento de interesse (sucesso)</a></li>
+<li class="chapter" data-level="4.1.4" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#evento"><i class="fa fa-check"></i><b>4.1.4</b> Evento</a></li>
+<li class="chapter" data-level="4.1.5" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#operações-com-conjuntos-e-diagramas-de-venn"><i class="fa fa-check"></i><b>4.1.5</b> Operações com conjuntos e Diagramas de Venn</a></li>
+<li class="chapter" data-level="4.1.6" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#eventos-equiprováveis-e-não-equiprováveis"><i class="fa fa-check"></i><b>4.1.6</b> Eventos equiprováveis e não equiprováveis</a></li>
+<li class="chapter" data-level="4.1.7" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#eventos-independentes"><i class="fa fa-check"></i><b>4.1.7</b> Eventos independentes</a></li>
+<li class="chapter" data-level="4.1.8" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#eventos-mutuamente-exclusivos"><i class="fa fa-check"></i><b>4.1.8</b> Eventos mutuamente exclusivos</a></li>
+<li class="chapter" data-level="4.1.9" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#eventos-complementares"><i class="fa fa-check"></i><b>4.1.9</b> Eventos complementares</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="probabilidade.html"><a href="probabilidade.html"><i class="fa fa-check"></i><b>4.2</b> Probabilidade</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="probabilidade.html"><a href="probabilidade.html#introdução-histórica"><i class="fa fa-check"></i><b>4.2.1</b> Introdução histórica</a></li>
+<li class="chapter" data-level="4.2.2" data-path="probabilidade.html"><a href="probabilidade.html#conceito-clássico-ou-a-priori"><i class="fa fa-check"></i><b>4.2.2</b> Conceito clássico ou <em>a priori</em></a></li>
+<li class="chapter" data-level="4.2.3" data-path="probabilidade.html"><a href="probabilidade.html#conceito-frequentista-ou-a-posteriori"><i class="fa fa-check"></i><b>4.2.3</b> Conceito frequentista ou <em>a posteriori</em></a></li>
+<li class="chapter" data-level="4.2.4" data-path="probabilidade.html"><a href="probabilidade.html#conceito-axiomático"><i class="fa fa-check"></i><b>4.2.4</b> Conceito axiomático</a></li>
+<li class="chapter" data-level="4.2.5" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-da-união-de-eventos"><i class="fa fa-check"></i><b>4.2.5</b> Probabilidade da união de eventos</a></li>
+<li class="chapter" data-level="4.2.6" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-de-eventos-condicionados"><i class="fa fa-check"></i><b>4.2.6</b> Probabilidade de eventos condicionados</a></li>
+<li class="chapter" data-level="4.2.7" data-path="probabilidade.html"><a href="probabilidade.html#dependência-e-independência-de-eventos"><i class="fa fa-check"></i><b>4.2.7</b> Dependência e independência de eventos</a></li>
+<li class="chapter" data-level="4.2.8" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-da-interseção-de-eventos-independentes"><i class="fa fa-check"></i><b>4.2.8</b> Probabilidade da interseção de eventos independentes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="teorema-de-bayes.html"><a href="teorema-de-bayes.html"><i class="fa fa-check"></i><b>4.3</b> Teorema de Bayes</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="teorema-de-bayes.html"><a href="teorema-de-bayes.html#demonstração-clássica-de-independência"><i class="fa fa-check"></i><b>4.3.1</b> Demonstração clássica de independência</a></li>
+<li class="chapter" data-level="4.3.2" data-path="teorema-de-bayes.html"><a href="teorema-de-bayes.html#demonstração-clássica-de-dependência"><i class="fa fa-check"></i><b>4.3.2</b> Demonstração clássica de dependência</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html"><i class="fa fa-check"></i><b>4.4</b> Teoremas da Teoria das probabilidades</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-01"><i class="fa fa-check"></i><b>4.4.1</b> Teorema 01</a></li>
+<li class="chapter" data-level="4.4.2" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-02"><i class="fa fa-check"></i><b>4.4.2</b> Teorema 02</a></li>
+<li class="chapter" data-level="4.4.3" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-03"><i class="fa fa-check"></i><b>4.4.3</b> Teorema 03</a></li>
+<li class="chapter" data-level="4.4.4" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-04"><i class="fa fa-check"></i><b>4.4.4</b> Teorema 04</a></li>
+<li class="chapter" data-level="4.4.5" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-05"><i class="fa fa-check"></i><b>4.4.5</b> Teorema 05</a></li>
+<li class="chapter" data-level="4.4.6" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-06"><i class="fa fa-check"></i><b>4.4.6</b> Teorema 06</a></li>
+<li class="chapter" data-level="4.4.7" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-07"><i class="fa fa-check"></i><b>4.4.7</b> Teorema 07</a></li>
+<li class="chapter" data-level="4.4.8" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-08"><i class="fa fa-check"></i><b>4.4.8</b> Teorema 08</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="introdução-a-variáveis-aleatórias.html"><a href="introdução-a-variáveis-aleatórias.html"><i class="fa fa-check"></i><b>5</b> Introdução a variáveis aleatórias</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="função-discreta-de-distribuição-de-probabilidade.html"><a href="função-discreta-de-distribuição-de-probabilidade.html"><i class="fa fa-check"></i><b>5.1</b> Função discreta de distribuição de probabilidade</a></li>
+<li class="chapter" data-level="5.2" data-path="função-de-densidade-de-probabilidade.html"><a href="função-de-densidade-de-probabilidade.html"><i class="fa fa-check"></i><b>5.2</b> Função de densidade de probabilidade</a></li>
+<li class="chapter" data-level="5.3" data-path="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><a href="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><i class="fa fa-check"></i><b>5.3</b> Esperança e variância de uma variável aleatória discreta</a></li>
+<li class="chapter" data-level="5.4" data-path="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><a href="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><i class="fa fa-check"></i><b>5.4</b> Esperança e variância de uma variável aleatória contínua</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="introdução-a-modelos-teóricos-de-probabilidade.html"><a href="introdução-a-modelos-teóricos-de-probabilidade.html"><i class="fa fa-check"></i><b>6</b> Introdução a modelos teóricos de probabilidade</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="modelos-teóricos-discretos.html"><a href="modelos-teóricos-discretos.html"><i class="fa fa-check"></i><b>6.1</b> Modelos teóricos discretos</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="modelos-teóricos-discretos.html"><a href="modelos-teóricos-discretos.html#bernoulli"><i class="fa fa-check"></i><b>6.1.1</b> Bernoulli</a></li>
+<li class="chapter" data-level="6.1.2" data-path="modelos-teóricos-discretos.html"><a href="modelos-teóricos-discretos.html#binomial"><i class="fa fa-check"></i><b>6.1.2</b> Binomial</a></li>
+<li class="chapter" data-level="6.1.3" data-path="modelos-teóricos-discretos.html"><a href="modelos-teóricos-discretos.html#poisson"><i class="fa fa-check"></i><b>6.1.3</b> Poisson</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="modelos-téoricos-do-tempo-de-espera.html"><a href="modelos-téoricos-do-tempo-de-espera.html"><i class="fa fa-check"></i><b>6.2</b> Modelos téoricos do tempo de espera</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="modelos-téoricos-do-tempo-de-espera.html"><a href="modelos-téoricos-do-tempo-de-espera.html#geométrica"><i class="fa fa-check"></i><b>6.2.1</b> Geométrica</a></li>
+<li class="chapter" data-level="6.2.2" data-path="modelos-téoricos-do-tempo-de-espera.html"><a href="modelos-téoricos-do-tempo-de-espera.html#binomial-negativa"><i class="fa fa-check"></i><b>6.2.2</b> Binomial Negativa</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html"><i class="fa fa-check"></i><b>6.3</b> Modelos teóricos contínuos</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#uniforme"><i class="fa fa-check"></i><b>6.3.1</b> Uniforme</a></li>
+<li class="chapter" data-level="6.3.2" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#exponencial"><i class="fa fa-check"></i><b>6.3.2</b> Exponencial</a></li>
+<li class="chapter" data-level="6.3.3" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#normal"><i class="fa fa-check"></i><b>6.3.3</b> Normal</a></li>
+<li class="chapter" data-level="6.3.4" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#student-t"><i class="fa fa-check"></i><b>6.3.4</b> Student “t”</a></li>
+<li class="chapter" data-level="6.3.5" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#qui-quadrado"><i class="fa fa-check"></i><b>6.3.5</b> Qui-Quadrado</a></li>
+<li class="chapter" data-level="6.3.6" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#fisher-snedecor-f"><i class="fa fa-check"></i><b>6.3.6</b> Fisher-Snedecor “F”</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="tabelas.html"><a href="tabelas.html"><i class="fa fa-check"></i><b>6.4</b> Tabelas</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="planejamento_pesquisas.html"><a href="planejamento_pesquisas.html"><i class="fa fa-check"></i><b>7</b> Introdução ao planejamento de pesquisas</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="planejamento-de-pesquisas.html"><a href="planejamento-de-pesquisas.html"><i class="fa fa-check"></i><b>7.1</b> Planejamento de pesquisas</a></li>
+<li class="chapter" data-level="7.2" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html"><i class="fa fa-check"></i><b>7.2</b> Tipos de pesquisas</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-à-finalidade"><i class="fa fa-check"></i><b>7.2.1</b> Quanto à finalidade</a></li>
+<li class="chapter" data-level="7.2.2" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-à-forma-de-abordagem"><i class="fa fa-check"></i><b>7.2.2</b> Quanto à forma de abordagem</a></li>
+<li class="chapter" data-level="7.2.3" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-aos-objetivos"><i class="fa fa-check"></i><b>7.2.3</b> Quanto aos objetivos</a></li>
+<li class="chapter" data-level="7.2.4" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-ao-desenvolvimento-no-tempo"><i class="fa fa-check"></i><b>7.2.4</b> Quanto ao desenvolvimento no tempo</a></li>
+<li class="chapter" data-level="7.2.5" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-à-natureza"><i class="fa fa-check"></i><b>7.2.5</b> Quanto à natureza</a></li>
+<li class="chapter" data-level="7.2.6" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-à-forma-de-obtenção-dos-dados"><i class="fa fa-check"></i><b>7.2.6</b> Quanto à forma de obtenção dos dados</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="principais-etapas-de-uma-pesquisa.html"><a href="principais-etapas-de-uma-pesquisa.html"><i class="fa fa-check"></i><b>7.3</b> Principais etapas de uma pesquisa:</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="principais-etapas-de-uma-pesquisa.html"><a href="principais-etapas-de-uma-pesquisa.html#objetivo"><i class="fa fa-check"></i><b>7.3.1</b> Objetivo</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="população.html"><a href="população.html"><i class="fa fa-check"></i><b>7.4</b> População</a></li>
+<li class="chapter" data-level="7.5" data-path="censo.html"><a href="censo.html"><i class="fa fa-check"></i><b>7.5</b> Censo</a></li>
+<li class="chapter" data-level="7.6" data-path="amostra.html"><a href="amostra.html"><i class="fa fa-check"></i><b>7.6</b> Amostra</a></li>
+<li class="chapter" data-level="7.7" data-path="planejamento-do-levantamento-amostral.html"><a href="planejamento-do-levantamento-amostral.html"><i class="fa fa-check"></i><b>7.7</b> Planejamento do levantamento amostral</a></li>
+<li class="chapter" data-level="7.8" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html"><i class="fa fa-check"></i><b>7.8</b> Elaboração dos questionários</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html#tipos-de-perguntas"><i class="fa fa-check"></i><b>7.8.1</b> Tipos de perguntas:</a></li>
+<li class="chapter" data-level="7.8.2" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html#execução-do-levantamento-amostral"><i class="fa fa-check"></i><b>7.8.2</b> Execução do levantamento amostral</a></li>
+<li class="chapter" data-level="7.8.3" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html#análise-exploratória-dos-dados"><i class="fa fa-check"></i><b>7.8.3</b> Análise exploratória dos dados</a></li>
+<li class="chapter" data-level="7.8.4" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html#resultados-e-conclusões"><i class="fa fa-check"></i><b>7.8.4</b> Resultados e conclusões</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="técnicas-de-amostragem.html"><a href="técnicas-de-amostragem.html"><i class="fa fa-check"></i><b>7.9</b> Técnicas de amostragem</a></li>
+<li class="chapter" data-level="7.10" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html"><i class="fa fa-check"></i><b>7.10</b> Amostragem probabilística</a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html#amostragem-aleatória-simples-aas"><i class="fa fa-check"></i><b>7.10.1</b> Amostragem aleatória simples (AAS)</a></li>
+<li class="chapter" data-level="7.10.2" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html#amostragem-aleatória-sistemática"><i class="fa fa-check"></i><b>7.10.2</b> Amostragem aleatória sistemática</a></li>
+<li class="chapter" data-level="7.10.3" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html#amostragem-aleatória-estratificada"><i class="fa fa-check"></i><b>7.10.3</b> Amostragem aleatória estratificada</a></li>
+<li class="chapter" data-level="7.10.4" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html#amostragem-aleatória-por-conglomerados"><i class="fa fa-check"></i><b>7.10.4</b> Amostragem aleatória por conglomerados</a></li>
+</ul></li>
+<li class="chapter" data-level="7.11" data-path="amostragem-não-probabilística.html"><a href="amostragem-não-probabilística.html"><i class="fa fa-check"></i><b>7.11</b> Amostragem não probabilística</a>
+<ul>
+<li class="chapter" data-level="7.11.1" data-path="amostragem-não-probabilística.html"><a href="amostragem-não-probabilística.html#amostragem-por-conveniência"><i class="fa fa-check"></i><b>7.11.1</b> Amostragem por conveniência</a></li>
+<li class="chapter" data-level="7.11.2" data-path="amostragem-não-probabilística.html"><a href="amostragem-não-probabilística.html#amostragem-por-cotas"><i class="fa fa-check"></i><b>7.11.2</b> Amostragem por cotas</a></li>
+</ul></li>
+<li class="chapter" data-level="7.12" data-path="dimensionamento-de-amostras.html"><a href="dimensionamento-de-amostras.html"><i class="fa fa-check"></i><b>7.12</b> Dimensionamento de amostras</a>
+<ul>
+<li class="chapter" data-level="7.12.1" data-path="dimensionamento-de-amostras.html"><a href="dimensionamento-de-amostras.html#erros"><i class="fa fa-check"></i><b>7.12.1</b> Erros</a></li>
+<li class="chapter" data-level="7.12.2" data-path="dimensionamento-de-amostras.html"><a href="dimensionamento-de-amostras.html#determinação-do-tamanho-de-uma-amostra-para-estimação-da-média-populacional"><i class="fa fa-check"></i><b>7.12.2</b> Determinação do tamanho de uma amostra para estimação da média populacional</a></li>
+<li class="chapter" data-level="7.12.3" data-path="dimensionamento-de-amostras.html"><a href="dimensionamento-de-amostras.html#determinação-do-tamanho-de-uma-amostra-para-estimação-da-proporção-populacional"><i class="fa fa-check"></i><b>7.12.3</b> Determinação do tamanho de uma amostra para estimação da proporção populacional</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="introdução-às-estatísticas-epidemiológicas.html"><a href="introdução-às-estatísticas-epidemiológicas.html"><i class="fa fa-check"></i><b>8</b> Introdução às estatísticas epidemiológicas</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="terminologia.html"><a href="terminologia.html"><i class="fa fa-check"></i><b>8.1</b> Terminologia</a></li>
+<li class="chapter" data-level="8.2" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html"><i class="fa fa-check"></i><b>8.2</b> Medidas de risco, morte, associação e correlação</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#incidência"><i class="fa fa-check"></i><b>8.2.1</b> Incidência</a></li>
+<li class="chapter" data-level="8.2.2" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#prevalência"><i class="fa fa-check"></i><b>8.2.2</b> Prevalência</a></li>
+<li class="chapter" data-level="8.2.3" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#relação-entre-prevalência-e-incidência"><i class="fa fa-check"></i><b>8.2.3</b> Relação entre prevalência e incidência</a></li>
+<li class="chapter" data-level="8.2.4" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#quadro-comparativo-entre-medidas-de-incidência-e-de-prevalência"><i class="fa fa-check"></i><b>8.2.4</b> Quadro comparativo entre medidas de incidência e de prevalência</a></li>
+<li class="chapter" data-level="8.2.5" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#incidência-cumulativa---ic-risco"><i class="fa fa-check"></i><b>8.2.5</b> Incidência cumulativa - IC (Risco)}</a></li>
+<li class="chapter" data-level="8.2.6" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#quadro-comparativo-entre-medidas-de-risco-e-prevalência"><i class="fa fa-check"></i><b>8.2.6</b> Quadro comparativo entre medidas de risco e prevalência</a></li>
+<li class="chapter" data-level="8.2.7" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#fatalidade-dos-casos-fc"><i class="fa fa-check"></i><b>8.2.7</b> Fatalidade dos Casos (FC)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="sobrevida.html"><a href="sobrevida.html"><i class="fa fa-check"></i><b>8.3</b> Sobrevida</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="sobrevida.html"><a href="sobrevida.html#taxas-de-mortalidade-tm"><i class="fa fa-check"></i><b>8.3.1</b> Taxas de mortalidade (TM)</a></li>
+<li class="chapter" data-level="8.3.2" data-path="sobrevida.html"><a href="sobrevida.html#taxas-mais-específicas"><i class="fa fa-check"></i><b>8.3.2</b> Taxas mais específicas</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html"><i class="fa fa-check"></i><b>8.4</b> Medidas de associação</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#incidência-observada-de-nascimentos-com-baixo-peso-entre-mães-expostas-ao-risco-fumantes"><i class="fa fa-check"></i><b>8.4.1</b> Incidência observada de nascimentos com baixo peso entre mães expostas ao risco (fumantes)</a></li>
+<li class="chapter" data-level="8.4.2" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#incidência-observada-de-nascimentos-com-baixo-peso-entre-mães-não-expostas-ao-risco-não-fumantes"><i class="fa fa-check"></i><b>8.4.2</b> Incidência observada de nascimentos com baixo peso entre mães não expostas ao risco (não fumantes)</a></li>
+<li class="chapter" data-level="8.4.3" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#prevalência-de-nascimentos-com-baixo-peso-na-população-estudada"><i class="fa fa-check"></i><b>8.4.3</b> Prevalência de nascimentos com baixo peso na população estudada</a></li>
+<li class="chapter" data-level="8.4.4" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#diferença-de-risco-risco-atribuível---ra"><i class="fa fa-check"></i><b>8.4.4</b> Diferença de risco (Risco atribuível - RA)</a></li>
+<li class="chapter" data-level="8.4.5" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#razão-de-risco-risco-relativo---rr"><i class="fa fa-check"></i><b>8.4.5</b> Razão de risco (Risco relativo - RR)</a></li>
+<li class="chapter" data-level="8.4.6" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#risco-atribuível-proporcional-fração-etiológica---fe"><i class="fa fa-check"></i><b>8.4.6</b> Risco atribuível proporcional (Fração etiológica - FE)</a></li>
+<li class="chapter" data-level="8.4.7" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#odds-ratio-razão-das-chances"><i class="fa fa-check"></i><b>8.4.7</b> <em>Odds ratio</em> (Razão das chances)</a></li>
+<li class="chapter" data-level="8.4.8" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#correlação-linear-de-pearson"><i class="fa fa-check"></i><b>8.4.8</b> Correlação linear de Pearson</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="intervalos-de-confiança.html"><a href="intervalos-de-confiança.html"><i class="fa fa-check"></i><b>8.5</b> Intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="intervalos-de-confiança.html"><a href="intervalos-de-confiança.html#razão-de-risco-risco-relativo---rr-1"><i class="fa fa-check"></i><b>8.5.1</b> Razão de risco (Risco relativo - RR)</a></li>
+<li class="chapter" data-level="8.5.2" data-path="intervalos-de-confiança.html"><a href="intervalos-de-confiança.html#razão-de-chances-odds-ratio---or"><i class="fa fa-check"></i><b>8.5.2</b> Razão de chances ( <em>odds ratio</em> - OR)</a></li>
+<li class="chapter" data-level="8.5.3" data-path="intervalos-de-confiança.html"><a href="intervalos-de-confiança.html#diferença-de-risco-risco-atribuível---ra-1"><i class="fa fa-check"></i><b>8.5.3</b> Diferença de risco (Risco atribuível - RA)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="introdução-à-distribuição-das-médias-e-diferenças-entre-médias-amostrais-e-seus-intervalos-de-confiança.html"><a href="introdução-à-distribuição-das-médias-e-diferenças-entre-médias-amostrais-e-seus-intervalos-de-confiança.html"><i class="fa fa-check"></i><b>9</b> Introdução à distribuição das médias e diferenças entre médias amostrais e seus intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="distribuições-amostrais.html"><a href="distribuições-amostrais.html"><i class="fa fa-check"></i><b>9.1</b> Distribuições amostrais</a></li>
+<li class="chapter" data-level="9.2" data-path="intervalos-de-confiança-1.html"><a href="intervalos-de-confiança-1.html"><i class="fa fa-check"></i><b>9.2</b> Intervalos de confiança</a></li>
+<li class="chapter" data-level="9.3" data-path="distribuição-das-médias-amostrais.html"><a href="distribuição-das-médias-amostrais.html"><i class="fa fa-check"></i><b>9.3</b> Distribuição das médias amostrais</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="distribuição-das-médias-amostrais.html"><a href="distribuição-das-médias-amostrais.html#fator-de-correção-para-populações-finitas"><i class="fa fa-check"></i><b>9.3.1</b> Fator de correção para populações finitas</a></li>
+<li class="chapter" data-level="9.3.2" data-path="distribuição-das-médias-amostrais.html"><a href="distribuição-das-médias-amostrais.html#intervalo-de-confiança-para-médias-amostrais"><i class="fa fa-check"></i><b>9.3.2</b> Intervalo de confiança para médias amostrais</a></li>
+<li class="chapter" data-level="9.3.3" data-path="distribuição-das-médias-amostrais.html"><a href="distribuição-das-médias-amostrais.html#intervalo-de-confiança-bilateral-para-uma-média-amostral-sob-variância-populacional-conhecida-figura-reffigfig28"><i class="fa fa-check"></i><b>9.3.3</b> Intervalo de confiança bilateral para uma média amostral sob variância populacional conhecida (Figura @ref(fig:fig28))</a></li>
+<li class="chapter" data-level="9.3.4" data-path="distribuição-das-médias-amostrais.html"><a href="distribuição-das-médias-amostrais.html#intervalo-de-confiança-para-uma-média-amostral-sob-variância-populacional-desconhecida-mas-amostras-não-tão-pequenas-n-ge-30-figura-reffigfig55"><i class="fa fa-check"></i><b>9.3.4</b> Intervalo de confiança para uma média amostral sob variância populacional desconhecida mas amostras não tão pequenas: <span class="math inline">\(n \ge 30\)</span> (Figura @ref(fig:fig55))</a></li>
+<li class="chapter" data-level="9.3.5" data-path="distribuição-das-médias-amostrais.html"><a href="distribuição-das-médias-amostrais.html#intervalo-de-confiança-para-uma-média-amostral-sob-variância-populacional-desconhecida-e-amostras-de-qualquer-tamanho-figura-reffigfig58"><i class="fa fa-check"></i><b>9.3.5</b> Intervalo de confiança para uma média amostral sob variância populacional desconhecida e amostras de qualquer tamanho (Figura @ref(fig:fig58))</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="distribuição-das-diferenças-de-médias-amostrais-independentes.html"><a href="distribuição-das-diferenças-de-médias-amostrais-independentes.html"><i class="fa fa-check"></i><b>9.4</b> Distribuição das diferenças de médias amostrais independentes</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="distribuição-das-diferenças-de-médias-amostrais-independentes.html"><a href="distribuição-das-diferenças-de-médias-amostrais-independentes.html#intervalos-de-confiança-para-a-diferença-entre-duas-médias-amostrais-com-variância-populacionais-conhecidas"><i class="fa fa-check"></i><b>9.4.1</b> Intervalos de confiança para a diferença entre duas médias amostrais com variância populacionais conhecidas</a></li>
+<li class="chapter" data-level="9.4.2" data-path="distribuição-das-diferenças-de-médias-amostrais-independentes.html"><a href="distribuição-das-diferenças-de-médias-amostrais-independentes.html#intervalos-de-confiança-para-a-diferença-entre-duas-médias-amostrais-com-variâncias-populacionais-desconhecidas-mas-admitidas-iguais"><i class="fa fa-check"></i><b>9.4.2</b> Intervalos de confiança para a diferença entre duas médias amostrais com variâncias populacionais desconhecidas mas admitidas iguais</a></li>
+<li class="chapter" data-level="9.4.3" data-path="distribuição-das-diferenças-de-médias-amostrais-independentes.html"><a href="distribuição-das-diferenças-de-médias-amostrais-independentes.html#intervalos-de-confiança-para-a-diferença-entre-duas-médias-amostrais-com-variâncias-populacionais-desconhecidas-e-desiguais"><i class="fa fa-check"></i><b>9.4.3</b> Intervalos de confiança para a diferença entre duas médias amostrais com variâncias populacionais desconhecidas e desiguais</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="distribuição-das-diferenças-de-médias-amostrais-dependentes.html"><a href="distribuição-das-diferenças-de-médias-amostrais-dependentes.html"><i class="fa fa-check"></i><b>9.5</b> Distribuição das diferenças de médias amostrais dependentes</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="introdução-à-distribuição-das-proporções-amostrais-e-seus-intervalos-de-confiança.html"><a href="introdução-à-distribuição-das-proporções-amostrais-e-seus-intervalos-de-confiança.html"><i class="fa fa-check"></i><b>10</b> Introdução à distribuição das proporções amostrais e seus intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="conceito-elementar-de-uma-proporção.html"><a href="conceito-elementar-de-uma-proporção.html"><i class="fa fa-check"></i><b>10.1</b> Conceito elementar de uma proporção</a></li>
+<li class="chapter" data-level="10.2" data-path="proporção-amostral-como-uma-uma-variável-binomial.html"><a href="proporção-amostral-como-uma-uma-variável-binomial.html"><i class="fa fa-check"></i><b>10.2</b> Proporção amostral como uma uma variável Binomial</a></li>
+<li class="chapter" data-level="10.3" data-path="distribuição-das-proporções-amostrais.html"><a href="distribuição-das-proporções-amostrais.html"><i class="fa fa-check"></i><b>10.3</b> Distribuição das proporções amostrais</a></li>
+<li class="chapter" data-level="10.4" data-path="intervalo-de-confiança-para-proporções-amostrais.html"><a href="intervalo-de-confiança-para-proporções-amostrais.html"><i class="fa fa-check"></i><b>10.4</b> Intervalo de confiança para proporções amostrais</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="intervalo-de-confiança-para-proporções-amostrais.html"><a href="intervalo-de-confiança-para-proporções-amostrais.html#intervalos-de-confiança-para-a-diferença-entre-duas-proporções-amostrais"><i class="fa fa-check"></i><b>10.4.1</b> Intervalos de confiança para a diferença entre duas proporções amostrais</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="teste_hipoteses.html"><a href="teste_hipoteses.html"><i class="fa fa-check"></i><b>11</b> Introdução a testes de hipóteses</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="epistemologia.html"><a href="epistemologia.html"><i class="fa fa-check"></i><b>11.1</b> Epistemologia</a></li>
+<li class="chapter" data-level="11.2" data-path="histórico.html"><a href="histórico.html"><i class="fa fa-check"></i><b>11.2</b> Histórico</a></li>
+<li class="chapter" data-level="11.3" data-path="conceitos-iniciais.html"><a href="conceitos-iniciais.html"><i class="fa fa-check"></i><b>11.3</b> Conceitos iniciais</a></li>
+<li class="chapter" data-level="11.4" data-path="efeito-do-limite-central.html"><a href="efeito-do-limite-central.html"><i class="fa fa-check"></i><b>11.4</b> Efeito do limite central</a></li>
+<li class="chapter" data-level="11.5" data-path="erro-global.html"><a href="erro-global.html"><i class="fa fa-check"></i><b>11.5</b> Erro global</a></li>
+<li class="chapter" data-level="11.6" data-path="diretrizes-gerais-de-um-teste-de-hipóteses.html"><a href="diretrizes-gerais-de-um-teste-de-hipóteses.html"><i class="fa fa-check"></i><b>11.6</b> Diretrizes gerais de um teste de hipóteses</a></li>
+<li class="chapter" data-level="11.7" data-path="formulação-e-estruturação-de-um-teste-de-hipóteses.html"><a href="formulação-e-estruturação-de-um-teste-de-hipóteses.html"><i class="fa fa-check"></i><b>11.7</b> Formulação e estruturação de um teste de hipóteses</a></li>
+<li class="chapter" data-level="11.8" data-path="natureza-dos-erros-envolvidos-em-um-teste-de-hipóteses.html"><a href="natureza-dos-erros-envolvidos-em-um-teste-de-hipóteses.html"><i class="fa fa-check"></i><b>11.8</b> Natureza dos erros envolvidos em um teste de hipóteses</a></li>
+<li class="chapter" data-level="11.9" data-path="a-probabilidade-do-valor-observado-da-estatística-do-teste.html"><a href="a-probabilidade-do-valor-observado-da-estatística-do-teste.html"><i class="fa fa-check"></i><b>11.9</b> A probabilidade do valor observado da estatística do teste</a></li>
+<li class="chapter" data-level="11.10" data-path="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html"><a href="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html"><i class="fa fa-check"></i><b>11.10</b> Tipos de testes quanto à afirmação da hipótese alternativa</a>
+<ul>
+<li class="chapter" data-level="11.10.1" data-path="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html"><a href="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html#teste-de-hipóteses-bilateral"><i class="fa fa-check"></i><b>11.10.1</b> Teste de hipóteses Bilateral</a></li>
+<li class="chapter" data-level="11.10.2" data-path="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html"><a href="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html#teste-de-hipóteses-unilateral-à-esquerda"><i class="fa fa-check"></i><b>11.10.2</b> Teste de hipóteses Unilateral à esquerda</a></li>
+<li class="chapter" data-level="11.10.3" data-path="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html"><a href="tipos-de-testes-quanto-à-afirmação-da-hipótese-alternativa.html#teste-de-hipóteses-unilateral-à-direita"><i class="fa fa-check"></i><b>11.10.3</b> Teste de hipóteses Unilateral à direita</a></li>
+</ul></li>
+<li class="chapter" data-level="11.11" data-path="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html"><i class="fa fa-check"></i><b>11.11</b> Roteiro para testes de hipóteses para a média de uma população</a>
+<ul>
+<li class="chapter" data-level="11.11.1" data-path="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html#estruturas-possíveis-para-as-hipóteses"><i class="fa fa-check"></i><b>11.11.1</b> Estruturas possíveis para as hipóteses</a></li>
+<li class="chapter" data-level="11.11.2" data-path="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html#cenários-possíveis"><i class="fa fa-check"></i><b>11.11.2</b> Cenários possíveis</a></li>
+<li class="chapter" data-level="11.11.3" data-path="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html#probabilidade-dos-intervalos-de-confiança-para-os-testes-de-hipóteses-com-o-uso-da-estatística-z-z-sim-mathcaln01"><i class="fa fa-check"></i><b>11.11.3</b> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística Z (<span class="math inline">\(Z \sim \mathcal{N}(0,1)\)</span>):</a></li>
+<li class="chapter" data-level="11.11.4" data-path="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-média-de-uma-população.html#probabilidade-dos-intervalos-de-confiança-para-os-testes-de-hipóteses-com-o-uso-da-estatística-t-tsim-t_n-1"><i class="fa fa-check"></i><b>11.11.4</b> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística T (<span class="math inline">\(T\sim t_{(n-1)}\)</span>):</a></li>
+</ul></li>
+<li class="chapter" data-level="11.12" data-path="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html"><i class="fa fa-check"></i><b>11.12</b> Roteiros de testes de hipóteses para as médias amostrais independentes de duas populações Normais</a>
+<ul>
+<li class="chapter" data-level="11.12.1" data-path="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html#as-estruturas-possíveis-dos-testes-de-hipóteses-relacionados-às-suas-médias-serão"><i class="fa fa-check"></i><b>11.12.1</b> As estruturas possíveis dos testes de hipóteses relacionados às suas médias serão:</a></li>
+<li class="chapter" data-level="11.12.2" data-path="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html#testes-de-hipóteses-para-as-médias-de-duas-populações-com-variâncias-conhecidas-ou-não-conhecidas-mas-o-tamanho-das-amostras-é-grande"><i class="fa fa-check"></i><b>11.12.2</b> Testes de hipóteses para as médias de duas populações com variâncias conhecidas (ou não conhecidas mas o tamanho das amostras é grande)</a></li>
+<li class="chapter" data-level="11.12.3" data-path="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html#testes-de-hipóteses-para-as-médias-de-duas-populações-com-variâncias-desconhecidas-mas-admitidas-iguais-e-o-tamanho-das-amostras-é-diminuto"><i class="fa fa-check"></i><b>11.12.3</b> Testes de hipóteses para as médias de duas populações com variâncias desconhecidas (mas admitidas iguais) e o tamanho das amostras é diminuto</a></li>
+<li class="chapter" data-level="11.12.4" data-path="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="roteiros-de-testes-de-hipóteses-para-as-médias-amostrais-independentes-de-duas-populações-normais.html#teste-de-hipóteses-para-as-médias-de-duas-populações-independentes-com-variâncias-desconhecidas-e-o-tamanho-das-amostras-é-diminuto"><i class="fa fa-check"></i><b>11.12.4</b> Teste de hipóteses para as médias de duas populações independentes com variâncias desconhecidas e o tamanho das amostras é diminuto</a></li>
+</ul></li>
+<li class="chapter" data-level="11.13" data-path="roteiro-para-testes-de-hipóteses-para-a-proporção-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-proporção-de-uma-população.html"><i class="fa fa-check"></i><b>11.13</b> Roteiro para testes de hipóteses para a proporção de uma população</a>
+<ul>
+<li class="chapter" data-level="11.13.1" data-path="roteiro-para-testes-de-hipóteses-para-a-proporção-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-proporção-de-uma-população.html#estruturas-possíveis-para-as-hipóteses-1"><i class="fa fa-check"></i><b>11.13.1</b> Estruturas possíveis para as hipóteses</a></li>
+<li class="chapter" data-level="11.13.2" data-path="roteiro-para-testes-de-hipóteses-para-a-proporção-de-uma-população.html"><a href="roteiro-para-testes-de-hipóteses-para-a-proporção-de-uma-população.html#probabilidade-dos-intervalos-de-confiança-para-os-testes-de-hipóteses-com-o-uso-da-estatística-z-z-sim-mathcaln01-1"><i class="fa fa-check"></i><b>11.13.2</b> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística Z (<span class="math inline">\(Z \sim \mathcal{N}(0,1)\)</span>):</a></li>
+</ul></li>
+<li class="chapter" data-level="11.14" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html"><i class="fa fa-check"></i><b>11.14</b> Testes não paramétricos</a>
+<ul>
+<li class="chapter" data-level="11.14.1" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html#teste-qui-quadrado-para-verificação-da-independência-homogeneidade"><i class="fa fa-check"></i><b>11.14.1</b> Teste Qui-quadrado para verificação da independência (homogeneidade)</a></li>
+<li class="chapter" data-level="11.14.2" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html#correção-de-continuidade-em-tabelas-2x2"><i class="fa fa-check"></i><b>11.14.2</b> Correção de continuidade em tabelas 2x2</a></li>
+<li class="chapter" data-level="11.14.3" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html#coeficiente-de-contingência-de-pearson-modificado-c"><i class="fa fa-check"></i><b>11.14.3</b> Coeficiente de contingência de Pearson (modificado: <span class="math inline">\(C^{*})\)</span> }</a></li>
+<li class="chapter" data-level="11.14.4" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html#teste-qui-quadrado-para-verificação-da-qualidade-do-ajuste-a-uma-distribuição-teórica-de-probabilidade"><i class="fa fa-check"></i><b>11.14.4</b> Teste Qui-quadrado para verificação da qualidade do ajuste a uma distribuição teórica de probabilidade</a></li>
+<li class="chapter" data-level="11.14.5" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html#teste-de-significância-para-as-médias-de-duas-populações-dependentes"><i class="fa fa-check"></i><b>11.14.5</b> Teste de significância para as médias de duas populações dependentes</a></li>
+</ul></li>
+<li class="chapter" data-level="11.15" data-path="fluxograma-auxiliar-para-escolha-da-estatística-do-teste-de-hipóteses.html"><a href="fluxograma-auxiliar-para-escolha-da-estatística-do-teste-de-hipóteses.html"><i class="fa fa-check"></i><b>11.15</b> Fluxograma auxiliar para escolha da estatística do teste de hipóteses</a></li>
+<li class="chapter" data-level="11.16" data-path="tabelas-1.html"><a href="tabelas-1.html"><i class="fa fa-check"></i><b>11.16</b> Tabelas</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://fjrcosta.github.io/apostila/" target="blank">FJCosta Github</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><div class="line-block">UNIVERSIDADE ESTADUAL DE LONDRINA<br />
+CCE - Centro de Ciências Exatas<br />
+DSTA - Departamento de Estatística<br />
+Apostila de Estatística<br />
+Prof. M.e Eng. Felinto Junior Da Costa</div></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="medidas-de-associação" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Medidas de associação<a href="medidas-de-associação.html#medidas-de-associação" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><br />
+</p>
+<p>Uma tabela é uma forma de representação retangular que permite mostrar clara e resumidamente os dados correspondentes a uma ou mais variáveis, visualizar o comportamento dos dados e facilitar o entendimento das informações. Uma tabela de dupla entrada permite extrair facilmente as proporções <strong>individuais</strong>, <strong>marginais</strong> e <strong>associadas</strong> relativas a duas variáveis (tabelas com mais variáveis são possíveis de serem construídas).</p>
+<p><br />
+</p>
+<p>Especificamente para estudos epidemiológicos, admita que as variáveis envolvidas se refiram a contagens relacionadas à ocorrência de uma doença em dois grupos de pessoas sob diferentes exposições. O grupo não exposto ao fator de risco é frequentemente usado como referência.</p>
+<p><br />
+</p>
+<ul>
+<li><ol style="list-style-type: lower-alpha">
+<li>o grupo de pessoas expostas a um determinado fator de risco;</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: lower-alpha">
+<li>o grupo de pessoas não expostas.</li>
+</ol></li>
+</ul>
+<p><br />
+</p>
+<p><br />
+</p>
+<table>
+<caption>
+Casos classificados em relação ao desfecho a partir da
+exposição ao fator de risco
+</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">
+Fator de risco
+</th>
+<th colspan="2" style="text-align: center;">
+Desfecho observado
+(doença)
+</th>
+<th style="text-align: center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+</td>
+<td style="text-align: center;">
+Presente
+</td>
+<td style="text-align: center;">
+Ausente
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+Exposto
+</td>
+<td style="text-align: center;">
+(a)
+</td>
+<td style="text-align: center;">
+(b)
+</td>
+<td style="text-align: center;">
+(e)
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+Não exposto
+</td>
+<td style="text-align: center;">
+(c)
+</td>
+<td style="text-align: center;">
+(d)
+</td>
+<td style="text-align: center;">
+(f)
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+Total
+</td>
+<td style="text-align: center;">
+(a + c)
+</td>
+<td style="text-align: center;">
+(b + d)
+</td>
+<td style="text-align: center;">
+(e + f)
+</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Incidência de baixo peso ao nascer em recém-nascidos de Pelotas (RS) segundo o hábito tabágico da mãe durante a gravidez (1982)</p>
+</blockquote>
+<p><br />
+</p>
+<div id="tab33">
+<table>
+<caption>
+Incidência de baixo peso ao nascer em recém-nascidos de
+Pelotas, RS, segundo o hábito tabágico da mãe durante a gravidez
+(1982)
+</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">
+Classificação da mãe
+</th>
+<th colspan="2" style="text-align: center;">
+Baixo peso ao nascer
+</th>
+<th style="text-align: center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+</td>
+<td style="text-align: center;">
+Sim
+</td>
+<td style="text-align: center;">
+Não
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+Fumante
+</td>
+<td style="text-align: center;">
+275 (a)
+</td>
+<td style="text-align: center;">
+2.144 (b)
+</td>
+<td style="text-align: center;">
+2.419 (e)
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+Não fumante
+</td>
+<td style="text-align: center;">
+311 (c)
+</td>
+<td style="text-align: center;">
+4.496 (d)
+</td>
+<td style="text-align: center;">
+4.807 (f)
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+Total
+</td>
+<td style="text-align: center;">
+586
+</td>
+<td style="text-align: center;">
+6.640
+</td>
+<td style="text-align: center;">
+7.226
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+<span id="tab33" label="tab33"></span>
+</p>
+<p><br />
+</p>
+<div id="incidência-observada-de-nascimentos-com-baixo-peso-entre-mães-expostas-ao-risco-fumantes" class="section level3 hasAnchor" number="8.4.1">
+<h3><span class="header-section-number">8.4.1</span> Incidência observada de nascimentos com baixo peso entre mães expostas ao risco (fumantes)<a href="medidas-de-associação.html#incidência-observada-de-nascimentos-com-baixo-peso-entre-mães-expostas-ao-risco-fumantes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p><span class="math display">\[
+\frac{(a)}{(e)} \times 100  = \frac{275}{2.419} \times 100 = 11,37 \%
+\]</span></p>
+<p><br />
+</p>
+</div>
+<div id="incidência-observada-de-nascimentos-com-baixo-peso-entre-mães-não-expostas-ao-risco-não-fumantes" class="section level3 hasAnchor" number="8.4.2">
+<h3><span class="header-section-number">8.4.2</span> Incidência observada de nascimentos com baixo peso entre mães não expostas ao risco (não fumantes)<a href="medidas-de-associação.html#incidência-observada-de-nascimentos-com-baixo-peso-entre-mães-não-expostas-ao-risco-não-fumantes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p><span class="math display">\[
+\frac{(c)}{(g)} \times 100 = \frac{311}{4.807} \times 100 = 6,47 \%
+\]</span></p>
+<p><br />
+</p>
+</div>
+<div id="prevalência-de-nascimentos-com-baixo-peso-na-população-estudada" class="section level3 hasAnchor" number="8.4.3">
+<h3><span class="header-section-number">8.4.3</span> Prevalência de nascimentos com baixo peso na população estudada<a href="medidas-de-associação.html#prevalência-de-nascimentos-com-baixo-peso-na-população-estudada" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p><span class="math display">\[
+\frac{(a) + (c)}{(e) + (g)} \times 100 = \frac{586}{7.226} \times 100 =  8,11\%
+\]</span></p>
+<p><br />
+</p>
+</div>
+<div id="diferença-de-risco-risco-atribuível---ra" class="section level3 hasAnchor" number="8.4.4">
+<h3><span class="header-section-number">8.4.4</span> Diferença de risco (Risco atribuível - RA)<a href="medidas-de-associação.html#diferença-de-risco-risco-atribuível---ra" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>A diferença de risco (também chamada de excesso de risco ou risco atribuível) é a diferença nas taxas de ocorrência entre os grupos expostos e não expostos da população. Essa medida quantifica o excesso absoluto de risco associado a uma dada exposição. É uma medida útil do problema de saúde pública causado pela exposição ao fator de risco.</p>
+<p><br />
+</p>
+<p>Analisando-se as incidências na Tabela vemos que a diferença de risco de nascimento de bebês com baixo peso entre mães fumantes e não fumantes é:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+RA &amp; =\frac{(a)}{(e)} - \frac{(c)}{(f)}  \\
+   &amp; = \frac{275}{2.419} - \frac{311}{4.807} \\
+   &amp; = 0,11368334 - 0,064697316 \\
+   &amp; = 4,9 \%
+\end{align*}\]</span></p>
+<p><br />
+</p>
+</div>
+<div id="razão-de-risco-risco-relativo---rr" class="section level3 hasAnchor" number="8.4.5">
+<h3><span class="header-section-number">8.4.5</span> Razão de risco (Risco relativo - RR)<a href="medidas-de-associação.html#razão-de-risco-risco-relativo---rr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>A razão de risco (também chamada de risco relativo) é o quociente entre as taxas de ocorrência entre os grupos expostos e não expostos da população. Pode ser interpretado como a probabilidade de um indivíduo exposto apresentar o desfecho relativa à de um indivíduo não exposto também apresentar.</p>
+<p><br />
+</p>
+<ul>
+<li>razão de risco maior que 1: <strong>fator de risco</strong>;<br />
+</li>
+<li>razão de risco menor que 1: <strong>fator protetor</strong>.</li>
+</ul>
+<p><br />
+</p>
+<p>Analisando-se as incidências na Tabela vemos que a razão de risco de nascimento de bebês com baixo peso entre mães fumantes e não fumantes é de:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+RR  &amp; =  \frac{\frac{(a)}{(e)}}{\frac{(c)}{(f)}}  \\
+&amp; = \frac{\frac{275}{2.419}}{\frac{311}{4.807}} \\
+&amp; = \frac{0,11368334}{0,064697316} \\
+&amp; = 1,76
+\end{align*}\]</span></p>
+<p><br />
+</p>
+</div>
+<div id="risco-atribuível-proporcional-fração-etiológica---fe" class="section level3 hasAnchor" number="8.4.6">
+<h3><span class="header-section-number">8.4.6</span> Risco atribuível proporcional (Fração etiológica - FE)<a href="medidas-de-associação.html#risco-atribuível-proporcional-fração-etiológica---fe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p> </p>
+<p>Quando se acredita que uma determinada exposição é um fator de risco de uma determinada doença, a fração atribuível é a proporção da doença na população específica que seria eliminada se a exposição fosse evitada. As frações etiológicas (frações relacionadas à origem da doença) são úteis para avaliar as prioridades da ação de saúde pública.</p>
+<p> </p>
+<blockquote>
+<p>Exemplo: tanto o tabagismo quanto a poluição do ar são causas de câncer de pulmão, mas a fração devido ao fumo é geralmente muito maior do que a devido ao ar poluição. Apenas em comunidades com prevalência de tabagismo muito baixa e severos índices de poluição, esta é provável de ser a principal causa de câncer de pulmão. Assim, em muitos países, controle do tabagismo deve ter prioridade nos programas de prevenção do câncer de pulmão.</p>
+</blockquote>
+<p> </p>
+<p>O Risco atribuível proporcional (fração etiológica) é, assim, a proporção de todos os casos que podem ser atribuídos diretamente a uma exposição específica. Pode ser determinado pelo quociente da diferença de riscos das incidências pela incidência entre a população exposta.</p>
+<p> </p>
+<p>Esta medida é útil para determinar a importância relativa das exposições para toda a população. É a proporção pela qual a taxa de incidência do desfecho em toda a população seria reduzido se a exposição fosse eliminada.</p>
+<p> </p>
+<p>Observe como calcular o Risco atribuível proporcional (Fração etiológica - FE):</p>
+<p> </p>
+<p><span class="math display">\[
+FE = \frac{I_{e}-I_{o}}{I_{e}} \times 100
+\]</span></p>
+<p><br />
+</p>
+<ul>
+<li><span class="math inline">\(I_{e}\)</span>: é a incidência da doença no grupo exposto;<br />
+</li>
+<li><span class="math inline">\(I_{o}\)</span>: é a incidência da doença no grupo não exposto.</li>
+</ul>
+<p><br />
+</p>
+<p>Analisando-se as incidências na Tabela vemos que o risco atribuível proporcional de nascimento de bebês com baixo peso entre mães fumantes é de:</p>
+<p> </p>
+<p><span class="math display">\[\begin{align*}
+FE = &amp; \frac{\left(\frac{(a)}{(e)} - \frac{(c)}{(f)}\right)}{\frac{(c)}{(f)}}  \\
+   = &amp; \frac{\left(\frac{275}{2.419} - \frac{311}{4.807}\right)}{\frac{311}{4.807}} \\
+   = &amp;  \frac{\left(0,11368334 - 0,064697316\right)}{0,064697316} \\
+   = &amp; 75,72 \%
+\end{align*}\]</span></p>
+<p> </p>
+<p>Cerca de 75,72% dos casos de nascimentos de bebês com baixo peso é atribuível à exposição de mães ao fumo (mães fumantes).</p>
+</div>
+<div id="odds-ratio-razão-das-chances" class="section level3 hasAnchor" number="8.4.7">
+<h3><span class="header-section-number">8.4.7</span> <em>Odds ratio</em> (Razão das chances)<a href="medidas-de-associação.html#odds-ratio-razão-das-chances" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Em estudos de caso-controle os pacientes são incluídos de acordo com a <strong>presença ou não do desfecho</strong>. Geralmente são definidos um grupo de casos (com o desfecho) e outro de controles (sem o desfecho) e avalia-se uma eventual exposição, <strong>no passado</strong> a potenciais fatores de risco nestes dois grupos.</p>
+<p> </p>
+<p>Devido ao fato de que o delineamento deste tipo de estudo baseia-se no <strong>próprio desfecho</strong>, não se pode estimar diretamente a incidência do desfecho de acordo com a <strong>presença ou ausência</strong> da exposição, como é usual em <strong>estudos de coorte</strong>.</p>
+<p> </p>
+<p>Isto se deve ao fato de que a proporção <strong>casos/controles)</strong> (ou <strong>desfecho/não-desfecho</strong>) é determinada pelo próprio pesquisador (a proporção não é a mesma observada na população toda com possibilidade de exposição). Assim, a ocorrência de desfechos no grupo total estudado não é regida pela <strong>história natural</strong> da doença e depende de quantos casos e controles o pesquisador selecionou.</p>
+<p> </p>
+<p>Apesar de não se poder estimar diretamente as incidências da doença (desfecho) entre <strong>expostos e não-expostos</strong> em estudos de caso-controle, é possível, entretanto, obter-se uma aproximação da Razão de risco (risco relativo - RR).</p>
+<p> </p>
+<p>Se <strong>se o desfecho for suficientemente raro</strong> na população (10% ou menos), a Razão de risco (risco relativo - RR) pode ser <strong>estimada aproximadamente</strong> em estudos de caso-controle através da Razão de chances (<em>odds ratio</em> - OR) de exposição entre casos e controle:</p>
+<p> </p>
+<p>A chance (<em>odds</em>) de se observar o desfecho entre os expostos:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+O_{exp}=\frac{\left(\frac{a}{a+b}\right)}{\left(\frac{b}{a+b}\right)}= \frac{a}{b}
+\]</span></p>
+<p> </p>
+<p>A chance (<em>odds</em>) de se observar o desfecho entre os não expostos:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+O_{n.exp}=\frac{\left(\frac{c}{c+d}\right)}{\left(\frac{d}{c+d}\right)}= \frac{c}{d}
+\]</span></p>
+<p> </p>
+<p>A razão das chances ( <em>odds ratio</em> - OR) de exposição entre casos e controle:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+OR = \frac{\left(\frac{a}{b}\right)}{\left(\frac{c}{d}\right)} = \frac{ad}{bc}
+\]</span></p>
+<p> </p>
+<ul>
+<li>OR ( <em>odds ratio</em>) maior que 1: <strong>fator de risco</strong>;</li>
+<li>OR ( <em>odds ratio</em>) menor que 1: <strong>fator protetor</strong>.</li>
+</ul>
+<p> </p>
+<p>A razão de chances ( <em>odds ratio</em>) exprime numericamente quantas vezes a exposição a um determinado fator de risco implica na possibilidade do desfecho estudado.</p>
+<p> </p>
+<p>Analisando-se as incidências na Tabela vemos que a razão de chances é de:</p>
+<p> </p>
+<p><span class="math display">\[\begin{align*}
+OR = &amp; \frac{\left(\frac{a}{b}\right)}{\left(\frac{c}{d}\right)} \\
+   = &amp; \frac{\left(\frac{275}{2144}\right)}{\left(\frac{311}{4.496}\right)} \\
+   = &amp; \frac{0,1282649}{0,0691726} \\
+   = &amp; 1,8542
+\end{align*}\]</span></p>
+<p> </p>
+<p>Uma razão de chances de 1,85 indica que uma gestante fumante terá 1,85 mais chances de ter um bebê com baixo peso no momento de seu nascimento do que uma gestante não fumante (alternativamente, para cada 1,85 bebês nascidos com peso abaixo do normal de mães fumantes, nasce 1 bebê com peso abaixo do normal de mãe não fumante).</p>
+<p> </p>
+<p>Utilizando-se o mesmo grupo de dados, o valor obtido para a Razão de chances ( <em>odds ratio</em> - OR) é geralmente maior do que aquele que se obtém através da fórmula tradicional da razão de risco (risco relativo - RR). Para os dados da Tabela, uma Razão de chaces de 1,85 é uma aproximação razoável para um Risco relativo de 1,76.</p>
+<p> </p>
+<p>À medida que o evento mensurado é mais raro esta aproximação torna-se progressivamente mais precisa.</p>
+</div>
+<div id="correlação-linear-de-pearson" class="section level3 hasAnchor" number="8.4.8">
+<h3><span class="header-section-number">8.4.8</span> Correlação linear de Pearson<a href="medidas-de-associação.html#correlação-linear-de-pearson" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Em estatística, a expressão correlação se refere à relação existente entre variáveis, digamos <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>. Essa correlação pode assumir padrões diferentes: linear, não linear (quadrática, cúbica, ).</p>
+<p><br />
+</p>
+<p>A correlação existente entre valores observados de uma mesma variável, digamos <span class="math inline">\(X\)</span> em diferentes momentos de tempo <span class="math inline">\(X_{(t_i-1)}, X_{(t_i)}\)</span> é denominada autocorrelação.</p>
+<p> </p>
+<p>É preciso sempre ter em mente que uma <strong>correlação</strong> estatística, por si só, não implica logicamente em <strong>causação</strong>. Para atribuir uma relação de causa-efeito deve-se lançar mão de considerações <em>a priori</em> ou teóricas acerca do objeto do estudo.</p>
+<p> </p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig44"></span>
+<img src="images8/graficos_correlacoes.jpg" alt="Diferentes diagramas de dispersão entre duas variáveis X e Y (Fonte: Introduction to Econometrics. Englewoods Cliffs, 1978)" width="100%" />
+<p class="caption">
+Figure 8.2: Diferentes diagramas de dispersão entre duas variáveis X e Y (Fonte: Introduction to Econometrics. Englewoods Cliffs, 1978)
+</p>
+</div>
+<p> </p>
+<p>Em (A), (B), (C) e (D) parece-nos que a relação observada entre as variáveis <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> pode ser expressa por uma função linear (uma reta):</p>
+<p><br />
+</p>
+<ul>
+<li>em (A) e (C) vemos que a variação de ocorre no mesmo sentido: quando o valor da variável <span class="math inline">\(X\)</span> sofre um incremento, também assim ocorre, em algum grau, na variável <span class="math inline">\(Y\)</span>;<br />
+</li>
+<li>em (B) e (D) vemos que uma variação inversa: quando o valor da variável <span class="math inline">\(X\)</span> sofre um incremento, a variável <span class="math inline">\(Y\)</span> sofre um decremento em algum grau;<br />
+</li>
+<li>em (A) e (B) parece-nos que uma função linear exprimiria uma relação entre as variáveis <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> de modo exato quando comparada a (C) e (D).</li>
+</ul>
+<p> </p>
+<p>Em (G) não se vislumbra um padrão linear no comportamento das variáveis <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> e em (H) o padrão de comportamento observado entre as variáveis <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> sugere haver uma boa relação, todavia não <strong>linear</strong>.</p>
+<p><br />
+</p>
+<p>O cálculo do <strong>Coeficiente de correlação linear de Pearson (r)</strong> envolve diversos somatórios dos valores das variáveis <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>, seus quadrados e também de seu produto <span class="math inline">\(X.Y\)</span>.</p>
+<p> </p>
+<p><span class="math display">\[
+r=\frac{\sum _{i=1}^{n}{x}_{i} \cdot {y}_{i} - \frac{\sum _{i=1}^{n}{x}_{i}\sum _{i=1}^{n}{y}_{i}}{n}}{\sqrt{\left(\sum _{i=1}^{n}{x}_{i}^{2}-\frac{{\left(\sum _{i=1}^{n}{x}_{i}\right)}^{2}}{n}\right)\cdot \left[\sum_{i=1}^{n}{y}_{i}^{2}-\frac{{\left(\sum _{i=1}^{n}{y}_{i}\right)}^{2}}{n}\right]}}
+\]</span></p>
+<p><br />
+</p>
+<p>Na expressão acima:</p>
+<ul>
+<li><span class="math inline">\(x_{i}\)</span>: é o <em>i-ésimo</em> valor observado de <span class="math inline">\(X\)</span>;<br />
+</li>
+<li><span class="math inline">\(y_{i}\)</span>: é o <em>i-ésimo</em> valor observado de <span class="math inline">\(Y\)</span>; e,<br />
+</li>
+<li><span class="math inline">\(n\)</span> é o número de pares de valores observados.</li>
+</ul>
+<p><br />
+</p>
+<p>Simplificadamente podemos exprimir <span class="math inline">\(r\)</span> na forma abaixo:</p>
+<p> </p>
+<p><span class="math display">\[
+r=\frac{{S}_{xy}}{\sqrt{{S}_{xx}\cdot {S}_{yy}}}
+\]</span></p>
+<p><br />
+</p>
+<p>em que:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+S_{xy} = &amp; \sum_{i=1}^{n} x_{i}y_{i} - \frac{\sum_{i=1}^{n}x_{i}\cdot\sum_{i=1}^{n}y_{i}}{n} \\
+S_{xx} = &amp; \sum_{i=1}^{n} x_{i}^{2} - \frac{(\sum_{i=1}^{n} x_{i})^{2}}{n} \\
+S_{yy} = &amp; \sum_{i=1}^{n}y_{i}^{2} - \frac{(\sum_{i=1}^{n} y_{i})^{2}}{n}
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>O coeficiente de correlação de Pearson quantifica a <strong>intensidade</strong> das relações lineares entre <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> e não estabelece <em>per si</em> nenhuma relação de causação.</p>
+<p><br />
+</p>
+<p>É apenas uma medida da associação linear entre duas variáveis e, portanto, não tem sentido usá-lo na quantificação de relações que não o sejam.</p>
+<p><br />
+</p>
+<p>O coeficiente de correlação linear de Pearson tem uma <strong>faixa limitada de variação</strong> e é simétrico; isto é, a correlação linear observada entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> é a mesma que a medida entre <span class="math inline">\(Y\)</span> e <span class="math inline">\(X\)</span>.</p>
+<p> </p>
+<p><span class="math display">\[
+-1\le r \le 1
+\]</span></p>
+<p> </p>
+<ul>
+<li>se <span class="math inline">\(r&gt;0\)</span> dizemos que há uma relação linear positiva entre as variáveis estudadas: para um incremento na primeira variável observa-se também um incremento na segunda;<br />
+</li>
+<li>se <span class="math inline">\(r&lt;0\)</span> a relação linear é negativa: um incremento em uma das variáveis é acompanhado por um decremento na outra; e,</li>
+<li>quando <span class="math inline">\(r=0\)</span> não há <strong>relação linear</strong> entre as variáveis consideradas.</li>
+</ul>
+<p> </p>
+<blockquote>
+<p>Exemplo: onsidere as medidas obtidas de duas variáveis no quadro abaixo.</p>
+</blockquote>
+<p><br />
+</p>
+<table>
+<caption>
+Quadro de dados
+</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">
+<span class="math inline"><em>X</em></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>Y</em></span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+74
+</td>
+<td style="text-align: center;">
+139
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+45
+</td>
+<td style="text-align: center;">
+108
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+48
+</td>
+<td style="text-align: center;">
+98
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+36
+</td>
+<td style="text-align: center;">
+76
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+27
+</td>
+<td style="text-align: center;">
+62
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+16
+</td>
+<td style="text-align: center;">
+57
+</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p><br />
+</p>
+<table>
+<caption>
+Quadro auxiliar para cálculo do coeficiente de correlação
+linear (<span class="math inline"><em>r</em></span>)
+</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">
+<span class="math inline"><em>X</em></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>Y</em></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>i</em></sub> ⋅ <em>y</em><sub><em>i</em></sub></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>i</em></sub><sup>2</sup></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>y</em><sub><em>i</em></sub><sup>2</sup></span>
+</th>
+<th style="text-align: center;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+74
+</td>
+<td style="text-align: center;">
+139
+</td>
+<td style="text-align: center;">
+10286
+</td>
+<td style="text-align: center;">
+5476
+</td>
+<td style="text-align: center;">
+19321
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+45
+</td>
+<td style="text-align: center;">
+108
+</td>
+<td style="text-align: center;">
+4860
+</td>
+<td style="text-align: center;">
+2025
+</td>
+<td style="text-align: center;">
+11664
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+48
+</td>
+<td style="text-align: center;">
+98
+</td>
+<td style="text-align: center;">
+4704
+</td>
+<td style="text-align: center;">
+2304
+</td>
+<td style="text-align: center;">
+9604
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+36
+</td>
+<td style="text-align: center;">
+76
+</td>
+<td style="text-align: center;">
+2736
+</td>
+<td style="text-align: center;">
+1296
+</td>
+<td style="text-align: center;">
+5776
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+27
+</td>
+<td style="text-align: center;">
+62
+</td>
+<td style="text-align: center;">
+1674
+</td>
+<td style="text-align: center;">
+729
+</td>
+<td style="text-align: center;">
+3844
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+16
+</td>
+<td style="text-align: center;">
+57
+</td>
+<td style="text-align: center;">
+912
+</td>
+<td style="text-align: center;">
+256
+</td>
+<td style="text-align: center;">
+3249
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+246
+</td>
+<td style="text-align: center;">
+540
+</td>
+<td style="text-align: center;">
+25172
+</td>
+<td style="text-align: center;">
+12086
+</td>
+<td style="text-align: center;">
+53458
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>Assim, sendo <span class="math inline">\(n=6\)</span> obervações segue-se:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+S_{xy} = &amp; \sum_{i=1}^{n} x_{i}y_{i} - \frac{\sum_{i=1}^{n}x_{i}\cdot\sum_{i=1}^{n}y_{i}}{n} \\
+       = &amp; 25172 - \frac{246 \cdot 540}{6} \\
+       = &amp; 3032 \\
+S_{xx} = &amp; \sum_{i=1}^{n} x_{i}^{2} - \frac{(\sum_{i=1}^{n} x_{i})^{2}}{n} \\
+       = &amp; 12086 - \frac{246^2}{6} \\
+       = &amp; 2000 \\
+S_{yy} = &amp; \sum_{i=1}^{n}y_{i}^{2} - \frac{(\sum_{i=1}^{n} y_{i})^{2}}{n} \\
+       = &amp; 53458 - \frac{540^2}{6} \\
+       = &amp; 4858
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Portanto:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+r = &amp; \frac{{s}_{xy}}{\sqrt{{s}_{xx}\cdot {s}_{yy}}} \\
+  = &amp; \frac{3032}{\sqrt{2000 \cdot 4858}} \\
+  = &amp; 0,9727
+\end{align*}\]</span></p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="sobrevida.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="intervalos-de-confiança.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/08-estatistica_epidemiologia.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["apostila.pdf", "apostila.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

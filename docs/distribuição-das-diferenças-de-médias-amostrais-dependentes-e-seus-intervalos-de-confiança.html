@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 10 Introdução à distribuição das proporções amostrais e seus intervalos de confiança | apostila.knit</title>
+  <title>9.5 Distribuição das diferenças de médias amostrais dependentes e seus intervalos de confiança | apostila.knit</title>
   <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 10 Introdução à distribuição das proporções amostrais e seus intervalos de confiança | apostila.knit" />
+  <meta property="og:title" content="9.5 Distribuição das diferenças de médias amostrais dependentes e seus intervalos de confiança | apostila.knit" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
   <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 10 Introdução à distribuição das proporções amostrais e seus intervalos de confiança | apostila.knit" />
+  <meta name="twitter:title" content="9.5 Distribuição das diferenças de médias amostrais dependentes e seus intervalos de confiança | apostila.knit" />
   
   <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="distribuição-das-diferenças-de-médias-amostrais-dependentes-e-seus-intervalos-de-confiança.html"/>
-<link rel="next" href="conceito-elementar-de-uma-proporção.html"/>
+<link rel="prev" href="distribuição-das-diferenças-de-médias-amostrais-independentes-e-seus-intervalos-de-confiança.html"/>
+<link rel="next" href="introdução-à-distribuição-das-proporções-amostrais-e-seus-intervalos-de-confiança.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -447,18 +447,275 @@ Prof. M.e Eng. Felinto Junior Da Costa</div></a>
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introdução-à-distribuição-das-proporções-amostrais-e-seus-intervalos-de-confiança" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Capítulo 10</span> Introdução à distribuição das proporções amostrais e seus intervalos de confiança<a href="introdução-à-distribuição-das-proporções-amostrais-e-seus-intervalos-de-confiança.html#introdução-à-distribuição-das-proporções-amostrais-e-seus-intervalos-de-confiança" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="distribuição-das-diferenças-de-médias-amostrais-dependentes-e-seus-intervalos-de-confiança" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Distribuição das diferenças de médias amostrais dependentes e seus intervalos de confiança<a href="distribuição-das-diferenças-de-médias-amostrais-dependentes-e-seus-intervalos-de-confiança.html#distribuição-das-diferenças-de-médias-amostrais-dependentes-e-seus-intervalos-de-confiança" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><br />
 </p>
+<p>Na prática temos algumas situações onde as populações não são independentes com, por exemplo, em situações onde as amostras são extraídas de uma mesma população em dois momentos distintos (antes e depois de algum fato), ou como numa situação de comparação inter laboratorial, onde dois laboratórios medem a mesma peça, as medidas entre os laboratórios não são independentes. Nestes casos diz-se que os dados são pareados.</p>
+<p><br />
+</p>
+<p>Considere duas amostras dependentes <span class="math inline">\((X_{1}, \dots X_{n})\)</span> e <span class="math inline">\((Y_{1}, \dots Y_{n})\)</span>. O pareamento das observações será considerado tomando-se <span class="math inline">\((X_{1}, Y_{1}), \dots, (X_{n}, Y_{n})\)</span> e as diferenças serão tomadas a cada par <span class="math inline">\(D_{i}=X_{i} - Y_{i}\)</span>, para <span class="math inline">\(i=1, \dots, n\)</span>.<br />
+</p>
+<p><br />
+</p>
+<p>Assim obtemos uma amostra <span class="math inline">\((D_{1}, \dots, D_{n})\)</span>, resultante das diferenças entre os valores de cada par. A variável aleatória será admitida tal que</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+D \sim N (\mu_{D}, \sigma^{2}_{D})
+\]</span></p>
+<p><br />
+</p>
+<p>O parâmetro da média dessa distribuição (<span class="math inline">\(\mu_{D}\)</span>) será estimado a partir da própria amostra das diferenças, tal que:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+\mu_{D}=\stackrel{-}{D}=\sum_{i=1}^{n}D_{i}
+\]</span></p>
+<p><br />
+</p>
+<p>e a variância populacional desconhecida será aproximada por:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+S^{2}_{D}=\sum_{i=1}^{n}\frac{(D{i}-\stackrel{-}{D})^{2}}{n-1}
+\]</span></p>
+<p><br />
+</p>
+<p>Demonstra-se que a estatística <span class="math inline">\(T\)</span> pode ser assim definida, bem como sua correspondente distribuição</p>
+<p> </p>
+<p><span class="math display">\[
+T = \frac{\stackrel{-}{D} -\mu_{D}}{\frac{S_{D}}{\sqrt{n}}}  \sim t_{(n-1)}
+\]</span></p>
+<p><br />
+</p>
+<p>Assim,</p>
+<p><span class="math display">\[
+IC(\mu_{D})_{(1-\alpha)} = [\stackrel{-}{D} \pm {t}_{c (n-1)} \cdot   \sqrt{\frac{S_{D}^{2}}{n} }  ]
+\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Determinar o intervalo de confiança sob um nível de confiança de 95% para a diferença de médias do resultados dos testes de um grupo de 15 alunos submetidos a um vídeo instrutivo tais que a primeira amostra foi tomada antes de assistirem ao vídeo e a segunda depois, mediante a aplicação de um novo teste, similar ao primeiro.</p>
+</blockquote>
+<p><br />
+</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">
+Aluno
+</th>
+<th style="text-align: center;">
+Primeira nota (<span class="math inline"><em>X</em></span>)
+</th>
+<th style="text-align: center;">
+Segunda nota (<span class="math inline"><em>Y</em></span>)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">
+1
+</td>
+<td style="text-align: center;">
+74
+</td>
+<td style="text-align: center;">
+80
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+2
+</td>
+<td style="text-align: center;">
+64
+</td>
+<td style="text-align: center;">
+74
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+3
+</td>
+<td style="text-align: center;">
+79
+</td>
+<td style="text-align: center;">
+83
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+4
+</td>
+<td style="text-align: center;">
+90
+</td>
+<td style="text-align: center;">
+92
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+5
+</td>
+<td style="text-align: center;">
+89
+</td>
+<td style="text-align: center;">
+96
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+6
+</td>
+<td style="text-align: center;">
+94
+</td>
+<td style="text-align: center;">
+98
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+7
+</td>
+<td style="text-align: center;">
+55
+</td>
+<td style="text-align: center;">
+59
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+8
+</td>
+<td style="text-align: center;">
+75
+</td>
+<td style="text-align: center;">
+77
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+9
+</td>
+<td style="text-align: center;">
+88
+</td>
+<td style="text-align: center;">
+93
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+10
+</td>
+<td style="text-align: center;">
+66
+</td>
+<td style="text-align: center;">
+78
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+11
+</td>
+<td style="text-align: center;">
+70
+</td>
+<td style="text-align: center;">
+75
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+12
+</td>
+<td style="text-align: center;">
+60
+</td>
+<td style="text-align: center;">
+59
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+13
+</td>
+<td style="text-align: center;">
+59
+</td>
+<td style="text-align: center;">
+61
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+14
+</td>
+<td style="text-align: center;">
+67
+</td>
+<td style="text-align: center;">
+70
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+15
+</td>
+<td style="text-align: center;">
+69
+</td>
+<td style="text-align: center;">
+74
+</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p><span class="math display">\[
+\stackrel{-}{D}=\sum_{i=1}^{n}D_{i}=-4,667
+\]</span><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+S^{2}_{D} &amp; =\sum_{i=1}^{n}\frac{(D{i}-\stackrel{-}{D})^{2}}{n-1}=10,52354
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Sendo o valor crítico tabelado da estatística para um nível de significância <span class="math inline">\(\alpha=5\%\)</span> e graus de liberdade <span class="math inline">\(gl=(n-1)=14\)</span> igua a 1,761, o intervalo de confiança será:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+IC(\mu_{D})_{(1-\alpha)} &amp; = [\stackrel{-}{D} \pm {t}_{c (n-1)} \cdot   \sqrt{\frac{S_{D}^{2}}{n} }  ]\\
+IC(\mu_{D})_{(1-\alpha)} &amp; = [-4,667 \pm 1,761 \cdot   \sqrt{\frac{10,52354}{15} }  ]\\
+IC(\mu_{D})_{(1-\alpha)} &amp; = [-5,396; -3,937]
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Sendo negativos os valores desse intervalo de confinaça deduz-se que a <strong>primeira nota</strong> é menor que a <strong>segunda nota</strong> (<span class="math inline">\(X-Y &lt; 0\)</span>) e assim, o vídeo que os alunos assistiram melhorou sua compreensão do assunto e seu desempenho no segundo teste (similar ao primeiro). Caso o valor “zero” estivesse contemplado nesse intervalo, a interpretação seria de que não há diferença estatisticamente significativa nas notas dos alunos nos dois testes (o vídeo não os ajudou em coisa alguma).</p>
+</blockquote>
+
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="distribuição-das-diferenças-de-médias-amostrais-dependentes-e-seus-intervalos-de-confiança.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="conceito-elementar-de-uma-proporção.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="distribuição-das-diferenças-de-médias-amostrais-independentes-e-seus-intervalos-de-confiança.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introdução-à-distribuição-das-proporções-amostrais-e-seus-intervalos-de-confiança.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -489,7 +746,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/10-dist_prop_amostrais.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/09-dist_medias_amostrais.Rmd",
 "text": "Edit"
 },
 "history": {

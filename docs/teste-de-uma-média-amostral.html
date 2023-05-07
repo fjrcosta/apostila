@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>11.8 Teste de uma média amostral | apostila.knit</title>
+  <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="11.8 Teste de uma média amostral | apostila.knit" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
+  <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="11.8 Teste de uma média amostral | apostila.knit" />
+  
+  <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="estruturas-das-hipóteses.html"/>
+<link rel="next" href="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Índice</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section" id="toc-section"></a></li>
+<li class="chapter" data-level="1" data-path="introdução-histórica-da-estatística.html"><a href="introdução-histórica-da-estatística.html"><i class="fa fa-check"></i><b>1</b> Introdução histórica da estatística</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="primeiros-levantamentos-estudos-e-publicações-demografia-e-aritmética-política.html"><a href="primeiros-levantamentos-estudos-e-publicações-demografia-e-aritmética-política.html"><i class="fa fa-check"></i><b>1.1</b> Primeiros levantamentos, estudos e publicações &amp; Demografia e aritmética política</a></li>
+<li class="chapter" data-level="1.2" data-path="visualização-de-dados-estudos-e-primeiras-publicações.html"><a href="visualização-de-dados-estudos-e-primeiras-publicações.html"><i class="fa fa-check"></i><b>1.2</b> Visualização de dados &amp; Estudos e primeiras publicações</a></li>
+<li class="chapter" data-level="1.3" data-path="nomes-notáveis.html"><a href="nomes-notáveis.html"><i class="fa fa-check"></i><b>1.3</b> Nomes notáveis</a></li>
+<li class="chapter" data-level="1.4" data-path="revista-biometrika.html"><a href="revista-biometrika.html"><i class="fa fa-check"></i><b>1.4</b> Revista Biometrika</a></li>
+<li class="chapter" data-level="1.5" data-path="eugenia.html"><a href="eugenia.html"><i class="fa fa-check"></i><b>1.5</b> Eugenia</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introdução-conceitual-essencial.html"><a href="introdução-conceitual-essencial.html"><i class="fa fa-check"></i><b>2</b> Introdução conceitual essencial</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="estatística-descritiva.html"><a href="estatística-descritiva.html"><i class="fa fa-check"></i><b>2.1</b> Estatística descritiva</a></li>
+<li class="chapter" data-level="2.2" data-path="estatística-inferencial.html"><a href="estatística-inferencial.html"><i class="fa fa-check"></i><b>2.2</b> Estatística inferencial</a></li>
+<li class="chapter" data-level="2.3" data-path="produção-de-conhecimento.html"><a href="produção-de-conhecimento.html"><i class="fa fa-check"></i><b>2.3</b> Produção de conhecimento</a></li>
+<li class="chapter" data-level="2.4" data-path="população-universo-amostra.html"><a href="população-universo-amostra.html"><i class="fa fa-check"></i><b>2.4</b> População (universo) &amp; amostra</a></li>
+<li class="chapter" data-level="2.5" data-path="parâmetros-e-estatísticas.html"><a href="parâmetros-e-estatísticas.html"><i class="fa fa-check"></i><b>2.5</b> Parâmetros e estatísticas</a></li>
+<li class="chapter" data-level="2.6" data-path="tipos-de-variáveis.html"><a href="tipos-de-variáveis.html"><i class="fa fa-check"></i><b>2.6</b> Tipos de variáveis</a></li>
+<li class="chapter" data-level="2.7" data-path="indexação-de-dados-i.html"><a href="indexação-de-dados-i.html"><i class="fa fa-check"></i><b>2.7</b> Indexação de dados (<span class="math inline">\(i\)</span>)</a></li>
+<li class="chapter" data-level="2.8" data-path="noções-básicas-sobre-somatórios-sigma.html"><a href="noções-básicas-sobre-somatórios-sigma.html"><i class="fa fa-check"></i><b>2.8</b> Noções básicas sobre somatórios (<span class="math inline">\(\Sigma\)</span>)</a></li>
+<li class="chapter" data-level="2.9" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><i class="fa fa-check"></i><b>2.9</b> Análise combinatória: diagramas de árvore, permutações (arranjos) &amp; combinações</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html#permutações-ou-arranjos"><i class="fa fa-check"></i><b>2.9.1</b> Permutações ou arranjos</a></li>
+<li class="chapter" data-level="2.9.2" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html#combinações"><i class="fa fa-check"></i><b>2.9.2</b> Combinações</a></li>
+<li class="chapter" data-level="2.9.3" data-path="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html"><a href="análise-combinatória-diagramas-de-árvore-permutações-arranjos-combinações.html#observações-acerca-de-alguns-fatoriais"><i class="fa fa-check"></i><b>2.9.3</b> Observações acerca de alguns fatoriais</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="conectivos-lógicos.html"><a href="conectivos-lógicos.html"><i class="fa fa-check"></i><b>2.10</b> Conectivos lógicos</a></li>
+<li class="chapter" data-level="2.11" data-path="leis-de-de-morgan.html"><a href="leis-de-de-morgan.html"><i class="fa fa-check"></i><b>2.11</b> Leis de De Morgan</a></li>
+<li class="chapter" data-level="2.12" data-path="noções-básicas-para-o-uso-de-calculadora-cassio-fx-82ms.html"><a href="noções-básicas-para-o-uso-de-calculadora-cassio-fx-82ms.html"><i class="fa fa-check"></i><b>2.12</b> Noções básicas para o uso de calculadora (Cassio fx-82MS)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introdução-à-estatística-descritiva.html"><a href="introdução-à-estatística-descritiva.html"><i class="fa fa-check"></i><b>3</b> Introdução à estatística descritiva</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="análise-exploratória.html"><a href="análise-exploratória.html"><i class="fa fa-check"></i><b>3.1</b> Análise exploratória</a></li>
+<li class="chapter" data-level="3.2" data-path="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html"><a href="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html"><i class="fa fa-check"></i><b>3.2</b> Dados brutos, em rol, diagrama de ramos &amp; folhas e de dispersão unidimensional</a></li>
+<li class="chapter" data-level="3.3" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html"><i class="fa fa-check"></i><b>3.3</b> Sínteses numéricas descritivas</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html#medidas-de-tendência-central-posição"><i class="fa fa-check"></i><b>3.3.1</b> Medidas de tendência central (posição)</a></li>
+<li class="chapter" data-level="3.3.2" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html#medidas-de-dispersão-variabilidade"><i class="fa fa-check"></i><b>3.3.2</b> Medidas de dispersão (variabilidade)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html#medidas-de-subdivisão-separatrizes"><i class="fa fa-check"></i><b>3.3.3</b> Medidas de subdivisão (separatrizes)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="medidas-de-forma-assimetria-curtose.html"><a href="medidas-de-forma-assimetria-curtose.html"><i class="fa fa-check"></i><b>3.4</b> Medidas de forma (assimetria &amp; curtose)</a></li>
+<li class="chapter" data-level="3.5" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html"><i class="fa fa-check"></i><b>3.5</b> Apresentação tabular de dados</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#apresentação-tabular-de-dados-qualitativos"><i class="fa fa-check"></i><b>3.5.1</b> Apresentação tabular de dados qualitativos</a></li>
+<li class="chapter" data-level="3.5.2" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#apresentação-tabular-de-dados-quantitativos"><i class="fa fa-check"></i><b>3.5.2</b> Apresentação tabular de dados quantitativos</a></li>
+<li class="chapter" data-level="3.5.3" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#média-1"><i class="fa fa-check"></i><b>3.5.3</b> Média</a></li>
+<li class="chapter" data-level="3.5.4" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#moda-1"><i class="fa fa-check"></i><b>3.5.4</b> Moda</a></li>
+<li class="chapter" data-level="3.5.5" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#variância"><i class="fa fa-check"></i><b>3.5.5</b> Variância</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html"><i class="fa fa-check"></i><b>3.6</b> Apresentação gráfica de dados</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#barras"><i class="fa fa-check"></i><b>3.6.1</b> Barras</a></li>
+<li class="chapter" data-level="3.6.2" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#histograma"><i class="fa fa-check"></i><b>3.6.2</b> Histograma</a></li>
+<li class="chapter" data-level="3.6.3" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#setores"><i class="fa fa-check"></i><b>3.6.3</b> Setores</a></li>
+<li class="chapter" data-level="3.6.4" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html#box-plot"><i class="fa fa-check"></i><b>3.6.4</b> Box-plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introdução-ao-cálculo-de-probabilidades.html"><a href="introdução-ao-cálculo-de-probabilidades.html"><i class="fa fa-check"></i><b>4</b> Introdução ao cálculo de probabilidades</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html"><i class="fa fa-check"></i><b>4.1</b> Introdução conceitual essencial</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#experimentos-determinísticos-e-experimentos-probabilísticos-aleatórios"><i class="fa fa-check"></i><b>4.1.1</b> Experimentos determinísticos e experimentos probabilísticos (aleatórios)</a></li>
+<li class="chapter" data-level="4.1.2" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#espaço-amostral-e-seus-elementos"><i class="fa fa-check"></i><b>4.1.2</b> Espaço amostral e seus elementos</a></li>
+<li class="chapter" data-level="4.1.3" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#evento-de-interesse-sucesso"><i class="fa fa-check"></i><b>4.1.3</b> Evento de interesse (sucesso)</a></li>
+<li class="chapter" data-level="4.1.4" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#evento"><i class="fa fa-check"></i><b>4.1.4</b> Evento</a></li>
+<li class="chapter" data-level="4.1.5" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#operações-com-conjuntos-e-diagramas-de-venn"><i class="fa fa-check"></i><b>4.1.5</b> Operações com conjuntos e Diagramas de Venn</a></li>
+<li class="chapter" data-level="4.1.6" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#eventos-equiprováveis-e-não-equiprováveis"><i class="fa fa-check"></i><b>4.1.6</b> Eventos equiprováveis e não equiprováveis</a></li>
+<li class="chapter" data-level="4.1.7" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#eventos-independentes"><i class="fa fa-check"></i><b>4.1.7</b> Eventos independentes</a></li>
+<li class="chapter" data-level="4.1.8" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#eventos-mutuamente-exclusivos"><i class="fa fa-check"></i><b>4.1.8</b> Eventos mutuamente exclusivos</a></li>
+<li class="chapter" data-level="4.1.9" data-path="introdução-conceitual-essencial-1.html"><a href="introdução-conceitual-essencial-1.html#eventos-complementares"><i class="fa fa-check"></i><b>4.1.9</b> Eventos complementares</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="probabilidade.html"><a href="probabilidade.html"><i class="fa fa-check"></i><b>4.2</b> Probabilidade</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="probabilidade.html"><a href="probabilidade.html#introdução-histórica"><i class="fa fa-check"></i><b>4.2.1</b> Introdução histórica</a></li>
+<li class="chapter" data-level="4.2.2" data-path="probabilidade.html"><a href="probabilidade.html#conceito-clássico-ou-a-priori"><i class="fa fa-check"></i><b>4.2.2</b> Conceito clássico ou <em>a priori</em></a></li>
+<li class="chapter" data-level="4.2.3" data-path="probabilidade.html"><a href="probabilidade.html#conceito-frequentista-ou-a-posteriori"><i class="fa fa-check"></i><b>4.2.3</b> Conceito frequentista ou <em>a posteriori</em></a></li>
+<li class="chapter" data-level="4.2.4" data-path="probabilidade.html"><a href="probabilidade.html#conceito-axiomático"><i class="fa fa-check"></i><b>4.2.4</b> Conceito axiomático</a></li>
+<li class="chapter" data-level="4.2.5" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-da-união-de-eventos"><i class="fa fa-check"></i><b>4.2.5</b> Probabilidade da união de eventos</a></li>
+<li class="chapter" data-level="4.2.6" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-de-eventos-condicionados"><i class="fa fa-check"></i><b>4.2.6</b> Probabilidade de eventos condicionados</a></li>
+<li class="chapter" data-level="4.2.7" data-path="probabilidade.html"><a href="probabilidade.html#dependência-e-independência-de-eventos"><i class="fa fa-check"></i><b>4.2.7</b> Dependência e independência de eventos</a></li>
+<li class="chapter" data-level="4.2.8" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-da-interseção-de-eventos-independentes"><i class="fa fa-check"></i><b>4.2.8</b> Probabilidade da interseção de eventos independentes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="teorema-de-bayes.html"><a href="teorema-de-bayes.html"><i class="fa fa-check"></i><b>4.3</b> Teorema de Bayes</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="teorema-de-bayes.html"><a href="teorema-de-bayes.html#demonstração-clássica-de-independência"><i class="fa fa-check"></i><b>4.3.1</b> Demonstração clássica de independência</a></li>
+<li class="chapter" data-level="4.3.2" data-path="teorema-de-bayes.html"><a href="teorema-de-bayes.html#demonstração-clássica-de-dependência"><i class="fa fa-check"></i><b>4.3.2</b> Demonstração clássica de dependência</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html"><i class="fa fa-check"></i><b>4.4</b> Teoremas da Teoria das probabilidades</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-01"><i class="fa fa-check"></i><b>4.4.1</b> Teorema 01</a></li>
+<li class="chapter" data-level="4.4.2" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-02"><i class="fa fa-check"></i><b>4.4.2</b> Teorema 02</a></li>
+<li class="chapter" data-level="4.4.3" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-03"><i class="fa fa-check"></i><b>4.4.3</b> Teorema 03</a></li>
+<li class="chapter" data-level="4.4.4" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-04"><i class="fa fa-check"></i><b>4.4.4</b> Teorema 04</a></li>
+<li class="chapter" data-level="4.4.5" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-05"><i class="fa fa-check"></i><b>4.4.5</b> Teorema 05</a></li>
+<li class="chapter" data-level="4.4.6" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-06"><i class="fa fa-check"></i><b>4.4.6</b> Teorema 06</a></li>
+<li class="chapter" data-level="4.4.7" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-07"><i class="fa fa-check"></i><b>4.4.7</b> Teorema 07</a></li>
+<li class="chapter" data-level="4.4.8" data-path="teoremas-da-teoria-das-probabilidades.html"><a href="teoremas-da-teoria-das-probabilidades.html#teorema-08"><i class="fa fa-check"></i><b>4.4.8</b> Teorema 08</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="introdução-a-variáveis-aleatórias.html"><a href="introdução-a-variáveis-aleatórias.html"><i class="fa fa-check"></i><b>5</b> Introdução a variáveis aleatórias</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="função-discreta-de-distribuição-de-probabilidade.html"><a href="função-discreta-de-distribuição-de-probabilidade.html"><i class="fa fa-check"></i><b>5.1</b> Função discreta de distribuição de probabilidade</a></li>
+<li class="chapter" data-level="5.2" data-path="função-de-densidade-de-probabilidade.html"><a href="função-de-densidade-de-probabilidade.html"><i class="fa fa-check"></i><b>5.2</b> Função de densidade de probabilidade</a></li>
+<li class="chapter" data-level="5.3" data-path="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><a href="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><i class="fa fa-check"></i><b>5.3</b> Esperança e variância de uma variável aleatória discreta</a></li>
+<li class="chapter" data-level="5.4" data-path="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><a href="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><i class="fa fa-check"></i><b>5.4</b> Esperança e variância de uma variável aleatória contínua</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="introdução-a-modelos-teóricos-de-probabilidade.html"><a href="introdução-a-modelos-teóricos-de-probabilidade.html"><i class="fa fa-check"></i><b>6</b> Introdução a modelos teóricos de probabilidade</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="modelos-teóricos-discretos.html"><a href="modelos-teóricos-discretos.html"><i class="fa fa-check"></i><b>6.1</b> Modelos teóricos discretos</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="modelos-teóricos-discretos.html"><a href="modelos-teóricos-discretos.html#bernoulli"><i class="fa fa-check"></i><b>6.1.1</b> Bernoulli</a></li>
+<li class="chapter" data-level="6.1.2" data-path="modelos-teóricos-discretos.html"><a href="modelos-teóricos-discretos.html#binomial"><i class="fa fa-check"></i><b>6.1.2</b> Binomial</a></li>
+<li class="chapter" data-level="6.1.3" data-path="modelos-teóricos-discretos.html"><a href="modelos-teóricos-discretos.html#poisson"><i class="fa fa-check"></i><b>6.1.3</b> Poisson</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="modelos-téoricos-do-tempo-de-espera.html"><a href="modelos-téoricos-do-tempo-de-espera.html"><i class="fa fa-check"></i><b>6.2</b> Modelos téoricos do tempo de espera</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="modelos-téoricos-do-tempo-de-espera.html"><a href="modelos-téoricos-do-tempo-de-espera.html#geométrica"><i class="fa fa-check"></i><b>6.2.1</b> Geométrica</a></li>
+<li class="chapter" data-level="6.2.2" data-path="modelos-téoricos-do-tempo-de-espera.html"><a href="modelos-téoricos-do-tempo-de-espera.html#binomial-negativa"><i class="fa fa-check"></i><b>6.2.2</b> Binomial Negativa</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html"><i class="fa fa-check"></i><b>6.3</b> Modelos teóricos contínuos</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#uniforme"><i class="fa fa-check"></i><b>6.3.1</b> Uniforme</a></li>
+<li class="chapter" data-level="6.3.2" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#exponencial"><i class="fa fa-check"></i><b>6.3.2</b> Exponencial</a></li>
+<li class="chapter" data-level="6.3.3" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#normal"><i class="fa fa-check"></i><b>6.3.3</b> Normal</a></li>
+<li class="chapter" data-level="6.3.4" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#student-t"><i class="fa fa-check"></i><b>6.3.4</b> Student “t”</a></li>
+<li class="chapter" data-level="6.3.5" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#qui-quadrado"><i class="fa fa-check"></i><b>6.3.5</b> Qui-Quadrado</a></li>
+<li class="chapter" data-level="6.3.6" data-path="modelos-teóricos-contínuos.html"><a href="modelos-teóricos-contínuos.html#fisher-snedecor-f"><i class="fa fa-check"></i><b>6.3.6</b> Fisher-Snedecor “F”</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="tabelas.html"><a href="tabelas.html"><i class="fa fa-check"></i><b>6.4</b> Tabelas</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="planejamento_pesquisas.html"><a href="planejamento_pesquisas.html"><i class="fa fa-check"></i><b>7</b> Introdução ao planejamento de pesquisas</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="planejamento-de-pesquisas.html"><a href="planejamento-de-pesquisas.html"><i class="fa fa-check"></i><b>7.1</b> Planejamento de pesquisas</a></li>
+<li class="chapter" data-level="7.2" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html"><i class="fa fa-check"></i><b>7.2</b> Tipos de pesquisas</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-à-finalidade"><i class="fa fa-check"></i><b>7.2.1</b> Quanto à finalidade</a></li>
+<li class="chapter" data-level="7.2.2" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-à-forma-de-abordagem"><i class="fa fa-check"></i><b>7.2.2</b> Quanto à forma de abordagem</a></li>
+<li class="chapter" data-level="7.2.3" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-aos-objetivos"><i class="fa fa-check"></i><b>7.2.3</b> Quanto aos objetivos</a></li>
+<li class="chapter" data-level="7.2.4" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-ao-desenvolvimento-no-tempo"><i class="fa fa-check"></i><b>7.2.4</b> Quanto ao desenvolvimento no tempo</a></li>
+<li class="chapter" data-level="7.2.5" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-à-natureza"><i class="fa fa-check"></i><b>7.2.5</b> Quanto à natureza</a></li>
+<li class="chapter" data-level="7.2.6" data-path="tipos-de-pesquisas.html"><a href="tipos-de-pesquisas.html#quanto-à-forma-de-obtenção-dos-dados"><i class="fa fa-check"></i><b>7.2.6</b> Quanto à forma de obtenção dos dados</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="principais-etapas-de-uma-pesquisa.html"><a href="principais-etapas-de-uma-pesquisa.html"><i class="fa fa-check"></i><b>7.3</b> Principais etapas de uma pesquisa:</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="principais-etapas-de-uma-pesquisa.html"><a href="principais-etapas-de-uma-pesquisa.html#objetivo"><i class="fa fa-check"></i><b>7.3.1</b> Objetivo</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="população.html"><a href="população.html"><i class="fa fa-check"></i><b>7.4</b> População</a></li>
+<li class="chapter" data-level="7.5" data-path="censo.html"><a href="censo.html"><i class="fa fa-check"></i><b>7.5</b> Censo</a></li>
+<li class="chapter" data-level="7.6" data-path="amostra.html"><a href="amostra.html"><i class="fa fa-check"></i><b>7.6</b> Amostra</a></li>
+<li class="chapter" data-level="7.7" data-path="planejamento-do-levantamento-amostral.html"><a href="planejamento-do-levantamento-amostral.html"><i class="fa fa-check"></i><b>7.7</b> Planejamento do levantamento amostral</a></li>
+<li class="chapter" data-level="7.8" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html"><i class="fa fa-check"></i><b>7.8</b> Elaboração dos questionários</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html#tipos-de-perguntas"><i class="fa fa-check"></i><b>7.8.1</b> Tipos de perguntas:</a></li>
+<li class="chapter" data-level="7.8.2" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html#execução-do-levantamento-amostral"><i class="fa fa-check"></i><b>7.8.2</b> Execução do levantamento amostral</a></li>
+<li class="chapter" data-level="7.8.3" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html#análise-exploratória-dos-dados"><i class="fa fa-check"></i><b>7.8.3</b> Análise exploratória dos dados</a></li>
+<li class="chapter" data-level="7.8.4" data-path="elaboração-dos-questionários.html"><a href="elaboração-dos-questionários.html#resultados-e-conclusões"><i class="fa fa-check"></i><b>7.8.4</b> Resultados e conclusões</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="técnicas-de-amostragem.html"><a href="técnicas-de-amostragem.html"><i class="fa fa-check"></i><b>7.9</b> Técnicas de amostragem</a></li>
+<li class="chapter" data-level="7.10" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html"><i class="fa fa-check"></i><b>7.10</b> Amostragem probabilística</a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html#amostragem-aleatória-simples-aas"><i class="fa fa-check"></i><b>7.10.1</b> Amostragem aleatória simples (AAS)</a></li>
+<li class="chapter" data-level="7.10.2" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html#amostragem-aleatória-sistemática"><i class="fa fa-check"></i><b>7.10.2</b> Amostragem aleatória sistemática</a></li>
+<li class="chapter" data-level="7.10.3" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html#amostragem-aleatória-estratificada"><i class="fa fa-check"></i><b>7.10.3</b> Amostragem aleatória estratificada</a></li>
+<li class="chapter" data-level="7.10.4" data-path="amostragem-probabilística.html"><a href="amostragem-probabilística.html#amostragem-aleatória-por-conglomerados"><i class="fa fa-check"></i><b>7.10.4</b> Amostragem aleatória por conglomerados</a></li>
+</ul></li>
+<li class="chapter" data-level="7.11" data-path="amostragem-não-probabilística.html"><a href="amostragem-não-probabilística.html"><i class="fa fa-check"></i><b>7.11</b> Amostragem não probabilística</a>
+<ul>
+<li class="chapter" data-level="7.11.1" data-path="amostragem-não-probabilística.html"><a href="amostragem-não-probabilística.html#amostragem-por-conveniência"><i class="fa fa-check"></i><b>7.11.1</b> Amostragem por conveniência</a></li>
+<li class="chapter" data-level="7.11.2" data-path="amostragem-não-probabilística.html"><a href="amostragem-não-probabilística.html#amostragem-por-cotas"><i class="fa fa-check"></i><b>7.11.2</b> Amostragem por cotas</a></li>
+</ul></li>
+<li class="chapter" data-level="7.12" data-path="dimensionamento-de-amostras.html"><a href="dimensionamento-de-amostras.html"><i class="fa fa-check"></i><b>7.12</b> Dimensionamento de amostras</a>
+<ul>
+<li class="chapter" data-level="7.12.1" data-path="dimensionamento-de-amostras.html"><a href="dimensionamento-de-amostras.html#erros"><i class="fa fa-check"></i><b>7.12.1</b> Erros</a></li>
+<li class="chapter" data-level="7.12.2" data-path="dimensionamento-de-amostras.html"><a href="dimensionamento-de-amostras.html#determinação-do-tamanho-de-uma-amostra-para-estimação-da-média-populacional"><i class="fa fa-check"></i><b>7.12.2</b> Determinação do tamanho de uma amostra para estimação da média populacional</a></li>
+<li class="chapter" data-level="7.12.3" data-path="dimensionamento-de-amostras.html"><a href="dimensionamento-de-amostras.html#determinação-do-tamanho-de-uma-amostra-para-estimação-da-proporção-populacional"><i class="fa fa-check"></i><b>7.12.3</b> Determinação do tamanho de uma amostra para estimação da proporção populacional</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="introdução-às-estatísticas-epidemiológicas.html"><a href="introdução-às-estatísticas-epidemiológicas.html"><i class="fa fa-check"></i><b>8</b> Introdução às estatísticas epidemiológicas</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="terminologia.html"><a href="terminologia.html"><i class="fa fa-check"></i><b>8.1</b> Terminologia</a></li>
+<li class="chapter" data-level="8.2" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html"><i class="fa fa-check"></i><b>8.2</b> Medidas de risco, morte, associação e correlação</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#incidência"><i class="fa fa-check"></i><b>8.2.1</b> Incidência</a></li>
+<li class="chapter" data-level="8.2.2" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#prevalência"><i class="fa fa-check"></i><b>8.2.2</b> Prevalência</a></li>
+<li class="chapter" data-level="8.2.3" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#relação-entre-prevalência-e-incidência"><i class="fa fa-check"></i><b>8.2.3</b> Relação entre prevalência e incidência</a></li>
+<li class="chapter" data-level="8.2.4" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#quadro-comparativo-entre-medidas-de-incidência-e-de-prevalência"><i class="fa fa-check"></i><b>8.2.4</b> Quadro comparativo entre medidas de incidência e de prevalência</a></li>
+<li class="chapter" data-level="8.2.5" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#incidência-cumulativa---ic-risco"><i class="fa fa-check"></i><b>8.2.5</b> Incidência cumulativa - IC (Risco)}</a></li>
+<li class="chapter" data-level="8.2.6" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#quadro-comparativo-entre-medidas-de-risco-e-prevalência"><i class="fa fa-check"></i><b>8.2.6</b> Quadro comparativo entre medidas de risco e prevalência</a></li>
+<li class="chapter" data-level="8.2.7" data-path="medidas-de-risco-morte-associação-e-correlação.html"><a href="medidas-de-risco-morte-associação-e-correlação.html#fatalidade-dos-casos-fc"><i class="fa fa-check"></i><b>8.2.7</b> Fatalidade dos Casos (FC)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="sobrevida.html"><a href="sobrevida.html"><i class="fa fa-check"></i><b>8.3</b> Sobrevida</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="sobrevida.html"><a href="sobrevida.html#taxas-de-mortalidade-tm"><i class="fa fa-check"></i><b>8.3.1</b> Taxas de mortalidade (TM)</a></li>
+<li class="chapter" data-level="8.3.2" data-path="sobrevida.html"><a href="sobrevida.html#taxas-mais-específicas"><i class="fa fa-check"></i><b>8.3.2</b> Taxas mais específicas</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html"><i class="fa fa-check"></i><b>8.4</b> Medidas de associação</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#incidência-observada-de-nascimentos-com-baixo-peso-entre-mães-expostas-ao-risco-fumantes"><i class="fa fa-check"></i><b>8.4.1</b> Incidência observada de nascimentos com baixo peso entre mães expostas ao risco (fumantes)</a></li>
+<li class="chapter" data-level="8.4.2" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#incidência-observada-de-nascimentos-com-baixo-peso-entre-mães-não-expostas-ao-risco-não-fumantes"><i class="fa fa-check"></i><b>8.4.2</b> Incidência observada de nascimentos com baixo peso entre mães não expostas ao risco (não fumantes)</a></li>
+<li class="chapter" data-level="8.4.3" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#prevalência-de-nascimentos-com-baixo-peso-na-população-estudada"><i class="fa fa-check"></i><b>8.4.3</b> Prevalência de nascimentos com baixo peso na população estudada</a></li>
+<li class="chapter" data-level="8.4.4" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#diferença-de-risco-risco-atribuível---ra"><i class="fa fa-check"></i><b>8.4.4</b> Diferença de risco (Risco atribuível - RA)</a></li>
+<li class="chapter" data-level="8.4.5" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#razão-de-risco-risco-relativo---rr"><i class="fa fa-check"></i><b>8.4.5</b> Razão de risco (Risco relativo - RR)</a></li>
+<li class="chapter" data-level="8.4.6" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#risco-atribuível-proporcional-fração-etiológica---fe"><i class="fa fa-check"></i><b>8.4.6</b> Risco atribuível proporcional (Fração etiológica - FE)</a></li>
+<li class="chapter" data-level="8.4.7" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#odds-ratio-razão-das-chances"><i class="fa fa-check"></i><b>8.4.7</b> <em>Odds ratio</em> (Razão das chances)</a></li>
+<li class="chapter" data-level="8.4.8" data-path="medidas-de-associação.html"><a href="medidas-de-associação.html#correlação-linear-de-pearson"><i class="fa fa-check"></i><b>8.4.8</b> Correlação linear de Pearson</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="intervalos-de-confiança.html"><a href="intervalos-de-confiança.html"><i class="fa fa-check"></i><b>8.5</b> Intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="intervalos-de-confiança.html"><a href="intervalos-de-confiança.html#razão-de-risco-risco-relativo---rr-1"><i class="fa fa-check"></i><b>8.5.1</b> Razão de risco (Risco relativo - RR)</a></li>
+<li class="chapter" data-level="8.5.2" data-path="intervalos-de-confiança.html"><a href="intervalos-de-confiança.html#razão-de-chances-odds-ratio---or"><i class="fa fa-check"></i><b>8.5.2</b> Razão de chances ( <em>odds ratio</em> - OR)</a></li>
+<li class="chapter" data-level="8.5.3" data-path="intervalos-de-confiança.html"><a href="intervalos-de-confiança.html#diferença-de-risco-risco-atribuível---ra-1"><i class="fa fa-check"></i><b>8.5.3</b> Diferença de risco (Risco atribuível - RA)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="introdução-à-distribuição-das-médias-e-diferenças-entre-médias-amostrais-e-seus-intervalos-de-confiança.html"><a href="introdução-à-distribuição-das-médias-e-diferenças-entre-médias-amostrais-e-seus-intervalos-de-confiança.html"><i class="fa fa-check"></i><b>9</b> Introdução à distribuição das médias e diferenças entre médias amostrais e seus intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="distribuições-amostrais.html"><a href="distribuições-amostrais.html"><i class="fa fa-check"></i><b>9.1</b> Distribuições amostrais</a></li>
+<li class="chapter" data-level="9.2" data-path="intervalos-de-confiança-1.html"><a href="intervalos-de-confiança-1.html"><i class="fa fa-check"></i><b>9.2</b> Intervalos de confiança</a></li>
+<li class="chapter" data-level="9.3" data-path="distribuição-das-médias-amostrais-e-seus-intervalos-de-confiança.html"><a href="distribuição-das-médias-amostrais-e-seus-intervalos-de-confiança.html"><i class="fa fa-check"></i><b>9.3</b> Distribuição das médias amostrais e seus intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="distribuição-das-médias-amostrais-e-seus-intervalos-de-confiança.html"><a href="distribuição-das-médias-amostrais-e-seus-intervalos-de-confiança.html#fator-de-correção-para-populações-finitas"><i class="fa fa-check"></i><b>9.3.1</b> Fator de correção para populações finitas</a></li>
+<li class="chapter" data-level="9.3.2" data-path="distribuição-das-médias-amostrais-e-seus-intervalos-de-confiança.html"><a href="distribuição-das-médias-amostrais-e-seus-intervalos-de-confiança.html#intervalo-de-confiança-para-médias-amostrais"><i class="fa fa-check"></i><b>9.3.2</b> Intervalo de confiança para médias amostrais</a></li>
+<li class="chapter" data-level="9.3.3" data-path="distribuição-das-médias-amostrais-e-seus-intervalos-de-confiança.html"><a href="distribuição-das-médias-amostrais-e-seus-intervalos-de-confiança.html#intervalo-de-confiança-bilateral-para-uma-média-amostral-sob-variância-populacional-conhecida-figura-reffigfig28"><i class="fa fa-check"></i><b>9.3.3</b> Intervalo de confiança bilateral para uma média amostral sob variância populacional conhecida (Figura @ref(fig:fig28))</a></li>
+<li class="chapter" data-level="9.3.4" data-path="distribuição-das-médias-amostrais-e-seus-intervalos-de-confiança.html"><a href="distribuição-das-médias-amostrais-e-seus-intervalos-de-confiança.html#intervalo-de-confiança-para-uma-média-amostral-sob-variância-populacional-desconhecida-mas-amostras-não-tão-pequenas-n-ge-30-figura-reffigfig55"><i class="fa fa-check"></i><b>9.3.4</b> Intervalo de confiança para uma média amostral sob variância populacional desconhecida mas amostras não tão pequenas: <span class="math inline">\(n \ge 30\)</span> (Figura @ref(fig:fig55))</a></li>
+<li class="chapter" data-level="9.3.5" data-path="distribuição-das-médias-amostrais-e-seus-intervalos-de-confiança.html"><a href="distribuição-das-médias-amostrais-e-seus-intervalos-de-confiança.html#intervalo-de-confiança-para-uma-média-amostral-sob-variância-populacional-desconhecida-e-amostras-de-qualquer-tamanho-figura-reffigfig58"><i class="fa fa-check"></i><b>9.3.5</b> Intervalo de confiança para uma média amostral sob variância populacional desconhecida e amostras de qualquer tamanho (Figura @ref(fig:fig58))</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="distribuição-das-diferenças-de-médias-amostrais-independentes-e-seus-intervalos-de-confiança.html"><a href="distribuição-das-diferenças-de-médias-amostrais-independentes-e-seus-intervalos-de-confiança.html"><i class="fa fa-check"></i><b>9.4</b> Distribuição das diferenças de médias amostrais independentes e seus intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="distribuição-das-diferenças-de-médias-amostrais-independentes-e-seus-intervalos-de-confiança.html"><a href="distribuição-das-diferenças-de-médias-amostrais-independentes-e-seus-intervalos-de-confiança.html#intervalos-de-confiança-para-a-diferença-entre-duas-médias-amostrais-com-variância-populacionais-conhecidas"><i class="fa fa-check"></i><b>9.4.1</b> Intervalos de confiança para a diferença entre duas médias amostrais com variância populacionais conhecidas</a></li>
+<li class="chapter" data-level="9.4.2" data-path="distribuição-das-diferenças-de-médias-amostrais-independentes-e-seus-intervalos-de-confiança.html"><a href="distribuição-das-diferenças-de-médias-amostrais-independentes-e-seus-intervalos-de-confiança.html#intervalos-de-confiança-para-a-diferença-entre-duas-médias-amostrais-com-variâncias-populacionais-desconhecidas-mas-admitidas-iguais"><i class="fa fa-check"></i><b>9.4.2</b> Intervalos de confiança para a diferença entre duas médias amostrais com variâncias populacionais desconhecidas mas admitidas iguais</a></li>
+<li class="chapter" data-level="9.4.3" data-path="distribuição-das-diferenças-de-médias-amostrais-independentes-e-seus-intervalos-de-confiança.html"><a href="distribuição-das-diferenças-de-médias-amostrais-independentes-e-seus-intervalos-de-confiança.html#intervalos-de-confiança-para-a-diferença-entre-duas-médias-amostrais-com-variâncias-populacionais-desconhecidas-e-desiguais"><i class="fa fa-check"></i><b>9.4.3</b> Intervalos de confiança para a diferença entre duas médias amostrais com variâncias populacionais desconhecidas e desiguais</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="distribuição-das-diferenças-de-médias-amostrais-dependentes-e-seus-intervalos-de-confiança.html"><a href="distribuição-das-diferenças-de-médias-amostrais-dependentes-e-seus-intervalos-de-confiança.html"><i class="fa fa-check"></i><b>9.5</b> Distribuição das diferenças de médias amostrais dependentes e seus intervalos de confiança</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="introdução-à-distribuição-das-proporções-amostrais-e-seus-intervalos-de-confiança.html"><a href="introdução-à-distribuição-das-proporções-amostrais-e-seus-intervalos-de-confiança.html"><i class="fa fa-check"></i><b>10</b> Introdução à distribuição das proporções amostrais e seus intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="conceito-elementar-de-uma-proporção.html"><a href="conceito-elementar-de-uma-proporção.html"><i class="fa fa-check"></i><b>10.1</b> Conceito elementar de uma proporção</a></li>
+<li class="chapter" data-level="10.2" data-path="proporção-amostral-como-uma-uma-variável-binomial.html"><a href="proporção-amostral-como-uma-uma-variável-binomial.html"><i class="fa fa-check"></i><b>10.2</b> Proporção amostral como uma uma variável Binomial</a></li>
+<li class="chapter" data-level="10.3" data-path="distribuição-das-proporções-amostrais.html"><a href="distribuição-das-proporções-amostrais.html"><i class="fa fa-check"></i><b>10.3</b> Distribuição das proporções amostrais</a></li>
+<li class="chapter" data-level="10.4" data-path="intervalo-de-confiança-para-proporções-amostrais.html"><a href="intervalo-de-confiança-para-proporções-amostrais.html"><i class="fa fa-check"></i><b>10.4</b> Intervalo de confiança para proporções amostrais</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="intervalo-de-confiança-para-proporções-amostrais.html"><a href="intervalo-de-confiança-para-proporções-amostrais.html#intervalos-de-confiança-para-a-diferença-entre-duas-proporções-amostrais"><i class="fa fa-check"></i><b>10.4.1</b> Intervalos de confiança para a diferença entre duas proporções amostrais</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="teste_hipoteses.html"><a href="teste_hipoteses.html"><i class="fa fa-check"></i><b>11</b> Introdução a testes de hipóteses</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="filosofia-da-ciência.html"><a href="filosofia-da-ciência.html"><i class="fa fa-check"></i><b>11.1</b> Filosofia da ciência</a></li>
+<li class="chapter" data-level="11.2" data-path="história.html"><a href="história.html"><i class="fa fa-check"></i><b>11.2</b> História</a></li>
+<li class="chapter" data-level="11.3" data-path="conceitos.html"><a href="conceitos.html"><i class="fa fa-check"></i><b>11.3</b> Conceitos</a></li>
+<li class="chapter" data-level="11.4" data-path="natureza-dos-erros.html"><a href="natureza-dos-erros.html"><i class="fa fa-check"></i><b>11.4</b> Natureza dos erros</a></li>
+<li class="chapter" data-level="11.5" data-path="recomendações-gerais.html"><a href="recomendações-gerais.html"><i class="fa fa-check"></i><b>11.5</b> Recomendações gerais</a></li>
+<li class="chapter" data-level="11.6" data-path="efeito-do-limite-central.html"><a href="efeito-do-limite-central.html"><i class="fa fa-check"></i><b>11.6</b> Efeito do limite central</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="efeito-do-limite-central.html"><a href="efeito-do-limite-central.html#erro-global"><i class="fa fa-check"></i><b>11.6.1</b> Erro global</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="estruturas-das-hipóteses.html"><a href="estruturas-das-hipóteses.html"><i class="fa fa-check"></i><b>11.7</b> Estruturas das hipóteses</a>
+<ul>
+<li class="chapter" data-level="11.7.1" data-path="estruturas-das-hipóteses.html"><a href="estruturas-das-hipóteses.html#interpretação-gráfica-dos-níveis-de-significânciaconfiança"><i class="fa fa-check"></i><b>11.7.1</b> Interpretação gráfica dos níveis de significância/confiança</a></li>
+<li class="chapter" data-level="11.7.2" data-path="estruturas-das-hipóteses.html"><a href="estruturas-das-hipóteses.html#teste-de-hipóteses-bilateral"><i class="fa fa-check"></i><b>11.7.2</b> Teste de hipóteses Bilateral</a></li>
+<li class="chapter" data-level="11.7.3" data-path="estruturas-das-hipóteses.html"><a href="estruturas-das-hipóteses.html#teste-de-hipóteses-unilateral-à-esquerda"><i class="fa fa-check"></i><b>11.7.3</b> Teste de hipóteses Unilateral à esquerda</a></li>
+<li class="chapter" data-level="11.7.4" data-path="estruturas-das-hipóteses.html"><a href="estruturas-das-hipóteses.html#teste-de-hipóteses-unilateral-à-direita"><i class="fa fa-check"></i><b>11.7.4</b> Teste de hipóteses Unilateral à direita</a></li>
+</ul></li>
+<li class="chapter" data-level="11.8" data-path="teste-de-uma-média-amostral.html"><a href="teste-de-uma-média-amostral.html"><i class="fa fa-check"></i><b>11.8</b> Teste de uma média amostral</a>
+<ul>
+<li class="chapter" data-level="11.8.1" data-path="teste-de-uma-média-amostral.html"><a href="teste-de-uma-média-amostral.html#cenários-possíveis"><i class="fa fa-check"></i><b>11.8.1</b> Cenários possíveis</a></li>
+<li class="chapter" data-level="11.8.2" data-path="teste-de-uma-média-amostral.html"><a href="teste-de-uma-média-amostral.html#roteiro-geral"><i class="fa fa-check"></i><b>11.8.2</b> Roteiro geral</a></li>
+<li class="chapter" data-level="11.8.3" data-path="teste-de-uma-média-amostral.html"><a href="teste-de-uma-média-amostral.html#probabilidade-dos-intervalos-de-confiança-para-os-testes-de-hipóteses-com-o-uso-da-estatística-z-z-sim-mathcaln01"><i class="fa fa-check"></i><b>11.8.3</b> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística Z (<span class="math inline">\(Z \sim \mathcal{N}(0,1)\)</span>):</a></li>
+<li class="chapter" data-level="11.8.4" data-path="teste-de-uma-média-amostral.html"><a href="teste-de-uma-média-amostral.html#probabilidade-dos-intervalos-de-confiança-para-os-testes-de-hipóteses-com-o-uso-da-estatística-t-tsim-t_n-1"><i class="fa fa-check"></i><b>11.8.4</b> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística T (<span class="math inline">\(T\sim t_{(n-1)}\)</span>):</a></li>
+</ul></li>
+<li class="chapter" data-level="11.9" data-path="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html"><i class="fa fa-check"></i><b>11.9</b> Teste de médias amostrais independentes de duas populações Normais</a>
+<ul>
+<li class="chapter" data-level="11.9.1" data-path="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html#as-estruturas-possíveis-dos-testes-de-hipóteses-relacionados-às-suas-médias-serão"><i class="fa fa-check"></i><b>11.9.1</b> As estruturas possíveis dos testes de hipóteses relacionados às suas médias serão:</a></li>
+<li class="chapter" data-level="11.9.2" data-path="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html#testes-de-hipóteses-para-as-médias-de-duas-populações-com-variâncias-conhecidas-ou-não-conhecidas-mas-o-tamanho-das-amostras-é-grande"><i class="fa fa-check"></i><b>11.9.2</b> Testes de hipóteses para as médias de duas populações com variâncias conhecidas (ou não conhecidas mas o tamanho das amostras é grande)</a></li>
+<li class="chapter" data-level="11.9.3" data-path="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html#testes-de-hipóteses-para-as-médias-de-duas-populações-com-variâncias-desconhecidas-mas-admitidas-iguais-e-o-tamanho-das-amostras-é-diminuto"><i class="fa fa-check"></i><b>11.9.3</b> Testes de hipóteses para as médias de duas populações com variâncias desconhecidas (mas admitidas iguais) e o tamanho das amostras é diminuto</a></li>
+<li class="chapter" data-level="11.9.4" data-path="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html#teste-de-hipóteses-para-as-médias-de-duas-populações-independentes-com-variâncias-desconhecidas-e-o-tamanho-das-amostras-é-diminuto"><i class="fa fa-check"></i><b>11.9.4</b> Teste de hipóteses para as médias de duas populações independentes com variâncias desconhecidas e o tamanho das amostras é diminuto</a></li>
+</ul></li>
+<li class="chapter" data-level="11.10" data-path="teste-de-uma-proporção-amostral.html"><a href="teste-de-uma-proporção-amostral.html"><i class="fa fa-check"></i><b>11.10</b> Teste de uma proporção amostral</a>
+<ul>
+<li class="chapter" data-level="11.10.1" data-path="teste-de-uma-proporção-amostral.html"><a href="teste-de-uma-proporção-amostral.html#estruturas-possíveis-para-as-hipóteses"><i class="fa fa-check"></i><b>11.10.1</b> Estruturas possíveis para as hipóteses</a></li>
+<li class="chapter" data-level="11.10.2" data-path="teste-de-uma-proporção-amostral.html"><a href="teste-de-uma-proporção-amostral.html#probabilidade-dos-intervalos-de-confiança-para-os-testes-de-hipóteses-com-o-uso-da-estatística-z-z-sim-mathcaln01-1"><i class="fa fa-check"></i><b>11.10.2</b> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística Z (<span class="math inline">\(Z \sim \mathcal{N}(0,1)\)</span>):</a></li>
+</ul></li>
+<li class="chapter" data-level="11.11" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html"><i class="fa fa-check"></i><b>11.11</b> Testes não paramétricos</a>
+<ul>
+<li class="chapter" data-level="11.11.1" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html#teste-qui-quadrado-para-verificação-da-independência-homogeneidade"><i class="fa fa-check"></i><b>11.11.1</b> Teste Qui-quadrado para verificação da independência (homogeneidade)</a></li>
+<li class="chapter" data-level="11.11.2" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html#correção-de-continuidade-em-tabelas-2x2"><i class="fa fa-check"></i><b>11.11.2</b> Correção de continuidade em tabelas 2x2</a></li>
+<li class="chapter" data-level="11.11.3" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html#coeficiente-de-contingência-de-pearson-modificado-c"><i class="fa fa-check"></i><b>11.11.3</b> Coeficiente de contingência de Pearson (modificado: <span class="math inline">\(C^{*})\)</span> }</a></li>
+<li class="chapter" data-level="11.11.4" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html#teste-qui-quadrado-para-verificação-da-qualidade-do-ajuste-a-uma-distribuição-teórica-de-probabilidade"><i class="fa fa-check"></i><b>11.11.4</b> Teste Qui-quadrado para verificação da qualidade do ajuste a uma distribuição teórica de probabilidade</a></li>
+<li class="chapter" data-level="11.11.5" data-path="testes-não-paramétricos.html"><a href="testes-não-paramétricos.html#teste-de-significância-para-as-médias-de-duas-populações-dependentes"><i class="fa fa-check"></i><b>11.11.5</b> Teste de significância para as médias de duas populações dependentes</a></li>
+</ul></li>
+<li class="chapter" data-level="11.12" data-path="fluxograma-auxiliar-para-escolha-da-estatística-do-teste-de-hipóteses.html"><a href="fluxograma-auxiliar-para-escolha-da-estatística-do-teste-de-hipóteses.html"><i class="fa fa-check"></i><b>11.12</b> Fluxograma auxiliar para escolha da estatística do teste de hipóteses</a></li>
+<li class="chapter" data-level="11.13" data-path="tabelas-1.html"><a href="tabelas-1.html"><i class="fa fa-check"></i><b>11.13</b> Tabelas</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://fjrcosta.github.io/apostila/" target="blank">FJCosta Github</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><div class="line-block">UNIVERSIDADE ESTADUAL DE LONDRINA<br />
+CCE - Centro de Ciências Exatas<br />
+DSTA - Departamento de Estatística<br />
+Apostila de Estatística<br />
+Prof. M.e Eng. Felinto Junior Da Costa</div></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="teste-de-uma-média-amostral" class="section level2 hasAnchor" number="11.8">
+<h2><span class="header-section-number">11.8</span> Teste de uma média amostral<a href="teste-de-uma-média-amostral.html#teste-de-uma-média-amostral" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="cenários-possíveis" class="section level3 hasAnchor" number="11.8.1">
+<h3><span class="header-section-number">11.8.1</span> Cenários possíveis<a href="teste-de-uma-média-amostral.html#cenários-possíveis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<ul>
+<li>variância populacional (<span class="math inline">\(\sigma^2\)</span>) <em>teoricamente conhecida</em>;<br />
+</li>
+<li>variância populacional (<span class="math inline">\(\sigma^2\)</span>) desconhecida, mas o tamanho da amostra (<span class="math inline">\(n\)</span>) é grande: <span class="math inline">\(n\ge 30 (40)\)</span>; e,<br />
+</li>
+<li>variância populacional (<span class="math inline">\(\sigma\)</span>) desconhecida e as amostras de tamanho (<span class="math inline">\(n\)</span>) reduzido: <span class="math inline">\(n &lt; 30\)</span>.</li>
+</ul>
+<p><br />
+</p>
+<blockquote>
+<p>Estatística do teste para a primeira situação: variância populacional conhecida</p>
+</blockquote>
+<p><span class="math display">\[
+Z = \frac{\stackrel{-}{X} - \mu}{\frac{\sigma}{\sqrt{n}}} \sim  \mathcal{N}(0,1)
+\]</span><br />
+</p>
+<p>em que:</p>
+<p><br />
+</p>
+<ul>
+<li><span class="math inline">\(\stackrel{-}{X}\)</span> é a média observada na amostra;<br />
+</li>
+<li><span class="math inline">\(\mu\)</span> o valor (desconhecido) inferido à média populacional, a ser testado frente à média amostral observada;<br />
+</li>
+<li><span class="math inline">\(\sigma\)</span> é o desvio padrão populacional; e,<br />
+</li>
+<li><span class="math inline">\(n\)</span> é o tamanho da amostra.</li>
+</ul>
+<p><br />
+</p>
+<blockquote>
+<p>Estatística do teste para a segunda situação: variância populacional desconhecida mas amostras grandes: <span class="math inline">\(n\ge30(40)\)</span>: <span class="math inline">\(S\)</span> pode ser tomado como estimativa de <span class="math inline">\(\sigma\)</span>:</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math display">\[
+Z = \frac{\stackrel{-}{X} - \mu}{\frac{S}{\sqrt{n}}}   \sim \mathcal{N}(0,1)
+\]</span></p>
+<p><br />
+</p>
+<p>em que:<br />
+<br />
+</p>
+<ul>
+<li><span class="math inline">\(\stackrel{-}{X}\)</span> é a média observada na amostra;<br />
+</li>
+<li><span class="math inline">\(\mu\)</span> o valor (desconhecido) inferido à média populacional a ser testado frente à média amostral observada;<br />
+</li>
+<li><span class="math inline">\(S\)</span> é o desvio padrão amostral; e,<br />
+</li>
+<li><span class="math inline">\(n\)</span> é o tamanho da amostra.</li>
+</ul>
+<p><br />
+</p>
+<blockquote>
+<p>Estatística do teste para a terceira situação: variância populacional desconhecida e amostras pequenas: <span class="math inline">\(n&lt;30\)</span>:</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math display">\[
+T = \frac{(\stackrel{-}{X} - \mu)}{    \frac{S}{\sqrt{n}} } \sim t_{(n-1)}
+\]</span></p>
+<p><br />
+</p>
+<p>em que:<br />
+</p>
+<ul>
+<li><span class="math inline">\(\stackrel{-}{X}\)</span> é a média observada na amostra;<br />
+</li>
+<li><span class="math inline">\(\mu\)</span> o valor (desconhecido) inferido à média populacional, a ser testado frente à média amostral;<br />
+</li>
+<li><span class="math inline">\(S\)</span> é o desvio padrão amostral; e,<br />
+</li>
+<li><span class="math inline">\(n\)</span> é o tamanho da amostra.</li>
+</ul>
+<p><br />
+</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="teste-de-uma-média-amostral.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definição do eixo x</span></span>
+<span id="cb120-2"><a href="teste-de-uma-média-amostral.html#cb120-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb120-3"><a href="teste-de-uma-média-amostral.html#cb120-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-4"><a href="teste-de-uma-média-amostral.html#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Densidade da distribuição normal padrão</span></span>
+<span id="cb120-5"><a href="teste-de-uma-média-amostral.html#cb120-5" aria-hidden="true" tabindex="-1"></a>y_norm <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb120-6"><a href="teste-de-uma-média-amostral.html#cb120-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-7"><a href="teste-de-uma-média-amostral.html#cb120-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Lista com diferentes graus de liberdade</span></span>
+<span id="cb120-8"><a href="teste-de-uma-média-amostral.html#cb120-8" aria-hidden="true" tabindex="-1"></a>df_list<span class="ot">=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">20</span>)</span>
+<span id="cb120-9"><a href="teste-de-uma-média-amostral.html#cb120-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-10"><a href="teste-de-uma-média-amostral.html#cb120-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Lista com cores para as curvas da distribuição t</span></span>
+<span id="cb120-11"><a href="teste-de-uma-média-amostral.html#cb120-11" aria-hidden="true" tabindex="-1"></a>colors<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;#097aeb&quot;</span>, <span class="st">&quot;#a37602&quot;</span>, <span class="st">&quot;#02a6f2&quot;</span>, <span class="st">&quot;#9635a1&quot;</span>, <span class="st">&quot;#16b533&quot;</span>)</span>
+<span id="cb120-12"><a href="teste-de-uma-média-amostral.html#cb120-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-13"><a href="teste-de-uma-média-amostral.html#cb120-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Criação do data frame com todas as curvas</span></span>
+<span id="cb120-14"><a href="teste-de-uma-média-amostral.html#cb120-14" aria-hidden="true" tabindex="-1"></a>data<span class="ot">=</span><span class="fu">data.frame</span>()</span>
+<span id="cb120-15"><a href="teste-de-uma-média-amostral.html#cb120-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(df_list)) {</span>
+<span id="cb120-16"><a href="teste-de-uma-média-amostral.html#cb120-16" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">=</span> df_list[i]</span>
+<span id="cb120-17"><a href="teste-de-uma-média-amostral.html#cb120-17" aria-hidden="true" tabindex="-1"></a>  y_t <span class="ot">=</span> <span class="fu">dt</span>(x, df)</span>
+<span id="cb120-18"><a href="teste-de-uma-média-amostral.html#cb120-18" aria-hidden="true" tabindex="-1"></a>  df_data <span class="ot">=</span> <span class="fu">data.frame</span>(x, y_t, df)</span>
+<span id="cb120-19"><a href="teste-de-uma-média-amostral.html#cb120-19" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">=</span> <span class="fu">rbind</span>(data, df_data)</span>
+<span id="cb120-20"><a href="teste-de-uma-média-amostral.html#cb120-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb120-21"><a href="teste-de-uma-média-amostral.html#cb120-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-22"><a href="teste-de-uma-média-amostral.html#cb120-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotagem do gráfico</span></span>
+<span id="cb120-23"><a href="teste-de-uma-média-amostral.html#cb120-23" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span></span>
+<span id="cb120-24"><a href="teste-de-uma-média-amostral.html#cb120-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> y_t, <span class="at">color =</span> <span class="fu">factor</span>(df)), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb120-25"><a href="teste-de-uma-média-amostral.html#cb120-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> colors, <span class="at">name =</span> <span class="st">&quot;Graus de liberdade&quot;</span>)<span class="sc">+</span></span>
+<span id="cb120-26"><a href="teste-de-uma-média-amostral.html#cb120-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Distribuição t sob diferentes graus de liberdade </span><span class="sc">\n</span><span class="st">e sua aproximação à Normal padronizada)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb120-27"><a href="teste-de-uma-média-amostral.html#cb120-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Valores assumidos&quot;</span>) <span class="sc">+</span></span>
+<span id="cb120-28"><a href="teste-de-uma-média-amostral.html#cb120-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Densidade&quot;</span>) <span class="sc">+</span></span>
+<span id="cb120-29"><a href="teste-de-uma-média-amostral.html#cb120-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb120-30"><a href="teste-de-uma-média-amostral.html#cb120-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size=</span><span class="fl">1.5</span>, <span class="at">linetype=</span><span class="st">&#39;dashed&#39;</span>)</span>
+<span id="cb120-31"><a href="teste-de-uma-média-amostral.html#cb120-31" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span></code></pre></div>
+<p><img src="apostila_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
+<p><br />
+</p>
+</div>
+<div id="roteiro-geral" class="section level3 hasAnchor" number="11.8.2">
+<h3><span class="header-section-number">11.8.2</span> Roteiro geral<a href="teste-de-uma-média-amostral.html#roteiro-geral" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<ul>
+<li>identificar o modelo de probabilidade do estimador do parâmetro da população que se estuda;<br />
+</li>
+<li>identificar a estatística apropriada para o teste em razão das informações disponíveis acerca da população, do tamanho da amostra e sua independência:
+<ul>
+<li>escore médio;</li>
+<li>proporção;</li>
+<li>estatísticas T, Z, F, ou <span class="math inline">\(\chi\)</span>;<br />
+</li>
+</ul></li>
+<li>determinar na curva de densidade de probabilidade do modelo da estatística de teste a(s) região(ões) crítica(s): faixa(s) de valores da estatística que nos levam à rejeição ou não da hipótese <span class="math inline">\(H_{0}\)</span> em função do nível de significância previamente arbitrado pelo pesquisador <span class="math inline">\(\alpha\)</span>;</li>
+<li>calcular a estatística do teste apropriada para o parâmetro que se pretende inferir com base na amostra extraída;</li>
+<li>concluir com base nos resultados analisados: se o valor da estatística do teste pertence à(s) região(ões) crítica(s) de sua distribuição teórica, rejeitar <span class="math inline">\(H_{0}\)</span>; caso contrário não há evidências estatisticamente significativas para rejeitá-la.</li>
+</ul>
+<p><br />
+</p>
+</div>
+<div id="probabilidade-dos-intervalos-de-confiança-para-os-testes-de-hipóteses-com-o-uso-da-estatística-z-z-sim-mathcaln01" class="section level3 hasAnchor" number="11.8.3">
+<h3><span class="header-section-number">11.8.3</span> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística Z (<span class="math inline">\(Z \sim \mathcal{N}(0,1)\)</span>):<a href="teste-de-uma-média-amostral.html#probabilidade-dos-intervalos-de-confiança-para-os-testes-de-hipóteses-com-o-uso-da-estatística-z-z-sim-mathcaln01" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<ul>
+<li>Teste de hipóteses bilateral (tipo: diferente de):</li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P[\left|Z_{calc}\right| \le {Z}_{tab\left(\frac{\alpha }{2}\right)}|\mu=\mu_{0}] &amp; =(1-\alpha)\\
+P(-{Z}_{tab\left(\frac{\alpha }{2}\right)} \le  Z_{calc} \le {Z}_{tab\left(\frac{\alpha }{2}\right)}) &amp; = (1-\alpha)\\
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<ul>
+<li>Teste de hipóteses unilateral à esquerda (tipo: menor que):</li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P[Z_{calc} \ge -{Z}_{tab\left(\alpha \right)}|\mu \ge \mu_{0}] &amp; =(1-\alpha) \\
+P(Z_{calc} \ge -{Z}_{tab\left(\alpha \right)}) &amp; =(1-\alpha)\\
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<ul>
+<li>Teste de hipóteses unilateral à direita (tipo maior que):</li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P[Z_{calc} \le {Z}_{tab\left(\alpha \right)}|\mu \le \mu_{0}] &amp; =(1-\alpha)\\
+P(Z_{calc} \le {Z}_{tab\left(\alpha \right)}) &amp; =(1-\alpha)\\
+\end{align*}\]</span></p>
+<p><br />
+</p>
+</div>
+<div id="probabilidade-dos-intervalos-de-confiança-para-os-testes-de-hipóteses-com-o-uso-da-estatística-t-tsim-t_n-1" class="section level3 hasAnchor" number="11.8.4">
+<h3><span class="header-section-number">11.8.4</span> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística T (<span class="math inline">\(T\sim t_{(n-1)}\)</span>):<a href="teste-de-uma-média-amostral.html#probabilidade-dos-intervalos-de-confiança-para-os-testes-de-hipóteses-com-o-uso-da-estatística-t-tsim-t_n-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<ul>
+<li>Teste de hipóteses bilateral (tipo: diferente de):</li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P[\left|t_{calc}\right| \ge {t}_{tab\left(\frac{\alpha }{2};n-1\right)}|\mu=\mu_{0}] &amp; =(1-\alpha)\\
+P(-{t}_{tab\left(\frac{\alpha }{2};n-1\right)} \le  t_{calc}  \le  {t}_{tab\left(\frac{\alpha }{2};n-1\right)}) &amp; =(1-\alpha)
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<ul>
+<li>Teste de hipóteses unilateral à esquerda (tipo: menor que):</li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P[t_{calc} \ge -{t}_{tab\left(\alpha \right)}|\mu \ge \mu_{0}] &amp; =(1-\alpha)\\  
+P( t_{calc}  \ge -{t}_{tab\left(\alpha;n-1\right)}) &amp; = (1-\alpha)
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<ul>
+<li>Teste de hipóteses unilateral à direita (tipo: maior que):</li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P[t_{calc} \le {t}_{tab\left(\alpha \right)}|\mu \le \mu_{0}] &amp; =(1-\alpha) \\  
+P( t_{calc}  \le {t}_{tab\left(\alpha;n-1\right)} ) &amp; = (1-\alpha)
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: O tempo de vida útil de uma amostra de 100 lâmpadas fluorescentes produzidas por uma fábrica foi calculado resultando em uma vida útil média de 1570 h sob um desvio padrão de 120 h. Seja <span class="math inline">\(\mu\)</span> é o tempo de vida útil das lâmpadas produzidas pela empresa. Teste a hipótese de <span class="math inline">\(\mu=1600 h\)</span> contra a hipótese alternativa de <span class="math inline">\(\mu \neq 1600 h\)</span> sob um nível de significância <span class="math inline">\(\alpha=0,05\)</span>.</p>
+</blockquote>
+<p><br />
+</p>
+<blockquote>
+<p>O problema nos pede um teste bilateral (tipo: diferente de):</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math display">\[
+\begin{cases}
+    H_{0}: \mu = 1.600\\
+    H_{1}: \mu \ne 1.600\\
+\end{cases}
+\]</span></p>
+<p>Iremos verificar se a informação amostral obtida nos permite rejeitar a hipótese nula que afirma ser a vida útil média das lâmpadas a 1.600 h., fazendo então valer a hipótese alternativa que afirma ser a vida útil das lâmpadas <strong>diferente de</strong> 1.600 h.</p>
+<p><br />
+</p>
+<p>Pelo enunciado do problema a variância populacional <span class="math inline">\(\sigma^{2}\)</span> é desconhecida mas, como a amostra é de grande tamanho (n=100) podemos tomar <span class="math inline">\(S\)</span> como uma estimativa de <span class="math inline">\(\sigma\)</span> e a estatística do teste fica definida como sendo:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+Z = \frac{\stackrel{-}{X} - \mu_{0}}{\frac{S}{\sqrt{n}}}   \sim \mathcal{N}(0,1)
+\]</span></p>
+<p><br />
+</p>
+<p>Extraindo os dados do problema:</p>
+<ul>
+<li><span class="math inline">\(\stackrel{-}{X}=1570h\)</span> é a média amostral;<br />
+</li>
+<li><span class="math inline">\(\mu_{0}=1600\)</span> o valor (desconhecido) inferido à média populacional a ser testado frente à média amostral;<br />
+</li>
+<li><span class="math inline">\(S=120h\)</span> é o desvio padrão amostral; e,<br />
+</li>
+<li><span class="math inline">\(n=100\)</span> é o tamanho da amostra.</li>
+</ul>
+<p><br />
+</p>
+<p>Calculando-se o valor da estatística do teste:</p>
+<p><span class="math display">\[
+z_{calc} = \frac{1570 - 1600}{\frac{120}{\sqrt{100}}   } =-2,50
+\]</span></p>
+<p>Da tabela da distribuição Normal reduzida obtemos o valor crítico bicaudal: <span class="math inline">\(|{z}_{crit}|=1,96\)</span>. Pelo cálculo, a estatística do teste é <span class="math inline">\(z_{calc}=-2,50\)</span>.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="teste-de-uma-média-amostral.html#cb121-1" aria-hidden="true" tabindex="-1"></a>alfa<span class="ot">=</span><span class="fl">0.05</span></span>
+<span id="cb121-2"><a href="teste-de-uma-média-amostral.html#cb121-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-3"><a href="teste-de-uma-média-amostral.html#cb121-3" aria-hidden="true" tabindex="-1"></a>prob_desejada1<span class="ot">=</span>alfa<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb121-4"><a href="teste-de-uma-média-amostral.html#cb121-4" aria-hidden="true" tabindex="-1"></a>z_desejado1<span class="ot">=</span><span class="fu">round</span>(<span class="fu">qnorm</span>(prob_desejada1),<span class="dv">4</span>)</span>
+<span id="cb121-5"><a href="teste-de-uma-média-amostral.html#cb121-5" aria-hidden="true" tabindex="-1"></a>d_desejada1<span class="ot">=</span><span class="fu">dnorm</span>(z_desejado1, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb121-6"><a href="teste-de-uma-média-amostral.html#cb121-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-7"><a href="teste-de-uma-média-amostral.html#cb121-7" aria-hidden="true" tabindex="-1"></a>prob_desejada2<span class="ot">=</span><span class="dv">1</span><span class="sc">-</span>alfa<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb121-8"><a href="teste-de-uma-média-amostral.html#cb121-8" aria-hidden="true" tabindex="-1"></a>z_desejado2<span class="ot">=</span><span class="fu">round</span>(<span class="fu">qnorm</span>(prob_desejada2),<span class="dv">4</span>)</span>
+<span id="cb121-9"><a href="teste-de-uma-média-amostral.html#cb121-9" aria-hidden="true" tabindex="-1"></a>d_desejada2<span class="ot">=</span><span class="fu">dnorm</span>(z_desejado2, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb121-10"><a href="teste-de-uma-média-amostral.html#cb121-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-11"><a href="teste-de-uma-média-amostral.html#cb121-11" aria-hidden="true" tabindex="-1"></a>z_calculado<span class="ot">=</span><span class="sc">-</span><span class="fl">2.5</span></span>
+<span id="cb121-12"><a href="teste-de-uma-média-amostral.html#cb121-12" aria-hidden="true" tabindex="-1"></a>d_calculado<span class="ot">=</span><span class="fu">dnorm</span>(z_calculado, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb121-13"><a href="teste-de-uma-média-amostral.html#cb121-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-14"><a href="teste-de-uma-média-amostral.html#cb121-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-15"><a href="teste-de-uma-média-amostral.html#cb121-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>))) <span class="sc">+</span></span>
+<span id="cb121-16"><a href="teste-de-uma-média-amostral.html#cb121-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">&quot;function&quot;</span>, </span>
+<span id="cb121-17"><a href="teste-de-uma-média-amostral.html#cb121-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">fun =</span> dnorm, </span>
+<span id="cb121-18"><a href="teste-de-uma-média-amostral.html#cb121-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb121-19"><a href="teste-de-uma-média-amostral.html#cb121-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, z_desejado1),</span>
+<span id="cb121-20"><a href="teste-de-uma-média-amostral.html#cb121-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb121-21"><a href="teste-de-uma-média-amostral.html#cb121-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">&quot;function&quot;</span>, </span>
+<span id="cb121-22"><a href="teste-de-uma-média-amostral.html#cb121-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">fun =</span> dnorm, </span>
+<span id="cb121-23"><a href="teste-de-uma-média-amostral.html#cb121-23" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">&quot;lightgrey&quot;</span>, </span>
+<span id="cb121-24"><a href="teste-de-uma-média-amostral.html#cb121-24" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(z_desejado1,<span class="dv">0</span>),</span>
+<span id="cb121-25"><a href="teste-de-uma-média-amostral.html#cb121-25" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb121-26"><a href="teste-de-uma-média-amostral.html#cb121-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">&quot;function&quot;</span>, </span>
+<span id="cb121-27"><a href="teste-de-uma-média-amostral.html#cb121-27" aria-hidden="true" tabindex="-1"></a>            <span class="at">fun =</span> dnorm, </span>
+<span id="cb121-28"><a href="teste-de-uma-média-amostral.html#cb121-28" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">&quot;lightgrey&quot;</span>, </span>
+<span id="cb121-29"><a href="teste-de-uma-média-amostral.html#cb121-29" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, z_desejado2),</span>
+<span id="cb121-30"><a href="teste-de-uma-média-amostral.html#cb121-30" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb121-31"><a href="teste-de-uma-média-amostral.html#cb121-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">&quot;function&quot;</span>, </span>
+<span id="cb121-32"><a href="teste-de-uma-média-amostral.html#cb121-32" aria-hidden="true" tabindex="-1"></a>            <span class="at">fun =</span> dnorm, </span>
+<span id="cb121-33"><a href="teste-de-uma-média-amostral.html#cb121-33" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb121-34"><a href="teste-de-uma-média-amostral.html#cb121-34" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(z_desejado2,<span class="dv">4</span>),</span>
+<span id="cb121-35"><a href="teste-de-uma-média-amostral.html#cb121-35" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb121-36"><a href="teste-de-uma-média-amostral.html#cb121-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">&quot;Densidade&quot;</span>) <span class="sc">+</span></span>
+<span id="cb121-37"><a href="teste-de-uma-média-amostral.html#cb121-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name=</span><span class="st">&quot;Valores de z&quot;</span>, <span class="at">breaks =</span> <span class="fu">c</span>(z_desejado1,z_desejado2))  <span class="sc">+</span></span>
+<span id="cb121-38"><a href="teste-de-uma-média-amostral.html#cb121-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span> </span>
+<span id="cb121-39"><a href="teste-de-uma-média-amostral.html#cb121-39" aria-hidden="true" tabindex="-1"></a>         <span class="st">&quot;Regiões críticas sob a curva da função densidade da </span><span class="sc">\n</span><span class="st">distribuição apropriada ao teste&quot;</span>, </span>
+<span id="cb121-40"><a href="teste-de-uma-média-amostral.html#cb121-40" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;P(-1,96, 1,96)=(1-\u03b1) em cinza (nível de confiança=0,95) </span><span class="sc">\n</span><span class="st">P(-\U221e; -1,96)= P(1,96; \U221e)= \u03b1/2 em vermelho (nível de significância/2=0,025) &quot;</span>)<span class="sc">+</span></span>
+<span id="cb121-41"><a href="teste-de-uma-média-amostral.html#cb121-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> z_desejado1, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> z_desejado1, <span class="at">yend =</span> d_desejada1), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb121-42"><a href="teste-de-uma-média-amostral.html#cb121-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> z_desejado2, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> z_desejado2, <span class="at">yend =</span> d_desejada2), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb121-43"><a href="teste-de-uma-média-amostral.html#cb121-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>z_desejado1<span class="fl">-0.1</span>, <span class="at">y=</span>d_desejada1, <span class="at">label=</span><span class="st">&quot;valor crítico=-1,96&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb121-44"><a href="teste-de-uma-média-amostral.html#cb121-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>z_desejado2<span class="fl">+0.3</span>, <span class="at">y=</span>d_desejada2, <span class="at">label=</span><span class="st">&quot;valor crítico=1,96&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb121-45"><a href="teste-de-uma-média-amostral.html#cb121-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>z_desejado1<span class="dv">-2</span>, <span class="at">y=</span><span class="fl">0.1</span>, <span class="at">label=</span><span class="st">&quot;Região de rejeição da hipótese nula </span><span class="sc">\n</span><span class="st">probabilidade=\u03b1/2&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb121-46"><a href="teste-de-uma-média-amostral.html#cb121-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>z_desejado2<span class="fl">+0.5</span>, <span class="at">y=</span><span class="fl">0.1</span>, <span class="at">label=</span><span class="st">&quot;Região de rejeição da hipótese nula </span><span class="sc">\n</span><span class="st">probabilidade=\u03b1/2&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb121-47"><a href="teste-de-uma-média-amostral.html#cb121-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>z_desejado1<span class="fl">+1.3</span>, <span class="at">y=</span><span class="fl">0.2</span>, <span class="at">label=</span><span class="st">&quot;Região de não rejeição da hipótese nula </span><span class="sc">\n</span><span class="st">probabilidade= (1-\u03b1)&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb121-48"><a href="teste-de-uma-média-amostral.html#cb121-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> z_calculado, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> z_calculado, <span class="at">yend =</span> d_calculado), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb121-49"><a href="teste-de-uma-média-amostral.html#cb121-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>z_calculado<span class="fl">-0.1</span>, <span class="at">y=</span>d_calculado, <span class="at">label=</span><span class="st">&quot;valor da estatística do teste=-2,5&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb121-50"><a href="teste-de-uma-média-amostral.html#cb121-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig73"></span>
+<img src="apostila_files/figure-html/fig73-1.png" alt="Regiões de rejeição da hipótese nula para o teste bilateral (tipo: diferente de) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $z_{crit} =\pm 1,96$. O valor calculado da estatística ($z_{calc}=-2,50$) situa-se na faixa de significância do teste, possibilitando a rejeição da hipótese nula sob aquele nível de confiança" width="100%" />
+<p class="caption">
+Figure 11.11: Regiões de rejeição da hipótese nula para o teste bilateral (tipo: diferente de) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: <span class="math inline">\(z_{crit} =\pm 1,96\)</span>. O valor calculado da estatística (<span class="math inline">\(z_{calc}=-2,50\)</span>) situa-se na faixa de significância do teste, possibilitando a rejeição da hipótese nula sob aquele nível de confiança
+</p>
+</div>
+<p><br />
+</p>
+<p>Conclusão: Os resultados obtidos na análise estatística realizada nos permitem rejeitar a hipótese de que a duração média populacional das lâmpadas seja igual a 1600h sob um nível de confiança de 95%. A vida útil média das lâmpadas é <strong>diferente</strong> de 1600h (Figura <a href="teste-de-uma-média-amostral.html#fig:fig73">11.11</a>).</p>
+<p><br />
+</p>
+<p><br />
+</p>
+<p>Podemos ainda realizar testes de hipóteses unilaterais (<span class="math inline">\(\mu&lt;\mu_{0}\)</span> ou <span class="math inline">\(\mu&gt;\mu_{0}\)</span>).</p>
+<p><br />
+</p>
+<blockquote>
+<p>Teste unilateral à esquerda (tipo: menor que)</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math display">\[
+\begin{cases}
+    H_{0}: \mu \ge 1.600 \\
+    H_{1}: \mu &lt; 1.600  \\
+\end{cases}  
+\]</span></p>
+<p><br />
+</p>
+<p>Iremos verificar se a informação amostral obtida nos permite rejeitar a hipótese nula que afirma ser a vida útil média das lâmpadas igual ou superior a 1.600 h., fazendo então valer a hipótese alternativa que afirma ser a vida útil das lâmpadas <strong>menor que</strong> 1.600 h.</p>
+<p><br />
+</p>
+<p>Da tabela da distribuição Normal reduzida obtemos o valor crítico monocaudal: <span class="math inline">\({z}_{crit}=-1,64\)</span>. Pelo cálculo, a estatística do teste é <span class="math inline">\(z_{calc}=-2,50\)</span>.</p>
+<p><br />
+</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="teste-de-uma-média-amostral.html#cb122-1" aria-hidden="true" tabindex="-1"></a>alfa<span class="ot">=</span><span class="fl">0.05</span></span>
+<span id="cb122-2"><a href="teste-de-uma-média-amostral.html#cb122-2" aria-hidden="true" tabindex="-1"></a>prob_desejada<span class="ot">=</span>alfa</span>
+<span id="cb122-3"><a href="teste-de-uma-média-amostral.html#cb122-3" aria-hidden="true" tabindex="-1"></a>z_desejado<span class="ot">=</span><span class="fu">round</span>(<span class="fu">qnorm</span>(prob_desejada),<span class="dv">4</span>)</span>
+<span id="cb122-4"><a href="teste-de-uma-média-amostral.html#cb122-4" aria-hidden="true" tabindex="-1"></a>d_desejada<span class="ot">=</span><span class="fu">dnorm</span>(z_desejado, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb122-5"><a href="teste-de-uma-média-amostral.html#cb122-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-6"><a href="teste-de-uma-média-amostral.html#cb122-6" aria-hidden="true" tabindex="-1"></a>z_calculado<span class="ot">=</span><span class="sc">-</span><span class="fl">2.5</span></span>
+<span id="cb122-7"><a href="teste-de-uma-média-amostral.html#cb122-7" aria-hidden="true" tabindex="-1"></a>d_calculado<span class="ot">=</span><span class="fu">dnorm</span>(z_calculado, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb122-8"><a href="teste-de-uma-média-amostral.html#cb122-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-9"><a href="teste-de-uma-média-amostral.html#cb122-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-10"><a href="teste-de-uma-média-amostral.html#cb122-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-11"><a href="teste-de-uma-média-amostral.html#cb122-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-12"><a href="teste-de-uma-média-amostral.html#cb122-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>))) <span class="sc">+</span></span>
+<span id="cb122-13"><a href="teste-de-uma-média-amostral.html#cb122-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">&quot;function&quot;</span>, </span>
+<span id="cb122-14"><a href="teste-de-uma-média-amostral.html#cb122-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">fun =</span> dnorm, </span>
+<span id="cb122-15"><a href="teste-de-uma-média-amostral.html#cb122-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb122-16"><a href="teste-de-uma-média-amostral.html#cb122-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, z_desejado),</span>
+<span id="cb122-17"><a href="teste-de-uma-média-amostral.html#cb122-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb122-18"><a href="teste-de-uma-média-amostral.html#cb122-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">&quot;function&quot;</span>, </span>
+<span id="cb122-19"><a href="teste-de-uma-média-amostral.html#cb122-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">fun =</span> dnorm, </span>
+<span id="cb122-20"><a href="teste-de-uma-média-amostral.html#cb122-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">&quot;lightgrey&quot;</span>, </span>
+<span id="cb122-21"><a href="teste-de-uma-média-amostral.html#cb122-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(z_desejado,<span class="dv">0</span>),</span>
+<span id="cb122-22"><a href="teste-de-uma-média-amostral.html#cb122-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb122-23"><a href="teste-de-uma-média-amostral.html#cb122-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">&quot;function&quot;</span>, </span>
+<span id="cb122-24"><a href="teste-de-uma-média-amostral.html#cb122-24" aria-hidden="true" tabindex="-1"></a>            <span class="at">fun =</span> dnorm, </span>
+<span id="cb122-25"><a href="teste-de-uma-média-amostral.html#cb122-25" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">&quot;lightgrey&quot;</span>, </span>
+<span id="cb122-26"><a href="teste-de-uma-média-amostral.html#cb122-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, z_desejado),</span>
+<span id="cb122-27"><a href="teste-de-uma-média-amostral.html#cb122-27" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb122-28"><a href="teste-de-uma-média-amostral.html#cb122-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">&quot;function&quot;</span>, </span>
+<span id="cb122-29"><a href="teste-de-uma-média-amostral.html#cb122-29" aria-hidden="true" tabindex="-1"></a>            <span class="at">fun =</span> dnorm, </span>
+<span id="cb122-30"><a href="teste-de-uma-média-amostral.html#cb122-30" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">&quot;lightgrey&quot;</span>, </span>
+<span id="cb122-31"><a href="teste-de-uma-média-amostral.html#cb122-31" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(z_desejado,<span class="dv">4</span>),</span>
+<span id="cb122-32"><a href="teste-de-uma-média-amostral.html#cb122-32" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb122-33"><a href="teste-de-uma-média-amostral.html#cb122-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">&quot;Densidade&quot;</span>) <span class="sc">+</span></span>
+<span id="cb122-34"><a href="teste-de-uma-média-amostral.html#cb122-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name=</span><span class="st">&quot;Valores da estatística calculada para o teste&quot;</span>)  <span class="sc">+</span></span>
+<span id="cb122-35"><a href="teste-de-uma-média-amostral.html#cb122-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span> </span>
+<span id="cb122-36"><a href="teste-de-uma-média-amostral.html#cb122-36" aria-hidden="true" tabindex="-1"></a>         <span class="st">&quot;Região crítica sob a curva da função densidade da </span><span class="sc">\n</span><span class="st">distribuição apropriada ao teste&quot;</span>, </span>
+<span id="cb122-37"><a href="teste-de-uma-média-amostral.html#cb122-37" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;P( -1,64,\U221e,)=(1-\u03b1) em cinza (nível de confiança=0,95) </span><span class="sc">\n</span><span class="st">P(-\U221e; -1,64)=\u03b1 em vermelho (nível de significância=0,05) &quot;</span>)<span class="sc">+</span></span>
+<span id="cb122-38"><a href="teste-de-uma-média-amostral.html#cb122-38" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> z_desejado, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> z_desejado, <span class="at">yend =</span> d_desejada), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb122-39"><a href="teste-de-uma-média-amostral.html#cb122-39" aria-hidden="true" tabindex="-1"></a><span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>z_desejado<span class="fl">-0.1</span>, <span class="at">y=</span>d_desejada, <span class="at">label=</span><span class="st">&quot;valor crítico=-1,64&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb122-40"><a href="teste-de-uma-média-amostral.html#cb122-40" aria-hidden="true" tabindex="-1"></a><span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>z_desejado<span class="fl">-2.5</span>, <span class="at">y=</span><span class="fl">0.1</span>, <span class="at">label=</span><span class="st">&quot;Região de rejeição da hipótese nula </span><span class="sc">\n</span><span class="st">probabilidade=\u03b1&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb122-41"><a href="teste-de-uma-média-amostral.html#cb122-41" aria-hidden="true" tabindex="-1"></a><span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>z_desejado<span class="sc">+</span><span class="dv">1</span>, <span class="at">y=</span><span class="fl">0.2</span>, <span class="at">label=</span><span class="st">&quot;Região de não rejeição da hipótese nula  </span><span class="sc">\n</span><span class="st">probabilidade= (1-\u03b1)&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb122-42"><a href="teste-de-uma-média-amostral.html#cb122-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> z_calculado, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> z_calculado, <span class="at">yend =</span> d_calculado), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb122-43"><a href="teste-de-uma-média-amostral.html#cb122-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>z_calculado<span class="fl">-0.1</span>, <span class="at">y=</span>d_calculado, <span class="at">label=</span><span class="st">&quot;valor da estatística do teste=-2,5&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb122-44"><a href="teste-de-uma-média-amostral.html#cb122-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig74"></span>
+<img src="apostila_files/figure-html/fig74-1.png" alt="Região de rejeição da hipótese nula para o teste unilateral à esquerda (tipo: menor que) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $z_{crit} = -1,64$. O valor calculado da estatística ($z_{calc}=-2,50$) situa-se na faixa de significância do teste, possibilitando a rejeição da hipótese nula sob aquele nível de confiança" width="100%" />
+<p class="caption">
+Figure 11.12: Região de rejeição da hipótese nula para o teste unilateral à esquerda (tipo: menor que) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: <span class="math inline">\(z_{crit} = -1,64\)</span>. O valor calculado da estatística (<span class="math inline">\(z_{calc}=-2,50\)</span>) situa-se na faixa de significância do teste, possibilitando a rejeição da hipótese nula sob aquele nível de confiança
+</p>
+</div>
+<p><br />
+</p>
+<p>Conclusão: Os resultados obtidos na análise estatística realizada nos permitem rejeitar a hipótese de que a duração média populacional das lâmpadas seja igual ou superior a 1600h sob um nível de confiança de 95%. A vida útil média é <strong>menor que</strong> 1600h (Figura <a href="teste-de-uma-média-amostral.html#fig:fig74">11.12</a>).</p>
+<p><br />
+</p>
+<blockquote>
+<p>Teste unilateral à direita (tipo: maior que)</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math display">\[
+\begin{cases}
+H_{0}: \mu \le 1.600 \\
+H_{1}: \mu &gt; 1.600 \\
+\end{cases}
+\]</span></p>
+<p><br />
+</p>
+<p>Iremos verificar se a informação amostral obtida nos permite rejeitar a hipótese nula que afirma ser a vida útil média das lâmpadas igual ou inferior a 1.600 h., fazendo então valer a hipótese alternativa que afirma ser a vida útil das lâmpadas <strong>maior que</strong> 1.600 h.</p>
+<p><br />
+</p>
+<p>Da tabela da distribuição Normal reduzida obtemos o valor crítico monocaudal: <span class="math inline">\({z}_{crit}=1,64\)</span>. Pelo cálculo, a estatística do teste é <span class="math inline">\(z_{calc}=-2,50\)</span>.</p>
+<p><br />
+</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="teste-de-uma-média-amostral.html#cb123-1" aria-hidden="true" tabindex="-1"></a>alfa<span class="ot">=</span><span class="fl">0.95</span></span>
+<span id="cb123-2"><a href="teste-de-uma-média-amostral.html#cb123-2" aria-hidden="true" tabindex="-1"></a>prob_desejada<span class="ot">=</span>alfa</span>
+<span id="cb123-3"><a href="teste-de-uma-média-amostral.html#cb123-3" aria-hidden="true" tabindex="-1"></a>z_desejado<span class="ot">=</span><span class="fu">round</span>(<span class="fu">qnorm</span>(prob_desejada),<span class="dv">4</span>)</span>
+<span id="cb123-4"><a href="teste-de-uma-média-amostral.html#cb123-4" aria-hidden="true" tabindex="-1"></a>d_desejada<span class="ot">=</span><span class="fu">dnorm</span>(z_desejado, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb123-5"><a href="teste-de-uma-média-amostral.html#cb123-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-6"><a href="teste-de-uma-média-amostral.html#cb123-6" aria-hidden="true" tabindex="-1"></a>z_calculado<span class="ot">=</span><span class="sc">-</span><span class="fl">2.5</span></span>
+<span id="cb123-7"><a href="teste-de-uma-média-amostral.html#cb123-7" aria-hidden="true" tabindex="-1"></a>d_calculado<span class="ot">=</span><span class="fu">dnorm</span>(z_calculado, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb123-8"><a href="teste-de-uma-média-amostral.html#cb123-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-9"><a href="teste-de-uma-média-amostral.html#cb123-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-10"><a href="teste-de-uma-média-amostral.html#cb123-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-11"><a href="teste-de-uma-média-amostral.html#cb123-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-12"><a href="teste-de-uma-média-amostral.html#cb123-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>))) <span class="sc">+</span></span>
+<span id="cb123-13"><a href="teste-de-uma-média-amostral.html#cb123-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">&quot;function&quot;</span>, </span>
+<span id="cb123-14"><a href="teste-de-uma-média-amostral.html#cb123-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">fun =</span> dnorm, </span>
+<span id="cb123-15"><a href="teste-de-uma-média-amostral.html#cb123-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">&quot;lightgrey&quot;</span>, </span>
+<span id="cb123-16"><a href="teste-de-uma-média-amostral.html#cb123-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, z_desejado),</span>
+<span id="cb123-17"><a href="teste-de-uma-média-amostral.html#cb123-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb123-18"><a href="teste-de-uma-média-amostral.html#cb123-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">&quot;function&quot;</span>, </span>
+<span id="cb123-19"><a href="teste-de-uma-média-amostral.html#cb123-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">fun =</span> dnorm, </span>
+<span id="cb123-20"><a href="teste-de-uma-média-amostral.html#cb123-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb123-21"><a href="teste-de-uma-média-amostral.html#cb123-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(z_desejado,<span class="dv">4</span>),</span>
+<span id="cb123-22"><a href="teste-de-uma-média-amostral.html#cb123-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb123-23"><a href="teste-de-uma-média-amostral.html#cb123-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">&quot;Densidade&quot;</span>) <span class="sc">+</span></span>
+<span id="cb123-24"><a href="teste-de-uma-média-amostral.html#cb123-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name=</span><span class="st">&quot;Valores da estatística calculada para o teste&quot;</span>)  <span class="sc">+</span></span>
+<span id="cb123-25"><a href="teste-de-uma-média-amostral.html#cb123-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span> </span>
+<span id="cb123-26"><a href="teste-de-uma-média-amostral.html#cb123-26" aria-hidden="true" tabindex="-1"></a>         <span class="st">&quot;Região crítica sob a curva da função densidade da </span><span class="sc">\n</span><span class="st">distribuição apropriada ao teste&quot;</span>, </span>
+<span id="cb123-27"><a href="teste-de-uma-média-amostral.html#cb123-27" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;P( -1,96,\U221e,)=(1-\u03b1) em cinza (nível de confiança=0,95) </span><span class="sc">\n</span><span class="st">P(-\U221e; -1,96)=\u03b1 em vermelho (nível de significância=0,05) &quot;</span>)<span class="sc">+</span></span>
+<span id="cb123-28"><a href="teste-de-uma-média-amostral.html#cb123-28" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> z_desejado, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> z_desejado, <span class="at">yend =</span> d_desejada), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb123-29"><a href="teste-de-uma-média-amostral.html#cb123-29" aria-hidden="true" tabindex="-1"></a><span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>z_desejado<span class="fl">-0.1</span>, <span class="at">y=</span>d_desejada, <span class="at">label=</span><span class="st">&quot;valor crítico=-1,64&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb123-30"><a href="teste-de-uma-média-amostral.html#cb123-30" aria-hidden="true" tabindex="-1"></a><span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>z_desejado<span class="sc">+</span><span class="dv">1</span>, <span class="at">y=</span><span class="fl">0.1</span>, <span class="at">label=</span><span class="st">&quot;Região de rejeição da hipótese nula </span><span class="sc">\n</span><span class="st">probabilidade=\u03b1&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb123-31"><a href="teste-de-uma-média-amostral.html#cb123-31" aria-hidden="true" tabindex="-1"></a><span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>z_desejado<span class="fl">-2.5</span>, <span class="at">y=</span><span class="fl">0.2</span>, <span class="at">label=</span><span class="st">&quot;Região de não rejeição da hipótese nula  </span><span class="sc">\n</span><span class="st">probabilidade= (1-\u03b1)&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb123-32"><a href="teste-de-uma-média-amostral.html#cb123-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> z_calculado, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> z_calculado, <span class="at">yend =</span> d_calculado), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb123-33"><a href="teste-de-uma-média-amostral.html#cb123-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>z_calculado<span class="fl">-0.1</span>, <span class="at">y=</span>d_calculado, <span class="at">label=</span><span class="st">&quot;valor da estatística do teste=-2,5&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb123-34"><a href="teste-de-uma-média-amostral.html#cb123-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig75"></span>
+<img src="apostila_files/figure-html/fig75-1.png" alt="Região de rejeição da hipótese nula para o teste unilateral à direita (tipo: maior que) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $z_{crit} = 1,64$. O valor calculado da estatística ($z_{calc}=-2,50$) situa-se na faixa de não significância do teste, não possibilitando a rejeição da hipótese nula sob aquele nível de confiança" width="100%" />
+<p class="caption">
+Figure 11.13: Região de rejeição da hipótese nula para o teste unilateral à direita (tipo: maior que) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: <span class="math inline">\(z_{crit} = 1,64\)</span>. O valor calculado da estatística (<span class="math inline">\(z_{calc}=-2,50\)</span>) situa-se na faixa de não significância do teste, não possibilitando a rejeição da hipótese nula sob aquele nível de confiança
+</p>
+</div>
+<p><br />
+</p>
+<p>Conclusão: Os resultados obtidos na análise estatística realizada não nos permitem rejeitar a hipótese de que a duração média populacional das lâmpadas seja igual ou inferior a 1600h sob um nível de confiança de 95%. A vida útil média é maior que 1600h (Figura <a href="teste-de-uma-média-amostral.html#fig:fig74">11.12</a>).</p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: De um universo Normal com parâmetros média e variância (<span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^{2}\)</span>) desconhecidos, retirou-se uma amostra aleatória composta por 9 observações que apresentou as seguintes sínteses numéricas: <span class="math inline">\(\stackrel{-}{X} = 4\)</span> e <span class="math inline">\(S^{2} = 2,2\)</span>. Proceda ao seguinte teste de hipóteses, a um nível de significância: <span class="math inline">\(\alpha=0,05\)</span>, de que a média populacional é igual a 5.</p>
+</blockquote>
+<p><br />
+</p>
+<blockquote>
+<p>O problema nos pede um teste bilateral (tipo: diferente de):</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math display">\[
+\begin{cases}
+H_{0}: \mu = 5\\
+H_{1}: \mu \ne 5\\
+\end{cases}
+\]</span></p>
+<p><br />
+</p>
+<p>Iremos verificar se a informação amostral obtida nos permite rejeitar a hipótese nula que afirma ser a média igual a 5, fazendo então valer a hipótese alternativa que afirma ser a média <strong>diferente de</strong> 5.</p>
+<p><br />
+</p>
+<p>Pelo enunciado do problema a variância populacional <span class="math inline">\(\sigma^{2}\)</span> é desconhecida e a amostra é pequena (n=9). Nessa situação, a estatística do teste fica definida como sendo:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+T = \frac{(\stackrel{-}{X} - \mu_{0})}{    \frac{s}{\sqrt{n}} } \sim t_{(n-1)}    
+\]</span></p>
+<p><br />
+</p>
+<p>Extraindo os dados do problema:</p>
+<p><br />
+</p>
+<ul>
+<li><span class="math inline">\(\stackrel{-}{x}=4\)</span> é a média amostral;<br />
+</li>
+<li><span class="math inline">\(\mu_{0}=5\)</span> o valor (desconhecido) inferido à média populacional, a ser testado frente à média amostral;<br />
+</li>
+<li><span class="math inline">\(s = \sqrt{2,2}=1,48\)</span> é o desvio padrão da amostra extraída;<br />
+</li>
+<li><span class="math inline">\(n = 9\)</span> é o tamanho da amostra extraída;</li>
+</ul>
+<p><br />
+</p>
+<p>Calculando-se o valor da estatística do teste:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+t_{calc} = \frac{(\stackrel{-}{X} - \mu_{0})}{    \frac{s}{\sqrt{n}} }  = -2,02
+\]</span></p>
+<p><br />
+</p>
+<p>Da tabela ``t’’ de Student obtemos o valor crítico bicaudal: <span class="math inline">\(|{t}_{tab\left(\frac{\alpha }{2}\right), (n-1)}|=2,306\)</span>. Pelo cálculo a estatística do teste é <span class="math inline">\(t_{calc}=-2,02\)</span>.</p>
+<p><br />
+</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="teste-de-uma-média-amostral.html#cb124-1" aria-hidden="true" tabindex="-1"></a>alfa<span class="ot">=</span><span class="fl">0.05</span></span>
+<span id="cb124-2"><a href="teste-de-uma-média-amostral.html#cb124-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-3"><a href="teste-de-uma-média-amostral.html#cb124-3" aria-hidden="true" tabindex="-1"></a>prob_desejada1<span class="ot">=</span>alfa<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb124-4"><a href="teste-de-uma-média-amostral.html#cb124-4" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span><span class="dv">8</span></span>
+<span id="cb124-5"><a href="teste-de-uma-média-amostral.html#cb124-5" aria-hidden="true" tabindex="-1"></a>t_desejado1<span class="ot">=</span><span class="fu">round</span>(<span class="fu">qt</span>(prob_desejada1,df ),df)</span>
+<span id="cb124-6"><a href="teste-de-uma-média-amostral.html#cb124-6" aria-hidden="true" tabindex="-1"></a>d_desejada1<span class="ot">=</span><span class="fu">dt</span>(t_desejado1,df)</span>
+<span id="cb124-7"><a href="teste-de-uma-média-amostral.html#cb124-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-8"><a href="teste-de-uma-média-amostral.html#cb124-8" aria-hidden="true" tabindex="-1"></a>prob_desejada2<span class="ot">=</span><span class="dv">1</span><span class="sc">-</span>alfa<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb124-9"><a href="teste-de-uma-média-amostral.html#cb124-9" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span><span class="dv">8</span></span>
+<span id="cb124-10"><a href="teste-de-uma-média-amostral.html#cb124-10" aria-hidden="true" tabindex="-1"></a>t_desejado2<span class="ot">=</span><span class="fu">round</span>(<span class="fu">qt</span>(prob_desejada2, df),df)</span>
+<span id="cb124-11"><a href="teste-de-uma-média-amostral.html#cb124-11" aria-hidden="true" tabindex="-1"></a>d_desejada2<span class="ot">=</span><span class="fu">dt</span>(t_desejado2,df)</span>
+<span id="cb124-12"><a href="teste-de-uma-média-amostral.html#cb124-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-13"><a href="teste-de-uma-média-amostral.html#cb124-13" aria-hidden="true" tabindex="-1"></a>t_calculado<span class="ot">=</span><span class="sc">-</span><span class="dv">2</span></span>
+<span id="cb124-14"><a href="teste-de-uma-média-amostral.html#cb124-14" aria-hidden="true" tabindex="-1"></a>d_calculado<span class="ot">=</span><span class="fu">dt</span>(t_calculado,df)</span>
+<span id="cb124-15"><a href="teste-de-uma-média-amostral.html#cb124-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-16"><a href="teste-de-uma-média-amostral.html#cb124-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb124-17"><a href="teste-de-uma-média-amostral.html#cb124-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>))) <span class="sc">+</span></span>
+<span id="cb124-18"><a href="teste-de-uma-média-amostral.html#cb124-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">&quot;function&quot;</span>, </span>
+<span id="cb124-19"><a href="teste-de-uma-média-amostral.html#cb124-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">fun =</span> dt,</span>
+<span id="cb124-20"><a href="teste-de-uma-média-amostral.html#cb124-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">args=</span><span class="fu">list</span>(df), </span>
+<span id="cb124-21"><a href="teste-de-uma-média-amostral.html#cb124-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb124-22"><a href="teste-de-uma-média-amostral.html#cb124-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, t_desejado1),</span>
+<span id="cb124-23"><a href="teste-de-uma-média-amostral.html#cb124-23" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb124-24"><a href="teste-de-uma-média-amostral.html#cb124-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">&quot;function&quot;</span>, </span>
+<span id="cb124-25"><a href="teste-de-uma-média-amostral.html#cb124-25" aria-hidden="true" tabindex="-1"></a>            <span class="at">fun =</span> dt, </span>
+<span id="cb124-26"><a href="teste-de-uma-média-amostral.html#cb124-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">args=</span><span class="fu">list</span>(df), </span>
+<span id="cb124-27"><a href="teste-de-uma-média-amostral.html#cb124-27" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">&quot;lightgrey&quot;</span>, </span>
+<span id="cb124-28"><a href="teste-de-uma-média-amostral.html#cb124-28" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(t_desejado1,<span class="dv">0</span>),</span>
+<span id="cb124-29"><a href="teste-de-uma-média-amostral.html#cb124-29" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb124-30"><a href="teste-de-uma-média-amostral.html#cb124-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">&quot;function&quot;</span>, </span>
+<span id="cb124-31"><a href="teste-de-uma-média-amostral.html#cb124-31" aria-hidden="true" tabindex="-1"></a>            <span class="at">fun =</span> dt, </span>
+<span id="cb124-32"><a href="teste-de-uma-média-amostral.html#cb124-32" aria-hidden="true" tabindex="-1"></a>            <span class="at">args=</span><span class="fu">list</span>(df), </span>
+<span id="cb124-33"><a href="teste-de-uma-média-amostral.html#cb124-33" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">&quot;lightgrey&quot;</span>, </span>
+<span id="cb124-34"><a href="teste-de-uma-média-amostral.html#cb124-34" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, t_desejado2),</span>
+<span id="cb124-35"><a href="teste-de-uma-média-amostral.html#cb124-35" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb124-36"><a href="teste-de-uma-média-amostral.html#cb124-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">&quot;function&quot;</span>, </span>
+<span id="cb124-37"><a href="teste-de-uma-média-amostral.html#cb124-37" aria-hidden="true" tabindex="-1"></a>            <span class="at">fun =</span> dt, </span>
+<span id="cb124-38"><a href="teste-de-uma-média-amostral.html#cb124-38" aria-hidden="true" tabindex="-1"></a>            <span class="at">args=</span><span class="fu">list</span>(df), </span>
+<span id="cb124-39"><a href="teste-de-uma-média-amostral.html#cb124-39" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb124-40"><a href="teste-de-uma-média-amostral.html#cb124-40" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(t_desejado2,<span class="dv">4</span>),</span>
+<span id="cb124-41"><a href="teste-de-uma-média-amostral.html#cb124-41" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb124-42"><a href="teste-de-uma-média-amostral.html#cb124-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">&quot;Densidade&quot;</span>) <span class="sc">+</span></span>
+<span id="cb124-43"><a href="teste-de-uma-média-amostral.html#cb124-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name=</span><span class="st">&quot;Valores de t&quot;</span>, <span class="at">breaks =</span> <span class="fu">c</span>(t_desejado1, t_desejado2))  <span class="sc">+</span></span>
+<span id="cb124-44"><a href="teste-de-uma-média-amostral.html#cb124-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span> </span>
+<span id="cb124-45"><a href="teste-de-uma-média-amostral.html#cb124-45" aria-hidden="true" tabindex="-1"></a>         <span class="st">&quot;Regiões críticas sob a curva da função densidade da </span><span class="sc">\n</span><span class="st">distribuição apropriada ao teste&quot;</span>, </span>
+<span id="cb124-46"><a href="teste-de-uma-média-amostral.html#cb124-46" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;P(-2,306, 2,306)=(1-\u03b1) em cinza (nível de confiança=0,95) </span><span class="sc">\n</span><span class="st">P(-\U221e; -2,306)= P(2,306; \U221e)= \u03b1/2 em vermelho (nível de significância/2=0,025) &quot;</span>)<span class="sc">+</span> <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> t_desejado1, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> t_desejado1, <span class="at">yend =</span> d_desejada1), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb124-47"><a href="teste-de-uma-média-amostral.html#cb124-47" aria-hidden="true" tabindex="-1"></a> <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> t_desejado2, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> t_desejado2, <span class="at">yend =</span> d_desejada2), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb124-48"><a href="teste-de-uma-média-amostral.html#cb124-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>t_desejado1<span class="fl">-0.1</span>, <span class="at">y=</span>d_desejada1, <span class="at">label=</span><span class="st">&quot;valor crítico=-2,306&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb124-49"><a href="teste-de-uma-média-amostral.html#cb124-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>t_desejado2<span class="fl">+0.3</span>, <span class="at">y=</span>d_desejada2, <span class="at">label=</span><span class="st">&quot;valor crítico=2,306&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb124-50"><a href="teste-de-uma-média-amostral.html#cb124-50" aria-hidden="true" tabindex="-1"></a> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>t_desejado1<span class="dv">-2</span>, <span class="at">y=</span><span class="fl">0.1</span>, <span class="at">label=</span><span class="st">&quot;Região de rejeição da hipótese nula </span><span class="sc">\n</span><span class="st">probabilidade=\u03b1/2&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb124-51"><a href="teste-de-uma-média-amostral.html#cb124-51" aria-hidden="true" tabindex="-1"></a> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>t_desejado2<span class="fl">+0.5</span>, <span class="at">y=</span><span class="fl">0.1</span>, <span class="at">label=</span><span class="st">&quot;Região de rejeição da hipótese nula </span><span class="sc">\n</span><span class="st">probabilidade=\u03b1/2&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb124-52"><a href="teste-de-uma-média-amostral.html#cb124-52" aria-hidden="true" tabindex="-1"></a> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>t_desejado1<span class="sc">+</span><span class="dv">2</span>, <span class="at">y=</span><span class="fl">0.2</span>, <span class="at">label=</span><span class="st">&quot;Região de não rejeição da hipótese nula </span><span class="sc">\n</span><span class="st">probabilidade= (1-\u03b1)&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb124-53"><a href="teste-de-uma-média-amostral.html#cb124-53" aria-hidden="true" tabindex="-1"></a> <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> t_calculado, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> t_calculado, <span class="at">yend =</span> d_calculado), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb124-54"><a href="teste-de-uma-média-amostral.html#cb124-54" aria-hidden="true" tabindex="-1"></a> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>t_calculado<span class="fl">-0.1</span>, <span class="at">y=</span>d_calculado, <span class="at">label=</span><span class="st">&quot;valor da estatística do teste=-2.02&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb124-55"><a href="teste-de-uma-média-amostral.html#cb124-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig76"></span>
+<img src="apostila_files/figure-html/fig76-1.png" alt="Regiões de rejeição da hipótese nula para o teste bilateral (tipo: diferente de) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $t_{crit} =\pm 2,306$. O valor calculado da estatística ($t_{calc}=-2,02$) situa-se na faixa de significância do teste, possibilitando a rejeição da hipótese nula sob aquele nível de confiança" width="100%" />
+<p class="caption">
+Figure 11.14: Regiões de rejeição da hipótese nula para o teste bilateral (tipo: diferente de) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: <span class="math inline">\(t_{crit} =\pm 2,306\)</span>. O valor calculado da estatística (<span class="math inline">\(t_{calc}=-2,02\)</span>) situa-se na faixa de significância do teste, possibilitando a rejeição da hipótese nula sob aquele nível de confiança
+</p>
+</div>
+<p><br />
+</p>
+<p>Conclusão: Os resultados obtidos na análise estatística realizada não nos permitem rejeitar a hipótese de que a média populacional seja igual a 5 sob um nível de confiança de 95% (Figura <a href="teste-de-uma-média-amostral.html#fig:fig76">11.14</a>).</p>
+<p><br />
+</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="teste-de-uma-média-amostral.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados do problema</span></span>
+<span id="cb125-2"><a href="teste-de-uma-média-amostral.html#cb125-2" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">9</span></span>
+<span id="cb125-3"><a href="teste-de-uma-média-amostral.html#cb125-3" aria-hidden="true" tabindex="-1"></a>media_amostral<span class="ot">=</span><span class="dv">4</span></span>
+<span id="cb125-4"><a href="teste-de-uma-média-amostral.html#cb125-4" aria-hidden="true" tabindex="-1"></a>var_amostral<span class="ot">=</span><span class="fl">2.2</span></span>
+<span id="cb125-5"><a href="teste-de-uma-média-amostral.html#cb125-5" aria-hidden="true" tabindex="-1"></a>media_populacao<span class="ot">=</span><span class="dv">5</span></span>
+<span id="cb125-6"><a href="teste-de-uma-média-amostral.html#cb125-6" aria-hidden="true" tabindex="-1"></a>alfa<span class="ot">=</span><span class="fl">0.05</span></span>
+<span id="cb125-7"><a href="teste-de-uma-média-amostral.html#cb125-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-8"><a href="teste-de-uma-média-amostral.html#cb125-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Estatística de teste</span></span>
+<span id="cb125-9"><a href="teste-de-uma-média-amostral.html#cb125-9" aria-hidden="true" tabindex="-1"></a>t<span class="ot">=</span>(media_amostral <span class="sc">-</span> media_populacao) <span class="sc">/</span> <span class="fu">sqrt</span>(var_amostral <span class="sc">/</span> n)</span>
+<span id="cb125-10"><a href="teste-de-uma-média-amostral.html#cb125-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-11"><a href="teste-de-uma-média-amostral.html#cb125-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Graus de liberdade</span></span>
+<span id="cb125-12"><a href="teste-de-uma-média-amostral.html#cb125-12" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span>n <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb125-13"><a href="teste-de-uma-média-amostral.html#cb125-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-14"><a href="teste-de-uma-média-amostral.html#cb125-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Valor-p à esquerda</span></span>
+<span id="cb125-15"><a href="teste-de-uma-média-amostral.html#cb125-15" aria-hidden="true" tabindex="-1"></a>p_valor_1<span class="ot">=</span><span class="fu">pt</span>(<span class="sc">-</span><span class="fu">abs</span>(t), df, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb125-16"><a href="teste-de-uma-média-amostral.html#cb125-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-17"><a href="teste-de-uma-média-amostral.html#cb125-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Valor-p à direita</span></span>
+<span id="cb125-18"><a href="teste-de-uma-média-amostral.html#cb125-18" aria-hidden="true" tabindex="-1"></a>p_valor_2<span class="ot">=</span><span class="fu">pt</span>(<span class="fu">abs</span>(t), df, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb125-19"><a href="teste-de-uma-média-amostral.html#cb125-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-20"><a href="teste-de-uma-média-amostral.html#cb125-20" aria-hidden="true" tabindex="-1"></a><span class="co"># p-valor</span></span>
+<span id="cb125-21"><a href="teste-de-uma-média-amostral.html#cb125-21" aria-hidden="true" tabindex="-1"></a>p_valor<span class="ot">=</span>p_valor_1<span class="sc">+</span>p_valor_2</span>
+<span id="cb125-22"><a href="teste-de-uma-média-amostral.html#cb125-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-23"><a href="teste-de-uma-média-amostral.html#cb125-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Ou</span></span>
+<span id="cb125-24"><a href="teste-de-uma-média-amostral.html#cb125-24" aria-hidden="true" tabindex="-1"></a>p_valor <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="sc">-</span><span class="fu">abs</span>(t), df)</span>
+<span id="cb125-25"><a href="teste-de-uma-média-amostral.html#cb125-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-26"><a href="teste-de-uma-média-amostral.html#cb125-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Decisão e conclusão</span></span>
+<span id="cb125-27"><a href="teste-de-uma-média-amostral.html#cb125-27" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (p_valor <span class="sc">&lt;</span> alfa) {</span>
+<span id="cb125-28"><a href="teste-de-uma-média-amostral.html#cb125-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Os dados amostrais trazidos à análise nos permitem rejeitar, sob o nível de significância estabelecido de&quot;</span>, alfa ,<span class="st">&quot;de se cometer um erro do tipo I, a hipótese nula (H0) que afirma ser a média populacional igual a&quot;</span>, media_populacao,<span class="st">&quot;.A média populacional  é diferente.&quot;</span>)</span>
+<span id="cb125-29"><a href="teste-de-uma-média-amostral.html#cb125-29" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb125-30"><a href="teste-de-uma-média-amostral.html#cb125-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Os dados amostrais trazidos à análise não nos permitem rejeitar, sob o nível de confiança de&quot;</span>, <span class="dv">1</span><span class="sc">-</span>alfa ,<span class="st">&quot;,a hipótese nula (H0). A média populacional é igual a&quot;</span>, media_populacao,<span class="st">&quot;.&quot;</span>)</span>
+<span id="cb125-31"><a href="teste-de-uma-média-amostral.html#cb125-31" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## Os dados amostrais trazidos à análise não nos permitem rejeitar, sob o nível de confiança de 0.95 ,a hipótese nula (H0). A média populacional é igual a 5 .</code></pre>
+<p><br />
+&gt; Teste unilateral à esquerda (tipo: menor que)</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+\begin{cases}
+H_{0}: \mu \ge 5\\
+H_{1}: \mu &lt; 5\\
+\end{cases}
+\]</span></p>
+<p><br />
+</p>
+<p>Iremos verificar se a informação amostral obtida nos permite rejeitar a hipótese nula que afirma ser a média igual ou maior a 5, fazendo então valer a hipótese alternativa que afirma ser a média <strong>menor que</strong> 5.</p>
+<p><br />
+</p>
+<p>Da tabela ``t’’ de Student obtemos o valor crítico monocaudal: <span class="math inline">\(|{t}_{tab_(\alpha, (n-1))}|=-1,86\)</span>. Pelo cálculo a estatística do teste é <span class="math inline">\(t_{calc}=-2,02\)</span>.</p>
+<p><br />
+</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="teste-de-uma-média-amostral.html#cb127-1" aria-hidden="true" tabindex="-1"></a>alfa<span class="ot">=</span><span class="fl">0.05</span></span>
+<span id="cb127-2"><a href="teste-de-uma-média-amostral.html#cb127-2" aria-hidden="true" tabindex="-1"></a>prob_desejada<span class="ot">=</span>alfa</span>
+<span id="cb127-3"><a href="teste-de-uma-média-amostral.html#cb127-3" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span><span class="dv">8</span></span>
+<span id="cb127-4"><a href="teste-de-uma-média-amostral.html#cb127-4" aria-hidden="true" tabindex="-1"></a>t_desejado<span class="ot">=</span><span class="fu">round</span>(<span class="fu">qt</span>(prob_desejada,df ),<span class="dv">4</span>)</span>
+<span id="cb127-5"><a href="teste-de-uma-média-amostral.html#cb127-5" aria-hidden="true" tabindex="-1"></a>d_desejada<span class="ot">=</span><span class="fu">dt</span>(t_desejado,df)</span>
+<span id="cb127-6"><a href="teste-de-uma-média-amostral.html#cb127-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-7"><a href="teste-de-uma-média-amostral.html#cb127-7" aria-hidden="true" tabindex="-1"></a>t_calculado<span class="ot">=</span><span class="sc">-</span><span class="dv">2</span></span>
+<span id="cb127-8"><a href="teste-de-uma-média-amostral.html#cb127-8" aria-hidden="true" tabindex="-1"></a>d_calculado<span class="ot">=</span><span class="fu">dt</span>(t_calculado,df)</span>
+<span id="cb127-9"><a href="teste-de-uma-média-amostral.html#cb127-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-10"><a href="teste-de-uma-média-amostral.html#cb127-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-11"><a href="teste-de-uma-média-amostral.html#cb127-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>))) <span class="sc">+</span></span>
+<span id="cb127-12"><a href="teste-de-uma-média-amostral.html#cb127-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">&quot;function&quot;</span>, </span>
+<span id="cb127-13"><a href="teste-de-uma-média-amostral.html#cb127-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">fun =</span> dt,</span>
+<span id="cb127-14"><a href="teste-de-uma-média-amostral.html#cb127-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">args=</span><span class="fu">list</span>(df), </span>
+<span id="cb127-15"><a href="teste-de-uma-média-amostral.html#cb127-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb127-16"><a href="teste-de-uma-média-amostral.html#cb127-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, t_desejado),</span>
+<span id="cb127-17"><a href="teste-de-uma-média-amostral.html#cb127-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb127-18"><a href="teste-de-uma-média-amostral.html#cb127-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">&quot;function&quot;</span>, </span>
+<span id="cb127-19"><a href="teste-de-uma-média-amostral.html#cb127-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">fun =</span> dt, </span>
+<span id="cb127-20"><a href="teste-de-uma-média-amostral.html#cb127-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">args=</span><span class="fu">list</span>(df), </span>
+<span id="cb127-21"><a href="teste-de-uma-média-amostral.html#cb127-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">&quot;lightgrey&quot;</span>, </span>
+<span id="cb127-22"><a href="teste-de-uma-média-amostral.html#cb127-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(t_desejado,<span class="dv">4</span>),</span>
+<span id="cb127-23"><a href="teste-de-uma-média-amostral.html#cb127-23" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb127-24"><a href="teste-de-uma-média-amostral.html#cb127-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">&quot;Densidade&quot;</span>) <span class="sc">+</span></span>
+<span id="cb127-25"><a href="teste-de-uma-média-amostral.html#cb127-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name=</span><span class="st">&quot;Valores de t&quot;</span>, <span class="at">breaks =</span> <span class="fu">c</span>(t_desejado))  <span class="sc">+</span></span>
+<span id="cb127-26"><a href="teste-de-uma-média-amostral.html#cb127-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span> </span>
+<span id="cb127-27"><a href="teste-de-uma-média-amostral.html#cb127-27" aria-hidden="true" tabindex="-1"></a>         <span class="st">&quot;Regiões críticas sob a curva da função densidade da </span><span class="sc">\n</span><span class="st">distribuição apropriada ao teste&quot;</span>, </span>
+<span id="cb127-28"><a href="teste-de-uma-média-amostral.html#cb127-28" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;P(-1,86, \U221e)=(1-\u03b1) em cinza (nível de confiança=0,95) </span><span class="sc">\n</span><span class="st">P(-\U221e; -1,86)= \u03b1 em vermelho (nível de significância=0,05) &quot;</span>)<span class="sc">+</span> </span>
+<span id="cb127-29"><a href="teste-de-uma-média-amostral.html#cb127-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> t_desejado, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> t_desejado, <span class="at">yend =</span> d_desejada), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb127-30"><a href="teste-de-uma-média-amostral.html#cb127-30" aria-hidden="true" tabindex="-1"></a> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>t_desejado<span class="fl">-0.1</span>, <span class="at">y=</span>d_desejada, <span class="at">label=</span><span class="st">&quot;valor crítico=-1,86&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb127-31"><a href="teste-de-uma-média-amostral.html#cb127-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>t_desejado<span class="dv">-2</span>, <span class="at">y=</span><span class="fl">0.1</span>, <span class="at">label=</span><span class="st">&quot;Região de rejeição da hipótese nula </span><span class="sc">\n</span><span class="st">probabilidade=\u03b1&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb127-32"><a href="teste-de-uma-média-amostral.html#cb127-32" aria-hidden="true" tabindex="-1"></a> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>t_desejado<span class="fl">+1.5</span>, <span class="at">y=</span><span class="fl">0.2</span>, <span class="at">label=</span><span class="st">&quot;Região de não rejeição da hipótese nula </span><span class="sc">\n</span><span class="st">probabilidade= (1-\u03b1)&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb127-33"><a href="teste-de-uma-média-amostral.html#cb127-33" aria-hidden="true" tabindex="-1"></a> <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> t_calculado, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> t_calculado, <span class="at">yend =</span> d_calculado), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb127-34"><a href="teste-de-uma-média-amostral.html#cb127-34" aria-hidden="true" tabindex="-1"></a> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>t_calculado<span class="fl">-0.1</span>, <span class="at">y=</span>d_calculado, <span class="at">label=</span><span class="st">&quot;valor da estatística do teste=-2.02&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb127-35"><a href="teste-de-uma-média-amostral.html#cb127-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig77"></span>
+<img src="apostila_files/figure-html/fig77-1.png" alt="Região de rejeição da hipótese nula para o teste unilateral à esquerda (tipo: menor que) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $t_{crit} = -1,86$. O valor calculado da estatística ($t_{calc}=-2,02$) situa-se na faixa de significância do teste possibilitando a rejeição da hipótese nula sob aquele nível de confiança" width="100%" />
+<p class="caption">
+Figure 11.15: Região de rejeição da hipótese nula para o teste unilateral à esquerda (tipo: menor que) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: <span class="math inline">\(t_{crit} = -1,86\)</span>. O valor calculado da estatística (<span class="math inline">\(t_{calc}=-2,02\)</span>) situa-se na faixa de significância do teste possibilitando a rejeição da hipótese nula sob aquele nível de confiança
+</p>
+</div>
+<p><br />
+</p>
+<p>Conclusão: sob um nível de confiança de confiança de 95%, face aos dados trazidos à análise podemos rejeitar a hipótese de que a média seja de no mínimo a 5 (Figura <a href="teste-de-uma-média-amostral.html#fig:fig77">11.15</a>).</p>
+<p><br />
+</p>
+<p>Caso estabelecêssemos um nível de confiança <span class="math inline">\((1-\alpha) \ge 0,9611277\)</span> (ou tivéssemos uma informação amostral <span class="math inline">\(\stackrel{-}{x} \ge 4.080639\)</span>), a hipótese nula <strong>não</strong> seria rejeitada: a média populacional é maior ou igual a 5.</p>
+<p><br />
+</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="teste-de-uma-média-amostral.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados do problema</span></span>
+<span id="cb128-2"><a href="teste-de-uma-média-amostral.html#cb128-2" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">9</span></span>
+<span id="cb128-3"><a href="teste-de-uma-média-amostral.html#cb128-3" aria-hidden="true" tabindex="-1"></a>media_amostral<span class="ot">=</span><span class="dv">4</span></span>
+<span id="cb128-4"><a href="teste-de-uma-média-amostral.html#cb128-4" aria-hidden="true" tabindex="-1"></a>var_amostral<span class="ot">=</span><span class="fl">2.2</span></span>
+<span id="cb128-5"><a href="teste-de-uma-média-amostral.html#cb128-5" aria-hidden="true" tabindex="-1"></a>media_populacao<span class="ot">=</span><span class="dv">5</span></span>
+<span id="cb128-6"><a href="teste-de-uma-média-amostral.html#cb128-6" aria-hidden="true" tabindex="-1"></a>alfa<span class="ot">=</span><span class="fl">0.05</span></span>
+<span id="cb128-7"><a href="teste-de-uma-média-amostral.html#cb128-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-8"><a href="teste-de-uma-média-amostral.html#cb128-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Estatística de teste</span></span>
+<span id="cb128-9"><a href="teste-de-uma-média-amostral.html#cb128-9" aria-hidden="true" tabindex="-1"></a>t<span class="ot">=</span>(media_amostral <span class="sc">-</span> media_populacao) <span class="sc">/</span> <span class="fu">sqrt</span>(var_amostral <span class="sc">/</span> n)</span>
+<span id="cb128-10"><a href="teste-de-uma-média-amostral.html#cb128-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-11"><a href="teste-de-uma-média-amostral.html#cb128-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Graus de liberdade</span></span>
+<span id="cb128-12"><a href="teste-de-uma-média-amostral.html#cb128-12" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span>n <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb128-13"><a href="teste-de-uma-média-amostral.html#cb128-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-14"><a href="teste-de-uma-média-amostral.html#cb128-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Valor-p à esquerda</span></span>
+<span id="cb128-15"><a href="teste-de-uma-média-amostral.html#cb128-15" aria-hidden="true" tabindex="-1"></a>p_valor<span class="ot">=</span><span class="fu">pt</span>(t, df)</span>
+<span id="cb128-16"><a href="teste-de-uma-média-amostral.html#cb128-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-17"><a href="teste-de-uma-média-amostral.html#cb128-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-18"><a href="teste-de-uma-média-amostral.html#cb128-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Decisão e conclusão</span></span>
+<span id="cb128-19"><a href="teste-de-uma-média-amostral.html#cb128-19" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (p_valor <span class="sc">&lt;</span> alfa) {</span>
+<span id="cb128-20"><a href="teste-de-uma-média-amostral.html#cb128-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Os dados amostrais trazidos à análise nos permitem rejeitar, sob o nível de significância estabelecido de&quot;</span>, alfa ,<span class="st">&quot;de se cometer um erro do tipo I, a hipótese nula (H0) que afirma ser a média populacional maior ou igual a &quot;</span>, media_populacao,<span class="st">&quot;.A média populacional é menor.&quot;</span>)</span>
+<span id="cb128-21"><a href="teste-de-uma-média-amostral.html#cb128-21" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb128-22"><a href="teste-de-uma-média-amostral.html#cb128-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Os dados amostrais trazidos à análise não nos permitem rejeitar, sob o nível de confiança de&quot;</span>, <span class="dv">1</span><span class="sc">-</span>alfa ,<span class="st">&quot;,a hipótese nula (H0). A média populacional é maior ou igual a&quot;</span>, media_populacao,<span class="st">&quot;.&quot;</span>)</span>
+<span id="cb128-23"><a href="teste-de-uma-média-amostral.html#cb128-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## Os dados amostrais trazidos à análise nos permitem rejeitar, sob o nível de significância estabelecido de 0.05 de se cometer um erro do tipo I, a hipótese nula (H0) que afirma ser a média populacional maior ou igual a  5 .A média populacional é menor.</code></pre>
+<p><br />
+</p>
+<blockquote>
+<p>Teste unilateral à direita (tipo: maior que)</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math display">\[
+\begin{cases}
+H_{0}: \mu \le 5\\
+H_{1}: \mu &gt; 5\\
+\end{cases}
+\]</span></p>
+<p><br />
+</p>
+<p>Iremos verificar se a informação amostral obtida nos permite rejeitar a hipótese nula que afirma ser a média igual ou menor a 5, fazendo então valer a hipótese alternativa que afirma ser a média <strong>maior que</strong> 5.</p>
+<p><br />
+</p>
+<p>Da tabela ``t’’ de Student obtemos o valor crítico monocaudal: <span class="math inline">\(|{t}_{tab_(\alpha, (n-1))}|=1,86\)</span>. Pelo cálculo a estatística do teste é <span class="math inline">\(t_{calc}=-2,02\)</span>.</p>
+<p><br />
+</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="teste-de-uma-média-amostral.html#cb130-1" aria-hidden="true" tabindex="-1"></a>alfa<span class="ot">=</span><span class="fl">0.95</span></span>
+<span id="cb130-2"><a href="teste-de-uma-média-amostral.html#cb130-2" aria-hidden="true" tabindex="-1"></a>prob_desejada<span class="ot">=</span>alfa</span>
+<span id="cb130-3"><a href="teste-de-uma-média-amostral.html#cb130-3" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span><span class="dv">8</span></span>
+<span id="cb130-4"><a href="teste-de-uma-média-amostral.html#cb130-4" aria-hidden="true" tabindex="-1"></a>t_desejado<span class="ot">=</span><span class="fu">round</span>(<span class="fu">qt</span>(prob_desejada,df ),<span class="dv">4</span>)</span>
+<span id="cb130-5"><a href="teste-de-uma-média-amostral.html#cb130-5" aria-hidden="true" tabindex="-1"></a>d_desejada<span class="ot">=</span><span class="fu">dt</span>(t_desejado,df)</span>
+<span id="cb130-6"><a href="teste-de-uma-média-amostral.html#cb130-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-7"><a href="teste-de-uma-média-amostral.html#cb130-7" aria-hidden="true" tabindex="-1"></a>t_calculado<span class="ot">=</span><span class="sc">-</span><span class="dv">2</span></span>
+<span id="cb130-8"><a href="teste-de-uma-média-amostral.html#cb130-8" aria-hidden="true" tabindex="-1"></a>d_calculado<span class="ot">=</span><span class="fu">dt</span>(t_calculado,df)</span>
+<span id="cb130-9"><a href="teste-de-uma-média-amostral.html#cb130-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-10"><a href="teste-de-uma-média-amostral.html#cb130-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-11"><a href="teste-de-uma-média-amostral.html#cb130-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>))) <span class="sc">+</span></span>
+<span id="cb130-12"><a href="teste-de-uma-média-amostral.html#cb130-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">&quot;function&quot;</span>, </span>
+<span id="cb130-13"><a href="teste-de-uma-média-amostral.html#cb130-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">fun =</span> dt,</span>
+<span id="cb130-14"><a href="teste-de-uma-média-amostral.html#cb130-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">args=</span><span class="fu">list</span>(df), </span>
+<span id="cb130-15"><a href="teste-de-uma-média-amostral.html#cb130-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">&quot;lightgrey&quot;</span>, </span>
+<span id="cb130-16"><a href="teste-de-uma-média-amostral.html#cb130-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, t_desejado),</span>
+<span id="cb130-17"><a href="teste-de-uma-média-amostral.html#cb130-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb130-18"><a href="teste-de-uma-média-amostral.html#cb130-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat =</span> <span class="st">&quot;function&quot;</span>, </span>
+<span id="cb130-19"><a href="teste-de-uma-média-amostral.html#cb130-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">fun =</span> dt, </span>
+<span id="cb130-20"><a href="teste-de-uma-média-amostral.html#cb130-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">args=</span><span class="fu">list</span>(df), </span>
+<span id="cb130-21"><a href="teste-de-uma-média-amostral.html#cb130-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb130-22"><a href="teste-de-uma-média-amostral.html#cb130-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlim =</span> <span class="fu">c</span>(t_desejado,<span class="dv">4</span>),</span>
+<span id="cb130-23"><a href="teste-de-uma-média-amostral.html#cb130-23" aria-hidden="true" tabindex="-1"></a>            <span class="at">colour=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb130-24"><a href="teste-de-uma-média-amostral.html#cb130-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">&quot;Densidade&quot;</span>) <span class="sc">+</span></span>
+<span id="cb130-25"><a href="teste-de-uma-média-amostral.html#cb130-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name=</span><span class="st">&quot;Valores de t&quot;</span>, <span class="at">breaks =</span> <span class="fu">c</span>(t_desejado))  <span class="sc">+</span></span>
+<span id="cb130-26"><a href="teste-de-uma-média-amostral.html#cb130-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span> </span>
+<span id="cb130-27"><a href="teste-de-uma-média-amostral.html#cb130-27" aria-hidden="true" tabindex="-1"></a>         <span class="st">&quot;Regiões críticas sob a curva da função densidade da </span><span class="sc">\n</span><span class="st">distribuição apropriada ao teste&quot;</span>, </span>
+<span id="cb130-28"><a href="teste-de-uma-média-amostral.html#cb130-28" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;P(-\U221e; 1,86)=(1-\u03b1) em cinza (nível de confiança=0,95) </span><span class="sc">\n</span><span class="st">P(1,86; \U221e)= \u03b1 em vermelho (nível de significância=0,05) &quot;</span>)<span class="sc">+</span> </span>
+<span id="cb130-29"><a href="teste-de-uma-média-amostral.html#cb130-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> t_desejado, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> t_desejado, <span class="at">yend =</span> d_desejada), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb130-30"><a href="teste-de-uma-média-amostral.html#cb130-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>t_desejado<span class="dv">-3</span>, <span class="at">y=</span><span class="fl">0.1</span>, <span class="at">label=</span><span class="st">&quot;Região de não rejeição da hipótese nula </span><span class="sc">\n</span><span class="st">probabilidade=\u03b1&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb130-31"><a href="teste-de-uma-média-amostral.html#cb130-31" aria-hidden="true" tabindex="-1"></a> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>t_desejado, <span class="at">y=</span><span class="fl">0.1</span>, <span class="at">label=</span><span class="st">&quot;Região de rejeição da hipótese nula </span><span class="sc">\n</span><span class="st">probabilidade= (1-\u03b1)&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb130-32"><a href="teste-de-uma-média-amostral.html#cb130-32" aria-hidden="true" tabindex="-1"></a> <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> t_calculado, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">xend =</span> t_calculado, <span class="at">yend =</span> d_calculado), <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lty=</span><span class="dv">2</span>, <span class="at">lwd=</span><span class="fl">0.3</span>)<span class="sc">+</span></span>
+<span id="cb130-33"><a href="teste-de-uma-média-amostral.html#cb130-33" aria-hidden="true" tabindex="-1"></a> <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span>t_calculado<span class="fl">-0.1</span>, <span class="at">y=</span>d_calculado, <span class="at">label=</span><span class="st">&quot;valor da estatística do teste=-2.02&quot;</span>, <span class="at">angle=</span><span class="dv">90</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb130-34"><a href="teste-de-uma-média-amostral.html#cb130-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig78"></span>
+<img src="apostila_files/figure-html/fig78-1.png" alt="Região de rejeição da hipótese nula para o teste unilateral à direita (tipo: maior que) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $t_{crit} = 1,86$. O valor calculado da estatística ($t_{calc}=-2,02$) situa-se na faixa de não significância do teste, não possibilitando a rejeição da hipótese nula sob aquele nível de confiança" width="100%" />
+<p class="caption">
+Figure 11.16: Região de rejeição da hipótese nula para o teste unilateral à direita (tipo: maior que) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: <span class="math inline">\(t_{crit} = 1,86\)</span>. O valor calculado da estatística (<span class="math inline">\(t_{calc}=-2,02\)</span>) situa-se na faixa de não significância do teste, não possibilitando a rejeição da hipótese nula sob aquele nível de confiança
+</p>
+</div>
+<p><br />
+</p>
+<p>Conclusão: sob um nível de confiança de confiança de 95%, face aos dados trazidos à análise não podemos rejeitar a hipótese de que a média seja inferior a 5 (Figura <a href="teste-de-uma-média-amostral.html#fig:fig78">11.16</a>).</p>
+<p><br />
+</p>
+<p>Caso estabelecêssemos um nível de confiança <span class="math inline">\((1-\alpha) \ge 0,9611277\)</span> (ou tivéssemos uma informação amostral <span class="math inline">\(\stackrel{-}{x} \ge 5.919361\)</span>), a hipótese nula <strong>seria</strong> rejeitada: a média populacional é maior que 5.</p>
+<p><br />
+</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="teste-de-uma-média-amostral.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados do problema</span></span>
+<span id="cb131-2"><a href="teste-de-uma-média-amostral.html#cb131-2" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">9</span></span>
+<span id="cb131-3"><a href="teste-de-uma-média-amostral.html#cb131-3" aria-hidden="true" tabindex="-1"></a>media_amostral<span class="ot">=</span><span class="dv">4</span></span>
+<span id="cb131-4"><a href="teste-de-uma-média-amostral.html#cb131-4" aria-hidden="true" tabindex="-1"></a>var_amostral<span class="ot">=</span><span class="fl">2.2</span></span>
+<span id="cb131-5"><a href="teste-de-uma-média-amostral.html#cb131-5" aria-hidden="true" tabindex="-1"></a>media_populacao<span class="ot">=</span><span class="dv">5</span></span>
+<span id="cb131-6"><a href="teste-de-uma-média-amostral.html#cb131-6" aria-hidden="true" tabindex="-1"></a>alfa<span class="ot">=</span><span class="fl">0.95</span></span>
+<span id="cb131-7"><a href="teste-de-uma-média-amostral.html#cb131-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb131-8"><a href="teste-de-uma-média-amostral.html#cb131-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Estatística de teste</span></span>
+<span id="cb131-9"><a href="teste-de-uma-média-amostral.html#cb131-9" aria-hidden="true" tabindex="-1"></a>t<span class="ot">=</span>(media_amostral <span class="sc">-</span> media_populacao) <span class="sc">/</span> <span class="fu">sqrt</span>(var_amostral <span class="sc">/</span> n)</span>
+<span id="cb131-10"><a href="teste-de-uma-média-amostral.html#cb131-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb131-11"><a href="teste-de-uma-média-amostral.html#cb131-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Graus de liberdade</span></span>
+<span id="cb131-12"><a href="teste-de-uma-média-amostral.html#cb131-12" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span>n <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb131-13"><a href="teste-de-uma-média-amostral.html#cb131-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb131-14"><a href="teste-de-uma-média-amostral.html#cb131-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Valor-p à direita</span></span>
+<span id="cb131-15"><a href="teste-de-uma-média-amostral.html#cb131-15" aria-hidden="true" tabindex="-1"></a>p_valor<span class="ot">=</span><span class="fu">pt</span>(<span class="sc">-</span>t, df)</span>
+<span id="cb131-16"><a href="teste-de-uma-média-amostral.html#cb131-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb131-17"><a href="teste-de-uma-média-amostral.html#cb131-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb131-18"><a href="teste-de-uma-média-amostral.html#cb131-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Decisão e conclusão</span></span>
+<span id="cb131-19"><a href="teste-de-uma-média-amostral.html#cb131-19" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (p_valor <span class="sc">&lt;</span> alfa) {</span>
+<span id="cb131-20"><a href="teste-de-uma-média-amostral.html#cb131-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Os dados amostrais trazidos à análise nos permitem rejeitar, sob o nível de significância estabelecido de&quot;</span>, alfa ,<span class="st">&quot;de se cometer um erro do tipo I, a hipótese nula (H0) que afirma ser a média populacional menor ou igual a&quot;</span>, media_populacao,<span class="st">&quot;.A média populacional  é maior que&quot;</span>,media_populacao,<span class="st">&quot;.&quot;</span> )</span>
+<span id="cb131-21"><a href="teste-de-uma-média-amostral.html#cb131-21" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb131-22"><a href="teste-de-uma-média-amostral.html#cb131-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Os dados amostrais trazidos à análise não nos permitem rejeitar, sob o nível de confiança de&quot;</span>, <span class="dv">1</span><span class="sc">-</span>alfa ,<span class="st">&quot;,a hipótese nula (H0). A média populacional é menor ou igual a&quot;</span>, media_populacao,<span class="st">&quot;.&quot;</span>)</span>
+<span id="cb131-23"><a href="teste-de-uma-média-amostral.html#cb131-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## Os dados amostrais trazidos à análise não nos permitem rejeitar, sob o nível de confiança de 0.05 ,a hipótese nula (H0). A média populacional é menor ou igual a 5 .</code></pre>
+<p><br />
+</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="estruturas-das-hipóteses.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/11-teste_hipoteses.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["apostila.pdf", "apostila.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

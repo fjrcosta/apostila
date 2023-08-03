@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.10 Amostragem probabilística | apostila.knit</title>
   <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.10 Amostragem probabilística | apostila.knit" />
   <meta property="og:type" content="book" />
@@ -117,6 +117,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -405,8 +409,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.9.1" data-path="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html#as-estruturas-possíveis-dos-testes-de-hipóteses-relacionados-às-suas-médias-serão"><i class="fa fa-check"></i><b>11.9.1</b> As estruturas possíveis dos testes de hipóteses relacionados às suas médias serão:</a></li>
 <li class="chapter" data-level="11.9.2" data-path="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html#testes-de-hipóteses-para-as-médias-de-duas-populações-com-variâncias-conhecidas-ou-não-conhecidas-mas-o-tamanho-das-amostras-é-grande"><i class="fa fa-check"></i><b>11.9.2</b> Testes de hipóteses para as médias de duas populações com variâncias conhecidas (ou não conhecidas mas o tamanho das amostras é grande)</a></li>
-<li class="chapter" data-level="11.9.3" data-path="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html#testes-de-hipóteses-para-as-médias-de-duas-populações-com-variâncias-desconhecidas-mas-admitidas-iguais-e-o-tamanho-das-amostras-é-diminuto"><i class="fa fa-check"></i><b>11.9.3</b> Testes de hipóteses para as médias de duas populações com variâncias desconhecidas (mas admitidas iguais) e o tamanho das amostras é diminuto</a></li>
-<li class="chapter" data-level="11.9.4" data-path="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html#teste-de-hipóteses-para-as-médias-de-duas-populações-independentes-com-variâncias-desconhecidas-e-o-tamanho-das-amostras-é-diminuto"><i class="fa fa-check"></i><b>11.9.4</b> Teste de hipóteses para as médias de duas populações independentes com variâncias desconhecidas e o tamanho das amostras é diminuto</a></li>
+<li class="chapter" data-level="11.9.3" data-path="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html#testes-de-hipóteses-para-as-médias-de-duas-populações-normais-com-variâncias-desconhecidas-mas-iguais-teste-t-homocedástico-sigma_12sigma_22"><i class="fa fa-check"></i><b>11.9.3</b> Testes de hipóteses para as médias de duas populações Normais com variâncias desconhecidas mas iguais: teste “t’’ homocedástico (<span class="math inline">\(\sigma_{1}^{2}=\sigma_{2}^{2}=?\)</span>)</a></li>
+<li class="chapter" data-level="11.9.4" data-path="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html#teste-de-hipóteses-para-as-médias-de-duas-populações-normais-com-variâncias-desconhecidas-e-desiguais-teste-t-heterocedástico-sigma_12-neq-sigma_22"><i class="fa fa-check"></i><b>11.9.4</b> Teste de hipóteses para as médias de duas populações Normais com variâncias desconhecidas e desiguais: teste “``t’’ heterocedástico (<span class="math inline">\(\sigma_{1}^{2} \neq \sigma_{2}^{2}=?\)</span>)</a></li>
 </ul></li>
 <li class="chapter" data-level="11.10" data-path="teste-de-uma-proporção-amostral.html"><a href="teste-de-uma-proporção-amostral.html"><i class="fa fa-check"></i><b>11.10</b> Teste de uma proporção amostral</a>
 <ul>
@@ -501,30 +505,30 @@ C_{(N,n)} = \frac{ N! }{ n! \times ( N-n)!}=10
 </blockquote>
 <p><br />
 </p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="amostragem-probabilística.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados</span></span>
-<span id="cb84-2"><a href="amostragem-probabilística.html#cb84-2" aria-hidden="true" tabindex="-1"></a>conjunto<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;e&quot;</span>)</span>
-<span id="cb84-3"><a href="amostragem-probabilística.html#cb84-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-4"><a href="amostragem-probabilística.html#cb84-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-5"><a href="amostragem-probabilística.html#cb84-5" aria-hidden="true" tabindex="-1"></a><span class="co"># As 10 combinações possíveis tomando-se 3 elementos:</span></span>
-<span id="cb84-6"><a href="amostragem-probabilística.html#cb84-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(combinat)</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="amostragem-probabilística.html#cb84-1" tabindex="-1"></a><span class="co"># Dados</span></span>
+<span id="cb84-2"><a href="amostragem-probabilística.html#cb84-2" tabindex="-1"></a>conjunto<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;e&quot;</span>)</span>
+<span id="cb84-3"><a href="amostragem-probabilística.html#cb84-3" tabindex="-1"></a></span>
+<span id="cb84-4"><a href="amostragem-probabilística.html#cb84-4" tabindex="-1"></a></span>
+<span id="cb84-5"><a href="amostragem-probabilística.html#cb84-5" tabindex="-1"></a><span class="co"># As 10 combinações possíveis tomando-se 3 elementos:</span></span>
+<span id="cb84-6"><a href="amostragem-probabilística.html#cb84-6" tabindex="-1"></a><span class="fu">library</span>(combinat)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;combinat&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:utils&#39;:
 ## 
 ##     combn</code></pre>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="amostragem-probabilística.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co">#combn(conjunto, 3) (remova o # para executar)</span></span>
-<span id="cb87-2"><a href="amostragem-probabilística.html#cb87-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-3"><a href="amostragem-probabilística.html#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="co"># As 125 permutações possíveis tomando-se 3 elementos:</span></span>
-<span id="cb87-4"><a href="amostragem-probabilística.html#cb87-4" aria-hidden="true" tabindex="-1"></a><span class="co"># permn(conjunto) (remova o # para executar)</span></span>
-<span id="cb87-5"><a href="amostragem-probabilística.html#cb87-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb87-6"><a href="amostragem-probabilística.html#cb87-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Extração de uma amostra (sem reposição) composta por 3 elementos do conjunto:</span></span>
-<span id="cb87-7"><a href="amostragem-probabilística.html#cb87-7" aria-hidden="true" tabindex="-1"></a>amostra_sr<span class="ot">=</span><span class="fu">sample</span>(conjunto, <span class="dv">3</span>, <span class="at">replace=</span><span class="cn">FALSE</span>)</span>
-<span id="cb87-8"><a href="amostragem-probabilística.html#cb87-8" aria-hidden="true" tabindex="-1"></a>amostra_sr</span></code></pre></div>
-<pre><code>## [1] &quot;e&quot; &quot;b&quot; &quot;d&quot;</code></pre>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="amostragem-probabilística.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extração de uma amostra (com reposição) composta por 3 elementos do conjunto:</span></span>
-<span id="cb89-2"><a href="amostragem-probabilística.html#cb89-2" aria-hidden="true" tabindex="-1"></a>amostra_cr<span class="ot">=</span><span class="fu">sample</span>(conjunto, <span class="dv">3</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
-<span id="cb89-3"><a href="amostragem-probabilística.html#cb89-3" aria-hidden="true" tabindex="-1"></a>amostra_cr</span></code></pre></div>
-<pre><code>## [1] &quot;a&quot; &quot;a&quot; &quot;b&quot;</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="amostragem-probabilística.html#cb87-1" tabindex="-1"></a><span class="co">#combn(conjunto, 3) (remova o # para executar)</span></span>
+<span id="cb87-2"><a href="amostragem-probabilística.html#cb87-2" tabindex="-1"></a></span>
+<span id="cb87-3"><a href="amostragem-probabilística.html#cb87-3" tabindex="-1"></a><span class="co"># As 125 permutações possíveis tomando-se 3 elementos:</span></span>
+<span id="cb87-4"><a href="amostragem-probabilística.html#cb87-4" tabindex="-1"></a><span class="co"># permn(conjunto) (remova o # para executar)</span></span>
+<span id="cb87-5"><a href="amostragem-probabilística.html#cb87-5" tabindex="-1"></a></span>
+<span id="cb87-6"><a href="amostragem-probabilística.html#cb87-6" tabindex="-1"></a><span class="co"># Extração de uma amostra (sem reposição) composta por 3 elementos do conjunto:</span></span>
+<span id="cb87-7"><a href="amostragem-probabilística.html#cb87-7" tabindex="-1"></a>amostra_sr<span class="ot">=</span><span class="fu">sample</span>(conjunto, <span class="dv">3</span>, <span class="at">replace=</span><span class="cn">FALSE</span>)</span>
+<span id="cb87-8"><a href="amostragem-probabilística.html#cb87-8" tabindex="-1"></a>amostra_sr</span></code></pre></div>
+<pre><code>## [1] &quot;e&quot; &quot;c&quot; &quot;a&quot;</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="amostragem-probabilística.html#cb89-1" tabindex="-1"></a><span class="co"># Extração de uma amostra (com reposição) composta por 3 elementos do conjunto:</span></span>
+<span id="cb89-2"><a href="amostragem-probabilística.html#cb89-2" tabindex="-1"></a>amostra_cr<span class="ot">=</span><span class="fu">sample</span>(conjunto, <span class="dv">3</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb89-3"><a href="amostragem-probabilística.html#cb89-3" tabindex="-1"></a>amostra_cr</span></code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;a&quot; &quot;a&quot;</code></pre>
 <p><br />
 </p>
 <blockquote>

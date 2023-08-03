@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.2 Intervalos de confiança | apostila.knit</title>
   <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.2 Intervalos de confiança | apostila.knit" />
   <meta property="og:type" content="book" />
@@ -117,6 +117,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -405,8 +409,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.9.1" data-path="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html#as-estruturas-possíveis-dos-testes-de-hipóteses-relacionados-às-suas-médias-serão"><i class="fa fa-check"></i><b>11.9.1</b> As estruturas possíveis dos testes de hipóteses relacionados às suas médias serão:</a></li>
 <li class="chapter" data-level="11.9.2" data-path="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html#testes-de-hipóteses-para-as-médias-de-duas-populações-com-variâncias-conhecidas-ou-não-conhecidas-mas-o-tamanho-das-amostras-é-grande"><i class="fa fa-check"></i><b>11.9.2</b> Testes de hipóteses para as médias de duas populações com variâncias conhecidas (ou não conhecidas mas o tamanho das amostras é grande)</a></li>
-<li class="chapter" data-level="11.9.3" data-path="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html#testes-de-hipóteses-para-as-médias-de-duas-populações-com-variâncias-desconhecidas-mas-admitidas-iguais-e-o-tamanho-das-amostras-é-diminuto"><i class="fa fa-check"></i><b>11.9.3</b> Testes de hipóteses para as médias de duas populações com variâncias desconhecidas (mas admitidas iguais) e o tamanho das amostras é diminuto</a></li>
-<li class="chapter" data-level="11.9.4" data-path="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html#teste-de-hipóteses-para-as-médias-de-duas-populações-independentes-com-variâncias-desconhecidas-e-o-tamanho-das-amostras-é-diminuto"><i class="fa fa-check"></i><b>11.9.4</b> Teste de hipóteses para as médias de duas populações independentes com variâncias desconhecidas e o tamanho das amostras é diminuto</a></li>
+<li class="chapter" data-level="11.9.3" data-path="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html#testes-de-hipóteses-para-as-médias-de-duas-populações-normais-com-variâncias-desconhecidas-mas-iguais-teste-t-homocedástico-sigma_12sigma_22"><i class="fa fa-check"></i><b>11.9.3</b> Testes de hipóteses para as médias de duas populações Normais com variâncias desconhecidas mas iguais: teste “t’’ homocedástico (<span class="math inline">\(\sigma_{1}^{2}=\sigma_{2}^{2}=?\)</span>)</a></li>
+<li class="chapter" data-level="11.9.4" data-path="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html"><a href="teste-de-médias-amostrais-independentes-de-duas-populações-normais.html#teste-de-hipóteses-para-as-médias-de-duas-populações-normais-com-variâncias-desconhecidas-e-desiguais-teste-t-heterocedástico-sigma_12-neq-sigma_22"><i class="fa fa-check"></i><b>11.9.4</b> Teste de hipóteses para as médias de duas populações Normais com variâncias desconhecidas e desiguais: teste “``t’’ heterocedástico (<span class="math inline">\(\sigma_{1}^{2} \neq \sigma_{2}^{2}=?\)</span>)</a></li>
 </ul></li>
 <li class="chapter" data-level="11.10" data-path="teste-de-uma-proporção-amostral.html"><a href="teste-de-uma-proporção-amostral.html"><i class="fa fa-check"></i><b>11.10</b> Teste de uma proporção amostral</a>
 <ul>
@@ -495,150 +499,150 @@ Prof. M.e Eng. Felinto Junior Da Costa</div></a>
 <p>Assim, <span class="math inline">\((1-\alpha)\)</span> traduz o grau de confiança que se tem que um intervalo de confiança, calculado sobre uma estatística advinda de uma particular amostra de tamanho <span class="math inline">\(n\)</span> da variável aleatória <span class="math inline">\(X\)</span>, inclua o verdadeiro valor do parâmetro da população:</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="intervalos-de-confiança-1.html#cb92-1" aria-hidden="true" tabindex="-1"></a>IC.N <span class="ot">=</span> <span class="cf">function</span> (N, n, mu, sigma, conf) {</span>
-<span id="cb92-2"><a href="intervalos-de-confiança-1.html#cb92-2" aria-hidden="true" tabindex="-1"></a>  dados<span class="ot">=</span><span class="fu">data.frame</span>()</span>
-<span id="cb92-3"><a href="intervalos-de-confiança-1.html#cb92-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="dv">0</span>, <span class="dv">0</span>, </span>
-<span id="cb92-4"><a href="intervalos-de-confiança-1.html#cb92-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">type=</span><span class="st">&quot;n&quot;</span>, </span>
-<span id="cb92-5"><a href="intervalos-de-confiança-1.html#cb92-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlim=</span><span class="fu">c</span>(mu<span class="fl">-0.4</span><span class="sc">*</span>mu,mu<span class="fl">+0.4</span><span class="sc">*</span>mu), </span>
-<span id="cb92-6"><a href="intervalos-de-confiança-1.html#cb92-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,N), </span>
-<span id="cb92-7"><a href="intervalos-de-confiança-1.html#cb92-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">bty=</span><span class="st">&quot;l&quot;</span>,</span>
-<span id="cb92-8"><a href="intervalos-de-confiança-1.html#cb92-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab=</span><span class="st">&quot;Escala de valores da variável&quot;</span>, </span>
-<span id="cb92-9"><a href="intervalos-de-confiança-1.html#cb92-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">ylab=</span><span class="st">&quot;Intervalos amostrais construídos&quot;</span>, </span>
-<span id="cb92-10"><a href="intervalos-de-confiança-1.html#cb92-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">main=</span><span class="fu">paste0</span>(<span class="st">&quot;Intervalos com iguais níveis de confiança fixados em &quot;</span>, <span class="dv">100</span><span class="sc">*</span>conf, <span class="st">&quot;% </span><span class="sc">\n</span><span class="st">(&quot;</span>,N,<span class="st">&quot; amostras de tamanho &quot;</span>,n,<span class="st">&quot;)&quot;</span>) , </span>
-<span id="cb92-11"><a href="intervalos-de-confiança-1.html#cb92-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">sub=</span><span class="fu">paste0</span>(<span class="st">&quot;Parâmetros da distribuição da população Normal ( \u03bc, \u03c3) = (&quot;</span>,mu,<span class="st">&quot;, &quot;</span>, sigma,<span class="st">&quot;)&quot;</span>))</span>
-<span id="cb92-12"><a href="intervalos-de-confiança-1.html#cb92-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abline</span>(<span class="at">v=</span>mu, <span class="at">col=</span><span class="st">&#39;red&#39;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb92-13"><a href="intervalos-de-confiança-1.html#cb92-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">#axis(1, at = c(mu-1*mu, mu, mu+1*mu))</span></span>
-<span id="cb92-14"><a href="intervalos-de-confiança-1.html#cb92-14" aria-hidden="true" tabindex="-1"></a>zc <span class="ot">=</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>((<span class="dv">1</span><span class="sc">-</span>conf)<span class="sc">/</span><span class="dv">2</span>))</span>
-<span id="cb92-15"><a href="intervalos-de-confiança-1.html#cb92-15" aria-hidden="true" tabindex="-1"></a><span class="co">#sigma.xbarra = sigma/sqrt(n)</span></span>
-<span id="cb92-16"><a href="intervalos-de-confiança-1.html#cb92-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N) {</span>
-<span id="cb92-17"><a href="intervalos-de-confiança-1.html#cb92-17" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">=</span> <span class="fu">rnorm</span>(n, mu, sigma)</span>
-<span id="cb92-18"><a href="intervalos-de-confiança-1.html#cb92-18" aria-hidden="true" tabindex="-1"></a>  media <span class="ot">=</span> <span class="fu">mean</span>(x)</span>
-<span id="cb92-19"><a href="intervalos-de-confiança-1.html#cb92-19" aria-hidden="true" tabindex="-1"></a>  erro<span class="ot">=</span> media<span class="sc">-</span>mu</span>
-<span id="cb92-20"><a href="intervalos-de-confiança-1.html#cb92-20" aria-hidden="true" tabindex="-1"></a>  sd <span class="ot">=</span> <span class="fu">sd</span>(x)</span>
-<span id="cb92-21"><a href="intervalos-de-confiança-1.html#cb92-21" aria-hidden="true" tabindex="-1"></a>  li <span class="ot">=</span> media <span class="sc">-</span> zc <span class="sc">*</span> sd<span class="sc">/</span>(<span class="fu">sqrt</span>(n))</span>
-<span id="cb92-22"><a href="intervalos-de-confiança-1.html#cb92-22" aria-hidden="true" tabindex="-1"></a>  ls <span class="ot">=</span> media <span class="sc">+</span> zc <span class="sc">*</span> sd<span class="sc">/</span>(<span class="fu">sqrt</span>(n))</span>
-<span id="cb92-23"><a href="intervalos-de-confiança-1.html#cb92-23" aria-hidden="true" tabindex="-1"></a>  temp<span class="ot">=</span><span class="fu">cbind</span>(mu, media, erro, li, ls)</span>
-<span id="cb92-24"><a href="intervalos-de-confiança-1.html#cb92-24" aria-hidden="true" tabindex="-1"></a>  dados<span class="ot">=</span><span class="fu">rbind</span>(dados, temp)</span>
-<span id="cb92-25"><a href="intervalos-de-confiança-1.html#cb92-25" aria-hidden="true" tabindex="-1"></a>  plotx <span class="ot">=</span> <span class="fu">c</span>(li,ls)</span>
-<span id="cb92-26"><a href="intervalos-de-confiança-1.html#cb92-26" aria-hidden="true" tabindex="-1"></a>  ploty <span class="ot">=</span> <span class="fu">c</span>(i,i)</span>
-<span id="cb92-27"><a href="intervalos-de-confiança-1.html#cb92-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (li <span class="sc">&gt;</span> mu <span class="sc">|</span> ls <span class="sc">&lt;</span> mu) <span class="fu">lines</span>(plotx,ploty, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lend=</span><span class="dv">0</span>)</span>
-<span id="cb92-28"><a href="intervalos-de-confiança-1.html#cb92-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> <span class="fu">lines</span>(plotx,ploty, <span class="at">lend=</span><span class="dv">0</span>) </span>
-<span id="cb92-29"><a href="intervalos-de-confiança-1.html#cb92-29" aria-hidden="true" tabindex="-1"></a>   <span class="cf">if</span> (li <span class="sc">&gt;</span> mu <span class="sc">|</span> ls <span class="sc">&lt;</span> mu) <span class="fu">points</span>(media, i, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">cex=</span><span class="dv">1</span>)<span class="sc">+</span><span class="fu">text</span>(<span class="at">y=</span>i<span class="sc">+</span><span class="dv">3</span>,<span class="at">x=</span>media, <span class="at">labels=</span><span class="fu">round</span>(media,<span class="dv">1</span>), <span class="at">cex=</span><span class="dv">1</span>, <span class="at">col=</span><span class="st">&#39;red&#39;</span>)</span>
-<span id="cb92-30"><a href="intervalos-de-confiança-1.html#cb92-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> <span class="fu">points</span>(media, i, <span class="at">col=</span><span class="st">&quot;black&quot;</span>, <span class="at">cex=</span><span class="dv">1</span>) </span>
-<span id="cb92-31"><a href="intervalos-de-confiança-1.html#cb92-31" aria-hidden="true" tabindex="-1"></a>} </span>
-<span id="cb92-32"><a href="intervalos-de-confiança-1.html#cb92-32" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(dados)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;mu&quot;</span>, <span class="st">&quot;media&quot;</span>, <span class="st">&quot;erro&quot;</span>, <span class="st">&quot;li&quot;</span>, <span class="st">&quot;ls&quot;</span>)</span>
-<span id="cb92-33"><a href="intervalos-de-confiança-1.html#cb92-33" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(dados)</span>
-<span id="cb92-34"><a href="intervalos-de-confiança-1.html#cb92-34" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="intervalos-de-confiança-1.html#cb92-1" tabindex="-1"></a>IC.N <span class="ot">=</span> <span class="cf">function</span> (N, n, mu, sigma, conf) {</span>
+<span id="cb92-2"><a href="intervalos-de-confiança-1.html#cb92-2" tabindex="-1"></a>  dados<span class="ot">=</span><span class="fu">data.frame</span>()</span>
+<span id="cb92-3"><a href="intervalos-de-confiança-1.html#cb92-3" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="dv">0</span>, <span class="dv">0</span>, </span>
+<span id="cb92-4"><a href="intervalos-de-confiança-1.html#cb92-4" tabindex="-1"></a>       <span class="at">type=</span><span class="st">&quot;n&quot;</span>, </span>
+<span id="cb92-5"><a href="intervalos-de-confiança-1.html#cb92-5" tabindex="-1"></a>       <span class="at">xlim=</span><span class="fu">c</span>(mu<span class="fl">-0.4</span><span class="sc">*</span>mu,mu<span class="fl">+0.4</span><span class="sc">*</span>mu), </span>
+<span id="cb92-6"><a href="intervalos-de-confiança-1.html#cb92-6" tabindex="-1"></a>       <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,N), </span>
+<span id="cb92-7"><a href="intervalos-de-confiança-1.html#cb92-7" tabindex="-1"></a>       <span class="at">bty=</span><span class="st">&quot;l&quot;</span>,</span>
+<span id="cb92-8"><a href="intervalos-de-confiança-1.html#cb92-8" tabindex="-1"></a>       <span class="at">xlab=</span><span class="st">&quot;Escala de valores da variável&quot;</span>, </span>
+<span id="cb92-9"><a href="intervalos-de-confiança-1.html#cb92-9" tabindex="-1"></a>       <span class="at">ylab=</span><span class="st">&quot;Intervalos amostrais construídos&quot;</span>, </span>
+<span id="cb92-10"><a href="intervalos-de-confiança-1.html#cb92-10" tabindex="-1"></a>       <span class="at">main=</span><span class="fu">paste0</span>(<span class="st">&quot;Intervalos com iguais níveis de confiança fixados em &quot;</span>, <span class="dv">100</span><span class="sc">*</span>conf, <span class="st">&quot;% </span><span class="sc">\n</span><span class="st">(&quot;</span>,N,<span class="st">&quot; amostras de tamanho &quot;</span>,n,<span class="st">&quot;)&quot;</span>) , </span>
+<span id="cb92-11"><a href="intervalos-de-confiança-1.html#cb92-11" tabindex="-1"></a>       <span class="at">sub=</span><span class="fu">paste0</span>(<span class="st">&quot;Parâmetros da distribuição da população Normal ( \u03bc, \u03c3) = (&quot;</span>,mu,<span class="st">&quot;, &quot;</span>, sigma,<span class="st">&quot;)&quot;</span>))</span>
+<span id="cb92-12"><a href="intervalos-de-confiança-1.html#cb92-12" tabindex="-1"></a>  <span class="fu">abline</span>(<span class="at">v=</span>mu, <span class="at">col=</span><span class="st">&#39;red&#39;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb92-13"><a href="intervalos-de-confiança-1.html#cb92-13" tabindex="-1"></a>  <span class="co">#axis(1, at = c(mu-1*mu, mu, mu+1*mu))</span></span>
+<span id="cb92-14"><a href="intervalos-de-confiança-1.html#cb92-14" tabindex="-1"></a>zc <span class="ot">=</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>((<span class="dv">1</span><span class="sc">-</span>conf)<span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb92-15"><a href="intervalos-de-confiança-1.html#cb92-15" tabindex="-1"></a><span class="co">#sigma.xbarra = sigma/sqrt(n)</span></span>
+<span id="cb92-16"><a href="intervalos-de-confiança-1.html#cb92-16" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N) {</span>
+<span id="cb92-17"><a href="intervalos-de-confiança-1.html#cb92-17" tabindex="-1"></a>  x <span class="ot">=</span> <span class="fu">rnorm</span>(n, mu, sigma)</span>
+<span id="cb92-18"><a href="intervalos-de-confiança-1.html#cb92-18" tabindex="-1"></a>  media <span class="ot">=</span> <span class="fu">mean</span>(x)</span>
+<span id="cb92-19"><a href="intervalos-de-confiança-1.html#cb92-19" tabindex="-1"></a>  erro<span class="ot">=</span> media<span class="sc">-</span>mu</span>
+<span id="cb92-20"><a href="intervalos-de-confiança-1.html#cb92-20" tabindex="-1"></a>  sd <span class="ot">=</span> <span class="fu">sd</span>(x)</span>
+<span id="cb92-21"><a href="intervalos-de-confiança-1.html#cb92-21" tabindex="-1"></a>  li <span class="ot">=</span> media <span class="sc">-</span> zc <span class="sc">*</span> sd<span class="sc">/</span>(<span class="fu">sqrt</span>(n))</span>
+<span id="cb92-22"><a href="intervalos-de-confiança-1.html#cb92-22" tabindex="-1"></a>  ls <span class="ot">=</span> media <span class="sc">+</span> zc <span class="sc">*</span> sd<span class="sc">/</span>(<span class="fu">sqrt</span>(n))</span>
+<span id="cb92-23"><a href="intervalos-de-confiança-1.html#cb92-23" tabindex="-1"></a>  temp<span class="ot">=</span><span class="fu">cbind</span>(mu, media, erro, li, ls)</span>
+<span id="cb92-24"><a href="intervalos-de-confiança-1.html#cb92-24" tabindex="-1"></a>  dados<span class="ot">=</span><span class="fu">rbind</span>(dados, temp)</span>
+<span id="cb92-25"><a href="intervalos-de-confiança-1.html#cb92-25" tabindex="-1"></a>  plotx <span class="ot">=</span> <span class="fu">c</span>(li,ls)</span>
+<span id="cb92-26"><a href="intervalos-de-confiança-1.html#cb92-26" tabindex="-1"></a>  ploty <span class="ot">=</span> <span class="fu">c</span>(i,i)</span>
+<span id="cb92-27"><a href="intervalos-de-confiança-1.html#cb92-27" tabindex="-1"></a>  <span class="cf">if</span> (li <span class="sc">&gt;</span> mu <span class="sc">|</span> ls <span class="sc">&lt;</span> mu) <span class="fu">lines</span>(plotx,ploty, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lend=</span><span class="dv">0</span>)</span>
+<span id="cb92-28"><a href="intervalos-de-confiança-1.html#cb92-28" tabindex="-1"></a>  <span class="cf">else</span> <span class="fu">lines</span>(plotx,ploty, <span class="at">lend=</span><span class="dv">0</span>) </span>
+<span id="cb92-29"><a href="intervalos-de-confiança-1.html#cb92-29" tabindex="-1"></a>   <span class="cf">if</span> (li <span class="sc">&gt;</span> mu <span class="sc">|</span> ls <span class="sc">&lt;</span> mu) <span class="fu">points</span>(media, i, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">cex=</span><span class="dv">1</span>)<span class="sc">+</span><span class="fu">text</span>(<span class="at">y=</span>i<span class="sc">+</span><span class="dv">3</span>,<span class="at">x=</span>media, <span class="at">labels=</span><span class="fu">round</span>(media,<span class="dv">1</span>), <span class="at">cex=</span><span class="dv">1</span>, <span class="at">col=</span><span class="st">&#39;red&#39;</span>)</span>
+<span id="cb92-30"><a href="intervalos-de-confiança-1.html#cb92-30" tabindex="-1"></a>  <span class="cf">else</span> <span class="fu">points</span>(media, i, <span class="at">col=</span><span class="st">&quot;black&quot;</span>, <span class="at">cex=</span><span class="dv">1</span>) </span>
+<span id="cb92-31"><a href="intervalos-de-confiança-1.html#cb92-31" tabindex="-1"></a>} </span>
+<span id="cb92-32"><a href="intervalos-de-confiança-1.html#cb92-32" tabindex="-1"></a><span class="fu">colnames</span>(dados)<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;mu&quot;</span>, <span class="st">&quot;media&quot;</span>, <span class="st">&quot;erro&quot;</span>, <span class="st">&quot;li&quot;</span>, <span class="st">&quot;ls&quot;</span>)</span>
+<span id="cb92-33"><a href="intervalos-de-confiança-1.html#cb92-33" tabindex="-1"></a><span class="fu">return</span>(dados)</span>
+<span id="cb92-34"><a href="intervalos-de-confiança-1.html#cb92-34" tabindex="-1"></a>}</span></code></pre></div>
 <p><br />
 </p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="intervalos-de-confiança-1.html#cb93-1" aria-hidden="true" tabindex="-1"></a>N<span class="ot">=</span><span class="dv">100</span></span>
-<span id="cb93-2"><a href="intervalos-de-confiança-1.html#cb93-2" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">64</span></span>
-<span id="cb93-3"><a href="intervalos-de-confiança-1.html#cb93-3" aria-hidden="true" tabindex="-1"></a>mu<span class="ot">=</span><span class="fl">9.421</span></span>
-<span id="cb93-4"><a href="intervalos-de-confiança-1.html#cb93-4" aria-hidden="true" tabindex="-1"></a>sigma<span class="ot">=</span><span class="fl">4.1681</span></span>
-<span id="cb93-5"><a href="intervalos-de-confiança-1.html#cb93-5" aria-hidden="true" tabindex="-1"></a>conf<span class="ot">=</span><span class="fl">0.95</span></span>
-<span id="cb93-6"><a href="intervalos-de-confiança-1.html#cb93-6" aria-hidden="true" tabindex="-1"></a><span class="fu">IC.N</span>(N, n, mu, sigma, conf)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="intervalos-de-confiança-1.html#cb93-1" tabindex="-1"></a>N<span class="ot">=</span><span class="dv">100</span></span>
+<span id="cb93-2"><a href="intervalos-de-confiança-1.html#cb93-2" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">64</span></span>
+<span id="cb93-3"><a href="intervalos-de-confiança-1.html#cb93-3" tabindex="-1"></a>mu<span class="ot">=</span><span class="fl">9.421</span></span>
+<span id="cb93-4"><a href="intervalos-de-confiança-1.html#cb93-4" tabindex="-1"></a>sigma<span class="ot">=</span><span class="fl">4.1681</span></span>
+<span id="cb93-5"><a href="intervalos-de-confiança-1.html#cb93-5" tabindex="-1"></a>conf<span class="ot">=</span><span class="fl">0.95</span></span>
+<span id="cb93-6"><a href="intervalos-de-confiança-1.html#cb93-6" tabindex="-1"></a><span class="fu">IC.N</span>(N, n, mu, sigma, conf)</span></code></pre></div>
 <p><img src="apostila_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
-<pre><code>##        mu  media      erro    li     ls
-## 1   9.421  9.164 -0.256693 8.209 10.120
-## 2   9.421  8.737 -0.683817 7.782  9.692
-## 3   9.421  9.885  0.464121 8.849 10.921
-## 4   9.421  9.113 -0.308339 7.965 10.260
-## 5   9.421  8.926 -0.495301 7.767 10.084
-## 6   9.421  8.817 -0.604148 7.745  9.889
-## 7   9.421  9.358 -0.062955 8.495 10.221
-## 8   9.421  9.329 -0.092499 8.256 10.401
-## 9   9.421  9.521  0.099961 8.524 10.518
-## 10  9.421 10.038  0.617004 9.121 10.955
-## 11  9.421  8.545 -0.875524 7.584  9.507
-## 12  9.421  9.117 -0.303878 8.255  9.980
-## 13  9.421  9.507  0.086190 8.457 10.558
-## 14  9.421  9.008 -0.413422 8.106  9.909
-## 15  9.421  9.126 -0.295445 8.007 10.244
-## 16  9.421  9.279 -0.142476 8.094 10.463
-## 17  9.421  9.139 -0.281915 8.071 10.207
-## 18  9.421  9.799  0.377985 8.681 10.917
-## 19  9.421  9.557  0.135856 8.396 10.718
-## 20  9.421  9.355 -0.065756 8.414 10.296
-## 21  9.421  9.856  0.434990 8.974 10.738
-## 22  9.421  9.399 -0.022269 8.503 10.295
-## 23  9.421  9.778  0.357468 8.907 10.650
-## 24  9.421  8.973 -0.447869 8.047  9.900
-## 25  9.421 10.169  0.748190 9.239 11.100
-## 26  9.421  8.576 -0.845199 7.584  9.567
-## 27  9.421 10.103  0.682122 9.096 11.110
-## 28  9.421  9.499  0.077863 8.372 10.626
-## 29  9.421  8.890 -0.530526 7.745 10.036
-## 30  9.421 10.188  0.767405 9.280 11.097
-## 31  9.421  8.299 -1.121810 7.287  9.312
-## 32  9.421  9.095 -0.326250 8.080 10.110
-## 33  9.421  9.427  0.005754 8.370 10.484
-## 34  9.421  9.102 -0.318932 8.222  9.982
-## 35  9.421  9.188 -0.232616 8.016 10.361
-## 36  9.421 10.174  0.752556 9.175 11.172
-## 37  9.421 10.740  1.319453 9.739 11.742
-## 38  9.421  8.951 -0.469649 7.945  9.957
-## 39  9.421  9.000 -0.421122 7.973 10.027
-## 40  9.421 10.502  1.081248 9.505 11.499
-## 41  9.421  9.107 -0.313557 8.104 10.110
-## 42  9.421 10.003  0.582225 8.951 11.056
-## 43  9.421  8.527 -0.893895 7.472  9.583
-## 44  9.421  8.325 -1.095593 7.306  9.345
-## 45  9.421 10.000  0.579157 9.029 10.971
-## 46  9.421  8.807 -0.614098 7.709  9.905
-## 47  9.421  8.924 -0.497306 7.870  9.977
-## 48  9.421 10.240  0.818970 9.305 11.175
-## 49  9.421  8.577 -0.843810 7.570  9.584
-## 50  9.421  8.828 -0.593219 7.862  9.794
-## 51  9.421  9.398 -0.023219 8.497 10.299
-## 52  9.421  8.837 -0.584450 7.741  9.932
-## 53  9.421  9.056 -0.364563 7.995 10.118
-## 54  9.421  9.947  0.526080 9.068 10.826
-## 55  9.421  8.785 -0.635501 7.686  9.885
-## 56  9.421  8.870 -0.551021 8.023  9.717
-## 57  9.421  9.140 -0.280664 8.105 10.176
-## 58  9.421  9.842  0.421047 8.718 10.966
-## 59  9.421  9.273 -0.147864 8.358 10.188
-## 60  9.421  9.361 -0.059963 8.384 10.338
-## 61  9.421  8.859 -0.561545 8.032  9.687
-## 62  9.421  9.614  0.192787 8.815 10.413
-## 63  9.421  8.524 -0.897222 7.415  9.633
-## 64  9.421  9.636  0.214658 8.652 10.619
-## 65  9.421  9.108 -0.313027 8.057 10.159
-## 66  9.421  9.551  0.130115 8.573 10.529
-## 67  9.421  9.264 -0.156809 8.113 10.415
-## 68  9.421  8.935 -0.485914 8.005  9.865
-## 69  9.421  9.038 -0.382672 7.934 10.143
-## 70  9.421 10.001  0.579729 9.062 10.940
-## 71  9.421  9.058 -0.362637 8.095 10.022
-## 72  9.421  8.891 -0.529801 7.826  9.956
-## 73  9.421  9.261 -0.160339 8.242 10.279
-## 74  9.421  8.996 -0.425276 8.042  9.950
-## 75  9.421  9.589  0.168193 8.588 10.590
-## 76  9.421  9.416 -0.004675 8.255 10.577
-## 77  9.421  9.117 -0.304457 8.189 10.044
-## 78  9.421  9.091 -0.330269 8.076 10.106
-## 79  9.421  9.011 -0.409628 7.941 10.082
-## 80  9.421  8.763 -0.657826 7.751  9.776
-## 81  9.421  9.801  0.380286 8.745 10.858
-## 82  9.421  9.062 -0.358922 8.090 10.034
-## 83  9.421  8.993 -0.427860 8.074  9.913
-## 84  9.421  9.145 -0.275783 8.153 10.138
-## 85  9.421 10.111  0.690122 9.197 11.025
-## 86  9.421  9.667  0.245534 8.567 10.766
-## 87  9.421  8.429 -0.991961 7.542  9.316
-## 88  9.421  9.417 -0.003638 8.426 10.409
-## 89  9.421  8.810 -0.610567 7.730  9.891
-## 90  9.421  9.403 -0.018358 8.328 10.478
-## 91  9.421  8.738 -0.683488 7.542  9.933
-## 92  9.421  9.858  0.437249 8.777 10.939
-## 93  9.421  7.941 -1.479684 6.956  8.927
-## 94  9.421  9.535  0.114060 8.577 10.493
-## 95  9.421  9.264 -0.156791 8.156 10.372
-## 96  9.421  8.377 -1.044306 7.216  9.537
-## 97  9.421  9.223 -0.198105 8.304 10.142
-## 98  9.421 10.038  0.617379 9.131 10.946
-## 99  9.421  8.989 -0.431886 7.917 10.061
-## 100 9.421  8.670 -0.751109 7.607  9.733</code></pre>
+<pre><code>##        mu  media     erro     li     ls
+## 1   9.421  9.087 -0.33366  8.135 10.039
+## 2   9.421  9.796  0.37458  8.634 10.957
+## 3   9.421  9.263 -0.15835  8.311 10.215
+## 4   9.421  8.421 -1.00026  7.271  9.570
+## 5   9.421  9.467  0.04608  8.363 10.571
+## 6   9.421  9.054 -0.36692  7.920 10.188
+## 7   9.421  9.914  0.49347  8.799 11.030
+## 8   9.421  9.385 -0.03643  8.359 10.410
+## 9   9.421  9.202 -0.21864  8.005 10.400
+## 10  9.421  9.659  0.23825  8.610 10.709
+## 11  9.421 10.001  0.57998  8.987 11.015
+## 12  9.421  9.709  0.28763  8.651 10.766
+## 13  9.421  8.852 -0.56927  7.894  9.809
+## 14  9.421  9.278 -0.14324  8.328 10.228
+## 15  9.421  8.966 -0.45541  7.959  9.972
+## 16  9.421  9.211 -0.20958  8.182 10.241
+## 17  9.421  9.562  0.14079  8.441 10.683
+## 18  9.421  9.096 -0.32524  8.274  9.917
+## 19  9.421  9.719  0.29759  8.666 10.771
+## 20  9.421 10.352  0.93142  9.222 11.483
+## 21  9.421  9.022 -0.39900  8.166  9.878
+## 22  9.421  8.201 -1.21970  7.147  9.256
+## 23  9.421  9.557  0.13631  8.599 10.516
+## 24  9.421  9.220 -0.20150  8.185 10.254
+## 25  9.421  9.024 -0.39724  7.967 10.081
+## 26  9.421  9.817  0.39603  8.593 11.041
+## 27  9.421  9.388 -0.03337  8.412 10.363
+## 28  9.421  9.051 -0.36967  8.061 10.041
+## 29  9.421  9.671  0.25029  8.668 10.675
+## 30  9.421  8.355 -1.06572  7.292  9.419
+## 31  9.421  9.690  0.26903  8.698 10.682
+## 32  9.421  9.471  0.04980  8.366 10.575
+## 33  9.421  9.735  0.31391  8.688 10.782
+## 34  9.421  9.653  0.23161  8.614 10.691
+## 35  9.421  8.827 -0.59362  7.834  9.820
+## 36  9.421 10.456  1.03480  9.459 11.453
+## 37  9.421  9.759  0.33824  8.689 10.829
+## 38  9.421  8.922 -0.49868  7.909  9.936
+## 39  9.421  9.684  0.26296  8.754 10.614
+## 40  9.421  9.655  0.23430  8.535 10.776
+## 41  9.421  9.745  0.32437  8.638 10.853
+## 42  9.421  9.659  0.23795  8.719 10.599
+## 43  9.421 10.381  0.96044  9.363 11.400
+## 44  9.421  9.520  0.09933  8.415 10.626
+## 45  9.421  9.202 -0.21872  8.190 10.214
+## 46  9.421  9.726  0.30540  8.784 10.669
+## 47  9.421  9.127 -0.29425  8.092 10.162
+## 48  9.421  9.707  0.28589  8.863 10.551
+## 49  9.421 10.231  0.80983  9.186 11.276
+## 50  9.421  9.477  0.05592  8.450 10.503
+## 51  9.421  8.958 -0.46297  7.733 10.183
+## 52  9.421  9.570  0.14944  8.477 10.664
+## 53  9.421  9.212 -0.20933  8.202 10.221
+## 54  9.421  9.294 -0.12707  8.322 10.266
+## 55  9.421  9.624  0.20328  8.582 10.667
+## 56  9.421  9.552  0.13060  8.567 10.536
+## 57  9.421  9.474  0.05284  8.586 10.362
+## 58  9.421  9.396 -0.02486  8.484 10.308
+## 59  9.421  9.762  0.34079  8.753 10.770
+## 60  9.421  9.742  0.32109  8.635 10.849
+## 61  9.421  8.370 -1.05084  7.461  9.280
+## 62  9.421  8.737 -0.68387  7.565  9.909
+## 63  9.421 10.017  0.59606  8.921 11.114
+## 64  9.421  9.325 -0.09621  8.267 10.383
+## 65  9.421  8.873 -0.54787  7.678 10.068
+## 66  9.421  9.448  0.02677  8.450 10.446
+## 67  9.421 10.116  0.69506  9.147 11.085
+## 68  9.421  9.271 -0.15035  8.092 10.449
+## 69  9.421  9.429  0.00838  8.385 10.474
+## 70  9.421  9.656  0.23507  8.659 10.653
+## 71  9.421 10.474  1.05345  9.372 11.577
+## 72  9.421 10.070  0.64946  9.152 10.989
+## 73  9.421  8.061 -1.36003  7.033  9.089
+## 74  9.421  9.387 -0.03444  8.152 10.621
+## 75  9.421 10.067  0.64588  9.015 11.119
+## 76  9.421  9.201 -0.22034  8.350 10.051
+## 77  9.421 10.226  0.80484  9.149 11.303
+## 78  9.421  9.796  0.37485  8.827 10.765
+## 79  9.421  8.775 -0.64571  7.774  9.776
+## 80  9.421  8.523 -0.89825  7.806  9.239
+## 81  9.421  9.470  0.04936  8.440 10.501
+## 82  9.421  9.514  0.09302  8.623 10.405
+## 83  9.421 10.566  1.14537  9.328 11.805
+## 84  9.421  9.632  0.21127  8.605 10.659
+## 85  9.421  8.940 -0.48096  8.092  9.788
+## 86  9.421  9.357 -0.06390  8.272 10.442
+## 87  9.421  9.961  0.53969  9.000 10.922
+## 88  9.421  9.662  0.24120  8.702 10.622
+## 89  9.421  9.861  0.43954  8.988 10.733
+## 90  9.421  9.816  0.39523  8.801 10.832
+## 91  9.421  9.232 -0.18909  7.803 10.661
+## 92  9.421  9.996  0.57526  9.052 10.940
+## 93  9.421  9.288 -0.13311  8.224 10.352
+## 94  9.421  8.897 -0.52369  7.866  9.928
+## 95  9.421  9.965  0.54417  8.958 10.972
+## 96  9.421 10.408  0.98719  9.432 11.385
+## 97  9.421  9.138 -0.28345  8.094 10.181
+## 98  9.421 10.019  0.59773  9.065 10.973
+## 99  9.421 11.081  1.65991 10.287 11.875
+## 100 9.421  9.496  0.07519  8.291 10.701</code></pre>
 <p><br />
 </p>
 <p>O gráfico acima expõe os intervalos de confiança: <span class="math inline">\((1-\alpha)\)</span>=95% produzidos para as 100 médias de amostras de tamanho 64 extraídas de uma população com parâmetros <span class="math inline">\(\mu:\)</span> 9.421 e <span class="math inline">\(\sigma:\)</span> 4.1681.</p>

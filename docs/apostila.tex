@@ -5,16 +5,19 @@
 \documentclass[
 ]{book}
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -44,13 +47,13 @@
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
@@ -58,7 +61,7 @@
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
@@ -67,7 +70,7 @@
 \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
 \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
@@ -150,7 +153,7 @@
 \bibliographystyle{plainnat}
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
+\urlstyle{same}
 \hypersetup{
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
@@ -161,7 +164,7 @@ DSTA - Departamento de Estatística\\
 Apostila de Estatística\\
 Prof.~M.e Eng. Felinto Junior Da Costa}
 \author{}
-\date{\vspace{-2.5em}Londrina, 07 de maio de 2023.}
+\date{\vspace{-2.5em}Londrina, 03 de agosto de 2023.}
 
 \begin{document}
 \maketitle
@@ -874,16 +877,17 @@ Por essa razão, através de um procedimento estatístico denominado de amostrag
 É comum a adoção de letras gregas para as características descritivas que se referirem à poúlação (universo) e letras do alfabeto latino para aquelas relativas à amostra extraída:
 
 \begin{longtable}[]{@{}lll@{}}
-\toprule()
+\toprule\noalign{}
 Característica estudada & Notação populacional & Notação amostral \\
-\midrule()
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Número de elementos & N & n \\
 Média & \(\mu\) & \(\stackrel{-}{x}\) \\
 Variância & \(\sigma^{2}\) & \({s}^{2}\) \\
 Desvio padrão & \(\sigma\) & s \\
 Proporção & \(\Pi\) & p \\
-\bottomrule()
 \end{longtable}
 
 \begin{figure}
@@ -3284,7 +3288,7 @@ A literatura propõe vários modos para se determinar o número \emph{k} de clas
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3636}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3377}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2987}}@{}}
-\toprule()
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Crítério
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -3292,12 +3296,13 @@ Tamanho da amostra (\emph{n})
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Fórmula
 \end{minipage} \\
-\midrule()
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Raiz quadrada & 25 \(\leq\) n \(\leq\) 220 & k=\(\sqrt{n}\) \\
 Herbert \textbf{Sturges} & 135 \(\leq\) 572237 & k=1+3,3log(n)\(^{(1)}\) \\
 Giuseppe \textbf{Milone} & 20 \(\leq 36315\) & k=-1+2ln(n) \(^{(2)}\) \\
-\bottomrule()
 \end{longtable}
 
 \begin{itemize}
@@ -3446,10 +3451,12 @@ A tabela de distribuição de frequências com 7 classes assume a forma:
 \hfill\break
 
 \begin{longtable}[]{@{}ll@{}}
-\toprule()
+\toprule\noalign{}
 Classe & Frequência absoluta (\(f_{i}\)) \\
-\midrule()
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 1,41 m \(\vdash\) 1,57 m & 8 \\
 1,57 m \(\vdash\) 1,65 m & 9 \\
 1,65 m \(\vdash\) 1,73 m & 21 \\
@@ -3458,7 +3465,6 @@ Classe & Frequência absoluta (\(f_{i}\)) \\
 1,89 m \(\vdash\) 1,97 m & 2 \\
 1,97 m \(\vdash\) 2,05 m & 1 \\
 Total & 60 \\
-\bottomrule()
 \end{longtable}
 
 \hfill\break
@@ -3482,10 +3488,12 @@ A tabela de distribuição de frequências com 7 classes assume a forma:
 \hfill\break
 
 \begin{longtable}[]{@{}ll@{}}
-\toprule()
+\toprule\noalign{}
 Classe & Frequência absoluta (\(f_{i}\)) \\
-\midrule()
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 1,40 m \(\vdash\) 1,48 m & 3 \\
 1,48 m \(\vdash\) 1,56 m & 2 \\
 1,56 m \(\vdash\) 1,64 m & 10 \\
@@ -3494,7 +3502,6 @@ Classe & Frequência absoluta (\(f_{i}\)) \\
 1,80 m \(\vdash\) 1,88 m & 6 \\
 1,88 m \(\vdash\) 2,06 m & 3 \\
 Total & 60 \\
-\bottomrule()
 \end{longtable}
 
 \hfill\break
@@ -3520,10 +3527,12 @@ A tabela de distribuição de frequências com 6 classes assume a forma:
 \hfill\break
 
 \begin{longtable}[]{@{}ll@{}}
-\toprule()
+\toprule\noalign{}
 Classe & Frequência absoluta (\(f_{i}\)) \\
-\midrule()
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 1,41 m \(\vdash\) 1,51 m & 3 \\
 1,51 m \(\vdash\) 1,61 m & 8 \\
 1,61 m \(\vdash\) 1,71 m & 23 \\
@@ -3531,7 +3540,6 @@ Classe & Frequência absoluta (\(f_{i}\)) \\
 1,81 m \(\vdash\) 1,91 m & 6 \\
 1,91 m \(\vdash\) 2,01 m & 3 \\
 Total & 60 \\
-\bottomrule()
 \end{longtable}
 
 \hfill\break
@@ -3581,7 +3589,7 @@ Vejo como exemplo as tabelas abaixo:
   >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1343}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1269}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1343}}@{}}
-\toprule()
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Classe
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -3599,8 +3607,10 @@ Freq. acumulada
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Freq. acum. (\%)
 \end{minipage} \\
-\midrule()
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 & & (\(\stackrel{-}{x}_{i}\)) & (\(f_{i}\)) & (\(fr_{i}\)) & (\(fr_{i}\%\)) & (\(fac_{i}\)) & (\(fac_{i}\%\)) \\
 1 & 1,41 \(\vdash\) 1,51 & 1,46 & 3 & 0,05 & 5 & 3 & 5,00 \\
 2 & 1,51 \(\vdash\) 1,61 & 1,56 & 8 & 0,13 & 13,33 & 11 & 18,33 \\
@@ -3609,7 +3619,6 @@ Freq. acum. (\%)
 5 & 1,81 \(\vdash\) 1,91 & 1,86 & 6 & 0,10 & 10 & 57 & 95,00 \\
 6 & 1,91 \(\vdash\) 2,01 & 1,96 & 3 & 0,05 & 5 & 60 & 100,00 \\
 Totais & - & & 60 & 1,00 & 100,00 & - & - \\
-\bottomrule()
 \end{longtable}
 
 \hfill\break
@@ -3622,7 +3631,7 @@ Totais & - & & 60 & 1,00 & 100,00 & - & - \\
   >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1495}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1121}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.2150}}@{}}
-\toprule()
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Classe
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -3638,8 +3647,10 @@ Freq. rel.
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Dens. rel.
 \end{minipage} \\
-\midrule()
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 & & (\(f_{i}\)) & (\(\Delta_{i}\)) & (\(\delta_{i}\)) & (\(fr_{i}\)) & (\(\delta_{fr_{i}}\)) \\
 1 & 1,41 \(\vdash\) 1,51 & 3 & 0,10 & 30 & 0,05 & 0,5 \\
 2 & 1,51 \(\vdash\) 1,61 & 8 & 0,10 & 80 & 0,13 & 1,33 \\
@@ -3648,7 +3659,6 @@ Dens. rel.
 5 & 1,81 \(\vdash\) 1,91 & 6 & 0,10 & 60 & 0,10 & 1 \\
 6 & 1,91 \(\vdash\) 2,01 & 3 & 0,10 & 30 & 0,05 & 0,5 \\
 Totais & - & 60 & - & - & 1,00 & - \\
-\bottomrule()
 \end{longtable}
 
 \hfill\break
@@ -4338,7 +4348,7 @@ Cada um dos elementos que compõem o espaço amostral, a soma dos valores numér
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1746}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1667}}@{}}
 \caption{\label{tab:table1} Quadro dos possíveis resultados de um experimento aleatório: somas dos valores numéricos das faces no lançamento de um dado por duas vezes}\tabularnewline
-\toprule()
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Soma
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -4348,9 +4358,9 @@ Frequência (\(n_{i}\))
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Proporção (\(f_{i}\))
 \end{minipage} \\
-\midrule()
+\midrule\noalign{}
 \endfirsthead
-\toprule()
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Soma
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -4360,8 +4370,10 @@ Frequência (\(n_{i}\))
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Proporção (\(f_{i}\))
 \end{minipage} \\
-\midrule()
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 & (primeiro,segundo) & & \\
 2 & (1,1) & 1 & \(\frac{1}{36}\) \\
 3 & (1,2); (2,1) & 2 & \(\frac{2}{36}\) \\
@@ -4375,7 +4387,6 @@ Proporção (\(f_{i}\))
 11 & (5,6); (6, 5) & 2 & \(\frac{2}{36}\) \\
 12 & (6,6) & 1 & \(\frac{1}{36}\) \\
 Totais & & 36 & \(\frac{1}{36}\) \\
-\bottomrule()
 \end{longtable}
 
 \hfill\break
@@ -4665,7 +4676,7 @@ P(E)= \frac{1}{N}
   >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.1348}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0496}}@{}}
 \caption{\label{tab:table2} Distribuição das proporções teóricas do um experimento aleatório: lançamento de um dado}\tabularnewline
-\toprule()
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Face
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -4683,9 +4694,9 @@ Face
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Total
 \end{minipage} \\
-\midrule()
+\midrule\noalign{}
 \endfirsthead
-\toprule()
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Face
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -4703,10 +4714,11 @@ Face
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Total
 \end{minipage} \\
-\midrule()
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Proporção teórica & \(\frac{1}{6}\) & \(\frac{1}{6}\) & \(\frac{1}{6}\) & \(\frac{1}{6}\) & \(\frac{1}{6}\) & \(\frac{1}{6}\) & 1 \\
-\bottomrule()
 \end{longtable}
 
 \hfill\break
@@ -4908,7 +4920,7 @@ Considerem agora a Tabela \ref{tab:table3} de dupla entrada onde vemos a distrib
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1918}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0959}}@{}}
 \caption{\label{tab:table3} Distribuição da quantidade de alunos segundo seu sexo e curso escolhido}\tabularnewline
-\toprule()
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Curso
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -4916,9 +4928,9 @@ Sexo
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} \\
-\midrule()
+\midrule\noalign{}
 \endfirsthead
-\toprule()
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Curso
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -4926,15 +4938,16 @@ Sexo
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 \end{minipage} \\
-\midrule()
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 & Masculino (M) & Feminino (F) & Total \\
 Matemática pura (M) & 70 & 40 & 110 \\
 Matemática aplicada (A) & 15 & 15 & 30 \\
 Estatística (E) & 10 & 20 & 30 \\
 Computação (C) & 20 & 10 & 30 \\
 Total & 115 & 85 & 200 \\
-\bottomrule()
 \end{longtable}
 
 \hfill\break
@@ -5200,17 +5213,18 @@ Exemplo: Considerem a Tabela \ref{tab:table4} que relaciona a ida à praia de um
 
 \begin{longtable}[]{@{}lllllllllll@{}}
 \caption{\label{tab:table4} Condicionamento de passeios à praia em relação às condições climáticas observadas}\tabularnewline
-\toprule()
+\toprule\noalign{}
 Dia & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
-\midrule()
+\midrule\noalign{}
 \endfirsthead
-\toprule()
+\toprule\noalign{}
 Dia & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
-\midrule()
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Foi à praia? & N & S & N & S & S & S & N & N & S & S \\
 Fez sol? & N & S & N & S & N & S & S & N & S & S \\
-\bottomrule()
 \end{longtable}
 
 \hfill\break
@@ -5358,20 +5372,21 @@ Exemplo: Considere a Tabela \ref{tab:table5} onde são expostos os resultados de
 
 \begin{longtable}[]{@{}llll@{}}
 \caption{\label{tab:table5} Distribuição da quantidade de alunos segundo seu sexo e a preferência por tênis}\tabularnewline
-\toprule()
+\toprule\noalign{}
 & Sexo & & \\
-\midrule()
+\midrule\noalign{}
 \endfirsthead
-\toprule()
+\toprule\noalign{}
 & Sexo & & \\
-\midrule()
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Curso & & & \\
 & Masculino (M) & Feminino (F) & Total \\
 Gostam de tênis (T) & 400 & 200 & 600 \\
 Não gostam de tênis (NT) & 50 & 50 & 100 \\
 Total & 450 & 250 & 700 \\
-\bottomrule()
 \end{longtable}
 
 \hypertarget{dependuxeancia-e-independuxeancia-de-eventos}{%
@@ -7737,17 +7752,18 @@ A figura abaixo ilustra a distribuição acumulada das probabilidades de alguns 
 \end{Shaded}
 
 \begin{verbatim}
-## -- Attaching packages --------------------------------------- tidyverse 1.3.2 --
-## v tibble  3.1.8      v dplyr   1.0.10
-## v tidyr   1.2.1      v stringr 1.5.0 
-## v readr   2.1.3      v forcats 0.5.2 
-## v purrr   1.0.1      
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.2     v readr     2.1.4
+## v forcats   1.0.0     v stringr   1.5.0
+## v lubridate 1.9.2     v tibble    3.2.1
+## v purrr     1.0.1     v tidyr     1.3.0
 ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
 ## x readr::col_factor() masks scales::col_factor()
 ## x purrr::discard()    masks scales::discard()
 ## x dplyr::filter()     masks stats::filter()
 ## x dplyr::group_rows() masks kableExtra::group_rows()
 ## x dplyr::lag()        masks stats::lag()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 \end{verbatim}
 
 \begin{Shaded}
@@ -10282,7 +10298,7 @@ Amostragem aleatória simples com reposição. Considere agora a mesma populaç�
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "d" "b" "a"
+## [1] "a" "e" "c"
 \end{verbatim}
 
 \begin{Shaded}
@@ -10294,7 +10310,7 @@ Amostragem aleatória simples com reposição. Considere agora a mesma populaç�
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "a" "a" "d"
+## [1] "a" "d" "e"
 \end{verbatim}
 
 \hfill\break
@@ -12514,107 +12530,107 @@ Usando conceitos já explicados em uma unidade anterior podemos determinar o tam
 \end{figure}
 
 \begin{verbatim}
-##       mu media      erro   li   ls
-## 1   1600  1612  12.11023 1592 1632
-## 2   1600  1601   0.54556 1581 1620
-## 3   1600  1583 -16.66912 1564 1602
-## 4   1600  1583 -16.75696 1562 1604
-## 5   1600  1602   1.90915 1585 1619
-## 6   1600  1595  -4.62186 1576 1615
-## 7   1600  1607   7.42010 1588 1627
-## 8   1600  1605   4.88280 1584 1626
-## 9   1600  1610  10.00164 1589 1631
-## 10  1600  1598  -2.35823 1579 1616
-## 11  1600  1609   9.36761 1591 1628
-## 12  1600  1598  -2.41825 1577 1618
-## 13  1600  1598  -1.83795 1577 1619
-## 14  1600  1613  12.85699 1592 1633
-## 15  1600  1602   1.56420 1582 1621
-## 16  1600  1595  -4.69483 1575 1615
-## 17  1600  1596  -4.46473 1576 1615
-## 18  1600  1593  -6.86454 1573 1613
-## 19  1600  1587 -12.80850 1566 1608
-## 20  1600  1596  -4.42700 1577 1614
-## 21  1600  1592  -8.02419 1572 1612
-## 22  1600  1614  14.30969 1595 1634
-## 23  1600  1609   8.71454 1589 1629
-## 24  1600  1623  23.17219 1604 1643
-## 25  1600  1576 -23.66870 1556 1597
-## 26  1600  1623  22.77002 1603 1643
-## 27  1600  1591  -9.27535 1571 1610
-## 28  1600  1596  -4.18249 1576 1616
-## 29  1600  1584 -16.04140 1565 1603
-## 30  1600  1598  -1.89002 1578 1618
-## 31  1600  1599  -1.28594 1579 1619
-## 32  1600  1594  -6.17633 1573 1614
-## 33  1600  1613  12.54427 1594 1631
-## 34  1600  1610   9.86190 1592 1628
-## 35  1600  1580 -20.36283 1559 1600
-## 36  1600  1590 -10.47756 1570 1609
-## 37  1600  1601   1.46213 1582 1621
-## 38  1600  1585 -15.21007 1563 1607
-## 39  1600  1599  -1.47051 1579 1618
-## 40  1600  1590 -10.03942 1568 1611
-## 41  1600  1610  10.22729 1590 1630
-## 42  1600  1602   1.94416 1582 1622
-## 43  1600  1585 -14.55272 1565 1606
-## 44  1600  1604   4.15577 1584 1624
-## 45  1600  1603   3.37151 1582 1624
-## 46  1600  1594  -5.58279 1574 1614
-## 47  1600  1608   8.20903 1590 1626
-## 48  1600  1601   1.27849 1581 1622
-## 49  1600  1596  -4.22148 1574 1617
-## 50  1600  1612  11.63073 1593 1630
-## 51  1600  1588 -12.24391 1567 1608
-## 52  1600  1582 -18.15461 1563 1600
-## 53  1600  1602   1.50291 1582 1621
-## 54  1600  1605   5.12140 1586 1624
-## 55  1600  1594  -5.97324 1576 1612
-## 56  1600  1592  -7.82535 1571 1614
-## 57  1600  1591  -9.48869 1571 1610
-## 58  1600  1595  -4.76097 1576 1614
-## 59  1600  1601   0.58018 1579 1622
-## 60  1600  1609   8.65283 1588 1629
-## 61  1600  1605   5.35708 1583 1627
-## 62  1600  1595  -5.49373 1573 1616
-## 63  1600  1600   0.05735 1581 1620
-## 64  1600  1613  13.24391 1593 1633
-## 65  1600  1606   6.27834 1585 1628
-## 66  1600  1580 -20.29338 1560 1600
-## 67  1600  1591  -9.06379 1570 1612
-## 68  1600  1589 -10.78434 1568 1611
-## 69  1600  1593  -7.12780 1571 1614
-## 70  1600  1597  -3.17000 1576 1617
-## 71  1600  1601   0.56925 1580 1621
-## 72  1600  1587 -12.98168 1567 1607
-## 73  1600  1621  21.47440 1602 1641
-## 74  1600  1601   0.57965 1581 1621
-## 75  1600  1600  -0.06724 1579 1621
-## 76  1600  1587 -13.34769 1567 1607
-## 77  1600  1611  10.82128 1592 1630
-## 78  1600  1620  20.45129 1599 1642
-## 79  1600  1606   5.80712 1586 1625
-## 80  1600  1606   6.09968 1586 1626
-## 81  1600  1595  -5.34260 1576 1614
-## 82  1600  1596  -4.06760 1576 1615
-## 83  1600  1617  17.35607 1599 1636
-## 84  1600  1591  -9.08685 1571 1611
-## 85  1600  1609   8.80210 1591 1627
-## 86  1600  1618  18.10049 1599 1637
-## 87  1600  1589 -11.45875 1567 1610
-## 88  1600  1592  -7.99797 1570 1614
-## 89  1600  1607   6.74639 1586 1628
-## 90  1600  1587 -13.32277 1566 1608
-## 91  1600  1587 -13.49970 1566 1607
-## 92  1600  1597  -3.26175 1578 1615
-## 93  1600  1596  -4.47205 1577 1614
-## 94  1600  1611  11.05823 1591 1632
-## 95  1600  1612  11.97569 1593 1631
-## 96  1600  1597  -3.12647 1574 1620
-## 97  1600  1594  -5.74706 1575 1614
-## 98  1600  1616  15.91185 1594 1637
-## 99  1600  1606   5.89793 1586 1625
-## 100 1600  1602   1.84339 1583 1621
+##       mu media     erro   li   ls
+## 1   1600  1592  -7.7218 1574 1610
+## 2   1600  1606   6.3712 1589 1624
+## 3   1600  1579 -20.9066 1560 1599
+## 4   1600  1594  -5.9386 1577 1612
+## 5   1600  1596  -3.8084 1577 1616
+## 6   1600  1607   6.6849 1588 1626
+## 7   1600  1610   9.7221 1591 1629
+## 8   1600  1598  -1.6759 1579 1618
+## 9   1600  1579 -20.5664 1560 1599
+## 10  1600  1590  -9.8343 1573 1608
+## 11  1600  1585 -14.6053 1565 1606
+## 12  1600  1589 -10.5864 1569 1609
+## 13  1600  1591  -9.2148 1569 1612
+## 14  1600  1604   3.5314 1584 1623
+## 15  1600  1598  -1.9518 1579 1617
+## 16  1600  1608   8.3214 1585 1631
+## 17  1600  1594  -5.8804 1575 1613
+## 18  1600  1595  -4.8202 1574 1616
+## 19  1600  1603   2.6956 1582 1623
+## 20  1600  1613  13.0801 1595 1631
+## 21  1600  1583 -17.4212 1563 1602
+## 22  1600  1602   1.6365 1581 1622
+## 23  1600  1612  11.7350 1591 1633
+## 24  1600  1611  11.4746 1591 1632
+## 25  1600  1599  -1.4957 1577 1620
+## 26  1600  1599  -0.6801 1580 1618
+## 27  1600  1589 -10.5379 1569 1610
+## 28  1600  1597  -3.4972 1578 1615
+## 29  1600  1602   2.1766 1583 1622
+## 30  1600  1602   2.0858 1582 1622
+## 31  1600  1610   9.6871 1590 1630
+## 32  1600  1614  13.5729 1596 1631
+## 33  1600  1597  -2.9437 1576 1618
+## 34  1600  1610   9.8653 1589 1631
+## 35  1600  1599  -0.6816 1581 1617
+## 36  1600  1598  -2.4817 1577 1618
+## 37  1600  1583 -16.8401 1565 1601
+## 38  1600  1584 -15.6453 1566 1603
+## 39  1600  1600   0.4512 1580 1621
+## 40  1600  1587 -12.9612 1566 1608
+## 41  1600  1607   7.1534 1586 1628
+## 42  1600  1595  -5.3552 1573 1616
+## 43  1600  1603   2.9381 1582 1623
+## 44  1600  1615  14.6808 1598 1632
+## 45  1600  1584 -15.9232 1564 1605
+## 46  1600  1602   1.7728 1582 1621
+## 47  1600  1610   9.7547 1590 1629
+## 48  1600  1613  12.7271 1595 1631
+## 49  1600  1584 -15.7634 1567 1601
+## 50  1600  1601   0.5098 1581 1620
+## 51  1600  1582 -18.1010 1561 1602
+## 52  1600  1572 -27.6853 1552 1593
+## 53  1600  1578 -21.8903 1559 1597
+## 54  1600  1598  -1.7993 1575 1621
+## 55  1600  1594  -5.9099 1574 1614
+## 56  1600  1619  19.1945 1599 1640
+## 57  1600  1613  12.7321 1593 1632
+## 58  1600  1607   7.4885 1588 1627
+## 59  1600  1600  -0.4124 1581 1619
+## 60  1600  1591  -8.8124 1573 1609
+## 61  1600  1588 -12.1167 1568 1608
+## 62  1600  1604   3.9264 1584 1624
+## 63  1600  1608   7.5328 1588 1627
+## 64  1600  1597  -3.4907 1577 1616
+## 65  1600  1608   7.9053 1588 1627
+## 66  1600  1588 -12.3433 1567 1608
+## 67  1600  1582 -17.9428 1562 1602
+## 68  1600  1609   8.8333 1589 1628
+## 69  1600  1598  -1.9458 1578 1618
+## 70  1600  1628  28.0258 1605 1651
+## 71  1600  1584 -15.6485 1565 1604
+## 72  1600  1593  -6.5057 1572 1615
+## 73  1600  1606   6.0649 1585 1627
+## 74  1600  1573 -26.8738 1555 1592
+## 75  1600  1602   1.6393 1582 1621
+## 76  1600  1611  10.5227 1591 1630
+## 77  1600  1599  -1.2528 1578 1620
+## 78  1600  1603   2.6644 1583 1622
+## 79  1600  1602   2.4347 1581 1624
+## 80  1600  1589 -11.3003 1571 1607
+## 81  1600  1623  23.3718 1603 1644
+## 82  1600  1606   6.0769 1586 1626
+## 83  1600  1586 -13.9490 1566 1606
+## 84  1600  1592  -8.2139 1571 1612
+## 85  1600  1600  -0.3395 1580 1620
+## 86  1600  1592  -8.3111 1571 1612
+## 87  1600  1599  -1.2443 1580 1618
+## 88  1600  1607   6.7601 1587 1626
+## 89  1600  1591  -9.3398 1571 1610
+## 90  1600  1602   2.3123 1582 1623
+## 91  1600  1601   1.3773 1581 1622
+## 92  1600  1596  -4.4952 1574 1617
+## 93  1600  1592  -7.5587 1573 1612
+## 94  1600  1587 -12.7840 1567 1607
+## 95  1600  1585 -14.6784 1567 1604
+## 96  1600  1608   8.1233 1586 1630
+## 97  1600  1598  -2.4389 1576 1619
+## 98  1600  1587 -12.6902 1567 1608
+## 99  1600  1582 -18.4790 1562 1601
+## 100 1600  1604   3.8642 1586 1622
 \end{verbatim}
 
 \hfill\break
@@ -12740,132 +12756,132 @@ Assim, \((1-\alpha)\) traduz o grau de confiança que se tem que um intervalo de
 
 \begin{verbatim}
 ## Warning in title(...): conversion failure on 'Parâmetros da distribuição da
-## população Normal ( μ, σ) = (9.421, 4.1681)' in 'mbcsToSbcs': dot substituted for
-## <ce>
+## população Normal ( μ, σ) = (9.421, 4.1681)' in 'mbcsToSbcs': dot substituted
+## for <ce>
 \end{verbatim}
 
 \begin{verbatim}
 ## Warning in title(...): conversion failure on 'Parâmetros da distribuição da
-## população Normal ( μ, σ) = (9.421, 4.1681)' in 'mbcsToSbcs': dot substituted for
-## <bc>
+## população Normal ( μ, σ) = (9.421, 4.1681)' in 'mbcsToSbcs': dot substituted
+## for <bc>
 \end{verbatim}
 
 \begin{verbatim}
 ## Warning in title(...): conversion failure on 'Parâmetros da distribuição da
-## população Normal ( μ, σ) = (9.421, 4.1681)' in 'mbcsToSbcs': dot substituted for
-## <cf>
+## população Normal ( μ, σ) = (9.421, 4.1681)' in 'mbcsToSbcs': dot substituted
+## for <cf>
 \end{verbatim}
 
 \begin{verbatim}
 ## Warning in title(...): conversion failure on 'Parâmetros da distribuição da
-## população Normal ( μ, σ) = (9.421, 4.1681)' in 'mbcsToSbcs': dot substituted for
-## <83>
+## população Normal ( μ, σ) = (9.421, 4.1681)' in 'mbcsToSbcs': dot substituted
+## for <83>
 \end{verbatim}
 
 \includegraphics{apostila_files/figure-latex/unnamed-chunk-107-1.pdf}
 
 \begin{verbatim}
-##        mu  media     erro    li     ls
-## 1   9.421 10.013  0.59181 8.919 11.106
-## 2   9.421  9.042 -0.37950 7.922 10.161
-## 3   9.421 10.392  0.97123 9.353 11.431
-## 4   9.421 10.450  1.02946 9.371 11.530
-## 5   9.421  8.691 -0.72984 7.627  9.755
-## 6   9.421  9.206 -0.21476 8.200 10.212
-## 7   9.421  9.606  0.18505 8.566 10.646
-## 8   9.421  9.043 -0.37802 8.003 10.083
-## 9   9.421 10.236  0.81493 9.261 11.211
-## 10  9.421  9.866  0.44471 8.844 10.888
-## 11  9.421  9.515  0.09357 8.426 10.603
-## 12  9.421  9.757  0.33615 8.756 10.758
-## 13  9.421  9.844  0.42294 8.770 10.918
-## 14  9.421  8.724 -0.69736 7.589  9.858
-## 15  9.421 10.180  0.75902 9.121 11.239
-## 16  9.421  9.617  0.19612 8.691 10.543
-## 17  9.421 10.570  1.14901 9.413 11.727
-## 18  9.421 10.220  0.79909 9.424 11.016
-## 19  9.421 10.054  0.63341 8.932 11.177
-## 20  9.421  9.039 -0.38205 7.987 10.091
-## 21  9.421  9.114 -0.30667 8.134 10.095
-## 22  9.421  9.453  0.03236 8.316 10.591
-## 23  9.421 10.782  1.36083 9.786 11.778
-## 24  9.421  9.607  0.18577 8.710 10.503
-## 25  9.421  9.714  0.29276 8.466 10.961
-## 26  9.421  9.431  0.00989 8.445 10.416
-## 27  9.421  9.483  0.06160 8.445 10.520
-## 28  9.421 10.277  0.85579 9.146 11.407
-## 29  9.421  8.897 -0.52386 7.895  9.899
-## 30  9.421  9.657  0.23593 8.642 10.672
-## 31  9.421  9.154 -0.26651 8.004 10.305
-## 32  9.421  8.266 -1.15501 7.318  9.214
-## 33  9.421  9.623  0.20224 8.627 10.619
-## 34  9.421  9.813  0.39212 8.735 10.892
-## 35  9.421  9.993  0.57166 8.951 11.034
-## 36  9.421  9.970  0.54925 8.937 11.003
-## 37  9.421  8.805 -0.61625 7.743  9.866
-## 38  9.421  8.687 -0.73418 7.524  9.850
-## 39  9.421  9.253 -0.16825 8.175 10.330
-## 40  9.421  9.370 -0.05063 8.325 10.416
-## 41  9.421 10.151  0.73033 9.023 11.280
-## 42  9.421  9.528  0.10660 8.495 10.560
-## 43  9.421  9.806  0.38541 8.910 10.702
-## 44  9.421  8.580 -0.84086 7.628  9.532
-## 45  9.421 10.436  1.01543 9.352 11.521
-## 46  9.421  9.308 -0.11321 8.501 10.115
-## 47  9.421 10.406  0.98545 9.377 11.436
-## 48  9.421  9.304 -0.11705 8.043 10.565
-## 49  9.421 10.399  0.97836 9.371 11.428
-## 50  9.421  8.766 -0.65543 7.719  9.812
-## 51  9.421  8.911 -0.51044 7.992  9.829
-## 52  9.421  8.863 -0.55841 7.754  9.971
-## 53  9.421  8.383 -1.03791 7.284  9.482
-## 54  9.421 10.478  1.05700 9.397 11.559
-## 55  9.421  9.561  0.14033 8.536 10.587
-## 56  9.421  8.906 -0.51505 7.887  9.925
-## 57  9.421  8.898 -0.52332 7.734 10.061
-## 58  9.421  8.410 -1.01121 7.444  9.376
-## 59  9.421  8.556 -0.86483 7.454  9.658
-## 60  9.421  9.453  0.03242 8.618 10.289
-## 61  9.421  8.914 -0.50748 7.943  9.884
-## 62  9.421  9.665  0.24408 8.658 10.672
-## 63  9.421 10.276  0.85522 9.104 11.449
-## 64  9.421  9.618  0.19748 8.327 10.910
-## 65  9.421  8.984 -0.43732 7.975  9.993
-## 66  9.421 10.052  0.63086 9.028 11.076
-## 67  9.421  9.472  0.05096 8.585 10.359
-## 68  9.421  9.176 -0.24498 7.992 10.360
-## 69  9.421 10.132  0.71130 9.298 10.966
-## 70  9.421  9.760  0.33887 8.810 10.710
-## 71  9.421  9.050 -0.37126 8.033 10.066
-## 72  9.421  9.353 -0.06821 8.304 10.402
-## 73  9.421  8.826 -0.59526 7.787  9.864
-## 74  9.421  8.863 -0.55789 7.841  9.885
-## 75  9.421  8.975 -0.44608 7.971  9.978
-## 76  9.421  8.113 -1.30838 7.184  9.041
-## 77  9.421  9.473  0.05227 8.406 10.540
-## 78  9.421  8.728 -0.69344 7.795  9.660
-## 79  9.421  9.232 -0.18899 8.336 10.128
-## 80  9.421  8.848 -0.57338 7.851  9.845
-## 81  9.421  9.554  0.13309 8.585 10.523
-## 82  9.421  9.645  0.22366 8.527 10.762
-## 83  9.421  9.483  0.06152 8.380 10.585
-## 84  9.421 10.447  1.02649 9.301 11.594
-## 85  9.421 10.337  0.91597 9.428 11.246
-## 86  9.421  9.551  0.13036 8.584 10.518
-## 87  9.421  9.712  0.29124 8.792 10.633
-## 88  9.421  8.520 -0.90068 7.423  9.618
-## 89  9.421  9.768  0.34668 8.929 10.606
-## 90  9.421  8.188 -1.23312 7.179  9.197
-## 91  9.421  9.636  0.21486 8.629 10.643
-## 92  9.421  8.989 -0.43204 7.984  9.994
-## 93  9.421  9.610  0.18935 8.741 10.480
-## 94  9.421  7.958 -1.46331 6.858  9.057
-## 95  9.421  9.268 -0.15262 8.150 10.387
-## 96  9.421  8.851 -0.56960 7.974  9.729
-## 97  9.421  9.956  0.53512 8.966 10.947
-## 98  9.421 10.716  1.29457 9.760 11.671
-## 99  9.421  9.890  0.46870 8.852 10.928
-## 100 9.421  8.707 -0.71450 7.588  9.825
+##        mu  media      erro    li     ls
+## 1   9.421  8.987 -0.433718 7.904 10.070
+## 2   9.421 10.102  0.680777 9.161 11.043
+## 3   9.421  8.857 -0.563615 7.798  9.917
+## 4   9.421 10.276  0.855332 9.412 11.141
+## 5   9.421  9.515  0.093865 8.365 10.665
+## 6   9.421  9.579  0.157693 8.585 10.573
+## 7   9.421  9.785  0.364102 8.605 10.965
+## 8   9.421  9.482  0.061110 8.396 10.568
+## 9   9.421  9.209 -0.211877 8.111 10.307
+## 10  9.421  9.525  0.103754 8.497 10.553
+## 11  9.421  9.027 -0.394083 7.977 10.076
+## 12  9.421  8.988 -0.433393 7.811 10.165
+## 13  9.421  9.663  0.242255 8.683 10.643
+## 14  9.421  9.413 -0.008054 8.402 10.424
+## 15  9.421 10.269  0.848445 9.134 11.405
+## 16  9.421  8.842 -0.579498 7.777  9.906
+## 17  9.421  9.801  0.379752 8.679 10.922
+## 18  9.421  9.405 -0.016259 8.273 10.536
+## 19  9.421  9.796  0.375164 8.901 10.691
+## 20  9.421  9.399 -0.021752 8.249 10.549
+## 21  9.421  9.479  0.058079 8.513 10.446
+## 22  9.421  9.298 -0.123065 8.206 10.389
+## 23  9.421  8.103 -1.317928 7.047  9.159
+## 24  9.421  9.744  0.323260 8.675 10.814
+## 25  9.421 10.529  1.108311 9.392 11.666
+## 26  9.421  9.984  0.562610 9.060 10.907
+## 27  9.421  9.480  0.059403 8.351 10.610
+## 28  9.421  9.213 -0.207775 8.213 10.213
+## 29  9.421  9.453  0.031625 8.271 10.634
+## 30  9.421  9.401 -0.019635 8.363 10.439
+## 31  9.421  9.836  0.415331 8.735 10.938
+## 32  9.421  8.780 -0.641421 7.854  9.705
+## 33  9.421  9.851  0.429504 8.963 10.738
+## 34  9.421 10.026  0.605244 8.960 11.093
+## 35  9.421  9.603  0.181749 8.559 10.646
+## 36  9.421  9.656  0.235269 8.710 10.603
+## 37  9.421  9.630  0.209300 8.728 10.532
+## 38  9.421  9.197 -0.223760 8.268 10.126
+## 39  9.421  9.434  0.013238 8.446 10.423
+## 40  9.421  9.761  0.340139 8.714 10.808
+## 41  9.421 10.815  1.394366 9.924 11.706
+## 42  9.421  8.845 -0.575723 7.706  9.985
+## 43  9.421  8.792 -0.629298 7.910  9.674
+## 44  9.421  9.818  0.396547 8.962 10.673
+## 45  9.421  9.264 -0.157427 8.352 10.175
+## 46  9.421  8.795 -0.625903 7.922  9.668
+## 47  9.421  8.874 -0.546607 7.820  9.929
+## 48  9.421  9.740  0.318745 8.718 10.761
+## 49  9.421  9.892  0.470962 9.015 10.769
+## 50  9.421  9.346 -0.074815 8.346 10.347
+## 51  9.421  9.634  0.212778 8.510 10.757
+## 52  9.421  9.406 -0.014789 8.383 10.429
+## 53  9.421 10.019  0.597920 9.022 11.015
+## 54  9.421 10.074  0.653386 9.071 11.078
+## 55  9.421  8.749 -0.672240 7.693  9.805
+## 56  9.421  9.413 -0.007948 8.454 10.372
+## 57  9.421  9.290 -0.130515 8.298 10.283
+## 58  9.421  9.720  0.298554 8.852 10.587
+## 59  9.421 10.212  0.791197 9.560 10.864
+## 60  9.421  9.647  0.225737 8.514 10.779
+## 61  9.421  8.468 -0.953036 7.356  9.580
+## 62  9.421 10.551  1.129637 9.600 11.501
+## 63  9.421  9.330 -0.091275 8.245 10.414
+## 64  9.421  8.850 -0.571108 7.623 10.076
+## 65  9.421  9.205 -0.216127 8.307 10.103
+## 66  9.421  8.622 -0.799209 7.565  9.678
+## 67  9.421  9.359 -0.062414 8.442 10.275
+## 68  9.421  9.766  0.345300 8.763 10.770
+## 69  9.421  9.813  0.391708 8.864 10.762
+## 70  9.421 10.076  0.654534 8.922 11.230
+## 71  9.421  9.555  0.133542 8.540 10.569
+## 72  9.421  9.052 -0.368850 8.006 10.098
+## 73  9.421  9.514  0.092825 8.596 10.432
+## 74  9.421  9.971  0.549616 8.987 10.955
+## 75  9.421  8.830 -0.590733 7.773  9.888
+## 76  9.421 10.340  0.918562 9.577 11.102
+## 77  9.421  9.594  0.173394 8.506 10.682
+## 78  9.421  9.134 -0.286679 8.078 10.190
+## 79  9.421  9.471  0.050086 8.739 10.203
+## 80  9.421  9.415 -0.005739 8.501 10.330
+## 81  9.421  9.326 -0.095083 8.214 10.438
+## 82  9.421 10.178  0.756710 9.083 11.272
+## 83  9.421  9.489  0.068086 8.276 10.702
+## 84  9.421  9.015 -0.405987 7.936 10.094
+## 85  9.421  9.066 -0.355153 8.048 10.084
+## 86  9.421  8.914 -0.507263 7.900  9.927
+## 87  9.421  8.620 -0.800586 7.559  9.682
+## 88  9.421 10.660  1.239128 9.558 11.763
+## 89  9.421 10.510  1.088541 9.309 11.710
+## 90  9.421  9.822  0.401183 8.851 10.793
+## 91  9.421  9.351 -0.069551 8.224 10.479
+## 92  9.421  9.710  0.288675 8.764 10.655
+## 93  9.421  9.537  0.116238 8.423 10.652
+## 94  9.421  9.912  0.490797 8.925 10.899
+## 95  9.421  9.744  0.323127 8.691 10.797
+## 96  9.421  8.382 -1.038546 7.414  9.351
+## 97  9.421  9.525  0.103601 8.456 10.593
+## 98  9.421 10.642  1.221342 9.531 11.754
+## 99  9.421  8.788 -0.633389 7.560 10.015
+## 100 9.421  9.245 -0.175832 8.221 10.270
 \end{verbatim}
 
 \hfill\break
@@ -15370,82 +15386,94 @@ Para exemplificar considere o lançamento de um dado de seis faces,. A probabili
 
 \hfill\break
 
-As Figuras \ref{fig:fig65} (tamanho de cada amostra \(n=n_1\)) e \ref{fig:fig66} (tamanho de cada amostra \(n=n_2\)) mostram o perfil assumido pela distribuição das 10.000 proporções amostrais extraídas de uma população com proporção \(\pi=p_1\).
+As Figuras \ref{fig:fig65} (tamanho de cada amostra \(n=n_1\)) e \ref{fig:fig66} (tamanho de cada amostra \(n=n_2\)) mostram o perfil assumido pela distribuição das 100 proporções amostrais extraídas de uma população com proporção \(\pi=p_1\).
 
 \hfill\break
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\CommentTok{\# Considere uma população dicotômica de tamanho N\_1 com dois tipos de elementos.}
-\CommentTok{\# A proporção de elementos com a propriedade A (sucesso) é p\_1, }
-\CommentTok{\# enquanto que a proporção de elementos que não têm a propriedade A é (1{-}p\_1)}
-\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-
-\CommentTok{\#número de amostras escolhido}
-\NormalTok{N\_1}\OtherTok{=}\DecValTok{10000}             
-
-\CommentTok{\#proporção escolhida para a manifestação da característica (sim/não)}
-\NormalTok{p\_1}\OtherTok{=}\FunctionTok{round}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{6}\NormalTok{,}\DecValTok{2}\NormalTok{)}
-
-\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\CommentTok{\# Considere uma população cuja característica de interesse (A) se manifesta de modo dicotômico:}
+\CommentTok{\# sim/não, sob uma probabilidade p\_1 e (1{-}p\_1).}
+\CommentTok{\# A probabilidade de se obter um elemento com a característica de interesse }
+\CommentTok{\# {-} ao se sortear aleatoriamente um indivíduo qualquer {-} pode ser modelada como uma variável de Bernoulli.}
+\CommentTok{\# A probabilidade de se observar a característica de interesse ao se  }
+\CommentTok{\# repetir a amostragem (com reposição) por n\_1 (n\_2) vezes pode ser modelada como uma variável binomial (repetição de um experimento de Bernoulli n\_1/n\_2 vezes)   }
+\CommentTok{\# Repetindo{-}se esses experimentos binomiais por N vezes, as proporções amostrais de}
+\CommentTok{\# elementos com a característica de interesse (sucesso) nas N amostras obtidas será }
+\CommentTok{\# dada pelo número de elementos de cada conjunto nas n\_1 (n\_2) repetições dividido por }
+\CommentTok{\# n\_1 (n\_2).}
+\CommentTok{\# Desse modo, obtemos N proporções de amostras de tamanho n\_1 (n\_2)}
+\CommentTok{\#}
+\CommentTok{\#}
 \CommentTok{\# Selecionando{-}se aleatoriamente um elemento desta população }
-\CommentTok{\# resulta em uma variável aleatória dicotômicas/Bernoulli que assume }
+\CommentTok{\# resulta em uma variável aleatória dicotômica/Bernoulli que assume }
 \CommentTok{\# o valor 1 caso o elemento selecionado possua a propriedade A (sucesso)}
 \CommentTok{\# e assume o valor 0 caso não possua a propriedade A.}
 \CommentTok{\#}
-\CommentTok{\# A retirada (com reposição) de \textasciigrave{}n\_1\textasciigrave{} elementos dessa população poderemos observar a frequência absoluta }
-\CommentTok{\# com que a propriedade A (sucesso) se manifesta na amostra, a qual pode ser expressa }
-\CommentTok{\# como uma variável aleatória (X) que segue o modelo teórico  Binomial de probabilidade. }
+\CommentTok{\# A retirada (com reposição) de \textasciigrave{}n\_1\textasciigrave{} elementos dessa população poderemos observar a frequência absoluta com que a propriedade A (sucesso) se manifesta na amostra, }
+\CommentTok{\# a qual pode ser expressa  como uma variável aleatória (X) que segue o modelo teórico  Binomial de probabilidade. }
 \CommentTok{\# }
-\CommentTok{\# A frequência relativa, o quociente entre o número de sucessos por \textasciigrave{}n\_1\textasciigrave{} expressa a frequência relativa}
-\CommentTok{\# a proporção observada s na amostra de tamanho \textasciigrave{}n\_1\textasciigrave{} é também uma variável aleatória (p) com }
-\CommentTok{\# com distribuição altamente relacionada à variável X  pois é a média de \textasciigrave{}n\_1\textasciigrave{} ensaios de Bernoulli.}
-\CommentTok{\# }
-\CommentTok{\# Repetindo{-}se sucessivamente  \textasciigrave{}N\_1\textasciigrave{} vezes extrações de tamanho \textasciigrave{}n\_1\textasciigrave{} }
-\CommentTok{\# a anotando{-}se a proporção de sucesso em cada uma dessas amostras poderemos analisar como eles se distribuem }
-\CommentTok{\# em relação à quantidade de elementos extraídos \textasciigrave{}n\_1\textasciigrave{} (repetições de Bernoulli) e à verdadeira proporção}
-\CommentTok{\# com que a propriedade A se manifesta na população (pi)  }
+\CommentTok{\# A frequência relativa, o quociente entre o número de sucessos por \textasciigrave{}n\_1\textasciigrave{} expressa a }
+\CommentTok{\# proporção com que a propriedade "A" foi observada na \textquotesingle{}amostra\textquotesingle{} de tamanho \textasciigrave{}n\_1\textasciigrave{} é também uma variável aleatória (p) com distribuição altamente relacionada à variável X  pois é a média de \textasciigrave{}n\_1\textasciigrave{} ensaios (repetições) de Bernoulli.}
+\CommentTok{\#  }
+\CommentTok{\# Repetindo{-}se sucessivamente  \textasciigrave{}N\textasciigrave{} vezes extrações de tamanho \textasciigrave{}n\_1\textasciigrave{} }
+\CommentTok{\# a anotando{-}se a proporção de sucesso em cada uma dessas amostras poderemos analisar como eles se distribuem em relação à quantidade de elementos extraídos \textasciigrave{}n\_1\textasciigrave{} (repetições de Bernoulli) }
+\CommentTok{\# e à verdadeira proporção com que a propriedade A se manifesta na população (pi)  }
 \CommentTok{\#}
-\CommentTok{\# Para \textasciigrave{}n\_1\textasciigrave{} suficientemente grande (amostrado com reposição):}
-\CommentTok{\# n\_1 * pi \textgreater{} 5 e n\_1*(1{-}pi) 5}
-\CommentTok{\# a distribuição de p pode ser aproximada pela distribuição Normal p \textasciitilde{}N (mu,sigma)}
+\CommentTok{\# Demonstra{-}se que:}
+\CommentTok{\# para \textasciigrave{}n\_1\textasciigrave{} suficientemente grande (repetições de Bernoulli com reposição);]}
+\CommentTok{\# n\_1 * pi \textgreater{} 5 e }
+\CommentTok{\# n\_1*(1{-}pi) 5}
+\CommentTok{\# a distribuição de p pode ser aproximada pela distribuição Normal }
+\CommentTok{\# tal que p \textasciitilde{}N (mu,sigma)}
 \CommentTok{\# onde mu e sigma são aproximados por:}
 \CommentTok{\# mu = E(p) = pi}
 \CommentTok{\# sigma\^{}2 = sigma\^{}2*p \textgreater{}\textgreater{}\textgreater{}\textgreater{} sigma = sqrt[ p*(1{-}p)/(n\_1)  ]}
 \CommentTok{\# }
 \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
 
-\CommentTok{\#tamanho escolhido para cada amostra (elementos sorteados)}
+\CommentTok{\# Proporção escolhida para a manifestação da característica: sim/não (probabilidade de cada evento de Bernoulli)}
+\NormalTok{p\_1}\OtherTok{=}\FunctionTok{round}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{6}\NormalTok{,}\DecValTok{2}\NormalTok{)}
+
+\CommentTok{\# Número de amostras}
+\NormalTok{N}\OtherTok{=}\DecValTok{100}             
+
+\CommentTok{\# Tamanho escolhido para cada amostra: repetições de Bernoulli}
 \NormalTok{n\_1}\OtherTok{=}\DecValTok{10}
 
+\CommentTok{\# Vetor com o número de sucessos observados (a frequência absoluta) nas N amostras de n\_1 elementos dicotômicos (repetições de Bernoulli, sob uma probabilidade individual de sucesso igual a p\_1)}
 
-\CommentTok{\#vetor com o número de sucessos observados (a frequência absoluta) nas N\_1 amostras de n\_1 elementos dicotômicos}
-\NormalTok{suc\_10rep}\OtherTok{=}\FunctionTok{rbinom}\NormalTok{(}\AttributeTok{n=}\NormalTok{N\_1, }\AttributeTok{size =}\NormalTok{ n\_1, }\AttributeTok{prob =}\NormalTok{ p\_1)}
+\NormalTok{suc\_10rep}\OtherTok{=}\FunctionTok{rbinom}\NormalTok{(}\AttributeTok{n=}\NormalTok{N, }\AttributeTok{size =}\NormalTok{ n\_1, }\AttributeTok{prob =}\NormalTok{ p\_1)}
 \NormalTok{suc\_10rep }
 
-\CommentTok{\#vendo a proporção de sucessos (a frequência relativa) em cada uma das N\_1 amostras de n\_1 elementos dicotômicos}
+\CommentTok{\#  Vendo a proporção de sucessos (a frequência relativa) em cada uma das N\_1 amostras de n\_1 elementos dicotômicos}
 \NormalTok{prop\_10rep}\OtherTok{=}\NormalTok{suc\_10rep}\SpecialCharTok{/}\NormalTok{n\_1}
-\NormalTok{prop\_10rep}
+\FunctionTok{mean}\NormalTok{(prop\_10rep) }\CommentTok{\# \textasciitilde{} pi}
+\FunctionTok{sd}\NormalTok{(prop\_10rep) }\CommentTok{\# \textasciitilde{} sqrt(pi*(1{-}pi)/n\_1)}
+
+\CommentTok{\# Dataframe com as N proporções amostrais sob n\_1 }
 \NormalTok{dados\_10}\OtherTok{=}\FunctionTok{as.data.frame}\NormalTok{(prop\_10rep)}
 
 \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
 \CommentTok{\# O mesmo procedimento, mas agora com amostras com um maior número de elementos em cada uma}
 \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
 
-\CommentTok{\#número de amostras escolhido}
-\NormalTok{N\_2}\OtherTok{=}\DecValTok{10000} \CommentTok{\#Mesma população de elementos binomiais de tamanho N\_2 com probabilidade p\_1}
+\CommentTok{\# Tamanho escolhido para cada amostra: repetições de Bernoulli}
+\NormalTok{n\_2}\OtherTok{=}\DecValTok{100}
 
-\CommentTok{\#tamanho escolhido para cada amostra (elementos sorteados)}
-\NormalTok{n\_2}\OtherTok{=}\DecValTok{100} 
+\CommentTok{\# Vetor com o número de sucessos observados (a frequência absoluta) nas N amostras de n\_2 elementos dicotômicos (repetições de Bernoulli, sob uma probabilidade individual de sucesso igual a p\_1)}
 
-\CommentTok{\#vetor com o número de sucessos observado  (a frequência absoluta) nas N\_2 amostras de n\_2 elementos dicotômicos}
-\NormalTok{suc\_100rep}\OtherTok{=}\FunctionTok{rbinom}\NormalTok{(}\AttributeTok{n=}\NormalTok{N\_2, }\AttributeTok{size =}\NormalTok{ n\_2, }\AttributeTok{prob =}\NormalTok{ p\_1)}
+\NormalTok{suc\_100rep}\OtherTok{=}\FunctionTok{rbinom}\NormalTok{(}\AttributeTok{n=}\NormalTok{N, }\AttributeTok{size =}\NormalTok{ n\_2, }\AttributeTok{prob =}\NormalTok{ p\_1)}
 \NormalTok{suc\_100rep }
 
-\CommentTok{\#vendo a proporção de sucessos (a frequência relativa) em cada uma das N\_2 amostras de n\_2 elementos dicotômicos}
+
+\CommentTok{\#  Vendo a proporção de sucessos (a frequência relativa) em cada uma das N\_1 amostras de n\_1 elementos dicotômicos}
 \NormalTok{prop\_100rep}\OtherTok{=}\NormalTok{suc\_100rep}\SpecialCharTok{/}\NormalTok{n\_2}
-\NormalTok{prop\_100rep}
+\FunctionTok{mean}\NormalTok{(prop\_100rep) }\CommentTok{\# \textasciitilde{} pi}
+\FunctionTok{sd}\NormalTok{(prop\_100rep) }\CommentTok{\# \textasciitilde{} sqrt(pi*(1{-}pi)/n\_2)}
+
+\CommentTok{\# Dataframe com as N proporções amostrais sob n\_2 }
 \NormalTok{dados\_100}\OtherTok{=}\FunctionTok{as.data.frame}\NormalTok{(prop\_100rep)}
 \end{Highlighting}
 \end{Shaded}
@@ -15454,9 +15482,9 @@ As Figuras \ref{fig:fig65} (tamanho de cada amostra \(n=n_1\)) e \ref{fig:fig66}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{meu\_titulo1}\OtherTok{=}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribuição das frequências das proporções de sucesso observadas em }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,N\_1, }\StringTok{"amostras de n="}\NormalTok{, n\_1, }
-                  \StringTok{"elementos dicotômicos extraídos (com reposição) da população"}\NormalTok{,}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{(proporção de sucesso na população \textbackslash{}u03c0="}\NormalTok{, p\_1,}\StringTok{")"}\NormalTok{)}
-\NormalTok{meu\_titulo2}\OtherTok{=}\FunctionTok{paste}\NormalTok{(}\StringTok{"As proporções amostrais \textasciitilde{} }\SpecialCharTok{\textbackslash{}n}\StringTok{N[x= \textbackslash{}u03c0="}\NormalTok{,}\FunctionTok{round}\NormalTok{(}\FunctionTok{mean}\NormalTok{(dados\_10}\SpecialCharTok{$}\NormalTok{prop\_10rep),}\DecValTok{2}\NormalTok{),}\StringTok{";sd=sqrt((1/n\_1)*\textbackslash{}u03c0*(1{-} \textbackslash{}u03c0))="}\NormalTok{,}\FunctionTok{round}\NormalTok{(}\FunctionTok{sd}\NormalTok{(dados\_10}\SpecialCharTok{$}\NormalTok{prop\_10rep),}\DecValTok{2}\NormalTok{),}\StringTok{"]"}\NormalTok{)}
+\NormalTok{meu\_titulo1}\OtherTok{=}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribuição de frequência das proporções de sucesso observadas em }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,N, }\StringTok{"amostras de n="}\NormalTok{, n\_1, }\StringTok{"elementos dicotômicos extraídos (com reposição) da população"}\NormalTok{,}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{(proporção de sucesso na população \textbackslash{}u03c0="}\NormalTok{, p\_1,}\StringTok{")"}\NormalTok{)}
+\NormalTok{meu\_titulo2}\OtherTok{=}\FunctionTok{paste}\NormalTok{(}\StringTok{"As proporções amostrais \textasciitilde{} }\SpecialCharTok{\textbackslash{}n}\StringTok{N(\textbackslash{}u03bc= \textbackslash{}u03c0="}\NormalTok{,}\FunctionTok{round}\NormalTok{(}\FunctionTok{mean}\NormalTok{(dados\_10}\SpecialCharTok{$}\NormalTok{prop\_10rep),}\DecValTok{3}\NormalTok{),}\StringTok{";\textbackslash{}u03c3 =sqrt(\textbackslash{}u03c0*(1{-} \textbackslash{}u03c0)/n)="}\NormalTok{,}\FunctionTok{round}\NormalTok{(}\FunctionTok{sd}\NormalTok{(dados\_10}\SpecialCharTok{$}\NormalTok{prop\_10rep),}\DecValTok{3}\NormalTok{),}\StringTok{")"}\NormalTok{)}
+
 
 \FunctionTok{ggplot}\NormalTok{(dados\_10, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ prop\_10rep)) }\SpecialCharTok{+} 
   \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{..density..),}
@@ -15464,8 +15492,8 @@ As Figuras \ref{fig:fig65} (tamanho de cada amostra \(n=n_1\)) e \ref{fig:fig66}
                  \AttributeTok{colour =} \StringTok{"black"}\NormalTok{, }
                  \AttributeTok{fill =} \StringTok{"lightblue"}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun =}\NormalTok{ dnorm, }
-                \AttributeTok{args =} \FunctionTok{list}\NormalTok{(}\AttributeTok{mean =} \FunctionTok{mean}\NormalTok{(dados\_10}\SpecialCharTok{$}\NormalTok{prop\_10rep), }\AttributeTok{sd =} \FunctionTok{sd}\NormalTok{(dados\_10}\SpecialCharTok{$}\NormalTok{prop\_10rep)),}
-                \AttributeTok{colour=}\StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}
+                \AttributeTok{args =} \FunctionTok{list}\NormalTok{(}\AttributeTok{mean =}\NormalTok{ p\_1, }\AttributeTok{sd =} \FunctionTok{sqrt}\NormalTok{(p\_1}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{p\_1)}\SpecialCharTok{/}\NormalTok{n\_1)),}
+                 \AttributeTok{colour=}\StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{name=}\StringTok{""}\NormalTok{,}\AttributeTok{breaks =} \ConstantTok{NULL}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{name=}\StringTok{"Valores das proporções amostrais médias"}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\NormalTok{meu\_titulo1)}\SpecialCharTok{+}
@@ -15485,7 +15513,7 @@ As Figuras \ref{fig:fig65} (tamanho de cada amostra \(n=n_1\)) e \ref{fig:fig66}
 
 }
 
-\caption{Distribuição das frequências das proporções de sucesso observadas em 10.000 amostras de tamanho n=10 elementos dicotômicos extraídos (com reposição) de uma população 
+\caption{Distribuição das frequências das proporções de sucesso observadas em 100 amostras de tamanho n=10 elementos dicotômicos extraídos (com reposição) de uma população 
 (a proporção de sucesso na população π=1/6)}\label{fig:fig65}
 \end{figure}
 
@@ -15493,9 +15521,8 @@ As Figuras \ref{fig:fig65} (tamanho de cada amostra \(n=n_1\)) e \ref{fig:fig66}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{meu\_titulo1}\OtherTok{=}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribuição das frequências das proporções de sucesso observadas em }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,N\_2, }\StringTok{"amostras de n="}\NormalTok{, n\_2, }
-                  \StringTok{"elementos dicotômicos extraídos (com reposição) da população"}\NormalTok{,}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{(proporção de sucesso na população \textbackslash{}u03c0="}\NormalTok{, p\_1,}\StringTok{")"}\NormalTok{)}
-\NormalTok{meu\_titulo2}\OtherTok{=}\FunctionTok{paste}\NormalTok{(}\StringTok{"As proporções amostrais \textasciitilde{} }\SpecialCharTok{\textbackslash{}n}\StringTok{N[x= \textbackslash{}u03c0="}\NormalTok{,}\FunctionTok{round}\NormalTok{(}\FunctionTok{mean}\NormalTok{(dados\_100}\SpecialCharTok{$}\NormalTok{prop\_100rep),}\DecValTok{2}\NormalTok{),}\StringTok{";sd=sqrt((1/n\_1)*\textbackslash{}u03c0*(1{-} \textbackslash{}u03c0))="}\NormalTok{,}\FunctionTok{round}\NormalTok{(}\FunctionTok{sd}\NormalTok{(dados\_100}\SpecialCharTok{$}\NormalTok{prop\_100rep),}\DecValTok{2}\NormalTok{),}\StringTok{"]"}\NormalTok{)}
+\NormalTok{meu\_titulo1}\OtherTok{=}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribuição de frequências das proporções de sucesso observadas em }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,N, }\StringTok{"amostras de n="}\NormalTok{, n\_2, }\StringTok{"elementos dicotômicos extraídos (com reposição) da população"}\NormalTok{,}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{(proporção de sucesso na população \textbackslash{}u03c0="}\NormalTok{, p\_1,}\StringTok{")"}\NormalTok{)}
+\NormalTok{meu\_titulo2}\OtherTok{=}\FunctionTok{paste}\NormalTok{(}\StringTok{"As proporções amostrais \textasciitilde{} }\SpecialCharTok{\textbackslash{}n}\StringTok{N(\textbackslash{}u03bc= \textbackslash{}u03c0="}\NormalTok{,}\FunctionTok{round}\NormalTok{(}\FunctionTok{mean}\NormalTok{(dados\_100}\SpecialCharTok{$}\NormalTok{prop\_100rep),}\DecValTok{3}\NormalTok{),}\StringTok{";\textbackslash{}u03c3=sqrt(\textbackslash{}u03c0*(1{-} \textbackslash{}u03c0)/n)="}\NormalTok{,}\FunctionTok{round}\NormalTok{(}\FunctionTok{sd}\NormalTok{(dados\_100}\SpecialCharTok{$}\NormalTok{prop\_100rep),}\DecValTok{3}\NormalTok{),}\StringTok{")"}\NormalTok{)}
 
 \FunctionTok{ggplot}\NormalTok{(dados\_100, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ prop\_100rep)) }\SpecialCharTok{+} 
   \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{..density..),}
@@ -15503,7 +15530,8 @@ As Figuras \ref{fig:fig65} (tamanho de cada amostra \(n=n_1\)) e \ref{fig:fig66}
                  \AttributeTok{colour =} \StringTok{"black"}\NormalTok{, }
                  \AttributeTok{fill =} \StringTok{"lightblue"}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun =}\NormalTok{ dnorm, }
-                \AttributeTok{args =} \FunctionTok{list}\NormalTok{(}\AttributeTok{mean =} \FunctionTok{mean}\NormalTok{(dados\_100}\SpecialCharTok{$}\NormalTok{prop\_100rep), }\AttributeTok{sd =} \FunctionTok{sd}\NormalTok{(dados\_100}\SpecialCharTok{$}\NormalTok{prop\_100rep)),}
+                \AttributeTok{args =} \FunctionTok{list}\NormalTok{(}\AttributeTok{mean =}\NormalTok{ p\_1, }
+                            \AttributeTok{sd =} \FunctionTok{sqrt}\NormalTok{(p\_1}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{p\_1)}\SpecialCharTok{/}\NormalTok{n\_2)), }
                 \AttributeTok{colour=}\StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{name=}\StringTok{""}\NormalTok{,}\AttributeTok{breaks =} \ConstantTok{NULL}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{name=}\StringTok{"Valores das proporções amostrais médias"}\NormalTok{) }\SpecialCharTok{+}
@@ -15524,7 +15552,7 @@ As Figuras \ref{fig:fig65} (tamanho de cada amostra \(n=n_1\)) e \ref{fig:fig66}
 
 }
 
-\caption{Distribuição das frequências das proporções de sucesso observadas em 10.000 amostras de tamanho n=100 elementos dicotômicos extraídos (com reposição) de uma população 
+\caption{Distribuição das frequências das proporções de sucesso observadas em 100 amostras de tamanho n=100 elementos dicotômicos extraídos (com reposição) de uma população 
 (a proporção de sucesso na população π=1/6)}\label{fig:fig66}
 \end{figure}
 
@@ -15645,7 +15673,7 @@ ou
 \hfill\break
 
 \[
-hat{p}_{c} = \hat{p}- \frac{1}{2n}
+\hat{p}_{c} = \hat{p}- \frac{1}{2n}
 \]
 
 \hfill\break
@@ -15711,6 +15739,54 @@ P[\pi \le \hat{p} + {z}_{\alpha} \cdot  \sqrt{\frac{\hat{p} \cdot \left(1- \hat{
 \[
 P [\pi \hspace{0.1cm} \ge \hat{p} - {z}_{\alpha} \cdot  \sqrt{\frac{\hat{p} \cdot \left(1- \hat{p} \right)}{n}} \hspace{0.1cm}] = (1-\alpha)
 \]
+
+\hfill\break
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Intervalos de confiança das proporções amostrais observadas}
+
+\NormalTok{IC.N }\OtherTok{=} \ControlFlowTok{function}\NormalTok{ (N, n, p, conf) \{}
+\NormalTok{zc }\OtherTok{=} \FunctionTok{qnorm}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{((}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{conf)}\SpecialCharTok{/}\DecValTok{2}\NormalTok{)) }\CommentTok{\#Z=1,96  }
+\NormalTok{suc}\OtherTok{=}\FunctionTok{rbinom}\NormalTok{(}\AttributeTok{n=}\NormalTok{N, }\AttributeTok{size =}\NormalTok{ n, }\AttributeTok{prob =}\NormalTok{ p)}
+\NormalTok{prop\_suc}\OtherTok{=}\NormalTok{suc}\SpecialCharTok{/}\NormalTok{n}
+\NormalTok{dados}\OtherTok{=}\FunctionTok{as.data.frame}\NormalTok{(prop\_suc)}
+\NormalTok{dados}\SpecialCharTok{$}\NormalTok{lim\_sup}\OtherTok{=}\NormalTok{dados}\SpecialCharTok{$}\NormalTok{prop\_suc }\SpecialCharTok{+}\NormalTok{ zc}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(dados}\SpecialCharTok{$}\NormalTok{prop\_suc}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{dados}\SpecialCharTok{$}\NormalTok{prop\_suc)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{n))         }
+\NormalTok{dados}\SpecialCharTok{$}\NormalTok{lim\_inf}\OtherTok{=}\NormalTok{dados}\SpecialCharTok{$}\NormalTok{prop\_suc }\SpecialCharTok{{-}}\NormalTok{ zc}\SpecialCharTok{*}\FunctionTok{sqrt}\NormalTok{(dados}\SpecialCharTok{$}\NormalTok{prop\_suc}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{dados}\SpecialCharTok{$}\NormalTok{prop\_suc)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{n))   }
+\NormalTok{names}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\StringTok{"Proporção amostral"}\NormalTok{, }\StringTok{"lim superior"}\NormalTok{, }\StringTok{"lim inferior"}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(dados)}\OtherTok{=}\NormalTok{names}
+\FunctionTok{row.names}\NormalTok{(dados)}\OtherTok{=}\ConstantTok{NULL}
+
+\FunctionTok{plot}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }
+\AttributeTok{type=}\StringTok{"n"}\NormalTok{, }
+\AttributeTok{xlim=}\FunctionTok{c}\NormalTok{( }\FloatTok{0.8}\SpecialCharTok{*}\FunctionTok{min}\NormalTok{(dados}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{lim inferior}\StringTok{\textasciigrave{}}\NormalTok{) , }\FloatTok{1.2}\SpecialCharTok{*}\FunctionTok{max}\NormalTok{(dados}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{lim superior}\StringTok{\textasciigrave{}}\NormalTok{) ), }
+\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,N), }
+\AttributeTok{bty=}\StringTok{"l"}\NormalTok{,}
+\AttributeTok{xlab=}\StringTok{"Escala de valores da variável"}\NormalTok{, }
+\AttributeTok{ylab=}\StringTok{"Intervalos amostrais construídos"}\NormalTok{, }
+\AttributeTok{main=}\FunctionTok{paste0}\NormalTok{(}\StringTok{"Intervalos com iguais níveis de confiança fixados em "}\NormalTok{, }\DecValTok{100}\SpecialCharTok{*}\NormalTok{conf, }\StringTok{"\% }\SpecialCharTok{\textbackslash{}n}\StringTok{("}\NormalTok{,N,}\StringTok{" amostras de tamanho "}\NormalTok{,n,}\StringTok{") }\SpecialCharTok{\textbackslash{}n}\StringTok{as linhas verticais mostram a propoção populacional em vermelho }\SpecialCharTok{\textbackslash{}n}\StringTok{e a média das proporções amostrais em preto"}\NormalTok{)  , }
+\AttributeTok{sub=}\FunctionTok{paste0}\NormalTok{(}\StringTok{"Parâmetros da distribuição da população Normal aproximada ( \textbackslash{}u03bc, \textbackslash{}u03c3) = ("}\NormalTok{, }\FunctionTok{mean}\NormalTok{(dados}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Proporção amostral}\StringTok{\textasciigrave{}}\NormalTok{) ,}\StringTok{", "}\NormalTok{, }\FunctionTok{round}\NormalTok{(}\FunctionTok{sqrt}\NormalTok{(p}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{p)}\SpecialCharTok{/}\NormalTok{n),}\DecValTok{3}\NormalTok{)     ,}\StringTok{")"}\NormalTok{))}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{v=}\NormalTok{p, }\AttributeTok{col=}\StringTok{"red"}\NormalTok{,  }\AttributeTok{lwd=}\DecValTok{1}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{N) \{}
+\NormalTok{li }\OtherTok{=}\NormalTok{ dados}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{lim inferior}\StringTok{\textasciigrave{}}\NormalTok{[i]}
+\NormalTok{ls }\OtherTok{=}\NormalTok{ dados}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{lim superior}\StringTok{\textasciigrave{}}\NormalTok{[i]}
+\NormalTok{plotx }\OtherTok{=} \FunctionTok{c}\NormalTok{(li,ls)}
+\NormalTok{ploty }\OtherTok{=} \FunctionTok{c}\NormalTok{(i,i)}
+\ControlFlowTok{if}\NormalTok{ ( ls }\SpecialCharTok{\textless{}}\NormalTok{ p }\SpecialCharTok{||}\NormalTok{ li }\SpecialCharTok{\textgreater{}}\NormalTok{ p ) }\FunctionTok{lines}\NormalTok{(plotx,ploty, }\AttributeTok{col=}\StringTok{"red"}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{1}\NormalTok{, }\AttributeTok{lty=}\DecValTok{1}\NormalTok{)}
+\ControlFlowTok{else} \FunctionTok{lines}\NormalTok{(plotx,ploty, }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{1}\NormalTok{, }\AttributeTok{lty=}\DecValTok{1}\NormalTok{)}
+\FunctionTok{segments}\NormalTok{(}\AttributeTok{x0=}\FunctionTok{mean}\NormalTok{(dados}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Proporção amostral}\StringTok{\textasciigrave{}}\NormalTok{) , }\AttributeTok{y0=}\DecValTok{0}\NormalTok{, }\AttributeTok{x1=}\FunctionTok{mean}\NormalTok{(dados}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Proporção amostral}\StringTok{\textasciigrave{}}\NormalTok{) ,}\AttributeTok{y1=}\NormalTok{N,}\AttributeTok{col=}\StringTok{"black"}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{1}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{)}
+\NormalTok{\} \}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{apostila_files/figure-latex/unnamed-chunk-116-1} 
+
+}
+
+\caption{Intervalos de confiança construídos para as diversas proporções obtidas de amostragens (com reposição) de elementos de uma população que apresentam a característica de interesse se manifestando de modo dicotômico}\label{fig:unnamed-chunk-116}
+\end{figure}
 
 \hfill\break
 
@@ -15891,7 +15967,7 @@ O \emph{método hipotético experimental} é próprio das ciências naturais (f�
 
 }
 
-\caption{Método demonstrativo e Método experimental hipotético (George Polya, 1954) }\label{fig:unnamed-chunk-117}
+\caption{Método demonstrativo e Método experimental hipotético (George Polya, 1954) }\label{fig:unnamed-chunk-119}
 \end{figure}
 
 \hfill\break
@@ -15936,7 +16012,7 @@ Em muitos processos de investigação científica é frequente ao pesquisador fo
 
 }
 
-\caption{Método experimental hipotético}\label{fig:unnamed-chunk-118}
+\caption{Método experimental hipotético}\label{fig:unnamed-chunk-120}
 \end{figure}
 
 \hfill\break
@@ -16174,115 +16250,115 @@ Usando conceitos já explicados em uma unidade anterior podemos determinar o tam
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{apostila_files/figure-latex/unnamed-chunk-120-1} 
+{\centering \includegraphics[width=1\linewidth]{apostila_files/figure-latex/unnamed-chunk-122-1} 
 
 }
 
-\caption{Flutuação dos valores médios para diversas amostras extraídas de uma mesma população distribuição $\sim N (\mu; \sigma)$}\label{fig:unnamed-chunk-120}
+\caption{Flutuação dos valores médios para diversas amostras extraídas de uma mesma população distribuição $\sim N (\mu; \sigma)$}\label{fig:unnamed-chunk-122}
 \end{figure}
 
 \begin{verbatim}
 ##       mu media      erro   li   ls
-## 1   1600  1602   1.91347 1583 1621
-## 2   1600  1601   1.32905 1582 1620
-## 3   1600  1593  -7.19191 1572 1613
-## 4   1600  1605   4.69302 1584 1625
-## 5   1600  1613  13.03110 1592 1634
-## 6   1600  1600  -0.47109 1579 1620
-## 7   1600  1600   0.08258 1581 1619
-## 8   1600  1618  17.94719 1599 1636
-## 9   1600  1600   0.41091 1582 1619
-## 10  1600  1589 -10.71158 1571 1607
-## 11  1600  1591  -9.00139 1569 1613
-## 12  1600  1597  -3.43664 1579 1614
-## 13  1600  1611  11.19226 1591 1631
-## 14  1600  1589 -11.08115 1568 1609
-## 15  1600  1590  -9.85382 1569 1611
-## 16  1600  1610   9.92107 1588 1631
-## 17  1600  1610  10.06585 1591 1629
-## 18  1600  1585 -14.57034 1567 1604
-## 19  1600  1608   7.72466 1589 1627
-## 20  1600  1602   2.44826 1585 1620
-## 21  1600  1597  -2.77997 1578 1617
-## 22  1600  1610   9.83886 1589 1631
-## 23  1600  1598  -1.81860 1577 1619
-## 24  1600  1598  -1.91248 1578 1618
-## 25  1600  1596  -4.27384 1576 1615
-## 26  1600  1596  -3.55264 1576 1617
-## 27  1600  1608   7.63432 1588 1628
-## 28  1600  1609   9.36957 1588 1630
-## 29  1600  1612  11.85326 1594 1630
-## 30  1600  1600   0.27027 1578 1623
-## 31  1600  1588 -11.94444 1569 1607
-## 32  1600  1579 -21.24444 1560 1598
-## 33  1600  1597  -2.83664 1579 1616
-## 34  1600  1615  14.60878 1595 1634
-## 35  1600  1617  16.98292 1597 1637
-## 36  1600  1595  -5.32166 1574 1616
-## 37  1600  1601   1.33257 1579 1624
-## 38  1600  1592  -8.19084 1572 1611
-## 39  1600  1598  -2.35677 1580 1615
-## 40  1600  1606   6.43827 1587 1626
-## 41  1600  1593  -6.57094 1573 1614
-## 42  1600  1607   6.52732 1589 1624
-## 43  1600  1603   3.38463 1585 1621
-## 44  1600  1604   4.03016 1585 1623
-## 45  1600  1606   6.38915 1585 1628
-## 46  1600  1592  -7.58064 1572 1613
-## 47  1600  1592  -7.92875 1573 1611
-## 48  1600  1601   0.79636 1579 1622
-## 49  1600  1615  14.57624 1595 1634
-## 50  1600  1617  16.63927 1597 1637
-## 51  1600  1592  -8.20552 1572 1612
-## 52  1600  1605   4.60714 1585 1624
-## 53  1600  1605   5.02477 1586 1624
-## 54  1600  1603   3.11344 1583 1624
-## 55  1600  1587 -12.61597 1569 1605
-## 56  1600  1611  10.70189 1590 1632
-## 57  1600  1595  -5.30856 1576 1614
-## 58  1600  1594  -5.53207 1575 1614
-## 59  1600  1618  18.26391 1600 1636
-## 60  1600  1604   3.55308 1583 1624
-## 61  1600  1607   6.96843 1587 1627
-## 62  1600  1603   3.00199 1581 1625
-## 63  1600  1586 -13.95233 1569 1603
-## 64  1600  1626  25.85116 1606 1646
-## 65  1600  1630  29.94691 1610 1650
-## 66  1600  1592  -8.06104 1570 1614
-## 67  1600  1606   5.56265 1587 1624
-## 68  1600  1615  15.01171 1596 1634
-## 69  1600  1573 -26.52240 1555 1592
-## 70  1600  1604   3.51248 1583 1624
-## 71  1600  1605   5.29934 1585 1626
-## 72  1600  1604   3.69093 1582 1626
-## 73  1600  1608   7.50214 1588 1627
-## 74  1600  1596  -4.22000 1574 1617
-## 75  1600  1601   0.61916 1582 1620
-## 76  1600  1593  -6.71233 1574 1613
-## 77  1600  1598  -2.11584 1578 1618
-## 78  1600  1607   7.16472 1585 1629
-## 79  1600  1589 -11.37493 1569 1608
-## 80  1600  1592  -7.50826 1572 1613
-## 81  1600  1608   8.46757 1591 1626
-## 82  1600  1596  -3.86626 1578 1614
-## 83  1600  1606   6.22542 1586 1626
-## 84  1600  1592  -7.94527 1572 1612
-## 85  1600  1584 -16.02332 1562 1606
-## 86  1600  1608   7.63572 1586 1629
-## 87  1600  1593  -7.20556 1572 1614
-## 88  1600  1602   1.88214 1583 1621
-## 89  1600  1592  -7.78233 1574 1611
-## 90  1600  1599  -1.01434 1577 1621
-## 91  1600  1585 -14.50993 1566 1605
-## 92  1600  1591  -8.91467 1572 1610
-## 93  1600  1594  -6.12538 1574 1614
-## 94  1600  1607   7.09192 1588 1626
-## 95  1600  1597  -3.28902 1577 1616
-## 96  1600  1595  -5.32654 1575 1614
-## 97  1600  1588 -12.41802 1568 1607
-## 98  1600  1611  10.87272 1591 1630
-## 99  1600  1586 -14.35761 1567 1605
-## 100 1600  1584 -15.82215 1564 1604
+## 1   1600  1606   5.95705 1586 1626
+## 2   1600  1608   7.88958 1588 1628
+## 3   1600  1598  -2.21652 1579 1617
+## 4   1600  1608   8.10268 1587 1629
+## 5   1600  1592  -8.45384 1571 1612
+## 6   1600  1609   8.50670 1588 1629
+## 7   1600  1606   5.89797 1588 1623
+## 8   1600  1617  17.21693 1597 1638
+## 9   1600  1599  -1.34557 1580 1617
+## 10  1600  1583 -17.12586 1565 1601
+## 11  1600  1597  -3.34695 1576 1618
+## 12  1600  1581 -18.58360 1562 1601
+## 13  1600  1597  -2.89547 1577 1617
+## 14  1600  1600  -0.48585 1582 1617
+## 15  1600  1589 -11.24344 1569 1609
+## 16  1600  1596  -3.68535 1576 1616
+## 17  1600  1609   9.08855 1588 1630
+## 18  1600  1601   1.35709 1579 1624
+## 19  1600  1611  11.11433 1590 1633
+## 20  1600  1587 -13.39653 1569 1604
+## 21  1600  1598  -1.74513 1579 1618
+## 22  1600  1600  -0.08053 1580 1620
+## 23  1600  1614  14.17075 1596 1633
+## 24  1600  1591  -9.30172 1570 1611
+## 25  1600  1609   8.57321 1588 1629
+## 26  1600  1601   0.71442 1580 1622
+## 27  1600  1600   0.42631 1580 1621
+## 28  1600  1599  -0.80708 1580 1619
+## 29  1600  1612  11.53282 1590 1633
+## 30  1600  1589 -11.44432 1566 1611
+## 31  1600  1591  -9.36627 1571 1610
+## 32  1600  1612  11.79581 1592 1632
+## 33  1600  1615  15.26488 1597 1634
+## 34  1600  1599  -1.34263 1577 1620
+## 35  1600  1594  -6.45342 1574 1613
+## 36  1600  1604   3.58211 1585 1622
+## 37  1600  1601   1.05755 1580 1622
+## 38  1600  1590  -9.61949 1569 1612
+## 39  1600  1615  15.35300 1595 1635
+## 40  1600  1614  13.78641 1596 1631
+## 41  1600  1597  -2.86327 1577 1617
+## 42  1600  1609   9.45761 1588 1631
+## 43  1600  1590  -9.66568 1570 1610
+## 44  1600  1607   6.55873 1586 1627
+## 45  1600  1591  -9.39612 1570 1611
+## 46  1600  1610   9.71252 1591 1628
+## 47  1600  1614  14.17055 1595 1633
+## 48  1600  1602   1.74010 1583 1621
+## 49  1600  1591  -8.85110 1572 1610
+## 50  1600  1620  19.72681 1599 1641
+## 51  1600  1594  -5.63949 1576 1613
+## 52  1600  1583 -17.12017 1564 1602
+## 53  1600  1604   4.24334 1583 1626
+## 54  1600  1607   6.89973 1588 1626
+## 55  1600  1606   5.64819 1586 1625
+## 56  1600  1600   0.31289 1579 1621
+## 57  1600  1635  35.08098 1613 1658
+## 58  1600  1605   5.18854 1586 1625
+## 59  1600  1593  -7.28390 1572 1613
+## 60  1600  1596  -3.80112 1577 1616
+## 61  1600  1603   3.46590 1586 1621
+## 62  1600  1591  -8.52937 1573 1610
+## 63  1600  1613  12.65940 1593 1632
+## 64  1600  1594  -6.05125 1574 1613
+## 65  1600  1600   0.38956 1580 1620
+## 66  1600  1596  -3.85591 1577 1615
+## 67  1600  1598  -2.43738 1578 1617
+## 68  1600  1599  -1.18967 1578 1619
+## 69  1600  1591  -9.05281 1572 1610
+## 70  1600  1604   4.14821 1584 1624
+## 71  1600  1600   0.05790 1580 1620
+## 72  1600  1607   6.81190 1586 1627
+## 73  1600  1601   1.42569 1581 1622
+## 74  1600  1597  -3.23664 1577 1616
+## 75  1600  1599  -1.07075 1579 1619
+## 76  1600  1607   6.56746 1587 1626
+## 77  1600  1596  -4.12573 1578 1614
+## 78  1600  1611  11.34408 1590 1632
+## 79  1600  1575 -25.35105 1556 1594
+## 80  1600  1599  -1.42813 1578 1619
+## 81  1600  1605   4.74818 1585 1625
+## 82  1600  1595  -5.31525 1572 1617
+## 83  1600  1591  -9.23923 1573 1609
+## 84  1600  1609   8.50090 1589 1628
+## 85  1600  1588 -11.63912 1570 1607
+## 86  1600  1615  15.30184 1596 1635
+## 87  1600  1587 -13.08368 1566 1608
+## 88  1600  1610  10.48977 1588 1633
+## 89  1600  1588 -12.25461 1568 1607
+## 90  1600  1599  -1.39269 1578 1619
+## 91  1600  1606   6.26320 1587 1626
+## 92  1600  1609   8.72382 1590 1628
+## 93  1600  1610   9.72105 1589 1630
+## 94  1600  1582 -17.75082 1561 1603
+## 95  1600  1591  -8.74864 1572 1610
+## 96  1600  1591  -8.97508 1570 1612
+## 97  1600  1602   2.00187 1583 1621
+## 98  1600  1587 -12.91911 1568 1606
+## 99  1600  1602   1.82846 1581 1623
+## 100 1600  1596  -4.20853 1578 1614
 \end{verbatim}
 
 \hfill\break
@@ -17033,7 +17109,7 @@ em que:\\
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{apostila_files/figure-latex/unnamed-chunk-123-1.pdf}
+\includegraphics{apostila_files/figure-latex/unnamed-chunk-125-1.pdf}
 
 \hfill\break
 
@@ -18465,8 +18541,8 @@ Pelo teste unilateral à esquerda concluiu-se que \(\mu_{1} \ge \mu_{2}\); pelo 
 
 \hfill\break
 
-\hypertarget{testes-de-hipuxf3teses-para-as-muxe9dias-de-duas-populauxe7uxf5es-com-variuxe2ncias-desconhecidas-mas-admitidas-iguais-e-o-tamanho-das-amostras-uxe9-diminuto}{%
-\subsection{Testes de hipóteses para as médias de duas populações com variâncias desconhecidas (mas admitidas iguais) e o tamanho das amostras é diminuto}\label{testes-de-hipuxf3teses-para-as-muxe9dias-de-duas-populauxe7uxf5es-com-variuxe2ncias-desconhecidas-mas-admitidas-iguais-e-o-tamanho-das-amostras-uxe9-diminuto}}
+\hypertarget{testes-de-hipuxf3teses-para-as-muxe9dias-de-duas-populauxe7uxf5es-normais-com-variuxe2ncias-desconhecidas-mas-iguais-teste-t-homoceduxe1stico-sigma_12sigma_22}{%
+\subsection{\texorpdfstring{Testes de hipóteses para as médias de duas populações Normais com variâncias desconhecidas mas iguais: teste ``t'\,' homocedástico (\(\sigma_{1}^{2}=\sigma_{2}^{2}=?\))}{Testes de hipóteses para as médias de duas populações Normais com variâncias desconhecidas mas iguais: teste ``t'\,' homocedástico (\textbackslash sigma\_\{1\}\^{}\{2\}=\textbackslash sigma\_\{2\}\^{}\{2\}=?)}}\label{testes-de-hipuxf3teses-para-as-muxe9dias-de-duas-populauxe7uxf5es-normais-com-variuxe2ncias-desconhecidas-mas-iguais-teste-t-homoceduxe1stico-sigma_12sigma_22}}
 
 \begin{quote}
 Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística t (\(T \sim t_{(n_{1} + n_{2} - 2)}\)). Os valores assumidos pelas diferenças amostrais são tais que
@@ -18592,7 +18668,7 @@ Nas figuras \ref{fig:fig70}, \ref{fig:fig71} e \ref{fig:fig72} observam-se:
 \hfill\break
 
 \hypertarget{teste-f-para-a-razuxe3o-de-duas-variuxe2ncias}{%
-\subsubsection{Teste ``F'\,' para a razão de duas variâncias}\label{teste-f-para-a-razuxe3o-de-duas-variuxe2ncias}}
+\subsubsection{Teste ``F'' para a razão de duas variâncias}\label{teste-f-para-a-razuxe3o-de-duas-variuxe2ncias}}
 
 \hfill\break
 
@@ -19080,8 +19156,8 @@ Conclusão: Os resultados obtidos pela análise estatística de comparação de 
 
 \hfill\break
 
-\hypertarget{teste-de-hipuxf3teses-para-as-muxe9dias-de-duas-populauxe7uxf5es-independentes-com-variuxe2ncias-desconhecidas-e-o-tamanho-das-amostras-uxe9-diminuto}{%
-\subsection{Teste de hipóteses para as médias de duas populações independentes com variâncias desconhecidas e o tamanho das amostras é diminuto}\label{teste-de-hipuxf3teses-para-as-muxe9dias-de-duas-populauxe7uxf5es-independentes-com-variuxe2ncias-desconhecidas-e-o-tamanho-das-amostras-uxe9-diminuto}}
+\hypertarget{teste-de-hipuxf3teses-para-as-muxe9dias-de-duas-populauxe7uxf5es-normais-com-variuxe2ncias-desconhecidas-e-desiguais-teste-t-heteroceduxe1stico-sigma_12-neq-sigma_22}{%
+\subsection{\texorpdfstring{Teste de hipóteses para as médias de duas populações Normais com variâncias desconhecidas e desiguais: teste ``\,``t'\,' heterocedástico (\(\sigma_{1}^{2} \neq \sigma_{2}^{2}=?\))}{Teste de hipóteses para as médias de duas populações Normais com variâncias desconhecidas e desiguais: teste ``\,``t'\,' heterocedástico (\textbackslash sigma\_\{1\}\^{}\{2\} \textbackslash neq \textbackslash sigma\_\{2\}\^{}\{2\}=?)}}\label{teste-de-hipuxf3teses-para-as-muxe9dias-de-duas-populauxe7uxf5es-normais-com-variuxe2ncias-desconhecidas-e-desiguais-teste-t-heteroceduxe1stico-sigma_12-neq-sigma_22}}
 
 \begin{quote}
 Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística t (\(T \sim t_{\nu}\)). Os valores assumidos pelas diferenças amostrais são tais que
@@ -21227,7 +21303,7 @@ O resultado do teste de hipóteses realizado com as amostras trazidas à anális
 
 }
 
-\caption{Fluxograma auxiliar para escolha da estatística do teste de hipóteses}\label{fig:unnamed-chunk-143}
+\caption{Fluxograma auxiliar para escolha da estatística do teste de hipóteses}\label{fig:unnamed-chunk-145}
 \end{figure}
 
 \hfill\break
@@ -21241,7 +21317,7 @@ O resultado do teste de hipóteses realizado com as amostras trazidas à anális
 
 }
 
-\caption{Tabela Normal padronizada}\label{fig:unnamed-chunk-144}
+\caption{Tabela Normal padronizada}\label{fig:unnamed-chunk-146}
 \end{figure}
 
 \hfill\break
@@ -21252,7 +21328,7 @@ O resultado do teste de hipóteses realizado com as amostras trazidas à anális
 
 }
 
-\caption{Tabela da distribuição t de Student}\label{fig:unnamed-chunk-145}
+\caption{Tabela da distribuição t de Student}\label{fig:unnamed-chunk-147}
 \end{figure}
 
 \hfill\break
@@ -21263,7 +21339,7 @@ O resultado do teste de hipóteses realizado com as amostras trazidas à anális
 
 \}
 
-\textbackslash caption\{Tabela da distribuição F de Fisher-Snedecor (5\%)\}\label{fig:unnamed-chunk-146}
+\textbackslash caption\{Tabela da distribuição F de Fisher-Snedecor (5\%)\}\label{fig:unnamed-chunk-148}
 \textbackslash end\{figure\}
 
 \hfill\break
@@ -21274,7 +21350,7 @@ O resultado do teste de hipóteses realizado com as amostras trazidas à anális
 
 }
 
-\caption{Tabela da distribuição Qui-quadrado}\label{fig:unnamed-chunk-147}
+\caption{Tabela da distribuição Qui-quadrado}\label{fig:unnamed-chunk-149}
 \end{figure}
 
 \hfill\break
@@ -21285,7 +21361,7 @@ O resultado do teste de hipóteses realizado com as amostras trazidas à anális
 
 }
 
-\caption{Alfabeto grego}\label{fig:unnamed-chunk-148}
+\caption{Alfabeto grego}\label{fig:unnamed-chunk-150}
 \end{figure}
 
   \bibliography{book.bib,packages.bib}

@@ -518,7 +518,7 @@ Var(\hat{p}) = Var(\frac{Y}{n}) = \frac{1}{n^{2}} \cdot Var(Y) = \frac{1}{n^{2}}
 \]</span></p>
 <p><br />
 </p>
-<p>Assim, a proporção amostral segue uma distribuição aproximadamente Normal com média <span class="math inline">\(\mu=\pi\)</span> e variância <span class="math inline">\(\sigma^{2}=\frac{\pi \cdot (1- \pi)}{n}\)</span>:</p>
+<p>Assim, as proporções amostrais se distribuem de modo aproximadamente Normal sob uma média <span class="math inline">\(\mu=\pi\)</span> e com uma variância <span class="math inline">\(\sigma^{2}=\frac{\pi \cdot (1- \pi)}{n}\)</span>:</p>
 <p><br />
 </p>
 <p><span class="math display">\[
@@ -528,7 +528,7 @@ Var(\hat{p}) = Var(\frac{Y}{n}) = \frac{1}{n^{2}} \cdot Var(Y) = \frac{1}{n^{2}}
 Para exemplificar considere o lançamento de um dado de seis faces,. A probabilidade de que uma certa face caia voltada para cima é de <span class="math inline">\(\frac{1}{6}=0,167\)</span>. Se lançarmos esse dado um número crescente de vezes e anotarmos a proporção delas em que a face escolhida caiu voltada para cima comprova-se que o valor esperado das proporções amostrais aproxima-se da proporção populacional.</p>
 <p><br />
 </p>
-<p>As Figuras <a href="distribuição-das-proporções-amostrais.html#fig:fig65">10.2</a> (tamanho de cada amostra <span class="math inline">\(n=n_1\)</span>) e <a href="distribuição-das-proporções-amostrais.html#fig:fig66">10.3</a> (tamanho de cada amostra <span class="math inline">\(n=n_2\)</span>) mostram o perfil assumido pela distribuição das 100 proporções amostrais extraídas de uma população com proporção <span class="math inline">\(\pi=p_1\)</span>.</p>
+<p>As Figuras <a href="distribuição-das-proporções-amostrais.html#fig:fig65">10.2</a> (tamanho de cada amostra <span class="math inline">\(n=n_1\)</span>) e <a href="distribuição-das-proporções-amostrais.html#fig:fig66">10.3</a> (tamanho de cada amostra <span class="math inline">\(n=n_2\)</span>) mostram o perfil assumido pela distribuição de 100 proporções amostrais obtidas de uma população que apresenta uma proporção <span class="math inline">\(\pi=p_1\)</span> da característica de interesse.</p>
 <p><br />
 </p>
 <div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="distribuição-das-proporções-amostrais.html#cb113-1" tabindex="-1"></a><span class="do">#############################################################################</span></span>
@@ -629,8 +629,8 @@ Para exemplificar considere o lançamento de um dado de seis faces,. A probabili
 <span id="cb114-11"><a href="distribuição-das-proporções-amostrais.html#cb114-11" tabindex="-1"></a>                <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> p_1, <span class="at">sd =</span> <span class="fu">sqrt</span>(p_1<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p_1)<span class="sc">/</span>n_1)),</span>
 <span id="cb114-12"><a href="distribuição-das-proporções-amostrais.html#cb114-12" tabindex="-1"></a>                 <span class="at">colour=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
 <span id="cb114-13"><a href="distribuição-das-proporções-amostrais.html#cb114-13" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">&quot;&quot;</span>,<span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb114-14"><a href="distribuição-das-proporções-amostrais.html#cb114-14" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name=</span><span class="st">&quot;Valores das proporções amostrais médias&quot;</span>) <span class="sc">+</span></span>
-<span id="cb114-15"><a href="distribuição-das-proporções-amostrais.html#cb114-15" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span>meu_titulo1)<span class="sc">+</span></span>
+<span id="cb114-14"><a href="distribuição-das-proporções-amostrais.html#cb114-14" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name=</span><span class="st">&quot;Valores das proporções amostrais&quot;</span>) <span class="sc">+</span></span>
+<span id="cb114-15"><a href="distribuição-das-proporções-amostrais.html#cb114-15" tabindex="-1"></a>  <span class="co">#labs(title=meu_titulo1)+</span></span>
 <span id="cb114-16"><a href="distribuição-das-proporções-amostrais.html#cb114-16" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span><span class="fu">mean</span>(prop_10rep), <span class="at">y=</span><span class="fu">max</span>(<span class="fu">dnorm</span>(prop_10rep)),</span>
 <span id="cb114-17"><a href="distribuição-das-proporções-amostrais.html#cb114-17" tabindex="-1"></a>           <span class="at">label=</span>meu_titulo2, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">4</span>)<span class="sc">+</span></span>
 <span id="cb114-18"><a href="distribuição-das-proporções-amostrais.html#cb114-18" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
@@ -639,11 +639,11 @@ Para exemplificar considere o lançamento de um dado de seis faces,. A probabili
 <span id="cb114-21"><a href="distribuição-das-proporções-amostrais.html#cb114-21" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
 <span id="cb114-22"><a href="distribuição-das-proporções-amostrais.html#cb114-22" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig65"></span>
-<img src="apostila_files/figure-html/fig65-1.png" alt="Distribuição das frequências das proporções de sucesso observadas em 100 amostras de tamanho n=10 elementos dicotômicos extraídos (com reposição) de uma população 
-(a proporção de sucesso na população π=1/6)" width="100%" />
+<img src="apostila_files/figure-html/fig65-1.png" alt="Distribuição das frequências das proporções de sucesso observadas em 100 amostras de tamanho n=10 elementos dicotômicos extraídos (com reposição) de uma população  
+(a proporção de sucesso na população é  π=1/6)" width="100%" />
 <p class="caption">
-Figure 10.2: Distribuição das frequências das proporções de sucesso observadas em 100 amostras de tamanho n=10 elementos dicotômicos extraídos (com reposição) de uma população
-(a proporção de sucesso na população π=1/6)
+Figure 10.2: Distribuição das frequências das proporções de sucesso observadas em 100 amostras de tamanho n=10 elementos dicotômicos extraídos (com reposição) de uma população<br />
+(a proporção de sucesso na população é π=1/6)
 </p>
 </div>
 <p><br />
@@ -661,10 +661,10 @@ Figure 10.2: Distribuição das frequências das proporções de sucesso observa
 <span id="cb115-11"><a href="distribuição-das-proporções-amostrais.html#cb115-11" tabindex="-1"></a>                            <span class="at">sd =</span> <span class="fu">sqrt</span>(p_1<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p_1)<span class="sc">/</span>n_2)), </span>
 <span id="cb115-12"><a href="distribuição-das-proporções-amostrais.html#cb115-12" tabindex="-1"></a>                <span class="at">colour=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
 <span id="cb115-13"><a href="distribuição-das-proporções-amostrais.html#cb115-13" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">name=</span><span class="st">&quot;&quot;</span>,<span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb115-14"><a href="distribuição-das-proporções-amostrais.html#cb115-14" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name=</span><span class="st">&quot;Valores das proporções amostrais médias&quot;</span>) <span class="sc">+</span></span>
-<span id="cb115-15"><a href="distribuição-das-proporções-amostrais.html#cb115-15" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span>meu_titulo1)<span class="sc">+</span></span>
+<span id="cb115-14"><a href="distribuição-das-proporções-amostrais.html#cb115-14" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name=</span><span class="st">&quot;Valores das proporções amostrais&quot;</span>) <span class="sc">+</span></span>
+<span id="cb115-15"><a href="distribuição-das-proporções-amostrais.html#cb115-15" tabindex="-1"></a>  <span class="co">#labs(title=meu_titulo1)+</span></span>
 <span id="cb115-16"><a href="distribuição-das-proporções-amostrais.html#cb115-16" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span><span class="fu">mean</span>(prop_100rep), <span class="at">y=</span><span class="fu">max</span>(<span class="fu">dnorm</span>(prop_100rep)),</span>
-<span id="cb115-17"><a href="distribuição-das-proporções-amostrais.html#cb115-17" tabindex="-1"></a>           <span class="at">label=</span>meu_titulo2, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">6</span>)<span class="sc">+</span></span>
+<span id="cb115-17"><a href="distribuição-das-proporções-amostrais.html#cb115-17" tabindex="-1"></a>           <span class="at">label=</span>meu_titulo2, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">4</span>)<span class="sc">+</span></span>
 <span id="cb115-18"><a href="distribuição-das-proporções-amostrais.html#cb115-18" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
 <span id="cb115-19"><a href="distribuição-das-proporções-amostrais.html#cb115-19" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">1</span>, <span class="at">size=</span><span class="dv">10</span>),</span>
 <span id="cb115-20"><a href="distribuição-das-proporções-amostrais.html#cb115-20" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">1</span>, <span class="at">size=</span><span class="dv">10</span>),</span>
@@ -672,15 +672,15 @@ Figure 10.2: Distribuição das frequências das proporções de sucesso observa
 <span id="cb115-22"><a href="distribuição-das-proporções-amostrais.html#cb115-22" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig66"></span>
 <img src="apostila_files/figure-html/fig66-1.png" alt="Distribuição das frequências das proporções de sucesso observadas em 100 amostras de tamanho n=100 elementos dicotômicos extraídos (com reposição) de uma população 
-(a proporção de sucesso na população π=1/6)" width="100%" />
+(a proporção de sucesso na população é π=1/6)" width="100%" />
 <p class="caption">
 Figure 10.3: Distribuição das frequências das proporções de sucesso observadas em 100 amostras de tamanho n=100 elementos dicotômicos extraídos (com reposição) de uma população
-(a proporção de sucesso na população π=1/6)
+(a proporção de sucesso na população é π=1/6)
 </p>
 </div>
 <p><br />
 </p>
-<p>Definindo-se a estatística <span class="math inline">\(Z\)</span> como a simples padronização da variável <span class="math inline">\(\hat{p}\)</span>, temos que esta seguirá uma distribuição normal com média <span class="math inline">\(0\)</span> e desvio-padrão <span class="math inline">\(1\)</span> :</p>
+<p>Ao se definir a estatística <span class="math inline">\(Z\)</span> como a simples padronização da variável <span class="math inline">\(\hat{p}\)</span> vemos que esta seguirá uma distribuição normal com média <span class="math inline">\(0\)</span> e desvio-padrão <span class="math inline">\(1\)</span>:</p>
 <p><br />
 </p>
 <p><span class="math display">\[
@@ -689,6 +689,92 @@ Z=\frac{\hat{p}-\pi }{\sqrt{\frac{\pi \left(1-\pi \right)}{n}}} \sim N\left(0,1\
 <p><br />
 </p>
 <p>Essa aproximação da distribuição de uma variável binomial (proporções amostrais <span class="math inline">\(\hat{p}\)</span>) pela distribuição Normal será tanto mais simétrica e com perfil de um sino quanto vier a atender (<span class="math inline">\(n\)</span> grande e <span class="math inline">\(\pi\)</span> não próximo de 0 ou 1).</p>
+<p><br />
+</p>
+<p>No módulo ``Introdução ao planejamento de pesquisas’’ explicamos que quando não se dispõe de nenhuma informação <em>a priori</em> sobre a proporção populacional (<span class="math inline">\(\pi\)</span>) a adoção do máximo valor possível ao produto: <span class="math inline">\(\pi.(1-\pi)=\frac{1}{4}\)</span> assegura que o o tamanho de amostra obtido será suficiente para a estimação qualquer que seja a proporção populacional <span class="math inline">\(\pi\)</span>. Trazendo a variável <span class="math inline">\(Z\)</span> antes definida:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+Z=\frac{\hat{p}-\pi }{\sqrt{\frac{\pi \left(1-\pi \right)}{n}}} \sim N\left(0,1\right)
+\]</span><br />
+</p>
+<p>podemos reescrevê-la de modo a se obter o dimensionamento amostral em função do nível de confiança e um erro máximo estabelecidos:</p>
+<p><span class="math display">\[
+z_{(1-\alpha)}=\frac{\hat{p}-\pi }{\sqrt{\frac{\pi \left(1-\pi \right)}{n}}} \\
+z_{(1-\alpha)}.\sqrt{\frac{\pi \left(1-\pi \right)}{n}}=\hat{p}-\pi \\
+\frac{\pi \left(1-\pi \right)}{n}=(\frac{\varepsilon}{z_{(1-\alpha)}})^{2}\\
+n = \frac{z_{(1-\alpha)}^{2}}{\varepsilon^{2}} \cdot \pi \left(1-\pi \right)\\
+\]</span></p>
+<p><br />
+</p>
+<p>Deste modo podemos simular a flutuação dos valores das proporções obtidas em sucessivas amostras, ilustrando simultaneamente os erros amostrais observados e a proporção das amostras que apresentam um erro amostral (3b5) superior ao estipulado (nível de confiança: (1-3b1)).</p>
+<p><br />
+</p>
+<p>Desconhecendo-se qualquer informação acerca da proporção populacional (3c0), a dimensão da amostra pode ser estipulada tomando-se o maior valor do produto <span class="math inline">\(\pi \left(1-\pi \right)\)</span> como sendo igual a <span class="math inline">\(\frac{1}{4}\)</span>. Assim, a dimensão conservadora para a amostra será dada por:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+n = \frac{z_{(1-\alpha)}^{2}}{\varepsilon^{2}} \cdot \frac{1}{4}\\
+\]</span></p>
+<p><br />
+</p>
+<p>As próximas figuras ilustram a flutuação das proporções amostrais obtidas de amostragens (com reposição) de elementos de uma população que apresentam a característica de interesse se manifestando de modo dicotômico, sob variados tamanhos amostrais (385, 210 e 100).</p>
+<p><br />
+</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="distribuição-das-proporções-amostrais.html#cb116-1" tabindex="-1"></a><span class="co"># Flutuação das proporções amostrais observadas</span></span>
+<span id="cb116-2"><a href="distribuição-das-proporções-amostrais.html#cb116-2" tabindex="-1"></a></span>
+<span id="cb116-3"><a href="distribuição-das-proporções-amostrais.html#cb116-3" tabindex="-1"></a>flut.N <span class="ot">=</span> <span class="cf">function</span> (N, n, p, conf, er) {</span>
+<span id="cb116-4"><a href="distribuição-das-proporções-amostrais.html#cb116-4" tabindex="-1"></a>zc <span class="ot">=</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>((<span class="dv">1</span><span class="sc">-</span>conf)<span class="sc">/</span><span class="dv">2</span>)) </span>
+<span id="cb116-5"><a href="distribuição-das-proporções-amostrais.html#cb116-5" tabindex="-1"></a>suc<span class="ot">=</span><span class="fu">rbinom</span>(<span class="at">n=</span>N, <span class="at">size =</span> n, <span class="at">prob =</span> p)</span>
+<span id="cb116-6"><a href="distribuição-das-proporções-amostrais.html#cb116-6" tabindex="-1"></a>prop_suc<span class="ot">=</span>suc<span class="sc">/</span>n</span>
+<span id="cb116-7"><a href="distribuição-das-proporções-amostrais.html#cb116-7" tabindex="-1"></a>dados<span class="ot">=</span><span class="fu">as.data.frame</span>(prop_suc)</span>
+<span id="cb116-8"><a href="distribuição-das-proporções-amostrais.html#cb116-8" tabindex="-1"></a>names<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;Proporção amostral&quot;</span>)</span>
+<span id="cb116-9"><a href="distribuição-das-proporções-amostrais.html#cb116-9" tabindex="-1"></a><span class="fu">colnames</span>(dados)<span class="ot">=</span>names</span>
+<span id="cb116-10"><a href="distribuição-das-proporções-amostrais.html#cb116-10" tabindex="-1"></a><span class="fu">row.names</span>(dados)<span class="ot">=</span><span class="cn">NULL</span></span>
+<span id="cb116-11"><a href="distribuição-das-proporções-amostrais.html#cb116-11" tabindex="-1"></a>meu_titulo01<span class="ot">=</span><span class="fu">paste0</span>(<span class="st">&quot;Flutuação das proporções amostrais </span><span class="sc">\n</span><span class="st">&quot;</span>, N,<span class="st">&quot; amostras de tamanho &quot;</span>,n,<span class="st">&quot; (dimensionamento sob um nível de confiança (1-\u03b1)= &quot;</span>,conf,<span class="st">&quot; e um erro amostral \u03b5= &quot;</span>, er,<span class="st">&quot; </span><span class="sc">\n</span><span class="st">As linhas verticais mostram a propoção populacional em azul (\u03c0= &quot;</span>, p , <span class="st">&quot;) </span><span class="sc">\n</span><span class="st">e os valores limites estabelecidos pelo erro arbitrado em vermelho (\u03c0 +/-\u03b5= &quot;</span>,  p, <span class="st">&quot;+/-&quot;</span>, er ,<span class="st">&quot;)&quot;</span>)   </span>
+<span id="cb116-12"><a href="distribuição-das-proporções-amostrais.html#cb116-12" tabindex="-1"></a>meu_titulo02<span class="ot">=</span><span class="fu">paste0</span>(<span class="st">&quot;Os valores das proporçoes amostrais seguem uma distribuição ~ N ( \u03bc, \u03c3) = (&quot;</span>, <span class="fu">round</span>(<span class="fu">mean</span>(dados<span class="sc">$</span><span class="st">`</span><span class="at">Proporção amostral</span><span class="st">`</span>),<span class="dv">4</span>) ,<span class="st">&quot;, &quot;</span>, <span class="fu">round</span>(<span class="fu">sqrt</span>(p<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p)<span class="sc">/</span>n),<span class="dv">4</span>) ,<span class="st">&quot;)&quot;</span>)</span>
+<span id="cb116-13"><a href="distribuição-das-proporções-amostrais.html#cb116-13" tabindex="-1"></a></span>
+<span id="cb116-14"><a href="distribuição-das-proporções-amostrais.html#cb116-14" tabindex="-1"></a></span>
+<span id="cb116-15"><a href="distribuição-das-proporções-amostrais.html#cb116-15" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">0</span>, <span class="dv">0</span>, </span>
+<span id="cb116-16"><a href="distribuição-das-proporções-amostrais.html#cb116-16" tabindex="-1"></a><span class="at">type=</span><span class="st">&quot;n&quot;</span>, </span>
+<span id="cb116-17"><a href="distribuição-das-proporções-amostrais.html#cb116-17" tabindex="-1"></a><span class="at">xlim=</span><span class="fu">c</span>( <span class="fl">0.5</span><span class="sc">*</span><span class="fu">min</span>(dados<span class="sc">$</span><span class="st">`</span><span class="at">Proporção amostral</span><span class="st">`</span>) , <span class="fl">1.1</span><span class="sc">*</span><span class="fu">max</span>(dados<span class="sc">$</span><span class="st">`</span><span class="at">Proporção amostral</span><span class="st">`</span>) ), </span>
+<span id="cb116-18"><a href="distribuição-das-proporções-amostrais.html#cb116-18" tabindex="-1"></a><span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,N), </span>
+<span id="cb116-19"><a href="distribuição-das-proporções-amostrais.html#cb116-19" tabindex="-1"></a><span class="at">bty=</span><span class="st">&quot;l&quot;</span>,</span>
+<span id="cb116-20"><a href="distribuição-das-proporções-amostrais.html#cb116-20" tabindex="-1"></a><span class="at">xlab=</span><span class="st">&quot;Proporções amostrais observadas&quot;</span>, </span>
+<span id="cb116-21"><a href="distribuição-das-proporções-amostrais.html#cb116-21" tabindex="-1"></a><span class="at">ylab=</span><span class="st">&quot;Amostras extraídas&quot;</span>, </span>
+<span id="cb116-22"><a href="distribuição-das-proporções-amostrais.html#cb116-22" tabindex="-1"></a><span class="at">main=</span><span class="st">&quot;&quot;</span>, <span class="co">#meu_titulo01  </span></span>
+<span id="cb116-23"><a href="distribuição-das-proporções-amostrais.html#cb116-23" tabindex="-1"></a><span class="at">sub=</span><span class="st">&quot;&quot;</span>) <span class="co">#meu_titulo02</span></span>
+<span id="cb116-24"><a href="distribuição-das-proporções-amostrais.html#cb116-24" tabindex="-1"></a></span>
+<span id="cb116-25"><a href="distribuição-das-proporções-amostrais.html#cb116-25" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N) {</span>
+<span id="cb116-26"><a href="distribuição-das-proporções-amostrais.html#cb116-26" tabindex="-1"></a>prop_amostral<span class="ot">=</span>dados<span class="sc">$</span><span class="st">`</span><span class="at">Proporção amostral</span><span class="st">`</span>[i]</span>
+<span id="cb116-27"><a href="distribuição-das-proporções-amostrais.html#cb116-27" tabindex="-1"></a>ploty <span class="ot">=</span> <span class="fu">c</span>(i,i)</span>
+<span id="cb116-28"><a href="distribuição-das-proporções-amostrais.html#cb116-28" tabindex="-1"></a><span class="cf">if</span> (prop_amostral <span class="sc">&gt;</span> p<span class="sc">+</span>er <span class="sc">||</span> prop_amostral <span class="sc">&lt;</span> p<span class="sc">-</span>er) </span>
+<span id="cb116-29"><a href="distribuição-das-proporções-amostrais.html#cb116-29" tabindex="-1"></a>     <span class="fu">points</span>(prop_amostral, i, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">cex=</span><span class="dv">1</span>)<span class="sc">+</span><span class="fu">text</span>(<span class="at">y=</span>i<span class="sc">+</span><span class="dv">3</span>,<span class="at">x=</span>prop_amostral, <span class="at">labels=</span><span class="fu">round</span>(prop_amostral,<span class="dv">1</span>), <span class="at">cex=</span><span class="dv">1</span>, <span class="at">col=</span><span class="st">&#39;red&#39;</span>)</span>
+<span id="cb116-30"><a href="distribuição-das-proporções-amostrais.html#cb116-30" tabindex="-1"></a>  <span class="cf">else</span> </span>
+<span id="cb116-31"><a href="distribuição-das-proporções-amostrais.html#cb116-31" tabindex="-1"></a>    <span class="fu">points</span>(prop_amostral, i, <span class="at">col=</span><span class="st">&quot;black&quot;</span>, <span class="at">cex=</span><span class="dv">1</span>) </span>
+<span id="cb116-32"><a href="distribuição-das-proporções-amostrais.html#cb116-32" tabindex="-1"></a><span class="fu">segments</span>(<span class="at">x0=</span>p , <span class="at">y0=</span><span class="dv">0</span>, <span class="at">x1=</span>p ,<span class="at">y1=</span>N,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb116-33"><a href="distribuição-das-proporções-amostrais.html#cb116-33" tabindex="-1"></a><span class="fu">segments</span>(<span class="at">x0=</span>p<span class="sc">-</span>er , <span class="at">y0=</span><span class="dv">0</span>, <span class="at">x1=</span>p<span class="sc">-</span>er ,<span class="at">y1=</span>N,<span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">1</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb116-34"><a href="distribuição-das-proporções-amostrais.html#cb116-34" tabindex="-1"></a><span class="fu">segments</span>(<span class="at">x0=</span>p<span class="sc">+</span>er , <span class="at">y0=</span><span class="dv">0</span>, <span class="at">x1=</span>p<span class="sc">+</span>er ,<span class="at">y1=</span>N,<span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">1</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb116-35"><a href="distribuição-das-proporções-amostrais.html#cb116-35" tabindex="-1"></a>} </span>
+<span id="cb116-36"><a href="distribuição-das-proporções-amostrais.html#cb116-36" tabindex="-1"></a>}</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-116"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-116-1.png" alt="Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento foi estimado ignorando-se o conhecimento da proporção populacional (π) para um nível de confiança (1-α) e um erro amostral (ε) estipulados: 385 elementos." width="100%" />
+<p class="caption">
+Figure 10.4: Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento foi estimado ignorando-se o conhecimento da proporção populacional (π) para um nível de confiança (1-α) e um erro amostral (ε) estipulados: 385 elementos.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-117"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-117-1.png" alt="Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento foi estimado admitindo-se o conhecimento da proporção populacional (π) para um nível de confiança (1-α) e um erro amostral (ε) estipulados: 217 elementos." width="100%" />
+<p class="caption">
+Figure 10.5: Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento foi estimado admitindo-se o conhecimento da proporção populacional (π) para um nível de confiança (1-α) e um erro amostral (ε) estipulados: 217 elementos.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-118"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-118-1.png" alt="Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento foi arbitrariamente estimado em 100 elementos." width="100%" />
+<p class="caption">
+Figure 10.6: Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento foi arbitrariamente estimado em 100 elementos.
+</p>
+</div>
 <p><br />
 </p>
 </div>

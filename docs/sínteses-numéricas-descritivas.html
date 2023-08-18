@@ -832,6 +832,53 @@ S^{2}=\frac{1}{(n-1)} \times \left[ \sum _{i=1}^{n} (x_{i}^{2}) - \frac{({\sum _
 <p>Pode-se demonstrar que em razão dessa restrição a melhor estimativa para a variância populacional é obtida dividindo-se a soma dos quadrados dos desvios por <span class="math inline">\((n-1)\)</span>. Assim <span class="math inline">\(S^{2}\)</span> será um estimador não tendencioso para a variância amostral ao ser dividido por <span class="math inline">\((n-1)\)</span>}.</p>
 <p><br />
 </p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="sínteses-numéricas-descritivas.html#cb32-1" tabindex="-1"></a>IC.Na <span class="ot">=</span> <span class="cf">function</span> (N, n, mu, sigma) {</span>
+<span id="cb32-2"><a href="sínteses-numéricas-descritivas.html#cb32-2" tabindex="-1"></a>  dados<span class="ot">=</span><span class="fu">data.frame</span>()</span>
+<span id="cb32-3"><a href="sínteses-numéricas-descritivas.html#cb32-3" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="dv">0</span>, <span class="dv">0</span>, </span>
+<span id="cb32-4"><a href="sínteses-numéricas-descritivas.html#cb32-4" tabindex="-1"></a>       <span class="at">type=</span><span class="st">&quot;n&quot;</span>, </span>
+<span id="cb32-5"><a href="sínteses-numéricas-descritivas.html#cb32-5" tabindex="-1"></a>       <span class="at">xlim=</span><span class="fu">c</span>(sigma<span class="fl">-0.1</span><span class="sc">*</span>sigma,sigma<span class="fl">+0.1</span><span class="sc">*</span>sigma), </span>
+<span id="cb32-6"><a href="sínteses-numéricas-descritivas.html#cb32-6" tabindex="-1"></a>       <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,N), </span>
+<span id="cb32-7"><a href="sínteses-numéricas-descritivas.html#cb32-7" tabindex="-1"></a>       <span class="at">bty=</span><span class="st">&quot;l&quot;</span>,</span>
+<span id="cb32-8"><a href="sínteses-numéricas-descritivas.html#cb32-8" tabindex="-1"></a>       <span class="at">xlab=</span><span class="st">&quot;Desvio padrão&quot;</span>, </span>
+<span id="cb32-9"><a href="sínteses-numéricas-descritivas.html#cb32-9" tabindex="-1"></a>       <span class="at">ylab=</span><span class="st">&quot;Amostras extraídas&quot;</span>, </span>
+<span id="cb32-10"><a href="sínteses-numéricas-descritivas.html#cb32-10" tabindex="-1"></a>       <span class="at">main=</span><span class="fu">paste0</span>(<span class="st">&quot;Flutuação dos valores dos desvios padrão </span><span class="sc">\n</span><span class="st">obtidos em &quot;</span>, N,<span class="st">&quot; amostras de tamanho &quot;</span>,n), </span>
+<span id="cb32-11"><a href="sínteses-numéricas-descritivas.html#cb32-11" tabindex="-1"></a>       <span class="at">sub=</span><span class="fu">paste0</span>(<span class="st">&quot;A população de origem tem uma distribuição ~ N  (\u03bc:&quot;</span>,mu,<span class="st">&quot; ; \u03c3:&quot;</span>, sigma,<span class="st">&quot;)&quot;</span>))</span>
+<span id="cb32-12"><a href="sínteses-numéricas-descritivas.html#cb32-12" tabindex="-1"></a>  <span class="fu">abline</span>(<span class="at">v=</span>sigma, <span class="at">col=</span><span class="st">&#39;darkgreen&#39;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb32-13"><a href="sínteses-numéricas-descritivas.html#cb32-13" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N) {</span>
+<span id="cb32-14"><a href="sínteses-numéricas-descritivas.html#cb32-14" tabindex="-1"></a>  x <span class="ot">=</span> <span class="fu">rnorm</span>(n, mu, sigma)</span>
+<span id="cb32-15"><a href="sínteses-numéricas-descritivas.html#cb32-15" tabindex="-1"></a>  media <span class="ot">=</span> <span class="fu">mean</span>(x)</span>
+<span id="cb32-16"><a href="sínteses-numéricas-descritivas.html#cb32-16" tabindex="-1"></a>  sd <span class="ot">=</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(n<span class="dv">-1</span>))</span>
+<span id="cb32-17"><a href="sínteses-numéricas-descritivas.html#cb32-17" tabindex="-1"></a>  sd_vies <span class="ot">=</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(n))</span>
+<span id="cb32-18"><a href="sínteses-numéricas-descritivas.html#cb32-18" tabindex="-1"></a>  temp<span class="ot">=</span><span class="fu">cbind</span>(mu, media, sd, sd_vies)</span>
+<span id="cb32-19"><a href="sínteses-numéricas-descritivas.html#cb32-19" tabindex="-1"></a>  dados<span class="ot">=</span><span class="fu">rbind</span>(dados, temp)</span>
+<span id="cb32-20"><a href="sínteses-numéricas-descritivas.html#cb32-20" tabindex="-1"></a>  plotx <span class="ot">=</span> <span class="fu">c</span>(sd)</span>
+<span id="cb32-21"><a href="sínteses-numéricas-descritivas.html#cb32-21" tabindex="-1"></a>  ploty <span class="ot">=</span> <span class="fu">c</span>(i,i)</span>
+<span id="cb32-22"><a href="sínteses-numéricas-descritivas.html#cb32-22" tabindex="-1"></a>  <span class="cf">if</span> ( sd <span class="sc">&lt;</span> sigma) <span class="fu">points</span>(sd, i, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">cex=</span><span class="dv">1</span>)<span class="sc">+</span><span class="fu">text</span>(<span class="at">y=</span>i<span class="sc">+</span><span class="dv">3</span>,<span class="at">x=</span>sd, <span class="at">labels=</span><span class="fu">round</span>(sd,<span class="dv">3</span>), <span class="at">cex=</span><span class="dv">1</span>, <span class="at">col=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb32-23"><a href="sínteses-numéricas-descritivas.html#cb32-23" tabindex="-1"></a>  <span class="cf">else</span> </span>
+<span id="cb32-24"><a href="sínteses-numéricas-descritivas.html#cb32-24" tabindex="-1"></a>    <span class="fu">points</span>(sd, i, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>, <span class="at">cex=</span><span class="dv">1</span>)<span class="sc">+</span><span class="fu">text</span>(<span class="at">y=</span>i<span class="sc">+</span><span class="dv">3</span>,<span class="at">x=</span>sd, <span class="at">labels=</span><span class="fu">round</span>(sd,<span class="dv">3</span>), <span class="at">cex=</span><span class="dv">1</span>, <span class="at">col=</span><span class="st">&#39;blue&#39;</span>) </span>
+<span id="cb32-25"><a href="sínteses-numéricas-descritivas.html#cb32-25" tabindex="-1"></a>  plotx <span class="ot">=</span> <span class="fu">c</span>(sd_vies)</span>
+<span id="cb32-26"><a href="sínteses-numéricas-descritivas.html#cb32-26" tabindex="-1"></a>  ploty <span class="ot">=</span> <span class="fu">c</span>(i,i)</span>
+<span id="cb32-27"><a href="sínteses-numéricas-descritivas.html#cb32-27" tabindex="-1"></a>  <span class="cf">if</span> ( sd_vies <span class="sc">&lt;</span> sigma) <span class="fu">points</span>(sd_vies, i, <span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">cex=</span><span class="dv">1</span>)<span class="sc">+</span><span class="fu">text</span>(<span class="at">y=</span>i<span class="sc">+</span><span class="dv">3</span>,<span class="at">x=</span>sd_vies, <span class="at">labels=</span><span class="fu">round</span>(sd_vies,<span class="dv">3</span>), <span class="at">cex=</span><span class="dv">1</span>, <span class="at">col=</span><span class="st">&#39;red&#39;</span>)</span>
+<span id="cb32-28"><a href="sínteses-numéricas-descritivas.html#cb32-28" tabindex="-1"></a>  <span class="cf">else</span> </span>
+<span id="cb32-29"><a href="sínteses-numéricas-descritivas.html#cb32-29" tabindex="-1"></a>    <span class="fu">points</span>(sd_vies, i, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">cex=</span><span class="dv">1</span>)<span class="sc">+</span><span class="fu">text</span>(<span class="at">y=</span>i<span class="sc">+</span><span class="dv">3</span>,<span class="at">x=</span>sd_vies, <span class="at">labels=</span><span class="fu">round</span>(sd_vies,<span class="dv">3</span>), <span class="at">cex=</span><span class="dv">1</span>, <span class="at">col=</span><span class="st">&#39;red&#39;</span>) </span>
+<span id="cb32-30"><a href="sínteses-numéricas-descritivas.html#cb32-30" tabindex="-1"></a>} </span>
+<span id="cb32-31"><a href="sínteses-numéricas-descritivas.html#cb32-31" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(dados<span class="sc">$</span>sd), <span class="at">col=</span><span class="st">&#39;blue&#39;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb32-32"><a href="sínteses-numéricas-descritivas.html#cb32-32" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(dados<span class="sc">$</span>sd_vies), <span class="at">col=</span><span class="st">&#39;red&#39;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb32-33"><a href="sínteses-numéricas-descritivas.html#cb32-33" tabindex="-1"></a></span>
+<span id="cb32-34"><a href="sínteses-numéricas-descritivas.html#cb32-34" tabindex="-1"></a>}</span></code></pre></div>
+<p><br />
+</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="sínteses-numéricas-descritivas.html#cb33-1" tabindex="-1"></a><span class="fu">IC.Na</span>(<span class="at">N=</span><span class="dv">100</span>, <span class="at">n=</span><span class="dv">15</span>, <span class="at">mu=</span><span class="dv">170</span>, <span class="at">sigma=</span><span class="dv">7</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-32"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-32-1.png" alt="Flutuação dos valores do desvio padrão obtidos pelo estimador não viesado (em azul) e pelo estimador viesado (em vermelho) para diversas amostras extraídas de uma mesma população distribuição $\sim N (\mu; \sigma)$ (em verde o desvio padrão populacional, em azul a média dos desvios padrão amostrais correta e em vermelho a estimada de modo viesado)" width="100%" />
+<p class="caption">
+Figure 3.9: Flutuação dos valores do desvio padrão obtidos pelo estimador não viesado (em azul) e pelo estimador viesado (em vermelho) para diversas amostras extraídas de uma mesma população distribuição <span class="math inline">\(\sim N (\mu; \sigma)\)</span> (em verde o desvio padrão populacional, em azul a média dos desvios padrão amostrais correta e em vermelho a estimada de modo viesado)
+</p>
+</div>
+<p><br />
+</p>
+<p><br />
+</p>
 <p>Uma medida de dispersão que apresenta a mesma unidade que a das observações originais é o <strong>desvio-padrão</strong>, definido como a raiz quadrada positiva da variância.</p>
 <p><br />
 </p>
@@ -846,11 +893,11 @@ S= \sqrt{\frac{\sum _{i=1}^{n}\left(x_{i}-\stackrel{-}{x}\right)^{2}}{n-1}}
 <p>Usando os dados das medidas das alturas dos 60 estudantes teremos o seguinte valor para a <strong>variância</strong> (com unidade igual a <span class="math inline">\(m^{2}\)</span>) e o <strong>desvio padrão</strong> (com unidade igual a <span class="math inline">\(m\)</span>:</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="sínteses-numéricas-descritivas.html#cb32-1" tabindex="-1"></a><span class="co"># Variãncia</span></span>
-<span id="cb32-2"><a href="sínteses-numéricas-descritivas.html#cb32-2" tabindex="-1"></a><span class="fu">var</span>(alturas)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="sínteses-numéricas-descritivas.html#cb34-1" tabindex="-1"></a><span class="co"># Variãncia</span></span>
+<span id="cb34-2"><a href="sínteses-numéricas-descritivas.html#cb34-2" tabindex="-1"></a><span class="fu">var</span>(alturas)</span></code></pre></div>
 <pre><code>## [1] 0.0130809</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="sínteses-numéricas-descritivas.html#cb34-1" tabindex="-1"></a><span class="co"># Desvio padrão</span></span>
-<span id="cb34-2"><a href="sínteses-numéricas-descritivas.html#cb34-2" tabindex="-1"></a><span class="fu">sd</span>(alturas) </span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="sínteses-numéricas-descritivas.html#cb36-1" tabindex="-1"></a><span class="co"># Desvio padrão</span></span>
+<span id="cb36-2"><a href="sínteses-numéricas-descritivas.html#cb36-2" tabindex="-1"></a><span class="fu">sd</span>(alturas) </span></code></pre></div>
 <pre><code>## [1] 0.1143718</code></pre>
 <p>Propriedades da variância:</p>
 <p><br />
@@ -861,20 +908,20 @@ S= \sqrt{\frac{\sum _{i=1}^{n}\left(x_{i}-\stackrel{-}{x}\right)^{2}}{n-1}}
 </ul>
 <p><br />
 </p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="sínteses-numéricas-descritivas.html#cb36-1" tabindex="-1"></a><span class="co"># Adicionando-se uma constante k=0.05</span></span>
-<span id="cb36-2"><a href="sínteses-numéricas-descritivas.html#cb36-2" tabindex="-1"></a>alturas_ad<span class="ot">=</span>alturas<span class="fl">+0.05</span></span>
-<span id="cb36-3"><a href="sínteses-numéricas-descritivas.html#cb36-3" tabindex="-1"></a></span>
-<span id="cb36-4"><a href="sínteses-numéricas-descritivas.html#cb36-4" tabindex="-1"></a><span class="co"># Variância não se altera</span></span>
-<span id="cb36-5"><a href="sínteses-numéricas-descritivas.html#cb36-5" tabindex="-1"></a>var_ad<span class="ot">=</span> <span class="fu">var</span>(alturas_ad)</span>
-<span id="cb36-6"><a href="sínteses-numéricas-descritivas.html#cb36-6" tabindex="-1"></a>var_ad</span></code></pre></div>
-<pre><code>## [1] 0.0130809</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="sínteses-numéricas-descritivas.html#cb38-1" tabindex="-1"></a><span class="co"># Multiplicando-se uma constante k=1.2</span></span>
-<span id="cb38-2"><a href="sínteses-numéricas-descritivas.html#cb38-2" tabindex="-1"></a>alturas_mult<span class="ot">=</span>alturas<span class="sc">*</span><span class="fl">1.2</span></span>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="sínteses-numéricas-descritivas.html#cb38-1" tabindex="-1"></a><span class="co"># Adicionando-se uma constante k=0.05</span></span>
+<span id="cb38-2"><a href="sínteses-numéricas-descritivas.html#cb38-2" tabindex="-1"></a>alturas_ad<span class="ot">=</span>alturas<span class="fl">+0.05</span></span>
 <span id="cb38-3"><a href="sínteses-numéricas-descritivas.html#cb38-3" tabindex="-1"></a></span>
-<span id="cb38-4"><a href="sínteses-numéricas-descritivas.html#cb38-4" tabindex="-1"></a><span class="co"># Variância fica multiplicada (dividida) pelo quadrado dessa constante)</span></span>
-<span id="cb38-5"><a href="sínteses-numéricas-descritivas.html#cb38-5" tabindex="-1"></a><span class="fu">var</span>(alturas_mult)</span></code></pre></div>
+<span id="cb38-4"><a href="sínteses-numéricas-descritivas.html#cb38-4" tabindex="-1"></a><span class="co"># Variância não se altera</span></span>
+<span id="cb38-5"><a href="sínteses-numéricas-descritivas.html#cb38-5" tabindex="-1"></a>var_ad<span class="ot">=</span> <span class="fu">var</span>(alturas_ad)</span>
+<span id="cb38-6"><a href="sínteses-numéricas-descritivas.html#cb38-6" tabindex="-1"></a>var_ad</span></code></pre></div>
+<pre><code>## [1] 0.0130809</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="sínteses-numéricas-descritivas.html#cb40-1" tabindex="-1"></a><span class="co"># Multiplicando-se uma constante k=1.2</span></span>
+<span id="cb40-2"><a href="sínteses-numéricas-descritivas.html#cb40-2" tabindex="-1"></a>alturas_mult<span class="ot">=</span>alturas<span class="sc">*</span><span class="fl">1.2</span></span>
+<span id="cb40-3"><a href="sínteses-numéricas-descritivas.html#cb40-3" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="sínteses-numéricas-descritivas.html#cb40-4" tabindex="-1"></a><span class="co"># Variância fica multiplicada (dividida) pelo quadrado dessa constante)</span></span>
+<span id="cb40-5"><a href="sínteses-numéricas-descritivas.html#cb40-5" tabindex="-1"></a><span class="fu">var</span>(alturas_mult)</span></code></pre></div>
 <pre><code>## [1] 0.0188365</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="sínteses-numéricas-descritivas.html#cb40-1" tabindex="-1"></a><span class="fu">all.equal</span>(<span class="fu">var</span>(alturas_mult), <span class="fu">var</span>(alturas)<span class="sc">*</span>(<span class="fl">1.2</span><span class="sc">^</span><span class="dv">2</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="sínteses-numéricas-descritivas.html#cb42-1" tabindex="-1"></a><span class="fu">all.equal</span>(<span class="fu">var</span>(alturas_mult), <span class="fu">var</span>(alturas)<span class="sc">*</span>(<span class="fl">1.2</span><span class="sc">^</span><span class="dv">2</span>)) </span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="coeficiente-de-variação." class="section level4 hasAnchor" number="3.3.2.3">
@@ -971,20 +1018,20 @@ P(|X-\mu|\ge k\sigma) \leq 1 - \frac{1}{k^{2}}
 <p>Assim, se <span class="math inline">\(k=2\)</span> <strong>ao menos</strong> 75% das observações devem estar entre a média e dois desvios padrões acima ou abaixo da média.</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="sínteses-numéricas-descritivas.html#cb42-1" tabindex="-1"></a>med<span class="ot">=</span><span class="fu">round</span>(<span class="fu">mean</span>(alturas),<span class="dv">2</span>)</span>
-<span id="cb42-2"><a href="sínteses-numéricas-descritivas.html#cb42-2" tabindex="-1"></a>desv<span class="ot">=</span> <span class="fu">round</span>(<span class="fu">sd</span>(alturas),<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="sínteses-numéricas-descritivas.html#cb44-1" tabindex="-1"></a>med<span class="ot">=</span><span class="fu">round</span>(<span class="fu">mean</span>(alturas),<span class="dv">2</span>)</span>
+<span id="cb44-2"><a href="sínteses-numéricas-descritivas.html#cb44-2" tabindex="-1"></a>desv<span class="ot">=</span> <span class="fu">round</span>(<span class="fu">sd</span>(alturas),<span class="dv">2</span>)</span></code></pre></div>
 <p><br />
 </p>
 <p>No exemplo das alturas dos estudantes temos a média de 1.69 m e um desvio padrão de 0.11 m. Assim, <strong>ao menos</strong> 75% das alturas deverão estar entre 1.47 m e 1.91 m.</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="sínteses-numéricas-descritivas.html#cb43-1" tabindex="-1"></a><span class="fu">sort</span>(alturas)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="sínteses-numéricas-descritivas.html#cb45-1" tabindex="-1"></a><span class="fu">sort</span>(alturas)</span></code></pre></div>
 <pre><code>##  [1] 1.41 1.44 1.47 1.54 1.55 1.56 1.56 1.56 1.57 1.58 1.58 1.61 1.62 1.62 1.63
 ## [16] 1.64 1.64 1.65 1.65 1.65 1.65 1.66 1.66 1.66 1.66 1.66 1.67 1.67 1.67 1.67
 ## [31] 1.68 1.68 1.68 1.69 1.71 1.71 1.72 1.72 1.73 1.73 1.73 1.73 1.73 1.74 1.75
 ## [46] 1.76 1.76 1.77 1.78 1.78 1.79 1.82 1.83 1.83 1.84 1.85 1.86 1.93 1.95 2.00</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="sínteses-numéricas-descritivas.html#cb45-1" tabindex="-1"></a><span class="co"># Duas observações menores que 1,47m e trẽs maiores que 1,91m.</span></span>
-<span id="cb45-2"><a href="sínteses-numéricas-descritivas.html#cb45-2" tabindex="-1"></a><span class="co"># Assim, 54 observações dentro do intervalo, equivalendo a 91,66% do total.</span></span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="sínteses-numéricas-descritivas.html#cb47-1" tabindex="-1"></a><span class="co"># Duas observações menores que 1,47m e trẽs maiores que 1,91m.</span></span>
+<span id="cb47-2"><a href="sínteses-numéricas-descritivas.html#cb47-2" tabindex="-1"></a><span class="co"># Assim, 54 observações dentro do intervalo, equivalendo a 91,66% do total.</span></span></code></pre></div>
 </div>
 </div>
 <div id="medidas-de-subdivisão-separatrizes" class="section level3 hasAnchor" number="3.3.3">
@@ -1006,31 +1053,31 @@ P(|X-\mu|\ge k\sigma) \leq 1 - \frac{1}{k^{2}}
 Há muitos modos de se estabelecer os quantis descritos na literatura. O próprio <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/quantile">R</a> apresenta 9 modos diferentes:</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="sínteses-numéricas-descritivas.html#cb46-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="sínteses-numéricas-descritivas.html#cb48-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##   0%  25%  50%  75% 100% 
 ## 1.41 1.63 1.67 1.75 2.00</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="sínteses-numéricas-descritivas.html#cb48-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="sínteses-numéricas-descritivas.html#cb50-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##    0%   25%   50%   75%  100% 
 ## 1.410 1.635 1.675 1.755 2.000</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="sínteses-numéricas-descritivas.html#cb50-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="sínteses-numéricas-descritivas.html#cb52-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   0%  25%  50%  75% 100% 
 ## 1.41 1.63 1.67 1.75 2.00</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="sínteses-numéricas-descritivas.html#cb52-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="sínteses-numéricas-descritivas.html#cb54-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">4</span>)</span></code></pre></div>
 <pre><code>##   0%  25%  50%  75% 100% 
 ## 1.41 1.63 1.67 1.75 2.00</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="sínteses-numéricas-descritivas.html#cb54-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="sínteses-numéricas-descritivas.html#cb56-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>##    0%   25%   50%   75%  100% 
 ## 1.410 1.635 1.675 1.755 2.000</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="sínteses-numéricas-descritivas.html#cb56-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="sínteses-numéricas-descritivas.html#cb58-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">6</span>)</span></code></pre></div>
 <pre><code>##     0%    25%    50%    75%   100% 
 ## 1.4100 1.6325 1.6750 1.7575 2.0000</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="sínteses-numéricas-descritivas.html#cb58-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">7</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="sínteses-numéricas-descritivas.html#cb60-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">7</span>)</span></code></pre></div>
 <pre><code>##     0%    25%    50%    75%   100% 
 ## 1.4100 1.6375 1.6750 1.7525 2.0000</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="sínteses-numéricas-descritivas.html#cb60-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">8</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="sínteses-numéricas-descritivas.html#cb62-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">8</span>)</span></code></pre></div>
 <pre><code>##       0%      25%      50%      75%     100% 
 ## 1.410000 1.634167 1.675000 1.755833 2.000000</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="sínteses-numéricas-descritivas.html#cb62-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="sínteses-numéricas-descritivas.html#cb64-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">9</span>)</span></code></pre></div>
 <pre><code>##       0%      25%      50%      75%     100% 
 ## 1.410000 1.634375 1.675000 1.755625 2.000000</code></pre>
 <p> </p>
@@ -1065,10 +1112,10 @@ L_{p}=\frac{p}{100} \times (n+1)
 <p>Novamente podemos nos deparar com <strong>duas situações possíveis</strong> para o valor calculado para a posição <em>L</em>:</p>
 <p><br />
 </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-37"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-39"></span>
 <img src="images3/vetor_posicao.jpg" alt="Entendendo a indexação de dados" width="60%" />
 <p class="caption">
-Figure 3.9: Entendendo a indexação de dados
+Figure 3.10: Entendendo a indexação de dados
 </p>
 </div>
 <p><br />

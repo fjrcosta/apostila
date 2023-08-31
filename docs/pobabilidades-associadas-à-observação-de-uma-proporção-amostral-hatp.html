@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7.12 Dimensionamento de amostras | apostila.knit</title>
+  <title>10.3 Pobabilidades associadas à observação de uma proporção amostral \(\hat{p}\) | apostila.knit</title>
   <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7.12 Dimensionamento de amostras | apostila.knit" />
+  <meta property="og:title" content="10.3 Pobabilidades associadas à observação de uma proporção amostral \(\hat{p}\) | apostila.knit" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
   <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7.12 Dimensionamento de amostras | apostila.knit" />
+  <meta name="twitter:title" content="10.3 Pobabilidades associadas à observação de uma proporção amostral \(\hat{p}\) | apostila.knit" />
   
   <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="amostragem-não-probabilística.html"/>
-<link rel="next" href="introdução-às-estatísticas-epidemiológicas.html"/>
+<link rel="prev" href="distribuição-das-proporções-amostrais.html"/>
+<link rel="next" href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -464,375 +464,69 @@ Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dimensionamento-de-amostras" class="section level2 hasAnchor" number="7.12">
-<h2><span class="header-section-number">7.12</span> Dimensionamento de amostras<a href="dimensionamento-de-amostras.html#dimensionamento-de-amostras" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="erros" class="section level3 hasAnchor" number="7.12.1">
-<h3><span class="header-section-number">7.12.1</span> Erros<a href="dimensionamento-de-amostras.html#erros" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="pobabilidades-associadas-à-observação-de-uma-proporção-amostral-hatp" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Pobabilidades associadas à observação de uma proporção amostral <span class="math inline">\(\hat{p}\)</span><a href="pobabilidades-associadas-à-observação-de-uma-proporção-amostral-hatp.html#pobabilidades-associadas-à-observação-de-uma-proporção-amostral-hatp" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><br />
 </p>
-<p>Há de distinguir dois tipos de erros associados a levamentamentos amostrais:</p>
-<p><br />
-</p>
-<ul>
-<li>erros amostrais, as diferenças entre o resultado obtido em uma amostra específica (uma estatística) e seu verdadeiro valor na população (o parãmetro);<br />
-</li>
-<li>erros não amostrais (experimentais), decorrentes de dados amostrais coletados incorretamente, inconsistentemente, fruto de erros nas transcrições, delineamentos fracamente estabelecidos (resultando em amostras tendenciosas), leituras instrumentais imprecisas (resultantes da perda da calibração dos instrumentos ou operação por técnicos com diferentes habilidades).</li>
-</ul>
-<p><br />
-</p>
-<p>Os erros amostrais ocorrem porque as amostras são aleatórias: se de um grupo de 100 números extrairmos uma amostra aleatória de 10 deles a média amostral calculada teria um valor diferente a cada diferente amostra extraída (essa flutuação é assunto da teoria da distribuição das médias e proporções amostrais). Já os erros não amostrais devem ser minimizados ou melhor não existir.</p>
-<p><br />
-</p>
-<p>A determinação do tamanho de uma amostra (<span class="math inline">\(n_{0}\)</span>) é função do <em>erro amostral</em> tolerável e do <em>nível de significância</em> <span class="math inline">\(\alpha\)</span> estabelecido <em>a priori</em> pelo pesquisador que se relaciona ao <em>nível de confiança</em> pretendido por <span class="math inline">\((1-\alpha)\)</span>:</p>
-<p><br />
-</p>
-<p><br />
-</p>
-<table>
-<caption>
-Valores críticos de <span class="math inline"><em>z</em><sub><em>c</em></sub></span>
-correspondentes a alguns níveis de significãncia
-</caption>
-<thead>
-<tr class="header">
-<th style="text-align: center;">
-Níveis de significância
-</th>
-<th style="text-align: center;">
-20 %
-</th>
-<th style="text-align: center;">
-10 %
-</th>
-<th style="text-align: center;">
-5 %
-</th>
-<th style="text-align: center;">
-1 %
-</th>
-<th style="text-align: center;">
-0,1 %
-</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">
-<span class="math inline"><em>z</em><sub><em>c</em></sub></span>
-</td>
-<td style="text-align: center;">
-1,28
-</td>
-<td style="text-align: center;">
-1,64
-</td>
-<td style="text-align: center;">
-1,96
-</td>
-<td style="text-align: center;">
-2,57
-</td>
-<td style="text-align: center;">
-3,29
-</td>
-</tr>
-</tbody>
-</table>
-<p><br />
-</p>
-<blockquote>
-<p>Todavia, como mais adiante se verá, há situações nas quais o valor crítico referente ao nível de confiança estabelecido e que será empregado no dimensionamento da amostra será obtido de uma outra distribuição (t de <em>Student</em>).</p>
-</blockquote>
-<p><br />
-</p>
-</div>
-<div id="determinação-do-tamanho-de-uma-amostra-para-estimação-da-média-populacional" class="section level3 hasAnchor" number="7.12.2">
-<h3><span class="header-section-number">7.12.2</span> Determinação do tamanho de uma amostra para estimação da média populacional<a href="dimensionamento-de-amostras.html#determinação-do-tamanho-de-uma-amostra-para-estimação-da-média-populacional" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><br />
-</p>
-<p>Determinação do tamanho <span class="math inline">\(n_{0}\)</span> de uma amostra para estimação da média considerando-se uma <strong>população infinita</strong> (<span class="math inline">\(N \le 20.n_{0}\)</span>) e seguindo uma distribuição Normal:</p>
+<p>Ao se definir a estatística <span class="math inline">\(Z\)</span> como a simples padronização da variável <span class="math inline">\(\hat{p}\)</span> vemos que esta seguirá uma distribuição normal com média <span class="math inline">\(0\)</span> e desvio-padrão <span class="math inline">\(1\)</span>:</p>
 <p><br />
 </p>
 <p><span class="math display">\[
-n_{0} =  \frac{z_{c}^2 \cdot \sigma^2}{\varepsilon^2}
+Z=\frac{\hat{p}-\pi }{\sqrt{\frac{\pi \left(1-\pi \right)}{n}}} \sim N\left(0,1\right)
 \]</span></p>
 <p><br />
 </p>
-<p>em que:</p>
-<p><br />
-</p>
-<ul>
-<li><span class="math inline">\(n_{0}\)</span>: é o tamanho amostral;<br />
-</li>
-<li><span class="math inline">\(z_{c}\)</span>: valor crítico tabelado da distribuição Normal usado para o nível de significância desejado (por exemplo, para <span class="math inline">\(\alpha\)</span>=5%, <span class="math inline">\(z_{c}=1,96\)</span>);<br />
-</li>
-<li><span class="math inline">\(\sigma\)</span> desvio padrão populacional obtido em estudos prévios; e,<br />
-</li>
-<li><span class="math inline">\(\varepsilon\)</span>: é o erro amostral, a máxima diferença entre <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\stackrel{-}{x}\)</span> que se espera observar sob um nível de confiança de (<span class="math inline">\(1-\alpha\)</span>) .</li>
-</ul>
+<p>Essa aproximação da distribuição de uma variável binomial (proporções amostrais <span class="math inline">\(\hat{p}\)</span>) pela distribuição Normal será tanto mais simétrica e com perfil de um sino quanto vier a atender (<span class="math inline">\(n\)</span> grande e <span class="math inline">\(\pi\)</span> não próximo de 0 ou 1) e nos permite determinar probabilidades associadas a proporções amostrais.</p>
 <p><br />
 </p>
 <blockquote>
-<p>Exemplo: Qual o tamanho de amostra necessária para se estimar o peso médio de cervos em uma dada população sob estudo, admitida <strong>infinita</strong>. Sabe-se de estudos anteriores que o desvio padrão <span class="math inline">\(\sigma\)</span> do peso para animais dessa idade é de 30 kg. Utilize um erro <span class="math inline">\(\varepsilon\)</span> de 10 kg na estimação e um nível confiança <span class="math inline">\((1-\alpha)\)</span> de 95%.</p>
+<p>Exemplo: um sistema de produção opera de tal maneira que 10% das peças produzidas são defeituosas. Suponha que os itens sejam vendidos em caixas com 100 unidades e calcule as probabilidades de que em uma caixa:
+- tenha mais do que 10% de defeituosas?
+- tenha menos do que 15% de defeituosas?</p>
 </blockquote>
-<p> </p>
-<p><span class="math display">\[\begin{align*}
-n_{0} &amp; = \frac{Z^{2} \cdot \sigma^{2}}{\varepsilon^{2}} \\
-n_{0} &amp; = \frac{1,96^{2} \cdot 30^{2}}{10^{2}} \\
-n_{0} &amp; \sim 35
-\end{align*}\]</span></p>
 <p><br />
 </p>
-<p>Se a população <strong>não pode ser considerada infinita</strong> (<span class="math inline">\(N \le 20.n_{0}\)</span>) aplica-se uma correção sobre o valor inicialmente calculado para a (<span class="math inline">\(n_{0}\)</span>) obtendo-se um novo tamanho (<span class="math inline">\(n\)</span>):</p>
+<p>Dados do problema: <span class="math inline">\(\pi=0,10\)</span> e <span class="math inline">\(n=100\)</span>.</p>
+<p><br />
+</p>
+<p>Considerando que a proporção populacional <span class="math inline">\(\pi\)</span> não é extrema (próxima a 0 ou 1) e <span class="math inline">\((n \cdot \pi)\)</span> e <span class="math inline">\((n \cdot (1-\pi))\)</span> são maiores que 5, as proporções amostrais <span class="math inline">\(\hat{p}\)</span> se distribuem, aproximadamente, do modo:</p>
 <p><br />
 </p>
 <p><span class="math display">\[
-n=\frac{N \cdot n_{0}}{N + n_{0}}
-\]</span></p>
-<p><br />
-</p>
-<p>No exemplo anterior, caso a população sob estudo fosse composta por apenas 200 animais (<span class="math inline">\(N \le 20.n_{0}\)</span>) o tamanho da amostra seria:</p>
-<p><br />
-</p>
-<p><span class="math display">\[\begin{align*}
-n &amp; = \frac{N \cdot n_{0}}{N + n_{0}} \\
-n &amp; = \frac{200 \cdot 35}{200  + 35 } \\
-n &amp; \sim 30
-\end{align*}\]</span></p>
-<p><br />
-</p>
-<p>O conhecimento prévio do <strong>desvio padrão populacional (<span class="math inline">\(\sigma\)</span>)</strong> para utilizar as expressões acima é quase que uma exceção. Na maioria dos estudos ele é desconhecido e a única informação disponível acerca da variabilidade é o <strong>desvio padrão amostral <span class="math inline">\(S\)</span></strong>.</p>
-<p><br />
-</p>
-<p>Nesse cenário, a variável Norma padronizada <span class="math inline">\(Z\)</span> é substituída por uma outra, que segue a distribuição “t” de <em>Student</em> e, para se obter seu valor crítico <span class="math inline">\(t_{c}\)</span> para um determinado nível de confiança desejado necessitamos ter uma informação adicional: os <em>graus de liberdade</em> (gl ou <em>df</em>), que são iguais ao tamanho da amostra <strong>menos 1</strong> (<span class="math inline">\(gl=n_{0}-1\)</span>). Observa-se que para <span class="math inline">\(n \to \infty\)</span>, os valores críticos de <span class="math inline">\(z_{c}=t_{c}\)</span> para um mesmo nível de significância.</p>
-<p><br />
-</p>
-<p>Ocorre porém que, não tendo ainda sido retirada a amostra, não dispomos do valor de <span class="math inline">\(s\)</span>. Se não conhecemos nem ao menos um limite superior para <span class="math inline">\(\sigma\)</span>, a única solução será colher uma amostra piloto de <span class="math inline">\(n_0\)</span> elementos para, com base nela obtermos uma estimativa de <span class="math inline">\(s\)</span> e estimarmos o tamanho amostral pela expressão:</p>
-<p><span class="math display">\[
-n =  \frac{t_{c}^2 \cdot s^2}{\varepsilon^2}
+\hat{p}  \sim  N \left(\mu: \pi ; \sigma^{2}:   \frac{\pi \cdot (1- \pi) }{n} \right)\\
+\hat{p}  \sim  N \left(0,10 ;  \frac{0,10 \cdot (1- 0,10) }{100} \right)\\
+\hat{p}  \sim  N (0,10; 0,0009)
 \]</span><br />
 </p>
-<p>com <span class="math inline">\(s\)</span> calculado sobre a amostra piloto de <span class="math inline">\(n_{0}\)</span> elementos e com <span class="math inline">\(t_{c}\)</span> obtido em uma tabela considerando o nível de sginificância <span class="math inline">\(\alpha\)</span> estabelecido e o tamanho da amostra piloto <span class="math inline">\(n_{0}\)</span>.</p>
-<p><br />
-</p>
-<p>Se <span class="math inline">\(n \le n_{0}\)</span>, a amostra piloto já terá sido suficiente para ser usada na análise. Caso contrário, deve-se retirar mais elementos da população, recalcular o tamanho da amostra <span class="math inline">\(n\)</span> até se observe essa desigualdade.</p>
-<p><br />
-</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig42"></span>
-<img src="images7/tabela_t.jpg" alt="Tabela t de Stdent: cada linha refere-se a um gl e cada coluna a um nível de significância (no cruzamento tem-se o valor crítico de t sob essas condições)" width="100%" />
-<p class="caption">
-Figure 7.9: Tabela t de Stdent: cada linha refere-se a um gl e cada coluna a um nível de significância (no cruzamento tem-se o valor crítico de t sob essas condições)
-</p>
-</div>
-<blockquote>
-<p>Observe que à medida que o tamanho da amostra cresce, o valor crítico <span class="math inline">\(t_{c}\)</span> se aproxima do valor crítico <span class="math inline">\(_{c}\)</span> para um mesmo nível de significância. Por exemplo, para um <span class="math inline">\(\alpha=5\%\)</span> uma amostra de 121 (df=121-1=120) elementos possui um valor crítico <span class="math inline">\(t_{c}=1,96\)</span> (na distribuição de <em>Student</em>) e um valor crítico <span class="math inline">\(z_{c}=1,96\)</span> (distribuição Normal padrão).</p>
-</blockquote>
-<div id="margem-de-erro-em-uma-estimativa-amostral-da-média" class="section level4 hasAnchor" number="7.12.2.1">
-<h4><span class="header-section-number">7.12.2.1</span> Margem de erro em uma estimativa amostral da média<a href="dimensionamento-de-amostras.html#margem-de-erro-em-uma-estimativa-amostral-da-média" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><br />
-</p>
-<p>Reescrevendo-se a expressão para a determinação do tamanho amostral podemos exprimir o erro <span class="math inline">\(\varepsilon\)</span> associado à estimativa obtida de uma amostra de tamanho <span class="math inline">\(n\)</span>: <span class="math inline">\(\hat{p}\)</span> da média populacional</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-\varepsilon =  z_{c}\cdot \sqrt{\frac{\sigma^{2}}{n}}
-\]</span></p>
-<p><br />
-</p>
-<p>em que <span class="math inline">\(\varepsilon\)</span> é uma quantidade para <strong>mais e para menos</strong> da estimativa obtida de uma amostra de tamanho <span class="math inline">\(n\)</span> em relação a <span class="math inline">\(\mu\)</span> sob o nível de confiança <span class="math inline">\(1-\alpha\)</span> que determina <span class="math inline">\(z_{c}\)</span>.</p>
-<p><br />
-</p>
-<p>A expressão anterior considera que a variâcia popuacional <span class="math inline">\(\sigma^{2}\)</span> é conhecida. Caso não se tenha informação alguma sobre seu valor, seguem-se as mesmas considerações relacionadas ao tamanho <span class="math inline">\(n\)</span> da amostra:</p>
-<p><br />
-</p>
-<ul>
-<li>se <span class="math inline">\(n \ge 30\)</span>, adotar a variância amostral <span class="math inline">\(S^{2}\)</span> como aproximação de <span class="math inline">\(\sigma^{2}\)</span>;<br />
-</li>
-<li>se <span class="math inline">\(n &lt; 30\)</span>, adotar a variância amostral <span class="math inline">\(S^{2}\)</span> como aproximação de <span class="math inline">\(\sigma^{2}\)</span> usando-se o valor crítico <span class="math inline">\(t_{c}\)</span> da distribuição de <em>Student</em> (com gl/df iguais ao tamanho da amostra menos 1)</li>
-</ul>
-<p><br />
-</p>
-</div>
-</div>
-<div id="determinação-do-tamanho-de-uma-amostra-para-estimação-da-proporção-populacional" class="section level3 hasAnchor" number="7.12.3">
-<h3><span class="header-section-number">7.12.3</span> Determinação do tamanho de uma amostra para estimação da proporção populacional<a href="dimensionamento-de-amostras.html#determinação-do-tamanho-de-uma-amostra-para-estimação-da-proporção-populacional" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><br />
-</p>
-<p>A determinação do tamanho de uma amostra para estimação da proporção populacional considerando-se uma <strong>população infinita</strong> (<span class="math inline">\(N \le 20. n_{0}\)</span>):</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-n_{0} = \frac{z_{c}^{2} \cdot \pi \cdot (1- \pi) }{\epsilon^{2}}
-\]</span></p>
-<p><br />
-</p>
-<p>em que:</p>
-<p><br />
-</p>
-<ul>
-<li><span class="math inline">\(n_{0}\)</span> é o tamanho da amostra;<br />
-</li>
-<li><span class="math inline">\(z_{c}\)</span> é valor crítico tabelado da distribuição Normal para o nível de significância desejado (por exemplo, para <span class="math inline">\(\alpha\)</span>=5%, <span class="math inline">\(z_{c}\)</span>=1,96);<br />
-</li>
-<li><span class="math inline">\(\pi\)</span> é a proporção populacional;<br />
-</li>
-<li><span class="math inline">\(\varepsilon\)</span>: é o erro amostral, a máxima diferença entre <span class="math inline">\(\pi\)</span> e <span class="math inline">\(p\)</span> que se espera observar sob um nível de confiança de (<span class="math inline">\(1-\alpha\)</span>) .</li>
-</ul>
-<p><br />
-</p>
-<p>Quando não se dispõe de nenhuma informação <em>a priori</em> sobre a proporção populacional (<span class="math inline">\(\pi\)</span>) a adoção do máximo valor possível ao produto: <span class="math inline">\(\pi . (1- \pi )=\frac{1}{4}\)</span> assegura que o o tamanho de amostra obtido será suficiente para a estimação qualquer que seja a proporção populacional <span class="math inline">\(\pi\)</span>.</p>
-<p><br />
-</p>
-<p>Isso equivale a considerar:</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-n_{0} = \frac{z_{c}^{2}}{\epsilon^{2}} \cdot \frac{1}{4}
-\]</span></p>
-<p><br />
-</p>
-<p>De modo análogo, se a população <strong>não pode ser considerada infinita</strong> (<span class="math inline">\(N \le 20n_{0}\)</span>) aplica-se uma correção sobre o valor calculado do tamanho da amostra (<span class="math inline">\(n_{0}\)</span>) chegando-se a um novo tamanho (<span class="math inline">\(n\)</span>):</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-n=\frac{N \cdot n_{0}}{N + n_{0}}
-\]</span></p>
-<p><br />
-</p>
-<blockquote>
-<p>Exemplo:Qual o tamanho de amostra (<span class="math inline">\(n_{0}\)</span>) suficiente para estimarmos a proporção da área com solo contaminado que necessita de certo tratamento de descontaminação, com precisão (<span class="math inline">\(\varepsilon\)</span>) de 0,02 e um nível de confiança (<span class="math inline">\(1-\alpha\)</span>) de 95%, sabendo que essa proporção seguramente não é superior a 0,2?</p>
-</blockquote>
+<p>Para se calcular as probabilidades de serem observadas proporções amostrais <span class="math inline">\(\hat{p}&gt;0,10\)</span> e <span class="math inline">\(\hat{p}&lt;0,15\)</span>, basta-se mapear essas proporções amostrais à distribuição Normal padronizada. Assim, denotando-se uma variável aleatória (as proporções amostrais) <span class="math inline">\(X \sim n(\mu: 0,1; \sigma^{2}: 0,0009 (\sigma: 0,03))\)</span> segue-se:</p>
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-n_{0} &amp; = \frac{z_{c}^{2} \cdot \pi \cdot (1-\pi) }{\varepsilon^{2}} \\
-n_{0} &amp; = \frac{1,96^{2} \cdot 0,20 \cdot 0,80 }{0,02^{2}}\\
-n_{0} &amp; \sim 1.537
+P(\hat{p}&gt; 0,10) &amp; = P(X &gt; 0,10 ) \\
+        &amp; = P\left(\frac{X-0,10}{0,03} &gt; \frac{0,10-0,10}{0,03}\right ) \\
+        &amp; = P\left(Z &gt;0 \right ) \\
+        &amp; = 0,50
 \end{align*}\]</span></p>
 <p><br />
 </p>
-<p>Considerando-se uma estimativa conservadora para <span class="math inline">\(\pi.(1-\pi)\)</span> pelo máximo valor possível desse produto (<span class="math inline">\(\frac{1}{4}\)</span>) teremos:</p>
+<p>e</p>
 <p><br />
-</p>
-<p><span class="math display">\[\begin{align*}
-n_{0} &amp; =  \frac{z_{c}^{2}}{\varepsilon^{2}} \cdot \frac{1}{4} \\
-n_{0} &amp; =  \frac{1,96^{2}}{0,02^{2}} \cdot \frac{1}{4} \\
-n_{0} &amp; =  2.401
+<span class="math display">\[\begin{align*}
+P(\hat{p} &lt; 0,15) &amp; = P(X &lt; 0,15 ) \\
+        &amp; = P\left(\frac{X-0,15}{0,03} &lt; \frac{0,15-0,10}{0,03}\right ) \\
+        &amp; = P\left(Z &lt; 1,67\right ) \\
+        &amp; = 0,9525
 \end{align*}\]</span></p>
 <p><br />
 </p>
-<div id="margem-de-erro-em-uma-estimativa-amostral-da-proporção" class="section level4 hasAnchor" number="7.12.3.1">
-<h4><span class="header-section-number">7.12.3.1</span> Margem de erro em uma estimativa amostral da proporção<a href="dimensionamento-de-amostras.html#margem-de-erro-em-uma-estimativa-amostral-da-proporção" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><br />
-</p>
-<p>Reescrevendo-se a expressão para a determinação do tamanho amostral para a situação na qual não temos nenhuma informação sobre a proporção populacional (<span class="math inline">\(\pi\)</span>), podemos exprimir o erro <span class="math inline">\(\varepsilon\)</span> associado à estimativa da proporção (<span class="math inline">\(p\)</span>) obtida de uma amostra de tamanho <span class="math inline">\(n\)</span> da proporção populacional (<span class="math inline">\(\pi\)</span>) sob o nível de confiança (<span class="math inline">\(1-\alpha\)</span>) pelo critério mais conservador (<span class="math inline">\(\pi.(1-\pi)=\frac{1}{4}\)</span>)</p>
-<p><br />
-</p>
-<p><span class="math display">\[\begin{align*}
-\varepsilon &amp; = z_{c}\cdot \sqrt{\frac{\pi\cdot \left(1-\pi\right)}{n}} \\
-\varepsilon &amp; = z_{c}\cdot \sqrt{\frac{\frac{1}{4}}{n}}
-\end{align*}\]</span></p>
-<p><br />
-</p>
-<p>em que <span class="math inline">\(\varepsilon\)</span> é uma quantidade para <strong>mais e para menos</strong> da estimativa <span class="math inline">\(p\)</span> obtida de uma amostra de tamanho <span class="math inline">\(n\)</span> em relação a <span class="math inline">\(\pi\)</span> sob o nível de confiança <span class="math inline">\(1-\alpha\)</span> que determina <span class="math inline">\(z_{c}\)</span>.</p>
-<p><br />
-</p>
-<blockquote>
-<p>Exemplo: Uma pesquisa recente mostra o apoio dos eleitores a uma posição de liberação das restrições sobre a pesquisa de células estaminais embrionárias e permitir o uso médico do princípio ativo da . A pesquisa realizada para o descobriram que 50% dos prováveis eleitores de Michigan apoiam a proposta de células-tronco, 32% são contra e 18% indecisos. A pesquisa telefônica ouviu 602 prováveis eleitores de Michigan. Qual a margem de erro a um nível de significância de 95% para os eleitores <strong>a favor</strong> da liberação das pesquisas?
-<a href="https://faculty.elgin.edu/dkernler/statistics/ch09/9-1.html">(link: Elgin C. College)</a></p>
-</blockquote>
-<p><br />
-</p>
-<p><span class="math display">\[\begin{align*}
-\varepsilon &amp; = {z}_{(\frac{\alpha }{2})}\cdot \sqrt{\frac{\hat{p}\cdot \left(1-\hat{p}\right)}{n}}\\
-&amp; = 1,96 \cdot \sqrt{\frac{0,50 \cdot \left(1- 0,50 \right)}{602}}\\
-&amp; = 0,04
-\end{align*}\]</span></p>
-<p><br />
-</p>
-<p>A margem de erro é de 4 pontos percentuais para <em>cima ou para baixo</em> (46%; 54%) na proporção de eleitores em relação à proporção populacional <span class="math inline">\(\pi\)</span> a favor da liberação das pesquisas, sob um um nível de confiança de 95%</p>
-
-<div id="tab:independentSamplesT-Test">
-<table>
-<caption>
-Independent Samples T-Test
-</caption>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-<td colspan="2" style="text-align: center;">
-95% CI for Cohen
-</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">
-cline<span>6-7</span>
-</td>
-<td style="text-align: right;">
-t
-</td>
-<td style="text-align: right;">
-df
-</td>
-<td style="text-align: right;">
-p
-</td>
-<td style="text-align: right;">
-Cohen
-</td>
-<td style="text-align: right;">
-Lower
-</td>
-<td style="text-align: right;">
-Upper
-</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">
-<span>1-7</span> engagement
-</td>
-<td style="text-align: right;">
-2.365
-</td>
-<td style="text-align: right;">
-38
-</td>
-<td style="text-align: right;">
-0.023
-</td>
-<td style="text-align: right;">
-0.748
-</td>
-<td style="text-align: right;">
-0.101
-</td>
-<td style="text-align: right;">
-1.385
-</td>
-</tr>
-</tbody>
-</table>
 </div>
-</div>
-</div>
-</div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="amostragem-não-probabilística.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introdução-às-estatísticas-epidemiológicas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="distribuição-das-proporções-amostrais.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -863,7 +557,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-planejamento_pesquisas.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/10-dist_prop_amostrais.Rmd",
 "text": "Edit"
 },
 "history": {

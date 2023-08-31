@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7.12 Dimensionamento de amostras | apostila.knit</title>
+  <title>10.4 A aleatoriedade das proporções amostrais e o tamanho amostral | apostila.knit</title>
   <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7.12 Dimensionamento de amostras | apostila.knit" />
+  <meta property="og:title" content="10.4 A aleatoriedade das proporções amostrais e o tamanho amostral | apostila.knit" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
   <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7.12 Dimensionamento de amostras | apostila.knit" />
+  <meta name="twitter:title" content="10.4 A aleatoriedade das proporções amostrais e o tamanho amostral | apostila.knit" />
   
   <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="amostragem-não-probabilística.html"/>
-<link rel="next" href="introdução-às-estatísticas-epidemiológicas.html"/>
+<link rel="prev" href="pobabilidades-associadas-à-observação-de-uma-proporção-amostral-hatp.html"/>
+<link rel="next" href="intervalos-de-confiança-para-proporções-amostrais.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -464,375 +464,123 @@ Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dimensionamento-de-amostras" class="section level2 hasAnchor" number="7.12">
-<h2><span class="header-section-number">7.12</span> Dimensionamento de amostras<a href="dimensionamento-de-amostras.html#dimensionamento-de-amostras" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="erros" class="section level3 hasAnchor" number="7.12.1">
-<h3><span class="header-section-number">7.12.1</span> Erros<a href="dimensionamento-de-amostras.html#erros" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> A aleatoriedade das proporções amostrais e o tamanho amostral<a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><br />
 </p>
-<p>Há de distinguir dois tipos de erros associados a levamentamentos amostrais:</p>
-<p><br />
-</p>
-<ul>
-<li>erros amostrais, as diferenças entre o resultado obtido em uma amostra específica (uma estatística) e seu verdadeiro valor na população (o parãmetro);<br />
-</li>
-<li>erros não amostrais (experimentais), decorrentes de dados amostrais coletados incorretamente, inconsistentemente, fruto de erros nas transcrições, delineamentos fracamente estabelecidos (resultando em amostras tendenciosas), leituras instrumentais imprecisas (resultantes da perda da calibração dos instrumentos ou operação por técnicos com diferentes habilidades).</li>
-</ul>
-<p><br />
-</p>
-<p>Os erros amostrais ocorrem porque as amostras são aleatórias: se de um grupo de 100 números extrairmos uma amostra aleatória de 10 deles a média amostral calculada teria um valor diferente a cada diferente amostra extraída (essa flutuação é assunto da teoria da distribuição das médias e proporções amostrais). Já os erros não amostrais devem ser minimizados ou melhor não existir.</p>
-<p><br />
-</p>
-<p>A determinação do tamanho de uma amostra (<span class="math inline">\(n_{0}\)</span>) é função do <em>erro amostral</em> tolerável e do <em>nível de significância</em> <span class="math inline">\(\alpha\)</span> estabelecido <em>a priori</em> pelo pesquisador que se relaciona ao <em>nível de confiança</em> pretendido por <span class="math inline">\((1-\alpha)\)</span>:</p>
-<p><br />
-</p>
-<p><br />
-</p>
-<table>
-<caption>
-Valores críticos de <span class="math inline"><em>z</em><sub><em>c</em></sub></span>
-correspondentes a alguns níveis de significãncia
-</caption>
-<thead>
-<tr class="header">
-<th style="text-align: center;">
-Níveis de significância
-</th>
-<th style="text-align: center;">
-20 %
-</th>
-<th style="text-align: center;">
-10 %
-</th>
-<th style="text-align: center;">
-5 %
-</th>
-<th style="text-align: center;">
-1 %
-</th>
-<th style="text-align: center;">
-0,1 %
-</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">
-<span class="math inline"><em>z</em><sub><em>c</em></sub></span>
-</td>
-<td style="text-align: center;">
-1,28
-</td>
-<td style="text-align: center;">
-1,64
-</td>
-<td style="text-align: center;">
-1,96
-</td>
-<td style="text-align: center;">
-2,57
-</td>
-<td style="text-align: center;">
-3,29
-</td>
-</tr>
-</tbody>
-</table>
-<p><br />
-</p>
-<blockquote>
-<p>Todavia, como mais adiante se verá, há situações nas quais o valor crítico referente ao nível de confiança estabelecido e que será empregado no dimensionamento da amostra será obtido de uma outra distribuição (t de <em>Student</em>).</p>
-</blockquote>
-<p><br />
-</p>
-</div>
-<div id="determinação-do-tamanho-de-uma-amostra-para-estimação-da-média-populacional" class="section level3 hasAnchor" number="7.12.2">
-<h3><span class="header-section-number">7.12.2</span> Determinação do tamanho de uma amostra para estimação da média populacional<a href="dimensionamento-de-amostras.html#determinação-do-tamanho-de-uma-amostra-para-estimação-da-média-populacional" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><br />
-</p>
-<p>Determinação do tamanho <span class="math inline">\(n_{0}\)</span> de uma amostra para estimação da média considerando-se uma <strong>população infinita</strong> (<span class="math inline">\(N \le 20.n_{0}\)</span>) e seguindo uma distribuição Normal:</p>
+<p>No módulo ``Introdução ao planejamento de pesquisas’’ explicamos que quando não se dispõe de nenhuma informação <em>a priori</em> sobre a proporção populacional (<span class="math inline">\(\pi\)</span>) a adoção do máximo valor possível ao produto: <span class="math inline">\(\pi.(1-\pi)=\frac{1}{4}\)</span> assegura que o o tamanho de amostra obtido será suficiente para a estimação qualquer que seja a proporção populacional <span class="math inline">\(\pi\)</span>. Trazendo a variável <span class="math inline">\(Z\)</span> antes definida:</p>
 <p><br />
 </p>
 <p><span class="math display">\[
-n_{0} =  \frac{z_{c}^2 \cdot \sigma^2}{\varepsilon^2}
-\]</span></p>
-<p><br />
-</p>
-<p>em que:</p>
-<p><br />
-</p>
-<ul>
-<li><span class="math inline">\(n_{0}\)</span>: é o tamanho amostral;<br />
-</li>
-<li><span class="math inline">\(z_{c}\)</span>: valor crítico tabelado da distribuição Normal usado para o nível de significância desejado (por exemplo, para <span class="math inline">\(\alpha\)</span>=5%, <span class="math inline">\(z_{c}=1,96\)</span>);<br />
-</li>
-<li><span class="math inline">\(\sigma\)</span> desvio padrão populacional obtido em estudos prévios; e,<br />
-</li>
-<li><span class="math inline">\(\varepsilon\)</span>: é o erro amostral, a máxima diferença entre <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\stackrel{-}{x}\)</span> que se espera observar sob um nível de confiança de (<span class="math inline">\(1-\alpha\)</span>) .</li>
-</ul>
-<p><br />
-</p>
-<blockquote>
-<p>Exemplo: Qual o tamanho de amostra necessária para se estimar o peso médio de cervos em uma dada população sob estudo, admitida <strong>infinita</strong>. Sabe-se de estudos anteriores que o desvio padrão <span class="math inline">\(\sigma\)</span> do peso para animais dessa idade é de 30 kg. Utilize um erro <span class="math inline">\(\varepsilon\)</span> de 10 kg na estimação e um nível confiança <span class="math inline">\((1-\alpha)\)</span> de 95%.</p>
-</blockquote>
-<p> </p>
-<p><span class="math display">\[\begin{align*}
-n_{0} &amp; = \frac{Z^{2} \cdot \sigma^{2}}{\varepsilon^{2}} \\
-n_{0} &amp; = \frac{1,96^{2} \cdot 30^{2}}{10^{2}} \\
-n_{0} &amp; \sim 35
-\end{align*}\]</span></p>
-<p><br />
-</p>
-<p>Se a população <strong>não pode ser considerada infinita</strong> (<span class="math inline">\(N \le 20.n_{0}\)</span>) aplica-se uma correção sobre o valor inicialmente calculado para a (<span class="math inline">\(n_{0}\)</span>) obtendo-se um novo tamanho (<span class="math inline">\(n\)</span>):</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-n=\frac{N \cdot n_{0}}{N + n_{0}}
-\]</span></p>
-<p><br />
-</p>
-<p>No exemplo anterior, caso a população sob estudo fosse composta por apenas 200 animais (<span class="math inline">\(N \le 20.n_{0}\)</span>) o tamanho da amostra seria:</p>
-<p><br />
-</p>
-<p><span class="math display">\[\begin{align*}
-n &amp; = \frac{N \cdot n_{0}}{N + n_{0}} \\
-n &amp; = \frac{200 \cdot 35}{200  + 35 } \\
-n &amp; \sim 30
-\end{align*}\]</span></p>
-<p><br />
-</p>
-<p>O conhecimento prévio do <strong>desvio padrão populacional (<span class="math inline">\(\sigma\)</span>)</strong> para utilizar as expressões acima é quase que uma exceção. Na maioria dos estudos ele é desconhecido e a única informação disponível acerca da variabilidade é o <strong>desvio padrão amostral <span class="math inline">\(S\)</span></strong>.</p>
-<p><br />
-</p>
-<p>Nesse cenário, a variável Norma padronizada <span class="math inline">\(Z\)</span> é substituída por uma outra, que segue a distribuição “t” de <em>Student</em> e, para se obter seu valor crítico <span class="math inline">\(t_{c}\)</span> para um determinado nível de confiança desejado necessitamos ter uma informação adicional: os <em>graus de liberdade</em> (gl ou <em>df</em>), que são iguais ao tamanho da amostra <strong>menos 1</strong> (<span class="math inline">\(gl=n_{0}-1\)</span>). Observa-se que para <span class="math inline">\(n \to \infty\)</span>, os valores críticos de <span class="math inline">\(z_{c}=t_{c}\)</span> para um mesmo nível de significância.</p>
-<p><br />
-</p>
-<p>Ocorre porém que, não tendo ainda sido retirada a amostra, não dispomos do valor de <span class="math inline">\(s\)</span>. Se não conhecemos nem ao menos um limite superior para <span class="math inline">\(\sigma\)</span>, a única solução será colher uma amostra piloto de <span class="math inline">\(n_0\)</span> elementos para, com base nela obtermos uma estimativa de <span class="math inline">\(s\)</span> e estimarmos o tamanho amostral pela expressão:</p>
-<p><span class="math display">\[
-n =  \frac{t_{c}^2 \cdot s^2}{\varepsilon^2}
+Z=\frac{\hat{p}-\pi }{\sqrt{\frac{\pi \left(1-\pi \right)}{n}}} \sim N\left(0,1\right)
 \]</span><br />
 </p>
-<p>com <span class="math inline">\(s\)</span> calculado sobre a amostra piloto de <span class="math inline">\(n_{0}\)</span> elementos e com <span class="math inline">\(t_{c}\)</span> obtido em uma tabela considerando o nível de sginificância <span class="math inline">\(\alpha\)</span> estabelecido e o tamanho da amostra piloto <span class="math inline">\(n_{0}\)</span>.</p>
+<p>podemos reescrevê-la de modo a se obter o dimensionamento amostral em função do nível de confiança e um erro máximo estabelecidos:</p>
+<p><span class="math display">\[
+z_{(1-\alpha)}=\frac{\hat{p}-\pi }{\sqrt{\frac{\pi \left(1-\pi \right)}{n}}} \\
+z_{(1-\alpha)}.\sqrt{\frac{\pi \left(1-\pi \right)}{n}}=\hat{p}-\pi \\
+\frac{\pi \left(1-\pi \right)}{n}=(\frac{\varepsilon}{z_{(1-\alpha)}})^{2}\\
+n = \frac{z_{(1-\alpha)}^{2}}{\varepsilon^{2}} \cdot \pi \left(1-\pi \right)\\
+\]</span></p>
 <p><br />
 </p>
-<p>Se <span class="math inline">\(n \le n_{0}\)</span>, a amostra piloto já terá sido suficiente para ser usada na análise. Caso contrário, deve-se retirar mais elementos da população, recalcular o tamanho da amostra <span class="math inline">\(n\)</span> até se observe essa desigualdade.</p>
+<p>Deste modo podemos simular a flutuação dos valores das proporções obtidas em sucessivas amostras, ilustrando simultaneamente as proporções amostrais observadas e a proporção das amostras que apresentam um erro amostral (<span class="math inline">\(\varepsilon\)</span>) superior ao estipulado pelo nível de confiança (<span class="math inline">\(1-\alpha\)</span>).</p>
 <p><br />
 </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig42"></span>
-<img src="images7/tabela_t.jpg" alt="Tabela t de Stdent: cada linha refere-se a um gl e cada coluna a um nível de significância (no cruzamento tem-se o valor crítico de t sob essas condições)" width="100%" />
+<p>Desconhecendo-se qualquer informação acerca da proporção populacional (<span class="math inline">\(\pi\)</span>), a dimensão da amostra pode ser estipulada tomando-se o maior valor do produto <span class="math inline">\(\pi \left(1-\pi \right)\)</span> como sendo igual a <span class="math inline">\(\frac{1}{4}\)</span> pois:</p>
+<p><br />
+</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb129-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb129-2"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb129-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> p <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p)</span>
+<span id="cb129-3"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb129-3" tabindex="-1"></a><span class="fu">plot</span>(p, y, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;\u03c0&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;\u03c0*(1- \u03c0)&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Possíveis valores assumidos pelo produto: \u03c0*(1- \u03c0)&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-121"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-121-1.png" alt="Possíveis valores assumidos pelo produto: π*(1- π)" width="60%" />
 <p class="caption">
-Figure 7.9: Tabela t de Stdent: cada linha refere-se a um gl e cada coluna a um nível de significância (no cruzamento tem-se o valor crítico de t sob essas condições)
+Figure 10.4: Possíveis valores assumidos pelo produto: π*(1- π)
 </p>
 </div>
-<blockquote>
-<p>Observe que à medida que o tamanho da amostra cresce, o valor crítico <span class="math inline">\(t_{c}\)</span> se aproxima do valor crítico <span class="math inline">\(_{c}\)</span> para um mesmo nível de significância. Por exemplo, para um <span class="math inline">\(\alpha=5\%\)</span> uma amostra de 121 (df=121-1=120) elementos possui um valor crítico <span class="math inline">\(t_{c}=1,96\)</span> (na distribuição de <em>Student</em>) e um valor crítico <span class="math inline">\(z_{c}=1,96\)</span> (distribuição Normal padrão).</p>
-</blockquote>
-<div id="margem-de-erro-em-uma-estimativa-amostral-da-média" class="section level4 hasAnchor" number="7.12.2.1">
-<h4><span class="header-section-number">7.12.2.1</span> Margem de erro em uma estimativa amostral da média<a href="dimensionamento-de-amostras.html#margem-de-erro-em-uma-estimativa-amostral-da-média" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><br />
 </p>
-<p>Reescrevendo-se a expressão para a determinação do tamanho amostral podemos exprimir o erro <span class="math inline">\(\varepsilon\)</span> associado à estimativa obtida de uma amostra de tamanho <span class="math inline">\(n\)</span>: <span class="math inline">\(\hat{p}\)</span> da média populacional</p>
+<p>Assim, a dimensão conservadora para a amostra será dada por:</p>
 <p><br />
 </p>
 <p><span class="math display">\[
-\varepsilon =  z_{c}\cdot \sqrt{\frac{\sigma^{2}}{n}}
+n = \frac{z_{(1-\alpha)}^{2}}{\varepsilon^{2}} \cdot \frac{1}{4}\\
 \]</span></p>
 <p><br />
 </p>
-<p>em que <span class="math inline">\(\varepsilon\)</span> é uma quantidade para <strong>mais e para menos</strong> da estimativa obtida de uma amostra de tamanho <span class="math inline">\(n\)</span> em relação a <span class="math inline">\(\mu\)</span> sob o nível de confiança <span class="math inline">\(1-\alpha\)</span> que determina <span class="math inline">\(z_{c}\)</span>.</p>
+<div id="simulações-ilustrativas-sobre-as-flutuações-das-proporções-amostrais-e-o-erro-amostral-fixado" class="section level3 hasAnchor" number="10.4.1">
+<h3><span class="header-section-number">10.4.1</span> Simulações ilustrativas sobre as flutuações das proporções amostrais e o erro amostral fixado<a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#simulações-ilustrativas-sobre-as-flutuações-das-proporções-amostrais-e-o-erro-amostral-fixado" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><br />
 </p>
-<p>A expressão anterior considera que a variâcia popuacional <span class="math inline">\(\sigma^{2}\)</span> é conhecida. Caso não se tenha informação alguma sobre seu valor, seguem-se as mesmas considerações relacionadas ao tamanho <span class="math inline">\(n\)</span> da amostra:</p>
+<p>As próximas figuras ilustram a flutuação das proporções amostrais obtidas de amostragens (com reposição) de elementos de uma população que apresentam a característica de interesse se manifestando de modo dicotômico, sob variados tamanhos amostrais (385, 210 e 100).</p>
 <p><br />
 </p>
-<ul>
-<li>se <span class="math inline">\(n \ge 30\)</span>, adotar a variância amostral <span class="math inline">\(S^{2}\)</span> como aproximação de <span class="math inline">\(\sigma^{2}\)</span>;<br />
-</li>
-<li>se <span class="math inline">\(n &lt; 30\)</span>, adotar a variância amostral <span class="math inline">\(S^{2}\)</span> como aproximação de <span class="math inline">\(\sigma^{2}\)</span> usando-se o valor crítico <span class="math inline">\(t_{c}\)</span> da distribuição de <em>Student</em> (com gl/df iguais ao tamanho da amostra menos 1)</li>
-</ul>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-1" tabindex="-1"></a><span class="co"># Flutuação das proporções amostrais observadas</span></span>
+<span id="cb130-2"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-2" tabindex="-1"></a></span>
+<span id="cb130-3"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-3" tabindex="-1"></a>flut.N <span class="ot">=</span> <span class="cf">function</span> (N, n, p, conf, er) {</span>
+<span id="cb130-4"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-4" tabindex="-1"></a>zc <span class="ot">=</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>((<span class="dv">1</span><span class="sc">-</span>conf)<span class="sc">/</span><span class="dv">2</span>)) </span>
+<span id="cb130-5"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-5" tabindex="-1"></a>suc<span class="ot">=</span><span class="fu">rbinom</span>(<span class="at">n=</span>N, <span class="at">size =</span> n, <span class="at">prob =</span> p)</span>
+<span id="cb130-6"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-6" tabindex="-1"></a>prop_suc<span class="ot">=</span>suc<span class="sc">/</span>n</span>
+<span id="cb130-7"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-7" tabindex="-1"></a>dados<span class="ot">=</span><span class="fu">as.data.frame</span>(prop_suc)</span>
+<span id="cb130-8"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-8" tabindex="-1"></a>names<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;Proporção amostral&quot;</span>)</span>
+<span id="cb130-9"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-9" tabindex="-1"></a><span class="fu">colnames</span>(dados)<span class="ot">=</span>names</span>
+<span id="cb130-10"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-10" tabindex="-1"></a><span class="fu">row.names</span>(dados)<span class="ot">=</span><span class="cn">NULL</span></span>
+<span id="cb130-11"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-11" tabindex="-1"></a>meu_titulo01<span class="ot">=</span><span class="fu">paste0</span>(<span class="st">&quot;Flutuação das proporções amostrais </span><span class="sc">\n</span><span class="st">&quot;</span>, N,<span class="st">&quot; amostras de tamanho &quot;</span>,n,<span class="st">&quot; (dimensionamento sob um nível de confiança (1-\u03b1)= &quot;</span>,conf,<span class="st">&quot; e um erro amostral \u03b5= &quot;</span>, er,<span class="st">&quot; </span><span class="sc">\n</span><span class="st">As linhas verticais mostram a propoção populacional em azul (\u03c0= &quot;</span>, p , <span class="st">&quot;) </span><span class="sc">\n</span><span class="st">e os valores limites estabelecidos pelo erro arbitrado em vermelho (\u03c0 +/-\u03b5= &quot;</span>,  p, <span class="st">&quot;+/-&quot;</span>, er ,<span class="st">&quot;)&quot;</span>)   </span>
+<span id="cb130-12"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-12" tabindex="-1"></a>meu_titulo02<span class="ot">=</span><span class="fu">paste0</span>(<span class="st">&quot;Os valores das proporçoes amostrais seguem uma distribuição ~ N ( \u03bc, \u03c3) = (&quot;</span>, <span class="fu">round</span>(<span class="fu">mean</span>(dados<span class="sc">$</span><span class="st">`</span><span class="at">Proporção amostral</span><span class="st">`</span>),<span class="dv">4</span>) ,<span class="st">&quot;, &quot;</span>, <span class="fu">round</span>(<span class="fu">sqrt</span>(p<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p)<span class="sc">/</span>n),<span class="dv">4</span>) ,<span class="st">&quot;)&quot;</span>)</span>
+<span id="cb130-13"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-13" tabindex="-1"></a></span>
+<span id="cb130-14"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-14" tabindex="-1"></a></span>
+<span id="cb130-15"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-15" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">0</span>, <span class="dv">0</span>, </span>
+<span id="cb130-16"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-16" tabindex="-1"></a><span class="at">type=</span><span class="st">&quot;n&quot;</span>, </span>
+<span id="cb130-17"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-17" tabindex="-1"></a><span class="at">xlim=</span><span class="fu">c</span>( <span class="fl">0.5</span><span class="sc">*</span><span class="fu">min</span>(dados<span class="sc">$</span><span class="st">`</span><span class="at">Proporção amostral</span><span class="st">`</span>) , <span class="fl">1.1</span><span class="sc">*</span><span class="fu">max</span>(dados<span class="sc">$</span><span class="st">`</span><span class="at">Proporção amostral</span><span class="st">`</span>) ), </span>
+<span id="cb130-18"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-18" tabindex="-1"></a><span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,N), </span>
+<span id="cb130-19"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-19" tabindex="-1"></a><span class="at">bty=</span><span class="st">&quot;l&quot;</span>,</span>
+<span id="cb130-20"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-20" tabindex="-1"></a><span class="at">xlab=</span><span class="st">&quot;Proporções amostrais observadas&quot;</span>, </span>
+<span id="cb130-21"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-21" tabindex="-1"></a><span class="at">ylab=</span><span class="st">&quot;Amostras extraídas&quot;</span>, </span>
+<span id="cb130-22"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-22" tabindex="-1"></a><span class="at">main=</span><span class="st">&quot;&quot;</span>, <span class="co">#meu_titulo01  </span></span>
+<span id="cb130-23"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-23" tabindex="-1"></a><span class="at">sub=</span><span class="st">&quot;&quot;</span>) <span class="co">#meu_titulo02</span></span>
+<span id="cb130-24"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-24" tabindex="-1"></a></span>
+<span id="cb130-25"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-25" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N) {</span>
+<span id="cb130-26"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-26" tabindex="-1"></a>prop_amostral<span class="ot">=</span>dados<span class="sc">$</span><span class="st">`</span><span class="at">Proporção amostral</span><span class="st">`</span>[i]</span>
+<span id="cb130-27"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-27" tabindex="-1"></a>ploty <span class="ot">=</span> <span class="fu">c</span>(i,i)</span>
+<span id="cb130-28"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-28" tabindex="-1"></a><span class="cf">if</span> (prop_amostral <span class="sc">&gt;</span> p<span class="sc">+</span>er <span class="sc">||</span> prop_amostral <span class="sc">&lt;</span> p<span class="sc">-</span>er) </span>
+<span id="cb130-29"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-29" tabindex="-1"></a>     <span class="fu">points</span>(prop_amostral, i, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">cex=</span><span class="dv">1</span>)<span class="sc">+</span><span class="fu">text</span>(<span class="at">y=</span>i<span class="sc">+</span><span class="dv">3</span>,<span class="at">x=</span>prop_amostral, <span class="at">labels=</span><span class="fu">round</span>(prop_amostral,<span class="dv">2</span>), <span class="at">cex=</span><span class="dv">1</span>, <span class="at">col=</span><span class="st">&#39;red&#39;</span>)</span>
+<span id="cb130-30"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-30" tabindex="-1"></a>  <span class="cf">else</span> </span>
+<span id="cb130-31"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-31" tabindex="-1"></a>    <span class="fu">points</span>(prop_amostral, i, <span class="at">col=</span><span class="st">&quot;black&quot;</span>, <span class="at">cex=</span><span class="dv">1</span>) </span>
+<span id="cb130-32"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-32" tabindex="-1"></a><span class="fu">segments</span>(<span class="at">x0=</span>p , <span class="at">y0=</span><span class="dv">0</span>, <span class="at">x1=</span>p ,<span class="at">y1=</span>N,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb130-33"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-33" tabindex="-1"></a><span class="fu">segments</span>(<span class="at">x0=</span>p<span class="sc">-</span>er , <span class="at">y0=</span><span class="dv">0</span>, <span class="at">x1=</span>p<span class="sc">-</span>er ,<span class="at">y1=</span>N,<span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">1</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb130-34"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-34" tabindex="-1"></a><span class="fu">segments</span>(<span class="at">x0=</span>p<span class="sc">+</span>er , <span class="at">y0=</span><span class="dv">0</span>, <span class="at">x1=</span>p<span class="sc">+</span>er ,<span class="at">y1=</span>N,<span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">1</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb130-35"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-35" tabindex="-1"></a>} </span>
+<span id="cb130-36"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb130-36" tabindex="-1"></a>}</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-123"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-123-1.png" alt="Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento (385 elementos ) foi estimado ignorando-se o conhecimento da proporção populacional (π) para um nível de confiança (1-α)=0,95 e um erro amostral ε=0,05 (em preto as proporções amostrais dentro da tolerância fixada e, em vermelho, as que aleatoriamente ultrapassam a tolerância fixada em π +/-ε)." width="100%" />
+<p class="caption">
+Figure 10.5: Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento (385 elementos ) foi estimado ignorando-se o conhecimento da proporção populacional (π) para um nível de confiança (1-α)=0,95 e um erro amostral ε=0,05 (em preto as proporções amostrais dentro da tolerância fixada e, em vermelho, as que aleatoriamente ultrapassam a tolerância fixada em π +/-ε).
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-124"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-124-1.png" alt="Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento  (217 elementos) foi estimado admitindo-se o conhecimento da proporção populacional (π) para um nível de confiança (1-α)=0,95 e um erro amostral ε=0,05 (em preto as proporções amostrais dentro da tolerância fixada e, em vermelho, as que aleatoriamente ultrapassam a tolerância fixada em π +/-ε)." width="100%" />
+<p class="caption">
+Figure 10.6: Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento (217 elementos) foi estimado admitindo-se o conhecimento da proporção populacional (π) para um nível de confiança (1-α)=0,95 e um erro amostral ε=0,05 (em preto as proporções amostrais dentro da tolerância fixada e, em vermelho, as que aleatoriamente ultrapassam a tolerância fixada em π +/-ε).
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-125"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-125-1.png" alt="Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento foi arbitrariamente fixado (100 elementos) para um nível de confiança (1-α)=0,95 e um erro amostral ε=0,05 (em preto as proporções amostrais dentro da tolerância fixada e, em vermelho, as que aleatoriamente ultrapassam a tolerância fixada em π +/-ε)." width="100%" />
+<p class="caption">
+Figure 10.7: Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento foi arbitrariamente fixado (100 elementos) para um nível de confiança (1-α)=0,95 e um erro amostral ε=0,05 (em preto as proporções amostrais dentro da tolerância fixada e, em vermelho, as que aleatoriamente ultrapassam a tolerância fixada em π +/-ε).
+</p>
+</div>
 <p><br />
 </p>
 </div>
 </div>
-<div id="determinação-do-tamanho-de-uma-amostra-para-estimação-da-proporção-populacional" class="section level3 hasAnchor" number="7.12.3">
-<h3><span class="header-section-number">7.12.3</span> Determinação do tamanho de uma amostra para estimação da proporção populacional<a href="dimensionamento-de-amostras.html#determinação-do-tamanho-de-uma-amostra-para-estimação-da-proporção-populacional" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><br />
-</p>
-<p>A determinação do tamanho de uma amostra para estimação da proporção populacional considerando-se uma <strong>população infinita</strong> (<span class="math inline">\(N \le 20. n_{0}\)</span>):</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-n_{0} = \frac{z_{c}^{2} \cdot \pi \cdot (1- \pi) }{\epsilon^{2}}
-\]</span></p>
-<p><br />
-</p>
-<p>em que:</p>
-<p><br />
-</p>
-<ul>
-<li><span class="math inline">\(n_{0}\)</span> é o tamanho da amostra;<br />
-</li>
-<li><span class="math inline">\(z_{c}\)</span> é valor crítico tabelado da distribuição Normal para o nível de significância desejado (por exemplo, para <span class="math inline">\(\alpha\)</span>=5%, <span class="math inline">\(z_{c}\)</span>=1,96);<br />
-</li>
-<li><span class="math inline">\(\pi\)</span> é a proporção populacional;<br />
-</li>
-<li><span class="math inline">\(\varepsilon\)</span>: é o erro amostral, a máxima diferença entre <span class="math inline">\(\pi\)</span> e <span class="math inline">\(p\)</span> que se espera observar sob um nível de confiança de (<span class="math inline">\(1-\alpha\)</span>) .</li>
-</ul>
-<p><br />
-</p>
-<p>Quando não se dispõe de nenhuma informação <em>a priori</em> sobre a proporção populacional (<span class="math inline">\(\pi\)</span>) a adoção do máximo valor possível ao produto: <span class="math inline">\(\pi . (1- \pi )=\frac{1}{4}\)</span> assegura que o o tamanho de amostra obtido será suficiente para a estimação qualquer que seja a proporção populacional <span class="math inline">\(\pi\)</span>.</p>
-<p><br />
-</p>
-<p>Isso equivale a considerar:</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-n_{0} = \frac{z_{c}^{2}}{\epsilon^{2}} \cdot \frac{1}{4}
-\]</span></p>
-<p><br />
-</p>
-<p>De modo análogo, se a população <strong>não pode ser considerada infinita</strong> (<span class="math inline">\(N \le 20n_{0}\)</span>) aplica-se uma correção sobre o valor calculado do tamanho da amostra (<span class="math inline">\(n_{0}\)</span>) chegando-se a um novo tamanho (<span class="math inline">\(n\)</span>):</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-n=\frac{N \cdot n_{0}}{N + n_{0}}
-\]</span></p>
-<p><br />
-</p>
-<blockquote>
-<p>Exemplo:Qual o tamanho de amostra (<span class="math inline">\(n_{0}\)</span>) suficiente para estimarmos a proporção da área com solo contaminado que necessita de certo tratamento de descontaminação, com precisão (<span class="math inline">\(\varepsilon\)</span>) de 0,02 e um nível de confiança (<span class="math inline">\(1-\alpha\)</span>) de 95%, sabendo que essa proporção seguramente não é superior a 0,2?</p>
-</blockquote>
-<p><br />
-</p>
-<p><span class="math display">\[\begin{align*}
-n_{0} &amp; = \frac{z_{c}^{2} \cdot \pi \cdot (1-\pi) }{\varepsilon^{2}} \\
-n_{0} &amp; = \frac{1,96^{2} \cdot 0,20 \cdot 0,80 }{0,02^{2}}\\
-n_{0} &amp; \sim 1.537
-\end{align*}\]</span></p>
-<p><br />
-</p>
-<p>Considerando-se uma estimativa conservadora para <span class="math inline">\(\pi.(1-\pi)\)</span> pelo máximo valor possível desse produto (<span class="math inline">\(\frac{1}{4}\)</span>) teremos:</p>
-<p><br />
-</p>
-<p><span class="math display">\[\begin{align*}
-n_{0} &amp; =  \frac{z_{c}^{2}}{\varepsilon^{2}} \cdot \frac{1}{4} \\
-n_{0} &amp; =  \frac{1,96^{2}}{0,02^{2}} \cdot \frac{1}{4} \\
-n_{0} &amp; =  2.401
-\end{align*}\]</span></p>
-<p><br />
-</p>
-<div id="margem-de-erro-em-uma-estimativa-amostral-da-proporção" class="section level4 hasAnchor" number="7.12.3.1">
-<h4><span class="header-section-number">7.12.3.1</span> Margem de erro em uma estimativa amostral da proporção<a href="dimensionamento-de-amostras.html#margem-de-erro-em-uma-estimativa-amostral-da-proporção" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><br />
-</p>
-<p>Reescrevendo-se a expressão para a determinação do tamanho amostral para a situação na qual não temos nenhuma informação sobre a proporção populacional (<span class="math inline">\(\pi\)</span>), podemos exprimir o erro <span class="math inline">\(\varepsilon\)</span> associado à estimativa da proporção (<span class="math inline">\(p\)</span>) obtida de uma amostra de tamanho <span class="math inline">\(n\)</span> da proporção populacional (<span class="math inline">\(\pi\)</span>) sob o nível de confiança (<span class="math inline">\(1-\alpha\)</span>) pelo critério mais conservador (<span class="math inline">\(\pi.(1-\pi)=\frac{1}{4}\)</span>)</p>
-<p><br />
-</p>
-<p><span class="math display">\[\begin{align*}
-\varepsilon &amp; = z_{c}\cdot \sqrt{\frac{\pi\cdot \left(1-\pi\right)}{n}} \\
-\varepsilon &amp; = z_{c}\cdot \sqrt{\frac{\frac{1}{4}}{n}}
-\end{align*}\]</span></p>
-<p><br />
-</p>
-<p>em que <span class="math inline">\(\varepsilon\)</span> é uma quantidade para <strong>mais e para menos</strong> da estimativa <span class="math inline">\(p\)</span> obtida de uma amostra de tamanho <span class="math inline">\(n\)</span> em relação a <span class="math inline">\(\pi\)</span> sob o nível de confiança <span class="math inline">\(1-\alpha\)</span> que determina <span class="math inline">\(z_{c}\)</span>.</p>
-<p><br />
-</p>
-<blockquote>
-<p>Exemplo: Uma pesquisa recente mostra o apoio dos eleitores a uma posição de liberação das restrições sobre a pesquisa de células estaminais embrionárias e permitir o uso médico do princípio ativo da . A pesquisa realizada para o descobriram que 50% dos prováveis eleitores de Michigan apoiam a proposta de células-tronco, 32% são contra e 18% indecisos. A pesquisa telefônica ouviu 602 prováveis eleitores de Michigan. Qual a margem de erro a um nível de significância de 95% para os eleitores <strong>a favor</strong> da liberação das pesquisas?
-<a href="https://faculty.elgin.edu/dkernler/statistics/ch09/9-1.html">(link: Elgin C. College)</a></p>
-</blockquote>
-<p><br />
-</p>
-<p><span class="math display">\[\begin{align*}
-\varepsilon &amp; = {z}_{(\frac{\alpha }{2})}\cdot \sqrt{\frac{\hat{p}\cdot \left(1-\hat{p}\right)}{n}}\\
-&amp; = 1,96 \cdot \sqrt{\frac{0,50 \cdot \left(1- 0,50 \right)}{602}}\\
-&amp; = 0,04
-\end{align*}\]</span></p>
-<p><br />
-</p>
-<p>A margem de erro é de 4 pontos percentuais para <em>cima ou para baixo</em> (46%; 54%) na proporção de eleitores em relação à proporção populacional <span class="math inline">\(\pi\)</span> a favor da liberação das pesquisas, sob um um nível de confiança de 95%</p>
-
-<div id="tab:independentSamplesT-Test">
-<table>
-<caption>
-Independent Samples T-Test
-</caption>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-<td style="text-align: center;">
-</td>
-<td colspan="2" style="text-align: center;">
-95% CI for Cohen
-</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">
-cline<span>6-7</span>
-</td>
-<td style="text-align: right;">
-t
-</td>
-<td style="text-align: right;">
-df
-</td>
-<td style="text-align: right;">
-p
-</td>
-<td style="text-align: right;">
-Cohen
-</td>
-<td style="text-align: right;">
-Lower
-</td>
-<td style="text-align: right;">
-Upper
-</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">
-<span>1-7</span> engagement
-</td>
-<td style="text-align: right;">
-2.365
-</td>
-<td style="text-align: right;">
-38
-</td>
-<td style="text-align: right;">
-0.023
-</td>
-<td style="text-align: right;">
-0.748
-</td>
-<td style="text-align: right;">
-0.101
-</td>
-<td style="text-align: right;">
-1.385
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="amostragem-não-probabilística.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="introdução-às-estatísticas-epidemiológicas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pobabilidades-associadas-à-observação-de-uma-proporção-amostral-hatp.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="intervalos-de-confiança-para-proporções-amostrais.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -863,7 +611,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-planejamento_pesquisas.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/10-dist_prop_amostrais.Rmd",
 "text": "Edit"
 },
 "history": {

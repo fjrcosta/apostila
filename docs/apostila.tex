@@ -164,7 +164,7 @@ DSTA - Departamento de Estatística\\
 Apostila de Estatística\\
 Prof.~M.e Eng.\(^{o}\) Felinto Junior Da Costa}
 \author{}
-\date{\vspace{-2.5em}Londrina, 31 de agosto de 2023.}
+\date{\vspace{-2.5em}Londrina, 12 de setembro de 2023.}
 
 \begin{document}
 \maketitle
@@ -3246,96 +3246,6 @@ Fonte: Próprio autor
 
 \hfill\break
 
-A partir desse resumo, poderíamos eleborar a apresentação gráfica desses dados na forma de um \emph{Gráfico de colunas} ou um \emph{Gráfico de setores}.
-
-\hfill\break
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{desembarque}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}AM\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}AM\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}AM\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}EU\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}EU\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}EU\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}EU\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}AM\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}AS\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}AS\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}AS\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}OC\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}AS\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}EU\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}AM\textquotesingle{}}\NormalTok{)}
-\NormalTok{tab\_desembarque}\OtherTok{=}\FunctionTok{table}\NormalTok{(desembarque)}
-
-\FunctionTok{barplot}\NormalTok{(tab\_desembarque,}
-        \AttributeTok{main=}\StringTok{"Desembarques no terminal internacional A em Cumbica }\SpecialCharTok{\textbackslash{}n}\StringTok{(10/10/2021: 8 h 00min às 12 h 00 min)"}\NormalTok{,}
-        \AttributeTok{sub=} \StringTok{"Continente de procedência: América: AM; África: A; Europa: EU; Ásia: AS; Oceania: OC }\SpecialCharTok{\textbackslash{}n}\StringTok{fonte: próprio autor"}\NormalTok{,}
-        \AttributeTok{xlab=}\StringTok{""}\NormalTok{,}
-        \AttributeTok{ylab=}\StringTok{"Quantidade observada (un)"}\NormalTok{,}
-        \AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{6}\NormalTok{),}
-        \AttributeTok{col=}\StringTok{"blue"}\NormalTok{,}
-        \AttributeTok{las=}\DecValTok{0}\NormalTok{, }
-        \AttributeTok{hor=}\StringTok{"FALSE"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\includegraphics[width=0.8\linewidth]{apostila_files/figure-latex/unnamed-chunk-45-1} \caption{Gráfico de barras dos dados observados no terminal de desembarque internacional do aeroporto}\label{fig:unnamed-chunk-45}
-\end{figure}
-
-\hfill\break
-
-ou ainda assim:
-
-\hfill\break
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(scales)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Attaching package: 'scales'
-\end{verbatim}
-
-\begin{verbatim}
-## The following objects are masked from 'package:formattable':
-## 
-##     comma, percent, scientific
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(ggplot2)}
-
-\NormalTok{desembarques\_classes}\OtherTok{=}\FunctionTok{data.frame}\NormalTok{(}
-  \AttributeTok{group =} \FunctionTok{c}\NormalTok{(}\StringTok{"América"}\NormalTok{,}\StringTok{"África"}\NormalTok{,}\StringTok{"Europa"}\NormalTok{,}\StringTok{"Ásia"}\NormalTok{,}\StringTok{"Oceania"}\NormalTok{),}
-  \AttributeTok{value =} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{))}
-
-
-\NormalTok{blank\_theme}\OtherTok{=}\FunctionTok{theme\_minimal}\NormalTok{()}\SpecialCharTok{+}
-  \FunctionTok{theme}\NormalTok{(}
-    \AttributeTok{axis.title.x =} \FunctionTok{element\_blank}\NormalTok{(),}
-    \AttributeTok{axis.title.y =} \FunctionTok{element\_blank}\NormalTok{(),}
-    \AttributeTok{panel.border =} \FunctionTok{element\_blank}\NormalTok{(),}
-    \AttributeTok{panel.grid=}\FunctionTok{element\_blank}\NormalTok{(),}
-    \AttributeTok{axis.ticks =} \FunctionTok{element\_blank}\NormalTok{(),}
-    \AttributeTok{plot.title=}\FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{14}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{)}
-\NormalTok{  )}
-
-\FunctionTok{ggplot}\NormalTok{(desembarques\_classes, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\StringTok{""}\NormalTok{, }\AttributeTok{y=}\NormalTok{value, }\AttributeTok{fill=}\NormalTok{group)) }\SpecialCharTok{+}
-\NormalTok{  blank\_theme }\SpecialCharTok{+}
-  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\StringTok{"Blues"}\NormalTok{)}\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{"Desembarques no terminal internacional A em Cumbica"}\NormalTok{, }
-          \AttributeTok{subtitle=}\StringTok{"(10/10/2021: 8 h 00min às 12 h 00 min)"}\NormalTok{,}
-           \AttributeTok{caption =} \StringTok{"Fonte: próprio autor"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x=}\FunctionTok{element\_blank}\NormalTok{()) }\SpecialCharTok{+}
-  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{width =} \DecValTok{1}\NormalTok{, }\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{coord\_polar}\NormalTok{(}\StringTok{"y"}\NormalTok{, }\AttributeTok{start=}\DecValTok{0}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ value}\SpecialCharTok{/}\DecValTok{2} \SpecialCharTok{+} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FunctionTok{cumsum}\NormalTok{(value)[}\SpecialCharTok{{-}}\FunctionTok{length}\NormalTok{(value)]),}
-                \AttributeTok{label =} \FunctionTok{percent}\NormalTok{(value}\SpecialCharTok{/}\DecValTok{18}\NormalTok{ )), }\AttributeTok{size=}\DecValTok{5}\NormalTok{)}\SpecialCharTok{+}
-  \FunctionTok{guides}\NormalTok{(}\AttributeTok{fill =} \FunctionTok{guide\_legend}\NormalTok{(}\AttributeTok{title =} \StringTok{"Legenda"}\NormalTok{,}
-                             \AttributeTok{label.position =} \StringTok{"right"}\NormalTok{,}
-                             \AttributeTok{title.position =} \StringTok{"top"}\NormalTok{, }\AttributeTok{title.vjust =} \DecValTok{1}\NormalTok{)) }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\includegraphics[width=0.8\linewidth]{apostila_files/figure-latex/unnamed-chunk-46-1} \caption{Gráfico de setores dos desembarques observados no terminal de desembarque internacional do aeroporto}\label{fig:unnamed-chunk-46}
-\end{figure}
-
-\hfill\break
-
 Outro exemplo de apresentação tabular onde são apresentadas as proporções relativas observadas de cada nível da variável estudada (``tipo de família'', com quatro níveis diferentes), de um levantamento amostral feito pela Agência do Censo dos Estados Unidos em 2005.
 
 \hfill\break
@@ -3360,83 +3270,6 @@ Total                  & 111.1            & 1,00       & 100\%            \\
 Fonte: Próprio autor
 \end{center}
 \end{table}
-
-\hfill\break
-
-Igualmente, a apresentação gráfica desses dados pode feita, por exemplo, por um \emph{Gráfico de colunas} ou um \emph{Gráfico de setores}.
-
-\hfill\break
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(ggplot2)}
-\NormalTok{dados}\OtherTok{=}\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{tipo=}\FunctionTok{c}\NormalTok{(}\StringTok{"Casal com filhos"}\NormalTok{,}
-                          \StringTok{"Casal sem filhos"}\NormalTok{,}
-                          \StringTok{"Solteiro, s/parceiro"}\NormalTok{,}
-                          \StringTok{"Morando sozinho"}\NormalTok{,}
-                          \StringTok{"Outros domicíclios"}\NormalTok{),}
-                 \AttributeTok{quant=}\FunctionTok{c}\NormalTok{(}\FloatTok{24.1}\NormalTok{, }\FloatTok{31.1}\NormalTok{, }
-                       \FloatTok{19.1}\NormalTok{, }\FloatTok{30.1}\NormalTok{,}
-                       \FloatTok{6.7}\NormalTok{))}
-
-\FunctionTok{ggplot}\NormalTok{(dados, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{tipo, }\AttributeTok{y=}\NormalTok{quant, }\AttributeTok{color=}\NormalTok{tipo)) }\SpecialCharTok{+}
-\FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{"identity"}\NormalTok{, }\AttributeTok{position=}\FunctionTok{position\_dodge}\NormalTok{())}\SpecialCharTok{+}
-\FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Estrutura domiciliar dos Estados Unidos, 2005"}\NormalTok{) }\SpecialCharTok{+}
-\FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position=}\StringTok{"bottom"}\NormalTok{)}\SpecialCharTok{+}
-\FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label=}\NormalTok{quant), }\AttributeTok{vjust=}\FloatTok{1.6}\NormalTok{, }\AttributeTok{color=}\StringTok{"white"}\NormalTok{, }\AttributeTok{position =} \FunctionTok{position\_dodge}\NormalTok{(}\FloatTok{0.9}\NormalTok{), }\AttributeTok{size=}\FloatTok{3.5}\NormalTok{)}\SpecialCharTok{+}
-\FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette=}\StringTok{"Paired"}\NormalTok{)}\SpecialCharTok{+}
-\FunctionTok{theme\_minimal}\NormalTok{()}\SpecialCharTok{+}
-\FunctionTok{xlab}\NormalTok{(}\StringTok{""}\NormalTok{)  }\SpecialCharTok{+}
-\FunctionTok{ylab}\NormalTok{(}\StringTok{"Frequência absoluta observada (milhões)"}\NormalTok{)}\SpecialCharTok{+}
-\FunctionTok{labs}\NormalTok{(}\AttributeTok{colour =} \StringTok{"Tipos de domicílios"}\NormalTok{) }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
-\includegraphics{apostila_files/figure-latex/unnamed-chunk-48-1.pdf}
-\caption{\label{fig:unnamed-chunk-48}Gráfico de barras da estrutura domiciliar dos Estados Unidos}
-\end{figure}
-
-\hfill\break
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(ggplot2)}
-\FunctionTok{library}\NormalTok{(scales)}
-
-\NormalTok{blank\_theme}\OtherTok{=}\FunctionTok{theme\_minimal}\NormalTok{()}\SpecialCharTok{+}
-  \FunctionTok{theme}\NormalTok{(}
-    \AttributeTok{axis.title.x =} \FunctionTok{element\_blank}\NormalTok{(),}
-    \AttributeTok{axis.title.y =} \FunctionTok{element\_blank}\NormalTok{(),}
-    \AttributeTok{panel.border =} \FunctionTok{element\_blank}\NormalTok{(),}
-    \AttributeTok{panel.grid=}\FunctionTok{element\_blank}\NormalTok{(),}
-    \AttributeTok{axis.ticks =} \FunctionTok{element\_blank}\NormalTok{(),}
-    \AttributeTok{plot.title=}\FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{14}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{)}
-\NormalTok{  )}
-
-\NormalTok{bp}\OtherTok{=}\FunctionTok{ggplot}\NormalTok{(dados, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\StringTok{""}\NormalTok{, }\AttributeTok{y=}\NormalTok{quant, }\AttributeTok{fill=}\NormalTok{tipo))}\SpecialCharTok{+}
-  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{width =} \DecValTok{1}\NormalTok{, }\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{)}
-\NormalTok{pie}\OtherTok{=}\NormalTok{bp }\SpecialCharTok{+} \FunctionTok{coord\_polar}\NormalTok{(}\StringTok{"y"}\NormalTok{, }\AttributeTok{start=}\DecValTok{0}\NormalTok{)}
-\NormalTok{pie }\SpecialCharTok{+} 
-  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\StringTok{"Blues"}\NormalTok{)}\SpecialCharTok{+}
-\NormalTok{  blank\_theme }\SpecialCharTok{+}
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x=}\FunctionTok{element\_blank}\NormalTok{()) }\SpecialCharTok{+}
-  \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}  \FloatTok{1.2}\NormalTok{,}\AttributeTok{label =}\NormalTok{ quant), }\AttributeTok{position =} \FunctionTok{position\_stack}\NormalTok{(}\AttributeTok{vjust =} \FloatTok{0.5}\NormalTok{)) }\SpecialCharTok{+}
-  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Estrutura domiciliar dos Estados Unidos, 2005"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"right"}\NormalTok{, }\AttributeTok{legend.justification =} \StringTok{"center"}\NormalTok{, }\AttributeTok{legend.direction =} \StringTok{"vertical"}\NormalTok{,}
-        \AttributeTok{legend.spacing.x =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\StringTok{\textquotesingle{}cm\textquotesingle{}}\NormalTok{),}\AttributeTok{legend.spacing.y =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\StringTok{\textquotesingle{}cm\textquotesingle{}}\NormalTok{))}\SpecialCharTok{+}
-  \FunctionTok{guides}\NormalTok{(}\AttributeTok{fill =} \FunctionTok{guide\_legend}\NormalTok{(}\AttributeTok{title =} \StringTok{"Tipos de domicílios"}\NormalTok{,}
-                             \AttributeTok{label.position =} \StringTok{"right"}\NormalTok{,}
-                             \AttributeTok{title.position =} \StringTok{"top"}\NormalTok{, }\AttributeTok{title.vjust =} \DecValTok{1}\NormalTok{)) }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-\centering
-\includegraphics{apostila_files/figure-latex/unnamed-chunk-49-1.pdf}
-\caption{\label{fig:unnamed-chunk-49}Gráfico de setores da estrutura domiciliar dos Estados Unidos}
-\end{figure}
 
 \hfill\break
 
@@ -4014,8 +3847,18 @@ Sejam \(n_{1}, n_{2}, ..., n_{n}\) as frequências apresentadas para cada interv
 \hfill\break
 
 \[
-\stackrel{-}{x}=\frac{\sum _{i=1}^{n}{n}_{i}\cdot{\stackrel{-}{x}}_{i}}{N}
+\stackrel{-}{x}=\frac{\sum _{i=1}^{n}{f}_{i}\cdot{\stackrel{-}{x}}_{i}}{N}
 \]\\
+
+onde:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\stackrel{-}{x}_{i}\): o valor médio do intervalo da classe \(i\);
+\item
+  \(f_{i}\): a frequência absoluta da classe \(i\);
+\end{itemize}
 
 \hypertarget{moda-1}{%
 \subsection{Moda}\label{moda-1}}
@@ -4055,21 +3898,19 @@ Variância para dados agrupados:
 \hfill\break
 
 \[
-S^{2}= \frac{1}{n-1} \times \left[  \sum _{i=1}^{n}{(\stackrel{-}{x}}_{i})^{2} \cdot {n}_{i} - \frac{{\left(\sum _{i=1}^{n}{\stackrel{-}{x}}_{i} \cdot {n}_{i}\right)}^{2}  }{n}\right]
+S^{2}= \frac{1}{N-1} \times \left[  \sum _{i=1}^{n}{(\stackrel{-}{x}}_{i})^{2} \cdot {f}_{i} - \frac{{\left(\sum _{i=1}^{n}{\stackrel{-}{x}}_{i} \cdot {f}_{i}\right)}^{2}  }{N}\right]
 \]
 
 \hfill\break
 
-Onde:
-
-\hfill\break
+onde:
 
 \begin{itemize}
 \tightlist
 \item
-  \(n_{i}\) é a frequência absoluta em cada classe \(i\); e,
+  \(\stackrel{-}{x}_{i}\): o valor médio do intervalo da classe \(i\);
 \item
-  \(\stackrel{-}{x}_{i}\) é o valor médio de cada classe \(i\).
+  \(f_{i}\): a frequência absoluta da classe \(i\);
 \end{itemize}
 
 \hfill\break
@@ -4083,16 +3924,12 @@ Uma apresentação na forma gráfica torna ainda mais fácil a visualização da
 
 \hfill\break
 
-Há uma gama enorme de gráficos para a representação de dados a depender de sua natureza (qualitativa ou quantitativa). Alguns dos tipos mais comuns são:
+Há uma gama enorme de gráficos para a representação de dados a depender de sua natureza (qualitativa ou quantitativa).
 
 \hfill\break
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  qualitativas
-\end{enumerate}
+\hypertarget{gruxe1ficos-para-variuxe1veis-qualitativas}{%
+\subsection{Gráficos para variáveis qualitativas}\label{gruxe1ficos-para-variuxe1veis-qualitativas}}
 
 \hfill\break
 
@@ -4104,13 +3941,181 @@ Há uma gama enorme de gráficos para a representação de dados a depender de s
   parte em relação ao todo: setores;
 \end{itemize}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
-\tightlist
-\item
-  quantitativas
-\end{enumerate}
+\hfill\break
+
+\hypertarget{colunas}{%
+\subsubsection{Colunas}\label{colunas}}
+
+\hfill\break
+
+A partir das tabelas mostradas na seção 3.5.1.1 Dados qualitativos em entrada única poderíamos eleborar a apresentação gráfica na forma de \emph{Gráficos de colunas}:
+
+\hfill\break
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{desembarque}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}AM\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}AM\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}AM\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}EU\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}EU\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}EU\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}EU\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}AM\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}AS\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}AS\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}AS\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}OC\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}AS\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}EU\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}AM\textquotesingle{}}\NormalTok{)}
+\NormalTok{tab\_desembarque}\OtherTok{=}\FunctionTok{table}\NormalTok{(desembarque)}
+
+\FunctionTok{barplot}\NormalTok{(tab\_desembarque,}
+        \AttributeTok{main=}\StringTok{"Desembarques no terminal internacional A em Cumbica }\SpecialCharTok{\textbackslash{}n}\StringTok{(10/10/2021: 8 h 00min às 12 h 00 min)"}\NormalTok{,}
+        \AttributeTok{sub=} \StringTok{"Continente de procedência: América: AM; África: A; Europa: EU; Ásia: AS; Oceania: OC }\SpecialCharTok{\textbackslash{}n}\StringTok{fonte: próprio autor"}\NormalTok{,}
+        \AttributeTok{xlab=}\StringTok{""}\NormalTok{,}
+        \AttributeTok{ylab=}\StringTok{"Quantidade observada (un)"}\NormalTok{,}
+        \AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{6}\NormalTok{),}
+        \AttributeTok{col=}\StringTok{"blue"}\NormalTok{,}
+        \AttributeTok{las=}\DecValTok{0}\NormalTok{, }
+        \AttributeTok{hor=}\StringTok{"FALSE"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\includegraphics[width=0.8\linewidth]{apostila_files/figure-latex/unnamed-chunk-50-1} \caption{Gráfico de barras dos dados observados no terminal de desembarque internacional do aeroporto}\label{fig:unnamed-chunk-50}
+\end{figure}
+
+\hfill\break
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\NormalTok{dados}\OtherTok{=}\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{tipo=}\FunctionTok{c}\NormalTok{(}\StringTok{"Casal com filhos"}\NormalTok{,}
+                          \StringTok{"Casal sem filhos"}\NormalTok{,}
+                          \StringTok{"Solteiro, s/parceiro"}\NormalTok{,}
+                          \StringTok{"Morando sozinho"}\NormalTok{,}
+                          \StringTok{"Outros domicíclios"}\NormalTok{),}
+                 \AttributeTok{quant=}\FunctionTok{c}\NormalTok{(}\FloatTok{24.1}\NormalTok{, }\FloatTok{31.1}\NormalTok{, }
+                       \FloatTok{19.1}\NormalTok{, }\FloatTok{30.1}\NormalTok{,}
+                       \FloatTok{6.7}\NormalTok{))}
+
+\FunctionTok{ggplot}\NormalTok{(dados, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{tipo, }\AttributeTok{y=}\NormalTok{quant, }\AttributeTok{color=}\NormalTok{tipo)) }\SpecialCharTok{+}
+\FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{"identity"}\NormalTok{, }\AttributeTok{position=}\FunctionTok{position\_dodge}\NormalTok{())}\SpecialCharTok{+}
+\FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Estrutura domiciliar dos Estados Unidos, 2005"}\NormalTok{) }\SpecialCharTok{+}
+\FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position=}\StringTok{"bottom"}\NormalTok{)}\SpecialCharTok{+}
+\FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label=}\NormalTok{quant), }\AttributeTok{vjust=}\FloatTok{1.6}\NormalTok{, }\AttributeTok{color=}\StringTok{"white"}\NormalTok{, }\AttributeTok{position =} \FunctionTok{position\_dodge}\NormalTok{(}\FloatTok{0.9}\NormalTok{), }\AttributeTok{size=}\FloatTok{3.5}\NormalTok{)}\SpecialCharTok{+}
+\FunctionTok{scale\_fill\_brewer}\NormalTok{(}\AttributeTok{palette=}\StringTok{"Paired"}\NormalTok{)}\SpecialCharTok{+}
+\FunctionTok{theme\_minimal}\NormalTok{()}\SpecialCharTok{+}
+\FunctionTok{xlab}\NormalTok{(}\StringTok{""}\NormalTok{)  }\SpecialCharTok{+}
+\FunctionTok{ylab}\NormalTok{(}\StringTok{"Frequência absoluta observada (milhões)"}\NormalTok{)}\SpecialCharTok{+}
+\FunctionTok{labs}\NormalTok{(}\AttributeTok{colour =} \StringTok{"Tipos de domicílios"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{apostila_files/figure-latex/unnamed-chunk-51-1.pdf}
+\caption{\label{fig:unnamed-chunk-51}Gráfico de barras da estrutura domiciliar dos Estados Unidos}
+\end{figure}
+
+\hfill\break
+
+\hypertarget{setores}{%
+\subsubsection{Setores}\label{setores}}
+
+\hfill\break
+
+Em um \emph{Gráfico de setores} a representação das quantidades está associada a uma fração do comprimento de um círculo. Para sua confecção considera-se a proporção da quantidade observada específica da quantidade total de dados, expressa na forma de fração do ângulo de um setor circular em relação ao ângulo interno total de um círculo (360\textsuperscript{o}).
+
+\hfill\break
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(scales)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'scales'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:formattable':
+## 
+##     comma, percent, scientific
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\NormalTok{desembarques\_classes}\OtherTok{=}\FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{group =} \FunctionTok{c}\NormalTok{(}\StringTok{"América"}\NormalTok{,}\StringTok{"África"}\NormalTok{,}\StringTok{"Europa"}\NormalTok{,}\StringTok{"Ásia"}\NormalTok{,}\StringTok{"Oceania"}\NormalTok{),}
+  \AttributeTok{value =} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+
+
+\NormalTok{blank\_theme}\OtherTok{=}\FunctionTok{theme\_minimal}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}
+    \AttributeTok{axis.title.x =} \FunctionTok{element\_blank}\NormalTok{(),}
+    \AttributeTok{axis.title.y =} \FunctionTok{element\_blank}\NormalTok{(),}
+    \AttributeTok{panel.border =} \FunctionTok{element\_blank}\NormalTok{(),}
+    \AttributeTok{panel.grid=}\FunctionTok{element\_blank}\NormalTok{(),}
+    \AttributeTok{axis.ticks =} \FunctionTok{element\_blank}\NormalTok{(),}
+    \AttributeTok{plot.title=}\FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{14}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{)}
+\NormalTok{  )}
+
+\FunctionTok{ggplot}\NormalTok{(desembarques\_classes, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\StringTok{""}\NormalTok{, }\AttributeTok{y=}\NormalTok{value, }\AttributeTok{fill=}\NormalTok{group)) }\SpecialCharTok{+}
+\NormalTok{  blank\_theme }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\StringTok{"Blues"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title=}\StringTok{"Desembarques no terminal internacional A em Cumbica"}\NormalTok{, }
+          \AttributeTok{subtitle=}\StringTok{"(10/10/2021: 8 h 00min às 12 h 00 min)"}\NormalTok{,}
+           \AttributeTok{caption =} \StringTok{"Fonte: próprio autor"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x=}\FunctionTok{element\_blank}\NormalTok{()) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{width =} \DecValTok{1}\NormalTok{, }\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{coord\_polar}\NormalTok{(}\StringTok{"y"}\NormalTok{, }\AttributeTok{start=}\DecValTok{0}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ value}\SpecialCharTok{/}\DecValTok{2} \SpecialCharTok{+} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FunctionTok{cumsum}\NormalTok{(value)[}\SpecialCharTok{{-}}\FunctionTok{length}\NormalTok{(value)]),}
+                \AttributeTok{label =} \FunctionTok{percent}\NormalTok{(value}\SpecialCharTok{/}\DecValTok{18}\NormalTok{ )), }\AttributeTok{size=}\DecValTok{5}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{guides}\NormalTok{(}\AttributeTok{fill =} \FunctionTok{guide\_legend}\NormalTok{(}\AttributeTok{title =} \StringTok{"Legenda"}\NormalTok{,}
+                             \AttributeTok{label.position =} \StringTok{"right"}\NormalTok{,}
+                             \AttributeTok{title.position =} \StringTok{"top"}\NormalTok{, }\AttributeTok{title.vjust =} \DecValTok{1}\NormalTok{)) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\includegraphics[width=0.8\linewidth]{apostila_files/figure-latex/unnamed-chunk-52-1} \caption{Gráfico de setores dos desembarques observados no terminal de desembarque internacional do aeroporto}\label{fig:unnamed-chunk-52}
+\end{figure}
+
+\hfill\break
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(scales)}
+
+\NormalTok{blank\_theme}\OtherTok{=}\FunctionTok{theme\_minimal}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}
+    \AttributeTok{axis.title.x =} \FunctionTok{element\_blank}\NormalTok{(),}
+    \AttributeTok{axis.title.y =} \FunctionTok{element\_blank}\NormalTok{(),}
+    \AttributeTok{panel.border =} \FunctionTok{element\_blank}\NormalTok{(),}
+    \AttributeTok{panel.grid=}\FunctionTok{element\_blank}\NormalTok{(),}
+    \AttributeTok{axis.ticks =} \FunctionTok{element\_blank}\NormalTok{(),}
+    \AttributeTok{plot.title=}\FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size=}\DecValTok{14}\NormalTok{, }\AttributeTok{face=}\StringTok{"bold"}\NormalTok{)}
+\NormalTok{  )}
+
+\NormalTok{bp}\OtherTok{=}\FunctionTok{ggplot}\NormalTok{(dados, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\StringTok{""}\NormalTok{, }\AttributeTok{y=}\NormalTok{quant, }\AttributeTok{fill=}\NormalTok{tipo))}\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{width =} \DecValTok{1}\NormalTok{, }\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{)}
+\NormalTok{pie}\OtherTok{=}\NormalTok{bp }\SpecialCharTok{+} \FunctionTok{coord\_polar}\NormalTok{(}\StringTok{"y"}\NormalTok{, }\AttributeTok{start=}\DecValTok{0}\NormalTok{)}
+\NormalTok{pie }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_brewer}\NormalTok{(}\StringTok{"Blues"}\NormalTok{)}\SpecialCharTok{+}
+\NormalTok{  blank\_theme }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x=}\FunctionTok{element\_blank}\NormalTok{()) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}  \FloatTok{1.2}\NormalTok{,}\AttributeTok{label =}\NormalTok{ quant), }\AttributeTok{position =} \FunctionTok{position\_stack}\NormalTok{(}\AttributeTok{vjust =} \FloatTok{0.5}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Estrutura domiciliar dos Estados Unidos, 2005"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"right"}\NormalTok{, }\AttributeTok{legend.justification =} \StringTok{"center"}\NormalTok{, }\AttributeTok{legend.direction =} \StringTok{"vertical"}\NormalTok{,}
+        \AttributeTok{legend.spacing.x =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\StringTok{\textquotesingle{}cm\textquotesingle{}}\NormalTok{),}\AttributeTok{legend.spacing.y =} \FunctionTok{unit}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\StringTok{\textquotesingle{}cm\textquotesingle{}}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{guides}\NormalTok{(}\AttributeTok{fill =} \FunctionTok{guide\_legend}\NormalTok{(}\AttributeTok{title =} \StringTok{"Tipos de domicílios"}\NormalTok{,}
+                             \AttributeTok{label.position =} \StringTok{"right"}\NormalTok{,}
+                             \AttributeTok{title.position =} \StringTok{"top"}\NormalTok{, }\AttributeTok{title.vjust =} \DecValTok{1}\NormalTok{)) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{apostila_files/figure-latex/unnamed-chunk-53-1.pdf}
+\caption{\label{fig:unnamed-chunk-53}Gráfico de setores da estrutura domiciliar dos Estados Unidos}
+\end{figure}
+
+\hypertarget{gruxe1ficos-para-variuxe1veis-quantitativas}{%
+\subsection{Gráficos para variáveis quantitativas}\label{gruxe1ficos-para-variuxe1veis-quantitativas}}
 
 \hfill\break
 
@@ -4134,10 +4139,12 @@ Há uma gama enorme de gráficos para a representação de dados a depender de s
 
 \hfill\break
 
-Se modificarmos o diagrama de ramos e folhas dos comprimentos e quantidades observadas, representando cada uma das alturas medidas por um \emph{retângulo} cujas alturas sejam proporcionais à quantidade contada de cada uma dessas alturas teremos um \emph{Gráfico de barras}.
-
 \hypertarget{barras}{%
-\subsection{Barras}\label{barras}}
+\subsubsection{Barras}\label{barras}}
+
+\hfill\break
+
+Se modificarmos o diagrama de ramos e folhas dos comprimentos e quantidades observadas, representando cada uma das alturas medidas por um \emph{retângulo} cujas alturas sejam proporcionais à quantidade contada de cada uma dessas alturas teremos um \emph{Gráfico de barras}.
 
 \hfill\break
 
@@ -4165,7 +4172,7 @@ Se modificarmos o diagrama de ramos e folhas dos comprimentos e quantidades obse
 \hfill\break
 
 \hypertarget{histograma}{%
-\subsection{Histograma}\label{histograma}}
+\subsubsection{Histograma}\label{histograma}}
 
 \hfill\break
 
@@ -4277,14 +4284,13 @@ A \textbf{área da curva da Função de Densidade delimitada por dois valores qu
 
 \textbf{Equivale dizer que}, amostrando-se aleatoriamente um estudante dentre todos os 60 alunos, a probabilidade de que a altura desse estudante estaje contida entre os valores mínimo e máximo da amostra é, \textbf{naturalmente}, igual a 1 (100\%)
 
-\hypertarget{setores}{%
-\subsection{Setores}\label{setores}}
+\hypertarget{setores-1}{%
+\subsubsection{Setores}\label{setores-1}}
 
 \hfill\break
 
 Em um \emph{Gráfico de setores} a representação das quantidades está associada a uma fração do comprimento de um círculo. Para sua confecção considera-se a proporção da quantidade observada específica da quantidade total de dados, expressa na forma de fração do ângulo de um setor circular em relação ao ângulo interno total de um círculo (360\textsuperscript{o}).
 
-\hfill\break
 \hfill\break
 
 \begin{Shaded}
@@ -4334,8 +4340,8 @@ Em um \emph{Gráfico de setores} a representação das quantidades está associa
 
 \hfill\break
 
-\hypertarget{box-plot}{%
-\subsection{Box-plot}\label{box-plot}}
+\hypertarget{box-plot-gruxe1fico-de-caixas}{%
+\subsubsection{Box-plot (gráfico de caixas)}\label{box-plot-gruxe1fico-de-caixas}}
 
 \hfill\break
 
@@ -10631,7 +10637,7 @@ Amostragem aleatória simples com reposição. Considere agora a mesma populaç�
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "d" "b" "e"
+## [1] "d" "c" "e"
 \end{verbatim}
 
 \begin{Shaded}
@@ -10643,7 +10649,7 @@ Amostragem aleatória simples com reposição. Considere agora a mesma populaç�
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "e" "b" "c"
+## [1] "c" "a" "b"
 \end{verbatim}
 
 \hfill\break
@@ -12881,107 +12887,107 @@ Usando conceitos já explicados em uma unidade anterior podemos determinar o tam
 \end{figure}
 
 \begin{verbatim}
-##       mu media     erro   li   ls
-## 1   1600  1601   1.3865 1579 1624
-## 2   1600  1589 -10.8146 1570 1609
-## 3   1600  1601   1.3887 1582 1620
-## 4   1600  1615  14.5318 1597 1632
-## 5   1600  1594  -6.2579 1575 1613
-## 6   1600  1613  13.2442 1594 1632
-## 7   1600  1601   0.9562 1582 1620
-## 8   1600  1587 -13.1888 1566 1608
-## 9   1600  1584 -15.6473 1562 1607
-## 10  1600  1600   0.0996 1580 1620
-## 11  1600  1583 -16.6337 1562 1605
-## 12  1600  1600   0.2354 1579 1621
-## 13  1600  1606   6.0222 1584 1628
-## 14  1600  1605   5.4046 1586 1625
-## 15  1600  1604   4.3000 1584 1625
-## 16  1600  1592  -8.4054 1572 1611
-## 17  1600  1610   9.9815 1590 1630
-## 18  1600  1577 -23.0702 1557 1597
-## 19  1600  1592  -8.0994 1571 1613
-## 20  1600  1614  14.0404 1593 1635
-## 21  1600  1598  -1.5124 1581 1616
-## 22  1600  1603   2.6019 1581 1624
-## 23  1600  1596  -4.3837 1574 1617
-## 24  1600  1602   1.6567 1579 1624
-## 25  1600  1614  14.4077 1594 1635
-## 26  1600  1607   7.3880 1589 1626
-## 27  1600  1601   1.3363 1583 1619
-## 28  1600  1611  10.7473 1590 1631
-## 29  1600  1599  -0.6712 1579 1620
-## 30  1600  1589 -11.1612 1570 1608
-## 31  1600  1587 -13.4140 1563 1610
-## 32  1600  1586 -13.6844 1566 1607
-## 33  1600  1597  -2.5868 1579 1616
-## 34  1600  1586 -14.1356 1566 1606
-## 35  1600  1604   4.1760 1584 1624
-## 36  1600  1613  13.0576 1592 1635
-## 37  1600  1607   6.9861 1588 1626
-## 38  1600  1605   4.9079 1586 1624
-## 39  1600  1590  -9.6068 1569 1611
-## 40  1600  1598  -1.6178 1577 1620
-## 41  1600  1591  -8.8842 1571 1611
-## 42  1600  1606   5.6093 1587 1624
-## 43  1600  1618  17.5507 1597 1638
-## 44  1600  1589 -10.6260 1568 1610
-## 45  1600  1608   8.0215 1589 1627
-## 46  1600  1603   3.0148 1584 1622
-## 47  1600  1587 -12.9971 1566 1608
-## 48  1600  1603   3.4794 1585 1622
-## 49  1600  1586 -14.1092 1567 1604
-## 50  1600  1607   6.8811 1588 1625
-## 51  1600  1597  -3.3848 1577 1617
-## 52  1600  1608   8.0975 1590 1626
-## 53  1600  1602   2.2106 1583 1621
-## 54  1600  1607   7.2032 1587 1628
-## 55  1600  1598  -2.2727 1579 1616
-## 56  1600  1571 -28.6911 1554 1589
-## 57  1600  1611  10.8021 1592 1630
-## 58  1600  1606   6.1981 1586 1627
-## 59  1600  1618  17.7155 1600 1636
-## 60  1600  1605   5.0217 1583 1627
-## 61  1600  1615  14.7330 1596 1634
-## 62  1600  1600  -0.3663 1580 1619
-## 63  1600  1604   4.2454 1581 1627
-## 64  1600  1586 -14.2772 1565 1606
-## 65  1600  1586 -14.2065 1567 1605
-## 66  1600  1611  10.8871 1593 1628
-## 67  1600  1606   5.7241 1587 1624
-## 68  1600  1577 -23.3737 1557 1597
-## 69  1600  1592  -8.1967 1572 1611
-## 70  1600  1611  10.7499 1593 1629
-## 71  1600  1612  12.2542 1593 1632
-## 72  1600  1606   5.5543 1588 1623
-## 73  1600  1581 -19.2778 1560 1601
-## 74  1600  1612  11.9803 1591 1633
-## 75  1600  1589 -11.1901 1570 1608
-## 76  1600  1613  13.0505 1594 1632
-## 77  1600  1592  -8.0714 1571 1613
-## 78  1600  1603   3.0871 1582 1624
-## 79  1600  1598  -1.7438 1580 1617
-## 80  1600  1600  -0.2797 1580 1619
-## 81  1600  1571 -29.1476 1553 1589
-## 82  1600  1591  -9.2147 1570 1611
-## 83  1600  1593  -6.9592 1573 1613
-## 84  1600  1581 -18.8904 1562 1600
-## 85  1600  1611  11.1051 1593 1629
-## 86  1600  1606   5.7909 1585 1627
-## 87  1600  1601   0.9247 1581 1621
-## 88  1600  1596  -4.4099 1576 1616
-## 89  1600  1601   1.3239 1581 1622
-## 90  1600  1599  -1.4921 1580 1617
-## 91  1600  1591  -9.2367 1570 1611
-## 92  1600  1594  -5.9860 1575 1613
-## 93  1600  1613  13.2764 1592 1634
-## 94  1600  1595  -4.6633 1575 1616
-## 95  1600  1587 -12.8717 1566 1608
-## 96  1600  1605   5.2052 1587 1623
-## 97  1600  1609   9.2567 1591 1628
-## 98  1600  1617  17.1399 1597 1638
-## 99  1600  1606   5.9255 1587 1625
-## 100 1600  1596  -3.6918 1578 1615
+##       mu media      erro   li   ls
+## 1   1600  1595  -5.25407 1575 1614
+## 2   1600  1610   9.68184 1589 1630
+## 3   1600  1619  19.24256 1598 1640
+## 4   1600  1597  -3.34580 1577 1616
+## 5   1600  1599  -0.84034 1579 1619
+## 6   1600  1614  13.67641 1595 1632
+## 7   1600  1610   9.65397 1591 1629
+## 8   1600  1600   0.08824 1580 1621
+## 9   1600  1595  -4.89545 1577 1614
+## 10  1600  1601   0.99347 1582 1620
+## 11  1600  1606   6.15226 1588 1625
+## 12  1600  1603   3.45415 1586 1621
+## 13  1600  1608   8.23395 1589 1627
+## 14  1600  1609   9.31225 1587 1632
+## 15  1600  1615  15.30171 1597 1634
+## 16  1600  1609   8.83270 1588 1629
+## 17  1600  1591  -8.58148 1572 1611
+## 18  1600  1612  11.90207 1591 1633
+## 19  1600  1605   4.86073 1586 1623
+## 20  1600  1598  -2.02594 1579 1616
+## 21  1600  1596  -4.36886 1576 1615
+## 22  1600  1593  -7.45368 1572 1613
+## 23  1600  1574 -25.75252 1553 1596
+## 24  1600  1618  17.94372 1599 1637
+## 25  1600  1593  -6.77888 1576 1611
+## 26  1600  1608   8.37778 1587 1630
+## 27  1600  1581 -18.56498 1559 1604
+## 28  1600  1597  -3.19068 1575 1619
+## 29  1600  1588 -11.64121 1568 1608
+## 30  1600  1605   5.19734 1585 1625
+## 31  1600  1612  11.99085 1593 1631
+## 32  1600  1611  11.02260 1591 1631
+## 33  1600  1577 -23.42653 1557 1596
+## 34  1600  1600  -0.24598 1580 1619
+## 35  1600  1591  -8.91906 1570 1612
+## 36  1600  1585 -15.05885 1567 1603
+## 37  1600  1599  -0.72706 1580 1619
+## 38  1600  1596  -3.55606 1578 1615
+## 39  1600  1614  14.19083 1595 1634
+## 40  1600  1587 -12.61297 1569 1605
+## 41  1600  1595  -4.84907 1575 1615
+## 42  1600  1617  17.21365 1595 1639
+## 43  1600  1596  -4.44636 1575 1616
+## 44  1600  1604   4.40788 1584 1625
+## 45  1600  1607   7.38374 1588 1626
+## 46  1600  1596  -3.62881 1578 1615
+## 47  1600  1577 -23.46177 1559 1594
+## 48  1600  1593  -7.46735 1571 1614
+## 49  1600  1611  11.44447 1592 1630
+## 50  1600  1616  16.09867 1596 1636
+## 51  1600  1597  -2.89195 1577 1617
+## 52  1600  1610   9.92041 1590 1630
+## 53  1600  1609   8.90219 1587 1631
+## 54  1600  1585 -14.77581 1565 1605
+## 55  1600  1613  12.92802 1593 1632
+## 56  1600  1590  -9.94638 1569 1611
+## 57  1600  1602   2.17100 1582 1623
+## 58  1600  1595  -5.31724 1577 1612
+## 59  1600  1597  -2.51730 1578 1617
+## 60  1600  1605   5.27502 1586 1625
+## 61  1600  1600   0.28992 1581 1620
+## 62  1600  1604   3.88511 1585 1622
+## 63  1600  1613  13.30519 1594 1632
+## 64  1600  1598  -1.52897 1579 1618
+## 65  1600  1605   5.47295 1585 1626
+## 66  1600  1595  -4.77705 1576 1615
+## 67  1600  1598  -2.06103 1579 1616
+## 68  1600  1599  -0.82070 1580 1618
+## 69  1600  1592  -8.27968 1573 1610
+## 70  1600  1586 -13.89588 1568 1604
+## 71  1600  1604   4.35616 1583 1626
+## 72  1600  1606   5.93924 1585 1627
+## 73  1600  1615  14.81757 1597 1633
+## 74  1600  1605   4.83851 1585 1625
+## 75  1600  1595  -5.14114 1576 1614
+## 76  1600  1608   8.07615 1588 1628
+## 77  1600  1579 -21.45703 1557 1600
+## 78  1600  1611  10.93514 1592 1630
+## 79  1600  1590  -9.59391 1571 1610
+## 80  1600  1581 -19.48718 1559 1602
+## 81  1600  1594  -5.95911 1574 1614
+## 82  1600  1601   0.98252 1581 1620
+## 83  1600  1596  -4.42919 1576 1615
+## 84  1600  1597  -3.25858 1577 1616
+## 85  1600  1587 -12.80119 1568 1607
+## 86  1600  1614  13.99566 1596 1632
+## 87  1600  1589 -10.65895 1571 1608
+## 88  1600  1600  -0.44534 1581 1618
+## 89  1600  1596  -4.29862 1575 1617
+## 90  1600  1608   7.74701 1588 1628
+## 91  1600  1603   3.14912 1583 1623
+## 92  1600  1609   8.89497 1590 1628
+## 93  1600  1600  -0.40192 1580 1619
+## 94  1600  1590  -9.61880 1571 1610
+## 95  1600  1614  14.36439 1593 1636
+## 96  1600  1608   8.29864 1588 1629
+## 97  1600  1595  -5.17218 1576 1614
+## 98  1600  1596  -4.16205 1576 1616
+## 99  1600  1591  -9.16275 1572 1610
+## 100 1600  1597  -2.92892 1577 1617
 \end{verbatim}
 
 \hfill\break
@@ -13133,106 +13139,106 @@ Assim, \((1-\alpha)\) traduz o grau de confiança que se tem que um intervalo de
 
 \begin{verbatim}
 ##        mu  media      erro    li     ls
-## 1   9.421  8.962 -0.458576 7.886 10.038
-## 2   9.421 10.513  1.091894 9.527 11.499
-## 3   9.421 10.070  0.648976 9.047 11.093
-## 4   9.421  9.731  0.309858 8.657 10.805
-## 5   9.421  9.415 -0.006391 8.302 10.527
-## 6   9.421  9.356 -0.065275 8.265 10.446
-## 7   9.421  9.617  0.196433 8.659 10.576
-## 8   9.421 10.081  0.660362 8.978 11.185
-## 9   9.421  8.704 -0.716546 7.738  9.671
-## 10  9.421 10.061  0.639550 9.260 10.861
-## 11  9.421 10.260  0.839188 9.249 11.271
-## 12  9.421  9.174 -0.247236 8.088 10.259
-## 13  9.421  9.270 -0.151438 8.026 10.513
-## 14  9.421 10.046  0.625427 8.986 11.107
-## 15  9.421 10.385  0.964341 9.434 11.337
-## 16  9.421  8.738 -0.683029 7.794  9.682
-## 17  9.421  9.896  0.475133 9.009 10.783
-## 18  9.421 10.215  0.793905 9.195 11.235
-## 19  9.421  9.163 -0.257840 8.094 10.233
-## 20  9.421  8.833 -0.588049 7.853  9.813
-## 21  9.421  8.890 -0.531410 7.857  9.922
-## 22  9.421  9.627  0.205553 8.568 10.686
-## 23  9.421  9.972  0.551179 8.939 11.006
-## 24  9.421  9.418 -0.003294 8.432 10.403
-## 25  9.421  9.593  0.171975 8.665 10.521
-## 26  9.421  9.571  0.149778 8.419 10.723
-## 27  9.421  9.604  0.182762 8.592 10.616
-## 28  9.421 10.257  0.836057 9.361 11.154
-## 29  9.421 10.160  0.738596 9.229 11.090
-## 30  9.421 10.599  1.178169 9.626 11.572
-## 31  9.421  9.774  0.353066 8.827 10.721
-## 32  9.421  8.496 -0.925098 7.531  9.461
-## 33  9.421  9.026 -0.395099 8.169  9.883
-## 34  9.421  9.443  0.022442 8.275 10.612
-## 35  9.421 10.474  1.053066 9.536 11.412
-## 36  9.421 10.163  0.741773 9.161 11.165
-## 37  9.421  9.183 -0.237981 8.230 10.136
-## 38  9.421  9.652  0.231393 8.683 10.622
-## 39  9.421  9.578  0.157281 8.523 10.633
-## 40  9.421  9.315 -0.106034 8.041 10.588
-## 41  9.421  9.500  0.078769 8.347 10.653
-## 42  9.421  9.279 -0.141835 8.250 10.308
-## 43  9.421  8.901 -0.520205 7.786 10.015
-## 44  9.421  9.310 -0.111261 8.431 10.188
-## 45  9.421  9.088 -0.333459 8.022 10.154
-## 46  9.421  9.536  0.114604 8.515 10.556
-## 47  9.421 10.280  0.859405 9.235 11.326
-## 48  9.421  9.566  0.144638 8.409 10.723
-## 49  9.421  9.580  0.158957 8.623 10.537
-## 50  9.421  9.229 -0.192212 8.352 10.106
-## 51  9.421  8.475 -0.946019 7.489  9.461
-## 52  9.421  9.314 -0.107453 8.437 10.190
-## 53  9.421  9.724  0.302618 8.709 10.738
-## 54  9.421  8.803 -0.618374 7.763  9.842
-## 55  9.421  9.737  0.315729 8.601 10.872
-## 56  9.421  9.968  0.546952 8.857 11.079
-## 57  9.421 10.040  0.619167 9.064 11.017
-## 58  9.421  8.936 -0.484552 7.840 10.033
-## 59  9.421 10.300  0.878696 9.317 11.282
-## 60  9.421 10.114  0.692670 9.108 11.119
-## 61  9.421  8.087 -1.334444 7.219  8.954
-## 62  9.421  9.554  0.133486 8.560 10.549
-## 63  9.421  9.466  0.045395 8.489 10.443
-## 64  9.421  8.656 -0.765105 7.689  9.623
-## 65  9.421  8.806 -0.615298 7.499 10.113
-## 66  9.421  9.775  0.353839 8.791 10.759
-## 67  9.421  9.861  0.439848 8.806 10.916
-## 68  9.421  9.477  0.055912 8.439 10.515
-## 69  9.421 10.090  0.668880 9.080 11.100
-## 70  9.421  9.957  0.535850 8.783 11.130
-## 71  9.421  9.401 -0.019749 8.467 10.336
-## 72  9.421  9.044 -0.377094 7.941 10.147
-## 73  9.421  9.044 -0.376936 8.050 10.038
-## 74  9.421  9.249 -0.172484 8.139 10.358
-## 75  9.421  8.479 -0.941950 7.381  9.577
-## 76  9.421  9.334 -0.087446 8.212 10.456
-## 77  9.421  8.328 -1.092851 7.372  9.285
-## 78  9.421  8.984 -0.436928 7.895 10.073
-## 79  9.421 10.033  0.611678 9.122 10.943
-## 80  9.421  9.308 -0.113204 8.263 10.353
-## 81  9.421  8.710 -0.711123 7.753  9.666
-## 82  9.421  8.578 -0.842659 7.530  9.627
-## 83  9.421  9.066 -0.354781 8.061 10.071
-## 84  9.421  9.285 -0.135684 8.269 10.301
-## 85  9.421  9.567  0.145739 8.467 10.667
-## 86  9.421  9.952  0.531363 8.983 10.922
-## 87  9.421  8.559 -0.861795 7.478  9.641
-## 88  9.421 10.180  0.759340 9.169 11.192
-## 89  9.421  9.424  0.002930 8.415 10.433
-## 90  9.421  9.694  0.272848 8.768 10.620
-## 91  9.421  9.408 -0.013294 8.347 10.468
-## 92  9.421  9.614  0.192626 8.480 10.747
-## 93  9.421 10.076  0.655246 9.137 11.016
-## 94  9.421  9.246 -0.175299 8.141 10.350
-## 95  9.421  9.085 -0.335975 8.011 10.159
-## 96  9.421  9.002 -0.419229 7.959 10.044
-## 97  9.421  9.718  0.297363 8.805 10.632
-## 98  9.421  9.537  0.115667 8.456 10.617
-## 99  9.421  8.394 -1.027470 7.311  9.476
-## 100 9.421  9.511  0.089573 8.555 10.466
+## 1   9.421  9.276 -0.145481 8.285 10.267
+## 2   9.421  9.428  0.007455 8.408 10.449
+## 3   9.421 10.137  0.716290 9.250 11.024
+## 4   9.421 10.033  0.612382 9.003 11.064
+## 5   9.421  9.409 -0.011661 8.366 10.452
+## 6   9.421  9.794  0.373322 8.711 10.878
+## 7   9.421  9.909  0.488329 8.870 10.949
+## 8   9.421  9.947  0.526327 9.054 10.841
+## 9   9.421  9.781  0.360140 8.770 10.792
+## 10  9.421  9.545  0.124335 8.456 10.635
+## 11  9.421  9.734  0.313312 8.636 10.833
+## 12  9.421  8.683 -0.737646 7.636  9.731
+## 13  9.421  9.183 -0.237867 8.230 10.136
+## 14  9.421  9.575  0.154423 8.464 10.687
+## 15  9.421 10.436  1.015251 9.371 11.502
+## 16  9.421  9.244 -0.176695 8.333 10.156
+## 17  9.421  9.682  0.261389 8.710 10.655
+## 18  9.421  9.751  0.330337 8.697 10.806
+## 19  9.421  8.730 -0.690610 7.745  9.716
+## 20  9.421  9.054 -0.366797 7.822 10.286
+## 21  9.421  9.845  0.424021 8.834 10.856
+## 22  9.421  9.949  0.528453 8.796 11.103
+## 23  9.421 10.128  0.707206 9.119 11.137
+## 24  9.421 10.034  0.612832 9.170 10.898
+## 25  9.421  8.410 -1.010815 7.404  9.417
+## 26  9.421  8.912 -0.509262 7.999  9.824
+## 27  9.421  9.413 -0.007983 8.391 10.435
+## 28  9.421  8.526 -0.894972 7.585  9.467
+## 29  9.421  8.440 -0.980832 7.286  9.595
+## 30  9.421  9.058 -0.363156 8.012 10.103
+## 31  9.421  9.742  0.320646 8.607 10.876
+## 32  9.421  9.735  0.314298 8.631 10.839
+## 33  9.421  9.491  0.069998 8.464 10.518
+## 34  9.421 10.049  0.628329 9.045 11.053
+## 35  9.421  9.986  0.564899 8.886 11.085
+## 36  9.421  9.000 -0.420600 7.895 10.106
+## 37  9.421  8.829 -0.591996 7.811  9.847
+## 38  9.421 10.627  1.205660 9.664 11.589
+## 39  9.421  9.076 -0.345162 8.047 10.105
+## 40  9.421  8.710 -0.711432 7.708  9.711
+## 41  9.421 10.248  0.826812 9.088 11.408
+## 42  9.421  8.389 -1.031948 7.487  9.291
+## 43  9.421 10.271  0.850124 9.158 11.384
+## 44  9.421  9.330 -0.091447 8.293 10.366
+## 45  9.421 10.697  1.275856 9.633 11.761
+## 46  9.421  9.030 -0.391417 8.065  9.994
+## 47  9.421 10.118  0.696790 9.207 11.029
+## 48  9.421  8.652 -0.769388 7.552  9.751
+## 49  9.421  8.911 -0.509623 7.933  9.890
+## 50  9.421  9.511  0.090466 8.578 10.445
+## 51  9.421 10.309  0.887630 9.143 11.475
+## 52  9.421  9.871  0.449541 8.841 10.900
+## 53  9.421  9.615  0.194002 8.601 10.629
+## 54  9.421  8.732 -0.689480 7.820  9.643
+## 55  9.421  8.929 -0.492352 7.890  9.967
+## 56  9.421  9.002 -0.419124 8.144  9.860
+## 57  9.421  9.491  0.069558 8.483 10.498
+## 58  9.421  9.245 -0.176123 8.124 10.366
+## 59  9.421  9.171 -0.249879 8.098 10.244
+## 60  9.421  9.836  0.415464 8.652 11.021
+## 61  9.421  9.699  0.277659 8.732 10.665
+## 62  9.421  9.296 -0.124788 8.246 10.346
+## 63  9.421  9.390 -0.031200 8.480 10.299
+## 64  9.421  9.465  0.043990 8.496 10.434
+## 65  9.421  9.349 -0.071948 8.329 10.369
+## 66  9.421  9.537  0.116310 8.435 10.640
+## 67  9.421  9.633  0.211904 8.513 10.753
+## 68  9.421  9.349 -0.072472 8.378 10.319
+## 69  9.421  9.023 -0.398416 7.919 10.126
+## 70  9.421  8.946 -0.475394 7.855 10.037
+## 71  9.421  8.642 -0.778804 7.636  9.649
+## 72  9.421  9.108 -0.313371 8.038 10.177
+## 73  9.421  9.537  0.116493 8.487 10.588
+## 74  9.421  7.649 -1.771872 6.669  8.630
+## 75  9.421  9.760  0.339306 8.788 10.732
+## 76  9.421  9.039 -0.382109 7.966 10.112
+## 77  9.421  8.787 -0.634185 7.749  9.825
+## 78  9.421  9.529  0.108459 8.650 10.409
+## 79  9.421  9.460  0.038518 8.503 10.416
+## 80  9.421  8.613 -0.807961 7.760  9.466
+## 81  9.421  9.486  0.064807 8.538 10.434
+## 82  9.421  9.005 -0.416329 7.724 10.286
+## 83  9.421  9.581  0.160121 8.546 10.616
+## 84  9.421 10.537  1.115766 9.466 11.607
+## 85  9.421  9.866  0.444657 8.702 11.030
+## 86  9.421  9.259 -0.162021 8.255 10.263
+## 87  9.421 10.013  0.591864 9.011 11.015
+## 88  9.421  8.645 -0.776316 7.568  9.721
+## 89  9.421  8.942 -0.478948 7.889  9.995
+## 90  9.421  8.720 -0.700573 7.776  9.665
+## 91  9.421  9.258 -0.163300 8.206 10.309
+## 92  9.421  8.868 -0.552761 8.028  9.709
+## 93  9.421  9.405 -0.016371 8.373 10.436
+## 94  9.421  8.786 -0.634571 7.742  9.830
+## 95  9.421  9.279 -0.141792 8.155 10.403
+## 96  9.421  9.445  0.024252 8.368 10.522
+## 97  9.421  9.526  0.104758 8.489 10.562
+## 98  9.421 10.087  0.666210 8.900 11.274
+## 99  9.421  8.900 -0.520781 7.868  9.933
+## 100 9.421  9.068 -0.353443 8.042 10.093
 \end{verbatim}
 
 \hfill\break
@@ -16817,107 +16823,107 @@ Usando conceitos já explicados em uma unidade anterior podemos determinar o tam
 \end{figure}
 
 \begin{verbatim}
-##       mu media     erro   li   ls
-## 1   1600  1584 -16.2656 1565 1603
-## 2   1600  1607   7.2416 1587 1627
-## 3   1600  1612  11.6288 1591 1633
-## 4   1600  1592  -7.6645 1573 1612
-## 5   1600  1592  -7.9256 1572 1612
-## 6   1600  1596  -4.0426 1576 1616
-## 7   1600  1620  20.1997 1601 1640
-## 8   1600  1602   1.5676 1581 1622
-## 9   1600  1605   4.5543 1584 1625
-## 10  1600  1589 -10.8233 1569 1610
-## 11  1600  1624  23.5882 1605 1642
-## 12  1600  1623  22.5715 1603 1642
-## 13  1600  1618  17.5732 1599 1636
-## 14  1600  1615  15.3204 1594 1637
-## 15  1600  1596  -3.9646 1575 1617
-## 16  1600  1598  -2.2489 1578 1618
-## 17  1600  1596  -4.4304 1576 1615
-## 18  1600  1588 -11.9727 1570 1606
-## 19  1600  1595  -5.2558 1576 1614
-## 20  1600  1601   0.6528 1581 1620
-## 21  1600  1607   6.9256 1588 1626
-## 22  1600  1590  -9.7656 1568 1613
-## 23  1600  1609   8.8275 1587 1631
-## 24  1600  1600  -0.3224 1578 1621
-## 25  1600  1611  10.9515 1592 1630
-## 26  1600  1596  -4.4742 1576 1615
-## 27  1600  1607   6.8016 1586 1627
-## 28  1600  1614  13.9927 1594 1634
-## 29  1600  1612  11.9263 1592 1632
-## 30  1600  1591  -9.0179 1569 1613
-## 31  1600  1586 -14.0775 1567 1605
-## 32  1600  1594  -5.6281 1571 1618
-## 33  1600  1602   2.4021 1582 1623
-## 34  1600  1593  -7.0647 1573 1613
-## 35  1600  1603   2.9368 1583 1623
-## 36  1600  1588 -11.7548 1570 1606
-## 37  1600  1591  -9.0861 1570 1612
-## 38  1600  1602   1.9820 1582 1622
-## 39  1600  1597  -2.8807 1578 1616
-## 40  1600  1606   5.6091 1585 1627
-## 41  1600  1592  -8.0682 1570 1614
-## 42  1600  1580 -19.8210 1561 1600
-## 43  1600  1580 -20.0450 1560 1600
-## 44  1600  1617  16.5159 1598 1635
-## 45  1600  1602   2.4352 1583 1622
-## 46  1600  1597  -3.2112 1577 1617
-## 47  1600  1603   3.0875 1583 1623
-## 48  1600  1608   7.5796 1589 1627
-## 49  1600  1583 -17.4174 1563 1602
-## 50  1600  1602   2.4003 1580 1625
-## 51  1600  1594  -6.4277 1574 1613
-## 52  1600  1601   0.8958 1580 1621
-## 53  1600  1622  21.6764 1602 1641
-## 54  1600  1591  -9.1907 1570 1611
-## 55  1600  1605   4.5066 1585 1624
-## 56  1600  1588 -12.1764 1568 1608
-## 57  1600  1622  21.7004 1602 1642
-## 58  1600  1595  -4.9293 1576 1614
-## 59  1600  1604   3.6809 1585 1622
-## 60  1600  1597  -3.2893 1579 1615
-## 61  1600  1603   3.4900 1584 1623
-## 62  1600  1591  -9.0195 1571 1611
-## 63  1600  1600  -0.4235 1582 1617
-## 64  1600  1603   2.8818 1583 1622
-## 65  1600  1598  -1.7311 1579 1618
-## 66  1600  1596  -3.7436 1575 1618
-## 67  1600  1581 -18.6035 1563 1600
-## 68  1600  1609   8.5895 1590 1627
-## 69  1600  1602   2.2559 1581 1624
-## 70  1600  1598  -2.2011 1577 1619
-## 71  1600  1610  10.3237 1589 1632
-## 72  1600  1601   1.1444 1581 1621
-## 73  1600  1583 -16.8794 1562 1604
-## 74  1600  1613  13.1214 1594 1632
-## 75  1600  1600  -0.1761 1581 1618
-## 76  1600  1592  -8.0082 1572 1612
-## 77  1600  1604   3.5003 1584 1623
-## 78  1600  1612  12.2700 1592 1633
-## 79  1600  1600   0.1225 1578 1622
-## 80  1600  1592  -7.9065 1572 1612
-## 81  1600  1606   5.9366 1587 1625
-## 82  1600  1592  -8.4707 1571 1612
-## 83  1600  1601   1.4578 1581 1622
-## 84  1600  1603   3.4721 1584 1623
-## 85  1600  1595  -4.6647 1576 1614
-## 86  1600  1609   9.0797 1590 1628
-## 87  1600  1593  -7.0063 1574 1612
-## 88  1600  1605   4.9881 1586 1624
-## 89  1600  1591  -9.3560 1570 1611
-## 90  1600  1594  -6.0308 1574 1614
-## 91  1600  1605   4.9525 1585 1625
-## 92  1600  1604   4.0274 1583 1625
-## 93  1600  1604   3.9440 1584 1624
-## 94  1600  1599  -1.1773 1580 1618
-## 95  1600  1602   1.7344 1582 1621
-## 96  1600  1581 -19.2930 1564 1598
-## 97  1600  1610  10.1878 1590 1630
-## 98  1600  1603   2.6598 1581 1624
-## 99  1600  1595  -5.1371 1575 1615
-## 100 1600  1601   1.2275 1582 1621
+##       mu media      erro   li   ls
+## 1   1600  1609   9.11588 1592 1626
+## 2   1600  1599  -1.40273 1578 1619
+## 3   1600  1598  -2.37785 1577 1618
+## 4   1600  1601   0.91508 1581 1621
+## 5   1600  1605   5.36391 1586 1624
+## 6   1600  1576 -24.00652 1556 1596
+## 7   1600  1598  -2.40351 1575 1620
+## 8   1600  1612  11.50044 1591 1632
+## 9   1600  1608   7.65507 1588 1627
+## 10  1600  1614  13.52568 1592 1635
+## 11  1600  1596  -3.85790 1576 1616
+## 12  1600  1599  -1.44920 1579 1618
+## 13  1600  1595  -5.03348 1574 1616
+## 14  1600  1595  -5.00371 1573 1617
+## 15  1600  1609   8.70302 1589 1629
+## 16  1600  1610   9.96220 1587 1633
+## 17  1600  1598  -2.25848 1579 1617
+## 18  1600  1609   9.12694 1589 1630
+## 19  1600  1596  -4.03488 1574 1618
+## 20  1600  1588 -12.38167 1566 1609
+## 21  1600  1604   3.58622 1584 1623
+## 22  1600  1590  -9.59244 1572 1609
+## 23  1600  1592  -8.13827 1571 1613
+## 24  1600  1609   8.62563 1588 1629
+## 25  1600  1586 -14.42579 1564 1607
+## 26  1600  1589 -11.17156 1569 1609
+## 27  1600  1605   4.76498 1586 1624
+## 28  1600  1593  -6.63520 1575 1612
+## 29  1600  1592  -7.89757 1570 1614
+## 30  1600  1603   2.54034 1583 1622
+## 31  1600  1590  -9.97936 1572 1608
+## 32  1600  1602   1.71796 1582 1621
+## 33  1600  1617  16.80356 1597 1636
+## 34  1600  1599  -1.05505 1580 1618
+## 35  1600  1602   1.73892 1581 1622
+## 36  1600  1601   0.81973 1583 1618
+## 37  1600  1588 -12.36722 1567 1609
+## 38  1600  1584 -16.32089 1564 1603
+## 39  1600  1605   5.34562 1585 1625
+## 40  1600  1600  -0.04810 1581 1618
+## 41  1600  1604   4.27001 1583 1626
+## 42  1600  1566 -34.09147 1547 1585
+## 43  1600  1588 -12.01086 1568 1608
+## 44  1600  1598  -1.71392 1579 1618
+## 45  1600  1591  -9.08767 1569 1613
+## 46  1600  1576 -23.67708 1556 1597
+## 47  1600  1603   2.63492 1583 1622
+## 48  1600  1611  10.85979 1591 1631
+## 49  1600  1583 -17.16166 1563 1603
+## 50  1600  1622  21.75565 1601 1643
+## 51  1600  1607   7.24207 1586 1628
+## 52  1600  1594  -5.63045 1577 1612
+## 53  1600  1590 -10.33368 1569 1611
+## 54  1600  1604   3.91626 1584 1624
+## 55  1600  1601   0.91319 1578 1623
+## 56  1600  1584 -15.87866 1564 1604
+## 57  1600  1602   1.97188 1584 1620
+## 58  1600  1602   1.85923 1581 1622
+## 59  1600  1595  -4.71362 1576 1615
+## 60  1600  1605   5.41337 1586 1625
+## 61  1600  1597  -3.26003 1576 1618
+## 62  1600  1603   3.40240 1585 1622
+## 63  1600  1605   4.71232 1585 1625
+## 64  1600  1597  -2.52320 1579 1616
+## 65  1600  1599  -1.20728 1577 1621
+## 66  1600  1595  -4.52853 1576 1615
+## 67  1600  1604   3.99848 1584 1624
+## 68  1600  1587 -13.44496 1565 1608
+## 69  1600  1617  17.43613 1598 1636
+## 70  1600  1596  -3.84288 1577 1615
+## 71  1600  1606   5.64091 1589 1622
+## 72  1600  1611  11.30441 1593 1630
+## 73  1600  1591  -8.50328 1571 1612
+## 74  1600  1604   3.89095 1583 1625
+## 75  1600  1597  -2.71454 1578 1617
+## 76  1600  1585 -14.59873 1568 1603
+## 77  1600  1582 -17.67877 1562 1602
+## 78  1600  1603   3.45030 1582 1624
+## 79  1600  1610  10.20074 1591 1629
+## 80  1600  1599  -0.52661 1580 1619
+## 81  1600  1589 -11.38289 1569 1608
+## 82  1600  1611  10.89111 1590 1631
+## 83  1600  1602   2.40774 1582 1622
+## 84  1600  1590  -9.60062 1570 1610
+## 85  1600  1588 -11.57343 1570 1606
+## 86  1600  1605   5.48756 1583 1628
+## 87  1600  1600   0.27981 1581 1620
+## 88  1600  1610  10.45908 1592 1628
+## 89  1600  1596  -3.85122 1575 1618
+## 90  1600  1607   7.19857 1587 1627
+## 91  1600  1591  -9.14709 1571 1611
+## 92  1600  1592  -8.42963 1572 1612
+## 93  1600  1598  -2.15528 1578 1618
+## 94  1600  1600  -0.09341 1577 1622
+## 95  1600  1585 -14.87862 1567 1603
+## 96  1600  1607   6.51132 1586 1627
+## 97  1600  1612  11.83520 1591 1632
+## 98  1600  1589 -11.46149 1568 1609
+## 99  1600  1606   6.11880 1587 1625
+## 100 1600  1602   1.79093 1582 1621
 \end{verbatim}
 
 \hfill\break

@@ -164,7 +164,7 @@ DSTA - Departamento de Estatística\\
 Apostila de Estatística\\
 Prof.~M.e Eng.\(^{o}\) Felinto Junior Da Costa}
 \author{}
-\date{\vspace{-2.5em}Londrina, 13 de setembro de 2023.}
+\date{\vspace{-2.5em}Londrina, 17 de setembro de 2023.}
 
 \begin{document}
 \maketitle
@@ -4118,6 +4118,85 @@ Em um \emph{Gráfico de setores} a representação das quantidades está associa
 \caption{\label{fig:unnamed-chunk-53}Gráfico de setores da estrutura domiciliar dos Estados Unidos}
 \end{figure}
 
+\hfill\break
+
+\hypertarget{colunas-para-dados-em-uma-tabela-de-dupla-entrada}{%
+\subsubsection{Colunas para dados em uma tabela de dupla entrada}\label{colunas-para-dados-em-uma-tabela-de-dupla-entrada}}
+
+\hfill\break
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)             }\CommentTok{\# Carrega a biblioteca ggplot2}
+
+\CommentTok{\# Dados fornecidos}
+\NormalTok{casal\_com\_filho\_democratas }\OtherTok{\textless{}{-}} \DecValTok{3478}
+\NormalTok{casal\_com\_filho\_republicano }\OtherTok{\textless{}{-}} \DecValTok{2136}
+\NormalTok{casal\_sem\_filho\_democratas }\OtherTok{\textless{}{-}} \DecValTok{2209}
+\NormalTok{casal\_sem\_filho\_republicano }\OtherTok{\textless{}{-}} \DecValTok{2177}
+
+\CommentTok{\# Criar um dataframe com os dados}
+\NormalTok{dados }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Categoria =} \FunctionTok{c}\NormalTok{(}\StringTok{"Com Filhos"}\NormalTok{, }\StringTok{"Com Filhos"}\NormalTok{, }\StringTok{"Sem Filhos"}\NormalTok{, }\StringTok{"Sem Filhos"}\NormalTok{),}
+  \AttributeTok{Partido =} \FunctionTok{c}\NormalTok{(}\StringTok{"Democratas"}\NormalTok{, }\StringTok{"Republicanos"}\NormalTok{, }\StringTok{"Democratas"}\NormalTok{, }\StringTok{"Republicanos"}\NormalTok{),}
+  \AttributeTok{Contagem =} \FunctionTok{c}\NormalTok{(casal\_com\_filho\_democratas, casal\_com\_filho\_republicano,}
+\NormalTok{               casal\_sem\_filho\_democratas, casal\_sem\_filho\_republicano)}
+\NormalTok{)}
+
+\CommentTok{\# Criar o gráfico de barras empilhadas}
+\FunctionTok{ggplot}\NormalTok{(dados, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Categoria, }\AttributeTok{y =}\NormalTok{ Contagem, }\AttributeTok{fill =}\NormalTok{ Partido)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Contagem de Votos por Categoria e Partido (Censo dos EUA,2005)"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Categoria"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Contagem"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"Democratas"} \OtherTok{=} \StringTok{"lightgreen"}\NormalTok{, }\StringTok{"Republicanos"} \OtherTok{=} \StringTok{"lightblue"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{apostila_files/figure-latex/unnamed-chunk-54-1.pdf}
+\caption{\label{fig:unnamed-chunk-54}Gráfico de barras da estrutura familiar em relação à inclinação partidária nos Estados Unidos}
+\end{figure}
+
+\hfill\break
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)             }\CommentTok{\# Carrega a biblioteca ggplot2}
+
+\CommentTok{\# Dados fornecidos}
+\NormalTok{fumantes\_filho\_bp }\OtherTok{=} \DecValTok{275}
+\NormalTok{fumantes\_filho\_pn }\OtherTok{=} \DecValTok{2144}
+\NormalTok{n\_fumantes\_filho\_bp }\OtherTok{=} \DecValTok{311}
+\NormalTok{n\_fumantes\_filho\_pn }\OtherTok{=} \DecValTok{6640}
+
+\CommentTok{\# Criar um dataframe com os dados}
+\NormalTok{dados }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Risco =} \FunctionTok{c}\NormalTok{(}\StringTok{"Fumante"}\NormalTok{, }\StringTok{"Fumante"}\NormalTok{, }\StringTok{"Não fumante"}\NormalTok{, }\StringTok{"Não fumante"}\NormalTok{),}
+  \AttributeTok{Peso =} \FunctionTok{c}\NormalTok{(}\StringTok{"Baixo peso"}\NormalTok{, }\StringTok{"Peso normal"}\NormalTok{, }\StringTok{"Baixo peso"}\NormalTok{, }\StringTok{"Peso normal"}\NormalTok{),}
+  \AttributeTok{Contagem =} \FunctionTok{c}\NormalTok{(fumantes\_filho\_bp, fumantes\_filho\_pn,}
+\NormalTok{               n\_fumantes\_filho\_bp, n\_fumantes\_filho\_pn)}
+\NormalTok{)}
+
+\CommentTok{\# Criar o gráfico de barras empilhadas}
+\FunctionTok{ggplot}\NormalTok{(dados, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Risco, }\AttributeTok{y =}\NormalTok{ Contagem, }\AttributeTok{fill =}\NormalTok{ Peso)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Peso de recém nascidos em Pelotas (RS, 1982)"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Exposição ao risco"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Contagem"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"Baixo peso"} \OtherTok{=} \StringTok{"gray"}\NormalTok{, }\StringTok{"Peso normal"} \OtherTok{=} \StringTok{"lightgreen"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{apostila_files/figure-latex/unnamed-chunk-55-1.pdf}
+\caption{\label{fig:unnamed-chunk-55}Gráfico de barras da exposição ao fator de risco e o efeito}
+\end{figure}
+
 \hypertarget{gruxe1ficos-para-uma-variuxe1vel-quantitativa}{%
 \subsection{Gráficos para uma variável quantitativa}\label{gruxe1ficos-para-uma-variuxe1vel-quantitativa}}
 
@@ -4163,8 +4242,8 @@ Se modificarmos o diagrama de ramos e folhas dos comprimentos e quantidades obse
 
 \begin{figure}
 \centering
-\includegraphics{apostila_files/figure-latex/unnamed-chunk-54-1.pdf}
-\caption{\label{fig:unnamed-chunk-54}Gráfico de barras dos dados brutos: uma barra para cada observação e sua altura expressando o número de observações com esse valor}
+\includegraphics{apostila_files/figure-latex/unnamed-chunk-56-1.pdf}
+\caption{\label{fig:unnamed-chunk-56}Gráfico de barras dos dados brutos: uma barra para cada observação e sua altura expressando o número de observações com esse valor}
 \end{figure}
 
 \hfill\break
@@ -4198,11 +4277,11 @@ Para as classes estabelecias na seção anterior o histograma das alturas dos es
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth]{apostila_files/figure-latex/unnamed-chunk-55-1} 
+{\centering \includegraphics[width=0.8\linewidth]{apostila_files/figure-latex/unnamed-chunk-57-1} 
 
 }
 
-\caption{Histograma das alturas dos estudantes com as posições da média, moda e mediana}\label{fig:unnamed-chunk-55}
+\caption{Histograma das alturas dos estudantes com as posições da média, moda e mediana}\label{fig:unnamed-chunk-57}
 \end{figure}
 
 \hfill\break
@@ -4230,7 +4309,7 @@ Num histograma de densidade, a altura de cada retângulo representa a densidade 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{h2}\OtherTok{=}\FunctionTok{hist}\NormalTok{(alturas,}\AttributeTok{breaks=}\FunctionTok{seq}\NormalTok{(}\FloatTok{1.41}\NormalTok{ , }\FloatTok{2.01}\NormalTok{ , }\FloatTok{0.10}\NormalTok{), }\AttributeTok{main=} \StringTok{"Histograma das alturas dos estudantes"}\NormalTok{, }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{, }
+\NormalTok{h2}\OtherTok{=}\FunctionTok{hist}\NormalTok{(alturas,}\AttributeTok{breaks=}\FunctionTok{seq}\NormalTok{(}\FloatTok{1.41}\NormalTok{ , }\FloatTok{2.01}\NormalTok{ , }\FloatTok{0.10}\NormalTok{), }\AttributeTok{main=} \StringTok{"Histograma das densidades das alturas dos estudantes"}\NormalTok{, }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{, }
 \AttributeTok{xlab=}\StringTok{"Classes de alturas (m)"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Densidade da freq. relativa"}\NormalTok{, }\AttributeTok{prob=}\StringTok{"TRUE"}\NormalTok{, }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{5}\NormalTok{))}
 \FunctionTok{text}\NormalTok{(h2}\SpecialCharTok{$}\NormalTok{mids,h2}\SpecialCharTok{$}\NormalTok{density,}\AttributeTok{labels=}\FunctionTok{round}\NormalTok{(h2}\SpecialCharTok{$}\NormalTok{density, }\DecValTok{5}\NormalTok{), }\AttributeTok{adj=}\FunctionTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\SpecialCharTok{{-}}\FloatTok{0.5}\NormalTok{), }\AttributeTok{cex=}\FloatTok{0.7}\NormalTok{)}
 \FunctionTok{lines}\NormalTok{(}\FunctionTok{density}\NormalTok{(alturas), }\AttributeTok{col=}\StringTok{"red"}\NormalTok{)             }
@@ -4240,8 +4319,8 @@ Num histograma de densidade, a altura de cada retângulo representa a densidade 
 
 \begin{figure}
 \centering
-\includegraphics{apostila_files/figure-latex/unnamed-chunk-56-1.pdf}
-\caption{\label{fig:unnamed-chunk-56}A linha vermelha é uma aproximação da Função de Densidade da frequência relativa de observação (a linha preta é a curva da função densidade de uma distribuição Normal com média e variâncias dadas pelos dados}
+\includegraphics{apostila_files/figure-latex/unnamed-chunk-58-1.pdf}
+\caption{\label{fig:unnamed-chunk-58}A linha vermelha é uma aproximação da Função de Densidade da frequência relativa de observação (a linha preta é a curva da função densidade de uma distribuição Normal com média e variâncias dadas pelos dados}
 \end{figure}
 
 \hfill\break
@@ -4332,8 +4411,8 @@ Em um \emph{Gráfico de setores} a representação das quantidades está associa
 
 \begin{figure}
 \centering
-\includegraphics{apostila_files/figure-latex/unnamed-chunk-58-1.pdf}
-\caption{\label{fig:unnamed-chunk-58}Gráfico de setores das alturas dos estudantes}
+\includegraphics{apostila_files/figure-latex/unnamed-chunk-60-1.pdf}
+\caption{\label{fig:unnamed-chunk-60}Gráfico de setores das alturas dos estudantes}
 \end{figure}
 
 \hfill\break
@@ -4399,38 +4478,48 @@ O gráfico \textbf{Box-plot} ( \emph{box and whisker plot} ): esse gráfico apre
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{boxplot}\NormalTok{(alturas, }
-        \AttributeTok{main=}\StringTok{"Boxplot do conjunto de dados de alturas }\SpecialCharTok{\textbackslash{}n}\StringTok{(média=1,69 ; mediana=1,675 ; min=1,41 ; máx=2,00 ; Q1=1,635 ; Q3=1,755 ; iq=0,12 , LS=1,935  ; LI=1,455 )"}\NormalTok{,}
-        \AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\FloatTok{1.3}\NormalTok{, }\FloatTok{2.1}\NormalTok{))}
-\FunctionTok{lines}\NormalTok{( }\AttributeTok{y=}\FunctionTok{c}\NormalTok{(min, min), }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\FloatTok{0.6}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{col=}\StringTok{"red"}\NormalTok{) }
-\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{0.60}\NormalTok{, }\AttributeTok{y=}\NormalTok{min}\FloatTok{{-}0.05}\NormalTok{, }\StringTok{"Valor mínimo observado"}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{( }\AttributeTok{y=}\FunctionTok{c}\NormalTok{(max,max), }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\FloatTok{0.6}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{col=}\StringTok{"red"}\NormalTok{) }
-\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{0.60}\NormalTok{, }\AttributeTok{y=}\NormalTok{max}\FloatTok{+0.05}\NormalTok{, }\StringTok{"Valor máximo observado"}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(}\AttributeTok{y=}\FunctionTok{c}\NormalTok{(med, med),  }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\FloatTok{1.4}\NormalTok{), }\AttributeTok{col=}\StringTok{"red"}\NormalTok{) }
-\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{1.4}\NormalTok{ , }\AttributeTok{y=}\NormalTok{ med}\FloatTok{+0.02}\NormalTok{ , }\StringTok{"Média"}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(}\AttributeTok{y=}\FunctionTok{c}\NormalTok{(q1, q1), }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\FloatTok{1.4}\NormalTok{), }\AttributeTok{col=}\StringTok{"red"}\NormalTok{) }
-\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{1.4}\NormalTok{, }\AttributeTok{y=}\NormalTok{q1 }\SpecialCharTok{{-}}\FloatTok{0.05}\NormalTok{, }\StringTok{"Primeiro quartil (Q1)"}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(}\AttributeTok{y=}\FunctionTok{c}\NormalTok{(q2, q2),  }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\FloatTok{0.6}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{col=}\StringTok{"red"}\NormalTok{) }
-\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{0.60}\NormalTok{ , }\AttributeTok{y=}\NormalTok{ q2 }\SpecialCharTok{{-}} \FloatTok{0.05}\NormalTok{, }\StringTok{"Mediana (Q2)"}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(}\AttributeTok{y=}\FunctionTok{c}\NormalTok{(q3, q3), }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\FloatTok{1.4}\NormalTok{), }\AttributeTok{col=}\StringTok{"red"}\NormalTok{) }
-\FunctionTok{text}\NormalTok{(}\AttributeTok{x=} \FloatTok{1.4}\NormalTok{ , }\AttributeTok{y=}\NormalTok{q3 }\SpecialCharTok{+} \FloatTok{0.05}\NormalTok{, }\StringTok{"Terceiro quartil (Q3)"}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(}\AttributeTok{y=}\FunctionTok{c}\NormalTok{(li,li) , }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\FloatTok{1.01}\NormalTok{,}\FloatTok{1.4}\NormalTok{) , }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{) }
-\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{y=}\NormalTok{q1}\FloatTok{{-}1.5}\SpecialCharTok{*}\NormalTok{iq}\FloatTok{{-}0.05}\NormalTok{ , }\StringTok{"Limite inferior teórico (LI=1,455) "}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(}\AttributeTok{y=}\FunctionTok{c}\NormalTok{(ls,ls) , }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\FloatTok{1.01}\NormalTok{,}\FloatTok{1.4}\NormalTok{) , }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{) }
-\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{y=}\NormalTok{q3}\FloatTok{+1.5}\SpecialCharTok{*}\NormalTok{iq }\SpecialCharTok{+}\FloatTok{0.05}\NormalTok{ , }\StringTok{"Limite superior teórico (LS=1,935)"}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(}\AttributeTok{y=}\FunctionTok{c}\NormalTok{(}\FloatTok{1.47}\NormalTok{,}\FloatTok{1.47}\NormalTok{) , }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\FloatTok{0.85}\NormalTok{,}\FloatTok{0.95}\NormalTok{) , }\AttributeTok{col=}\StringTok{"green"}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{) }
-\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{0.7}\NormalTok{, }\AttributeTok{y=}\FloatTok{1.47}\NormalTok{ , }\StringTok{"Última observação dentro do LI (x=1,47) "}\NormalTok{, }\AttributeTok{col =} \StringTok{"green"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
-\FunctionTok{lines}\NormalTok{(}\AttributeTok{y=}\FunctionTok{c}\NormalTok{(}\FloatTok{1.93}\NormalTok{,}\FloatTok{1.93}\NormalTok{) , }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\FloatTok{0.85}\NormalTok{,}\FloatTok{0.95}\NormalTok{) , }\AttributeTok{col=}\StringTok{"green"}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{) }
-\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{0.7}\NormalTok{, }\AttributeTok{y=}\FloatTok{1.93}\NormalTok{ , }\StringTok{"Última observação dentro do LS (x=1,86) "}\NormalTok{, }\AttributeTok{col =} \StringTok{"green"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
+        \AttributeTok{main=}\StringTok{"Boxplot do conjunto de dados de alturas"}\NormalTok{,}
+        \AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\FloatTok{1.2}\NormalTok{, }\FloatTok{2.1}\NormalTok{))}
+
+\FunctionTok{lines}\NormalTok{( }\AttributeTok{y=}\FunctionTok{c}\NormalTok{(}\FloatTok{1.47}\NormalTok{, }\FloatTok{1.47}\NormalTok{), }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\FloatTok{0.6}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{) }
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{0.60}\NormalTok{, }\AttributeTok{y=}\FloatTok{1.47{-}0.05}\NormalTok{, }\StringTok{"Delimitador inferior do bigode=1,47"}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
+
+\FunctionTok{lines}\NormalTok{( }\AttributeTok{y=}\FunctionTok{c}\NormalTok{(}\FloatTok{1.93}\NormalTok{,}\FloatTok{1.93}\NormalTok{), }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\FloatTok{0.6}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{) }
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{0.60}\NormalTok{, }\AttributeTok{y=}\FloatTok{1.93+0.05}\NormalTok{, }\StringTok{"Delimitador superior do bigode=1,93"}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
+
+\FunctionTok{lines}\NormalTok{(}\AttributeTok{y=}\FunctionTok{c}\NormalTok{(med, med),  }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\FloatTok{1.4}\NormalTok{), }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{) }
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{1.4}\NormalTok{ , }\AttributeTok{y=}\NormalTok{ med}\FloatTok{+0.05}\NormalTok{ , }\StringTok{"Média=1,6907"}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
+
+\FunctionTok{lines}\NormalTok{(}\AttributeTok{y=}\FunctionTok{c}\NormalTok{(q1, q1), }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\FloatTok{1.4}\NormalTok{), }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{) }
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{1.4}\NormalTok{, }\AttributeTok{y=}\NormalTok{q1 }\SpecialCharTok{{-}}\FloatTok{0.05}\NormalTok{, }\StringTok{"Primeiro quartil: Q1=1,635"}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
+
+\FunctionTok{lines}\NormalTok{(}\AttributeTok{y=}\FunctionTok{c}\NormalTok{(q2, q2),  }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\FloatTok{0.6}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{) }
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{0.60}\NormalTok{ , }\AttributeTok{y=}\NormalTok{ q2 }\SpecialCharTok{{-}} \FloatTok{0.05}\NormalTok{, }\StringTok{"Mediana: Q2=1,675"}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
+
+\FunctionTok{lines}\NormalTok{(}\AttributeTok{y=}\FunctionTok{c}\NormalTok{(q3, q3), }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\FloatTok{1.4}\NormalTok{), }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{) }
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x=} \FloatTok{1.4}\NormalTok{ , }\AttributeTok{y=}\NormalTok{q3 }\SpecialCharTok{+} \FloatTok{0.05}\NormalTok{, }\StringTok{"Terceiro quartil: Q3=1,755"}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
+
+\FunctionTok{lines}\NormalTok{(}\AttributeTok{y=}\FunctionTok{c}\NormalTok{(li,li) , }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\FloatTok{1.01}\NormalTok{,}\FloatTok{1.4}\NormalTok{) , }\AttributeTok{col=}\StringTok{"red"}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{) }
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{y=}\NormalTok{q1}\FloatTok{{-}1.5}\SpecialCharTok{*}\NormalTok{iq}\FloatTok{{-}0.05}\NormalTok{ , }\StringTok{"Limite inferior teórico: LI=1,455) "}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
+
+\FunctionTok{lines}\NormalTok{(}\AttributeTok{y=}\FunctionTok{c}\NormalTok{(ls,ls) , }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\FloatTok{1.01}\NormalTok{,}\FloatTok{1.4}\NormalTok{) , }\AttributeTok{col=}\StringTok{"red"}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{) }
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{y=}\NormalTok{q3}\FloatTok{+1.5}\SpecialCharTok{*}\NormalTok{iq }\SpecialCharTok{+}\FloatTok{0.05}\NormalTok{ , }\StringTok{"Limite superior teórico: LS=1,935"}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
+
+\FunctionTok{points}\NormalTok{ (}\AttributeTok{y=}\FloatTok{1.47}\NormalTok{, }\AttributeTok{x=}\DecValTok{1}\NormalTok{ , }\AttributeTok{col=}\StringTok{"green"}\NormalTok{, }\AttributeTok{cex=}\DecValTok{1}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{5}\NormalTok{) }
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\DecValTok{1}\NormalTok{, }\AttributeTok{y=}\FloatTok{1.47{-}0.05}\NormalTok{ , }\StringTok{"Última observação dentro do LI: h=1,47 "}\NormalTok{, }\AttributeTok{col =} \StringTok{"green"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
+
+\FunctionTok{points}\NormalTok{ (}\AttributeTok{y=}\FloatTok{1.93}\NormalTok{, }\AttributeTok{x=}\DecValTok{1}\NormalTok{ , }\AttributeTok{col=}\StringTok{"green"}\NormalTok{, }\AttributeTok{cex=}\DecValTok{1}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{5}\NormalTok{) }
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\DecValTok{1}\NormalTok{, }\AttributeTok{y=}\FloatTok{1.93+0.05}\NormalTok{ , }\StringTok{"Última observação dentro do LS: h=1,93 "}\NormalTok{, }\AttributeTok{col =} \StringTok{"green"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{figure}
 
-{\centering \includegraphics{apostila_files/figure-latex/unnamed-chunk-59-1} 
+{\centering \includegraphics{apostila_files/figure-latex/unnamed-chunk-61-1} 
 
 }
 
-\caption{Box-plot de um rol de valores com Distribuição Normal (média 20 e variãncia 5}\label{fig:unnamed-chunk-59}
+\caption{Box-plot de um rol de valores com Distribuição Normal (média 20 e variãncia 5}\label{fig:unnamed-chunk-61}
 \end{figure}
 
 \hypertarget{introduuxe7uxe3o-ao-cuxe1lculo-de-probabilidades}{%
@@ -4640,7 +4729,7 @@ Se codificarmos \textbf{Cara: 1} e \textbf{Coroa: 0}, podemos representar grafic
 
 }
 
-\caption{Representação gráfico do espaço amostral do experimento aleatório e do evento de interesse definido}\label{fig:unnamed-chunk-61}
+\caption{Representação gráfico do espaço amostral do experimento aleatório e do evento de interesse definido}\label{fig:unnamed-chunk-63}
 \end{figure}
 
 \hfill\break
@@ -4784,7 +4873,7 @@ Em muitos dos problemas de probabilidade, o evento de interesse pode residir em 
 
 }
 
-\caption{Diagramas de Venn}\label{fig:unnamed-chunk-62}
+\caption{Diagramas de Venn}\label{fig:unnamed-chunk-64}
 \end{figure}
 
 \hfill\break
@@ -4806,7 +4895,7 @@ Sua \emph{união}, representada por \(A \cup B\), é o subconjunto do espaço am
 
 }
 
-\caption{União: $A \cup B$}\label{fig:unnamed-chunk-63}
+\caption{União: $A \cup B$}\label{fig:unnamed-chunk-65}
 \end{figure}
 
 \hfill\break
@@ -4824,7 +4913,7 @@ Sua \emph{interseção}, representada por \(A \cap B\), é o subconjunto do espa
 
 }
 
-\caption{Interseção: $A \cap B$}\label{fig:unnamed-chunk-64}
+\caption{Interseção: $A \cap B$}\label{fig:unnamed-chunk-66}
 \end{figure}
 
 \hfill\break
@@ -4848,7 +4937,7 @@ O \emph{complemento} de \(A\), representado por \(A^{c}\) (ou \(\stackrel{-}{A}\
 
 }
 
-\caption{Complementar  $A^{c}$}\label{fig:unnamed-chunk-65}
+\caption{Complementar  $A^{c}$}\label{fig:unnamed-chunk-67}
 \end{figure}
 
 \hfill\break
@@ -4863,7 +4952,7 @@ O \emph{complemento}\} de \(B\), representado por \(B^{c}\) (ou \(\stackrel{-}{B
 
 }
 
-\caption{Complementar de B}\label{fig:unnamed-chunk-66}
+\caption{Complementar de B}\label{fig:unnamed-chunk-68}
 \end{figure}
 
 \hypertarget{eventos-equiprovuxe1veis-e-nuxe3o-equiprovuxe1veis}{%
@@ -4947,7 +5036,7 @@ Probabilidade tem sido definida como sendo o estudo da frequência de aparição
 
 }
 
-\caption{Astralagus (um dos ossos que compõem o calcanhar, usado no Egito antigo como um dado rudimentar)}\label{fig:unnamed-chunk-67}
+\caption{Astralagus (um dos ossos que compõem o calcanhar, usado no Egito antigo como um dado rudimentar)}\label{fig:unnamed-chunk-69}
 \end{figure}
 
 \hypertarget{conceito-cluxe1ssico-ou-a-priori}{%
@@ -5156,7 +5245,7 @@ Admita \(P\) uma função que opera sobre o espaço \(\Omega\); isto é, uma fun
 
 }
 
-\caption{Representação gráfica da função $P(\Omega)$}\label{fig:unnamed-chunk-68}
+\caption{Representação gráfica da função $P(\Omega)$}\label{fig:unnamed-chunk-70}
 \end{figure}
 
 \hfill\break
@@ -5171,7 +5260,7 @@ Essa função \(P\) será uma \textbf{função de probabilidade} se, e somente s
 
 }
 
-\caption{Andrey Nikolaevich Kolmogorov  (1903-1987)}\label{fig:unnamed-chunk-69}
+\caption{Andrey Nikolaevich Kolmogorov  (1903-1987)}\label{fig:unnamed-chunk-71}
 \end{figure}
 
 \hfill\break
@@ -5781,7 +5870,7 @@ P (A \cap B)= P(A) \times P(B)
 
 }
 
-\caption{Independência implica em ausência de qualquer tipo de associação (a recíproca não se aplica}\label{fig:unnamed-chunk-70}
+\caption{Independência implica em ausência de qualquer tipo de associação (a recíproca não se aplica}\label{fig:unnamed-chunk-72}
 \end{figure}
 
 \hfill\break
@@ -5930,7 +6019,7 @@ P(C_{1} \cap C_{2}) & = 0,25 \times 0,40\\
 
 }
 
-\caption{Thomas Bayes (1702 - 1761)}\label{fig:unnamed-chunk-71}
+\caption{Thomas Bayes (1702 - 1761)}\label{fig:unnamed-chunk-73}
 \end{figure}
 
 \begin{quote}
@@ -6629,7 +6718,7 @@ Como \(\frac{1}{4}=\frac{1}{2} \times \frac{1}{2}\), \textbf{os eventos são ind
 
 }
 
-\caption{Ilustração do experimento aleatório sob a condição de reposição}\label{fig:unnamed-chunk-72}
+\caption{Ilustração do experimento aleatório sob a condição de reposição}\label{fig:unnamed-chunk-74}
 \end{figure}
 
 \hypertarget{demonstrauxe7uxe3o-cluxe1ssica-de-dependuxeancia}{%
@@ -6830,7 +6919,7 @@ Como \(\frac{5}{18} \neq \frac{1}{2} \times \frac{1}{2}\), os eventos \textbf{n�
 
 }
 
-\caption{Ilustração do experimento aleatório sob a condição de não reposição}\label{fig:unnamed-chunk-73}
+\caption{Ilustração do experimento aleatório sob a condição de não reposição}\label{fig:unnamed-chunk-75}
 \end{figure}
 
 \hypertarget{teoremas-da-teoria-das-probabilidades}{%
@@ -7077,7 +7166,7 @@ Seja \(E\) um experimento aleatório e \(\Omega\) seu espaço amostral. Uma fun�
 
 }
 
-\caption{Função discreta de distribuição de probabilidade}\label{fig:unnamed-chunk-77}
+\caption{Função discreta de distribuição de probabilidade}\label{fig:unnamed-chunk-79}
 \end{figure}
 
 ~
@@ -7300,7 +7389,7 @@ O gráfico de sua função de probabilidade cumulativa é:
 
 }
 
-\caption{Função de probabilidade cumulativa}\label{fig:unnamed-chunk-81}
+\caption{Função de probabilidade cumulativa}\label{fig:unnamed-chunk-83}
 \end{figure}
 
 \hypertarget{funuxe7uxe3o-de-densidade-de-probabilidade}{%
@@ -7318,7 +7407,7 @@ Considerem os espaços amostrais a seguir (\(\Omega_{1},\Omega_{2},\Omega_{3},\O
 
 }
 
-\caption{Diferentes espaços amostrais de um experimento aleatório (por razões gráficas desprezem o espaço fora dos círculos}\label{fig:unnamed-chunk-82}
+\caption{Diferentes espaços amostrais de um experimento aleatório (por razões gráficas desprezem o espaço fora dos círculos}\label{fig:unnamed-chunk-84}
 \end{figure}
 
 ~
@@ -7403,7 +7492,7 @@ A interpretação gráfica de uma função de probabilidade de uma variável con
 
 }
 
-\caption{A área sob a curva de uma função de probabilidade de uma variável contínua entre dois valores quaisquer é a probabilidade de se observar valores entre esses dois pontos}\label{fig:unnamed-chunk-83}
+\caption{A área sob a curva de uma função de probabilidade de uma variável contínua entre dois valores quaisquer é a probabilidade de se observar valores entre esses dois pontos}\label{fig:unnamed-chunk-85}
 \end{figure}
 
 \hfill\break
@@ -7422,7 +7511,7 @@ A função de probabilidade cumulativa: \(F(x) = P(X \leq x)\) assumirá igualme
 
 }
 
-\caption{Função de probabilidade cumulativa}\label{fig:unnamed-chunk-84}
+\caption{Função de probabilidade cumulativa}\label{fig:unnamed-chunk-86}
 \end{figure}
 
 \hfill\break
@@ -7453,7 +7542,7 @@ A resolução deste exemplo será feita de um modo \emph{geométrico}.
 
 }
 
-\caption{A probabiidade de se observar valores entre 0 e 1/2 é igual à area sob a função densidade de probabilidade entre esses dois valores}\label{fig:unnamed-chunk-85}
+\caption{A probabiidade de se observar valores entre 0 e 1/2 é igual à area sob a função densidade de probabilidade entre esses dois valores}\label{fig:unnamed-chunk-87}
 \end{figure}
 
 \hfill\break
@@ -9412,11 +9501,11 @@ Por esse motivo as tabelas Z mostram apenas a \textbf{metade} da curva da fdp e 
 
 \begin{figure}[H]
 
-{\centering \includegraphics{apostila_files/figure-latex/unnamed-chunk-93-1} 
+{\centering \includegraphics{apostila_files/figure-latex/unnamed-chunk-95-1} 
 
 }
 
-\caption{Curva da fdp da Distribuição Normal padronizada mostrando as áreas delimitadas pelo score z arbitrado (1,64)}\label{fig:unnamed-chunk-93}
+\caption{Curva da fdp da Distribuição Normal padronizada mostrando as áreas delimitadas pelo score z arbitrado (1,64)}\label{fig:unnamed-chunk-95}
 \end{figure}
 
 \hfill\break
@@ -10635,7 +10724,7 @@ Amostragem aleatória simples com reposição. Considere agora a mesma populaç�
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "b" "a" "d"
+## [1] "d" "a" "b"
 \end{verbatim}
 
 \begin{Shaded}
@@ -10647,7 +10736,7 @@ Amostragem aleatória simples com reposição. Considere agora a mesma populaç�
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "c" "b" "d"
+## [1] "e" "d" "c"
 \end{verbatim}
 
 \hfill\break
@@ -12877,115 +12966,115 @@ Usando conceitos já explicados em uma unidade anterior podemos determinar o tam
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{apostila_files/figure-latex/unnamed-chunk-112-1} 
+{\centering \includegraphics[width=1\linewidth]{apostila_files/figure-latex/unnamed-chunk-114-1} 
 
 }
 
-\caption{Flutuação dos valores médios para diversas amostras extraídas de uma mesma população distribuição $\sim N (\mu; \sigma)$}\label{fig:unnamed-chunk-112}
+\caption{Flutuação dos valores médios para diversas amostras extraídas de uma mesma população distribuição $\sim N (\mu; \sigma)$}\label{fig:unnamed-chunk-114}
 \end{figure}
 
 \begin{verbatim}
-##       mu media      erro   li   ls
-## 1   1600  1596  -3.93892 1576 1616
-## 2   1600  1584 -16.42771 1563 1604
-## 3   1600  1597  -3.06966 1577 1617
-## 4   1600  1608   7.93206 1589 1627
-## 5   1600  1614  13.94799 1592 1635
-## 6   1600  1603   2.75558 1584 1622
-## 7   1600  1587 -12.79223 1566 1608
-## 8   1600  1604   4.22392 1585 1624
-## 9   1600  1610  10.20780 1590 1630
-## 10  1600  1599  -0.70218 1581 1617
-## 11  1600  1585 -15.00914 1567 1603
-## 12  1600  1597  -3.29575 1577 1616
-## 13  1600  1606   5.87952 1585 1627
-## 14  1600  1594  -5.76251 1575 1614
-## 15  1600  1611  11.08417 1592 1630
-## 16  1600  1586 -13.72395 1564 1609
-## 17  1600  1593  -7.01698 1574 1612
-## 18  1600  1615  15.39618 1595 1635
-## 19  1600  1603   2.72986 1583 1622
-## 20  1600  1611  10.79955 1590 1631
-## 21  1600  1601   1.02694 1581 1621
-## 22  1600  1573 -27.41708 1552 1593
-## 23  1600  1603   3.45480 1585 1622
-## 24  1600  1590  -9.76544 1570 1610
-## 25  1600  1595  -5.46259 1575 1614
-## 26  1600  1591  -8.82923 1573 1610
-## 27  1600  1576 -24.25237 1555 1597
-## 28  1600  1597  -2.53682 1579 1616
-## 29  1600  1592  -8.41550 1573 1610
-## 30  1600  1608   8.10290 1590 1626
-## 31  1600  1602   1.74815 1581 1622
-## 32  1600  1588 -11.52269 1569 1608
-## 33  1600  1598  -1.96164 1577 1619
-## 34  1600  1600  -0.22919 1579 1620
-## 35  1600  1610   9.76400 1590 1630
-## 36  1600  1596  -3.69471 1578 1614
-## 37  1600  1597  -3.01736 1579 1615
-## 38  1600  1621  20.57169 1599 1642
-## 39  1600  1610   9.50275 1589 1630
-## 40  1600  1602   1.84337 1585 1619
-## 41  1600  1609   9.47241 1591 1628
-## 42  1600  1605   5.08385 1586 1624
-## 43  1600  1592  -8.33319 1573 1610
-## 44  1600  1591  -9.04116 1571 1611
-## 45  1600  1597  -3.25097 1578 1615
-## 46  1600  1601   0.88261 1580 1622
-## 47  1600  1602   2.14537 1584 1620
-## 48  1600  1589 -10.87902 1569 1609
-## 49  1600  1600  -0.09963 1580 1620
-## 50  1600  1608   7.95519 1589 1626
-## 51  1600  1589 -10.68144 1568 1611
-## 52  1600  1596  -3.55602 1577 1616
-## 53  1600  1591  -9.13224 1571 1610
-## 54  1600  1590  -9.65972 1571 1610
-## 55  1600  1594  -6.21836 1575 1613
-## 56  1600  1617  17.18957 1596 1638
-## 57  1600  1613  12.95064 1592 1634
-## 58  1600  1590  -9.78099 1570 1610
-## 59  1600  1598  -2.37835 1579 1616
-## 60  1600  1608   7.98501 1588 1628
-## 61  1600  1608   7.91016 1587 1629
-## 62  1600  1591  -9.26199 1572 1610
-## 63  1600  1607   6.89907 1587 1627
-## 64  1600  1610   9.99596 1591 1629
-## 65  1600  1599  -0.57096 1578 1621
-## 66  1600  1590  -9.75894 1571 1609
-## 67  1600  1581 -18.69683 1565 1598
-## 68  1600  1605   4.91007 1584 1626
-## 69  1600  1609   8.69194 1590 1627
-## 70  1600  1621  21.48035 1602 1640
-## 71  1600  1585 -14.70750 1564 1606
-## 72  1600  1593  -6.77832 1574 1613
-## 73  1600  1601   0.50038 1582 1619
-## 74  1600  1580 -19.75080 1562 1599
-## 75  1600  1592  -7.60872 1573 1612
-## 76  1600  1587 -12.66782 1570 1605
-## 77  1600  1601   1.25574 1582 1620
-## 78  1600  1600  -0.26113 1580 1619
-## 79  1600  1608   8.45786 1589 1628
-## 80  1600  1562 -38.02574 1543 1581
-## 81  1600  1575 -24.91784 1557 1593
-## 82  1600  1610  10.45091 1591 1629
-## 83  1600  1588 -12.26452 1567 1608
-## 84  1600  1615  14.86578 1595 1635
-## 85  1600  1583 -16.85267 1562 1604
-## 86  1600  1627  26.81395 1607 1647
-## 87  1600  1604   4.22354 1584 1625
-## 88  1600  1616  15.58527 1596 1635
-## 89  1600  1588 -11.53168 1570 1606
-## 90  1600  1591  -9.03551 1569 1613
-## 91  1600  1620  19.85448 1602 1638
-## 92  1600  1615  15.46087 1598 1633
-## 93  1600  1615  14.99823 1596 1634
-## 94  1600  1595  -5.06817 1577 1613
-## 95  1600  1589 -10.93001 1569 1609
-## 96  1600  1600   0.01593 1580 1620
-## 97  1600  1615  15.07090 1598 1632
-## 98  1600  1618  18.43901 1598 1639
-## 99  1600  1601   1.04968 1581 1621
-## 100 1600  1599  -1.28536 1577 1620
+##       mu media     erro   li   ls
+## 1   1600  1620  20.3201 1601 1640
+## 2   1600  1614  13.5405 1593 1634
+## 3   1600  1589 -11.4695 1570 1607
+## 4   1600  1600  -0.4345 1580 1620
+## 5   1600  1589 -10.7813 1568 1610
+## 6   1600  1618  18.4083 1598 1639
+## 7   1600  1613  12.7506 1592 1633
+## 8   1600  1599  -0.9476 1579 1620
+## 9   1600  1600  -0.4393 1578 1622
+## 10  1600  1587 -12.7123 1568 1607
+## 11  1600  1605   4.9356 1586 1624
+## 12  1600  1609   8.7715 1587 1631
+## 13  1600  1580 -19.8676 1559 1601
+## 14  1600  1592  -8.1766 1572 1612
+## 15  1600  1613  12.6154 1593 1633
+## 16  1600  1598  -1.6441 1580 1616
+## 17  1600  1609   8.6053 1590 1628
+## 18  1600  1602   2.2011 1584 1620
+## 19  1600  1616  15.9225 1595 1636
+## 20  1600  1623  23.2867 1604 1643
+## 21  1600  1608   7.9170 1587 1629
+## 22  1600  1615  14.8833 1595 1635
+## 23  1600  1602   2.0426 1582 1622
+## 24  1600  1614  14.4898 1594 1635
+## 25  1600  1586 -13.5781 1567 1606
+## 26  1600  1599  -1.3964 1580 1618
+## 27  1600  1594  -5.7769 1575 1614
+## 28  1600  1595  -5.1322 1576 1613
+## 29  1600  1603   2.5951 1582 1623
+## 30  1600  1603   2.7576 1583 1622
+## 31  1600  1608   8.2670 1588 1628
+## 32  1600  1610  10.3815 1590 1630
+## 33  1600  1595  -4.8239 1575 1615
+## 34  1600  1604   4.4405 1583 1625
+## 35  1600  1615  15.4494 1597 1634
+## 36  1600  1603   2.5354 1584 1621
+## 37  1600  1601   0.6110 1583 1618
+## 38  1600  1611  10.9871 1590 1632
+## 39  1600  1600   0.2630 1582 1619
+## 40  1600  1584 -15.7519 1564 1605
+## 41  1600  1593  -7.2931 1572 1613
+## 42  1600  1617  16.9131 1596 1638
+## 43  1600  1611  10.8441 1591 1631
+## 44  1600  1612  11.6819 1590 1634
+## 45  1600  1615  15.4305 1594 1637
+## 46  1600  1608   8.1202 1588 1628
+## 47  1600  1603   3.2690 1585 1622
+## 48  1600  1599  -1.4796 1579 1618
+## 49  1600  1603   2.6661 1582 1624
+## 50  1600  1604   3.5991 1583 1624
+## 51  1600  1622  22.4329 1604 1641
+## 52  1600  1590  -9.5023 1571 1610
+## 53  1600  1603   3.3547 1585 1622
+## 54  1600  1599  -0.8947 1577 1621
+## 55  1600  1611  11.0827 1591 1631
+## 56  1600  1603   2.6566 1582 1623
+## 57  1600  1595  -5.0514 1573 1617
+## 58  1600  1595  -4.5070 1576 1615
+## 59  1600  1598  -2.4013 1579 1617
+## 60  1600  1582 -18.2807 1560 1603
+## 61  1600  1597  -3.3094 1578 1616
+## 62  1600  1587 -12.8535 1566 1608
+## 63  1600  1608   8.2140 1587 1629
+## 64  1600  1611  10.9260 1593 1628
+## 65  1600  1599  -1.0419 1579 1618
+## 66  1600  1606   5.7010 1586 1625
+## 67  1600  1605   4.8576 1588 1622
+## 68  1600  1611  10.7368 1591 1630
+## 69  1600  1599  -1.3282 1579 1619
+## 70  1600  1603   3.1111 1584 1622
+## 71  1600  1613  12.6499 1593 1632
+## 72  1600  1604   3.8418 1584 1624
+## 73  1600  1579 -21.3787 1559 1599
+## 74  1600  1594  -5.6744 1573 1616
+## 75  1600  1597  -2.9934 1578 1616
+## 76  1600  1612  12.4176 1594 1631
+## 77  1600  1599  -0.6275 1579 1619
+## 78  1600  1580 -20.2370 1559 1600
+## 79  1600  1604   4.0805 1582 1626
+## 80  1600  1596  -3.7805 1577 1616
+## 81  1600  1606   6.1770 1586 1626
+## 82  1600  1583 -17.4443 1563 1602
+## 83  1600  1591  -8.9890 1570 1612
+## 84  1600  1602   2.4567 1583 1622
+## 85  1600  1606   5.6759 1588 1624
+## 86  1600  1585 -14.6832 1564 1606
+## 87  1600  1600   0.3925 1581 1620
+## 88  1600  1599  -0.8470 1578 1620
+## 89  1600  1602   1.8249 1582 1621
+## 90  1600  1590 -10.1898 1570 1610
+## 91  1600  1603   3.4028 1584 1623
+## 92  1600  1607   7.2688 1586 1628
+## 93  1600  1605   5.4725 1586 1624
+## 94  1600  1612  12.3325 1594 1631
+## 95  1600  1618  18.2756 1598 1639
+## 96  1600  1606   5.5920 1586 1625
+## 97  1600  1604   4.2211 1584 1624
+## 98  1600  1605   5.1722 1584 1626
+## 99  1600  1587 -13.4289 1568 1605
+## 100 1600  1584 -16.2001 1563 1604
 \end{verbatim}
 
 \hfill\break
@@ -13133,110 +13222,110 @@ Assim, \((1-\alpha)\) traduz o grau de confiança que se tem que um intervalo de
 ## for <83>
 \end{verbatim}
 
-\includegraphics{apostila_files/figure-latex/unnamed-chunk-114-1.pdf}
+\includegraphics{apostila_files/figure-latex/unnamed-chunk-116-1.pdf}
 
 \begin{verbatim}
-##        mu  media     erro    li     ls
-## 1   9.421 10.333  0.91222 9.197 11.470
-## 2   9.421  9.610  0.18856 8.498 10.721
-## 3   9.421  9.614  0.19325 8.556 10.672
-## 4   9.421  9.310 -0.11095 8.138 10.482
-## 5   9.421  9.789  0.36804 8.894 10.684
-## 6   9.421  9.575  0.15406 8.703 10.447
-## 7   9.421  9.686  0.26486 8.894 10.477
-## 8   9.421 10.161  0.73954 9.100 11.221
-## 9   9.421  9.644  0.22283 8.620 10.668
-## 10  9.421  9.782  0.36054 8.777 10.786
-## 11  9.421  9.848  0.42741 8.861 10.835
-## 12  9.421  9.597  0.17639 8.668 10.527
-## 13  9.421  8.932 -0.48919 7.881  9.983
-## 14  9.421  9.728  0.30715 8.604 10.852
-## 15  9.421  8.686 -0.73467 7.590  9.783
-## 16  9.421  8.647 -0.77397 7.475  9.819
-## 17  9.421  8.964 -0.45663 8.007  9.922
-## 18  9.421  9.920  0.49867 8.973 10.866
-## 19  9.421  9.446  0.02452 8.504 10.387
-## 20  9.421  9.623  0.20183 8.604 10.642
-## 21  9.421  9.687  0.26554 8.667 10.706
-## 22  9.421  9.383 -0.03845 8.482 10.283
-## 23  9.421 10.134  0.71289 9.160 11.108
-## 24  9.421  9.091 -0.33022 8.025 10.156
-## 25  9.421 10.270  0.84921 9.301 11.239
-## 26  9.421 10.005  0.58354 8.941 11.068
-## 27  9.421 10.554  1.13327 9.612 11.496
-## 28  9.421  9.170 -0.25132 8.200 10.139
-## 29  9.421  9.154 -0.26703 8.070 10.238
-## 30  9.421  9.119 -0.30201 8.082 10.156
-## 31  9.421  9.461  0.03974 8.387 10.535
-## 32  9.421 10.024  0.60293 8.956 11.092
-## 33  9.421  8.597 -0.82431 7.682  9.512
-## 34  9.421  9.969  0.54782 8.873 11.064
-## 35  9.421 10.444  1.02260 9.584 11.304
-## 36  9.421  8.631 -0.78991 7.738  9.524
-## 37  9.421  9.291 -0.13001 8.419 10.163
-## 38  9.421  9.484  0.06312 8.397 10.572
-## 39  9.421  8.945 -0.47561 8.020  9.871
-## 40  9.421  8.590 -0.83116 7.607  9.573
-## 41  9.421  8.982 -0.43854 8.034  9.931
-## 42  9.421  9.180 -0.24123 8.335 10.025
-## 43  9.421  9.543  0.12231 8.649 10.438
-## 44  9.421 10.354  0.93309 9.419 11.290
-## 45  9.421  9.069 -0.35211 8.004 10.133
-## 46  9.421 10.101  0.67989 9.079 11.123
-## 47  9.421  9.703  0.28236 8.672 10.735
-## 48  9.421  8.983 -0.43830 8.018  9.947
-## 49  9.421  9.906  0.48485 8.877 10.934
-## 50  9.421  9.188 -0.23319 8.074 10.302
-## 51  9.421  9.891  0.47038 8.798 10.985
-## 52  9.421 10.267  0.84630 9.220 11.315
-## 53  9.421  9.912  0.49114 8.937 10.887
-## 54  9.421  9.029 -0.39169 8.117  9.941
-## 55  9.421  9.321 -0.09974 8.110 10.533
-## 56  9.421  8.717 -0.70409 7.713  9.721
-## 57  9.421  9.354 -0.06748 8.368 10.339
-## 58  9.421  8.656 -0.76476 7.601  9.712
-## 59  9.421  9.254 -0.16708 8.229 10.279
-## 60  9.421  9.601  0.17953 8.618 10.584
-## 61  9.421  9.730  0.30939 8.692 10.768
-## 62  9.421 10.027  0.60611 9.191 10.864
-## 63  9.421  8.671 -0.75022 7.655  9.687
-## 64  9.421  9.026 -0.39453 8.053 10.000
-## 65  9.421  9.211 -0.20999 8.188 10.234
-## 66  9.421  9.471  0.04997 8.477 10.465
-## 67  9.421 10.003  0.58232 9.082 10.925
-## 68  9.421  8.912 -0.50882 7.823 10.002
-## 69  9.421  9.524  0.10268 8.402 10.645
-## 70  9.421  9.589  0.16754 8.611 10.566
-## 71  9.421  8.768 -0.65280 7.873  9.664
-## 72  9.421  8.834 -0.58709 7.721  9.947
-## 73  9.421  9.865  0.44449 8.770 10.961
-## 74  9.421  9.587  0.16567 8.681 10.493
-## 75  9.421  9.033 -0.38776 7.937 10.129
-## 76  9.421  9.269 -0.15154 8.263 10.276
-## 77  9.421  9.565  0.14395 8.555 10.575
-## 78  9.421  9.501  0.07970 8.444 10.558
-## 79  9.421  9.924  0.50319 8.850 10.999
-## 80  9.421  9.895  0.47443 8.896 10.894
-## 81  9.421  8.187 -1.23369 7.303  9.072
-## 82  9.421  9.131 -0.28969 7.988 10.274
-## 83  9.421  9.868  0.44673 8.875 10.861
-## 84  9.421  8.617 -0.80406 7.681  9.553
-## 85  9.421  8.847 -0.57431 7.844  9.850
-## 86  9.421  9.585  0.16388 8.546 10.624
-## 87  9.421  9.044 -0.37706 8.000 10.088
-## 88  9.421  9.747  0.32558 8.700 10.794
-## 89  9.421  8.942 -0.47901 7.848 10.036
-## 90  9.421  9.758  0.33671 8.720 10.795
-## 91  9.421  9.064 -0.35658 8.076 10.053
-## 92  9.421  8.301 -1.11974 7.349  9.253
-## 93  9.421  9.383 -0.03836 8.377 10.388
-## 94  9.421  9.353 -0.06801 8.484 10.222
-## 95  9.421  8.934 -0.48727 7.917  9.950
-## 96  9.421  8.867 -0.55448 7.764  9.969
-## 97  9.421  8.708 -0.71322 7.725  9.691
-## 98  9.421  9.358 -0.06328 8.315 10.401
-## 99  9.421  9.403 -0.01798 8.372 10.434
-## 100 9.421  9.881  0.46010 8.834 10.928
+##        mu  media      erro    li     ls
+## 1   9.421  9.451  0.029943 8.343 10.559
+## 2   9.421  8.994 -0.426591 7.954 10.035
+## 3   9.421  9.852  0.430745 8.769 10.935
+## 4   9.421  9.391 -0.029576 8.289 10.494
+## 5   9.421  8.977 -0.444002 8.035  9.919
+## 6   9.421 10.403  0.982005 9.277 11.529
+## 7   9.421  9.423  0.001753 8.496 10.349
+## 8   9.421 10.374  0.952902 9.465 11.283
+## 9   9.421  9.247 -0.174209 8.345 10.149
+## 10  9.421  9.277 -0.143970 8.360 10.194
+## 11  9.421  8.925 -0.496052 7.888  9.962
+## 12  9.421  8.535 -0.886355 7.373  9.696
+## 13  9.421  9.508  0.086722 8.475 10.541
+## 14  9.421  9.259 -0.162254 8.362 10.155
+## 15  9.421 10.012  0.591046 8.969 11.055
+## 16  9.421  9.568  0.146688 8.536 10.599
+## 17  9.421  9.126 -0.295149 8.076 10.176
+## 18  9.421 10.369  0.948464 9.497 11.242
+## 19  9.421  9.800  0.379340 8.958 10.643
+## 20  9.421  9.766  0.345266 8.740 10.792
+## 21  9.421  9.882  0.461432 8.810 10.955
+## 22  9.421  8.801 -0.620484 7.684  9.917
+## 23  9.421  9.954  0.533306 8.922 10.986
+## 24  9.421 10.043  0.622351 9.103 10.984
+## 25  9.421 10.240  0.818832 9.227 11.252
+## 26  9.421  9.616  0.194917 8.714 10.517
+## 27  9.421  9.452  0.031456 8.558 10.347
+## 28  9.421  8.991 -0.430281 8.026  9.956
+## 29  9.421  9.521  0.100415 8.537 10.506
+## 30  9.421  9.419 -0.002416 8.521 10.317
+## 31  9.421  9.781  0.360185 8.825 10.737
+## 32  9.421 10.105  0.684045 9.022 11.188
+## 33  9.421  9.262 -0.158961 8.304 10.220
+## 34  9.421  9.469  0.048410 8.520 10.419
+## 35  9.421  9.075 -0.345507 7.984 10.167
+## 36  9.421  8.997 -0.424271 8.090  9.903
+## 37  9.421  8.960 -0.460553 8.049  9.872
+## 38  9.421  8.320 -1.100831 7.151  9.489
+## 39  9.421  8.651 -0.770378 7.563  9.738
+## 40  9.421  8.963 -0.458239 7.730 10.196
+## 41  9.421  9.047 -0.373934 8.000 10.094
+## 42  9.421  9.266 -0.155076 8.289 10.243
+## 43  9.421  9.656  0.235238 8.706 10.606
+## 44  9.421  9.687  0.266217 8.538 10.836
+## 45  9.421  9.814  0.392872 8.828 10.800
+## 46  9.421  8.454 -0.966765 7.503  9.406
+## 47  9.421  9.379 -0.041996 8.320 10.438
+## 48  9.421  8.855 -0.565938 7.760  9.950
+## 49  9.421  9.761  0.340264 8.675 10.848
+## 50  9.421  9.517  0.096256 8.567 10.467
+## 51  9.421 10.075  0.654333 9.000 11.150
+## 52  9.421  9.465  0.044260 8.469 10.461
+## 53  9.421  9.641  0.219793 8.661 10.620
+## 54  9.421  9.609  0.188493 8.620 10.599
+## 55  9.421 10.099  0.677584 9.147 11.050
+## 56  9.421  9.343 -0.077779 8.340 10.346
+## 57  9.421  8.998 -0.423429 7.962 10.033
+## 58  9.421 10.122  0.700943 9.121 11.123
+## 59  9.421  8.170 -1.250548 7.098  9.243
+## 60  9.421  9.031 -0.390194 7.886 10.176
+## 61  9.421  9.483  0.061765 8.520 10.445
+## 62  9.421  8.920 -0.501400 7.806 10.033
+## 63  9.421  9.676  0.255497 8.658 10.695
+## 64  9.421  9.614  0.193275 8.584 10.645
+## 65  9.421  9.474  0.053456 8.286 10.663
+## 66  9.421  8.743 -0.677975 7.862  9.624
+## 67  9.421  9.476  0.054932 8.681 10.271
+## 68  9.421  9.561  0.140262 8.488 10.635
+## 69  9.421  9.575  0.153702 8.411 10.738
+## 70  9.421  8.982 -0.438782 8.123  9.842
+## 71  9.421  8.905 -0.516493 7.846  9.963
+## 72  9.421  9.930  0.508881 8.760 11.100
+## 73  9.421  8.896 -0.525087 7.800  9.992
+## 74  9.421  9.299 -0.121677 8.361 10.238
+## 75  9.421  9.692  0.270539 8.850 10.533
+## 76  9.421  8.460 -0.960545 7.547  9.374
+## 77  9.421  9.851  0.430240 8.850 10.852
+## 78  9.421 10.102  0.680627 9.127 11.076
+## 79  9.421  9.882  0.461439 8.907 10.858
+## 80  9.421  8.850 -0.571480 7.771  9.928
+## 81  9.421  9.136 -0.285061 8.046 10.225
+## 82  9.421  9.665  0.244386 8.680 10.650
+## 83  9.421  9.954  0.533281 9.055 10.853
+## 84  9.421  8.110 -1.310517 7.090  9.131
+## 85  9.421  9.629  0.208460 8.786 10.473
+## 86  9.421 10.029  0.607747 8.919 11.138
+## 87  9.421 10.026  0.605238 9.090 10.962
+## 88  9.421  8.880 -0.540879 8.048  9.712
+## 89  9.421  8.284 -1.137491 7.439  9.128
+## 90  9.421  9.908  0.487088 8.947 10.869
+## 91  9.421  9.530  0.109327 8.502 10.559
+## 92  9.421  9.041 -0.380204 7.913 10.168
+## 93  9.421  9.570  0.148984 8.543 10.597
+## 94  9.421  8.900 -0.521216 7.899  9.900
+## 95  9.421  9.348 -0.072817 8.483 10.213
+## 96  9.421  9.485  0.064111 8.359 10.612
+## 97  9.421  9.657  0.235937 8.617 10.697
+## 98  9.421  8.932 -0.488521 8.011  9.854
+## 99  9.421  8.953 -0.467598 7.809 10.098
+## 100 9.421  8.983 -0.437661 8.137  9.829
 \end{verbatim}
 
 \hfill\break
@@ -16026,11 +16115,11 @@ Desconhecendo-se qualquer informação acerca da proporção populacional (\(\pi
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.6\linewidth]{apostila_files/figure-latex/unnamed-chunk-122-1} 
+{\centering \includegraphics[width=0.6\linewidth]{apostila_files/figure-latex/unnamed-chunk-124-1} 
 
 }
 
-\caption{Possíveis valores assumidos pelo produto: π*(1- π)}\label{fig:unnamed-chunk-122}
+\caption{Possíveis valores assumidos pelo produto: π*(1- π)}\label{fig:unnamed-chunk-124}
 \end{figure}
 
 \hfill\break
@@ -16097,29 +16186,29 @@ As próximas figuras ilustram a flutuação das proporções amostrais obtidas d
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{apostila_files/figure-latex/unnamed-chunk-124-1} 
-
-}
-
-\caption{Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento (385 elementos ) foi estimado ignorando-se o conhecimento da proporção populacional (π) para um nível de confiança (1-α)=0,95 e um erro amostral ε=0,05 (em preto as proporções amostrais dentro da tolerância fixada e, em vermelho, as que aleatoriamente ultrapassam a tolerância fixada em π +/-ε).}\label{fig:unnamed-chunk-124}
-\end{figure}
-
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{apostila_files/figure-latex/unnamed-chunk-125-1} 
-
-}
-
-\caption{Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento  (217 elementos) foi estimado admitindo-se o conhecimento da proporção populacional (π) para um nível de confiança (1-α)=0,95 e um erro amostral ε=0,05 (em preto as proporções amostrais dentro da tolerância fixada e, em vermelho, as que aleatoriamente ultrapassam a tolerância fixada em π +/-ε).}\label{fig:unnamed-chunk-125}
-\end{figure}
-
-\begin{figure}
-
 {\centering \includegraphics[width=1\linewidth]{apostila_files/figure-latex/unnamed-chunk-126-1} 
 
 }
 
-\caption{Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento foi arbitrariamente fixado (100 elementos) para um nível de confiança (1-α)=0,95 e um erro amostral ε=0,05 (em preto as proporções amostrais dentro da tolerância fixada e, em vermelho, as que aleatoriamente ultrapassam a tolerância fixada em π +/-ε).}\label{fig:unnamed-chunk-126}
+\caption{Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento (385 elementos ) foi estimado ignorando-se o conhecimento da proporção populacional (π) para um nível de confiança (1-α)=0,95 e um erro amostral ε=0,05 (em preto as proporções amostrais dentro da tolerância fixada e, em vermelho, as que aleatoriamente ultrapassam a tolerância fixada em π +/-ε).}\label{fig:unnamed-chunk-126}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{apostila_files/figure-latex/unnamed-chunk-127-1} 
+
+}
+
+\caption{Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento  (217 elementos) foi estimado admitindo-se o conhecimento da proporção populacional (π) para um nível de confiança (1-α)=0,95 e um erro amostral ε=0,05 (em preto as proporções amostrais dentro da tolerância fixada e, em vermelho, as que aleatoriamente ultrapassam a tolerância fixada em π +/-ε).}\label{fig:unnamed-chunk-127}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{apostila_files/figure-latex/unnamed-chunk-128-1} 
+
+}
+
+\caption{Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento foi arbitrariamente fixado (100 elementos) para um nível de confiança (1-α)=0,95 e um erro amostral ε=0,05 (em preto as proporções amostrais dentro da tolerância fixada e, em vermelho, as que aleatoriamente ultrapassam a tolerância fixada em π +/-ε).}\label{fig:unnamed-chunk-128}
 \end{figure}
 
 \hfill\break
@@ -16344,11 +16433,11 @@ P [\pi \hspace{0.1cm} \ge \hat{p} - {z}_{\alpha} \cdot  \sqrt{\frac{\hat{p} \cdo
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{apostila_files/figure-latex/unnamed-chunk-128-1} 
+{\centering \includegraphics[width=1\linewidth]{apostila_files/figure-latex/unnamed-chunk-130-1} 
 
 }
 
-\caption{Intervalos de confiança construídos para as diversas proporções amostrais obtidas de amostragens (com reposição) de elementos de uma população que apresentam a característica de interesse se manifestando de modo dicotômico. O dimensionamento foi estimado ignorando-se o conhecimento da proporção populacional (π) para um nível de confiança (1-α) e um erro amostral (ε) estipulados: 385 elementos.}\label{fig:unnamed-chunk-128}
+\caption{Intervalos de confiança construídos para as diversas proporções amostrais obtidas de amostragens (com reposição) de elementos de uma população que apresentam a característica de interesse se manifestando de modo dicotômico. O dimensionamento foi estimado ignorando-se o conhecimento da proporção populacional (π) para um nível de confiança (1-α) e um erro amostral (ε) estipulados: 385 elementos.}\label{fig:unnamed-chunk-130}
 \end{figure}
 
 \hfill\break
@@ -16530,7 +16619,7 @@ O \emph{método hipotético experimental} é próprio das ciências naturais (f�
 
 }
 
-\caption{Método demonstrativo e Método experimental hipotético (George Polya, 1954) }\label{fig:unnamed-chunk-131}
+\caption{Método demonstrativo e Método experimental hipotético (George Polya, 1954) }\label{fig:unnamed-chunk-133}
 \end{figure}
 
 \hfill\break
@@ -16575,7 +16664,7 @@ Em muitos processos de investigação científica é frequente ao pesquisador fo
 
 }
 
-\caption{Método experimental hipotético}\label{fig:unnamed-chunk-132}
+\caption{Método experimental hipotético}\label{fig:unnamed-chunk-134}
 \end{figure}
 
 \hfill\break
@@ -16813,115 +16902,115 @@ Usando conceitos já explicados em uma unidade anterior podemos determinar o tam
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{apostila_files/figure-latex/unnamed-chunk-134-1} 
+{\centering \includegraphics[width=1\linewidth]{apostila_files/figure-latex/unnamed-chunk-136-1} 
 
 }
 
-\caption{Flutuação dos valores médios para diversas amostras extraídas de uma mesma população distribuição $\sim N (\mu; \sigma)$}\label{fig:unnamed-chunk-134}
+\caption{Flutuação dos valores médios para diversas amostras extraídas de uma mesma população distribuição $\sim N (\mu; \sigma)$}\label{fig:unnamed-chunk-136}
 \end{figure}
 
 \begin{verbatim}
 ##       mu media      erro   li   ls
-## 1   1600  1607   6.76955 1587 1627
-## 2   1600  1596  -3.83545 1576 1617
-## 3   1600  1602   1.82375 1582 1622
-## 4   1600  1592  -8.25170 1572 1612
-## 5   1600  1603   3.49547 1584 1623
-## 6   1600  1609   9.06224 1590 1629
-## 7   1600  1599  -1.38304 1578 1619
-## 8   1600  1595  -4.62305 1577 1614
-## 9   1600  1603   2.94481 1584 1622
-## 10  1600  1594  -6.41623 1573 1614
-## 11  1600  1601   0.88648 1581 1620
-## 12  1600  1607   6.57707 1587 1626
-## 13  1600  1602   1.85078 1581 1622
-## 14  1600  1608   8.38435 1589 1627
-## 15  1600  1598  -1.55215 1578 1619
-## 16  1600  1596  -4.13284 1576 1616
-## 17  1600  1596  -4.49274 1576 1615
-## 18  1600  1602   2.18731 1581 1624
-## 19  1600  1608   8.28441 1588 1629
-## 20  1600  1602   1.78660 1580 1623
-## 21  1600  1598  -2.02577 1581 1615
-## 22  1600  1606   5.51225 1586 1625
-## 23  1600  1604   3.73843 1582 1625
-## 24  1600  1603   3.40051 1583 1624
-## 25  1600  1602   1.59285 1583 1620
-## 26  1600  1589 -11.25860 1568 1609
-## 27  1600  1592  -7.50074 1573 1612
-## 28  1600  1612  11.66926 1593 1631
-## 29  1600  1607   7.11048 1587 1627
-## 30  1600  1589 -10.55243 1568 1611
-## 31  1600  1606   5.81489 1584 1628
-## 32  1600  1601   1.28792 1583 1620
-## 33  1600  1604   3.71342 1584 1623
-## 34  1600  1588 -12.41432 1567 1608
-## 35  1600  1598  -2.02252 1579 1617
-## 36  1600  1622  21.98934 1603 1641
-## 37  1600  1596  -4.02650 1574 1618
-## 38  1600  1586 -13.74668 1569 1603
-## 39  1600  1597  -2.63558 1578 1617
-## 40  1600  1596  -3.86266 1575 1617
-## 41  1600  1587 -13.09710 1567 1607
-## 42  1600  1598  -1.96752 1576 1620
-## 43  1600  1606   6.14904 1588 1624
-## 44  1600  1597  -2.80558 1579 1615
-## 45  1600  1613  12.71422 1593 1633
-## 46  1600  1601   0.71793 1579 1622
-## 47  1600  1583 -16.70285 1563 1604
-## 48  1600  1608   7.54942 1588 1627
-## 49  1600  1593  -6.99490 1574 1612
-## 50  1600  1605   5.09795 1582 1628
-## 51  1600  1596  -4.09135 1575 1617
-## 52  1600  1619  19.14683 1599 1639
-## 53  1600  1596  -4.01122 1576 1616
-## 54  1600  1588 -12.16545 1566 1610
-## 55  1600  1596  -4.39768 1576 1615
-## 56  1600  1603   3.39617 1581 1625
-## 57  1600  1607   7.49294 1586 1629
-## 58  1600  1586 -13.83718 1566 1606
-## 59  1600  1613  12.79073 1592 1634
-## 60  1600  1600  -0.05597 1578 1622
-## 61  1600  1612  11.96801 1592 1632
-## 62  1600  1599  -0.83645 1580 1619
-## 63  1600  1586 -14.09982 1568 1604
-## 64  1600  1600  -0.26903 1579 1621
-## 65  1600  1584 -15.68499 1564 1605
-## 66  1600  1588 -12.06399 1569 1607
-## 67  1600  1619  18.90466 1598 1640
-## 68  1600  1593  -6.79077 1577 1610
-## 69  1600  1613  13.44262 1595 1632
-## 70  1600  1605   5.28393 1583 1627
-## 71  1600  1613  13.39586 1593 1634
-## 72  1600  1602   2.48842 1582 1623
-## 73  1600  1614  13.50399 1592 1635
-## 74  1600  1587 -13.28500 1567 1607
-## 75  1600  1603   2.72111 1584 1621
-## 76  1600  1605   5.43805 1585 1626
-## 77  1600  1584 -15.55960 1566 1603
-## 78  1600  1604   3.96557 1586 1622
-## 79  1600  1589 -11.48406 1567 1610
-## 80  1600  1613  12.83591 1592 1633
-## 81  1600  1597  -2.76207 1576 1619
-## 82  1600  1602   2.49316 1583 1622
-## 83  1600  1597  -2.94466 1580 1615
-## 84  1600  1593  -7.25242 1574 1611
-## 85  1600  1611  10.53796 1590 1632
-## 86  1600  1599  -0.84032 1579 1619
-## 87  1600  1602   2.31901 1581 1624
-## 88  1600  1598  -1.55415 1580 1617
-## 89  1600  1614  14.12051 1593 1635
-## 90  1600  1602   1.85435 1582 1622
-## 91  1600  1579 -20.61626 1560 1599
-## 92  1600  1608   8.01513 1591 1625
-## 93  1600  1597  -3.34654 1575 1619
-## 94  1600  1594  -5.66153 1575 1614
-## 95  1600  1583 -17.34030 1562 1604
-## 96  1600  1595  -4.65629 1576 1615
-## 97  1600  1585 -15.30296 1564 1605
-## 98  1600  1596  -3.93104 1576 1616
-## 99  1600  1610  10.02576 1589 1631
-## 100 1600  1609   8.75597 1590 1628
+## 1   1600  1591  -8.80236 1572 1611
+## 2   1600  1607   6.60287 1587 1626
+## 3   1600  1618  18.35445 1597 1640
+## 4   1600  1592  -7.80019 1572 1612
+## 5   1600  1596  -4.35600 1575 1616
+## 6   1600  1609   9.16944 1591 1628
+## 7   1600  1608   7.68281 1588 1628
+## 8   1600  1591  -9.27420 1571 1611
+## 9   1600  1605   4.70314 1585 1624
+## 10  1600  1603   2.78983 1583 1622
+## 11  1600  1594  -6.33977 1573 1614
+## 12  1600  1599  -1.28462 1579 1618
+## 13  1600  1613  12.68159 1593 1633
+## 14  1600  1602   1.76154 1581 1623
+## 15  1600  1591  -8.73197 1571 1612
+## 16  1600  1601   0.98293 1581 1621
+## 17  1600  1621  21.29494 1603 1639
+## 18  1600  1604   3.51325 1582 1625
+## 19  1600  1591  -8.73072 1570 1613
+## 20  1600  1600  -0.02381 1580 1620
+## 21  1600  1610   9.66188 1590 1629
+## 22  1600  1620  20.02394 1599 1641
+## 23  1600  1589 -11.16994 1570 1608
+## 24  1600  1618  17.80536 1598 1637
+## 25  1600  1606   6.29197 1585 1628
+## 26  1600  1594  -6.17966 1574 1613
+## 27  1600  1602   1.75021 1581 1622
+## 28  1600  1612  12.09293 1591 1634
+## 29  1600  1607   7.31913 1588 1627
+## 30  1600  1601   1.15289 1582 1621
+## 31  1600  1595  -5.42391 1578 1612
+## 32  1600  1589 -10.50870 1570 1609
+## 33  1600  1604   3.55963 1585 1623
+## 34  1600  1586 -14.06249 1566 1606
+## 35  1600  1584 -15.61747 1566 1603
+## 36  1600  1606   5.53829 1585 1626
+## 37  1600  1616  15.98024 1595 1637
+## 38  1600  1596  -4.49696 1575 1616
+## 39  1600  1601   1.38745 1581 1621
+## 40  1600  1609   8.85918 1591 1627
+## 41  1600  1618  18.18033 1597 1639
+## 42  1600  1598  -2.09459 1577 1619
+## 43  1600  1581 -19.26752 1561 1600
+## 44  1600  1583 -16.57350 1565 1601
+## 45  1600  1598  -1.71265 1581 1616
+## 46  1600  1611  10.70710 1591 1631
+## 47  1600  1597  -3.36760 1578 1615
+## 48  1600  1611  10.52707 1588 1633
+## 49  1600  1585 -15.25820 1565 1604
+## 50  1600  1606   6.43259 1586 1627
+## 51  1600  1592  -8.47843 1571 1612
+## 52  1600  1602   1.63526 1582 1621
+## 53  1600  1596  -4.09586 1577 1615
+## 54  1600  1612  11.81215 1593 1631
+## 55  1600  1609   8.91849 1588 1629
+## 56  1600  1589 -11.39511 1570 1608
+## 57  1600  1621  20.65173 1599 1643
+## 58  1600  1597  -2.95112 1576 1618
+## 59  1600  1617  17.38064 1598 1637
+## 60  1600  1600   0.28561 1579 1621
+## 61  1600  1618  18.37995 1600 1637
+## 62  1600  1608   7.72258 1587 1629
+## 63  1600  1618  17.83063 1598 1637
+## 64  1600  1608   7.65763 1587 1628
+## 65  1600  1610  10.17678 1590 1630
+## 66  1600  1582 -17.62242 1563 1602
+## 67  1600  1596  -3.90871 1575 1617
+## 68  1600  1614  14.22716 1594 1635
+## 69  1600  1575 -24.56939 1555 1596
+## 70  1600  1599  -1.43807 1578 1619
+## 71  1600  1612  12.46587 1593 1632
+## 72  1600  1589 -10.81384 1571 1608
+## 73  1600  1596  -4.20459 1577 1615
+## 74  1600  1603   3.27647 1583 1623
+## 75  1600  1619  18.98159 1601 1637
+## 76  1600  1598  -2.36249 1578 1617
+## 77  1600  1608   7.99362 1589 1627
+## 78  1600  1601   1.12751 1580 1622
+## 79  1600  1600  -0.06709 1582 1618
+## 80  1600  1605   5.20114 1585 1625
+## 81  1600  1586 -13.99400 1567 1605
+## 82  1600  1593  -6.77837 1573 1613
+## 83  1600  1600   0.32209 1581 1620
+## 84  1600  1599  -0.52244 1578 1621
+## 85  1600  1599  -0.55437 1578 1621
+## 86  1600  1601   1.15831 1583 1620
+## 87  1600  1595  -5.27627 1572 1618
+## 88  1600  1587 -12.75390 1566 1608
+## 89  1600  1604   4.16144 1583 1625
+## 90  1600  1607   7.02407 1586 1628
+## 91  1600  1606   6.25814 1588 1625
+## 92  1600  1579 -21.00836 1559 1599
+## 93  1600  1583 -16.95398 1561 1605
+## 94  1600  1600  -0.44562 1580 1619
+## 95  1600  1591  -9.14953 1571 1610
+## 96  1600  1595  -4.63654 1576 1615
+## 97  1600  1615  14.74543 1594 1635
+## 98  1600  1605   4.95539 1585 1625
+## 99  1600  1603   2.81238 1584 1622
+## 100 1600  1593  -6.64366 1574 1613
 \end{verbatim}
 
 \hfill\break
@@ -17672,7 +17761,7 @@ em que:\\
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{apostila_files/figure-latex/unnamed-chunk-137-1.pdf}
+\includegraphics{apostila_files/figure-latex/unnamed-chunk-139-1.pdf}
 
 \hfill\break
 
@@ -21866,7 +21955,7 @@ O resultado do teste de hipóteses realizado com as amostras trazidas à anális
 
 }
 
-\caption{Fluxograma auxiliar para escolha da estatística do teste de hipóteses}\label{fig:unnamed-chunk-157}
+\caption{Fluxograma auxiliar para escolha da estatística do teste de hipóteses}\label{fig:unnamed-chunk-159}
 \end{figure}
 
 \hfill\break
@@ -21880,7 +21969,7 @@ O resultado do teste de hipóteses realizado com as amostras trazidas à anális
 
 }
 
-\caption{Tabela Normal padronizada}\label{fig:unnamed-chunk-158}
+\caption{Tabela Normal padronizada}\label{fig:unnamed-chunk-160}
 \end{figure}
 
 \hfill\break
@@ -21891,7 +21980,7 @@ O resultado do teste de hipóteses realizado com as amostras trazidas à anális
 
 }
 
-\caption{Tabela da distribuição t de Student}\label{fig:unnamed-chunk-159}
+\caption{Tabela da distribuição t de Student}\label{fig:unnamed-chunk-161}
 \end{figure}
 
 \hfill\break
@@ -21902,7 +21991,7 @@ O resultado do teste de hipóteses realizado com as amostras trazidas à anális
 
 \}
 
-\textbackslash caption\{Tabela da distribuição F de Fisher-Snedecor (5\%)\}\label{fig:unnamed-chunk-160}
+\textbackslash caption\{Tabela da distribuição F de Fisher-Snedecor (5\%)\}\label{fig:unnamed-chunk-162}
 \textbackslash end\{figure\}
 
 \hfill\break
@@ -21913,7 +22002,7 @@ O resultado do teste de hipóteses realizado com as amostras trazidas à anális
 
 }
 
-\caption{Tabela da distribuição Qui-quadrado}\label{fig:unnamed-chunk-161}
+\caption{Tabela da distribuição Qui-quadrado}\label{fig:unnamed-chunk-163}
 \end{figure}
 
 \hfill\break
@@ -21924,7 +22013,7 @@ O resultado do teste de hipóteses realizado com as amostras trazidas à anális
 
 }
 
-\caption{Alfabeto grego}\label{fig:unnamed-chunk-162}
+\caption{Alfabeto grego}\label{fig:unnamed-chunk-164}
 \end{figure}
 
   \bibliography{book.bib,packages.bib}

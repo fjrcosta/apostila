@@ -528,11 +528,11 @@ C_{(N,n)} = \frac{ N! }{ n! \times ( N-n)!}=10
 <span id="cb104-6"><a href="amostragem-probabilística.html#cb104-6" tabindex="-1"></a><span class="co"># Extração de uma amostra (sem reposição) composta por 3 elementos do conjunto:</span></span>
 <span id="cb104-7"><a href="amostragem-probabilística.html#cb104-7" tabindex="-1"></a>amostra_sr<span class="ot">=</span><span class="fu">sample</span>(conjunto, <span class="dv">3</span>, <span class="at">replace=</span><span class="cn">FALSE</span>)</span>
 <span id="cb104-8"><a href="amostragem-probabilística.html#cb104-8" tabindex="-1"></a>amostra_sr</span></code></pre></div>
-<pre><code>## [1] &quot;a&quot; &quot;c&quot; &quot;d&quot;</code></pre>
+<pre><code>## [1] &quot;d&quot; &quot;a&quot; &quot;c&quot;</code></pre>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="amostragem-probabilística.html#cb106-1" tabindex="-1"></a><span class="co"># Extração de uma amostra (com reposição) composta por 3 elementos do conjunto:</span></span>
 <span id="cb106-2"><a href="amostragem-probabilística.html#cb106-2" tabindex="-1"></a>amostra_cr<span class="ot">=</span><span class="fu">sample</span>(conjunto, <span class="dv">3</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
 <span id="cb106-3"><a href="amostragem-probabilística.html#cb106-3" tabindex="-1"></a>amostra_cr</span></code></pre></div>
-<pre><code>## [1] &quot;e&quot; &quot;c&quot; &quot;a&quot;</code></pre>
+<pre><code>## [1] &quot;d&quot; &quot;e&quot; &quot;b&quot;</code></pre>
 <p><br />
 </p>
 <blockquote>
@@ -774,7 +774,7 @@ n_{i} =  \frac{N_{i}}{N} \cdot n
 </ul>
 <p><br />
 </p>
-<p>Para uma amostra com um total de <span class="math inline">\(n=900\)</span> elementos seguem-se as quantidades a serem extraídas aleatoriamente de cada u dos trẽs estratos:</p>
+<p>Para uma amostra com um total de <span class="math inline">\(n=900\)</span> elementos seguem-se as quantidades a serem extraídas aleatoriamente de cada u dos três estratos:</p>
 <p><br />
 </p>
 <ul>
@@ -784,13 +784,38 @@ n_{i} =  \frac{N_{i}}{N} \cdot n
 </ul>
 <p><br />
 </p>
-<p>A proporção extraída de cada um dos estratos é co.nstante:</p>
+<p>Partindo-se desses tamanhos amostrais determinados (90 professores, 135 funcionários e 675 alunos) pode-se recorrer à extração sistemática usando-se a listagem dessas três categorias:</p>
+<p><br />
+</p>
+<ul>
+<li><span class="math inline">\(S_{p}=\frac{N_{p}}{n_{p}}\)</span> em que <span class="math inline">\(S_{p}\)</span> é o passo a ser seguido na extração de <span class="math inline">\(n_{p}\)</span> professores (90) da ``população’’ de <span class="math inline">\(N_{p}\)</span> professores (800);</li>
+<li><span class="math inline">\(S_{f}=\frac{N_{f}}{n_{f}}\)</span> em que <span class="math inline">\(S_{f}\)</span> é o passo a ser seguido na extração de <span class="math inline">\(n_{f}\)</span> funcionários (135) da ``população’’ de <span class="math inline">\(N_{f}\)</span> funcionários (1200); e,</li>
+<li><span class="math inline">\(S_{e}=\frac{N_{e}}{n_{e}}\)</span> em que <span class="math inline">\(S_{e}\)</span> é o passo a ser seguido na extração de <span class="math inline">\(n_{e}\)</span> alunos (675) da ``população’’ de <span class="math inline">\(N_{e}\)</span> alunos (6000).</li>
+</ul>
+<p><br />
+</p>
+<p>Muitos ajustes devem ser feitos pois, de modo frequente, os resultados dos passos obtids na prática resultam em números fracionários. Todavia, devemos ter sempre procurar não reduzir o tamanho amostral e ter em mente que o tamanho da população não pode ser aumentado.</p>
+<p><br />
+</p>
+<p>Para os professores: <span class="math inline">\(S_{p}=\frac{800}{90}=8,88\)</span>. Se tomamos <span class="math inline">\(S_{p}=9\)</span> (um professor a cada nove da lista) veremos que para extrair 90 professores a população teria de ser de 810 (a população é de 800). Uma das opções seria usar <span class="math inline">\(S_{p}=8\)</span> e se extrair 100 professores (uma amostra um pouco maior). Outra possibilidade seria ainda usar <span class="math inline">\(S_{p}=8\)</span> remover aleatoriamente 80 professores da população e então tomar 90 professores (pois com <span class="math inline">\(S_{p}=8\)</span>, <span class="math inline">\(8 . 90=720\)</span>).</p>
+<p><br />
+</p>
+<p>Para os funcionários: <span class="math inline">\(S_{f}=\frac{1200}{135}=8,88\)</span> (o mesmo porque essas amostras foram estabelecidas de modo proporcional). Se tomamos <span class="math inline">\(S_{f}=9\)</span> (um funcionário a cada nove da lista) veremos que para extrair 135 funcionários a população teria de ser de 1215 (a população é de 1200). Uma das opções seria usar <span class="math inline">\(S_{f}=8\)</span> e se extrair 150 funcionários (uma amostra um pouco maior). Outra possibilidade seria ainda usar <span class="math inline">\(S_{f}=8\)</span> remover aleatoriamente 120 funcionários da população e então tomar 135 funcionários (pois com <span class="math inline">\(S_{f}=8\)</span>, <span class="math inline">\(8 . 135=1080\)</span>).</p>
+<p><br />
+</p>
+<p>Do mesmo modo para os alunos: <span class="math inline">\(S_{e}=\frac{6000}{675}=8,88\)</span> (o mesmo porque essas amostras foram estabelecidas de modo proporcional). Se tomamos <span class="math inline">\(S_{e}=9\)</span> (um aluno a cada nove da lista) veremos que para extrair 675 alunos a população teria de ser de 6075 (a população é de 6000). Uma das opções seria usar <span class="math inline">\(S_{e}=8\)</span> e se extrair 750 alunos (uma amostra um pouco maior). Outra possibilidade seria ainda usar <span class="math inline">\(S_{e}=8\)</span> remover aleatoriamente 600 funcionários da população e então tomar 600 alunos (pois com <span class="math inline">\(S_{e}=8\)</span>, <span class="math inline">\(8 . 135=1080\)</span>).</p>
+<p><br />
+</p>
+<p>Ao final poderíamos extrair então 100 professores, 150 funcionários e 750 alunos; ou, pela segnda possibilidade, extrair 90 professores, 135 funcionários e 600 alunos (eliminando-se aleatoriamente elementos das populações antes de se sistematizar a extração, como antes explicado).</p>
+<p><br />
+</p>
+<p>A proporção de elementos extraídos de cada um dos estratos é constante entre os extratos, asseguando uma extração proporcional:</p>
 <p><br />
 </p>
 <p><span class="math display">\[
-\frac{n_{p}}{N_{p}} = \frac{n_{f}}{N_{f}} =\frac{n_{e}}{N_{e}}=0,1125
-\]</span></p>
-<p><br />
+\frac{100}{800} = \frac{150}{1200} =\frac{750}{6000}=0,125 \\
+\frac{90}{720} = \frac{135}{1080} =\frac{675}{5400}=0,125
+\]</span><br />
 </p>
 <p>Pode-se <strong>otimizar</strong> uma amostragem estratificada proporcional consideran-de também sua variabilidade interna. O tamanho de cada uma das amostras (<span class="math inline">\(n_{1},n_{2},\dots,n_{k}\)</span>) dos diferentes estratos são proporcionais aos <strong>tamanhos</strong> dos estratos (<span class="math inline">\(N_{1},N_{2},\dots, N_{k}\)</span>) <strong>e também</strong> segundo algum critério adicional (otimização), como a variabilidade interna de cada estrato (<span class="math inline">\(\sigma_{1},\sigma_{2},\dots,\sigma_{k}\)</span>) de modo a se manter iguais as razões:</p>
 <p><br />

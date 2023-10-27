@@ -164,7 +164,7 @@ DSTA - Departamento de Estatística\\
 Apostila de Estatística\\
 Prof.~M.e Eng.\(^{o}\) Felinto Junior Da Costa}
 \author{}
-\date{\vspace{-2.5em}Londrina, 24 de outubro de 2023.}
+\date{\vspace{-2.5em}Londrina, 27 de outubro de 2023.}
 
 \begin{document}
 \maketitle
@@ -9055,11 +9055,11 @@ P(X=j)_{3 \le j \le \infty} &  = 0,008
 
 \hfill\break
 
-Uma variável aleatória discreta que segue uma distribuição Binomial Negativa (também conhecida como de Distribuição de Pascal em homenagem ao matemático francês Blaise Pascal) pode ser considerada como uma generalização da variável Geométrica, na qual agora é considerada a situação em que se modelam as probabilidades de se verificar mais de um evento de sucesso.
+A distribuição Binomial Negativa (também conhecida como de Distribuição de Pascal em homenagem ao matemático francês Blaise Pascal) pode ser considerada como uma generalização da variável Geométrica, na qual agora considera-se a situação em que se modelam as probabilidades de se verificar mais de um evento de sucesso em um certo número de repetições.
 
 \hfill\break
 
-Ao se realizar repetidos experimentos de Bernoulli, uma variável aleatória Binomial Negativa modela as probabilidades relacionadas ao número de repetições necessárias para se observar \(r\) sucessos.
+Ao se realizar repetidos experimentos de Bernoulli, uma variável aleatória Binomial Negativa modela as probabilidades de serem observados \(k\) sucessos em \(n\) repetições.
 
 \hfill\break
 
@@ -9071,28 +9071,26 @@ Um experimento que apresenta uma distribuição Binomial Negativa satisfaz aos s
 2- cada repetição não altera a probabilidad das demais (há independência);\\
 3- a probabilidade de sucesso (\(p\)) em cada repetição é constante;\\
 4- consequentemente, a probabilidade de fracasso (\(q=1-p\)) em cada repetição também é constante; e,\\
-5- o experimento aleatório prossegue até que sejam verificados \(r\) sucessos.
-
-Considere o experimento aelatório de se lançar uma moeda \textbf{não honesta}, com probabilidade \(p\) de ocorrência de \emph{Cara} e \((1-p)\) de ocorrência de \emph{Coroa}. Se definimos nosso evento de sucesso como sendo obter \emph{Cara} no lançamento, quantos lançamentos serão necessários para serão necessários para se observar \(r\) \emph{Caras}?
+5- o experimento aleatório prossegue até que sejam verificados \(k\) sucessos.
 
 \hfill\break
 
-Se arbitramos \(r=3\) e observarmos a sequência: \emph{\{Cara, Coroa, Coroa, Cara, Coroa, Coroa, Cara\}}, então \(n=7\): foram necessárias sete repetições até que três \emph{Caras} fosse observadas.
+A notação de uma variável aleatória Binomial Negativa é \(X\sim bn(p,k)\), onde o parâmetro \(p\) (\(0 \le p \le1\)) indica a probabilidade individual de sucesso a cada repetição de Bernoulli e \(k\) o número total de sucessos desejado e estabelecido \emph{a priori}.
 
 \hfill\break
 
-A notação de uma variável aleatória Binomial Negativa é \(X\sim bn(p,r)\), onde o parâmetro \(p\) (\(0 \le p \le1\)) indica a probabilidade individual de sucesso a cada repetição de Bernoulli e \(r\) o número total de sucessos desejado (estabelecido \emph{a priori}).
+Sua função discreta de probabilidade, que calcula a probabilidade de se observar o número \(k\) sucessos estabelecido \emph{a priori} em \(n\) de ensaios de Bernoulli realizados, é a seguinte:
 
 \hfill\break
-
-Sua função discreta de probabilidade calcula a probabilidade de se observar um total de \(r\) sucessos (estabelecido \emph{a priori}) após \(n\) de ensaios de Bernoulli realizados é a seguinte:
 
 \begin{align*}
-f(X=x; p; r) & = P(X=n) = {C}_{r-1}^{n-1} . {p}^{r} . {q}^{(n-r)} \\
-f(X=x; p; r) & = \frac{(n-1)!}{ (r-1)!. (n-r-2)!} . {p}^{r}. {q}^{(n-r)}
+f(X=n; p; k) & = P(X=n; p; k) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{(n-k)} \\
+& = \frac{(n-1)!}{ (k-1)! \cdot (n-k)!} \cdot {p}^{k} \cdot {q}^{(n-k)}
 \end{align*}
 
-Pela razão óbvia de se necessitar no mínimo \(r\) tentativas para se obter \(r\) sucessos, a faixa de \(x=n={r, r+1, r+2 ...}\)).
+\hfill\break
+
+Como são necessários no mínimo \(k\) tentativas para se obter \(k\) sucessos, os valores de \(x={k, k+1, k+2 ...}\)).
 
 \hfill\break
 
@@ -9101,19 +9099,19 @@ A esperança e a variância de uma variável aleatória discreta com Distribuiç
 \begin{itemize}
 \tightlist
 \item
-  Esperança: \(E(X) = \frac{r}{p}\) ;\\
+  Esperança: \(E(X) = \frac{k}{p}\) ;\\
 \item
-  Variância: \(Var(X) = \frac{r \times (1-p)}{p^{2}} = \frac{q \times r}{p^{2}}\).
+  Variância: \(Var(X) = \frac{k \cdot (1-p)}{p^{2}} = \frac{q \cdot k}{p^{2}}\).
 \end{itemize}
 
 \hfill\break
 
 \begin{quote}
-Uma variável aleatória Binomial é uma contagem de número de sucessos \(k\) em \(n\) tentativas de Bernoulli; ou seja, o número de tentativas \(n\) é predeterminado (fixo) e o número de sucessos \(k\) é aleatório e em \(n\) tentativas a probabilidade de se observar \(k\) sucessos é medida pela sua função de distribuição discreta de probabilidades.
+Uma variável aleatória Binomial é uma contagem de número de sucessos \(k\) em \(n\) tentativas de Bernoulli; ou seja, o número de tentativas \(n\) é predeterminado (fixo) e o número de sucessos \(k\) é a variação aleatória. Em \(n\) tentativas a probabilidade de se observar \(k\) sucessos é calculada pela sua função de distribuição discreta de probabilidades.
 \end{quote}
 
 \begin{quote}
-Uma variável aleatória Binomial Negativa é uma contagem do número de tentativas até se obter \(r\) sucessos; isto é, o número de sucessos \(r\) é predeterminado (fixo) e o número de tentativas é aleatório e a probabilidade de se observar \(r\) sucessos a cada \(n\) tentativas é calculada por sua função de distribuição discreta de probabilidades.
+Uma variável aleatória Binomial Negativa é uma contagem do número de tentativas \(n\) de Bernoulli em \(k\) sucessos; ou seja, o número de sucessos \(k\) é predeterminado (fixo) e o número de tentativas é a variação aleatória. Em \(n\) tentativas a probabilidade de se observar \(k\) sucessos é calculada pela sua função de distribuição discreta de probabilidades.
 \end{quote}
 
 \hfill\break
@@ -9124,7 +9122,7 @@ Exemplo: A probabilidade com que um \emph{bit} transmitido através de um canal 
 
 \hfill\break
 
-Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse experiment aleatório, tal que \(X\sim bn(p,r)\) onde \(p\) é a probabilidade individual de sucesso e \(r\) o total de sucessos.
+Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse experimento aleatório, tal que \(X\sim bn(p,k)\) onde \(p\) é a probabilidade individual de sucesso e \(k\) o número de sucessos estabelecido \emph{a priori}.
 
 \hfill\break
 
@@ -9133,22 +9131,27 @@ Dados do problema:
 \hfill\break
 
 1- a probabilidade de ocorrência de um sucesso (aqui bem entendido como sendo a recepção errada de um \emph{bit} transmitido) é \(p=0,1\); e,\\
-2- o número de sucessos (aqui bem entendido como sendo a recepção errada de um \emph{bit} transmitido) está definido \emph{a priori} \(r=4\).
+2- o número de sucessos (aqui bem entendido como sendo a recepção errada de um \emph{bit} transmitido) está definido em \(k=4\).
 
 \hfill\break
 
-Pede-se a probabilidade de se observar \textbf{quatro} sucessos (\(r=4\)) em \textbf{dez} (\(n=10\)) transmissões.
+Pede-se a probabilidade de se observar quatro sucessos (\(k=4\)) em dez (\(n=10\)) transmissões (repetições).
 
 \hfill\break
 
-A probabilidade de se obter \(r=4\) sucessos ao se realizar \(n=10\) tentativas é dada pela função discreta de probabilidade da variável aleatória Binomial Negativa:
+A probabilidade de se observar \(k=4\) sucessos ao se realizar \(n=10\) tentativas de Bernoulli é dada pela função discreta de probabilidade da variável aleatória Binomial Negativa:
+
+\hfill\break
 
 \begin{align*}
-f(X=x; p; r) = P(X=n) & = {C}_{r-1}^{n-1} . {p}^{r}. {q}^{n-r} \\
-f(X=x; p; r) = P(X=n) & = \frac{(n-1)!}{ (r-1)!. (n-r-2)!} . {p}^{r}. {q}^{n-r} \\ 
-f(X=10; p=0,10 ; r=4) = P(X=10) & = \frac{(10-1)!}{ (4-1)!. (10-4-2)!} . {0,1}^{4}. {0,9}^{10-4} \\
-P(X=10) & = 0,004464104
+f(X=n; p; r) & = P(X=10; p=0,1; k=4 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
+& = \frac{(n-1)!}{ (r-1)! \cdot (n-k)!} \cdot {p}^{k} \cdot {q}^{n-k} \\ 
+& = \frac{(10-1)!}{ (4-1)! \cdot (10-4)!} \cdot {0,1}^{4} \cdot {0,9}^{10-4} \\
+& = \frac{362880}{ 6 \cdot 720} \cdot 0.0001  \cdot 0.531441 \\
+& = 0,004464104
 \end{align*}
+
+\hfill\break
 
 A probabilidade de se observar 4 sucessos em 10 tentativas é de 0,4464104\%.
 
@@ -9160,7 +9163,7 @@ Exemplo 11: Bob é um jogador de basquete de uma escola. Ele é um lançador de 
 
 \hfill\break
 
-Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse experimento aleatório tal que \(X\sim bn(p,r)\) onde \(p\) é a probabilidade individual de sucesso e \(r\) o total de sucessos.
+Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse experimento aleatório tal que \(X\sim bn(p,k)\) onde \(p\) é a probabilidade individual de sucesso e \(k\) o número de sucessos estabelecido \emph{a priori}.
 
 \hfill\break
 
@@ -9169,24 +9172,25 @@ Dados do problema:
 \hfill\break
 
 1- a probabilidade de ocorrência de um sucessoé \(p=0,70\), e\\
-2- o número de sucessos fixado \emph{a priori} é \(r=3\).
+2- o número de sucessos fixado \emph{a priori} é \(k=3\).
 
 \hfill\break
 
-Pede-se a probabilidade de se observar três sucessos em 5 arremessos \(n=5\).
+Pede-se a probabilidade de se observar três sucessos (\(k=3\)) em cinco (\(n=5\)) arremessos(repetições).\\
 
-\hfill\break
-
-A probabilidade de se obter \(r=3\) sucessos ao se realizar \(n=5\) tentativas é dada pela função discreta de probabilidade da variável Binomial Negativa:
+A probabilidade de se obter \(k=3\) sucessos ao se realizar \(n=5\) tentativas é dada pela função discreta de probabilidade da variável Binomial Negativa:
 
 \hfill\break
 
 \begin{align*}
-f(X=x; p; r) = P(X=n) & = {C}_{r-1}^{n-1} . {p}^{r}. {q}^{n-r} \\
-f(X=x; p; r) = P(X=n) & = \frac{(n-1)!}{ (r-1)!. (n-r-2)!} . {p}^{r}. {q}^{n-r} \\
-f(X=5; p=0,70 ; r=3) = P(X=5) & = \frac{(5-1)!}{ (3-1)!. (5-3-2)!} . {0,70}^{3}. {0,9}^{5-3} \\
-P(X=5) & = 0,18522
+f(X=n; p; r) & = P(X=5; p=0,7; k=3 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
+& = \frac{(n-1)!}{ (r-1)! \cdot (n-k)!} \cdot {p}^{k} \cdot {q}^{n-k} \\ 
+& = \frac{(5-1)!}{ (3-1)! \cdot (5-3)!} \cdot {0,7}^{3} \cdot {0,3}^{5-3} \\
+& = \frac{24}{ 2 \cdot 2} \cdot 0.343  \cdot 0.09 \\
+& = 0,18522
 \end{align*}
+
+\hfill\break
 
 A probabilidade de Bob acertar 3 arremessos em 5 tentativas é de 18,522\%.
 
@@ -9198,7 +9202,7 @@ A probabilidade de Bob acertar 3 arremessos em 5 tentativas é de 18,522\%.
 
 \hfill\break
 
-Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse fenômeno como \(X\sim bn(p,r)\) onde \(p\) é a probabilidade individual de sucesso e \(r\) o total de sucessos.
+Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse experimento aleatório tal que \(X\sim bn(p,k)\) onde \(p\) é a probabilidade individual de sucesso e \(k\) o número de sucessos estabelecido \emph{a priori}.
 
 ~
 
@@ -9211,23 +9215,29 @@ Dados do problema:
 \item
   a probabilidade de ocorrência de um sucesso é \(p=0,5\), e,\\
 \item
-  o número de sucessos fixado \emph{a priori} é \(r=7\).
+  o número de sucessos fixado \emph{a priori} é \(k=7\).
 \end{itemize}
 
 \hfill\break
 
-Pede-se a probabilidade de se observar sete sucessos em doze (5+7) tentativas \(n=12\).
+Pede-se a probabilidade de se observar sete sucessos (sete Caras) em doze tentativas (sete Caras e cinco Coroas).
 
 \hfill\break
 
-A probabilidade de se obter \(r=7\) sucessos ao se realizar \(n=12\) tentativas é dada pela função discreta de probabilidade da variável Binomial Negativa:
+A probabilidade de se obter \(k=7\) sucessos ao se realizar \(n=12\) tentativas é dada pela função discreta de probabilidade da variável Binomial Negativa:
+
+\hfill\break
 
 \begin{align*}
-f(X=x; p; r) = P(X=n) & = {C}_{r-1}^{n-1} . {p}^{r}. {q}^{n-r} \\
-f(X=x; p; r) = P(X=n) & = \frac{(n-1)!}{ (r-1)!. (n-r-2)!} . {p}^{r}. {q}^{n-r} \\
-f(X=5; p=0,50 ; r=7) = P(X=12) & = \frac{(12-1)!}{ (7-1)!. (12-7-2)!} . {0,50}^{7}. {0,50}^{12-7} \\
-P(X=5) & = 0,1128
+f(X=n; p; r) & = P(X=12; p=0.5; k=7 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
+& = \frac{(n-1)!}{ (r-1)! \cdot (n-k)!} \cdot {p}^{k} \cdot {q}^{n-k} \\ 
+& = \frac{(12-1)!}{ (7-1)! \cdot (12-7)!} \cdot {0,5}^{7} \cdot {0,5}^{12-7} \\
+& = \frac{39916800}{ 720 \cdot 120} \cdot 0.0078125 \cdot 0.03125 \\
+& = 462  \cdot 0.0078125 \cdot 0.03125 \\
+& = 0.112793
 \end{align*}
+
+\hfill\break
 
 A probabilidade de se obter 7 sucessos em 12 tentativas é de 11,28\%.
 
@@ -9242,7 +9252,7 @@ Exemplo: Considere o tempo para recarregar o flash de uma câmera de celular. As
 
 \hfill\break
 
-Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse experimento aleatório tal que \(X\sim bn(p,r)\) onde \(p\) é a probabilidade individual de sucesso e \(r\) o total de sucessos.
+Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse experimento aleatório tal que \(X\sim bn(p,k)\) onde \(p\) é a probabilidade individual de sucesso e \(k\) o número de sucessos estabelecido \emph{a priori}.
 
 \hfill\break
 
@@ -9253,68 +9263,85 @@ Dados do problema:
 \begin{itemize}
 \tightlist
 \item
-  probabilidade de que a câmera montada no celular passe no teste é \(p=0,80\); logo, a probabilidade de não passar será de (\(q=1-0,80\)) \(=0,20\);\\
+  se a probabilidade de que a câmera montada no celular passe no teste é \(0,80\) a probabilidade de não passar é de (\(1-0,80\)) \(=0,20\);\\
 \item
-  fica bem entendido que o \textbf{sucesso} é a câmera montada no celular \textbf{não passar} no teste, logo \(p=0,20\);\\
+  fica bem entendido aqui que o \textbf{sucesso} é a câmera montada no celular \textbf{não passar} no teste, logo \(p=0,20\);\\
 \item
-  no item (1) pede-se a probabilidade de se observar um número de sucessos fixado \emph{a priori} \(r=2\) em \(n=10\);\\
+  no item (1) pede-se a probabilidade de se observar um número de sucessos fixado \emph{a priori} \(k=2\) em \(n=10\) câmeras testadas (repetições de Bernoulli);\\
 \item
-  no item (2) pede-se a probabilidade de se observar um número de sucessos também fixado \emph{a priori} em \(r=2\) mas agora em \(n \le 4\) câmeras testadas; e,\\
+  no item (2) pede-se a probabilidade de se observar um número de sucessos também fixado \emph{a priori} em \(k=2\) mas agora no intervalo de \(n \le 4\) câmeras testadas (repetições de Bernoulli); e,\\
 \item
-  o valor esperado para o número de câmeras testadas (\(n=?\)) para que se observem \(r=3\) sucessos.
+  o valor esperado para o número de câmeras testadas (repetições de Bernoulli) (\(n=?\)) para que se observ \(k=3\) sucessos.
 \end{itemize}
 
 \hfill\break
 
-A probabilidade de se obter \(r=2\) sucessos ao se realizar \(n=10\) tentativas é dada pela função discreta de probabilidade da variável Binomial Negativa:
+A probabilidade de se observar \(k=2\) sucessos ao se realizar \(n=10\) tentativas de Berboulli é dada pela função discreta de probabilidade da variável Binomial Negativa:
+
+/
 
 \begin{align*}
-f(X=x; p; r) = P(X=n) & = {C}_{r-1}^{n-1} . {p}^{r}. {q}^{n-r} \\
-f(X=10; p=0,20 ; r=2) = P(X=10) & = {C}_{2-1}^{10-1} . {0,20}^{2}. {0,80}^{10-2} \\ 
-P(X=10) & = 0,06039
+f(X=n; p; r) & = P(X=10; p=0.2; k=2 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
+& = \frac{(n-1)!}{ (r-1)! \cdot (n-k)!} \cdot {p}^{k} \cdot {q}^{n-k} \\ 
+& = \frac{(10-1)!}{ (2-1)! \cdot (10-2)!} \cdot {0,2}^{2} \cdot {0,8}^{10-2} \\
+& = \frac{362880}{ 1 \cdot 40320} \cdot 0.04 \cdot 0.1677722 \\
+& = 9 \cdot 0.04 \cdot 0.1677722 \\
+& = 0.06039799
 \end{align*}
-
-A probabilidade de se obter \(r=2\) sucessos em \(n=10\) tentativas é de 6,039\%.
 
 \hfill\break
 
-As probabilidades de se obter \(r=2\) sucessos ao se realizar \(n \le 4\) tentativas é dada pela função discreta de probabilidade da variável Binomial Negativa aplicada a:
+A probabilidade de se observar \(k=2\) sucessos em \(n=10\) tentativas de Bernoulli é de 6,039\%.
+
+\hfill\break
+
+As probabilidades de se observar \(k=2\) sucessos ao serem realizadas \(n \le 4\) tentativas é expressa por \$P(X=2) \cap P(X=3) \cap P(X=4)=P(X=2)+P(X=3)+P(X=4)), dadas pela função discreta de probabilidade da variável Binomial Negativa aplicada a:
+
+\hfill\break
 
 \begin{align*}
-f(X=x; p; r) = P(X=n) & = {C}_{r-1}^{n-1} . {p}^{r}. {q}^{n-r} \\
-f(X=2; p=0,20 ; r=2) = P(X=2)  & = {C}_{2-1}^{2-1} . {0,20}^{2}. {0,80}^{2-2} \\ 
+f(X=n; p; r) & = P(X=2; p=0.2; k=2 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
+& = \frac{(2-1)!}{ (2-1)! \cdot (2-2)!} \cdot {0,2}^{2} \cdot {0,8}^{2-2} \\
 P(X=2) & = 0,04
 \end{align*}
 
 \hfill\break
 
 \begin{align*}
-f(X=x; p; r) = P(X=n) & = {C}_{r-1}^{n-1} . {p}^{r}. {q}^{n-r} \\
-f(X=3; p=0,20 ; r=2) = P(X=2) & = {C}_{2-1}^{3-1} . {0,20}^{2}. {0,80}^{3-2} \\ 
+f(X=n; p; r) & = P(X=3; p=0.2; k=2 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
+& = \frac{(3-1)!}{ (2-1)! \cdot (3-2)!} \cdot {0,2}^{2} \cdot {0,8}^{3-2} \\
 P(X=3) & = 0,064
 \end{align*}
 
 \hfill\break
 
 \begin{align*}
-f(X=x; p; r) = P(X=n) & = {C}_{r-1}^{n-1} . {p}^{r}. {q}^{n-r} \\
-f(X=4; p=0,20 ; r=2) = P(X=2) & = {C}_{2-1}^{4-1} . {0,20}^{2}. {0,80}^{4-2} \\  
+f(X=n; p; r) & = P(X=4; p=0.2; k=2 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
+& = \frac{(4-1)!}{ (2-1)! \cdot (4-2)!} \cdot {0,2}^{2} \cdot {0,8}^{4-2} \\
 P(X=4) & = 0,0768
 \end{align*}
 
-A probabilidade de se obter \(r=2\) sucessos em \(n \le 4\) tentativas é de (\(0,032+0,064+0,0768\)) 18,08\%.
+\hfill\break
+
+A probabilidade de se obter \(r=2\) sucessos em \(n \le 4\) tentativas é de (\(0,04+0,064+0,0768\)) 18,08\%.
 
 \hfill\break
 
-O valor esperado (esperança) do número de câmeras testadas para que se observem \(r=3\) sucessos é dado
+O valor esperado (esperança) do número de câmeras testadas para que se observem \(k=3\) sucessos é dado
+
+\hfill\break
 
 \begin{align*}
-E(X) &  = \frac{r}{p} \\
+E(X) &  = \frac{k}{p} \\
 E(X) & = \frac{3}{0,2} \\
      & =15
 \end{align*}
 
+\hfill\break
+
 O valor esperado (esperança) do número \(n\) de câmeras testadas para que se observem \(r=3\) sucessos é 15
+
+\hfill\break
 
 \hypertarget{modelos-teuxf3ricos-contuxednuos}{%
 \section{Modelos teóricos contínuos}\label{modelos-teuxf3ricos-contuxednuos}}
@@ -11176,7 +11203,7 @@ Amostragem aleatória simples com reposição. Considere agora a mesma populaç�
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "c" "d" "e"
+## [1] "e" "b" "a"
 \end{verbatim}
 
 \begin{Shaded}
@@ -11188,7 +11215,7 @@ Amostragem aleatória simples com reposição. Considere agora a mesma populaç�
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "a" "d" "e"
+## [1] "c" "e" "e"
 \end{verbatim}
 
 \hfill\break
@@ -13461,107 +13488,107 @@ Usando conceitos já explicados em uma unidade anterior podemos determinar o tam
 \end{figure}
 
 \begin{verbatim}
-##       mu media     erro   li   ls
-## 1   1600  1593  -6.6144 1574 1612
-## 2   1600  1582 -18.2959 1562 1602
-## 3   1600  1598  -1.5433 1581 1616
-## 4   1600  1591  -8.9508 1570 1612
-## 5   1600  1598  -1.8101 1578 1618
-## 6   1600  1602   1.7664 1583 1620
-## 7   1600  1585 -14.8877 1565 1605
-## 8   1600  1607   6.5530 1585 1628
-## 9   1600  1608   7.8873 1589 1627
-## 10  1600  1600   0.4023 1580 1621
-## 11  1600  1599  -0.9201 1578 1620
-## 12  1600  1601   0.6002 1581 1620
-## 13  1600  1621  20.5130 1601 1640
-## 14  1600  1597  -3.4480 1576 1617
-## 15  1600  1602   1.5364 1581 1622
-## 16  1600  1589 -11.0894 1567 1610
-## 17  1600  1605   5.3517 1586 1625
-## 18  1600  1589 -11.2870 1566 1611
-## 19  1600  1604   3.7383 1587 1621
-## 20  1600  1606   6.0072 1586 1626
-## 21  1600  1599  -0.7176 1578 1621
-## 22  1600  1580 -19.6063 1561 1600
-## 23  1600  1599  -1.3611 1579 1618
-## 24  1600  1590  -9.5942 1572 1609
-## 25  1600  1603   2.8241 1584 1622
-## 26  1600  1601   0.6860 1580 1622
-## 27  1600  1610  10.0566 1589 1631
-## 28  1600  1583 -17.3028 1564 1601
-## 29  1600  1582 -17.9327 1562 1602
-## 30  1600  1608   8.3823 1588 1629
-## 31  1600  1604   3.7250 1581 1626
-## 32  1600  1605   4.5821 1587 1622
-## 33  1600  1600  -0.2948 1577 1622
-## 34  1600  1600   0.1924 1581 1620
-## 35  1600  1580 -19.8970 1561 1599
-## 36  1600  1596  -3.8793 1576 1616
-## 37  1600  1610  10.1528 1592 1629
-## 38  1600  1607   7.2131 1587 1628
-## 39  1600  1607   6.8249 1587 1627
-## 40  1600  1604   4.4693 1586 1623
-## 41  1600  1606   5.6990 1585 1626
-## 42  1600  1596  -4.3376 1575 1617
-## 43  1600  1602   1.5002 1583 1620
-## 44  1600  1619  18.8575 1599 1639
-## 45  1600  1586 -14.2506 1567 1605
-## 46  1600  1628  28.0905 1608 1649
-## 47  1600  1585 -14.7984 1565 1606
-## 48  1600  1589 -11.0503 1570 1607
-## 49  1600  1612  12.1805 1592 1633
-## 50  1600  1588 -11.9752 1569 1607
-## 51  1600  1594  -5.6885 1575 1613
-## 52  1600  1604   3.6333 1583 1624
-## 53  1600  1597  -2.9376 1580 1614
-## 54  1600  1602   1.6872 1582 1621
-## 55  1600  1604   4.3904 1585 1624
-## 56  1600  1592  -7.5137 1573 1612
-## 57  1600  1605   4.6907 1585 1625
-## 58  1600  1591  -9.3511 1572 1610
-## 59  1600  1588 -11.5613 1568 1609
-## 60  1600  1607   6.6610 1586 1627
-## 61  1600  1610   9.9565 1591 1629
-## 62  1600  1627  26.7054 1606 1647
-## 63  1600  1602   2.1754 1582 1622
-## 64  1600  1610   9.7439 1587 1633
-## 65  1600  1602   2.2698 1582 1623
-## 66  1600  1584 -15.9161 1563 1605
-## 67  1600  1589 -11.1873 1569 1609
-## 68  1600  1616  15.5818 1597 1634
-## 69  1600  1601   1.2137 1580 1622
-## 70  1600  1578 -21.7540 1559 1598
-## 71  1600  1598  -2.1109 1580 1616
-## 72  1600  1618  17.6733 1597 1638
-## 73  1600  1607   7.4719 1588 1627
-## 74  1600  1612  11.5522 1590 1634
-## 75  1600  1586 -14.0278 1567 1605
-## 76  1600  1592  -8.1681 1571 1613
-## 77  1600  1606   5.8113 1586 1626
-## 78  1600  1612  11.5314 1593 1630
-## 79  1600  1605   4.5999 1583 1626
-## 80  1600  1584 -15.5238 1564 1605
-## 81  1600  1605   5.3382 1587 1624
-## 82  1600  1618  18.0809 1598 1638
-## 83  1600  1596  -4.3321 1576 1616
-## 84  1600  1619  18.8682 1600 1638
-## 85  1600  1586 -14.3788 1566 1606
-## 86  1600  1601   0.8695 1581 1621
-## 87  1600  1603   2.5739 1584 1622
-## 88  1600  1574 -25.5465 1555 1594
-## 89  1600  1594  -5.6534 1575 1614
-## 90  1600  1598  -2.4224 1578 1617
-## 91  1600  1594  -6.0547 1575 1613
-## 92  1600  1618  17.7392 1597 1638
-## 93  1600  1600   0.4001 1581 1620
-## 94  1600  1601   0.8879 1579 1622
-## 95  1600  1592  -7.7689 1572 1612
-## 96  1600  1602   2.2431 1580 1624
-## 97  1600  1613  12.6577 1592 1634
-## 98  1600  1590 -10.2662 1572 1608
-## 99  1600  1584 -15.5233 1565 1603
-## 100 1600  1594  -6.1874 1573 1614
+##       mu media      erro   li   ls
+## 1   1600  1593  -7.17060 1575 1611
+## 2   1600  1618  17.83372 1598 1637
+## 3   1600  1589 -11.38117 1568 1609
+## 4   1600  1602   1.81096 1583 1621
+## 5   1600  1611  11.24513 1592 1631
+## 6   1600  1607   6.78056 1587 1627
+## 7   1600  1598  -2.11080 1579 1617
+## 8   1600  1597  -2.63637 1579 1616
+## 9   1600  1594  -6.22383 1575 1613
+## 10  1600  1599  -0.62853 1579 1620
+## 11  1600  1588 -11.86823 1569 1608
+## 12  1600  1606   6.19900 1586 1626
+## 13  1600  1598  -1.96254 1578 1618
+## 14  1600  1607   6.67362 1588 1626
+## 15  1600  1604   4.34490 1583 1625
+## 16  1600  1589 -11.16454 1568 1609
+## 17  1600  1592  -8.10578 1573 1611
+## 18  1600  1609   8.85396 1593 1625
+## 19  1600  1615  15.25977 1596 1635
+## 20  1600  1608   7.96673 1588 1628
+## 21  1600  1600  -0.41794 1580 1620
+## 22  1600  1594  -6.43870 1574 1613
+## 23  1600  1591  -9.10634 1573 1609
+## 24  1600  1611  10.94035 1590 1632
+## 25  1600  1597  -3.02783 1577 1617
+## 26  1600  1584 -16.41773 1565 1602
+## 27  1600  1594  -5.61490 1575 1614
+## 28  1600  1581 -19.42293 1560 1601
+## 29  1600  1605   5.15886 1586 1624
+## 30  1600  1582 -17.64155 1561 1603
+## 31  1600  1591  -8.56057 1572 1611
+## 32  1600  1609   8.77908 1588 1629
+## 33  1600  1617  16.89673 1597 1637
+## 34  1600  1624  24.14744 1605 1643
+## 35  1600  1607   7.02622 1587 1627
+## 36  1600  1587 -12.73129 1566 1609
+## 37  1600  1588 -12.15127 1570 1606
+## 38  1600  1596  -3.90045 1577 1615
+## 39  1600  1597  -3.21557 1578 1615
+## 40  1600  1595  -5.41114 1577 1613
+## 41  1600  1598  -2.10994 1579 1617
+## 42  1600  1586 -13.60949 1565 1608
+## 43  1600  1609   9.48907 1590 1629
+## 44  1600  1593  -6.86420 1575 1611
+## 45  1600  1603   3.04176 1585 1621
+## 46  1600  1602   1.99655 1581 1623
+## 47  1600  1613  12.61250 1591 1634
+## 48  1600  1603   3.14668 1583 1623
+## 49  1600  1612  11.74705 1593 1631
+## 50  1600  1598  -2.00947 1578 1618
+## 51  1600  1603   2.81783 1582 1624
+## 52  1600  1593  -6.73550 1573 1613
+## 53  1600  1604   4.34818 1585 1624
+## 54  1600  1585 -15.17996 1565 1605
+## 55  1600  1594  -6.17910 1573 1614
+## 56  1600  1610   9.60255 1589 1630
+## 57  1600  1586 -13.88495 1566 1606
+## 58  1600  1607   6.82805 1587 1627
+## 59  1600  1611  11.41052 1591 1632
+## 60  1600  1589 -10.88127 1569 1609
+## 61  1600  1604   4.12061 1585 1623
+## 62  1600  1597  -3.46680 1576 1617
+## 63  1600  1597  -2.87590 1576 1618
+## 64  1600  1588 -11.53710 1569 1607
+## 65  1600  1590 -10.42953 1572 1608
+## 66  1600  1605   5.08636 1586 1624
+## 67  1600  1608   8.26085 1587 1629
+## 68  1600  1594  -6.20925 1571 1616
+## 69  1600  1599  -1.36677 1579 1618
+## 70  1600  1595  -4.97718 1575 1615
+## 71  1600  1596  -3.85019 1575 1617
+## 72  1600  1594  -5.94562 1574 1614
+## 73  1600  1605   4.61818 1586 1623
+## 74  1600  1603   2.64763 1583 1622
+## 75  1600  1615  14.87850 1596 1634
+## 76  1600  1594  -6.06526 1572 1615
+## 77  1600  1615  14.85315 1593 1637
+## 78  1600  1593  -7.48040 1573 1612
+## 79  1600  1611  10.53266 1591 1630
+## 80  1600  1597  -3.18034 1575 1619
+## 81  1600  1589 -10.60132 1571 1608
+## 82  1600  1608   7.85456 1589 1627
+## 83  1600  1604   3.64147 1584 1623
+## 84  1600  1613  12.87763 1593 1633
+## 85  1600  1594  -5.95656 1575 1613
+## 86  1600  1595  -5.31636 1575 1614
+## 87  1600  1600  -0.05605 1581 1619
+## 88  1600  1591  -9.46193 1572 1609
+## 89  1600  1598  -1.55436 1576 1621
+## 90  1600  1605   5.16025 1585 1625
+## 91  1600  1600   0.19490 1580 1621
+## 92  1600  1619  18.86096 1601 1636
+## 93  1600  1602   2.44288 1584 1621
+## 94  1600  1598  -2.21757 1578 1618
+## 95  1600  1615  15.24503 1597 1633
+## 96  1600  1599  -0.85474 1579 1619
+## 97  1600  1583 -17.11889 1563 1602
+## 98  1600  1592  -7.82897 1572 1612
+## 99  1600  1605   5.04057 1587 1624
+## 100 1600  1573 -26.78921 1553 1593
 \end{verbatim}
 
 \hfill\break
@@ -13713,106 +13740,106 @@ Assim, \((1-\alpha)\) traduz o grau de confiança que se tem que um intervalo de
 
 \begin{verbatim}
 ##        mu  media       erro    li     ls
-## 1   9.421  9.953  0.5319566 8.818 11.088
-## 2   9.421  9.268 -0.1532641 8.236 10.299
-## 3   9.421  9.100 -0.3212736 8.048 10.151
-## 4   9.421  9.102 -0.3194210 7.915 10.289
-## 5   9.421  9.016 -0.4047899 8.034  9.998
-## 6   9.421  9.385 -0.0356313 8.233 10.538
-## 7   9.421 10.226  0.8047551 9.154 11.297
-## 8   9.421  9.846  0.4246060 8.760 10.931
-## 9   9.421  7.979 -1.4416390 7.067  8.892
-## 10  9.421  9.531  0.1099850 8.424 10.638
-## 11  9.421 10.480  1.0585154 9.423 11.536
-## 12  9.421  9.400 -0.0210601 8.348 10.452
-## 13  9.421  9.853  0.4323677 8.742 10.965
-## 14  9.421 10.119  0.6977988 9.150 11.088
-## 15  9.421  9.412 -0.0091099 8.399 10.424
-## 16  9.421  9.741  0.3195968 8.775 10.706
-## 17  9.421  9.394 -0.0265104 8.203 10.586
-## 18  9.421  9.368 -0.0526703 8.428 10.309
-## 19  9.421  9.916  0.4948015 8.978 10.854
-## 20  9.421  9.407 -0.0142335 8.223 10.591
-## 21  9.421  9.792  0.3708692 8.821 10.762
-## 22  9.421  9.402 -0.0192071 8.376 10.428
-## 23  9.421  9.351 -0.0698229 8.249 10.453
-## 24  9.421 10.449  1.0278414 9.536 11.362
-## 25  9.421  8.691 -0.7302893 7.520  9.861
-## 26  9.421  9.782  0.3606713 8.506 11.057
-## 27  9.421  9.186 -0.2350305 8.258 10.114
-## 28  9.421  8.765 -0.6559180 7.785  9.746
-## 29  9.421 10.112  0.6909194 9.007 11.216
-## 30  9.421  9.724  0.3034679 8.768 10.681
-## 31  9.421  8.967 -0.4544363 7.915 10.018
-## 32  9.421 10.048  0.6269948 9.203 10.893
-## 33  9.421  9.711  0.2901972 8.587 10.836
-## 34  9.421  9.332 -0.0890899 8.189 10.475
-## 35  9.421  9.071 -0.3497127 8.077 10.066
-## 36  9.421 10.107  0.6860059 9.028 11.186
-## 37  9.421 10.350  0.9290540 9.413 11.287
-## 38  9.421 10.072  0.6510533 9.073 11.071
-## 39  9.421 10.046  0.6248297 8.979 11.113
-## 40  9.421  8.684 -0.7365480 7.495  9.874
-## 41  9.421  9.167 -0.2535083 8.231 10.104
-## 42  9.421  9.527  0.1062397 8.570 10.484
-## 43  9.421  9.455  0.0336756 8.509 10.400
-## 44  9.421 10.065  0.6444653 9.030 11.101
-## 45  9.421  8.597 -0.8237163 7.672  9.522
-## 46  9.421  9.281 -0.1398358 8.203 10.359
-## 47  9.421 10.133  0.7124289 8.876 11.390
-## 48  9.421  9.881  0.4603690 8.928 10.835
-## 49  9.421  9.794  0.3725049 8.696 10.891
-## 50  9.421 10.019  0.5980100 9.013 11.025
-## 51  9.421  8.889 -0.5322746 7.738 10.040
-## 52  9.421  8.988 -0.4331752 8.043  9.933
-## 53  9.421 10.203  0.7818083 9.266 11.140
-## 54  9.421  9.367 -0.0544454 8.431 10.302
-## 55  9.421  9.613  0.1918762 8.557 10.669
-## 56  9.421  9.276 -0.1445687 8.298 10.255
-## 57  9.421  9.086 -0.3347284 8.091 10.081
-## 58  9.421 10.074  0.6529624 9.047 11.101
-## 59  9.421  9.058 -0.3627809 8.123  9.993
-## 60  9.421 10.090  0.6693213 9.141 11.039
-## 61  9.421  9.802  0.3807430 8.775 10.829
-## 62  9.421  8.373 -1.0479482 7.208  9.539
-## 63  9.421  9.749  0.3279586 8.674 10.824
-## 64  9.421 10.273  0.8523889 9.275 11.272
-## 65  9.421  9.421  0.0004369 8.535 10.308
-## 66  9.421  9.054 -0.3671965 8.087 10.021
-## 67  9.421  8.318 -1.1032074 7.408  9.228
-## 68  9.421 10.009  0.5883192 8.896 11.123
-## 69  9.421  9.033 -0.3878605 7.898 10.168
-## 70  9.421  8.859 -0.5620976 7.957  9.760
-## 71  9.421  9.292 -0.1294712 8.308 10.275
-## 72  9.421 10.489  1.0684076 9.587 11.392
-## 73  9.421  9.596  0.1753172 8.394 10.799
-## 74  9.421 10.387  0.9658367 9.444 11.330
-## 75  9.421  9.234 -0.1865158 8.189 10.280
-## 76  9.421  8.421 -1.0002803 7.493  9.349
-## 77  9.421 10.277  0.8563729 9.336 11.219
-## 78  9.421 10.086  0.6649526 9.021 11.151
-## 79  9.421  9.709  0.2875603 8.832 10.585
-## 80  9.421  9.503  0.0817412 8.593 10.413
-## 81  9.421  8.637 -0.7837332 7.515  9.760
-## 82  9.421  9.335 -0.0859285 8.393 10.278
-## 83  9.421  9.604  0.1829056 8.674 10.534
-## 84  9.421  9.774  0.3529368 8.639 10.909
-## 85  9.421  8.680 -0.7410828 7.757  9.603
-## 86  9.421  8.931 -0.4897601 7.965  9.898
-## 87  9.421  9.367 -0.0539601 8.428 10.306
-## 88  9.421  9.347 -0.0738329 8.447 10.248
-## 89  9.421  9.788  0.3670697 8.695 10.881
-## 90  9.421  9.453  0.0320048 8.274 10.632
-## 91  9.421 10.004  0.5833805 8.997 11.012
-## 92  9.421 10.132  0.7106769 9.059 11.205
-## 93  9.421  9.664  0.2434507 8.763 10.566
-## 94  9.421  9.341 -0.0796525 8.238 10.445
-## 95  9.421  9.599  0.1782742 8.589 10.610
-## 96  9.421  9.962  0.5407788 8.988 10.935
-## 97  9.421  8.855 -0.5664562 7.618 10.091
-## 98  9.421  9.892  0.4706129 8.908 10.875
-## 99  9.421  8.872 -0.5489971 7.582 10.162
-## 100 9.421  9.154 -0.2667632 8.119 10.189
+## 1   9.421  9.495  0.0736810 8.502 10.487
+## 2   9.421  9.567  0.1458922 8.535 10.599
+## 3   9.421  9.009 -0.4122113 7.919 10.098
+## 4   9.421  8.832 -0.5890494 7.890  9.774
+## 5   9.421  9.587  0.1661839 8.577 10.598
+## 6   9.421  9.526  0.1052805 8.558 10.494
+## 7   9.421 10.080  0.6585589 8.968 11.191
+## 8   9.421  9.984  0.5625148 8.906 11.061
+## 9   9.421  9.715  0.2943567 8.665 10.766
+## 10  9.421  9.391 -0.0298354 8.422 10.360
+## 11  9.421 10.711  1.2904943 9.844 11.579
+## 12  9.421  8.394 -1.0266436 7.298  9.490
+## 13  9.421  9.998  0.5774146 8.962 11.035
+## 14  9.421  9.521  0.0999141 8.522 10.519
+## 15  9.421 10.460  1.0388685 9.527 11.393
+## 16  9.421  8.610 -0.8112776 7.541  9.678
+## 17  9.421  9.142 -0.2785835 8.194 10.091
+## 18  9.421  9.461  0.0395989 8.459 10.462
+## 19  9.421  9.497  0.0758124 8.369 10.624
+## 20  9.421  8.917 -0.5044114 7.690 10.144
+## 21  9.421  8.420 -1.0005024 7.509  9.332
+## 22  9.421  9.132 -0.2892770 8.213 10.050
+## 23  9.421  9.671  0.2495954 8.572 10.770
+## 24  9.421  9.896  0.4748264 8.855 10.937
+## 25  9.421  9.096 -0.3252368 8.083 10.109
+## 26  9.421  9.384 -0.0369737 8.281 10.487
+## 27  9.421  9.163 -0.2580457 8.253 10.073
+## 28  9.421  9.074 -0.3474479 8.023 10.124
+## 29  9.421 10.144  0.7231147 9.199 11.090
+## 30  9.421  7.904 -1.5174457 6.859  8.948
+## 31  9.421  9.140 -0.2812471 8.111 10.168
+## 32  9.421  9.686  0.2646611 8.818 10.553
+## 33  9.421  9.159 -0.2624494 8.195 10.122
+## 34  9.421 10.243  0.8217822 9.115 11.371
+## 35  9.421  9.990  0.5685824 8.784 11.195
+## 36  9.421  9.948  0.5267488 8.947 10.949
+## 37  9.421  9.511  0.0896685 8.560 10.462
+## 38  9.421  9.576  0.1551981 8.500 10.652
+## 39  9.421  8.742 -0.6792397 7.739  9.744
+## 40  9.421  9.350 -0.0705484 8.365 10.335
+## 41  9.421 10.039  0.6182953 8.954 11.125
+## 42  9.421  9.307 -0.1140694 8.249 10.365
+## 43  9.421  8.525 -0.8958457 7.573  9.477
+## 44  9.421  9.020 -0.4006731 7.965 10.076
+## 45  9.421  9.346 -0.0746234 8.370 10.322
+## 46  9.421 10.062  0.6411109 9.102 11.022
+## 47  9.421  9.609  0.1881689 8.643 10.575
+## 48  9.421  8.983 -0.4375252 8.017  9.950
+## 49  9.421  9.585  0.1638897 8.509 10.661
+## 50  9.421  9.167 -0.2540429 8.194 10.140
+## 51  9.421  8.429 -0.9922881 7.220  9.637
+## 52  9.421  9.381 -0.0399979 8.198 10.564
+## 53  9.421  9.332 -0.0886573 8.328 10.337
+## 54  9.421  9.044 -0.3765629 8.001 10.087
+## 55  9.421  9.881  0.4602577 8.828 10.935
+## 56  9.421  9.874  0.4530280 8.916 10.832
+## 57  9.421  8.999 -0.4219431 7.998 10.000
+## 58  9.421  9.600  0.1791104 8.674 10.526
+## 59  9.421  8.738 -0.6829939 7.849  9.627
+## 60  9.421  9.552  0.1309997 8.734 10.370
+## 61  9.421  8.904 -0.5171384 7.816  9.991
+## 62  9.421  9.905  0.4840775 8.976 10.834
+## 63  9.421  9.443  0.0222027 8.485 10.401
+## 64  9.421  9.427  0.0060497 8.326 10.528
+## 65  9.421  9.451  0.0304982 8.527 10.376
+## 66  9.421  8.739 -0.6823314 7.832  9.645
+## 67  9.421  9.789  0.3684272 8.818 10.760
+## 68  9.421  8.951 -0.4702874 7.788 10.114
+## 69  9.421  9.287 -0.1335413 8.157 10.418
+## 70  9.421  9.381 -0.0396227 8.257 10.506
+## 71  9.421  9.412 -0.0088230 8.467 10.357
+## 72  9.421  9.957  0.5364569 9.004 10.911
+## 73  9.421 10.418  0.9974060 9.504 11.333
+## 74  9.421  9.047 -0.3742453 8.153  9.940
+## 75  9.421 10.140  0.7190298 9.102 11.178
+## 76  9.421  9.676  0.2550489 8.665 10.687
+## 77  9.421  9.751  0.3301407 8.872 10.631
+## 78  9.421  9.522  0.1012411 8.676 10.368
+## 79  9.421  9.221 -0.1996284 8.235 10.208
+## 80  9.421  9.848  0.4272111 8.843 10.854
+## 81  9.421  9.331 -0.0901573 8.432 10.230
+## 82  9.421  9.728  0.3068527 8.637 10.819
+## 83  9.421  9.895  0.4741392 9.000 10.790
+## 84  9.421  9.130 -0.2906775 8.088 10.173
+## 85  9.421  9.305 -0.1161204 8.371 10.238
+## 86  9.421  9.407 -0.0143830 8.506 10.307
+## 87  9.421  9.066 -0.3545407 7.889 10.244
+## 88  9.421  9.016 -0.4048163 8.067  9.965
+## 89  9.421 10.095  0.6744836 9.150 11.041
+## 90  9.421  9.421 -0.0002291 8.402 10.439
+## 91  9.421  9.010 -0.4107104 7.946 10.074
+## 92  9.421 10.444  1.0234512 9.515 11.374
+## 93  9.421  8.762 -0.6586427 7.735  9.790
+## 94  9.421  8.932 -0.4889690 7.826 10.038
+## 95  9.421  9.352 -0.0692168 8.398 10.306
+## 96  9.421 10.234  0.8125878 9.172 11.296
+## 97  9.421  8.048 -1.3730624 6.876  9.220
+## 98  9.421  9.045 -0.3758138 7.916 10.175
+## 99  9.421  9.313 -0.1081798 8.310 10.316
+## 100 9.421 10.059  0.6376699 8.995 11.122
 \end{verbatim}
 
 \hfill\break
@@ -17397,107 +17424,107 @@ Usando conceitos já explicados em uma unidade anterior podemos determinar o tam
 \end{figure}
 
 \begin{verbatim}
-##       mu media      erro   li   ls
-## 1   1600  1599  -1.28298 1581 1616
-## 2   1600  1610  10.31374 1590 1630
-## 3   1600  1610   9.72937 1591 1628
-## 4   1600  1609   9.42746 1589 1629
-## 5   1600  1612  11.79006 1593 1630
-## 6   1600  1576 -23.82380 1556 1597
-## 7   1600  1597  -3.45468 1577 1617
-## 8   1600  1605   4.90413 1585 1625
-## 9   1600  1606   5.95376 1586 1626
-## 10  1600  1586 -14.07798 1568 1604
-## 11  1600  1603   2.71194 1582 1623
-## 12  1600  1621  21.16351 1600 1642
-## 13  1600  1597  -3.32827 1578 1616
-## 14  1600  1597  -2.55934 1576 1619
-## 15  1600  1605   4.96904 1587 1623
-## 16  1600  1585 -14.75471 1566 1604
-## 17  1600  1622  21.82528 1603 1641
-## 18  1600  1592  -7.82032 1572 1612
-## 19  1600  1608   8.47467 1588 1629
-## 20  1600  1607   6.66563 1590 1623
-## 21  1600  1605   4.80921 1585 1624
-## 22  1600  1613  13.37784 1592 1635
-## 23  1600  1590  -9.95360 1569 1611
-## 24  1600  1604   4.40454 1586 1623
-## 25  1600  1604   4.25039 1584 1624
-## 26  1600  1594  -5.64438 1574 1615
-## 27  1600  1583 -16.63692 1563 1604
-## 28  1600  1626  25.80603 1607 1644
-## 29  1600  1611  10.72452 1591 1630
-## 30  1600  1600  -0.26578 1580 1620
-## 31  1600  1586 -14.25466 1567 1605
-## 32  1600  1603   3.31641 1584 1623
-## 33  1600  1601   1.42903 1582 1621
-## 34  1600  1612  11.57494 1592 1631
-## 35  1600  1604   3.55715 1585 1622
-## 36  1600  1616  15.75280 1596 1636
-## 37  1600  1605   5.48851 1585 1626
-## 38  1600  1600  -0.07375 1577 1622
-## 39  1600  1601   0.87991 1583 1619
-## 40  1600  1619  19.10051 1600 1638
-## 41  1600  1589 -11.23144 1568 1609
-## 42  1600  1599  -0.72346 1578 1620
-## 43  1600  1614  13.81179 1594 1633
-## 44  1600  1594  -6.23836 1575 1613
-## 45  1600  1593  -6.86750 1573 1613
-## 46  1600  1594  -6.28071 1572 1616
-## 47  1600  1619  19.39075 1600 1639
-## 48  1600  1594  -6.19679 1573 1614
-## 49  1600  1614  14.27056 1595 1634
-## 50  1600  1605   5.26146 1585 1625
-## 51  1600  1590  -9.71327 1571 1610
-## 52  1600  1597  -2.95483 1578 1616
-## 53  1600  1591  -8.88183 1571 1611
-## 54  1600  1612  11.65447 1593 1630
-## 55  1600  1613  13.11346 1592 1634
-## 56  1600  1594  -5.73485 1575 1614
-## 57  1600  1607   7.15671 1589 1625
-## 58  1600  1593  -7.47597 1572 1613
-## 59  1600  1606   5.50337 1587 1624
-## 60  1600  1600   0.10143 1581 1619
-## 61  1600  1587 -12.78400 1568 1606
-## 62  1600  1614  14.40661 1596 1633
-## 63  1600  1594  -5.53546 1574 1615
-## 64  1600  1597  -2.92433 1575 1619
-## 65  1600  1588 -11.51032 1569 1608
-## 66  1600  1613  12.51418 1594 1631
-## 67  1600  1582 -18.27321 1561 1602
-## 68  1600  1601   0.71635 1582 1619
-## 69  1600  1592  -8.21461 1573 1611
-## 70  1600  1582 -17.90380 1563 1601
-## 71  1600  1615  14.56221 1595 1634
-## 72  1600  1617  17.02195 1596 1638
-## 73  1600  1618  17.54895 1599 1637
-## 74  1600  1608   8.43566 1590 1627
-## 75  1600  1581 -19.14345 1560 1602
-## 76  1600  1595  -4.81842 1576 1614
-## 77  1600  1630  30.06555 1609 1651
-## 78  1600  1615  14.61380 1596 1633
-## 79  1600  1608   7.73733 1588 1628
-## 80  1600  1607   7.16860 1585 1629
-## 81  1600  1603   3.45820 1583 1624
-## 82  1600  1614  14.20690 1593 1635
-## 83  1600  1606   6.43686 1587 1625
-## 84  1600  1624  23.79359 1603 1644
-## 85  1600  1590 -10.35766 1570 1609
-## 86  1600  1607   7.06372 1588 1626
-## 87  1600  1598  -2.49475 1576 1619
-## 88  1600  1604   3.50641 1584 1623
-## 89  1600  1595  -5.04358 1574 1616
-## 90  1600  1593  -6.54220 1573 1614
-## 91  1600  1600  -0.12257 1580 1620
-## 92  1600  1609   9.29456 1588 1630
-## 93  1600  1606   5.90190 1584 1628
-## 94  1600  1589 -10.92785 1568 1610
-## 95  1600  1597  -2.98198 1576 1618
-## 96  1600  1590  -9.98441 1569 1611
-## 97  1600  1605   4.58393 1585 1625
-## 98  1600  1591  -8.91252 1572 1610
-## 99  1600  1609   8.58717 1587 1631
-## 100 1600  1602   2.13169 1580 1624
+##       mu media       erro   li   ls
+## 1   1600  1603   3.473457 1584 1623
+## 2   1600  1585 -15.083421 1562 1608
+## 3   1600  1599  -0.706512 1579 1620
+## 4   1600  1605   5.086533 1585 1625
+## 5   1600  1605   5.057716 1585 1625
+## 6   1600  1601   1.383232 1583 1620
+## 7   1600  1606   6.154750 1586 1626
+## 8   1600  1597  -2.635087 1577 1618
+## 9   1600  1599  -0.986496 1581 1617
+## 10  1600  1605   5.279905 1588 1623
+## 11  1600  1617  16.740170 1597 1637
+## 12  1600  1579 -20.540687 1559 1600
+## 13  1600  1594  -5.625381 1575 1614
+## 14  1600  1606   5.649515 1585 1626
+## 15  1600  1603   2.939144 1584 1622
+## 16  1600  1612  12.412115 1591 1634
+## 17  1600  1592  -8.056048 1571 1612
+## 18  1600  1608   8.495366 1589 1628
+## 19  1600  1585 -14.949078 1566 1604
+## 20  1600  1604   3.990691 1582 1626
+## 21  1600  1588 -11.647080 1571 1606
+## 22  1600  1616  16.336706 1598 1635
+## 23  1600  1577 -22.604731 1560 1594
+## 24  1600  1590  -9.632091 1573 1607
+## 25  1600  1617  16.889391 1599 1635
+## 26  1600  1597  -2.922050 1578 1616
+## 27  1600  1585 -14.522669 1565 1606
+## 28  1600  1577 -23.390177 1555 1598
+## 29  1600  1610   9.953581 1590 1630
+## 30  1600  1604   3.790505 1584 1624
+## 31  1600  1607   6.904239 1586 1628
+## 32  1600  1607   6.544019 1587 1626
+## 33  1600  1588 -12.086893 1568 1608
+## 34  1600  1606   6.077421 1586 1626
+## 35  1600  1595  -4.544403 1575 1616
+## 36  1600  1600  -0.009695 1582 1618
+## 37  1600  1581 -18.779420 1561 1601
+## 38  1600  1620  19.776776 1596 1644
+## 39  1600  1595  -5.187294 1573 1617
+## 40  1600  1610  10.194219 1590 1631
+## 41  1600  1608   7.762232 1588 1628
+## 42  1600  1604   4.355439 1583 1626
+## 43  1600  1610  10.233015 1591 1630
+## 44  1600  1615  14.926417 1597 1633
+## 45  1600  1603   3.269671 1583 1624
+## 46  1600  1584 -15.667770 1565 1604
+## 47  1600  1592  -7.774429 1572 1612
+## 48  1600  1605   4.852334 1585 1625
+## 49  1600  1593  -7.366990 1571 1614
+## 50  1600  1582 -18.308430 1562 1601
+## 51  1600  1605   4.505917 1588 1621
+## 52  1600  1592  -8.233698 1570 1613
+## 53  1600  1594  -5.552534 1577 1612
+## 54  1600  1586 -13.967296 1566 1606
+## 55  1600  1607   7.163288 1590 1625
+## 56  1600  1604   4.328791 1586 1623
+## 57  1600  1613  13.394188 1592 1635
+## 58  1600  1612  12.012021 1593 1631
+## 59  1600  1602   1.833367 1582 1621
+## 60  1600  1610  10.327317 1590 1631
+## 61  1600  1617  16.758120 1597 1636
+## 62  1600  1594  -5.821526 1573 1615
+## 63  1600  1586 -13.632911 1569 1604
+## 64  1600  1604   4.307825 1584 1624
+## 65  1600  1605   5.274867 1585 1625
+## 66  1600  1596  -3.773731 1577 1615
+## 67  1600  1602   2.491815 1584 1621
+## 68  1600  1606   5.671051 1587 1625
+## 69  1600  1600  -0.385889 1581 1618
+## 70  1600  1587 -12.858958 1565 1609
+## 71  1600  1607   6.567638 1586 1627
+## 72  1600  1607   6.896540 1587 1627
+## 73  1600  1605   5.291170 1586 1624
+## 74  1600  1598  -1.566614 1579 1618
+## 75  1600  1606   5.728033 1587 1625
+## 76  1600  1593  -6.977950 1574 1612
+## 77  1600  1590 -10.121040 1570 1610
+## 78  1600  1597  -3.248434 1574 1619
+## 79  1600  1619  19.067497 1599 1639
+## 80  1600  1608   7.730345 1587 1628
+## 81  1600  1601   0.957249 1580 1621
+## 82  1600  1589 -10.919386 1568 1611
+## 83  1600  1599  -0.975638 1578 1620
+## 84  1600  1590 -10.493688 1570 1609
+## 85  1600  1592  -7.710204 1572 1613
+## 86  1600  1594  -5.788367 1575 1614
+## 87  1600  1597  -3.178593 1576 1617
+## 88  1600  1588 -12.042411 1568 1608
+## 89  1600  1604   3.768820 1584 1624
+## 90  1600  1587 -12.591670 1568 1607
+## 91  1600  1593  -7.032612 1574 1611
+## 92  1600  1613  12.734097 1592 1633
+## 93  1600  1594  -6.414354 1573 1614
+## 94  1600  1606   6.424269 1587 1626
+## 95  1600  1608   7.703152 1588 1628
+## 96  1600  1596  -3.958463 1577 1615
+## 97  1600  1606   5.555318 1584 1627
+## 98  1600  1614  14.017917 1594 1634
+## 99  1600  1613  13.112584 1591 1635
+## 100 1600  1611  10.531799 1590 1631
 \end{verbatim}
 
 \hfill\break

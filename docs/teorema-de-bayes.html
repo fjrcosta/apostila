@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.3 Teorema de Bayes | apostila.knit</title>
   <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.3 Teorema de Bayes | apostila.knit" />
   <meta property="og:type" content="book" />
@@ -466,19 +466,108 @@ Figure 4.16: Thomas Bayes (1702 - 1761)
 </p>
 </div>
 <blockquote>
-<p>Admita os seguintes eventos e suas probabilidades associadas, baseados no sorteio aleatório de um estudante de uma escola:</p>
+<p>Admita o espaço amostral de um experimento baseado no sorteio aleatório de um estudante de uma escola, com dois possíveis resultados quanto ao sexo:</p>
+</blockquote>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig600"></span>
+<img src="images4/BAYES1.jpg" alt="Espaço amostral" width="45%" />
+<p class="caption">
+Figure 4.17: Espaço amostral
+</p>
+</div>
+<p><br />
+</p>
+<blockquote>
+<p>Considere agora um evento definido nesse espaço amostral como sendo ``ter um carro’’:</p>
+</blockquote>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig601"></span>
+<img src="images4/BAYES2.jpg" alt="Espaço amostral" width="70%" />
+<p class="caption">
+Figure 4.18: Espaço amostral
+</p>
+</div>
+<p><br />
+</p>
+<blockquote>
+<p>As interseções desse evento com os elementos do espaço amostral são:</p>
+</blockquote>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig602"></span>
+<img src="images4/BAYES3.jpg" alt="Espaço amostral" width="60%" />
+<p class="caption">
+Figure 4.19: Espaço amostral
+</p>
+</div>
+<p><br />
+</p>
+<p>Pela <strong>regra da probabilidade condicionada</strong> temos que</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(C|F) = \frac{P(C \cap F)}{ P(F)}\\
+P(C \cap F) = P(C|F)  P(F)
+\]</span><br />
+</p>
+<p>e, de modo equivalente,</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(C|M) = \frac{P(C \cap M)}{ P(M)}\\
+P(C \cap M) = P(C|M)  P(M)
+\]</span></p>
+<p><br />
+</p>
+<p>A probabilidade de se ter um carro é dada pela regra da união de eventos que, nesse caso são disjuntos e assim:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(C) = P(C \cap M) \cup P(C \cap F)\\
+P(C) =  P(C|M)  P(M) + P(C|F)  P(F)
+\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Sorteado aleatoriamente um estudante da escola verificou-se possuir um carro. Qual a probabilidade de que seja do sexo feminino (<span class="math inline">\(P(F|C)\)</span>)?</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(F|C) = \frac{P(F \cap C)}{ P(C)}\\
+P(F \cap C) = P(F|C)  P(C) \\
+\]</span></p>
+<p><br />
+</p>
+<p>Pela igualdade <span class="math inline">\(P(C \cap F)=P(F \cap C)\)</span>:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(C \cap F) = P(C|F)  P(F) \\
+P(F \cap C) = P(F|C)  P(C)
+\]</span><br />
+</p>
+<p>substituindo-se na expressão acima chega-se a:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(C \cap F) &amp; =P(F \cap C)\\
+P(C|F).P(F) &amp; = P(F|C).P(C)\\
+P(F|C)  &amp; = \frac{P(C|F)P(F)}{P(C)}
+\end{align*}\]</span></p>
+<p>uma <strong>relação</strong> entre duas probabilidades inversamente condicionadas conhecida como <strong>Teorema de Bayes</strong>.</p>
+<p><br />
+</p>
+<blockquote>
+<p>Adimita então serem dados:</p>
 </blockquote>
 <p><br />
 </p>
 <ul>
-<li>``M’’: ser do sexo masculino:
-<ul>
-<li><span class="math inline">\(P(M)=0,65\)</span>;</li>
-</ul></li>
-<li>``F’’: ser do sexo feminino:
-<ul>
-<li><span class="math inline">\(P(F)=0,35\)</span>.</li>
-</ul></li>
+<li>``M’’: ser do sexo masculino: <span class="math inline">\(P(M)=0,65\)</span>;</li>
+<li>``F’’: ser do sexo feminino: <span class="math inline">\(P(F)=0,35\)</span>.</li>
 <li>``C’’: possuir um carro:
 <ul>
 <li><span class="math inline">\(P(C|M)=0,30\)</span></li>
@@ -487,37 +576,7 @@ Figure 4.16: Thomas Bayes (1702 - 1761)
 </ul>
 <p><br />
 </p>
-<blockquote>
-<p>Sorteado aleatoriamente um estudante da escola verificou-se possuir um carro. Qual a probabilidade de que seja do sexo feminino (<span class="math inline">\(P(F|C)\)</span>)?</p>
-</blockquote>
-<p><br />
-</p>
-<p>Pela <strong>regra da probabilidade condicionada</strong> temos que</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-P(C|F) = \frac{P(C \cap F)}{ P(F)}
-\]</span><br />
-</p>
-<p>e, de modo equivalente,</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-P(F|C) = \frac{P(F \cap C)}{ P(C)}
-\]</span></p>
-<p><br />
-</p>
-<p>Pela igualdade <span class="math inline">\(P(C \cap F)=P(F \cap C)\)</span>, substituindo-se a segunda expressão na primeira chega-se a:</p>
-<p><br />
-</p>
-<p><span class="math display">\[\begin{align*}
-P(F|C).P(C) &amp;  = P(C|F).P(F)\\
-P(F|C) &amp; = \frac{P(F).P(C|F)}{P(C)}
-\end{align*}\]</span></p>
-<p>uma <strong>relação</strong> entre duas probabilidades inversamente condicionadas conhecida como <strong>Teorema de Bayes</strong>.</p>
-<p><br />
-</p>
-<p>A probabilidade de se sortear aleatoriamente um estudante com carro (<span class="math inline">\(P(C)\)</span>) resulta de união de dois únicos e possíveis eventos disjuntos. Pela mesma regra da probabilidae condicionada segue-se</p>
+<p>A probabilidade de se ter carro (<span class="math inline">\(P(C)\)</span>) resulta de união de dois únicos e possíveis eventos condicionados ao sexo e disjuntos. Assim:</p>
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
@@ -528,7 +587,7 @@ P(C) &amp; = 0,258\\
 \end{align*}\]</span></p>
 <p><br />
 </p>
-<p>Assim,</p>
+<p>e podemos calcular <span class="math inline">\(P(F|C)\)</span>:</p>
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
@@ -538,7 +597,7 @@ P(F|C) &amp; = 0,2442\\
 \end{align*}\]</span></p>
 <p><br />
 </p>
-<p>A probabilidade de que um estudante aleatoriamente sorteado nessa escola e sabendo-se <strong>a priori</strong> que possui um carro ser do sexo feminino é de 24,42%.</p>
+<p>A probabilidade de que um estudante aleatoriamente sorteado nessa escola e sabendo-se <strong>a priori</strong> que possui um carro ser do <strong>sexo feminino</strong> é de 24,42%.</p>
 <p><br />
 </p>
 <p>Essa <strong>relação</strong> entre duas probabilidades ``reciprocamente’’ condicionadas é conhecida como <strong>Teorema de Bayes</strong>.</p>
@@ -549,62 +608,62 @@ P(B|A) = \frac{P(A|B) P(A)}{P(B)}
 \]</span></p>
 <p><br />
 </p>
-<p>Para um espaço amostral mais amplo, de modo geral consideremos, inicialmente o diagrama da Figura <a href="teorema-de-bayes.html#fig:fig6">4.17</a> onde <span class="math inline">\(\Omega\)</span> é o espaço amostral de um experimento aleatório qualquer:</p>
+<p>Para um espaço amostral mais amplo, de modo geral consideremos, inicialmente o diagrama da Figura <a href="teorema-de-bayes.html#fig:fig6">4.20</a> onde <span class="math inline">\(\Omega\)</span> é o espaço amostral de um experimento aleatório qualquer:</p>
 <p><br />
 </p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig6"></span>
 <img src="images4/bayes_1.jpg" alt="Espaço amostral" width="80%" />
 <p class="caption">
-Figure 4.17: Espaço amostral
+Figure 4.20: Espaço amostral
 </p>
 </div>
 <p><br />
 </p>
-<p>Admita que <span class="math inline">\(E_{1}\)</span>, <span class="math inline">\(E_{2}\)</span>, <span class="math inline">\(E_{3}\)</span> e <span class="math inline">\(E_{4}\)</span> formem a partição do espaço amostral <span class="math inline">\(\Omega\)</span> (seus elementos são <strong>mutuamente exclusivos</strong>) como exposto na Figura <a href="teorema-de-bayes.html#fig:fig7">4.18</a></p>
+<p>Admita que <span class="math inline">\(E_{1}\)</span>, <span class="math inline">\(E_{2}\)</span>, <span class="math inline">\(E_{3}\)</span> e <span class="math inline">\(E_{4}\)</span> formem a partição do espaço amostral <span class="math inline">\(\Omega\)</span> (seus elementos são <strong>mutuamente exclusivos</strong>) como exposto na Figura <a href="teorema-de-bayes.html#fig:fig7">4.21</a></p>
 <p><br />
 </p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig7"></span>
 <img src="images4/bayes_2.jpg" alt="Espaço amostral e suas partições" width="80%" />
 <p class="caption">
-Figure 4.18: Espaço amostral e suas partições
+Figure 4.21: Espaço amostral e suas partições
 </p>
 </div>
 <p><br />
 </p>
-<p>E seja <span class="math inline">\(B\)</span> um evento qualquer em <span class="math inline">\(\Omega\)</span> como ilustrado na Figura <a href="teorema-de-bayes.html#fig:fig8">4.19</a></p>
+<p>E seja <span class="math inline">\(B\)</span> um evento qualquer em <span class="math inline">\(\Omega\)</span> como ilustrado na Figura <a href="teorema-de-bayes.html#fig:fig8">4.22</a></p>
 <p><br />
 </p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig8"></span>
 <img src="images4/bayes_3.jpg" alt="Evento definido sobre o espaço amostral" width="80%" />
 <p class="caption">
-Figure 4.19: Evento definido sobre o espaço amostral
+Figure 4.22: Evento definido sobre o espaço amostral
 </p>
 </div>
 <p><br />
 </p>
-<p>Delimitemos as interseções do evento <span class="math inline">\(B\)</span> com as partições <span class="math inline">\(E_{1}\)</span>, <span class="math inline">\(E_{2}\)</span>, <span class="math inline">\(E_{3}\)</span> e <span class="math inline">\(E_{4}\)</span> do espaço amostral <span class="math inline">\(\Omega\)</span>, como ilustrado na Figura <a href="teorema-de-bayes.html#fig:fig9">4.20</a></p>
+<p>Delimitemos as interseções do evento <span class="math inline">\(B\)</span> com as partições <span class="math inline">\(E_{1}\)</span>, <span class="math inline">\(E_{2}\)</span>, <span class="math inline">\(E_{3}\)</span> e <span class="math inline">\(E_{4}\)</span> do espaço amostral <span class="math inline">\(\Omega\)</span>, como ilustrado na Figura <a href="teorema-de-bayes.html#fig:fig9">4.23</a></p>
 <p><br />
 </p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig9"></span>
 <img src="images4/bayes_4.jpg" alt="Interseções das partições do espaço amostral com o evento B" width="80%" />
 <p class="caption">
-Figure 4.20: Interseções das partições do espaço amostral com o evento B
+Figure 4.23: Interseções das partições do espaço amostral com o evento B
 </p>
 </div>
 <p><br />
 </p>
-<p>Isso pode ser estendido, em uma forma geral, para <span class="math inline">\(i=1, \dots, n\)</span> partições como ilustrado na Figura <a href="teorema-de-bayes.html#fig:fig10">4.21</a></p>
+<p>Isso pode ser estendido, em uma forma geral, para <span class="math inline">\(i=1, \dots, n\)</span> partições como ilustrado na Figura <a href="teorema-de-bayes.html#fig:fig10">4.24</a></p>
 <p><br />
 </p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig10"></span>
 <img src="images4/bayes_5.jpg" alt="Interseções das n partições do espaço amostral com o evento B" width="80%" />
 <p class="caption">
-Figure 4.21: Interseções das n partições do espaço amostral com o evento B
+Figure 4.24: Interseções das n partições do espaço amostral com o evento B
 </p>
 </div>
 <p><br />
 </p>
-<p>Na representação esquemática da Figura <a href="teorema-de-bayes.html#fig:fig10">4.21</a> podemos identificar:</p>
+<p>Na representação esquemática da Figura <a href="teorema-de-bayes.html#fig:fig10">4.24</a> podemos identificar:</p>
 <p>1- <span class="math inline">\(E_{1}\)</span>, <span class="math inline">\(E_{2}\)</span>, , <span class="math inline">\(E_{i}\)</span>, , <span class="math inline">\(E_{n}\)</span> constituem-se em partições do espaço amostral <span class="math inline">\(\Omega\)</span>;<br />
 2- Todas as partições são mutuamente exclusivas: <span class="math inline">\(E_{i} \cap E_{j} = \varnothing\)</span>,<span class="math inline">\(\forall\)</span> <span class="math inline">\(i \neq j\)</span> (a interseção de quaisquer partições é vazia);<br />
 3- Sendo vazias as interseções entre quaisquer partições, o espaço amostral <span class="math inline">\(\Omega\)</span> será a simples união de todas elas: <span class="math inline">\(\Omega = E_{1} \cup E_{2} \cup E_{3} \cup E_{4}\cup \dots \cup E_{i} \dots \cup E_{n}\)</span>; e,<br />
@@ -874,14 +933,14 @@ P(E_{4}|B) &amp; = 0,034
 <p>1- Os cálculos indicam que o evento mais provável pelo incremento das vendas observado naquele mês foi o de uma <strong>ação de marketing</strong>;<br />
 2- A probabilidade de incremento das vendas em um determinado mês como resultado dos quatro possíveis eventos indicados é o <strong>próprio denominador do Teorema de Bayes</strong>: 0,058.</p>
 <blockquote>
-<p>Exemplo: Considere 5 urnas, cada uma delas contendo 6 bolas. Duas dessas urnas (urnas tipo <span class="math inline">\(C_{1}\)</span>) possuem 3 bolas brancas em seu interior. Duas outras (urnas tipo <span class="math inline">\(C_{2}\)</span>) possuem 2 bolas brancas em seu interior e a última (urnas tipo <span class="math inline">\(C_{3}\)</span>) possui 6 bolas brancas em seu interior (cf. Figura <a href="teorema-de-bayes.html#fig:fig11">4.22</a>).</p>
+<p>Exemplo: Considere 5 urnas, cada uma delas contendo 6 bolas. Duas dessas urnas (urnas tipo <span class="math inline">\(C_{1}\)</span>) possuem 3 bolas brancas em seu interior. Duas outras (urnas tipo <span class="math inline">\(C_{2}\)</span>) possuem 2 bolas brancas em seu interior e a última (urnas tipo <span class="math inline">\(C_{3}\)</span>) possui 6 bolas brancas em seu interior (cf. Figura <a href="teorema-de-bayes.html#fig:fig11">4.25</a>).</p>
 </blockquote>
 <p><br />
 </p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig11"></span>
 <img src="images4/exemplo_02_bayes.jpg" alt="Cinco urnas cada uma com 6 bolas em cores de diferentes quantidades da cor branca" width="50%" />
 <p class="caption">
-Figure 4.22: Cinco urnas cada uma com 6 bolas em cores de diferentes quantidades da cor branca
+Figure 4.25: Cinco urnas cada uma com 6 bolas em cores de diferentes quantidades da cor branca
 </p>
 </div>
 <p><br />

@@ -1051,19 +1051,24 @@ P(|X-\mu|\ge k\sigma) \leq 1 - \frac{1}{k^{2}}
 <h3><span class="header-section-number">3.3.3</span> Medidas de subdivisão (separatrizes)<a href="sínteses-numéricas-descritivas.html#medidas-de-subdivisão-separatrizes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><br />
 </p>
-<p>Separatrizes (quantis) são valores que delimitam uma proporção de observações existentes de um conjunto de dados previamente ordenados menores que ele. Os quantis mais expressivos são:</p>
+<p>Separatrizes (quantis) são valores que delimitam uma proporção de observações existentes de um conjunto de dados previamente ordenados menores que ele.</p>
 <p><br />
 </p>
-<ul>
-<li>1<span class="math inline">\(^{o}\)</span> Quartil (<span class="math inline">\(q_{0,25}\)</span>): 25% dos dados possuem valores abaixo desse valor e 75% estão acima;</li>
-<li>2<span class="math inline">\(^{o}\)</span> Quartil ou mediana (<span class="math inline">\(q_{0,50}\)</span>): 50% dos dados possuem valores abaixo desse valor e 50% estão acima; e,</li>
-<li>3<span class="math inline">\(^{o}\)</span> Quartil (<span class="math inline">\(q_{0,75}\)</span>): 75% dos dados possuem valores abaixo desse valor e 25% estão acima.</li>
-</ul>
+<p>De modo geral, um <em>quantil</em> de ordem <span class="math inline">\(p\)</span> (ou também <span class="math inline">\(p-quantil\)</span>, indicado por <span class="math inline">\(q_{p}\)</span>) é uma medida onde <span class="math inline">\(p\)</span> é uma proporção qualquer (limitada no intervalo 0 &lt; p &lt; 1), tal que 100<span class="math inline">\(p\)</span>% das observações sejam menores que seu valor <span class="math inline">\(q_{p}\)</span>.</p>
 <p><br />
 </p>
-<p>De modo geral, um <em>quantil</em> de ordem <span class="math inline">\(p\)</span> (ou também <span class="math inline">\(p-quantil\)</span>, indicado por <span class="math inline">\(q_{p}\)</span>) é uma medida onde <span class="math inline">\(p\)</span> é uma proporção qualquer (limitada no intervalo 0 &lt; p &lt; 1), tal que 100<span class="math inline">\(p\)</span>% das observações sejam menores que seu valor <span class="math inline">\(q_{p}\)</span>. Um importante gráfico que mais adiante será exposto em detalhes é o <em>Boxplot</em> que, além da mediana, para sua confecção necessitamos de duas outras separatrizes: o 1<span class="math inline">\(^{o}\)</span> e 3<span class="math inline">\(^{o}\)</span> quartis. \</p>
+<p>Desse modo, o valor <span class="math inline">\(q_{p}\)</span> de uma variável aleatória <span class="math inline">\(X\)</span> remete à medida da probabilidade:</p>
 <p><br />
-Há muitos modos de se estabelecer os quantis descritos na literatura. O próprio <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/quantile">R</a> apresenta 9 modos diferentes:</p>
+</p>
+<p><span class="math display">\[
+P(X=x | x\leq q_{p})=p
+\]</span></p>
+<p><br />
+</p>
+<p>Um importante gráfico que mais adiante será exposto em detalhes é o <em>Boxplot</em> que, além da mediana, para sua confecção necessitamos de duas outras separatrizes: o 1<span class="math inline">\(^{o}\)</span> e 3<span class="math inline">\(^{o}\)</span> quartis. \</p>
+<p><br />
+</p>
+<p>Há muitos modos de se estabelecer os quantis descritos na literatura. O próprio <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/quantile">R</a> apresenta 9 modos diferentes:</p>
 <p><br />
 </p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="sínteses-numéricas-descritivas.html#cb48-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">1</span>)</span></code></pre></div>
@@ -1093,7 +1098,18 @@ Há muitos modos de se estabelecer os quantis descritos na literatura. O própri
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="sínteses-numéricas-descritivas.html#cb64-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">9</span>)</span></code></pre></div>
 <pre><code>##       0%      25%      50%      75%     100% 
 ## 1.410000 1.634375 1.675000 1.755625 2.000000</code></pre>
-<p> </p>
+<p><br />
+</p>
+<p>Os quantis mais expressivos são:</p>
+<p><br />
+</p>
+<ul>
+<li>1<span class="math inline">\(^{o}\)</span> Quartil (<span class="math inline">\(q_{0,25}\)</span>): 25% dos dados possuem valores abaixo desse valor e 75% estão acima;</li>
+<li>2<span class="math inline">\(^{o}\)</span> Quartil ou mediana (<span class="math inline">\(q_{0,50}\)</span>): 50% dos dados possuem valores abaixo desse valor e 50% estão acima; e,</li>
+<li>3<span class="math inline">\(^{o}\)</span> Quartil (<span class="math inline">\(q_{0,75}\)</span>): 75% dos dados possuem valores abaixo desse valor e 25% estão acima.</li>
+</ul>
+<p><br />
+</p>
 <p>Para grandes conjuntos de dados a diferença entre os quantis determinados sob esses diferentes modos será despresível. De modo geral, para se calcular a posição <em>L</em> de um quantil qualquer de ordem <em>p</em> em um rol de dados pode-se usar a seguinte regra empírica:</p>
 <p><span class="math display">\[
 L_{p}=\frac{p}{100} \times (n)
@@ -1188,8 +1204,8 @@ L_{Q_{3}} &amp; =\frac{p}{100} \times (n) \\
 <p>E os quartis serão:</p>
 <p><br />
 </p>
-<p>-<span class="math inline">\(Q_{1}\)</span>=1,63
--<span class="math inline">\(Q_{2}\)</span>=1,67
+<p>-<span class="math inline">\(Q_{1}\)</span>=1,63<br />
+-<span class="math inline">\(Q_{2}\)</span>=1,67<br />
 -<span class="math inline">\(Q_{3}\)</span>=1,75</p>
 <p><br />
 </p>

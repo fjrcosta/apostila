@@ -191,8 +191,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.2" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#apresentação-tabular-de-dados-quantitativos"><i class="fa fa-check"></i><b>3.5.2</b> Apresentação tabular de dados quantitativos</a></li>
 <li class="chapter" data-level="3.5.3" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#média-1"><i class="fa fa-check"></i><b>3.5.3</b> Média</a></li>
 <li class="chapter" data-level="3.5.4" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#moda-1"><i class="fa fa-check"></i><b>3.5.4</b> Moda</a></li>
-<li class="chapter" data-level="3.5.5" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#variância"><i class="fa fa-check"></i><b>3.5.5</b> Variância</a></li>
-<li class="chapter" data-level="3.5.6" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#quartis"><i class="fa fa-check"></i><b>3.5.6</b> Quartis</a></li>
+<li class="chapter" data-level="3.5.5" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#mediana-1"><i class="fa fa-check"></i><b>3.5.5</b> Mediana</a></li>
+<li class="chapter" data-level="3.5.6" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#variância"><i class="fa fa-check"></i><b>3.5.6</b> Variância</a></li>
+<li class="chapter" data-level="3.5.7" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#quartis"><i class="fa fa-check"></i><b>3.5.7</b> Quartis</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="apresentação-gráfica-de-dados.html"><a href="apresentação-gráfica-de-dados.html"><i class="fa fa-check"></i><b>3.6</b> Apresentação gráfica de dados</a>
 <ul>
@@ -645,7 +646,7 @@ Figure 3.6: Entendendo a indexação de dados
 </div>
 <p><br />
 </p>
-<p>Por essa razão, a mediana é uma medida separatriz (de subdivisão) de 50%, equivalente ao <span class="math inline">\(2^{o}\)</span> quartil, ao <span class="math inline">\(5^{o}\)</span> decil e ao <span class="math inline">\(50^{o}\)</span> percentil. Para sua estimação necessitamos saber qual a <strong>posição</strong> que ela ocupa no rol de dados e assim, duas situações podem ocorrer:</p>
+<p>Por essa razão, a mediana é uma separatriz (de subdivisão) de 50%, equivalente ao <span class="math inline">\(2^{o}\)</span> quartil, ao <span class="math inline">\(5^{o}\)</span> decil e ao <span class="math inline">\(50^{o}\)</span> percentil. Para sua estimação necessitamos saber qual a <strong>posição</strong> que ela ocupa no rol de dados e assim, duas situações podem ocorrer:</p>
 <p><br />
 </p>
 <p>1- se a amostra possui um número <strong>ímpar</strong> (<span class="math inline">\(n\)</span>) de elementos: a medida da mediana igual ao valor do <span class="math inline">\(i-ésimo\)</span> elemento da <strong>amostra ordenada</strong> (a medida da mediana será um valor, de fato, observado) tal que:</p>
@@ -676,22 +677,6 @@ Md=média(x_{i_{ant}} ; x_{i_{post}})
 <p><br />
 </p>
 <p>Sendo uma <strong>separatriz</strong>, sua posição <span class="math inline">\(L\)</span> pode ser também calculada pela expressão mais geral (para qualquer percentil) que logo mais será apresentada.</p>
-<p><br />
-</p>
-<p>Mediana para dados apresentados na forma de uma <strong>distribuição de frequências</strong>:</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-Md = l_{inf} + [ \frac{(\frac{n}{2} -  F_{(i_{md}-1)})}{n_{md}} ]\times \Delta_{i}
-\]</span></p>
-<p><br />
-</p>
-<p>onde:</p>
-<p><br />
-- <span class="math inline">\(l_{inf}\)</span>: limite inferior da <strong>classe mediana</strong>: a classe que contem o elemento de ordem <span class="math inline">\(\frac{n}{2}\)</span>;
-- <span class="math inline">\(F_{(i_{md}-1)}\)</span>: é a frequência absoluta acumulada até a <strong>classe anterior à classe mediana</strong>;
-- <span class="math inline">\(n_{md}\)</span>: é a frequência absoluta da <strong>classe mediana</strong>; e,
-- <span class="math inline">\(\Delta_{i}\)</span>: é o intervalo de cada classe.</p>
 <p><br />
 </p>
 <p>Usando os dados das medidas das alturas dos 60 estudantes teremos o seguinte valor para a <strong>mediana</strong>:</p>
@@ -1065,7 +1050,14 @@ P(X=x | x\leq q_{p})=p
 \]</span></p>
 <p><br />
 </p>
-<p>Um importante gráfico que mais adiante será exposto em detalhes é o <em>Boxplot</em> que, além da mediana, para sua confecção necessitamos de duas outras separatrizes: o 1<span class="math inline">\(^{o}\)</span> e 3<span class="math inline">\(^{o}\)</span> quartis. \</p>
+<p>Os quantis mais informativos (e que por essa razão são usados para um importante gráfico que mais adiante será exposto em detalhes - <em>Boxplot</em>) são: \</p>
+<p><br />
+</p>
+<ul>
+<li>1<span class="math inline">\(^{o}\)</span> Quartil (<span class="math inline">\(q_{0,25}\)</span>): 25% dos dados possuem valores abaixo desse valor e 75% estão acima;</li>
+<li>2<span class="math inline">\(^{o}\)</span> Quartil ou mediana (<span class="math inline">\(q_{0,50}\)</span>): 50% dos dados possuem valores abaixo desse valor e 50% estão acima; e,</li>
+<li>3<span class="math inline">\(^{o}\)</span> Quartil (<span class="math inline">\(q_{0,75}\)</span>): 75% dos dados possuem valores abaixo desse valor e 25% estão acima.</li>
+</ul>
 <p><br />
 </p>
 <p>Há muitos modos de se estabelecer os quantis descritos na literatura. O próprio <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/quantile">R</a> apresenta 9 modos diferentes:</p>
@@ -1100,19 +1092,14 @@ P(X=x | x\leq q_{p})=p
 ## 1.410000 1.634375 1.675000 1.755625 2.000000</code></pre>
 <p><br />
 </p>
-<p>Os quantis mais expressivos são:</p>
+<p>Para grandes conjuntos de dados a diferença entre os quantis determinados sob esses diferentes modos será desprezível.</p>
 <p><br />
 </p>
-<ul>
-<li>1<span class="math inline">\(^{o}\)</span> Quartil (<span class="math inline">\(q_{0,25}\)</span>): 25% dos dados possuem valores abaixo desse valor e 75% estão acima;</li>
-<li>2<span class="math inline">\(^{o}\)</span> Quartil ou mediana (<span class="math inline">\(q_{0,50}\)</span>): 50% dos dados possuem valores abaixo desse valor e 50% estão acima; e,</li>
-<li>3<span class="math inline">\(^{o}\)</span> Quartil (<span class="math inline">\(q_{0,75}\)</span>): 75% dos dados possuem valores abaixo desse valor e 25% estão acima.</li>
-</ul>
-<p><br />
-</p>
-<p>Para grandes conjuntos de dados a diferença entre os quantis determinados sob esses diferentes modos será despresível. De modo geral, para se calcular a posição <em>L</em> de um quantil qualquer de ordem <em>p</em> em um rol de dados pode-se usar a seguinte regra empírica:</p>
+<p>De modo geral, para se calcular a posição <em>L</em> de um quantil qualquer de ordem <em>p</em> em um rol de dados há algumas regras empíricas:</p>
 <p><span class="math display">\[
-L_{p}=\frac{p}{100} \times (n)
+L_{p}=\frac{p}{100} \times (n)\\
+L_{p}=\frac{p}{100} \times (n+1)\\
+L_{p}=[\frac{p}{100} \times (n-1)]+1\\
 \]</span><br />
 </p>
 <p>Onde:</p>
@@ -1124,10 +1111,10 @@ L_{p}=\frac{p}{100} \times (n)
 <li><em>L</em> é a <strong>posição</strong> do valor referente ao quantil desejado.</li>
 </ul>
 <p><br />
-</p>
+Os quartis calculados a partir das posições determinadas por essas regras <em>aproximadamente</em> subdividem o conjunto de dados em 25%, 50% e 75%.</p>
 <p><br />
 </p>
-<p>Assim, para a determinação dos quartis, o valor de <em>p</em> seria:</p>
+<p>Assim, para a determinação dos quartis pela primeira regra o valor de <em>p</em> seria:</p>
 <p><br />
 </p>
 <ul>
@@ -1138,7 +1125,7 @@ L_{p}=\frac{p}{100} \times (n)
 </ul>
 <p><br />
 </p>
-<p>Novamente podemos nos deparar com <strong>duas situações possíveis</strong> para o valor calculado para a posição <em>L</em>:</p>
+<p>Novamente podemos nos deparar com <strong>duas situações possíveis</strong> para o valor calculado para a posição <em>L</em> qualquer que seja a regra:</p>
 <p><br />
 </p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-42"></span>

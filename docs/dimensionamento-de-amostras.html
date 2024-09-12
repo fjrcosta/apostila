@@ -483,7 +483,10 @@ Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa
 <p>Os erros amostrais ocorrem porque as amostras são aleatórias: se de um grupo de 100 números extrairmos uma amostra aleatória de 10 deles a média amostral calculada teria um valor diferente a cada diferente amostra extraída (essa flutuação é assunto da teoria da distribuição das médias e proporções amostrais). Já os erros não amostrais devem ser minimizados ou melhor não existir.</p>
 <p><br />
 </p>
-<p>A determinação do tamanho de uma amostra (<span class="math inline">\(n_{0}\)</span>) é função do <em>erro amostral</em> tolerável e do <em>nível de significância</em> <span class="math inline">\(\alpha\)</span> estabelecido <em>a priori</em> pelo pesquisador que se relaciona ao <em>nível de confiança</em> pretendido por <span class="math inline">\((1-\alpha)\)</span>:</p>
+<p>A determinação do tamanho de uma amostra (<span class="math inline">\(n_{0}\)</span>) é função do <em>erro amostral</em> tolerável e do <em>nível de significância</em> <span class="math inline">\(\alpha\)</span> estabelecido <em>a priori</em> pelo pesquisador que se relaciona ao <em>nível de confiança</em> pretendido por <span class="math inline">\((1-\alpha)\)</span>.</p>
+<p><br />
+</p>
+<p>Assim, se o <strong>nível de significância</strong> máximo admissível para o assunto pesquisado é <span class="math inline">\(\alpha=0,05\)</span>, o <strong>nível de confiança</strong> será <span class="math inline">\((1-\alpha)=0,95\)</span> (uma vez que: <span class="math inline">\(\alpha + (1-\alpha)=1\)</span>).</p>
 <p><br />
 </p>
 <p><br />
@@ -491,31 +494,49 @@ Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa
 <table>
 <caption>
 Valores críticos de <span class="math inline"><em>z</em><sub><em>c</em></sub></span>
-correspondentes a alguns níveis de significãncia
+correspondentes a alguns níveis de significância (confiança)
 </caption>
-<thead>
-<tr class="header">
-<th style="text-align: center;">
-Níveis de significância
-</th>
-<th style="text-align: center;">
-20 %
-</th>
-<th style="text-align: center;">
-10 %
-</th>
-<th style="text-align: center;">
-5 %
-</th>
-<th style="text-align: center;">
-1 %
-</th>
-<th style="text-align: center;">
-0,1 %
-</th>
-</tr>
-</thead>
 <tbody>
+<tr class="odd">
+<td style="text-align: center;">
+Níveis de confiança <span class="math inline">(1−<em>α</em>)</span>:
+</td>
+<td style="text-align: center;">
+0,80
+</td>
+<td style="text-align: center;">
+0,90
+</td>
+<td style="text-align: center;">
+0,95
+</td>
+<td style="text-align: center;">
+0,99
+</td>
+<td style="text-align: center;">
+0,999
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+Níveis de significância <span class="math inline"><em>α</em></span>:
+</td>
+<td style="text-align: center;">
+0,20
+</td>
+<td style="text-align: center;">
+0,10
+</td>
+<td style="text-align: center;">
+0,05
+</td>
+<td style="text-align: center;">
+0,01
+</td>
+<td style="text-align: center;">
+0,001
+</td>
+</tr>
 <tr class="odd">
 <td style="text-align: center;">
 <span class="math inline"><em>z</em><sub><em>c</em></sub></span>
@@ -548,7 +569,7 @@ Níveis de significância
 </div>
 <div id="determinação-do-tamanho-de-uma-amostra-para-estimação-da-média-populacional" class="section level3 hasAnchor" number="7.12.2">
 <h3><span class="header-section-number">7.12.2</span> Determinação do tamanho de uma amostra para estimação da média populacional<a href="dimensionamento-de-amostras.html#determinação-do-tamanho-de-uma-amostra-para-estimação-da-média-populacional" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Determinação do tamanho <span class="math inline">\(n_{0}\)</span> de uma amostra para estimação da média considerando-se uma <strong>população infinita</strong> (<span class="math inline">\(N \le 20.n_{0}\)</span>) e seguindo uma distribuição Normal:</p>
+<p>Determinação do tamanho <span class="math inline">\(n_{0}\)</span> de uma amostra para estimação da média considerando-se uma <strong>população infinita</strong> (<span class="math inline">\(N \ge 20.n_{0}\)</span>) e seguindo uma distribuição Normal:</p>
 <p><br />
 </p>
 <p><span class="math display">\[
@@ -581,7 +602,7 @@ n_{0} &amp; \sim 35
 \end{align*}\]</span></p>
 <p><br />
 </p>
-<p>Se a população <strong>não pode ser considerada infinita</strong> (<span class="math inline">\(N \le 20.n_{0}\)</span>) aplica-se uma correção sobre o valor inicialmente calculado para a (<span class="math inline">\(n_{0}\)</span>) obtendo-se um novo tamanho (<span class="math inline">\(n\)</span>):</p>
+<p>Se a população <strong>não pode ser considerada infinita</strong>, ou seja, se <span class="math inline">\(N &lt; 20.n_{0}\)</span>, então aplica-se uma correção sobre o valor inicialmente calculado para a (<span class="math inline">\(n_{0}\)</span>) obtendo-se um novo tamanho (<span class="math inline">\(n\)</span>):</p>
 <p><br />
 </p>
 <p><span class="math display">\[
@@ -589,7 +610,7 @@ n=\frac{N \cdot n_{0}}{N + n_{0}}
 \]</span></p>
 <p><br />
 </p>
-<p>No exemplo anterior, caso a população sob estudo fosse composta por apenas 200 animais (<span class="math inline">\(N \le 20.n_{0}\)</span>) o tamanho da amostra seria:</p>
+<p>No exemplo anterior, caso a população sob estudo fosse composta por apenas 200 animais (<span class="math inline">\(N &lt; 20.n_{0}\)</span>) o tamanho da amostra seria:</p>
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
@@ -610,10 +631,11 @@ n &amp; \sim 30
 n =  \frac{t_{c}^2 \cdot s^2}{\varepsilon^2}
 \]</span><br />
 </p>
-<p>com <span class="math inline">\(s\)</span> calculado sobre a amostra piloto de <span class="math inline">\(n_{0}\)</span> elementos e com <span class="math inline">\(t_{c}\)</span> obtido em uma tabela considerando o nível de sginificância <span class="math inline">\(\alpha\)</span> estabelecido e o tamanho da amostra piloto <span class="math inline">\(n_{0}\)</span>.</p>
+<p>com <span class="math inline">\(s\)</span> calculado sobre a amostra piloto de <span class="math inline">\(n_{0}\)</span> elementos e com <span class="math inline">\(t_{c}\)</span> obtido em uma tabela de valores da distribuição ``t’’.</p>
+<p>Essas tabelas de valores consideram nas suas <strong>colunas</strong> variados níveis de sginificância <span class="math inline">\(\alpha\)</span> e, nas suas <strong>linhas</strong> uma informação chamada de <strong>graus de liberdade (gl)</strong></p>
 <p><br />
 </p>
-<p>Se <span class="math inline">\(n \le n_{0}\)</span>, a amostra piloto já terá sido suficiente para ser usada na análise. Caso contrário, deve-se retirar mais elementos da população, recalcular o tamanho da amostra <span class="math inline">\(n\)</span> até se observe essa desigualdade.</p>
+<p>Graus de liberdade não mais são, no contexto estudado, que o tamanho da amostra piloto <span class="math inline">\(n_{0}\)</span> menos 1 (<span class="math inline">\(gl=n_{0}-1\)</span>. Assim, se a amostra piloto for de 5 elementos, gl=4 e será nessa linha, junto à coluna do nível de significância desejado, que o valor “t” será encontrado.</p>
 <p><br />
 </p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig42"></span>
@@ -625,6 +647,9 @@ Figure 7.10: Tabela t de Stdent: cada linha refere-se a um gl e cada coluna a um
 <blockquote>
 <p>Observe que à medida que o tamanho da amostra cresce, o valor crítico <span class="math inline">\(t_{c}\)</span> se aproxima do valor crítico <span class="math inline">\(_{c}\)</span> para um mesmo nível de significância. Por exemplo, para um <span class="math inline">\(\alpha=5\%\)</span> uma amostra de 121 (df=121-1=120) elementos possui um valor crítico <span class="math inline">\(t_{c}=1,96\)</span> (na distribuição de <em>Student</em>) e um valor crítico <span class="math inline">\(z_{c}=1,96\)</span> (distribuição Normal padrão).</p>
 </blockquote>
+<p><br />
+</p>
+<p>Se <span class="math inline">\(n \le n_{0}\)</span>, a amostra piloto já terá sido suficiente para ser usada na análise. Caso contrário, deve-se retirar mais elementos da população, recalcular o tamanho da amostra <span class="math inline">\(n\)</span> até se observe essa desigualdade.</p>
 <div id="margem-de-erro-em-uma-estimativa-amostral-da-média" class="section level4 hasAnchor" number="7.12.2.1">
 <h4><span class="header-section-number">7.12.2.1</span> Margem de erro em uma estimativa amostral da média<a href="dimensionamento-de-amostras.html#margem-de-erro-em-uma-estimativa-amostral-da-média" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Reescrevendo-se a expressão para a determinação do tamanho amostral podemos exprimir o erro <span class="math inline">\(\varepsilon\)</span> associado à estimativa obtida de uma amostra de tamanho <span class="math inline">\(n\)</span>: <span class="math inline">\(\hat{p}\)</span> da média populacional</p>
@@ -652,7 +677,7 @@ Figure 7.10: Tabela t de Stdent: cada linha refere-se a um gl e cada coluna a um
 </div>
 <div id="determinação-do-tamanho-de-uma-amostra-para-estimação-da-proporção-populacional" class="section level3 hasAnchor" number="7.12.3">
 <h3><span class="header-section-number">7.12.3</span> Determinação do tamanho de uma amostra para estimação da proporção populacional<a href="dimensionamento-de-amostras.html#determinação-do-tamanho-de-uma-amostra-para-estimação-da-proporção-populacional" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A determinação do tamanho de uma amostra para estimação da proporção populacional considerando-se uma <strong>população infinita</strong> (<span class="math inline">\(N \le 20. n_{0}\)</span>):</p>
+<p>A determinação do tamanho de uma amostra para estimação da proporção populacional considerando-se uma <strong>população infinita</strong> (<span class="math inline">\(N \ge 20. n_{0}\)</span>):</p>
 <p><br />
 </p>
 <p><span class="math display">\[
@@ -685,7 +710,7 @@ n_{0} = \frac{z_{c}^{2}}{\epsilon^{2}} \cdot \frac{1}{4}
 \]</span></p>
 <p><br />
 </p>
-<p>De modo análogo, se a população <strong>não pode ser considerada infinita</strong> (<span class="math inline">\(N \le 20n_{0}\)</span>) aplica-se uma correção sobre o valor calculado do tamanho da amostra (<span class="math inline">\(n_{0}\)</span>) chegando-se a um novo tamanho (<span class="math inline">\(n\)</span>):</p>
+<p>De modo análogo, se a população <strong>não pode ser considerada infinita</strong> (<span class="math inline">\(N &lt; 20n_{0}\)</span>) aplica-se uma correção sobre o valor calculado do tamanho da amostra (<span class="math inline">\(n_{0}\)</span>) chegando-se a um novo tamanho (<span class="math inline">\(n\)</span>):</p>
 <p><br />
 </p>
 <p><span class="math display">\[

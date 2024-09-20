@@ -771,10 +771,10 @@ P(X=j)_{3 \le j \le \infty} &amp;  = 0,008
 <p><br />
 </p>
 <p>1- cada repetição é um ensaio de Bernoulli (só poderá haver dois resultados possíveis: sucesso ou fracasso);<br />
-2- cada repetição não altera a probabilidad das demais (há independência);<br />
-3- a probabilidade de sucesso (<span class="math inline">\(p\)</span>) em cada repetição é constante;<br />
-4- consequentemente, a probabilidade de fracasso (<span class="math inline">\(q=1-p\)</span>) em cada repetição também é constante; e,<br />
-5- o experimento aleatório prossegue até que sejam verificados <span class="math inline">\(k\)</span> sucessos.</p>
+2- cada repetição não altera a probabilidade original (há independência entre as repetições);<br />
+3- portanto, a probabilidade de sucesso (<span class="math inline">\(p\)</span>) em cada repetição é constante;<br />
+4- e, consequentemente, a probabilidade de fracasso (<span class="math inline">\(q=1-p\)</span>) em cada repetição também é constante; e,<br />
+5- o experimento aleatório prossegue até que sejam verificados <span class="math inline">\(k\)</span> sucessos (na última repetição terá sido observado o k-ésimo sucesso).</p>
 <p><br />
 </p>
 <p>A notação de uma variável aleatória Binomial Negativa é <span class="math inline">\(X\sim bn(p,k)\)</span>, onde o parâmetro <span class="math inline">\(p\)</span> (<span class="math inline">\(0 \le p \le1\)</span>) indica a probabilidade individual de sucesso a cada repetição de Bernoulli e <span class="math inline">\(k\)</span> o número total de sucessos desejado e estabelecido <em>a priori</em>.</p>
@@ -784,12 +784,12 @@ P(X=j)_{3 \le j \le \infty} &amp;  = 0,008
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-f(X=n; p; k) &amp; = P(X=n; p; k) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{(n-k)} \\
+f(X=n; (p, k)) &amp; = P(X=n; (p,k) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{(n-k)} \\
 &amp; = \frac{(n-1)!}{ (k-1)! \cdot (n-k)!} \cdot {p}^{k} \cdot {q}^{(n-k)}
 \end{align*}\]</span></p>
 <p><br />
 </p>
-<p>Como são necessários no mínimo <span class="math inline">\(k\)</span> tentativas para se obter <span class="math inline">\(k\)</span> sucessos, os valores de <span class="math inline">\(x={k, k+1, k+2 ...}\)</span>).</p>
+<p>Como são necessários no mínimo <span class="math inline">\(k\)</span> tentativas para se obter <span class="math inline">\(k\)</span> sucessos, os valores de <span class="math inline">\(n={k, k+1, k+2 ...}\)</span>).</p>
 <p><br />
 </p>
 <p>A esperança e a variância de uma variável aleatória discreta com Distribuição Binomial Negativa são:</p>
@@ -830,8 +830,8 @@ f(X=n; p; k) &amp; = P(X=n; p; k) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{(n
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-f(X=n; p; r) &amp; = P(X=10; p=0,1; k=4 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
-&amp; = \frac{(n-1)!}{ (r-1)! \cdot (n-k)!} \cdot {p}^{k} \cdot {q}^{n-k} \\
+f(X=n; (p, k)) &amp; = P(X=10; (p=0,1; k=4)) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
+&amp; = \frac{(n-1)!}{ (k-1)! \cdot (n-k)!} \cdot {p}^{k} \cdot {q}^{n-k} \\
 &amp; = \frac{(10-1)!}{ (4-1)! \cdot (10-4)!} \cdot {0,1}^{4} \cdot {0,9}^{10-4} \\
 &amp; = \frac{362880}{ 6 \cdot 720} \cdot 0.0001  \cdot 0.531441 \\
 &amp; = 0,004464104
@@ -854,14 +854,14 @@ f(X=n; p; r) &amp; = P(X=10; p=0,1; k=4 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot
 </blockquote>
 <p><br />
 </p>
-<p>Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse experimento aleatório tal que <span class="math inline">\(X\sim bn(p,k)\)</span> onde <span class="math inline">\(p\)</span> é a probabilidade individual de sucesso e <span class="math inline">\(k\)</span> o número de sucessos estabelecido <em>a priori</em>.</p>
+<p>Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse experimento aleatório tal que <span class="math inline">\(X\sim bn(p,k)\)</span> onde <span class="math inline">\(p\)</span> é a probabilidade individual de sucesso e <span class="math inline">\(k\)</span> o número de sucessos estabelecido <em>a priori</em> sob probabilidade constante e igual a <em>p</em> a cada repetição (p, k são os parâmetros do modelo).</p>
 <p><br />
 </p>
 <p>Dados do problema:</p>
 <p><br />
 </p>
-<p>1- a probabilidade de ocorrência de um sucessoé <span class="math inline">\(p=0,70\)</span>, e<br />
-2- o número de sucessos fixado <em>a priori</em> é <span class="math inline">\(k=3\)</span>.</p>
+<p>1- a probabilidade de ocorrência de um sucesso é <span class="math inline">\(p=0,70\)</span>, e<br />
+2- o número de sucessos =3$.</p>
 <p><br />
 </p>
 <p>Pede-se a probabilidade de se observar três sucessos (<span class="math inline">\(k=3\)</span>) em cinco (<span class="math inline">\(n=5\)</span>) arremessos(repetições).<br />
@@ -870,8 +870,8 @@ f(X=n; p; r) &amp; = P(X=10; p=0,1; k=4 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-f(X=n; p; r) &amp; = P(X=5; p=0,7; k=3 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
-&amp; = \frac{(n-1)!}{ (r-1)! \cdot (n-k)!} \cdot {p}^{k} \cdot {q}^{n-k} \\
+f(X=n; (p; r)) &amp; = P(X=5; (p=0,7; k=3 )) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
+&amp; = \frac{(n-1)!}{ (k-1)! \cdot (n-k)!} \cdot {p}^{k} \cdot {q}^{n-k} \\
 &amp; = \frac{(5-1)!}{ (3-1)! \cdot (5-3)!} \cdot {0,7}^{3} \cdot {0,3}^{5-3} \\
 &amp; = \frac{24}{ 2 \cdot 2} \cdot 0.343  \cdot 0.09 \\
 &amp; = 0,18522
@@ -894,7 +894,7 @@ f(X=n; p; r) &amp; = P(X=5; p=0,7; k=3 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot 
 </blockquote>
 <p><br />
 </p>
-<p>Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse experimento aleatório tal que <span class="math inline">\(X\sim bn(p,k)\)</span> onde <span class="math inline">\(p\)</span> é a probabilidade individual de sucesso e <span class="math inline">\(k\)</span> o número de sucessos estabelecido <em>a priori</em>.</p>
+<p>Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse experimento aleatório tal que <span class="math inline">\(X\sim bn(p,k)\)</span> onde <span class="math inline">\(p\)</span> é a probabilidade individual de sucesso e <span class="math inline">\(k\)</span> o número de sucessos estabelecido <em>a priori</em> sob probabilidade constante e igual a <em>p</em> a cada repetição (p, k são os parâmetros do modelo).</p>
 <p> </p>
 <p>Dados do problema:</p>
 <p><br />
@@ -902,7 +902,7 @@ f(X=n; p; r) &amp; = P(X=5; p=0,7; k=3 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot 
 <ul>
 <li>a probabilidade de ocorrência de um sucesso é <span class="math inline">\(p=0,5\)</span>, e,<br />
 </li>
-<li>o número de sucessos fixado <em>a priori</em> é <span class="math inline">\(k=7\)</span>.</li>
+<li>o número de sucessos é <span class="math inline">\(k=7\)</span>.</li>
 </ul>
 <p><br />
 </p>
@@ -941,7 +941,7 @@ f(X=n; p; r) &amp; = P(X=12; p=0.5; k=7 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot
 </blockquote>
 <p><br />
 </p>
-<p>Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse experimento aleatório tal que <span class="math inline">\(X\sim bn(p,k)\)</span> onde <span class="math inline">\(p\)</span> é a probabilidade individual de sucesso e <span class="math inline">\(k\)</span> o número de sucessos estabelecido <em>a priori</em>.</p>
+<p>Uma variável aleatória discreta com Distribuição Binomial Negativa pode ser definida para modelar esse experimento aleatório tal que <span class="math inline">\(X\sim bn(p,k)\)</span> onde <span class="math inline">\(p\)</span> é a probabilidade individual de sucesso e <span class="math inline">\(k\)</span> o número de sucessos estabelecido <em>a priori</em> sob probabilidade constante e igual a <em>p</em> a cada repetição (p, k são os parâmetros do modelo).</p>
 <p><br />
 </p>
 <p>Dados do problema:</p>
@@ -963,8 +963,8 @@ f(X=n; p; r) &amp; = P(X=12; p=0.5; k=7 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot
 <p>A probabilidade de se observar <span class="math inline">\(k=2\)</span> sucessos ao se realizar <span class="math inline">\(n=10\)</span> tentativas de Berboulli é dada pela função discreta de probabilidade da variável Binomial Negativa:</p>
 <p>/</p>
 <p><span class="math display">\[\begin{align*}
-f(X=n; p; r) &amp; = P(X=10; p=0.2; k=2 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
-&amp; = \frac{(n-1)!}{ (r-1)! \cdot (n-k)!} \cdot {p}^{k} \cdot {q}^{n-k} \\
+f(X=n; (p,k)) &amp; = P(X=10; (p=0.2; k=2) ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
+&amp; = \frac{(n-1)!}{ (k-1)! \cdot (n-k)!} \cdot {p}^{k} \cdot {q}^{n-k} \\
 &amp; = \frac{(10-1)!}{ (2-1)! \cdot (10-2)!} \cdot {0,2}^{2} \cdot {0,8}^{10-2} \\
 &amp; = \frac{362880}{ 1 \cdot 40320} \cdot 0.04 \cdot 0.1677722 \\
 &amp; = 9 \cdot 0.04 \cdot 0.1677722 \\
@@ -979,21 +979,21 @@ f(X=n; p; r) &amp; = P(X=10; p=0.2; k=2 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-f(X=n; p; r) &amp; = P(X=2; p=0.2; k=2 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
+f(X=n; (p,k)) &amp; = P(X=2; (p=0.2; k=2) ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
 &amp; = \frac{(2-1)!}{ (2-1)! \cdot (2-2)!} \cdot {0,2}^{2} \cdot {0,8}^{2-2} \\
 P(X=2) &amp; = 0,04
 \end{align*}\]</span></p>
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-f(X=n; p; r) &amp; = P(X=3; p=0.2; k=2 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
+f(X=n; (p,k))) &amp; = P(X=3; (p=0.2; k=2)) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
 &amp; = \frac{(3-1)!}{ (2-1)! \cdot (3-2)!} \cdot {0,2}^{2} \cdot {0,8}^{3-2} \\
 P(X=3) &amp; = 0,064
 \end{align*}\]</span></p>
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-f(X=n; p; r) &amp; = P(X=4; p=0.2; k=2 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
+f(X=n; (p,k)) &amp; = P(X=4; (p=0.2; k=2) ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
 &amp; = \frac{(4-1)!}{ (2-1)! \cdot (4-2)!} \cdot {0,2}^{2} \cdot {0,8}^{4-2} \\
 P(X=4) &amp; = 0,0768
 \end{align*}\]</span></p>

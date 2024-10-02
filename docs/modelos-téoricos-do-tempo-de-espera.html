@@ -559,9 +559,9 @@ P(X=4) &amp; = 0,0656
 <p>A probabilidade de que na <strong>quinta transmissão</strong> de um <em>bit</em> ocorra um erro é de 6,56%.</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb105-1" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.10</span></span>
-<span id="cb105-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb105-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">4</span> <span class="co"># Uma vez que na 5 repetição ocorrerá o &#39;sucesso&#39; (o bit será transmitido com erro)</span></span>
-<span id="cb105-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb105-3" tabindex="-1"></a><span class="fu">dgeom</span>(<span class="at">x =</span> n, <span class="at">prob =</span> p)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb14-1" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.10</span></span>
+<span id="cb14-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb14-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">4</span> <span class="co"># Uma vez que na 5 repetição ocorrerá o &#39;sucesso&#39; (o bit será transmitido com erro)</span></span>
+<span id="cb14-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb14-3" tabindex="-1"></a><span class="fu">dgeom</span>(<span class="at">x =</span> n, <span class="at">prob =</span> p)</span></code></pre></div>
 <pre><code>## [1] 0.06561</code></pre>
 <blockquote>
 <p>Exemplo: Uma linha de produção está sendo analisada para fins de controle da qualidade das peças produzidas. Tendo em vista o alto padrão requerido, a produção é interrompida para regulagem <strong>toda vez que uma peça defeituosa é observada</strong>. Se 0,01 é a probabilidade da peça ser defeituosa, determine a probabilidade de ocorrer uma peça defeituosa entre a <span class="math inline">\(4^{a}\)</span> e <span class="math inline">\(6^{a}\)</span> peças produzidas.</p>
@@ -623,9 +623,9 @@ P(3 \le j \le 5)  &amp;  = 0.02881885
 <p>A probabilidade de termos uma <strong>peça defeituosa</strong> na quarta <strong>OU</strong> na quinta <strong>OU</strong> na sexta das peças produzidas é de 2,9116%.</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb107-1" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.01</span></span>
-<span id="cb107-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb107-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>) <span class="co"># Uma vez que na 4, 5 e 6 repetições ocorrerão os &#39;sucessos&#39; (a produção de uma peça defeituosa)</span></span>
-<span id="cb107-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb107-3" tabindex="-1"></a><span class="fu">dgeom</span>(<span class="at">x =</span> n, <span class="at">prob =</span> p)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb16-1" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.01</span></span>
+<span id="cb16-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb16-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>) <span class="co"># Uma vez que na 4, 5 e 6 repetições ocorrerão os &#39;sucessos&#39; (a produção de uma peça defeituosa)</span></span>
+<span id="cb16-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb16-3" tabindex="-1"></a><span class="fu">dgeom</span>(<span class="at">x =</span> n, <span class="at">prob =</span> p)</span></code></pre></div>
 <pre><code>## [1] 0.00970299 0.00960596 0.00950990</code></pre>
 <p><br />
 </p>
@@ -662,9 +662,9 @@ P(X=3) &amp; = 0,0064
 \end{align*}\]</span></p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb109-1" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.80</span></span>
-<span id="cb109-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb109-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">3</span>) <span class="co"># Uma vez que na 4 repetição ocorrerá o &#39;sucesso&#39; (um alinhamento ótico bem sucedido)</span></span>
-<span id="cb109-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb109-3" tabindex="-1"></a><span class="fu">dgeom</span>(<span class="at">x =</span> n, <span class="at">prob =</span> p)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb18-1" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.80</span></span>
+<span id="cb18-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb18-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">3</span>) <span class="co"># Uma vez que na 4 repetição ocorrerá o &#39;sucesso&#39; (um alinhamento ótico bem sucedido)</span></span>
+<span id="cb18-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb18-3" tabindex="-1"></a><span class="fu">dgeom</span>(<span class="at">x =</span> n, <span class="at">prob =</span> p)</span></code></pre></div>
 <pre><code>## [1] 0.0064</code></pre>
 <p><br />
 </p>
@@ -715,9 +715,9 @@ P(X=j)_{0 \le j \le 3} &amp; =  0,9984
 \end{align*}\]</span></p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb111-1" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.80</span></span>
-<span id="cb111-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb111-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>) <span class="co"># Uma vez que na 1, 2, 3, e 4 repetições ocorrerão os &#39;sucessos&#39; (alinhamentos óticos bem sucedidos)</span></span>
-<span id="cb111-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb111-3" tabindex="-1"></a><span class="fu">dgeom</span>(<span class="at">x =</span> n, <span class="at">prob =</span> p)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb20-1" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.80</span></span>
+<span id="cb20-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb20-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>) <span class="co"># Uma vez que na 1, 2, 3, e 4 repetições ocorrerão os &#39;sucessos&#39; (alinhamentos óticos bem sucedidos)</span></span>
+<span id="cb20-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb20-3" tabindex="-1"></a><span class="fu">dgeom</span>(<span class="at">x =</span> n, <span class="at">prob =</span> p)</span></code></pre></div>
 <pre><code>## [1] 0.8000 0.1600 0.0320 0.0064</code></pre>
 <p><br />
 </p>
@@ -787,7 +787,7 @@ P(X=j)_{3 \le j \le \infty} &amp;  = 0,008
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-f(X=n; (p, k)) &amp; = P(X=n; (p,k) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{(n-k)} \\
+f(X=n; (p, k)) &amp; = P(X=n; (p,k) = \binom{n-1}{k-1} \cdot {p}^{k} \cdot {q}^{(n-k)} \\
 &amp; = \frac{(n-1)!}{ (k-1)! \cdot (n-k)!} \cdot {p}^{k} \cdot {q}^{(n-k)}
 \end{align*}\]</span></p>
 <p><br />
@@ -833,7 +833,7 @@ f(X=n; (p, k)) &amp; = P(X=n; (p,k) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-f(X=n; (p, k)) &amp; = P(X=10; (p=0,1; k=4)) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
+f(X=n; (p, k)) &amp; = P(X=10; (p=0,1; k=4)) = \binom{n-1}{k-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
 &amp; = \frac{(n-1)!}{ (k-1)! \cdot (n-k)!} \cdot {p}^{k} \cdot {q}^{n-k} \\
 &amp; = \frac{(10-1)!}{ (4-1)! \cdot (10-4)!} \cdot {0,1}^{4} \cdot {0,9}^{10-4} \\
 &amp; = \frac{362880}{ 6 \cdot 720} \cdot 0.0001  \cdot 0.531441 \\
@@ -844,11 +844,11 @@ f(X=n; (p, k)) &amp; = P(X=10; (p=0,1; k=4)) = \binom{k-1}{n-1} \cdot {p}^{k} \c
 <p>A probabilidade de se observar 4 sucessos em 10 tentativas é de 0,4464104%.</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb113-1" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">4</span></span>
-<span id="cb113-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb113-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">10</span></span>
-<span id="cb113-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb113-3" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.10</span></span>
-<span id="cb113-4"><a href="modelos-téoricos-do-tempo-de-espera.html#cb113-4" tabindex="-1"></a>x <span class="ot">=</span> n<span class="sc">-</span>k <span class="co"># Entrar com n-k na função </span></span>
-<span id="cb113-5"><a href="modelos-téoricos-do-tempo-de-espera.html#cb113-5" tabindex="-1"></a><span class="fu">dnbinom</span>(<span class="at">x =</span> x , <span class="at">size =</span> k, <span class="at">prob =</span> p)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb22-1" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">4</span></span>
+<span id="cb22-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb22-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">10</span></span>
+<span id="cb22-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb22-3" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.10</span></span>
+<span id="cb22-4"><a href="modelos-téoricos-do-tempo-de-espera.html#cb22-4" tabindex="-1"></a>x <span class="ot">=</span> n<span class="sc">-</span>k <span class="co"># Entrar com n-k na função </span></span>
+<span id="cb22-5"><a href="modelos-téoricos-do-tempo-de-espera.html#cb22-5" tabindex="-1"></a><span class="fu">dnbinom</span>(<span class="at">x =</span> x , <span class="at">size =</span> k, <span class="at">prob =</span> p)</span></code></pre></div>
 <pre><code>## [1] 0.004464104</code></pre>
 <p><br />
 </p>
@@ -873,7 +873,7 @@ f(X=n; (p, k)) &amp; = P(X=10; (p=0,1; k=4)) = \binom{k-1}{n-1} \cdot {p}^{k} \c
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-f(X=n; (p; r)) &amp; = P(X=5; (p=0,7; k=3 )) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
+f(X=n; (p; r)) &amp; = P(X=5; (p=0,7; k=3 )) = \binom{n-1}{k-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
 &amp; = \frac{(n-1)!}{ (k-1)! \cdot (n-k)!} \cdot {p}^{k} \cdot {q}^{n-k} \\
 &amp; = \frac{(5-1)!}{ (3-1)! \cdot (5-3)!} \cdot {0,7}^{3} \cdot {0,3}^{5-3} \\
 &amp; = \frac{24}{ 2 \cdot 2} \cdot 0.343  \cdot 0.09 \\
@@ -884,11 +884,11 @@ f(X=n; (p; r)) &amp; = P(X=5; (p=0,7; k=3 )) = \binom{k-1}{n-1} \cdot {p}^{k} \c
 <p>A probabilidade de Bob acertar 3 arremessos em 5 tentativas é de 18,522%.</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb115-1" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">3</span></span>
-<span id="cb115-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb115-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">5</span></span>
-<span id="cb115-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb115-3" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.70</span></span>
-<span id="cb115-4"><a href="modelos-téoricos-do-tempo-de-espera.html#cb115-4" tabindex="-1"></a>x <span class="ot">=</span> n<span class="sc">-</span>k <span class="co"># Entrar com n-k na função </span></span>
-<span id="cb115-5"><a href="modelos-téoricos-do-tempo-de-espera.html#cb115-5" tabindex="-1"></a><span class="fu">dnbinom</span>(<span class="at">x =</span> x , <span class="at">size =</span> k, <span class="at">prob =</span> p)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb24-1" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb24-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb24-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">5</span></span>
+<span id="cb24-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb24-3" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.70</span></span>
+<span id="cb24-4"><a href="modelos-téoricos-do-tempo-de-espera.html#cb24-4" tabindex="-1"></a>x <span class="ot">=</span> n<span class="sc">-</span>k <span class="co"># Entrar com n-k na função </span></span>
+<span id="cb24-5"><a href="modelos-téoricos-do-tempo-de-espera.html#cb24-5" tabindex="-1"></a><span class="fu">dnbinom</span>(<span class="at">x =</span> x , <span class="at">size =</span> k, <span class="at">prob =</span> p)</span></code></pre></div>
 <pre><code>## [1] 0.18522</code></pre>
 <p><br />
 </p>
@@ -916,7 +916,7 @@ f(X=n; (p; r)) &amp; = P(X=5; (p=0,7; k=3 )) = \binom{k-1}{n-1} \cdot {p}^{k} \c
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-f(X=n; p; r) &amp; = P(X=12; p=0.5; k=7 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
+f(X=n; p; r) &amp; = P(X=12; p=0.5; k=7 ) = \binom{n-1}{k-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
 &amp; = \frac{(n-1)!}{ (r-1)! \cdot (n-k)!} \cdot {p}^{k} \cdot {q}^{n-k} \\
 &amp; = \frac{(12-1)!}{ (7-1)! \cdot (12-7)!} \cdot {0,5}^{7} \cdot {0,5}^{12-7} \\
 &amp; = \frac{39916800}{ 720 \cdot 120} \cdot 0.0078125 \cdot 0.03125 \\
@@ -928,11 +928,11 @@ f(X=n; p; r) &amp; = P(X=12; p=0.5; k=7 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot
 <p>A probabilidade de se obter 7 sucessos em 12 tentativas é de 11,28%.</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb117-1" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">7</span></span>
-<span id="cb117-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb117-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">12</span></span>
-<span id="cb117-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb117-3" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.50</span></span>
-<span id="cb117-4"><a href="modelos-téoricos-do-tempo-de-espera.html#cb117-4" tabindex="-1"></a>x <span class="ot">=</span> n<span class="sc">-</span>k <span class="co"># Entrar com n-k na função </span></span>
-<span id="cb117-5"><a href="modelos-téoricos-do-tempo-de-espera.html#cb117-5" tabindex="-1"></a><span class="fu">dnbinom</span>(<span class="at">x =</span> x , <span class="at">size =</span> k, <span class="at">prob =</span> p)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb26-1" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">7</span></span>
+<span id="cb26-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb26-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">12</span></span>
+<span id="cb26-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb26-3" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.50</span></span>
+<span id="cb26-4"><a href="modelos-téoricos-do-tempo-de-espera.html#cb26-4" tabindex="-1"></a>x <span class="ot">=</span> n<span class="sc">-</span>k <span class="co"># Entrar com n-k na função </span></span>
+<span id="cb26-5"><a href="modelos-téoricos-do-tempo-de-espera.html#cb26-5" tabindex="-1"></a><span class="fu">dnbinom</span>(<span class="at">x =</span> x , <span class="at">size =</span> k, <span class="at">prob =</span> p)</span></code></pre></div>
 <pre><code>## [1] 0.112793</code></pre>
 <p><br />
 </p>
@@ -966,7 +966,7 @@ f(X=n; p; r) &amp; = P(X=12; p=0.5; k=7 ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot
 <p>A probabilidade de se observar <span class="math inline">\(k=2\)</span> sucessos ao se realizar <span class="math inline">\(n=10\)</span> tentativas de Berboulli é dada pela função discreta de probabilidade da variável Binomial Negativa:</p>
 <p>/</p>
 <p><span class="math display">\[\begin{align*}
-f(X=n; (p,k)) &amp; = P(X=10; (p=0.2; k=2) ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
+f(X=n; (p,k)) &amp; = P(X=10; (p=0.2; k=2) ) = \binom{n-1}{k-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
 &amp; = \frac{(n-1)!}{ (k-1)! \cdot (n-k)!} \cdot {p}^{k} \cdot {q}^{n-k} \\
 &amp; = \frac{(10-1)!}{ (2-1)! \cdot (10-2)!} \cdot {0,2}^{2} \cdot {0,8}^{10-2} \\
 &amp; = \frac{362880}{ 1 \cdot 40320} \cdot 0.04 \cdot 0.1677722 \\
@@ -982,21 +982,21 @@ f(X=n; (p,k)) &amp; = P(X=10; (p=0.2; k=2) ) = \binom{k-1}{n-1} \cdot {p}^{k} \c
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-f(X=n; (p,k)) &amp; = P(X=2; (p=0.2; k=2) ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
+f(X=n; (p,k)) &amp; = P(X=2; (p=0.2; k=2) ) = \binom{n-1}{k-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
 &amp; = \frac{(2-1)!}{ (2-1)! \cdot (2-2)!} \cdot {0,2}^{2} \cdot {0,8}^{2-2} \\
 P(X=2) &amp; = 0,04
 \end{align*}\]</span></p>
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-f(X=n; (p,k))) &amp; = P(X=3; (p=0.2; k=2)) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
+f(X=n; (p,k))) &amp; = P(X=3; (p=0.2; k=2)) = \binom{n-1}{k-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
 &amp; = \frac{(3-1)!}{ (2-1)! \cdot (3-2)!} \cdot {0,2}^{2} \cdot {0,8}^{3-2} \\
 P(X=3) &amp; = 0,064
 \end{align*}\]</span></p>
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-f(X=n; (p,k)) &amp; = P(X=4; (p=0.2; k=2) ) = \binom{k-1}{n-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
+f(X=n; (p,k)) &amp; = P(X=4; (p=0.2; k=2) ) = \binom{n-1}{k-1} \cdot {p}^{k} \cdot {q}^{n-k} \\
 &amp; = \frac{(4-1)!}{ (2-1)! \cdot (4-2)!} \cdot {0,2}^{2} \cdot {0,8}^{4-2} \\
 P(X=4) &amp; = 0,0768
 \end{align*}\]</span></p>

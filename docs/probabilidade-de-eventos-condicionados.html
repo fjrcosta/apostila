@@ -547,7 +547,7 @@ Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa
 </ul>
 <p><br />
 </p>
-<p>e seu cálculo é feito pela <strong>regra geral da probabilidade de dois eventos condicionados</strong>:</p>
+<p>Seu cálculo é feito pela <strong>regra geral da probabilidade de dois eventos condicionados</strong>:</p>
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
@@ -799,6 +799,94 @@ P(M|F) &amp; = \frac{P(M \cap F)}{P(F)} \\
 </tr>
 </tbody>
 </table>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Imagine que um jogador está treinando cobranças de pênaltis. Historicamente a probabilidade de acertar uma cobrança, supondo que acertou a anterior é de 60%. Mas, se ele tiver errado a anterior a probabilidade de acertar cai para 30%. Construa a distribuição de probabilidades do número de acertos em 3 tentativas de cobrança.</p>
+</blockquote>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-91"></span>
+<img src="images4/arv_bin_2.png" alt="Diagrama em árvore das três repetições dependentes de um pênalti" width="40%" />
+<p class="caption">
+Figure 4.16: Diagrama em árvore das três repetições dependentes de um pênalti
+</p>
+</div>
+<p><br />
+</p>
+<p>A seguir vemos a cadeia de eventos necessária para que cada contagem de gols se verifique:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+\text{0 GOL} &amp; = [E_{1} \cap E_{2} \cap E_{3}] \\
+\text{1 GOL} &amp; = \{ [A_{1} \cap E_{2} \cap E_{3}] \cup [E_{1} \cap A_{2} \cap E_{3}] \cup [E_{1} \cap E_{2} \cap A_{3}] \}\\
+\text{2 GOLS} &amp; = \{ [A_{1} \cap A_{2} \cap E_{3}] \cup [E_{1} \cap A_{2} \cap A_{3}] \cup [A_{1} \cap E_{2} \cap A_{3}] \}\\
+\text{3 GOLS} &amp; = [A_{1} \cap A_{2}  \cap  A_{3}] \\
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>A probabilidade associada a cada contagem de gols será:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(\text{0 GOL}) &amp; = P[E_{1} \cap E_{2} \cap E_{3}] \\
+P(\text{1 GOL}) &amp; = P\{ [A_{1} \cap E_{2} \cap E_{3}] \cup [E_{1} \cap A_{2} \cap E_{3}] \cup [E_{1} \cap E_{2} \cap A_{3}] \}\\
+P(\text{2 GOLS}) &amp; = P\{ [A_{1} \cap A_{2} \cap E_{3}] \cup [E_{1} \cap A_{2} \cap A_{3}] \cup [A_{1} \cap E_{2} \cap A_{3}] \}\\
+P(\text{3 GOLS}) &amp; = P[A_{1} \cap A_{2}  \cap  A_{3}] \\
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>A partir do enunciado, podemos deduzir as probabilidades de cada um dos eventos:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(A_{1}) &amp; = 0,50 \\
+P(E_{1}) &amp; = 0,50\\
+P(A_{i+1}|A_{i}) &amp; =0,60 \text{ logo, pelo complementar, } P(E_{i+1}|A_{i})=0,40\\
+P(A_{i+1}|E_{i}) &amp; =0,30 \text{ logo, pelo complementar } P(E_{i+1}|E_{i})=0,70\\
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(\text{0 GOL}) &amp; = P[E_{1} \cap E_{2} \cap E_{3}] \\
+P(\text{0 GOL}) &amp; = P[E_{1}] \times P[E_{2}|E_{1}] \times P[E_{3}|E_{2}] \\
+P(\text{0 GOL}) &amp; = 0,50 \times 0,70  \times 0,70 \\
+P(\text{0 GOL}) &amp; = 0,245
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(\text{3 GOLS}) &amp; = P[A_{1} \cap A_{2} \cap A_{3}] \\
+P(\text{3 GOLS}) &amp; = P[A_{1}] \times P[A_{2}|A_{1}] \times P[A_{3}|A_{2}] \\
+P(\text{3 GOLS}) &amp; = 0,50 \times 0,60  \times 0,60 \\
+P(\text{3 GOLS}) &amp; = 0,18
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(\text{1 GOL}) &amp; = P\{ [A_{1} \cap E_{2} \cap E_{3}]\} + P\{ [E_{1} \cap A_{2} \cap E_{3}]\} + P\{[E_{1} \cap E_{2} \cap A_{3}]\}\\
+P(\text{1 GOL}) &amp; = P[A_{1}] \times P[E_{2}|A_{1}] \times P[E_{3}|E_{2}] +\\
+&amp; P[E_{1}] \times P[A_{2}|E_{1}] \times P[E_{3}|A_{2}] +\\
+&amp; P[E_{1}] \times P[E_{2}|E_{1}] \times P[A_{3}|E_{2}]\\
+P(\text{1 GOL}) &amp; = 0,50 \times 0,40 \times  0,70 +\\
+&amp; 0,50 \times 0,30 \times 0,40 +\\
+&amp; 0,50 \times 0,70 \times 0,30 \\
+P(\text{1 GOL}) &amp; =0,305
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(\text{2 GOLS}) &amp; = P\{ [A_{1} \cap A_{2} \cap E_{3}]\} + P\{ [E_{1} \cap A_{2} \cap A_{3}]\} + P\{[A_{1} \cap E_{2} \cap A_{3}]\}\\
+P(\text{2 GOLS}) &amp; = P[A_{1}] \times P[A_{2}|A_{1}] \times P[E_{3}|A_{2}] +\\
+&amp; P[E_{1}] \times P[A_{2}|E_{1}] \times P[A_{3}|A_{2}] +\\
+&amp; P[A_{1}] \times P[E_{2}|A_{1}] \times P[A_{3}|E_{2}]\\
+P(\text{2 GOLS}) &amp; = 0,50 \times 0,60 \times  0,40 +\\
+&amp; 0,50 \times 0,30 \times 0,60 +\\
+&amp; 0,50 \times 0,40 \times 0,30 \\
+P(\text{2 GOLS}) &amp; =0,27
+\end{align*}\]</span></p>
+<p><br />
+</p>
 </div>
             </section>
 

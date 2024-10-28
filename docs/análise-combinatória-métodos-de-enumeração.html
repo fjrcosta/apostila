@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 10 Introdução à distribuição das proporções amostrais e seus intervalos de confiança | apostila.knit</title>
+  <title>2.9 Análise combinatória (métodos de enumeração) | apostila.knit</title>
   <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 10 Introdução à distribuição das proporções amostrais e seus intervalos de confiança | apostila.knit" />
+  <meta property="og:title" content="2.9 Análise combinatória (métodos de enumeração) | apostila.knit" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
   <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 10 Introdução à distribuição das proporções amostrais e seus intervalos de confiança | apostila.knit" />
+  <meta name="twitter:title" content="2.9 Análise combinatória (métodos de enumeração) | apostila.knit" />
   
   <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="distribuição-das-diferenças-de-médias-amostrais-dependentes-e-seus-intervalos-de-confiança.html"/>
-<link rel="next" href="conceito-elementar-de-uma-proporção.html"/>
+<link rel="prev" href="noções-básicas-sobre-somatórios-sigma.html"/>
+<link rel="next" href="fatoriais.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -533,26 +533,431 @@ Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introdução-à-distribuição-das-proporções-amostrais-e-seus-intervalos-de-confiança" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Capítulo 10</span> Introdução à distribuição das proporções amostrais e seus intervalos de confiança<a href="introdução-à-distribuição-das-proporções-amostrais-e-seus-intervalos-de-confiança.html#introdução-à-distribuição-das-proporções-amostrais-e-seus-intervalos-de-confiança" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="análise-combinatória-métodos-de-enumeração" class="section level2 hasAnchor" number="2.9">
+<h2><span class="header-section-number">2.9</span> Análise combinatória (métodos de enumeração)<a href="análise-combinatória-métodos-de-enumeração.html#análise-combinatória-métodos-de-enumeração" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><br />
-A finalidade de uma amostra reside em obter uma estimativa do valor de um ou mais parâmetros associados a uma população. Verifica-se que, ao se extrair repetidamente valores amostrais de forma aleatória da mesma população, estes variam de uma amostra para outra, assim como em relação ao verdadeiro parâmetro dessa população. No entanto, é possível demonstrar que essa variabilidade pode ser caracterizada por meio de distribuições de probabilidade.</p>
-<p>Quando utilizadas com esse propósito, essas distribuições de probabilidade são chamadas de distribuições amostrais. Elas permitem avaliar, para cada amostra, quão próximo está o valor da estatística amostral em relação ao verdadeiro parâmetro da população. A resposta a essa questão depende essencialmente de três fatores:</p>
+</p>
+<p>A análise combinatória (ou métodos de enumeração) é um conjunto de técnicas para agrupamento de objetos conforme regras definidas e obtenção, através de cálculos, do número de agrupamentos possíveis.</p>
+<p><br />
+</p>
+<div id="princípio-básico-da-contagem-regra-da-multiplicação" class="section level3 hasAnchor" number="2.9.1">
+<h3><span class="header-section-number">2.9.1</span> Princípio básico da contagem (regra da multiplicação)<a href="análise-combinatória-métodos-de-enumeração.html#princípio-básico-da-contagem-regra-da-multiplicação" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Suponha a realização de dois experimentos. Se o experimento <span class="math inline">\(E\)</span> pode gerar qualquer um de <span class="math inline">\(n\)</span> resultados possíveis (<span class="math inline">\(E_{1},E_{2},E_{3}, \dots, E_{n}\)</span>) e se, para cada um dos resultados do experimento, houver <span class="math inline">\(m\)</span> resultados possíveis para o experimento <span class="math inline">\(F\)</span> (<span class="math inline">\(F_{1},F_{2},F_{3}, \dots, F_{m}\)</span>), então os dois experimentos possuem conjuntamente <span class="math inline">\(n \cdot m\)</span> diferentes resultados possíveis.</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
+<img src="images2/enumeracaoMultiplicacao.png" alt="Regra da multiplicação" width="50%" />
+<p class="caption">
+Figure 2.7: Regra da multiplicação
+</p>
+</div>
+<p><br />
+</p>
+<blockquote>
+<p>Esse princípio recebe o nome de <em>Princípio multiplicativo</em>, e é aplicado nos casos em que os eventos são interligados pelo conectivo <strong>e</strong>, característico de decisões sucessivas: ocorrem os dois.</p>
+</blockquote>
+<p><br />
+</p>
+<p>Se um homem tem 2 camisas e 4 gravatas, então ele tem <span class="math inline">\(2 \times 4 = 8\)</span> formas de combinar uma camisa com uma gravata.</p>
+<p><br />
+</p>
+<p>Um diagrama como ilustrado na Figura <a href="análise-combinatória-métodos-de-enumeração.html#fig:fig12">2.8</a> (denominado <strong>diagrama de árvore</strong> em virtude de sua aparência) geralmente é usado para explicar o princípio acima</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig12"></span>
+<img src="images4/diagrama_arvore.jpg" alt="Diagrama de árvore" width="50%" />
+<p class="caption">
+Figure 2.8: Diagrama de árvore
+</p>
+</div>
+<p><br />
+</p>
+<p>Ao lançarmos uma moeda três vezes (assumindo-se que K: cara e C: coroa) haverá <span class="math inline">\(2 \times 2 \times 2 = 8\)</span> possibilidades distintas.</p>
+<p><br />
+</p>
+<p>O <strong>diagrama de árvore</strong> associado será (cf. Figura <a href="análise-combinatória-métodos-de-enumeração.html#fig:fig13">2.9</a>:</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig13"></span>
+<img src="images4/diagrama_arvore_moeda.jpg" alt="Diagrama de árvore" width="50%" />
+<p class="caption">
+Figure 2.9: Diagrama de árvore
+</p>
+</div>
+<p><br />
+</p>
+</div>
+<div id="regra-da-adição" class="section level3 hasAnchor" number="2.9.2">
+<h3><span class="header-section-number">2.9.2</span> Regra da adição<a href="análise-combinatória-métodos-de-enumeração.html#regra-da-adição" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Suponha agora os mesmos expermentos <span class="math inline">\(E\)</span> e <span class="math inline">\(F\)</span> que geram <span class="math inline">\(n\)</span> e <span class="math inline">\(m\)</span> resultados possíveis (<span class="math inline">\(E_{1},E_{2},E_{3}, \dots, E_{n}\)</span> e <span class="math inline">\(F_{1},F_{2},F_{3}, \dots, F_{m}\)</span>), mas que eeses experimentos não estejam mais alinhados sequencialmente: ocorre o evento <span class="math inline">\(E\)</span> ou o evento <span class="math inline">\(F\)</span>. Então o número de maneiras pelas quais o evento <span class="math inline">\(E\)</span> ou o evento <span class="math inline">\(F\)</span> poderão se manifestar será de <span class="math inline">\(n + m\)</span> maneiras diferentes:</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
+<img src="images2/enumeracaoAdicao.png" alt="Regra da adição" width="50%" />
+<p class="caption">
+Figure 2.10: Regra da adição
+</p>
+</div>
+<p><br />
+</p>
+<blockquote>
+<p>Esse princípio recebe o nome de <em>Princípio aditivo</em>, e é aplicado nos casos em que os eventos são interligados pelo conectivo <strong>ou</strong>, característico de eventos mutuamente exclusivos: ocorre um ou outro.</p>
+</blockquote>
+<p><br />
+</p>
+<p>Uma cantina de um colégio possui três tipos de sucos e dois tipos de refrigerantes. Um aluno pode adquirir apenas 1 suco ou 1 refrigerante. Quantas possibilidades de escolha ele tem?</p>
+<p><br />
+</p>
+<p>Seja <span class="math inline">\(E_{1}\)</span> definido como escolher um tipo de suco (<span class="math inline">\(n_{1}=3\)</span>) e <span class="math inline">\(E_{2}\)</span> definido como escolher 1 tipo de refrigerante (<span class="math inline">\(n_{2}=2\)</span>). Então o número total de possíveis escolhas será dado aplicando-se o princípio aditivo:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+n_{1} + n_{2}=5
+\]</span></p>
+<p><br />
+</p>
+</div>
+<div id="permutações-ordenação-de-elementos" class="section level3 hasAnchor" number="2.9.3">
+<h3><span class="header-section-number">2.9.3</span> Permutações (ordenação de elementos)<a href="análise-combinatória-métodos-de-enumeração.html#permutações-ordenação-de-elementos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Suponha <span class="math inline">\(n\)</span> objetos diferentes. Permutar os <span class="math inline">\(n\)</span> objetos equivaleria a colocá-los dentro de uma caixa com <span class="math inline">\(n\)</span> compartimentos em <strong>alguma ordenação</strong>.</p>
+<p><br />
+</p>
+<p>O primeiro compartimento pode ser ocupado por qualquer um dos <span class="math inline">\(n\)</span> objetos, o segundo por <span class="math inline">\(n-1\)</span> e o último por apenas 1 objeto.<br />
+</p>
+<p>Assim, pelo princípio básico vemos que essa caixa poderá ser carregada de:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+n.(n-1).(n-2).1= n! \text{ maneiras diferentes.}
+\]</span>.</p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: quantos diferentes arranjos ordenados das letras a, b e c são possíveis?</p>
+</blockquote>
+<p><br />
+</p>
+<p>Pela enumeração direta vemos que são 6, ou seja, ‘abc’, ‘acb’, ‘bac’, ‘bca’, ‘cab’ e ‘cba’, resultado de <span class="math inline">\(3!=6\)</span>.</p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: quantas diferentes ordens de rebatedores são possíveis em um time de beisebol formado por 9 jogadores?</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math inline">\(9! = 362.880\)</span> ordenamentos possíveis para os rebatedores.</p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: uma turma de teoria da probabilidade é formada por 6 estudantes do sexo masculino e 4 do sexo feminino. Aplica-se uma prova e os estudantes são classificados de acordo com o seu desempenho. Suponha que nenhum dos estudantes tenha tirado a mesma nota.
+(a) Quantas diferentes classificações são possíveis?
+(b) Se os estudantes do sexo masculino forem classificados apenas entre si e também os do sexo feminino apenas entre si, quantas diferentes classificações são possíveis?</p>
+</blockquote>
+<p><br />
+</p>
+<ol style="list-style-type: lower-alpha">
+<li>Como cada classificação corresponde a um arranjo particular
+das 10 pessoas, a resposta é <span class="math inline">\(10! = 3.628.800\)</span>.</li>
+</ol>
+<p><br />
+</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Como há <span class="math inline">\(6!\)</span> possíveis classificações dos homens entre si e <span class="math inline">\(4!\)</span> classificações possíveis das mulheres entre si, segue do princípio básico que há <span class="math inline">\((6!)(4!)=(720)(24) = 17.280\)</span> classificações possíveis neste caso.</li>
+</ol>
+<p><br />
+</p>
+</div>
+<div id="arranjos-sem-repetição" class="section level3 hasAnchor" number="2.9.4">
+<h3><span class="header-section-number">2.9.4</span> Arranjos sem repetição<a href="análise-combinatória-métodos-de-enumeração.html#arranjos-sem-repetição" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Considere um conjunto de <span class="math inline">\(n\)</span> objetos diferentes. Suponha que desejamos selecionar uma quantidade <span class="math inline">\(p\)</span> desses objetos, onde <span class="math inline">\(p &lt; n\)</span>, e dispor os <span class="math inline">\(p\)</span> objetos escolhidos em uma ordem específica.</p>
+<p><br />
+</p>
+<p>Quando selecionamos e ordenamos um subconjunto de objetos de um conjunto maior, estamos formando arranjos ordenados. Nesse caso, o número total de arranjos possíveis de <span class="math inline">\(p\)</span> elementos retirados de um conjunto de <span class="math inline">\(n\)</span> objetos distintos (<strong>sem repetir nenhum elemento</strong>) é dado por:</p>
+<p><span class="math display">\[
+P_{(n,p)} =  \frac{n!}{(n-p)!}
+\]</span></p>
+<p><br />
+</p>
+<p>A fórmula para <span class="math inline">\(P_{(n,p)}\)</span> considera tanto a seleção de <span class="math inline">\(p\)</span> elementos quanto a ordenação deles, de modo que qualquer alteração na ordem dos elementos resulta em um novo arranjo.</p>
+<p><br />
+</p>
+<p>Dessa forma, arranjos com os mesmos objetos em ordens distintas são considerados distintos.</p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: quantos agrupamentos distintos, formados por 3 letras cada, podem ser formados com as 7 letras: A, B, C, D, E, F, G, considerando que não é permitido repetir nenhuma letra e que a ordem dos elementos importa?</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+n  &amp; = 7 \\
+p  &amp; = 3 \\
+P_{(n,p)} &amp; = \frac{7!}{ (7-3)!} \\
+          &amp; = \frac{7!}{4!} = \\
+          &amp; = \frac{ 7 \times 6 \times 5 \times 4! }{4!}  \\
+          &amp; = 7 \times 6 \times 5  = 210   
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p><span class="math inline">\(ABC, ACB, BAC, BCA, CAB, CBA, \dots\)</span></p>
+<p><br />
+</p>
+</div>
+<div id="arranjos-com-repetição" class="section level3 hasAnchor" number="2.9.5">
+<h3><span class="header-section-number">2.9.5</span> Arranjos com repetição<a href="análise-combinatória-métodos-de-enumeração.html#arranjos-com-repetição" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Considere um conjunto de <span class="math inline">\(n\)</span> objetos diferentes. Suponha que desejamos selecionar uma quantidade <span class="math inline">\(p\)</span> desses objetos, onde <span class="math inline">\(p &lt; n\)</span>, e dispor os <span class="math inline">\(p\)</span> objetos escolhidos em uma ordem específica.</p>
+<p><br />
+</p>
+<p>Ao permitirmos a repetição dos objetos no agrupamento, cada posição pode ser ocupada por qualquer um dos <span class="math inline">\(n\)</span> objetos, independentemente das escolhas anteriores.</p>
+<p><br />
+</p>
+<p>Dessa forma, o número de arranjos com repetição de <span class="math inline">\(p\)</span> elementos selecionados de um conjunto de nn objetos distintos é dado por:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P_{(n,p)} =  n ^{p}
+\]</span><br />
+</p>
+<p>Essa fórmula ocorre porque, ao preencher cada uma das <span class="math inline">\(p\)</span> posições com qualquer um dos <span class="math inline">\(n\)</span> objetos, multiplicamos <span class="math inline">\(n\)</span> possibilidades para cada posição, resultando em:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+n \times n \times \ldots \times n = n^p
+\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Quantos agrupamentos diferentes (onde a ordem dos elementos é razão para distinção: <strong>permutações</strong>) formados por <strong>3 letras cada</strong> podem ser formados com as <strong>7 letras</strong>: A, B, C, D, E, F, G <strong>com repetição</strong>?</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+n   &amp;  = 7 \\
+p   &amp;  = 3 \\
+P_{(n,p)} &amp;  = n^{p} \\
+          &amp;   = 7 ^{3} = 343
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Primeira posição: temos 7 opções (uma das 7 letras).
+Segunda posição: também temos 7 opções, pois a repetição é permitida.
+Terceira posição: novamente, temos 7 opções.</p>
+<p><br />
+</p>
+<p><span class="math inline">\(AAA, AAB, AAC, \dots\)</span></p>
+<p><br />
+</p>
+</div>
+<div id="combinações-sem-repetição" class="section level3 hasAnchor" number="2.9.6">
+<h3><span class="header-section-number">2.9.6</span> Combinações sem repetição<a href="análise-combinatória-métodos-de-enumeração.html#combinações-sem-repetição" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Em uma <em>permutação</em>, a <em>ordem</em> dos objetos em cada agrupamento é essencial: qualquer alteração na ordem cria um <strong>agrupamento distinto</strong>. Por exemplo, o agrupamento <em>abc</em> é diferente de <em>bca</em> numa permutação, pois a ordem importa.</p>
+<p><br />
+</p>
+<p>Em muitos problemas, entretanto, estamos interessados somente na seleção dos objetos, <strong>sem considerar a ordem</strong> em que eles aparecem.</p>
+<p><br />
+</p>
+<p>Nesse caso, os agrupamentos onde os mesmos elementos aparecem em <em>ordens diferentes</em> são considerados <strong>equivalentes</strong>. Tais seleções são chamadas de combinações. Por exemplo, <em>abc</em> e <em>bca</em> representam uma mesma combinação, pois contêm os <strong>mesmos</strong> elementos <em>independentemente da ordem</em>.</p>
+<p><br />
+</p>
+<p>O conceito de uma combinação refere-se a um conjunto de <span class="math inline">\(n\)</span> objetos distintos, dos quais escolhemos <span class="math inline">\(p\)</span> objetos <span class="math inline">\((p &lt; n)\)</span> <strong>sem repetição</strong>. Assim:</p>
 <ul>
-<li><p>A estatística específica que está sendo empregada: diferentes estatísticas demandam diferentes distribuições de probabilidade para modelar sua variabilidade.</p></li>
-<li><p>O tamanho da amostra, que exerce uma influência inversa na variabilidade entre os valores amostrais.</p></li>
-<li><p>A variabilidade intrínseca da população em estudo e do processo de amostragem.</p></li>
+<li><em>a ordem</em> não importa: então <span class="math inline">\(abc\)</span> é igual a <span class="math inline">\(bca\)</span> (os agrupamentos que contêm os mesmos objetos em qualquer ordem <strong>são considerados iguais</strong>);</li>
+<li><em>a repetição</em> não permitida: cada objeto só aparece uma vez em cada agrupamento.</li>
 </ul>
 <p><br />
 </p>
+<p>O número total de combinações possíveis de <span class="math inline">\(p\)</span> objetos selecionados de um conjunto de <span class="math inline">\(n\)</span> objetos distintos é dado por:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+C_{(n,p)} = \frac{n!}{p! \times (n-p)!}
+\]</span><br />
+</p>
+<p>em que o <strong>numerador</strong> (<span class="math inline">\(n!\)</span>) representa o número total de maneiras de permutar todos os <span class="math inline">\(n\)</span> objetos, o <strong>denominador</strong> (<span class="math inline">\(p! \times (n - p)!\)</span>) remove as redundâncias causadas pela permutação dos <span class="math inline">\(p\)</span> objetos escolhidos (<span class="math inline">\(p!\)</span>) e das maneiras de ordenar os $ n - p $ objetos restantes (<span class="math inline">\((n - p)!\)</span>).</p>
+<p><br />
+</p>
+<p>A fórmula resulta no número de agrupamentos únicos onde <strong>apenas a composição do conjunto importa</strong>, e a ordem dos elementos dentro de cada conjunto não afeta a contagem.</p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: Qual é número de formas nas quais <span class="math inline">\(3\)</span> cartas podem ser escolhidas ou selecionadas de um total de <span class="math inline">\(8\)</span> cartas diferentes?</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+n &amp; = 8 \\
+p &amp; = 3 \\
+C_{(n,p)} &amp; = \frac{n!}{p! \times (n - p)!}\\
+C_{(8,3)} &amp; = \frac{8!}{ 3! (8-3)!}  \\
+          &amp; = \frac{8!}{3! \times 5!} \\
+          &amp; = \frac{ 8 \times 7 \times 6 \times 5! }{ 3! \times 5! } \\
+          &amp; = \frac{ 8 \times 7 \times 6 }{3!} = 56  
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>O número total de combinações com repetição, de <span class="math inline">\(p\)</span> objetos selecionados de <span class="math inline">\(n\)</span> (também chamado de combinações de <span class="math inline">\(n\)</span> elementos tomados <span class="math inline">\(p\)</span> a cada vez com repetição) é representado por:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+C_{(n+p-1,p)} = \frac{ (n+p-1)! }{ p! \times ( n-1)!}
+\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: um comitê de três pessoas deve ser formado a partir de um grupo de 20 pessoas. Quantos comitês diferentes são possíveis?</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+n &amp; =  20 \\
+p &amp; = 3 \\
+C_{(n,p)} &amp; = \frac{n!}{p! \times (n - p)!}\\
+C_{(20,3)} &amp; = \frac{20!}{3! \times (20 - 3)!}\\
+&amp; = \frac{20 \times 19 \times 18 \times 17!}{3! \times 17!}\\
+&amp; = \frac{20 \times 19 \times 18}{3 \times 2 \times 1}\\
+&amp; = \frac{6840}{6} = 1140
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: de um grupo de cinco mulheres e sete homens, quantos comitês diferentes formados por duas mulheres e três homens podem ser formados? E se dois dos homens estiverem brigados e se recusarem a trabalhar juntos?</p>
+</blockquote>
+<p><br />
+</p>
+<p>Para resolver esse problema, vamos dividi-lo em duas partes:</p>
+<ol style="list-style-type: decimal">
+<li>calcular o número de comitês possíveis formados por duas mulheres e três homens (combinações <span class="math inline">\(C_{(5,2})\)</span> e <span class="math inline">\(C_{(7,3})\)</span>)</li>
+<li>Calcular o número de comitês possíveis se dois dos homens estiverem brigados e se recusarem a trabalhar juntos.</li>
+</ol>
+<p><br />
+</p>
+<blockquote>
+<p>Parte 1: Comitês sem restrição</p>
+</blockquote>
+<p><strong>Escolha das Mulheres</strong>: Temos 5 mulheres e precisamos escolher 2. O número de maneiras de fazer isso é uma combinação, dada por:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+C_{(5, 2)} = \frac{5!}{2! \times (5 - 2)!} = \frac{5 \times 4}{2 \times 1} = 10
+\]</span><br />
+</p>
+<p><strong>Escolha dos Homens</strong>: Temos 7 homens e precisamos escolher 3. O número de maneiras de fazer isso também é uma combinação, dada por:</p>
+<p><span class="math display">\[
+C_{(7, 3)} = \frac{7!}{3! \times (7 - 3)!} = \frac{7 \times 6 \times 5}{3 \times 2 \times 1} = 35
+\]</span><br />
+</p>
+<p>O <strong>número total de comitês</strong> é o produto das duas combinações (princípio básico):</p>
+<p><span class="math display">\[
+\text{Total} = C_{(5, 2)} \times C_{(7, 3)} = 10 \times 35 = 350
+\]</span><br />
+</p>
+<p>Portanto, sem restrições, há <strong>350 comitês diferentes</strong> que podem ser formados.</p>
+<p><br />
+</p>
+<blockquote>
+<p>Parte 2: Comitês com restrição (Dois Homens Brigados)</p>
+</blockquote>
+<p><br />
+</p>
+<p>Para calcular o número de comitês possíveis com essa restrição, usamos o princípio da exclusão: (total de comitês sem restrição - total de comitês com restrição). Começamos contando quantos comitês incluem os dois homens brigados: <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span>.</p>
+<p><br />
+</p>
+<p>Se ambos estão no comitê então precisamos escolher apenas mais 1 homem entre os 5 homens restantes. O número de maneiras de fazer isso é:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+C_{(5, 1)} = 5
+\]</span><br />
+</p>
+<p>Então, do total de <strong>35 possíveis grupos de 3 homens formados sem restrição</strong> apenas 5 são grupos onde <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> estão presentes, resultando então em <span class="math inline">\(35-5=30\)</span> grupos onde <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> estão ausentes.</p>
+<p><br />
+</p>
+<p>Compondo com o número de possíveis grupos de mulheres (princípio básico) teremos:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+\text{Total} = C_{(5, 2)} \times30 = 10 \times 30 = 300
+\]</span><br />
+</p>
+<p>Portanto, com essa restriçãose, há <strong>300 comitês diferentes</strong> que podem ser formados.</p>
+<p><br />
+</p>
+</div>
+<div id="combinações-com-repetição" class="section level3 hasAnchor" number="2.9.7">
+<h3><span class="header-section-number">2.9.7</span> Combinações com Repetição<a href="análise-combinatória-métodos-de-enumeração.html#combinações-com-repetição" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Em muitos problemas de contagem, estamos interessados em <strong>selecionar</strong> um subconjunto de objetos de um conjunto maior, sem nos preocupar com a ordem dos objetos. Isso é chamado de <strong>combinação</strong>. No entanto, ao contrário das combinações convencionais, em alguns casos é permitido que os mesmos objetos sejam escolhidos mais de uma vez. Essas são conhecidas como <strong>combinações com repetição</strong>.</p>
+<p><br />
+</p>
+<p>Nas <strong>combinações com repetição</strong>, selecionamos <span class="math inline">\(p\)</span> objetos a partir de um conjunto de <span class="math inline">\(n\)</span> objetos distintos, <strong>permitindo</strong> que cada objeto seja escolhido mais de uma vez. Nesse contexto: a <strong>ordem dos objetos não importa</strong>, ou seja, uma seleção de <em>A,B,A</em> é considerada igual a <em>A,A,B</em> e a <strong>repetição é permitida</strong>, então podemos escolher o mesmo objeto mais de uma vez.</p>
+<p><br />
+</p>
+<p>Combinações com repetição são úteis em contextos onde é necessário selecionar subconjuntos com elementos repetidos, como:
+- escolha de itens com reposição (como selecionar moedas em valores específicos).
+- problemas de contagem em álgebra combinatória.
+- distribuição de recursos em cenários onde itens podem ser alocados mais de uma vez.</p>
+<p><br />
+</p>
+<p>O número de combinações <strong>com repetição</strong> para selecionar <span class="math inline">\(p\)</span> objetos de um conjunto de <span class="math inline">\(n\)</span> objetos distintos é dado por:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+C_{(n + p - 1, p)} = \frac{(n + p - 1)!}{p! \times (n - 1)!}
+\]</span></p>
+<p><br />
+</p>
+<p>Essa fórmula reflete o fato de que, ao permitir repetições, cada seleção possível pode ser visualizada como uma combinação com um conjunto “expandido” de opções, onde as escolhas de um mesmo objeto múltiplas vezes são válidas e contadas.</p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: quantas maneiras existem de selecionar 3 frutas de um conjunto com 5 tipos diferentes (maçã, banana, laranja, uva e pera), onde repetições são permitidas?</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+n &amp; = 5 \\
+p &amp; = 3 \\
+C_{(n + p - 1, p)} &amp; = \frac{(n + p - 1)!}{p! \times (n - 1)!}\\
+C_{(5 + 3 - 1, 3)} &amp; = \frac{(5 + 3 - 1)!}{3! \times (5 - 1)!} = \frac{7!}{3! \times 4!}\\
+&amp; = \frac{7 \times 6 \times 5 \times 4!}{3! \times 4!} = \frac{7 \times 6 \times 5}{3 \times 2 \times 1} = \frac{210}{6} = 35
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: supondo que você queira comprar um sorvete com 4 bolas em uma sorveteria que possui 3 sabores disponíveis: chocolate, baunilha e morango. De quantos modos diferentes você pode fazer esta compra? (Note que nesta combinação é possível repetir a ordem de dois ou mais sabores, assim tratando de uma combinação com repetição).</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+n &amp; =  3 \\
+p &amp; = 4 \\
+C_{(n + p - 1, p)} &amp; = \frac{(n + p - 1)!}{p! \times (n - 1)!}\\
+C_{(n+p-1,p)} &amp; = \frac{(3+4-1)!}{ 4! (3-1)!} = 15  
+\end{align*}\]</span></p>
+<p><br />
+</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="distribuição-das-diferenças-de-médias-amostrais-dependentes-e-seus-intervalos-de-confiança.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="conceito-elementar-de-uma-proporção.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="noções-básicas-sobre-somatórios-sigma.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="fatoriais.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -583,7 +988,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/10-dist_prop_amostrais.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-conceitos_gerais.Rmd",
 "text": "Edit"
 },
 "history": {

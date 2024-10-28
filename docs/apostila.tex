@@ -164,7 +164,7 @@ DSTA - Departamento de Estatística (sala 11)\\
 Prof.~M.e Eng.\(^{o}\) Felinto Junior Da Costa\\
 \href{mailto:fjcosta@uel.br}{\nolinkurl{fjcosta@uel.br}}}
 \author{}
-\date{\vspace{-2.5em}Londrina, 24 de outubro de 2024.}
+\date{\vspace{-2.5em}Londrina, 28 de outubro de 2024.}
 
 \begin{document}
 \maketitle
@@ -1363,8 +1363,8 @@ A primeira indica que devemos realizar a soma dos fatores \textbf{e só então e
 ## [1] R$ 65.627.500,00
 \end{verbatim}
 
-\hypertarget{muxe9todos-de-enumerauxe7uxe3o-anuxe1lise-combinatuxf3ria-diagramas-de-uxe1rvore-permutauxe7uxf5es-arranjos-combinauxe7uxf5es}{%
-\section{Métodos de enumeração (análise combinatória): diagramas de árvore, permutações (arranjos) \& combinações}\label{muxe9todos-de-enumerauxe7uxe3o-anuxe1lise-combinatuxf3ria-diagramas-de-uxe1rvore-permutauxe7uxf5es-arranjos-combinauxe7uxf5es}}
+\hypertarget{anuxe1lise-combinatuxf3ria-muxe9todos-de-enumerauxe7uxe3o}{%
+\section{Análise combinatória (métodos de enumeração)}\label{anuxe1lise-combinatuxf3ria-muxe9todos-de-enumerauxe7uxe3o}}
 
 \hfill\break
 
@@ -1372,14 +1372,12 @@ A análise combinatória (ou métodos de enumeração) é um conjunto de técnic
 
 \hfill\break
 
-\hypertarget{regra-da-multiplicauxe7uxe3o}{%
-\subsection{Regra da multiplicação}\label{regra-da-multiplicauxe7uxe3o}}
+\hypertarget{princuxedpio-buxe1sico-da-contagem-regra-da-multiplicauxe7uxe3o}{%
+\subsection{Princípio básico da contagem (regra da multiplicação)}\label{princuxedpio-buxe1sico-da-contagem-regra-da-multiplicauxe7uxe3o}}
 
-Suponha que um evento \(E\) possa se manifestar de \(n\) maneiras \(E_{1},E_{2},E_{3}, \dots, E_{n}\) diferentes e um segundo evento, \(F\), de \(m\) maneiras \(F_{1},F_{2},F_{3}, \dots, F_{m}\) diferentes.
+\hfill\break
 
-Suponha também que a uma das possíveis maneira com que \(E\) pode se manifestar possa ser seguida por qualquer uma das maneiras possívels de \(F\).
-
-Então o evento \(E\) seguido do evento \(F\) poderá se manifestar de \(n \cdot m\) maneiras diferentes:
+Suponha a realização de dois experimentos. Se o experimento \(E\) pode gerar qualquer um de \(n\) resultados possíveis (\(E_{1},E_{2},E_{3}, \dots, E_{n}\)) e se, para cada um dos resultados do experimento, houver \(m\) resultados possíveis para o experimento \(F\) (\(F_{1},F_{2},F_{3}, \dots, F_{m}\)), então os dois experimentos possuem conjuntamente \(n \cdot m\) diferentes resultados possíveis.
 
 \hfill\break
 
@@ -1441,11 +1439,9 @@ O \textbf{diagrama de árvore} associado será (cf.~Figura \ref{fig:fig13}:
 \hypertarget{regra-da-adiuxe7uxe3o}{%
 \subsection{Regra da adição}\label{regra-da-adiuxe7uxe3o}}
 
-Suponha que um evento \(E\) possa se manifestar de \(n\) maneiras \(E_{1},E_{2},E_{3}, \dots, E_{n}\) diferentes e um segundo evento, \(F\), de \(m\) maneiras \(F_{1},F_{2},F_{3}, \dots, F_{m}\) diferentes.
+\hfill\break
 
-Suponha também que esses eventos \(E\) e \(F\) não possam ser realizados em conjunto: ocorre o evento \(E\) ou o evento \(F\).
-
-Então o número de maneiras pelas quais o evento \(E\) ou o evento \(F\) poderão se manifestar será de \(n + m\) maneiras diferentes:
+Suponha agora os mesmos expermentos \(E\) e \(F\) que geram \(n\) e \(m\) resultados possíveis (\(E_{1},E_{2},E_{3}, \dots, E_{n}\) e \(F_{1},F_{2},F_{3}, \dots, F_{m}\)), mas que eeses experimentos não estejam mais alinhados sequencialmente: ocorre o evento \(E\) ou o evento \(F\). Então o número de maneiras pelas quais o evento \(E\) ou o evento \(F\) poderão se manifestar será de \(n + m\) maneiras diferentes:
 
 \hfill\break
 
@@ -1480,24 +1476,85 @@ n_{1} + n_{2}=5
 
 \hfill\break
 
-\hypertarget{permutauxe7uxf5es-ou-arranjos}{%
-\subsection{Permutações ou arranjos}\label{permutauxe7uxf5es-ou-arranjos}}
-
-Suponha \(n\) objetos diferentes. Permutar os \(n\) objetos equivaleria a colocá-los dentro de uma caixa com \(n\) compartimentos em \textbf{alguma ordenação}. O primeiro compartimento pode ser ocupado por qualquer um dos \(n\) objetos, o segundo por \(n-1\) e o último por apenas 1 objeto.
-
-Assim, pela regra da multiplicação vemos que essa caixa poderá ser carregada de:
-
-\[
-n.(n-1).(n-2).1= n!
-\].
-
-maneiras diferentes.
+\hypertarget{permutauxe7uxf5es-ordenauxe7uxe3o-de-elementos}{%
+\subsection{Permutações (ordenação de elementos)}\label{permutauxe7uxf5es-ordenauxe7uxe3o-de-elementos}}
 
 \hfill\break
 
-Agora considere os mesmos \(n\) objetos diferentes mas desejamos escolher uma quantidade \(p\) desses objetos, tal que \(p < n\), e permutar os \(p\) escolhidos.
+Suponha \(n\) objetos diferentes. Permutar os \(n\) objetos equivaleria a colocá-los dentro de uma caixa com \(n\) compartimentos em \textbf{alguma ordenação}.
 
-O número de permutações \textbf{sem a repetição} de um mesmo elemento no agrupamento, formados por \(p\) elementos selecionados de um conjunto de \emph{n} objetos distintos é dado por:
+\hfill\break
+
+O primeiro compartimento pode ser ocupado por qualquer um dos \(n\) objetos, o segundo por \(n-1\) e o último por apenas 1 objeto.\\
+
+Assim, pelo princípio básico vemos que essa caixa poderá ser carregada de:
+
+\hfill\break
+
+\[
+n.(n-1).(n-2).1= n! \text{ maneiras diferentes.}
+\].
+
+\hfill\break
+
+\begin{quote}
+Exemplo: quantos diferentes arranjos ordenados das letras a, b e c são possíveis?
+\end{quote}
+
+\hfill\break
+
+Pela enumeração direta vemos que são 6, ou seja, `abc', `acb', `bac', `bca', `cab' e `cba', resultado de \(3!=6\).
+
+\hfill\break
+
+\begin{quote}
+Exemplo: quantas diferentes ordens de rebatedores são possíveis em um time de beisebol formado por 9 jogadores?
+\end{quote}
+
+\hfill\break
+
+\(9! = 362.880\) ordenamentos possíveis para os rebatedores.
+
+\hfill\break
+
+\begin{quote}
+Exemplo: uma turma de teoria da probabilidade é formada por 6 estudantes do sexo masculino e 4 do sexo feminino. Aplica-se uma prova e os estudantes são classificados de acordo com o seu desempenho. Suponha que nenhum dos estudantes tenha tirado a mesma nota.
+(a) Quantas diferentes classificações são possíveis?
+(b) Se os estudantes do sexo masculino forem classificados apenas entre si e também os do sexo feminino apenas entre si, quantas diferentes classificações são possíveis?
+\end{quote}
+
+\hfill\break
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  Como cada classificação corresponde a um arranjo particular
+  das 10 pessoas, a resposta é \(10! = 3.628.800\).
+\end{enumerate}
+
+\hfill\break
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Como há \(6!\) possíveis classificações dos homens entre si e \(4!\) classificações possíveis das mulheres entre si, segue do princípio básico que há \((6!)(4!)=(720)(24) = 17.280\) classificações possíveis neste caso.
+\end{enumerate}
+
+\hfill\break
+
+\hypertarget{arranjos-sem-repetiuxe7uxe3o}{%
+\subsection{Arranjos sem repetição}\label{arranjos-sem-repetiuxe7uxe3o}}
+
+\hfill\break
+
+Considere um conjunto de \(n\) objetos diferentes. Suponha que desejamos selecionar uma quantidade \(p\) desses objetos, onde \(p < n\), e dispor os \(p\) objetos escolhidos em uma ordem específica.
+
+\hfill\break
+
+Quando selecionamos e ordenamos um subconjunto de objetos de um conjunto maior, estamos formando arranjos ordenados. Nesse caso, o número total de arranjos possíveis de \(p\) elementos retirados de um conjunto de \(n\) objetos distintos (\textbf{sem repetir nenhum elemento}) é dado por:
 
 \[
 P_{(n,p)} =  \frac{n!}{(n-p)!}
@@ -1505,12 +1562,16 @@ P_{(n,p)} =  \frac{n!}{(n-p)!}
 
 \hfill\break
 
-Nos agrupamentos possíveis considera-se a ordem dos elementos; sendo assim, qualquer mudança na ordem dos elementos em um agrupamento constitui um novo agrupamento: \textbf{agrupamentos que possuem os mesmos objetos em ordem distinta são considerados agrupamentos distintos}.
+A fórmula para \(P_{(n,p)}\) considera tanto a seleção de \(p\) elementos quanto a ordenação deles, de modo que qualquer alteração na ordem dos elementos resulta em um novo arranjo.
+
+\hfill\break
+
+Dessa forma, arranjos com os mesmos objetos em ordens distintas são considerados distintos.
 
 \hfill\break
 
 \begin{quote}
-Exemplo: Quantos agrupamentos diferentes (onde a ordem dos elementos é razão para distinção: \emph{permutações}) formados por \textbf{3 letras cada} podem ser formados com as \textbf{7 letras}: A, B, C, D, E, F, G \textbf{sem repetição}?
+Exemplo: quantos agrupamentos distintos, formados por 3 letras cada, podem ser formados com as 7 letras: A, B, C, D, E, F, G, considerando que não é permitido repetir nenhuma letra e que a ordem dos elementos importa?
 \end{quote}
 
 \hfill\break
@@ -1526,10 +1587,37 @@ P_{(n,p)} & = \frac{7!}{ (7-3)!} \\
 
 \hfill\break
 
-O número de permutações (arranjos) \textbf{com repetição} de um mesmo elemento no agrupamento, formados por \(p\) elementos selecionados de um conjunto de \(n\) objetos distintos será:
+\(ABC, ACB, BAC, BCA, CAB, CBA, \dots\)
+
+\hfill\break
+
+\hypertarget{arranjos-com-repetiuxe7uxe3o}{%
+\subsection{Arranjos com repetição}\label{arranjos-com-repetiuxe7uxe3o}}
+
+\hfill\break
+
+Considere um conjunto de \(n\) objetos diferentes. Suponha que desejamos selecionar uma quantidade \(p\) desses objetos, onde \(p < n\), e dispor os \(p\) objetos escolhidos em uma ordem específica.
+
+\hfill\break
+
+Ao permitirmos a repetição dos objetos no agrupamento, cada posição pode ser ocupada por qualquer um dos \(n\) objetos, independentemente das escolhas anteriores.
+
+\hfill\break
+
+Dessa forma, o número de arranjos com repetição de \(p\) elementos selecionados de um conjunto de nn objetos distintos é dado por:
+
+\hfill\break
 
 \[
 P_{(n,p)} =  n ^{p}
+\]\\
+
+Essa fórmula ocorre porque, ao preencher cada uma das \(p\) posições com qualquer um dos \(n\) objetos, multiplicamos \(n\) possibilidades para cada posição, resultando em:
+
+\hfill\break
+
+\[
+n \times n \times \ldots \times n = n^p
 \]
 
 \hfill\break
@@ -1549,30 +1637,58 @@ P_{(n,p)} &  = n^{p} \\
 
 \hfill\break
 
-\hypertarget{combinauxe7uxf5es}{%
-\subsection{Combinações}\label{combinauxe7uxf5es}}
-
-Em uma \emph{permutação} consideramos que a \textbf{ordem} que os objetos assumem nos agrupamentos os tornam diferentes uns dos outros.
-
-Por exemplo, \textbf{abc} é uma agrupamento distinto de \textbf{bca} numa permutação.
-
-Em muitos problemas, entretanto, estamos interessados somente na seleção ou escolha dos objetos \textbf{sem que a ordem assumida pelos objetos nos agrupamentos os tornem diferentes uns dos outros}. Tais seleções são chamadas de \emph{combinações}.
-
-Por exemplo, \textbf{abc} e \textbf{bca} são consideradas uma mesma combinação.
-
-O conceito de uma combinação refere-se a uma relação de \(n\) objetos distintos que serão agrupados \(p\) a \(p\) (tal que \(p < n\)) sem repetição de qualquer objeto em um mesmo agrupamento.
-
-Os agrupamentos que possuem os mesmos objetos em ordem diferente \textbf{não são considerados agrupamentos distintos}.
+Primeira posição: temos 7 opções (uma das 7 letras).
+Segunda posição: também temos 7 opções, pois a repetição é permitida.
+Terceira posição: novamente, temos 7 opções.
 
 \hfill\break
 
-O número total de combinações de \(p\) objetos selecionados de \(n\) (também chamado de combinações de \(n\) elementos tomados \(p\) a cada vez) é dado por:
+\(AAA, AAB, AAC, \dots\)
+
+\hfill\break
+
+\hypertarget{combinauxe7uxf5es-sem-repetiuxe7uxe3o}{%
+\subsection{Combinações sem repetição}\label{combinauxe7uxf5es-sem-repetiuxe7uxe3o}}
+
+\hfill\break
+
+Em uma \emph{permutação}, a \emph{ordem} dos objetos em cada agrupamento é essencial: qualquer alteração na ordem cria um \textbf{agrupamento distinto}. Por exemplo, o agrupamento \emph{abc} é diferente de \emph{bca} numa permutação, pois a ordem importa.
+
+\hfill\break
+
+Em muitos problemas, entretanto, estamos interessados somente na seleção dos objetos, \textbf{sem considerar a ordem} em que eles aparecem.
+
+\hfill\break
+
+Nesse caso, os agrupamentos onde os mesmos elementos aparecem em \emph{ordens diferentes} são considerados \textbf{equivalentes}. Tais seleções são chamadas de combinações. Por exemplo, \emph{abc} e \emph{bca} representam uma mesma combinação, pois contêm os \textbf{mesmos} elementos \emph{independentemente da ordem}.
+
+\hfill\break
+
+O conceito de uma combinação refere-se a um conjunto de \(n\) objetos distintos, dos quais escolhemos \(p\) objetos \((p < n)\) \textbf{sem repetição}. Assim:
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{a ordem} não importa: então \(abc\) é igual a \(bca\) (os agrupamentos que contêm os mesmos objetos em qualquer ordem \textbf{são considerados iguais});
+\item
+  \emph{a repetição} não permitida: cada objeto só aparece uma vez em cada agrupamento.
+\end{itemize}
+
+\hfill\break
+
+O número total de combinações possíveis de \(p\) objetos selecionados de um conjunto de \(n\) objetos distintos é dado por:
 
 \hfill\break
 
 \[
-C_{(n,p)} = \frac{ n! }{ p! \times ( n-p)!} 
-\]
+C_{(n,p)} = \frac{n!}{p! \times (n-p)!}
+\]\\
+
+em que o \textbf{numerador} (\(n!\)) representa o número total de maneiras de permutar todos os \(n\) objetos, o \textbf{denominador} (\(p! \times (n - p)!\)) remove as redundâncias causadas pela permutação dos \(p\) objetos escolhidos (\(p!\)) e das maneiras de ordenar os \$ n - p \$ objetos restantes (\((n - p)!\)).
+
+\hfill\break
+
+A fórmula resulta no número de agrupamentos únicos onde \textbf{apenas a composição do conjunto importa}, e a ordem dos elementos dentro de cada conjunto não afeta a contagem.
 
 \hfill\break
 
@@ -1585,7 +1701,8 @@ Exemplo: Qual é número de formas nas quais \(3\) cartas podem ser escolhidas o
 \begin{align*}
 n & = 8 \\
 p & = 3 \\
-C_{(n,p)} & = \frac{8!}{ 3! (8-3)!}  \\
+C_{(n,p)} & = \frac{n!}{p! \times (n - p)!}\\
+C_{(8,3)} & = \frac{8!}{ 3! (8-3)!}  \\
           & = \frac{8!}{3! \times 5!} \\
           & = \frac{ 8 \times 7 \times 6 \times 5! }{ 3! \times 5! } \\
           & = \frac{ 8 \times 7 \times 6 }{3!} = 56  
@@ -1604,7 +1721,156 @@ C_{(n+p-1,p)} = \frac{ (n+p-1)! }{ p! \times ( n-1)!}
 \hfill\break
 
 \begin{quote}
-Exemplo: Supondo que você queira comprar um sorvete com 4 bolas em uma sorveteria que possui 3 sabores disponíveis: chocolate, baunilha e morango. De quantos modos diferentes você pode fazer esta compra? (Note que nesta combinação é possível repetir a ordem de dois ou mais sabores, assim tratando de uma combinação com repetição).
+Exemplo: um comitê de três pessoas deve ser formado a partir de um grupo de 20 pessoas. Quantos comitês diferentes são possíveis?
+\end{quote}
+
+\hfill\break
+
+\begin{align*}
+n & =  20 \\
+p & = 3 \\ 
+C_{(n,p)} & = \frac{n!}{p! \times (n - p)!}\\
+C_{(20,3)} & = \frac{20!}{3! \times (20 - 3)!}\\
+& = \frac{20 \times 19 \times 18 \times 17!}{3! \times 17!}\\
+& = \frac{20 \times 19 \times 18}{3 \times 2 \times 1}\\
+& = \frac{6840}{6} = 1140
+\end{align*}
+
+\hfill\break
+
+\begin{quote}
+Exemplo: de um grupo de cinco mulheres e sete homens, quantos comitês diferentes formados por duas mulheres e três homens podem ser formados? E se dois dos homens estiverem brigados e se recusarem a trabalhar juntos?
+\end{quote}
+
+\hfill\break
+
+Para resolver esse problema, vamos dividi-lo em duas partes:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  calcular o número de comitês possíveis formados por duas mulheres e três homens (combinações \(C_{(5,2})\) e \(C_{(7,3})\))
+\item
+  Calcular o número de comitês possíveis se dois dos homens estiverem brigados e se recusarem a trabalhar juntos.
+\end{enumerate}
+
+\hfill\break
+
+\begin{quote}
+Parte 1: Comitês sem restrição
+\end{quote}
+
+\textbf{Escolha das Mulheres}: Temos 5 mulheres e precisamos escolher 2. O número de maneiras de fazer isso é uma combinação, dada por:
+
+\hfill\break
+
+\[
+C_{(5, 2)} = \frac{5!}{2! \times (5 - 2)!} = \frac{5 \times 4}{2 \times 1} = 10
+\]\\
+
+\textbf{Escolha dos Homens}: Temos 7 homens e precisamos escolher 3. O número de maneiras de fazer isso também é uma combinação, dada por:
+
+\[
+C_{(7, 3)} = \frac{7!}{3! \times (7 - 3)!} = \frac{7 \times 6 \times 5}{3 \times 2 \times 1} = 35
+\]\\
+
+O \textbf{número total de comitês} é o produto das duas combinações (princípio básico):
+
+\[
+\text{Total} = C_{(5, 2)} \times C_{(7, 3)} = 10 \times 35 = 350
+\]\\
+
+Portanto, sem restrições, há \textbf{350 comitês diferentes} que podem ser formados.
+
+\hfill\break
+
+\begin{quote}
+Parte 2: Comitês com restrição (Dois Homens Brigados)
+\end{quote}
+
+\hfill\break
+
+Para calcular o número de comitês possíveis com essa restrição, usamos o princípio da exclusão: (total de comitês sem restrição - total de comitês com restrição). Começamos contando quantos comitês incluem os dois homens brigados: \(A\) e \(B\).
+
+\hfill\break
+
+Se ambos estão no comitê então precisamos escolher apenas mais 1 homem entre os 5 homens restantes. O número de maneiras de fazer isso é:
+
+\hfill\break
+
+\[
+C_{(5, 1)} = 5
+\]\\
+
+Então, do total de \textbf{35 possíveis grupos de 3 homens formados sem restrição} apenas 5 são grupos onde \(A\) e \(B\) estão presentes, resultando então em \(35-5=30\) grupos onde \(A\) e \(B\) estão ausentes.
+
+\hfill\break
+
+Compondo com o número de possíveis grupos de mulheres (princípio básico) teremos:
+
+\hfill\break
+
+\[
+\text{Total} = C_{(5, 2)} \times30 = 10 \times 30 = 300
+\]\\
+
+Portanto, com essa restriçãose, há \textbf{300 comitês diferentes} que podem ser formados.
+
+\hfill\break
+
+\hypertarget{combinauxe7uxf5es-com-repetiuxe7uxe3o}{%
+\subsection{Combinações com Repetição}\label{combinauxe7uxf5es-com-repetiuxe7uxe3o}}
+
+\hfill\break
+
+Em muitos problemas de contagem, estamos interessados em \textbf{selecionar} um subconjunto de objetos de um conjunto maior, sem nos preocupar com a ordem dos objetos. Isso é chamado de \textbf{combinação}. No entanto, ao contrário das combinações convencionais, em alguns casos é permitido que os mesmos objetos sejam escolhidos mais de uma vez. Essas são conhecidas como \textbf{combinações com repetição}.
+
+\hfill\break
+
+Nas \textbf{combinações com repetição}, selecionamos \(p\) objetos a partir de um conjunto de \(n\) objetos distintos, \textbf{permitindo} que cada objeto seja escolhido mais de uma vez. Nesse contexto: a \textbf{ordem dos objetos não importa}, ou seja, uma seleção de \emph{A,B,A} é considerada igual a \emph{A,A,B} e a \textbf{repetição é permitida}, então podemos escolher o mesmo objeto mais de uma vez.
+
+\hfill\break
+
+Combinações com repetição são úteis em contextos onde é necessário selecionar subconjuntos com elementos repetidos, como:
+- escolha de itens com reposição (como selecionar moedas em valores específicos).
+- problemas de contagem em álgebra combinatória.
+- distribuição de recursos em cenários onde itens podem ser alocados mais de uma vez.
+
+\hfill\break
+
+O número de combinações \textbf{com repetição} para selecionar \(p\) objetos de um conjunto de \(n\) objetos distintos é dado por:
+
+\hfill\break
+
+\[
+C_{(n + p - 1, p)} = \frac{(n + p - 1)!}{p! \times (n - 1)!}
+\]
+
+\hfill\break
+
+Essa fórmula reflete o fato de que, ao permitir repetições, cada seleção possível pode ser visualizada como uma combinação com um conjunto ``expandido'' de opções, onde as escolhas de um mesmo objeto múltiplas vezes são válidas e contadas.
+
+\hfill\break
+
+\begin{quote}
+Exemplo: quantas maneiras existem de selecionar 3 frutas de um conjunto com 5 tipos diferentes (maçã, banana, laranja, uva e pera), onde repetições são permitidas?
+\end{quote}
+
+\hfill\break
+
+\begin{align*}
+n & = 5 \\
+p & = 3 \\
+C_{(n + p - 1, p)} & = \frac{(n + p - 1)!}{p! \times (n - 1)!}\\
+C_{(5 + 3 - 1, 3)} & = \frac{(5 + 3 - 1)!}{3! \times (5 - 1)!} = \frac{7!}{3! \times 4!}\\
+& = \frac{7 \times 6 \times 5 \times 4!}{3! \times 4!} = \frac{7 \times 6 \times 5}{3 \times 2 \times 1} = \frac{210}{6} = 35
+\end{align*}
+
+\hfill\break
+
+\begin{quote}
+Exemplo: supondo que você queira comprar um sorvete com 4 bolas em uma sorveteria que possui 3 sabores disponíveis: chocolate, baunilha e morango. De quantos modos diferentes você pode fazer esta compra? (Note que nesta combinação é possível repetir a ordem de dois ou mais sabores, assim tratando de uma combinação com repetição).
 \end{quote}
 
 \hfill\break
@@ -1612,13 +1878,14 @@ Exemplo: Supondo que você queira comprar um sorvete com 4 bolas em uma sorveter
 \begin{align*}
 n & =  3 \\
 p & = 4 \\ 
-C_{(n+p-1,p)} & = \frac{(3+4-1)!}{ 4! (+3-1)!} = 15  
+C_{(n + p - 1, p)} & = \frac{(n + p - 1)!}{p! \times (n - 1)!}\\
+C_{(n+p-1,p)} & = \frac{(3+4-1)!}{ 4! (3-1)!} = 15  
 \end{align*}
 
 \hfill\break
 
-\hypertarget{observauxe7uxf5es-acerca-de-alguns-fatoriais}{%
-\subsection{Observações acerca de alguns fatoriais}\label{observauxe7uxf5es-acerca-de-alguns-fatoriais}}
+\hypertarget{fatoriais}{%
+\section{Fatoriais}\label{fatoriais}}
 
 \begin{quote}
 \(n!=n.(n-1).(n-2)\dots(n-(n-1)).(n-n)\)
@@ -5843,7 +6110,7 @@ Ao simular o lançamento de um dado, por exemplo, é possível observar como a f
 \end{Shaded}
 
 \begin{verbatim}
-## A frequência observada da face 3 foi de 40 %
+## A frequência observada da face 3 foi de 10 %
 \end{verbatim}
 
 \begin{Shaded}
@@ -5853,7 +6120,7 @@ Ao simular o lançamento de um dado, por exemplo, é possível observar como a f
 \end{Shaded}
 
 \begin{verbatim}
-## A frequência observada da face 3 foi de 16.86 %
+## A frequência observada da face 3 foi de 16.79 %
 \end{verbatim}
 
 \hfill\break
@@ -6347,10 +6614,10 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 \begin{verbatim}
 ##                      
 ##                           F     M
-##   Computação           5067  9933
-##   Estatística          9989  5011
-##   Matemática aplicada  7606  7394
-##   Matemática pura     19918 35082
+##   Computação           4983 10017
+##   Estatística         10052  4948
+##   Matemática aplicada  7428  7572
+##   Matemática pura     20025 34975
 \end{verbatim}
 
 \hfill\break
@@ -6372,11 +6639,11 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 \begin{verbatim}
 ##                          
 ##                             M   F Total
-##   Matemática pura (M)      73  42   115
-##   Matemática aplicada (A)  12  27    39
-##   Estatística (E)          12  19    31
-##   Computação (C)            9   6    15
-##   Total                   106  94   200
+##   Matemática pura (M)      71  32   103
+##   Matemática aplicada (A)  12  14    26
+##   Estatística (E)           8  23    31
+##   Computação (C)           27  13    40
+##   Total                   118  82   200
 \end{verbatim}
 
 \begin{Shaded}
@@ -6388,7 +6655,7 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.53
+## [1] 0.59
 \end{verbatim}
 
 \begin{Shaded}
@@ -6400,7 +6667,7 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.195
+## [1] 0.13
 \end{verbatim}
 
 \begin{Shaded}
@@ -6424,7 +6691,7 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.665
+## [1] 0.66
 \end{verbatim}
 
 \hfill\break
@@ -12467,7 +12734,7 @@ Amostragem aleatória simples com reposição. Considere agora a mesma populaç�
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "d" "e" "c"
+## [1] "a" "b" "d"
 \end{verbatim}
 
 \begin{Shaded}
@@ -12479,7 +12746,7 @@ Amostragem aleatória simples com reposição. Considere agora a mesma populaç�
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "a" "a" "b"
+## [1] "e" "c" "c"
 \end{verbatim}
 
 \hfill\break
@@ -15150,107 +15417,107 @@ Usando conceitos já explicados em uma unidade anterior podemos determinar o tam
 \end{figure}
 
 \begin{verbatim}
-##       mu media     erro   li   ls
-## 1   1600  1592  -8.0988 1575 1609
-## 2   1600  1596  -3.7309 1577 1616
-## 3   1600  1599  -1.0631 1580 1618
-## 4   1600  1603   2.6442 1582 1624
-## 5   1600  1607   6.8267 1586 1628
-## 6   1600  1591  -8.8181 1573 1610
-## 7   1600  1590  -9.6773 1570 1610
-## 8   1600  1601   0.8622 1581 1621
-## 9   1600  1598  -1.6318 1579 1618
-## 10  1600  1594  -6.4602 1573 1614
-## 11  1600  1613  12.5962 1594 1632
-## 12  1600  1603   3.0205 1582 1624
-## 13  1600  1603   2.7765 1583 1622
-## 14  1600  1606   5.6061 1588 1623
-## 15  1600  1618  18.4281 1599 1638
-## 16  1600  1602   1.5896 1582 1622
-## 17  1600  1592  -8.3007 1571 1613
-## 18  1600  1604   3.7118 1583 1624
-## 19  1600  1603   3.2551 1581 1626
-## 20  1600  1602   1.7600 1583 1620
-## 21  1600  1596  -4.4655 1575 1616
-## 22  1600  1600   0.3121 1580 1621
-## 23  1600  1582 -18.1104 1562 1601
-## 24  1600  1605   5.4781 1588 1623
-## 25  1600  1599  -0.7271 1580 1618
-## 26  1600  1600  -0.4397 1581 1618
-## 27  1600  1596  -3.9280 1575 1617
-## 28  1600  1605   4.5048 1584 1625
-## 29  1600  1596  -3.8402 1579 1613
-## 30  1600  1590 -10.0351 1570 1610
-## 31  1600  1593  -6.6209 1574 1613
-## 32  1600  1603   3.2881 1584 1623
-## 33  1600  1593  -7.3837 1574 1611
-## 34  1600  1596  -3.9955 1577 1615
-## 35  1600  1603   2.9211 1584 1622
-## 36  1600  1595  -5.3184 1575 1614
-## 37  1600  1597  -3.0872 1578 1616
-## 38  1600  1606   6.1479 1586 1626
-## 39  1600  1601   0.7747 1580 1622
-## 40  1600  1606   5.9147 1586 1626
-## 41  1600  1586 -13.5941 1565 1608
-## 42  1600  1601   1.3300 1582 1621
-## 43  1600  1583 -17.4306 1564 1601
-## 44  1600  1605   5.4475 1586 1625
-## 45  1600  1583 -16.6000 1562 1605
-## 46  1600  1591  -8.6763 1571 1612
-## 47  1600  1609   9.4851 1593 1626
-## 48  1600  1580 -20.1520 1562 1597
-## 49  1600  1605   5.1618 1583 1628
-## 50  1600  1597  -3.4833 1576 1617
-## 51  1600  1599  -0.9483 1579 1619
-## 52  1600  1612  12.1571 1592 1633
-## 53  1600  1574 -25.9981 1554 1594
-## 54  1600  1589 -10.7546 1569 1609
-## 55  1600  1615  14.7839 1595 1635
-## 56  1600  1585 -15.3540 1564 1605
-## 57  1600  1593  -7.2319 1572 1613
-## 58  1600  1616  16.0869 1597 1635
-## 59  1600  1580 -19.7116 1560 1600
-## 60  1600  1582 -17.5880 1564 1600
-## 61  1600  1601   1.4031 1583 1620
-## 62  1600  1593  -7.0030 1574 1612
-## 63  1600  1603   2.5397 1583 1622
-## 64  1600  1607   6.5325 1588 1625
-## 65  1600  1604   4.1800 1586 1623
-## 66  1600  1616  16.4378 1597 1636
-## 67  1600  1616  15.7890 1595 1636
-## 68  1600  1595  -5.2069 1573 1617
-## 69  1600  1586 -13.5696 1568 1605
-## 70  1600  1601   1.4397 1581 1622
-## 71  1600  1605   5.2730 1585 1625
-## 72  1600  1593  -6.7757 1573 1614
-## 73  1600  1579 -20.8146 1560 1599
-## 74  1600  1591  -9.0539 1571 1611
-## 75  1600  1592  -8.2385 1571 1613
-## 76  1600  1592  -8.0341 1572 1612
-## 77  1600  1599  -1.2187 1579 1618
-## 78  1600  1596  -4.4450 1574 1617
-## 79  1600  1602   1.6329 1582 1621
-## 80  1600  1596  -4.2492 1577 1614
-## 81  1600  1604   4.2757 1585 1624
-## 82  1600  1610   9.7793 1590 1630
-## 83  1600  1590  -9.8949 1569 1611
-## 84  1600  1586 -14.0205 1568 1604
-## 85  1600  1603   3.4105 1584 1623
-## 86  1600  1606   5.8134 1586 1625
-## 87  1600  1594  -6.3510 1572 1615
-## 88  1600  1607   7.2421 1587 1627
-## 89  1600  1600   0.2150 1580 1620
-## 90  1600  1608   7.5610 1588 1627
-## 91  1600  1598  -2.1246 1579 1617
-## 92  1600  1587 -13.4505 1566 1607
-## 93  1600  1618  17.6121 1599 1636
-## 94  1600  1605   5.4156 1585 1626
-## 95  1600  1603   3.1206 1583 1623
-## 96  1600  1599  -1.3557 1579 1618
-## 97  1600  1586 -13.9609 1566 1606
-## 98  1600  1591  -9.3862 1571 1610
-## 99  1600  1610  10.1589 1589 1632
-## 100 1600  1599  -0.6392 1580 1619
+##       mu media      erro   li   ls
+## 1   1600  1612  11.81445 1591 1633
+## 2   1600  1600  -0.23802 1581 1618
+## 3   1600  1601   0.91891 1581 1621
+## 4   1600  1588 -12.32390 1568 1607
+## 5   1600  1594  -5.55844 1577 1612
+## 6   1600  1592  -8.21581 1572 1612
+## 7   1600  1602   1.95032 1583 1621
+## 8   1600  1603   3.45884 1583 1624
+## 9   1600  1604   3.80397 1585 1622
+## 10  1600  1611  11.46741 1591 1632
+## 11  1600  1603   2.55882 1585 1620
+## 12  1600  1593  -6.89061 1573 1613
+## 13  1600  1596  -4.03633 1576 1616
+## 14  1600  1616  15.77976 1596 1635
+## 15  1600  1585 -14.87249 1565 1605
+## 16  1600  1583 -17.21425 1566 1600
+## 17  1600  1589 -11.00395 1569 1609
+## 18  1600  1600   0.45198 1581 1620
+## 19  1600  1607   6.54855 1585 1628
+## 20  1600  1606   5.73862 1585 1627
+## 21  1600  1592  -7.53692 1574 1611
+## 22  1600  1587 -13.15113 1567 1607
+## 23  1600  1606   6.20807 1589 1624
+## 24  1600  1594  -6.06954 1576 1612
+## 25  1600  1588 -11.73222 1569 1608
+## 26  1600  1603   3.39195 1583 1624
+## 27  1600  1612  11.76856 1593 1631
+## 28  1600  1590  -9.72232 1571 1610
+## 29  1600  1595  -4.77056 1576 1615
+## 30  1600  1591  -8.50449 1574 1609
+## 31  1600  1611  10.92751 1591 1631
+## 32  1600  1591  -9.05229 1570 1612
+## 33  1600  1602   1.85452 1581 1623
+## 34  1600  1607   7.17961 1588 1627
+## 35  1600  1610   9.79655 1593 1627
+## 36  1600  1593  -7.29034 1575 1610
+## 37  1600  1597  -3.47460 1577 1616
+## 38  1600  1600   0.02654 1580 1621
+## 39  1600  1598  -2.27642 1579 1617
+## 40  1600  1588 -11.86102 1570 1606
+## 41  1600  1614  13.92298 1595 1633
+## 42  1600  1581 -19.28658 1561 1600
+## 43  1600  1605   5.06954 1587 1623
+## 44  1600  1597  -3.25609 1578 1615
+## 45  1600  1597  -2.51515 1578 1617
+## 46  1600  1609   8.60189 1588 1629
+## 47  1600  1601   0.86569 1581 1621
+## 48  1600  1615  15.36924 1593 1638
+## 49  1600  1602   2.18516 1582 1622
+## 50  1600  1612  11.87573 1592 1632
+## 51  1600  1603   2.51681 1583 1622
+## 52  1600  1603   2.77645 1583 1623
+## 53  1600  1596  -4.17371 1576 1615
+## 54  1600  1604   3.80338 1584 1623
+## 55  1600  1597  -3.31265 1576 1618
+## 56  1600  1586 -13.83610 1565 1607
+## 57  1600  1595  -4.59887 1576 1615
+## 58  1600  1593  -7.37383 1574 1612
+## 59  1600  1613  13.13944 1592 1634
+## 60  1600  1611  11.24678 1588 1635
+## 61  1600  1599  -1.24253 1580 1617
+## 62  1600  1601   1.45675 1582 1621
+## 63  1600  1577 -23.17936 1554 1600
+## 64  1600  1602   2.13595 1585 1619
+## 65  1600  1607   6.82822 1588 1625
+## 66  1600  1599  -1.08587 1578 1620
+## 67  1600  1604   4.48588 1582 1627
+## 68  1600  1590  -9.87378 1572 1608
+## 69  1600  1598  -1.58115 1579 1618
+## 70  1600  1591  -8.93143 1569 1614
+## 71  1600  1587 -12.67229 1567 1607
+## 72  1600  1597  -2.70062 1578 1617
+## 73  1600  1578 -21.94916 1558 1598
+## 74  1600  1602   2.32270 1582 1623
+## 75  1600  1589 -11.20804 1570 1608
+## 76  1600  1605   4.51611 1584 1625
+## 77  1600  1605   4.53267 1585 1624
+## 78  1600  1593  -7.08229 1574 1612
+## 79  1600  1595  -5.25235 1576 1614
+## 80  1600  1598  -1.80882 1579 1618
+## 81  1600  1608   7.82921 1590 1626
+## 82  1600  1600   0.40394 1581 1620
+## 83  1600  1586 -13.66977 1566 1607
+## 84  1600  1594  -5.96141 1575 1613
+## 85  1600  1606   5.86696 1587 1624
+## 86  1600  1609   9.43765 1590 1629
+## 87  1600  1589 -11.02239 1568 1610
+## 88  1600  1603   3.21370 1583 1623
+## 89  1600  1606   6.13767 1587 1626
+## 90  1600  1596  -3.96999 1576 1616
+## 91  1600  1613  13.25658 1590 1636
+## 92  1600  1597  -3.36574 1576 1617
+## 93  1600  1592  -8.23292 1573 1611
+## 94  1600  1617  16.80248 1600 1634
+## 95  1600  1585 -15.38309 1566 1603
+## 96  1600  1582 -18.36825 1562 1601
+## 97  1600  1594  -5.82540 1575 1614
+## 98  1600  1596  -3.86016 1578 1614
+## 99  1600  1598  -1.69398 1579 1618
+## 100 1600  1596  -3.95980 1575 1617
 \end{verbatim}
 
 \hfill\break
@@ -15402,106 +15669,106 @@ Assim, \((1-\alpha)\) traduz o grau de confiança que se tem que um intervalo de
 
 \begin{verbatim}
 ##        mu  media      erro    li     ls
-## 1   9.421  9.518  0.096739 8.654 10.382
-## 2   9.421  9.791  0.369623 8.803 10.778
-## 3   9.421 10.083  0.661560 9.140 11.026
-## 4   9.421  9.128 -0.292573 8.056 10.201
-## 5   9.421  9.233 -0.188158 8.400 10.066
-## 6   9.421  9.780  0.358593 8.808 10.752
-## 7   9.421  8.543 -0.878332 7.609  9.476
-## 8   9.421  9.502  0.081316 8.405 10.599
-## 9   9.421  9.703  0.282271 8.647 10.760
-## 10  9.421  8.868 -0.553460 7.934  9.801
-## 11  9.421  9.438  0.016705 8.431 10.444
-## 12  9.421  9.655  0.234278 8.743 10.567
-## 13  9.421  9.690  0.269174 8.658 10.723
-## 14  9.421  8.862 -0.559278 7.667 10.056
-## 15  9.421  9.816  0.394918 8.830 10.802
-## 16  9.421  9.348 -0.073033 8.354 10.342
-## 17  9.421  8.695 -0.726377 7.579  9.810
-## 18  9.421  9.966  0.544944 8.996 10.935
-## 19  9.421  9.741  0.319661 8.537 10.945
-## 20  9.421  9.187 -0.233762 8.165 10.209
-## 21  9.421  9.910  0.488973 8.775 11.045
-## 22  9.421  9.276 -0.144962 8.238 10.314
-## 23  9.421  9.538  0.117026 8.548 10.528
-## 24  9.421 10.140  0.719228 9.211 11.069
-## 25  9.421  9.727  0.305880 8.600 10.854
-## 26  9.421 10.300  0.878841 9.272 11.328
-## 27  9.421  9.094 -0.326858 8.031 10.157
-## 28  9.421  9.100 -0.321208 8.106 10.093
-## 29  9.421  8.920 -0.500685 7.705 10.136
-## 30  9.421 10.491  1.069922 9.599 11.383
-## 31  9.421  8.864 -0.556656 7.853  9.876
-## 32  9.421  9.590  0.169064 8.668 10.512
-## 33  9.421  9.599  0.177614 8.647 10.550
-## 34  9.421  8.474 -0.946526 7.516  9.433
-## 35  9.421  9.211 -0.210245 8.422 10.000
-## 36  9.421  9.413 -0.008304 8.393 10.432
-## 37  9.421  8.162 -1.259088 7.144  9.180
-## 38  9.421  9.273 -0.147621 8.269 10.277
-## 39  9.421  8.930 -0.490995 7.989  9.871
-## 40  9.421  9.458  0.036787 8.184 10.732
-## 41  9.421  8.520 -0.900544 7.585  9.456
-## 42  9.421  9.675  0.253986 8.755 10.595
-## 43  9.421  8.752 -0.668903 7.817  9.687
-## 44  9.421  8.366 -1.055484 7.458  9.273
-## 45  9.421  9.566  0.144691 8.656 10.475
-## 46  9.421 10.041  0.619596 9.164 10.917
-## 47  9.421  9.155 -0.265799 8.103 10.208
-## 48  9.421  9.890  0.468920 8.913 10.867
-## 49  9.421  9.538  0.117333 8.549 10.528
-## 50  9.421  8.716 -0.705283 7.652  9.779
-## 51  9.421 10.119  0.697607 8.964 11.273
-## 52  9.421  9.117 -0.303948 7.881 10.353
-## 53  9.421  9.593  0.171506 8.501 10.684
-## 54  9.421 10.156  0.735309 9.152 11.161
-## 55  9.421  8.945 -0.475699 7.872 10.019
-## 56  9.421  9.957  0.535929 8.942 10.972
-## 57  9.421  9.521  0.100160 8.660 10.383
-## 58  9.421  9.025 -0.396453 8.094  9.955
-## 59  9.421 10.063  0.641617 8.838 11.287
-## 60  9.421 10.304  0.882999 9.263 11.345
-## 61  9.421  9.286 -0.135360 8.300 10.271
-## 62  9.421  8.766 -0.654811 7.813  9.719
-## 63  9.421  9.151 -0.270184 8.125 10.176
-## 64  9.421 10.344  0.923120 9.246 11.442
-## 65  9.421  9.694  0.273001 8.877 10.511
-## 66  9.421  9.501  0.080487 8.350 10.653
-## 67  9.421  9.348 -0.073201 8.519 10.177
-## 68  9.421  9.242 -0.179175 8.296 10.188
-## 69  9.421  9.368 -0.052693 8.450 10.287
-## 70  9.421  8.926 -0.494892 7.842 10.011
-## 71  9.421  9.446  0.025241 8.423 10.470
-## 72  9.421  9.721  0.300370 8.790 10.653
-## 73  9.421  8.864 -0.557346 7.784  9.944
-## 74  9.421  8.631 -0.789869 7.492  9.771
-## 75  9.421  9.273 -0.148200 8.419 10.126
-## 76  9.421  9.450  0.028540 8.464 10.435
-## 77  9.421  9.481  0.059995 8.509 10.453
-## 78  9.421  9.124 -0.296868 8.197 10.051
-## 79  9.421  9.707  0.285596 8.680 10.734
-## 80  9.421  9.192 -0.229237 8.203 10.180
-## 81  9.421  9.621  0.200030 8.565 10.677
-## 82  9.421  9.706  0.285442 8.495 10.918
-## 83  9.421  9.865  0.444489 8.980 10.751
-## 84  9.421  9.269 -0.152480 8.272 10.266
-## 85  9.421  9.532  0.110866 8.531 10.532
-## 86  9.421  9.925  0.503788 8.986 10.863
-## 87  9.421  9.611  0.190021 8.472 10.750
-## 88  9.421  9.526  0.105121 8.595 10.458
-## 89  9.421  9.758  0.336730 8.721 10.794
-## 90  9.421  9.714  0.292754 8.751 10.677
-## 91  9.421  9.482  0.061063 8.545 10.419
-## 92  9.421  9.811  0.389952 8.777 10.845
-## 93  9.421  8.278 -1.143470 7.252  9.303
-## 94  9.421  9.499  0.077971 8.706 10.292
-## 95  9.421 10.046  0.624930 8.990 11.102
-## 96  9.421  9.562  0.141386 8.403 10.722
-## 97  9.421  9.628  0.207336 8.641 10.616
-## 98  9.421 10.204  0.783389 9.151 11.257
-## 99  9.421  9.113 -0.308483 7.970 10.255
-## 100 9.421 10.256  0.834735 9.277 11.234
+## 1   9.421  9.840  0.418780 8.768 10.912
+## 2   9.421  9.111 -0.310025 8.130 10.092
+## 3   9.421  9.274 -0.147073 8.266 10.282
+## 4   9.421  9.687  0.266162 8.667 10.707
+## 5   9.421  9.187 -0.234265 8.149 10.224
+## 6   9.421  8.730 -0.691251 7.704  9.756
+## 7   9.421  8.324 -1.097449 7.101  9.546
+## 8   9.421 10.483  1.062179 9.483 11.483
+## 9   9.421  8.944 -0.477345 7.894  9.994
+## 10  9.421  9.154 -0.266829 8.152 10.156
+## 11  9.421  9.211 -0.209581 8.280 10.143
+## 12  9.421  9.810  0.388977 8.630 10.990
+## 13  9.421  8.798 -0.623004 7.698  9.898
+## 14  9.421  9.819  0.398394 8.859 10.780
+## 15  9.421 10.390  0.968829 9.292 11.487
+## 16  9.421 10.217  0.795705 9.209 11.225
+## 17  9.421  8.081 -1.339842 7.073  9.090
+## 18  9.421  9.591  0.169954 8.556 10.626
+## 19  9.421  9.489  0.067784 8.257 10.721
+## 20  9.421  8.933 -0.488161 7.956  9.909
+## 21  9.421  9.091 -0.329538 8.143 10.040
+## 22  9.421  8.847 -0.574418 7.824  9.869
+## 23  9.421 10.228  0.807248 9.106 11.350
+## 24  9.421  8.413 -1.008151 7.273  9.553
+## 25  9.421  9.391 -0.029781 8.427 10.355
+## 26  9.421  9.801  0.379787 8.849 10.753
+## 27  9.421  9.118 -0.303117 8.176 10.059
+## 28  9.421  8.690 -0.731262 7.686  9.694
+## 29  9.421 10.343  0.922055 9.279 11.407
+## 30  9.421  8.880 -0.540503 7.866  9.895
+## 31  9.421  9.898  0.476519 8.904 10.891
+## 32  9.421 10.233  0.811944 9.287 11.179
+## 33  9.421  9.219 -0.202253 8.178 10.259
+## 34  9.421  9.823  0.402352 8.820 10.826
+## 35  9.421  9.319 -0.101953 8.288 10.350
+## 36  9.421  9.030 -0.390622 8.011 10.050
+## 37  9.421  8.683 -0.737546 7.658  9.709
+## 38  9.421  9.797  0.375879 8.816 10.778
+## 39  9.421  9.418 -0.003284 8.453 10.382
+## 40  9.421  8.030 -1.391291 6.905  9.154
+## 41  9.421  9.624  0.203240 8.772 10.476
+## 42  9.421 10.333  0.911692 9.428 11.237
+## 43  9.421  9.259 -0.161828 8.256 10.262
+## 44  9.421  9.039 -0.381791 7.939 10.139
+## 45  9.421  9.728  0.307168 8.737 10.719
+## 46  9.421  8.993 -0.428134 7.996  9.990
+## 47  9.421 10.268  0.847395 9.208 11.328
+## 48  9.421  9.134 -0.286515 8.120 10.149
+## 49  9.421  9.210 -0.211156 8.184 10.236
+## 50  9.421 10.039  0.618018 9.086 10.992
+## 51  9.421  9.903  0.481880 8.945 10.861
+## 52  9.421  8.857 -0.564447 7.906  9.807
+## 53  9.421 10.094  0.673012 8.970 11.218
+## 54  9.421  9.764  0.342962 8.674 10.853
+## 55  9.421  9.653  0.232169 8.634 10.673
+## 56  9.421 10.053  0.632496 9.113 10.994
+## 57  9.421  9.159 -0.261532 8.203 10.116
+## 58  9.421  9.648  0.227450 8.610 10.687
+## 59  9.421  9.905  0.483562 8.856 10.954
+## 60  9.421  9.861  0.440284 8.857 10.866
+## 61  9.421  9.733  0.311511 8.760 10.705
+## 62  9.421 10.204  0.782697 9.136 11.272
+## 63  9.421  8.948 -0.472812 7.987  9.910
+## 64  9.421  9.911  0.489662 8.846 10.976
+## 65  9.421  9.271 -0.150361 8.118 10.423
+## 66  9.421  9.760  0.339298 8.641 10.880
+## 67  9.421  9.088 -0.333020 8.095 10.081
+## 68  9.421  9.655  0.234262 8.696 10.614
+## 69  9.421  9.182 -0.239401 8.153 10.210
+## 70  9.421  9.776  0.354553 8.707 10.844
+## 71  9.421  8.074 -1.346697 7.209  8.939
+## 72  9.421  9.231 -0.190258 8.291 10.171
+## 73  9.421 10.457  1.036012 9.390 11.524
+## 74  9.421  9.553  0.132327 8.745 10.362
+## 75  9.421 10.761  1.340178 9.801 11.721
+## 76  9.421  9.274 -0.146812 8.186 10.362
+## 77  9.421 10.215  0.793979 9.339 11.091
+## 78  9.421  8.753 -0.668297 7.800  9.706
+## 79  9.421  8.863 -0.557776 7.793  9.934
+## 80  9.421  9.681  0.259568 8.637 10.724
+## 81  9.421  9.697  0.275965 8.782 10.612
+## 82  9.421  8.675 -0.745711 7.815  9.535
+## 83  9.421  9.581  0.160120 8.613 10.549
+## 84  9.421  9.635  0.213853 8.629 10.641
+## 85  9.421  9.757  0.336137 8.523 10.991
+## 86  9.421  9.552  0.130694 8.591 10.512
+## 87  9.421  8.031 -1.389574 7.099  8.964
+## 88  9.421  9.636  0.215015 8.459 10.813
+## 89  9.421  9.415 -0.005582 8.297 10.534
+## 90  9.421  9.261 -0.160449 8.348 10.173
+## 91  9.421  8.802 -0.618774 7.806  9.799
+## 92  9.421  9.394 -0.027197 8.283 10.504
+## 93  9.421  9.180 -0.240704 8.104 10.256
+## 94  9.421  9.038 -0.382895 8.122  9.954
+## 95  9.421  9.618  0.196750 8.599 10.637
+## 96  9.421  9.431  0.009926 8.438 10.424
+## 97  9.421  8.747 -0.674299 7.610  9.883
+## 98  9.421  9.788  0.366758 8.889 10.686
+## 99  9.421  9.584  0.163183 8.483 10.685
+## 100 9.421  9.526  0.105190 8.447 10.606
 \end{verbatim}
 
 \hfill\break
@@ -19084,107 +19351,107 @@ Usando conceitos já explicados em uma unidade anterior podemos determinar o tam
 \end{figure}
 
 \begin{verbatim}
-##       mu media     erro   li   ls
-## 1   1600  1589 -10.6656 1569 1610
-## 2   1600  1591  -9.0504 1572 1610
-## 3   1600  1602   2.1380 1582 1622
-## 4   1600  1600   0.2478 1581 1620
-## 5   1600  1590  -9.5890 1570 1611
-## 6   1600  1607   7.2922 1587 1628
-## 7   1600  1604   4.3192 1584 1624
-## 8   1600  1606   6.3730 1585 1628
-## 9   1600  1597  -3.3901 1577 1616
-## 10  1600  1584 -15.7370 1565 1604
-## 11  1600  1594  -6.4887 1574 1613
-## 12  1600  1599  -0.7898 1580 1618
-## 13  1600  1608   7.7538 1588 1627
-## 14  1600  1582 -17.6971 1561 1603
-## 15  1600  1595  -5.4231 1576 1613
-## 16  1600  1594  -5.7519 1575 1613
-## 17  1600  1608   7.9552 1587 1629
-## 18  1600  1591  -8.8422 1571 1612
-## 19  1600  1607   6.5615 1586 1627
-## 20  1600  1600  -0.3600 1579 1620
-## 21  1600  1604   3.9663 1585 1623
-## 22  1600  1601   0.7277 1583 1619
-## 23  1600  1603   2.9502 1584 1622
-## 24  1600  1603   3.0282 1583 1623
-## 25  1600  1590  -9.8239 1571 1610
-## 26  1600  1601   1.0366 1582 1620
-## 27  1600  1605   4.6925 1584 1626
-## 28  1600  1588 -12.3623 1567 1609
-## 29  1600  1601   0.8354 1583 1619
-## 30  1600  1594  -6.1499 1572 1616
-## 31  1600  1600   0.2537 1580 1620
-## 32  1600  1592  -7.7475 1572 1613
-## 33  1600  1586 -14.4949 1564 1607
-## 34  1600  1616  15.5846 1594 1637
-## 35  1600  1609   9.1197 1589 1629
-## 36  1600  1584 -16.4699 1564 1603
-## 37  1600  1612  11.5006 1592 1631
-## 38  1600  1606   5.5628 1585 1626
-## 39  1600  1607   6.8135 1588 1626
-## 40  1600  1616  15.8554 1597 1635
-## 41  1600  1603   3.0342 1585 1622
-## 42  1600  1592  -8.3568 1571 1612
-## 43  1600  1597  -2.5314 1577 1618
-## 44  1600  1592  -7.8489 1573 1611
-## 45  1600  1609   9.3752 1589 1630
-## 46  1600  1609   9.0505 1589 1629
-## 47  1600  1598  -1.8488 1580 1617
-## 48  1600  1599  -1.4627 1579 1618
-## 49  1600  1612  12.0113 1594 1630
-## 50  1600  1599  -1.3385 1578 1619
-## 51  1600  1612  12.4883 1591 1634
-## 52  1600  1606   6.4030 1586 1627
-## 53  1600  1603   2.9420 1584 1622
-## 54  1600  1595  -5.0913 1576 1613
-## 55  1600  1586 -14.4800 1565 1606
-## 56  1600  1592  -8.3003 1572 1611
-## 57  1600  1584 -16.3153 1565 1602
-## 58  1600  1606   5.6475 1587 1625
-## 59  1600  1591  -9.4575 1571 1610
-## 60  1600  1606   5.7328 1587 1625
-## 61  1600  1604   4.0368 1585 1623
-## 62  1600  1608   7.8678 1589 1627
-## 63  1600  1601   1.1432 1581 1621
-## 64  1600  1596  -3.8134 1576 1616
-## 65  1600  1611  11.1532 1593 1630
-## 66  1600  1599  -0.8913 1578 1621
-## 67  1600  1581 -18.7962 1564 1599
-## 68  1600  1594  -5.9900 1574 1614
-## 69  1600  1618  17.5417 1601 1634
-## 70  1600  1619  19.1011 1601 1637
-## 71  1600  1593  -6.6253 1576 1611
-## 72  1600  1608   8.0203 1589 1627
-## 73  1600  1603   2.9646 1584 1622
-## 74  1600  1609   8.5255 1588 1629
-## 75  1600  1588 -12.2633 1567 1608
-## 76  1600  1613  13.2666 1595 1632
-## 77  1600  1588 -12.0296 1569 1607
-## 78  1600  1597  -3.1176 1577 1616
-## 79  1600  1614  14.0386 1595 1634
-## 80  1600  1597  -3.3869 1577 1616
-## 81  1600  1613  13.0526 1594 1632
-## 82  1600  1597  -3.0752 1579 1615
-## 83  1600  1608   7.7270 1589 1626
-## 84  1600  1609   9.2740 1590 1629
-## 85  1600  1613  13.3370 1593 1634
-## 86  1600  1601   1.4214 1581 1622
-## 87  1600  1610   9.6853 1593 1626
-## 88  1600  1611  10.6979 1589 1633
-## 89  1600  1582 -18.0592 1562 1602
-## 90  1600  1607   6.9074 1589 1625
-## 91  1600  1607   6.7577 1586 1627
-## 92  1600  1609   9.0495 1590 1628
-## 93  1600  1580 -19.8872 1560 1601
-## 94  1600  1617  16.5773 1598 1635
-## 95  1600  1612  11.6554 1592 1631
-## 96  1600  1611  10.5166 1590 1631
-## 97  1600  1599  -1.0499 1580 1618
-## 98  1600  1610   9.7606 1590 1630
-## 99  1600  1612  12.3347 1593 1632
-## 100 1600  1605   5.2400 1585 1625
+##       mu media      erro   li   ls
+## 1   1600  1592  -8.23526 1570 1614
+## 2   1600  1609   8.51974 1588 1629
+## 3   1600  1595  -5.32541 1577 1612
+## 4   1600  1603   3.35312 1581 1626
+## 5   1600  1593  -7.05636 1574 1612
+## 6   1600  1619  18.67720 1601 1636
+## 7   1600  1595  -4.89429 1575 1616
+## 8   1600  1589 -10.53818 1569 1610
+## 9   1600  1609   9.08851 1591 1627
+## 10  1600  1597  -2.64813 1577 1618
+## 11  1600  1597  -3.31012 1577 1617
+## 12  1600  1611  10.91131 1589 1633
+## 13  1600  1579 -21.23831 1558 1599
+## 14  1600  1597  -3.23435 1575 1618
+## 15  1600  1620  19.76441 1602 1638
+## 16  1600  1592  -7.53554 1574 1611
+## 17  1600  1595  -5.44474 1577 1612
+## 18  1600  1613  12.90157 1594 1632
+## 19  1600  1593  -6.69686 1572 1615
+## 20  1600  1594  -5.79518 1572 1616
+## 21  1600  1582 -18.07986 1561 1603
+## 22  1600  1591  -8.76014 1572 1610
+## 23  1600  1595  -4.52919 1577 1614
+## 24  1600  1607   7.40833 1590 1625
+## 25  1600  1626  25.96216 1605 1647
+## 26  1600  1593  -6.52571 1573 1614
+## 27  1600  1594  -5.74144 1575 1613
+## 28  1600  1608   8.19946 1588 1628
+## 29  1600  1598  -1.70731 1576 1621
+## 30  1600  1608   8.42901 1588 1629
+## 31  1600  1592  -8.23038 1573 1611
+## 32  1600  1600   0.43454 1579 1622
+## 33  1600  1596  -3.51203 1578 1615
+## 34  1600  1602   1.73913 1581 1622
+## 35  1600  1580 -20.09589 1559 1601
+## 36  1600  1602   2.12536 1583 1622
+## 37  1600  1594  -6.17993 1573 1615
+## 38  1600  1605   5.26934 1587 1624
+## 39  1600  1607   6.68910 1586 1627
+## 40  1600  1595  -5.14457 1575 1615
+## 41  1600  1604   3.90822 1586 1622
+## 42  1600  1614  13.94310 1594 1634
+## 43  1600  1597  -2.95249 1578 1616
+## 44  1600  1605   4.79546 1585 1624
+## 45  1600  1604   4.47228 1586 1623
+## 46  1600  1618  18.09804 1599 1638
+## 47  1600  1609   9.40756 1590 1629
+## 48  1600  1589 -10.86770 1570 1608
+## 49  1600  1584 -15.70799 1564 1604
+## 50  1600  1600   0.44511 1580 1621
+## 51  1600  1615  14.97096 1595 1635
+## 52  1600  1595  -4.86328 1578 1613
+## 53  1600  1603   3.35407 1584 1623
+## 54  1600  1592  -7.69290 1571 1613
+## 55  1600  1615  14.99219 1592 1638
+## 56  1600  1614  13.75121 1595 1633
+## 57  1600  1580 -20.36799 1560 1600
+## 58  1600  1611  10.70540 1591 1631
+## 59  1600  1614  13.66628 1594 1633
+## 60  1600  1609   8.72413 1588 1630
+## 61  1600  1606   5.56143 1584 1627
+## 62  1600  1599  -0.57622 1579 1620
+## 63  1600  1606   6.14335 1587 1625
+## 64  1600  1590 -10.44234 1570 1609
+## 65  1600  1599  -1.01700 1579 1619
+## 66  1600  1610   9.87675 1594 1626
+## 67  1600  1576 -24.44087 1556 1595
+## 68  1600  1592  -7.85254 1573 1611
+## 69  1600  1614  14.38394 1595 1634
+## 70  1600  1605   4.56891 1587 1622
+## 71  1600  1593  -7.37339 1575 1611
+## 72  1600  1586 -13.54192 1564 1609
+## 73  1600  1598  -2.05925 1576 1619
+## 74  1600  1585 -15.35380 1565 1605
+## 75  1600  1614  14.42263 1596 1633
+## 76  1600  1589 -10.53943 1571 1608
+## 77  1600  1612  12.22455 1592 1632
+## 78  1600  1588 -11.74870 1570 1607
+## 79  1600  1603   3.42878 1584 1623
+## 80  1600  1586 -13.83097 1567 1605
+## 81  1600  1606   6.26506 1585 1627
+## 82  1600  1592  -7.67899 1571 1614
+## 83  1600  1597  -2.72821 1577 1618
+## 84  1600  1589 -11.32495 1569 1608
+## 85  1600  1593  -7.38427 1574 1611
+## 86  1600  1600   0.03772 1580 1620
+## 87  1600  1600  -0.34084 1580 1619
+## 88  1600  1598  -2.23498 1579 1616
+## 89  1600  1618  17.85232 1598 1638
+## 90  1600  1607   7.12509 1586 1628
+## 91  1600  1618  17.98612 1597 1639
+## 92  1600  1584 -15.95631 1564 1605
+## 93  1600  1607   6.85306 1587 1627
+## 94  1600  1600   0.20405 1580 1620
+## 95  1600  1597  -3.35047 1578 1615
+## 96  1600  1600   0.24599 1580 1621
+## 97  1600  1608   7.86482 1587 1629
+## 98  1600  1597  -2.81979 1577 1617
+## 99  1600  1617  16.57026 1596 1637
+## 100 1600  1603   2.70483 1585 1621
 \end{verbatim}
 
 \hfill\break

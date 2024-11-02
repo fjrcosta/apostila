@@ -537,7 +537,50 @@ Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa
 <h2><span class="header-section-number">4.3</span> Probabilidade da união de eventos<a href="probabilidade-da-união-de-eventos.html#probabilidade-da-união-de-eventos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><br />
 </p>
-<p>Considerem agora a Tabela <a href="probabilidade-da-união-de-eventos.html#tab:table3">4.3</a> de dupla entrada onde vemos a distribuição de alunos conforme seu sexo e o curso escolhido:</p>
+<p>Considerem o espaço amostral de um experimento que consiste no lançamento de um dado honesto: <span class="math inline">\(S=\{1,2,3,4,5,6\}\)</span> e admitam alguns eventos constituídos sobre esse espaço mostral, abaixo descritos:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+E_{1}=\{par\},\\
+E_{2}=\{ímpar\},\\
+E_{3}=\{1,2,3\},\\
+E_{4}=\{4,5,6\},\\
+E_{5}=\{\ge4\},\\
+E_{6}=\{\le5\}.\\
+\]</span><br />
+</p>
+<p>A partir desses eventos podemos propros novos eventos de interesse a partir de <em>uniões</em> (conectivo <span class="math inline">\(\cup\)</span>) de dois (ou mais) dos eventos originais como, por exemplo,</p>
+<p><span class="math display">\[
+H_{a}=E_{1} \cup E_{2},\\
+H_{b}=E_{1} \cup E_{4},\\
+H_{c}=E_{2} \cup E_{3},\\
+H_{d}=E_{2} \cup E_{5},\\
+H_{e}=E_{4} \cup E_{6},\\
+H_{f}=E_{3} \cup E_{5}.
+\]</span>.</p>
+<p><br />
+</p>
+<p>No experimento aleatório estabelecido:</p>
+<p><br />
+</p>
+<ul>
+<li>lembrando que a <em>união</em> de dois conjuntos é o conjunto formado pelos elementos que estão em um, no outro ou em ambos, e<br />
+</li>
+<li>pensando em probabilidade como a razão do “número de resultados favoráveis” pelo “número de resultados possíveis” (conceito <em>a priori</em>)</li>
+</ul>
+<p><br />
+</p>
+<p>podemos fcimente verificar que as probabilidades de ocorrência desses eventos são:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(H_{a})=1\\
+P(H_{b})=P(H_{c})=P(H_{d})=P(H_{e})=\frac{1}{3}\\
+P(H_{f})=0\\
+\]</span></p>
+<p><br />
+</p>
+<p>Considerem agora a Tabela <a href="probabilidade-da-união-de-eventos.html#tab:table3">4.3</a>, de dupla entrada, na qual vemos a distribuição dos alunos de uma escola conforme seu sexo e o curso:</p>
 <p><br />
 </p>
 <table>
@@ -725,10 +768,10 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb101-3"><a href="probabilidade-da-união-de-eventos.html#cb101-3" tabindex="-1"></a><span class="fu">table</span>(popSim<span class="sc">$</span>Curso, popSim<span class="sc">$</span>Sexo)</span></code></pre></div>
 <pre><code>##                      
 ##                           F     M
-##   Computação           5135  9865
-##   Estatística         10000  5000
-##   Matemática aplicada  7590  7410
-##   Matemática pura     19862 35138</code></pre>
+##   Computação           5064  9936
+##   Estatística          9967  5033
+##   Matemática aplicada  7555  7445
+##   Matemática pura     20071 34929</code></pre>
 <p><br />
 </p>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="probabilidade-da-união-de-eventos.html#cb103-1" tabindex="-1"></a><span class="co"># Selecionar uma amostra de 200 com reposição (simular a tabela)</span></span>
@@ -742,45 +785,27 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb103-9"><a href="probabilidade-da-união-de-eventos.html#cb103-9" tabindex="-1"></a>tab</span></code></pre></div>
 <pre><code>##                          
 ##                             M   F Total
-##   Matemática pura (M)      65  37   102
-##   Matemática aplicada (A)  17  12    29
-##   Estatística (E)          10  25    35
-##   Computação (C)           25   9    34
-##   Total                   117  83   200</code></pre>
+##   Matemática pura (M)      80  34   114
+##   Matemática aplicada (A)  14  17    31
+##   Estatística (E)          11  21    32
+##   Computação (C)           15   8    23
+##   Total                   120  80   200</code></pre>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="probabilidade-da-união-de-eventos.html#cb105-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb105-2"><a href="probabilidade-da-união-de-eventos.html#cb105-2" tabindex="-1"></a>pMasc<span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb105-3"><a href="probabilidade-da-união-de-eventos.html#cb105-3" tabindex="-1"></a>pMasc</span></code></pre></div>
-<pre><code>## [1] 0.585</code></pre>
+<pre><code>## [1] 0.6</code></pre>
 <div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="probabilidade-da-união-de-eventos.html#cb107-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; na amostra</span></span>
 <span id="cb107-2"><a href="probabilidade-da-união-de-eventos.html#cb107-2" tabindex="-1"></a>pMatAp <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span>)</span>
 <span id="cb107-3"><a href="probabilidade-da-união-de-eventos.html#cb107-3" tabindex="-1"></a>pMatAp</span></code></pre></div>
-<pre><code>## [1] 0.145</code></pre>
+<pre><code>## [1] 0.155</code></pre>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="probabilidade-da-união-de-eventos.html#cb109-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -E- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb109-2"><a href="probabilidade-da-união-de-eventos.html#cb109-2" tabindex="-1"></a>pMatAp_and_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">&amp;</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb109-3"><a href="probabilidade-da-união-de-eventos.html#cb109-3" tabindex="-1"></a>pMatAp_and_Masc</span></code></pre></div>
-<pre><code>## [1] 0.085</code></pre>
+<pre><code>## [1] 0.07</code></pre>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="probabilidade-da-união-de-eventos.html#cb111-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -OU- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb111-2"><a href="probabilidade-da-união-de-eventos.html#cb111-2" tabindex="-1"></a>pMatAp_or_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">|</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb111-3"><a href="probabilidade-da-união-de-eventos.html#cb111-3" tabindex="-1"></a>pMatAp_or_Masc</span></code></pre></div>
-<pre><code>## [1] 0.645</code></pre>
-<p><br />
-</p>
-<blockquote>
-<p>Exemplo: Seja o experimento aleatório de se lançar um dado (com seis faces) e observar o valor numérico da face que ficar exposta. Qual a probabilidade de se observar os valores <span class="math inline">\(1\)</span> <strong>ou</strong> <span class="math inline">\(4\)</span>?</p>
-</blockquote>
-<p><br />
-</p>
-<p>Definindo os eventos de interesse:</p>
-<p><br />
-</p>
-<p>1- <span class="math inline">\(E_{1}=\text{sair face 1}\)</span> (<span class="math inline">\(P(E_{1})=\frac{1}{6}\)</span>); e,<br />
-2- <span class="math inline">\(E_{4}=\text{sair face 4}\)</span> (<span class="math inline">\(P(E_{4})=\frac{1}{6}\)</span>).</p>
-<p><br />
-</p>
-<p>Pede-se <span class="math inline">\(P(E_{1} \cup E_{4})\)</span>.</p>
-<p><br />
-</p>
-<p>Como <span class="math inline">\(E_{1}\)</span> e <span class="math inline">\(E_{4}\)</span> são *eventos mutuamente exclusivos**: <span class="math inline">\(E_{1} \cap E_{4}=\varnothing\)</span> (portanto a probabilidade é zero), então <span class="math inline">\(P(E_{1} \cup E_{4}) = P(E_{1}) + P(E_{4}) = \frac{1}{6} + \frac{1}{6}= \frac{1}{3}\)</span>.</p>
+<pre><code>## [1] 0.685</code></pre>
 <p><br />
 </p>
 <blockquote>

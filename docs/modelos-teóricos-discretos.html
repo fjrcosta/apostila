@@ -54,7 +54,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -64,7 +64,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -239,8 +239,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="introdução-a-variáveis-aleatórias.html"><a href="introdução-a-variáveis-aleatórias.html"><i class="fa fa-check"></i><b>5</b> Introdução a variáveis aleatórias</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="função-discreta-de-distribuição-de-probabilidade.html"><a href="função-discreta-de-distribuição-de-probabilidade.html"><i class="fa fa-check"></i><b>5.1</b> Função discreta de distribuição de probabilidade</a></li>
-<li class="chapter" data-level="5.2" data-path="função-de-densidade-de-probabilidade.html"><a href="função-de-densidade-de-probabilidade.html"><i class="fa fa-check"></i><b>5.2</b> Função de densidade de probabilidade</a></li>
+<li class="chapter" data-level="5.1" data-path="função-massa-de-probabilidade-probability-mass-function---pmf.html"><a href="função-massa-de-probabilidade-probability-mass-function---pmf.html"><i class="fa fa-check"></i><b>5.1</b> Função massa de probabilidade (<em>Probability Mass Function - PMF</em>)</a></li>
+<li class="chapter" data-level="5.2" data-path="função-de-densidade-de-probabilidade-probability-density-function---pdf.html"><a href="função-de-densidade-de-probabilidade-probability-density-function---pdf.html"><i class="fa fa-check"></i><b>5.2</b> Função de densidade de probabilidade (<em>Probability Density Function - PDF</em>)</a></li>
 <li class="chapter" data-level="5.3" data-path="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><a href="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><i class="fa fa-check"></i><b>5.3</b> Esperança e variância de uma variável aleatória discreta</a></li>
 <li class="chapter" data-level="5.4" data-path="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><a href="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><i class="fa fa-check"></i><b>5.4</b> Esperança e variância de uma variável aleatória contínua</a></li>
 </ul></li>
@@ -539,7 +539,7 @@ Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa
 <h3><span class="header-section-number">6.1.1</span> Bernoulli<a href="modelos-teóricos-discretos.html#bernoulli" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Variável aleatória com distribuição <em>Bernoulli</em> é uma variável definida por um experimento probabilístico em que os resultados possíveis se resumem a apenas dois: <strong>sucesso</strong> ou <strong>fracasso</strong> (ocorrência ou não).</p>
 <p> </p>
-<p>Caracterização de uma variável aleatória <span class="math inline">\(X\)</span> com distribuição de Bernoulli: <span class="math inline">\(X\sim Ber(p)\)</span></p>
+<p>Caracterização de uma variável aleatória <span class="math inline">\(X\)</span> com distribuição de Bernoulli: <span class="math inline">\(X\sim  Ber(p)\)</span></p>
 <table>
 <thead>
 <tr class="header">
@@ -550,7 +550,7 @@ Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa
 Evento
 </th>
 <th style="text-align: center;">
-<span class="math inline"><em>P</em>(<em>X</em>=<em>x</em><sub><em>i</em></sub>)</span>
+<span class="math inline"><em>P</em>(<em>X</em> = <em>x</em><sub><em>i</em></sub>)</span>
 </th>
 </tr>
 </thead>
@@ -615,7 +615,7 @@ q=(1-p)
 Evento
 </td>
 <td style="text-align: center;">
-<span class="math inline"><em>P</em>(<em>X</em>=<em>x</em><sub><em>i</em></sub>)</span>
+<span class="math inline"><em>P</em>(<em>X</em> = <em>x</em><sub><em>i</em></sub>)</span>
 </td>
 </tr>
 <tr class="even">
@@ -817,24 +817,24 @@ P\left(X=6\right) &amp; = 1 . 0,30^{6} . 0,70^{(6-6)} \\
 <p>Assim, <span class="math inline">\(P\left(X\ge2\right)=0,3241+0,1852+0,0595+0,01020+0,00079=0,5797\)</span></p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="modelos-teóricos-discretos.html#cb113-1" tabindex="-1"></a><span class="co"># Defina o número de repetições (n) e o número de sucessos (k)</span></span>
-<span id="cb113-2"><a href="modelos-teóricos-discretos.html#cb113-2" tabindex="-1"></a></span>
-<span id="cb113-3"><a href="modelos-teóricos-discretos.html#cb113-3" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">6</span>  <span class="co"># Número de repetições</span></span>
-<span id="cb113-4"><a href="modelos-teóricos-discretos.html#cb113-4" tabindex="-1"></a>k<span class="ot">=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)   <span class="co"># Número de sucessos varia de nenhum (0) até dez (10) acertar as dez questões</span></span>
-<span id="cb113-5"><a href="modelos-teóricos-discretos.html#cb113-5" tabindex="-1"></a>p<span class="ot">=</span><span class="fl">0.30</span> <span class="co"># A probabilidade em cada repetição de Bernoulli</span></span>
-<span id="cb113-6"><a href="modelos-teóricos-discretos.html#cb113-6" tabindex="-1"></a></span>
-<span id="cb113-7"><a href="modelos-teóricos-discretos.html#cb113-7" tabindex="-1"></a></span>
-<span id="cb113-8"><a href="modelos-teóricos-discretos.html#cb113-8" tabindex="-1"></a><span class="co"># Probabilidade de k sucessos em n repetições (utilizando a função &#39;dbinom&#39;)</span></span>
-<span id="cb113-9"><a href="modelos-teóricos-discretos.html#cb113-9" tabindex="-1"></a></span>
-<span id="cb113-10"><a href="modelos-teóricos-discretos.html#cb113-10" tabindex="-1"></a>probabilidade <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(k, n, <span class="at">prob =</span> p)  <span class="co"># Neste exemplo, 0.5 é a probabilidade de sucesso</span></span>
-<span id="cb113-11"><a href="modelos-teóricos-discretos.html#cb113-11" tabindex="-1"></a></span>
-<span id="cb113-12"><a href="modelos-teóricos-discretos.html#cb113-12" tabindex="-1"></a><span class="co"># Crie uma tabela com duas colunas (Número de Sucessos e Probabilidade)</span></span>
-<span id="cb113-13"><a href="modelos-teóricos-discretos.html#cb113-13" tabindex="-1"></a></span>
-<span id="cb113-14"><a href="modelos-teóricos-discretos.html#cb113-14" tabindex="-1"></a>tabela <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Número<span class="at">_de_Sucessos =</span> k, <span class="at">Probabilidade =</span> probabilidade)</span>
-<span id="cb113-15"><a href="modelos-teóricos-discretos.html#cb113-15" tabindex="-1"></a></span>
-<span id="cb113-16"><a href="modelos-teóricos-discretos.html#cb113-16" tabindex="-1"></a><span class="co"># Exiba a tabela</span></span>
-<span id="cb113-17"><a href="modelos-teóricos-discretos.html#cb113-17" tabindex="-1"></a></span>
-<span id="cb113-18"><a href="modelos-teóricos-discretos.html#cb113-18" tabindex="-1"></a><span class="fu">print</span>(tabela)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="modelos-teóricos-discretos.html#cb115-1" tabindex="-1"></a><span class="co"># Defina o número de repetições (n) e o número de sucessos (k)</span></span>
+<span id="cb115-2"><a href="modelos-teóricos-discretos.html#cb115-2" tabindex="-1"></a></span>
+<span id="cb115-3"><a href="modelos-teóricos-discretos.html#cb115-3" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">6</span>  <span class="co"># Número de repetições</span></span>
+<span id="cb115-4"><a href="modelos-teóricos-discretos.html#cb115-4" tabindex="-1"></a>k<span class="ot">=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)   <span class="co"># Número de sucessos varia de nenhum (0) até dez (10) acertar as dez questões</span></span>
+<span id="cb115-5"><a href="modelos-teóricos-discretos.html#cb115-5" tabindex="-1"></a>p<span class="ot">=</span><span class="fl">0.30</span> <span class="co"># A probabilidade em cada repetição de Bernoulli</span></span>
+<span id="cb115-6"><a href="modelos-teóricos-discretos.html#cb115-6" tabindex="-1"></a></span>
+<span id="cb115-7"><a href="modelos-teóricos-discretos.html#cb115-7" tabindex="-1"></a></span>
+<span id="cb115-8"><a href="modelos-teóricos-discretos.html#cb115-8" tabindex="-1"></a><span class="co"># Probabilidade de k sucessos em n repetições (utilizando a função &#39;dbinom&#39;)</span></span>
+<span id="cb115-9"><a href="modelos-teóricos-discretos.html#cb115-9" tabindex="-1"></a></span>
+<span id="cb115-10"><a href="modelos-teóricos-discretos.html#cb115-10" tabindex="-1"></a>probabilidade <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(k, n, <span class="at">prob =</span> p)  <span class="co"># Neste exemplo, 0.5 é a probabilidade de sucesso</span></span>
+<span id="cb115-11"><a href="modelos-teóricos-discretos.html#cb115-11" tabindex="-1"></a></span>
+<span id="cb115-12"><a href="modelos-teóricos-discretos.html#cb115-12" tabindex="-1"></a><span class="co"># Crie uma tabela com duas colunas (Número de Sucessos e Probabilidade)</span></span>
+<span id="cb115-13"><a href="modelos-teóricos-discretos.html#cb115-13" tabindex="-1"></a></span>
+<span id="cb115-14"><a href="modelos-teóricos-discretos.html#cb115-14" tabindex="-1"></a>tabela <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Número<span class="at">_de_Sucessos =</span> k, <span class="at">Probabilidade =</span> probabilidade)</span>
+<span id="cb115-15"><a href="modelos-teóricos-discretos.html#cb115-15" tabindex="-1"></a></span>
+<span id="cb115-16"><a href="modelos-teóricos-discretos.html#cb115-16" tabindex="-1"></a><span class="co"># Exiba a tabela</span></span>
+<span id="cb115-17"><a href="modelos-teóricos-discretos.html#cb115-17" tabindex="-1"></a></span>
+<span id="cb115-18"><a href="modelos-teóricos-discretos.html#cb115-18" tabindex="-1"></a><span class="fu">print</span>(tabela)</span></code></pre></div>
 <pre><code>##   Número_de_Sucessos Probabilidade
 ## 1                  0      0.117649
 ## 2                  1      0.302526
@@ -868,24 +868,24 @@ P\left(X=1\right) &amp; =3 . 0,85^{1} . 0,15^{2} \\
 <p>Conclusão: a probabilidade desse trabalhador receber <strong>apenas um salário</strong> até o 2<span class="math inline">\(^{o}\)</span> dia útil do mês é de 0,0574.</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="modelos-teóricos-discretos.html#cb115-1" tabindex="-1"></a><span class="co"># Defina o número de repetições (n) e o número de sucessos (k)</span></span>
-<span id="cb115-2"><a href="modelos-teóricos-discretos.html#cb115-2" tabindex="-1"></a></span>
-<span id="cb115-3"><a href="modelos-teóricos-discretos.html#cb115-3" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">3</span>  <span class="co"># Número de repetições</span></span>
-<span id="cb115-4"><a href="modelos-teóricos-discretos.html#cb115-4" tabindex="-1"></a>k<span class="ot">=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)    <span class="co"># Número de sucessos varia de nenhum (0) até três (3) receber até o segundo dia nos três empregos</span></span>
-<span id="cb115-5"><a href="modelos-teóricos-discretos.html#cb115-5" tabindex="-1"></a>p<span class="ot">=</span><span class="fl">0.85</span> <span class="co"># A probabilidade em cada repetição de Bernoulli</span></span>
-<span id="cb115-6"><a href="modelos-teóricos-discretos.html#cb115-6" tabindex="-1"></a></span>
-<span id="cb115-7"><a href="modelos-teóricos-discretos.html#cb115-7" tabindex="-1"></a></span>
-<span id="cb115-8"><a href="modelos-teóricos-discretos.html#cb115-8" tabindex="-1"></a><span class="co"># Probabilidade de k sucessos em n repetições (utilizando a função &#39;dbinom&#39;)</span></span>
-<span id="cb115-9"><a href="modelos-teóricos-discretos.html#cb115-9" tabindex="-1"></a></span>
-<span id="cb115-10"><a href="modelos-teóricos-discretos.html#cb115-10" tabindex="-1"></a>probabilidade <span class="ot">=</span> <span class="fu">dbinom</span>(k, n, <span class="at">prob =</span> p)  <span class="co"># Neste exemplo, 0,856 é a probabilidade de sucesso</span></span>
-<span id="cb115-11"><a href="modelos-teóricos-discretos.html#cb115-11" tabindex="-1"></a></span>
-<span id="cb115-12"><a href="modelos-teóricos-discretos.html#cb115-12" tabindex="-1"></a><span class="co"># Crie uma tabela com duas colunas (Número de Sucessos e Probabilidade)</span></span>
-<span id="cb115-13"><a href="modelos-teóricos-discretos.html#cb115-13" tabindex="-1"></a></span>
-<span id="cb115-14"><a href="modelos-teóricos-discretos.html#cb115-14" tabindex="-1"></a>tabela <span class="ot">=</span> <span class="fu">data.frame</span>(Número<span class="at">_de_Sucessos =</span> k, <span class="at">Probabilidade =</span> probabilidade)</span>
-<span id="cb115-15"><a href="modelos-teóricos-discretos.html#cb115-15" tabindex="-1"></a></span>
-<span id="cb115-16"><a href="modelos-teóricos-discretos.html#cb115-16" tabindex="-1"></a><span class="co"># Exiba a tabela</span></span>
-<span id="cb115-17"><a href="modelos-teóricos-discretos.html#cb115-17" tabindex="-1"></a></span>
-<span id="cb115-18"><a href="modelos-teóricos-discretos.html#cb115-18" tabindex="-1"></a><span class="fu">print</span>(tabela)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="modelos-teóricos-discretos.html#cb117-1" tabindex="-1"></a><span class="co"># Defina o número de repetições (n) e o número de sucessos (k)</span></span>
+<span id="cb117-2"><a href="modelos-teóricos-discretos.html#cb117-2" tabindex="-1"></a></span>
+<span id="cb117-3"><a href="modelos-teóricos-discretos.html#cb117-3" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">3</span>  <span class="co"># Número de repetições</span></span>
+<span id="cb117-4"><a href="modelos-teóricos-discretos.html#cb117-4" tabindex="-1"></a>k<span class="ot">=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)    <span class="co"># Número de sucessos varia de nenhum (0) até três (3) receber até o segundo dia nos três empregos</span></span>
+<span id="cb117-5"><a href="modelos-teóricos-discretos.html#cb117-5" tabindex="-1"></a>p<span class="ot">=</span><span class="fl">0.85</span> <span class="co"># A probabilidade em cada repetição de Bernoulli</span></span>
+<span id="cb117-6"><a href="modelos-teóricos-discretos.html#cb117-6" tabindex="-1"></a></span>
+<span id="cb117-7"><a href="modelos-teóricos-discretos.html#cb117-7" tabindex="-1"></a></span>
+<span id="cb117-8"><a href="modelos-teóricos-discretos.html#cb117-8" tabindex="-1"></a><span class="co"># Probabilidade de k sucessos em n repetições (utilizando a função &#39;dbinom&#39;)</span></span>
+<span id="cb117-9"><a href="modelos-teóricos-discretos.html#cb117-9" tabindex="-1"></a></span>
+<span id="cb117-10"><a href="modelos-teóricos-discretos.html#cb117-10" tabindex="-1"></a>probabilidade <span class="ot">=</span> <span class="fu">dbinom</span>(k, n, <span class="at">prob =</span> p)  <span class="co"># Neste exemplo, 0,856 é a probabilidade de sucesso</span></span>
+<span id="cb117-11"><a href="modelos-teóricos-discretos.html#cb117-11" tabindex="-1"></a></span>
+<span id="cb117-12"><a href="modelos-teóricos-discretos.html#cb117-12" tabindex="-1"></a><span class="co"># Crie uma tabela com duas colunas (Número de Sucessos e Probabilidade)</span></span>
+<span id="cb117-13"><a href="modelos-teóricos-discretos.html#cb117-13" tabindex="-1"></a></span>
+<span id="cb117-14"><a href="modelos-teóricos-discretos.html#cb117-14" tabindex="-1"></a>tabela <span class="ot">=</span> <span class="fu">data.frame</span>(Número<span class="at">_de_Sucessos =</span> k, <span class="at">Probabilidade =</span> probabilidade)</span>
+<span id="cb117-15"><a href="modelos-teóricos-discretos.html#cb117-15" tabindex="-1"></a></span>
+<span id="cb117-16"><a href="modelos-teóricos-discretos.html#cb117-16" tabindex="-1"></a><span class="co"># Exiba a tabela</span></span>
+<span id="cb117-17"><a href="modelos-teóricos-discretos.html#cb117-17" tabindex="-1"></a></span>
+<span id="cb117-18"><a href="modelos-teóricos-discretos.html#cb117-18" tabindex="-1"></a><span class="fu">print</span>(tabela)</span></code></pre></div>
 <pre><code>##   Número_de_Sucessos Probabilidade
 ## 1                  0      0.003375
 ## 2                  1      0.057375
@@ -951,34 +951,34 @@ P(X=2) &amp; = \frac{20^{2}. \epsilon^{-20}} {2!} = 4,122307e-07 \\
 <p><span class="math inline">\(P(X \le 2)=P(X=0)+P(X=1)+P(X=2)=4,554699e-7\)</span></p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="modelos-teóricos-discretos.html#cb117-1" tabindex="-1"></a><span class="co"># Defina o número de repetições (n) e o número de sucessos (k)</span></span>
-<span id="cb117-2"><a href="modelos-teóricos-discretos.html#cb117-2" tabindex="-1"></a></span>
-<span id="cb117-3"><a href="modelos-teóricos-discretos.html#cb117-3" tabindex="-1"></a>k<span class="ot">=</span> <span class="dv">0</span>    <span class="co"># Número de sucessos varia de nenhum (0) até infinito </span></span>
-<span id="cb117-4"><a href="modelos-teóricos-discretos.html#cb117-4" tabindex="-1"></a>l<span class="ot">=</span> <span class="dv">5</span> <span class="co"># A probabilidade de sucesso na proporção dada (área, comprimento, tempo...) 5 chamadas por minuto</span></span>
-<span id="cb117-5"><a href="modelos-teóricos-discretos.html#cb117-5" tabindex="-1"></a></span>
-<span id="cb117-6"><a href="modelos-teóricos-discretos.html#cb117-6" tabindex="-1"></a>k1<span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>) </span>
-<span id="cb117-7"><a href="modelos-teóricos-discretos.html#cb117-7" tabindex="-1"></a>l1<span class="ot">=</span> <span class="dv">20</span> <span class="co"># 5 chamadas em 1 minuto &gt;&gt; 20 chamadas em 20 minutos</span></span>
-<span id="cb117-8"><a href="modelos-teóricos-discretos.html#cb117-8" tabindex="-1"></a></span>
-<span id="cb117-9"><a href="modelos-teóricos-discretos.html#cb117-9" tabindex="-1"></a></span>
-<span id="cb117-10"><a href="modelos-teóricos-discretos.html#cb117-10" tabindex="-1"></a><span class="co"># Probabilidade de k sucessos em n repetições (utilizando a função &#39;dbinom&#39;)</span></span>
-<span id="cb117-11"><a href="modelos-teóricos-discretos.html#cb117-11" tabindex="-1"></a></span>
-<span id="cb117-12"><a href="modelos-teóricos-discretos.html#cb117-12" tabindex="-1"></a>probabilidade <span class="ot">=</span> <span class="fu">dpois</span>(k, <span class="at">lambda =</span> l)  <span class="co"># Neste exemplo, l=5 chamadas por minuto</span></span>
-<span id="cb117-13"><a href="modelos-teóricos-discretos.html#cb117-13" tabindex="-1"></a></span>
-<span id="cb117-14"><a href="modelos-teóricos-discretos.html#cb117-14" tabindex="-1"></a>probabilidade1 <span class="ot">=</span>  <span class="fu">dpois</span>(k1, <span class="at">lambda =</span> l1)  <span class="co"># Neste exemplo, l=20 chamadas por minuto</span></span>
-<span id="cb117-15"><a href="modelos-teóricos-discretos.html#cb117-15" tabindex="-1"></a></span>
-<span id="cb117-16"><a href="modelos-teóricos-discretos.html#cb117-16" tabindex="-1"></a></span>
-<span id="cb117-17"><a href="modelos-teóricos-discretos.html#cb117-17" tabindex="-1"></a><span class="co"># Crie uma tabela com duas colunas (Número de Sucessos e Probabilidade)</span></span>
-<span id="cb117-18"><a href="modelos-teóricos-discretos.html#cb117-18" tabindex="-1"></a></span>
-<span id="cb117-19"><a href="modelos-teóricos-discretos.html#cb117-19" tabindex="-1"></a>tabela <span class="ot">=</span> <span class="fu">data.frame</span>(Número<span class="at">_de_Sucessos =</span> k, <span class="at">Probabilidade =</span> probabilidade)</span>
-<span id="cb117-20"><a href="modelos-teóricos-discretos.html#cb117-20" tabindex="-1"></a>tabela1 <span class="ot">=</span> <span class="fu">data.frame</span>(Número<span class="at">_de_Sucessos =</span> k1, <span class="at">Probabilidade =</span> probabilidade1)</span>
-<span id="cb117-21"><a href="modelos-teóricos-discretos.html#cb117-21" tabindex="-1"></a></span>
-<span id="cb117-22"><a href="modelos-teóricos-discretos.html#cb117-22" tabindex="-1"></a></span>
-<span id="cb117-23"><a href="modelos-teóricos-discretos.html#cb117-23" tabindex="-1"></a><span class="co"># Exiba a tabela</span></span>
-<span id="cb117-24"><a href="modelos-teóricos-discretos.html#cb117-24" tabindex="-1"></a></span>
-<span id="cb117-25"><a href="modelos-teóricos-discretos.html#cb117-25" tabindex="-1"></a><span class="fu">print</span>(tabela)</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="modelos-teóricos-discretos.html#cb119-1" tabindex="-1"></a><span class="co"># Defina o número de repetições (n) e o número de sucessos (k)</span></span>
+<span id="cb119-2"><a href="modelos-teóricos-discretos.html#cb119-2" tabindex="-1"></a></span>
+<span id="cb119-3"><a href="modelos-teóricos-discretos.html#cb119-3" tabindex="-1"></a>k<span class="ot">=</span> <span class="dv">0</span>    <span class="co"># Número de sucessos varia de nenhum (0) até infinito </span></span>
+<span id="cb119-4"><a href="modelos-teóricos-discretos.html#cb119-4" tabindex="-1"></a>l<span class="ot">=</span> <span class="dv">5</span> <span class="co"># A probabilidade de sucesso na proporção dada (área, comprimento, tempo...) 5 chamadas por minuto</span></span>
+<span id="cb119-5"><a href="modelos-teóricos-discretos.html#cb119-5" tabindex="-1"></a></span>
+<span id="cb119-6"><a href="modelos-teóricos-discretos.html#cb119-6" tabindex="-1"></a>k1<span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>) </span>
+<span id="cb119-7"><a href="modelos-teóricos-discretos.html#cb119-7" tabindex="-1"></a>l1<span class="ot">=</span> <span class="dv">20</span> <span class="co"># 5 chamadas em 1 minuto &gt;&gt; 20 chamadas em 20 minutos</span></span>
+<span id="cb119-8"><a href="modelos-teóricos-discretos.html#cb119-8" tabindex="-1"></a></span>
+<span id="cb119-9"><a href="modelos-teóricos-discretos.html#cb119-9" tabindex="-1"></a></span>
+<span id="cb119-10"><a href="modelos-teóricos-discretos.html#cb119-10" tabindex="-1"></a><span class="co"># Probabilidade de k sucessos em n repetições (utilizando a função &#39;dbinom&#39;)</span></span>
+<span id="cb119-11"><a href="modelos-teóricos-discretos.html#cb119-11" tabindex="-1"></a></span>
+<span id="cb119-12"><a href="modelos-teóricos-discretos.html#cb119-12" tabindex="-1"></a>probabilidade <span class="ot">=</span> <span class="fu">dpois</span>(k, <span class="at">lambda =</span> l)  <span class="co"># Neste exemplo, l=5 chamadas por minuto</span></span>
+<span id="cb119-13"><a href="modelos-teóricos-discretos.html#cb119-13" tabindex="-1"></a></span>
+<span id="cb119-14"><a href="modelos-teóricos-discretos.html#cb119-14" tabindex="-1"></a>probabilidade1 <span class="ot">=</span>  <span class="fu">dpois</span>(k1, <span class="at">lambda =</span> l1)  <span class="co"># Neste exemplo, l=20 chamadas por minuto</span></span>
+<span id="cb119-15"><a href="modelos-teóricos-discretos.html#cb119-15" tabindex="-1"></a></span>
+<span id="cb119-16"><a href="modelos-teóricos-discretos.html#cb119-16" tabindex="-1"></a></span>
+<span id="cb119-17"><a href="modelos-teóricos-discretos.html#cb119-17" tabindex="-1"></a><span class="co"># Crie uma tabela com duas colunas (Número de Sucessos e Probabilidade)</span></span>
+<span id="cb119-18"><a href="modelos-teóricos-discretos.html#cb119-18" tabindex="-1"></a></span>
+<span id="cb119-19"><a href="modelos-teóricos-discretos.html#cb119-19" tabindex="-1"></a>tabela <span class="ot">=</span> <span class="fu">data.frame</span>(Número<span class="at">_de_Sucessos =</span> k, <span class="at">Probabilidade =</span> probabilidade)</span>
+<span id="cb119-20"><a href="modelos-teóricos-discretos.html#cb119-20" tabindex="-1"></a>tabela1 <span class="ot">=</span> <span class="fu">data.frame</span>(Número<span class="at">_de_Sucessos =</span> k1, <span class="at">Probabilidade =</span> probabilidade1)</span>
+<span id="cb119-21"><a href="modelos-teóricos-discretos.html#cb119-21" tabindex="-1"></a></span>
+<span id="cb119-22"><a href="modelos-teóricos-discretos.html#cb119-22" tabindex="-1"></a></span>
+<span id="cb119-23"><a href="modelos-teóricos-discretos.html#cb119-23" tabindex="-1"></a><span class="co"># Exiba a tabela</span></span>
+<span id="cb119-24"><a href="modelos-teóricos-discretos.html#cb119-24" tabindex="-1"></a></span>
+<span id="cb119-25"><a href="modelos-teóricos-discretos.html#cb119-25" tabindex="-1"></a><span class="fu">print</span>(tabela)</span></code></pre></div>
 <pre><code>##   Número_de_Sucessos Probabilidade
 ## 1                  0   0.006737947</code></pre>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="modelos-teóricos-discretos.html#cb119-1" tabindex="-1"></a><span class="fu">print</span>(tabela1)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="modelos-teóricos-discretos.html#cb121-1" tabindex="-1"></a><span class="fu">print</span>(tabela1)</span></code></pre></div>
 <pre><code>##   Número_de_Sucessos Probabilidade
 ## 1                  0  2.061154e-09
 ## 2                  1  4.122307e-08
@@ -1002,7 +1002,7 @@ P(X=4) &amp; = \frac{6^{4}. \epsilon^{-6}} {4!} \\
 </p>
 <p>A figura abaixo ilustra a distribuição acumulada das probabilidades de alguns sucessos para o exemplo em estudo.<br />
 </p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="modelos-teóricos-discretos.html#cb121-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="modelos-teóricos-discretos.html#cb123-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.4     ✔ readr     2.1.5
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
@@ -1015,22 +1015,22 @@ P(X=4) &amp; = \frac{6^{4}. \epsilon^{-6}} {4!} \\
 ## ✖ dplyr::group_rows() masks kableExtra::group_rows()
 ## ✖ dplyr::lag()        masks stats::lag()
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="modelos-teóricos-discretos.html#cb123-1" tabindex="-1"></a>prob<span class="ot">=</span><span class="fu">c</span>(<span class="fl">0.00248</span>, <span class="fl">0.01448</span>, <span class="fl">0.044643</span>, <span class="fl">0.08929</span>, <span class="fl">0.1338</span>, <span class="fl">0.16072</span>, <span class="fl">0.16072</span>, <span class="fl">0.137762</span>, <span class="fl">0.256105</span>)</span>
-<span id="cb123-2"><a href="modelos-teóricos-discretos.html#cb123-2" tabindex="-1"></a>k<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;k=0&quot;</span>, <span class="st">&quot;k=1&quot;</span>, <span class="st">&quot;k=2&quot;</span>, <span class="st">&quot;k=3&quot;</span>, <span class="st">&quot;k=4&quot;</span>, <span class="st">&quot;k=5&quot;</span>, <span class="st">&quot;k=6&quot;</span>, <span class="st">&quot;k=7&quot;</span>, <span class="st">&quot;soma(k=8,k=9,...,inf)&quot;</span>)</span>
-<span id="cb123-3"><a href="modelos-teóricos-discretos.html#cb123-3" tabindex="-1"></a>legend_title<span class="ot">=</span><span class="st">&quot;Sucessos&quot;</span></span>
-<span id="cb123-4"><a href="modelos-teóricos-discretos.html#cb123-4" tabindex="-1"></a>nchamadas<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">sucesso =</span> k, <span class="at">proporcao=</span> prob)</span>
-<span id="cb123-5"><a href="modelos-teóricos-discretos.html#cb123-5" tabindex="-1"></a>nchamadas<span class="ot">=</span>nchamadas <span class="sc">%&gt;%</span> </span>
-<span id="cb123-6"><a href="modelos-teóricos-discretos.html#cb123-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">va_poisson =</span> <span class="st">&quot;Probabilidades segundo o modelo teórico de Poisson&quot;</span>)</span>
-<span id="cb123-7"><a href="modelos-teóricos-discretos.html#cb123-7" tabindex="-1"></a><span class="fu">ggplot</span>(nchamadas, <span class="fu">aes</span>(<span class="at">x =</span> va_poisson, <span class="at">y =</span>proporcao, <span class="at">fill =</span> forcats<span class="sc">::</span><span class="fu">fct_rev</span>(sucesso))) <span class="sc">+</span></span>
-<span id="cb123-8"><a href="modelos-teóricos-discretos.html#cb123-8" tabindex="-1"></a>  <span class="fu">geom_col</span>( <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb123-9"><a href="modelos-teóricos-discretos.html#cb123-9" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> proporcao),<span class="at">size=</span><span class="dv">3</span>,</span>
-<span id="cb123-10"><a href="modelos-teóricos-discretos.html#cb123-10" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>) ) <span class="sc">+</span></span>
-<span id="cb123-11"><a href="modelos-teóricos-discretos.html#cb123-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="sc">+</span></span>
-<span id="cb123-12"><a href="modelos-teóricos-discretos.html#cb123-12" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probabilidade acumulada&quot;</span>) <span class="sc">+</span></span>
-<span id="cb123-13"><a href="modelos-teóricos-discretos.html#cb123-13" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="cn">NULL</span>)<span class="sc">+</span></span>
-<span id="cb123-14"><a href="modelos-teóricos-discretos.html#cb123-14" tabindex="-1"></a>  <span class="fu">scale_fill_discrete</span>(<span class="at">name=</span><span class="st">&quot;Número de sucessos&quot;</span>, </span>
-<span id="cb123-15"><a href="modelos-teóricos-discretos.html#cb123-15" tabindex="-1"></a>                      <span class="at">labels=</span><span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">&quot;k=0&quot;</span>, <span class="st">&quot;k=1&quot;</span>,<span class="st">&quot;k=2&quot;</span>,<span class="st">&quot;k=3&quot;</span>,<span class="st">&quot;k=4&quot;</span>,</span>
-<span id="cb123-16"><a href="modelos-teóricos-discretos.html#cb123-16" tabindex="-1"></a>                               <span class="st">&quot;k=5&quot;</span>,<span class="st">&quot;k=6&quot;</span>,<span class="st">&quot;k=7&quot;</span>,<span class="st">&quot;soma(k=8,k=9,...,inf)&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="modelos-teóricos-discretos.html#cb125-1" tabindex="-1"></a>prob<span class="ot">=</span><span class="fu">c</span>(<span class="fl">0.00248</span>, <span class="fl">0.01448</span>, <span class="fl">0.044643</span>, <span class="fl">0.08929</span>, <span class="fl">0.1338</span>, <span class="fl">0.16072</span>, <span class="fl">0.16072</span>, <span class="fl">0.137762</span>, <span class="fl">0.256105</span>)</span>
+<span id="cb125-2"><a href="modelos-teóricos-discretos.html#cb125-2" tabindex="-1"></a>k<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;k=0&quot;</span>, <span class="st">&quot;k=1&quot;</span>, <span class="st">&quot;k=2&quot;</span>, <span class="st">&quot;k=3&quot;</span>, <span class="st">&quot;k=4&quot;</span>, <span class="st">&quot;k=5&quot;</span>, <span class="st">&quot;k=6&quot;</span>, <span class="st">&quot;k=7&quot;</span>, <span class="st">&quot;soma(k=8,k=9,...,inf)&quot;</span>)</span>
+<span id="cb125-3"><a href="modelos-teóricos-discretos.html#cb125-3" tabindex="-1"></a>legend_title<span class="ot">=</span><span class="st">&quot;Sucessos&quot;</span></span>
+<span id="cb125-4"><a href="modelos-teóricos-discretos.html#cb125-4" tabindex="-1"></a>nchamadas<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">sucesso =</span> k, <span class="at">proporcao=</span> prob)</span>
+<span id="cb125-5"><a href="modelos-teóricos-discretos.html#cb125-5" tabindex="-1"></a>nchamadas<span class="ot">=</span>nchamadas <span class="sc">%&gt;%</span> </span>
+<span id="cb125-6"><a href="modelos-teóricos-discretos.html#cb125-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">va_poisson =</span> <span class="st">&quot;Probabilidades segundo o modelo teórico de Poisson&quot;</span>)</span>
+<span id="cb125-7"><a href="modelos-teóricos-discretos.html#cb125-7" tabindex="-1"></a><span class="fu">ggplot</span>(nchamadas, <span class="fu">aes</span>(<span class="at">x =</span> va_poisson, <span class="at">y =</span>proporcao, <span class="at">fill =</span> forcats<span class="sc">::</span><span class="fu">fct_rev</span>(sucesso))) <span class="sc">+</span></span>
+<span id="cb125-8"><a href="modelos-teóricos-discretos.html#cb125-8" tabindex="-1"></a>  <span class="fu">geom_col</span>( <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb125-9"><a href="modelos-teóricos-discretos.html#cb125-9" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> proporcao),<span class="at">size=</span><span class="dv">3</span>,</span>
+<span id="cb125-10"><a href="modelos-teóricos-discretos.html#cb125-10" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>) ) <span class="sc">+</span></span>
+<span id="cb125-11"><a href="modelos-teóricos-discretos.html#cb125-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="sc">+</span></span>
+<span id="cb125-12"><a href="modelos-teóricos-discretos.html#cb125-12" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probabilidade acumulada&quot;</span>) <span class="sc">+</span></span>
+<span id="cb125-13"><a href="modelos-teóricos-discretos.html#cb125-13" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="cn">NULL</span>)<span class="sc">+</span></span>
+<span id="cb125-14"><a href="modelos-teóricos-discretos.html#cb125-14" tabindex="-1"></a>  <span class="fu">scale_fill_discrete</span>(<span class="at">name=</span><span class="st">&quot;Número de sucessos&quot;</span>, </span>
+<span id="cb125-15"><a href="modelos-teóricos-discretos.html#cb125-15" tabindex="-1"></a>                      <span class="at">labels=</span><span class="fu">rev</span>(<span class="fu">c</span>(<span class="st">&quot;k=0&quot;</span>, <span class="st">&quot;k=1&quot;</span>,<span class="st">&quot;k=2&quot;</span>,<span class="st">&quot;k=3&quot;</span>,<span class="st">&quot;k=4&quot;</span>,</span>
+<span id="cb125-16"><a href="modelos-teóricos-discretos.html#cb125-16" tabindex="-1"></a>                               <span class="st">&quot;k=5&quot;</span>,<span class="st">&quot;k=6&quot;</span>,<span class="st">&quot;k=7&quot;</span>,<span class="st">&quot;soma(k=8,k=9,...,inf)&quot;</span>)))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig000"></span>
 <img src="apostila_files/figure-html/fig000-1.png" alt="Gráfico ilustrativo das probabilidades acumuladas" width="100%" />
 <p class="caption">
@@ -1117,7 +1117,7 @@ P(X_{1}=n_{1}; X_{2}=n_{2}, \dots, X_{k}=n_{k})  &amp; = \frac{n!}{n_1!n_2!\cdot
 <p><br />
 </p>
 <ul>
-<li>O vetor esperança: <span class="math inline">\(E(X_{k}) = n.\boldsymbol{p}_{k} = \{n.p_{1};n.p_{2};\cdots;n.p_{k}; \}\)</span>;<br />
+<li>O vetor esperança: <span class="math inline">\(E(X_{k}) = n.\boldsymbol{p}_{k} = \{n.p_{1};n.p_{2};\cdots;n.p_{k};     \}\)</span>;<br />
 </li>
 <li>O vetor variância: <span class="math inline">\(Var(X_{k}) = n.\boldsymbol{p}_{k}.(1-\boldsymbol{p}_{k})= \{n.p_{1}.(1-p_{1});n.p_{2}.(1-p_{2});\cdots;n.p_{k}.(1-p_{k})\}\)</span>.</li>
 </ul>
@@ -1150,21 +1150,21 @@ P(X_{1}=7;X_{2}=2;X_{3}=3) &amp;  = 0.02483712
 \end{align*}\]</span></p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="modelos-teóricos-discretos.html#cb124-1" tabindex="-1"></a><span class="co"># Defina as probabilidades de sucsesso de cada possível resultado da variável aleatória: p_(k). Admita que existam apenas tês:</span></span>
-<span id="cb124-2"><a href="modelos-teóricos-discretos.html#cb124-2" tabindex="-1"></a></span>
-<span id="cb124-3"><a href="modelos-teóricos-discretos.html#cb124-3" tabindex="-1"></a>p1<span class="ot">=</span> <span class="fl">0.4</span></span>
-<span id="cb124-4"><a href="modelos-teóricos-discretos.html#cb124-4" tabindex="-1"></a>p2<span class="ot">=</span> <span class="fl">0.35</span></span>
-<span id="cb124-5"><a href="modelos-teóricos-discretos.html#cb124-5" tabindex="-1"></a>p3<span class="ot">=</span> <span class="fl">0.25</span></span>
-<span id="cb124-6"><a href="modelos-teóricos-discretos.html#cb124-6" tabindex="-1"></a></span>
-<span id="cb124-7"><a href="modelos-teóricos-discretos.html#cb124-7" tabindex="-1"></a><span class="co"># O número de repetições &#39;n&#39; é automaticamente definido pelo arranjo de sucessos que se deseja estimar a probabilidade   </span></span>
-<span id="cb124-8"><a href="modelos-teóricos-discretos.html#cb124-8" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">2</span>,<span class="dv">3</span>) <span class="co"># Nesse caso deseja-se 7 sucessos do resultado X_1 (jogador 1), 2 do X_2 (jogador 2) e 3 do X_3  (jogador 3)</span></span>
-<span id="cb124-9"><a href="modelos-teóricos-discretos.html#cb124-9" tabindex="-1"></a></span>
-<span id="cb124-10"><a href="modelos-teóricos-discretos.html#cb124-10" tabindex="-1"></a></span>
-<span id="cb124-11"><a href="modelos-teóricos-discretos.html#cb124-11" tabindex="-1"></a><span class="co"># Probabilidade desse vetor de sucessos (utilizando a função &#39;dmultinom&#39;)</span></span>
-<span id="cb124-12"><a href="modelos-teóricos-discretos.html#cb124-12" tabindex="-1"></a></span>
-<span id="cb124-13"><a href="modelos-teóricos-discretos.html#cb124-13" tabindex="-1"></a>probabilidade <span class="ot">=</span> <span class="fu">dmultinom</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.4</span>,<span class="fl">0.35</span>,<span class="fl">0.25</span>))</span>
-<span id="cb124-14"><a href="modelos-teóricos-discretos.html#cb124-14" tabindex="-1"></a></span>
-<span id="cb124-15"><a href="modelos-teóricos-discretos.html#cb124-15" tabindex="-1"></a><span class="fu">print</span>(probabilidade)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="modelos-teóricos-discretos.html#cb126-1" tabindex="-1"></a><span class="co"># Defina as probabilidades de sucsesso de cada possível resultado da variável aleatória: p_(k). Admita que existam apenas tês:</span></span>
+<span id="cb126-2"><a href="modelos-teóricos-discretos.html#cb126-2" tabindex="-1"></a></span>
+<span id="cb126-3"><a href="modelos-teóricos-discretos.html#cb126-3" tabindex="-1"></a>p1<span class="ot">=</span> <span class="fl">0.4</span></span>
+<span id="cb126-4"><a href="modelos-teóricos-discretos.html#cb126-4" tabindex="-1"></a>p2<span class="ot">=</span> <span class="fl">0.35</span></span>
+<span id="cb126-5"><a href="modelos-teóricos-discretos.html#cb126-5" tabindex="-1"></a>p3<span class="ot">=</span> <span class="fl">0.25</span></span>
+<span id="cb126-6"><a href="modelos-teóricos-discretos.html#cb126-6" tabindex="-1"></a></span>
+<span id="cb126-7"><a href="modelos-teóricos-discretos.html#cb126-7" tabindex="-1"></a><span class="co"># O número de repetições &#39;n&#39; é automaticamente definido pelo arranjo de sucessos que se deseja estimar a probabilidade   </span></span>
+<span id="cb126-8"><a href="modelos-teóricos-discretos.html#cb126-8" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">2</span>,<span class="dv">3</span>) <span class="co"># Nesse caso deseja-se 7 sucessos do resultado X_1 (jogador 1), 2 do X_2 (jogador 2) e 3 do X_3  (jogador 3)</span></span>
+<span id="cb126-9"><a href="modelos-teóricos-discretos.html#cb126-9" tabindex="-1"></a></span>
+<span id="cb126-10"><a href="modelos-teóricos-discretos.html#cb126-10" tabindex="-1"></a></span>
+<span id="cb126-11"><a href="modelos-teóricos-discretos.html#cb126-11" tabindex="-1"></a><span class="co"># Probabilidade desse vetor de sucessos (utilizando a função &#39;dmultinom&#39;)</span></span>
+<span id="cb126-12"><a href="modelos-teóricos-discretos.html#cb126-12" tabindex="-1"></a></span>
+<span id="cb126-13"><a href="modelos-teóricos-discretos.html#cb126-13" tabindex="-1"></a>probabilidade <span class="ot">=</span> <span class="fu">dmultinom</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.4</span>,<span class="fl">0.35</span>,<span class="fl">0.25</span>))</span>
+<span id="cb126-14"><a href="modelos-teóricos-discretos.html#cb126-14" tabindex="-1"></a></span>
+<span id="cb126-15"><a href="modelos-teóricos-discretos.html#cb126-15" tabindex="-1"></a><span class="fu">print</span>(probabilidade)</span></code></pre></div>
 <pre><code>## [1] 0.02483712</code></pre>
 <p><br />
 </p>

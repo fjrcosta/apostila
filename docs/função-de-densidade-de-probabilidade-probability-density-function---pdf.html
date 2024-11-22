@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.6 Eugenia | apostila.knit</title>
+  <title>5.2 Função de densidade de probabilidade (Probability Density Function - PDF) | apostila.knit</title>
   <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.6 Eugenia | apostila.knit" />
+  <meta property="og:title" content="5.2 Função de densidade de probabilidade (Probability Density Function - PDF) | apostila.knit" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
   <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.6 Eugenia | apostila.knit" />
+  <meta name="twitter:title" content="5.2 Função de densidade de probabilidade (Probability Density Function - PDF) | apostila.knit" />
   
   <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="revista-biometrika.html"/>
-<link rel="next" href="estatística-e-machine-learning-uma-livre-tradução-deste-link.html"/>
+<link rel="prev" href="função-massa-de-probabilidade-probability-mass-function---pmf.html"/>
+<link rel="next" href="esperança-e-variância-de-uma-variável-aleatória-discreta.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -533,81 +533,150 @@ Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="eugenia" class="section level2 hasAnchor" number="1.6">
-<h2><span class="header-section-number">1.6</span> Eugenia<a href="eugenia.html#eugenia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="função-de-densidade-de-probabilidade-probability-density-function---pdf" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Função de densidade de probabilidade (<em>Probability Density Function - PDF</em>)<a href="função-de-densidade-de-probabilidade-probability-density-function---pdf.html#função-de-densidade-de-probabilidade-probability-density-function---pdf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Considerem os espaços amostrais a seguir (<span class="math inline">\(\Omega_{1},\Omega_{2},\Omega_{3},\Omega_{4},\Omega_{5}\)</span>) representativos de 4 experimentos aleatórios e admitam também que todos os eventos possíveis são equiprováveis.</p>
+<p> </p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-104"></span>
+<img src="images5/var_discret_cont.jpg" alt="Diferentes espaços amostrais de um experimento aleatório (por razões gráficas desprezem o espaço fora dos círculos" width="60%" />
+<p class="caption">
+Figure 5.1: Diferentes espaços amostrais de um experimento aleatório (por razões gráficas desprezem o espaço fora dos círculos
+</p>
+</div>
+<p> </p>
+<p>Interpretem o último deles como um espaço amostral formado por <span class="math inline">\(\infty\)</span> pontos amostrais.</p>
+<p> </p>
+<p>Os eventos que compõem os quatro primeiros espaços amostrais são variável aleatória discretas.</p>
 <p><br />
 </p>
-<p>Em 16 de maio de 1883 <em>Sir</em> Francis Galton cunhou o termo <em>eugenia</em>, posteriormente descrevendo-o como “o estudo das agências sob controle social que podem melhorar ou reparar as qualidades raciais das gerações futuras, seja fisicamente ou mentalmente”.</p>
+<p>Discretas pois permitem a contagem dos possíveis valores (finitos ou infinitos contáveis) aleatórios que o experimento pode assumir. Mas no quinto espaço amostral temos incontáveis possibilidades.</p>
+<p> </p>
+<p>Um <em>espaço amostral</em> com essa característica é representativo de uma <em>variável aleatória contínua</em>.</p>
+<p> </p>
+<p>Sendo todos os eventos representados nos espaços amostrais <strong>equiprováveis</strong>, comparemos as probabilidades associadas a cada um desses possíveis resultados.</p>
+<p>Em <span class="math inline">\(\Omega_{1}\)</span>, <span class="math inline">\(P(\omega_{1})=1\)</span></p>
 <p><br />
 </p>
-<p>Galton detalha o conceito em seu livro <em>Inquiries into Human Faculty and its Development</em>, e recomenda que indivíduos de famílias altamente classificadas em seu sistema de mérito sejam encorajados a se casar cedo e receber incentivos para ter filhos. Ele também condenou os casamentos tardios dentro desse mesmo grupo como “disgênicos” ou desvantajosos para a espécie humana.</p>
+<p>Em <span class="math inline">\(\Omega_{2}\)</span>, <span class="math inline">\(P(\omega_{1})=P(\omega_{2})=P(\omega_{3})=P(\omega_{4})=0,50\)</span></p>
 <p><br />
 </p>
-<p>A palavra <em>eugenia</em> foi extraída da palavra grega <em>eu</em>, que significa bem, e <em>genos</em>, que significa prole. Juntos, significaria <em>bem-nascido</em>.</p>
+<p>Em <span class="math inline">\(\Omega_{3}\)</span>, <span class="math inline">\(P(\omega_{1})=P(\omega_{2})=...=P(\omega_{16})=0,0625\)</span></p>
 <p><br />
 </p>
-<p>Este livro caiu em domínio público e pode ser lido na íntegra online. A caracterização original de eugenia de Galton pode ser encontrada na página 17 desta edição de domínio público (Parte 1 do pdf):</p>
+<p>Em <span class="math inline">\(\Omega_{4}\)</span>, <span class="math inline">\(P(\omega_{1})=P(\omega_{2})=...=P(\omega_{64})=0,015625\)</span></p>
+<p><br />
+</p>
+<p>Em <span class="math inline">\(\Omega_{5}\)</span>, <span class="math inline">\(P(\omega_{n}) \rightarrow 0\)</span>, à medida que o número de eventos <span class="math inline">\(n \rightarrow \infty\)</span></p>
+<p><br />
+</p>
+<p>A probabilidade individual de qualquer evento do quinto espaço amostral ocorrer <span class="math inline">\(\rightarrow 0\)</span>.</p>
+<p><br />
+Por essa razão, no caso de variáveis aleatórias contínuas, não faz sentido falar em uma <em>probabilidade pontual exata</em>, associada a um resultado específico. Isso ocorre porque, para qualquer valor particular, a probabilidade é sempre igual a zero.</p>
+<p><br />
+</p>
+<p>Em vez disso, considera-se a probabilidade associada a um intervalo de valores. A função de densidade de probabilidade contínua de uma variável aleatória <span class="math inline">\(X\)</span> apresenta as seguintes propriedades fundamentais:</p>
+<p><br />
+1- <span class="math inline">\(f(x) \geq 0\)</span>, para todo <span class="math inline">\(x \in (-\infty, \infty)\)</span>;
+2- A integral da função sobre todo o domínio é igual a 1:</p>
+<p><span class="math display">\[
+\underset{-\infty }{\overset{\infty }{\int }}f\left(x\right)dx = 1
+\]</span>.</p>
+<p><br />
+</p>
+<p>Se <span class="math inline">\(X\)</span> é uma variável aleatória contínua, a probabilidade de <span class="math inline">\(X\)</span> assumir qualquer valor exato é <span class="math inline">\(P(X = x) = 0\)</span>. No entanto, a <strong>probabilidade intervalar</strong> de <span class="math inline">\(X\)</span> estar entre dois valores distintos, <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span>, é dada por:</p>
+<p><span class="math display">\[
+P(a &lt; X &lt; b) = \int_{a}^{b} f(x) \, dx.
+\]</span></p>
+<p><br />
+</p>
+<p>Graficamente, a interpretação de uma função densidade de probabilidade contínua é representada pela <strong>área sob a curva</strong> da função <span class="math inline">\(f(x)\)</span>, delimitada pelos valores de interesse <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span>. Essa área corresponde à probabilidade de <span class="math inline">\(X\)</span> estar no intervalo <span class="math inline">\((a, b)\)</span>.</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-105"></span>
+<img src="images5/func_dist_cont.jpg" alt="A área sob a curva de uma função de probabilidade de uma variável contínua entre dois valores quaisquer é a probabilidade de se observar valores entre esses dois pontos" width="60%" />
+<p class="caption">
+Figure 5.2: A área sob a curva de uma função de probabilidade de uma variável contínua entre dois valores quaisquer é a probabilidade de se observar valores entre esses dois pontos
+</p>
+</div>
+<p><br />
+</p>
+<p>Como <span class="math inline">\(f(x) \geq 0\)</span>, a curva da função densidade de probabilidade estará acima do eixo <span class="math inline">\(x\)</span> e a totalidade da área será igual a <span class="math inline">\(1\)</span>, conforme</p>
+<p><span class="math display">\[\underset{-\infty }{\overset{\infty }{\int }}f\left(x\right)dx = 1.
+\]</span></p>
+<p><br />
+</p>
+<p>A <strong>função de distribuição cumulativa</strong>, definida como <span class="math inline">\(F(x) = P(X \leq x)\)</span>, também terá a forma de uma curva, <strong>crescente</strong>, que aumenta continuamente de <span class="math inline">\(0\)</span> para <span class="math inline">\(1\)</span>. Essa característica reflete o fato de que, ao longo do eixo <span class="math inline">\(x\)</span>, a probabilidade cumulativa acumula todos os valores de <span class="math inline">\(f(x)\)</span> até <span class="math inline">\(x\)</span>, de modo que:</p>
+<p><br />
+</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(F(x)\)</span> é <strong>não decrescente</strong> (<span class="math inline">\(F(x_1) \leq F(x_2)\)</span> para <span class="math inline">\(x_{1} \leq x_{2}\)</span>);</li>
+<li><span class="math inline">\(F(x)\)</span> atinge valores-limite:</li>
+</ol>
+<p><span class="math display">\[
+\lim_{x \to -\infty} F(x) = 0 \quad \text{e} \quad \lim_{x \to \infty} F(x) = 1.
+\]</span></p>
+<p>Assim, <span class="math inline">\(F(x)\)</span> descreve graficamente a probabilidade acumulada até qualquer valor <span class="math inline">\(x\)</span>, reforçando a relação entre a densidade de probabilidade e a probabilidade cumulativa.</p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-106"></span>
+<img src="images5/func_dist_cont_cum.jpg" alt="Função de probabilidade cumulativa" width="60%" />
+<p class="caption">
+Figure 5.3: Função de probabilidade cumulativa
+</p>
+</div>
 <p><br />
 </p>
 <blockquote>
-<p>“uma breve palavra para expressar a ciência de melhorar o rebanho, que não está de modo algum confinado a questões de acasalamento criterioso, mas que, especialmente no caso do homem, toma conhecimento de todas as influências que tendem, mesmo que em grau remoto, a dar ao raças ou linhagens de sangue mais adequadas uma melhor chance de prevalecer rapidamente sobre os menos adequados do que teriam de outra forma […]”(Galton, 1883, p.17)</p>
+<p>Exemplo: Seja a seguinte função e verifique se a função <span class="math inline">\(f(x)\)</span> pode ser a <em>função de densidade de probabilidade</em> da variável aleatória contínua <span class="math inline">\(X\)</span> e determine qual a probabilidade associada a valores compreendidos no intervalo <span class="math inline">\(0 \leq X \leq \frac{1}{2}\)</span>.</p>
 </blockquote>
 <p><br />
 </p>
-<p>Mais recentemente, alguns grupos sociais viram no trabalho e opiniões de Fisher endossos ao colonialismo, à supremacia branca e à eugenia (como hoje interpretada).</p>
+<p></p>
 <p><br />
 </p>
-<p>Outros grupos, todavia, afirmam que Fisher não era racista nem eugenista, embora ele achasse que havia diferenças comportamentais e de inteligência entre os grupos humanos.</p>
+<p>A resolução deste exemplo será feita de um modo <em>geométrico</em>.</p>
 <p><br />
 </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:figA14"></span>
-<img src="images1/chart_pedigree_allergy2.jpg" alt="Gráfico de linhagens para alergias" width="75%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-107"></span>
+<img src="images5/exer_var_cont.jpg" alt="A probabiidade de se observar valores entre 0 e 1/2 é igual à area sob a função densidade de probabilidade entre esses dois valores" width="60%" />
 <p class="caption">
-Figure 1.21: Gráfico de linhagens para alergias
+Figure 5.4: A probabiidade de se observar valores entre 0 e 1/2 é igual à area sob a função densidade de probabilidade entre esses dois valores
 </p>
 </div>
 <p><br />
 </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:figA15"></span>
-<img src="images1/chart_pedigree_music2%20(1).jpg" alt="Gráfico de linhagens para aptidão musical" width="75%" />
-<p class="caption">
-Figure 1.22: Gráfico de linhagens para aptidão musical
-</p>
-</div>
+<ol style="list-style-type: lower-alpha">
+<li>Verificações para se aceitar a função como uma função de densidade de probabilidade para a variável aleatória <span class="math inline">\(X\)</span>:</li>
+</ol>
 <p><br />
 </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:figA16"></span>
-<img src="images1/chart_Kallikak_pedigree2.jpg" alt="Linhas &quot;normais&quot; e &quot;degeneradas&quot; da família Kallikak (New Jersey)" width="75%" />
-<p class="caption">
-Figure 1.23: Linhas “normais” e “degeneradas” da família Kallikak (New Jersey)
-</p>
-</div>
+<p><span class="math display">\[
+f(x) \geq 0
+\]</span></p>
+<p>e,</p>
+<p><span class="math display">\[\underset{-\infty }{\overset{\infty }{\int }}f\left(x\right)dx = 1
+\]</span></p>
 <p><br />
 </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:figA17"></span>
-<img src="images1/VA_racial_integrity_act2.jpg" alt="Lei da Inegridade Racia (Virginia, EUA, 1924)" width="75%" />
-<p class="caption">
-Figure 1.24: Lei da Inegridade Racia (Virginia, EUA, 1924)
-</p>
-</div>
+<p>Resp.: Atende às duas condições (não assume valores menores que zero e a área sob a reta dessa função é unitária)</p>
 <p><br />
 </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:figA18"></span>
-<img src="images1/choosing_love_over_eugenics.jpeg" alt="Licença para casamento" width="75%" />
-<p class="caption">
-Figure 1.25: Licença para casamento
-</p>
-</div>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Cálculo da probabilidade para o intervalo <span class="math inline">\(0 \leq X \leq \frac{1}{2}\)</span> a partir da área do triângulo hachurado (<span class="math inline">\(\frac{base \times altura}{2}\)</span>):</li>
+</ol>
 <p><br />
 </p>
+<p><span class="math display">\[
+P ( 0 \leq X \leq \frac{1}{2}) = \frac{1}{2} \times (\frac{1}{2} \times 1 ) = \frac{1}{4}
+\]</span></p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="revista-biometrika.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="estatística-e-machine-learning-uma-livre-tradução-deste-link.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="função-massa-de-probabilidade-probability-mass-function---pmf.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="esperança-e-variância-de-uma-variável-aleatória-discreta.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -638,7 +707,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-historia.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-var_aleatorias.Rmd",
 "text": "Edit"
 },
 "history": {

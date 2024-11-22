@@ -54,7 +54,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -64,7 +64,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -239,8 +239,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="introdução-a-variáveis-aleatórias.html"><a href="introdução-a-variáveis-aleatórias.html"><i class="fa fa-check"></i><b>5</b> Introdução a variáveis aleatórias</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="função-discreta-de-distribuição-de-probabilidade.html"><a href="função-discreta-de-distribuição-de-probabilidade.html"><i class="fa fa-check"></i><b>5.1</b> Função discreta de distribuição de probabilidade</a></li>
-<li class="chapter" data-level="5.2" data-path="função-de-densidade-de-probabilidade.html"><a href="função-de-densidade-de-probabilidade.html"><i class="fa fa-check"></i><b>5.2</b> Função de densidade de probabilidade</a></li>
+<li class="chapter" data-level="5.1" data-path="função-massa-de-probabilidade-probability-mass-function---pmf.html"><a href="função-massa-de-probabilidade-probability-mass-function---pmf.html"><i class="fa fa-check"></i><b>5.1</b> Função massa de probabilidade (<em>Probability Mass Function - PMF</em>)</a></li>
+<li class="chapter" data-level="5.2" data-path="função-de-densidade-de-probabilidade-probability-density-function---pdf.html"><a href="função-de-densidade-de-probabilidade-probability-density-function---pdf.html"><i class="fa fa-check"></i><b>5.2</b> Função de densidade de probabilidade (<em>Probability Density Function - PDF</em>)</a></li>
 <li class="chapter" data-level="5.3" data-path="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><a href="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><i class="fa fa-check"></i><b>5.3</b> Esperança e variância de uma variável aleatória discreta</a></li>
 <li class="chapter" data-level="5.4" data-path="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><a href="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><i class="fa fa-check"></i><b>5.4</b> Esperança e variância de uma variável aleatória contínua</a></li>
 </ul></li>
@@ -623,9 +623,9 @@ P(X=4) &amp; = 0,0656
 <p>A probabilidade de que na <strong>quinta transmissão</strong> de um <em>bit</em> ocorra um erro é de 6,56%.</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb126-1" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.10</span></span>
-<span id="cb126-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb126-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">4</span> <span class="co"># Uma vez que na 5 repetição ocorrerá o &#39;sucesso&#39; (o bit será transmitido com erro)</span></span>
-<span id="cb126-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb126-3" tabindex="-1"></a><span class="fu">dgeom</span>(<span class="at">x =</span> n, <span class="at">prob =</span> p)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb128-1" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.10</span></span>
+<span id="cb128-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb128-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">4</span> <span class="co"># Uma vez que na 5 repetição ocorrerá o &#39;sucesso&#39; (o bit será transmitido com erro)</span></span>
+<span id="cb128-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb128-3" tabindex="-1"></a><span class="fu">dgeom</span>(<span class="at">x =</span> n, <span class="at">prob =</span> p)</span></code></pre></div>
 <pre><code>## [1] 0.06561</code></pre>
 <blockquote>
 <p>Exemplo: Uma linha de produção está sendo analisada para fins de controle da qualidade das peças produzidas. Tendo em vista o alto padrão requerido, a produção é interrompida para regulagem <strong>toda vez que uma peça defeituosa é observada</strong>. Se 0,01 é a probabilidade da peça ser defeituosa, determine a probabilidade de ocorrer uma peça defeituosa entre a <span class="math inline">\(4^{a}\)</span> e <span class="math inline">\(6^{a}\)</span> peças produzidas.</p>
@@ -687,9 +687,9 @@ P(3 \le j \le 5)  &amp;  = 0.02881885
 <p>A probabilidade de termos uma <strong>peça defeituosa</strong> na quarta <strong>OU</strong> na quinta <strong>OU</strong> na sexta das peças produzidas é de 2,9116%.</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb128-1" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.01</span></span>
-<span id="cb128-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb128-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>) <span class="co"># Uma vez que na 4, 5 e 6 repetições ocorrerão os &#39;sucessos&#39; (a produção de uma peça defeituosa)</span></span>
-<span id="cb128-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb128-3" tabindex="-1"></a><span class="fu">dgeom</span>(<span class="at">x =</span> n, <span class="at">prob =</span> p)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb130-1" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.01</span></span>
+<span id="cb130-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb130-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>) <span class="co"># Uma vez que na 4, 5 e 6 repetições ocorrerão os &#39;sucessos&#39; (a produção de uma peça defeituosa)</span></span>
+<span id="cb130-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb130-3" tabindex="-1"></a><span class="fu">dgeom</span>(<span class="at">x =</span> n, <span class="at">prob =</span> p)</span></code></pre></div>
 <pre><code>## [1] 0.00970299 0.00960596 0.00950990</code></pre>
 <p><br />
 </p>
@@ -726,9 +726,9 @@ P(X=3) &amp; = 0,0064
 \end{align*}\]</span></p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb130-1" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.80</span></span>
-<span id="cb130-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb130-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">3</span>) <span class="co"># Uma vez que na 4 repetição ocorrerá o &#39;sucesso&#39; (um alinhamento ótico bem sucedido)</span></span>
-<span id="cb130-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb130-3" tabindex="-1"></a><span class="fu">dgeom</span>(<span class="at">x =</span> n, <span class="at">prob =</span> p)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb132-1" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.80</span></span>
+<span id="cb132-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb132-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">3</span>) <span class="co"># Uma vez que na 4 repetição ocorrerá o &#39;sucesso&#39; (um alinhamento ótico bem sucedido)</span></span>
+<span id="cb132-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb132-3" tabindex="-1"></a><span class="fu">dgeom</span>(<span class="at">x =</span> n, <span class="at">prob =</span> p)</span></code></pre></div>
 <pre><code>## [1] 0.0064</code></pre>
 <p><br />
 </p>
@@ -779,9 +779,9 @@ P(X=j)_{0 \le j \le 3} &amp; =  0,9984
 \end{align*}\]</span></p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb132-1" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.80</span></span>
-<span id="cb132-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb132-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>) <span class="co"># Uma vez que na 1, 2, 3, e 4 repetições ocorrerão os &#39;sucessos&#39; (alinhamentos óticos bem sucedidos)</span></span>
-<span id="cb132-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb132-3" tabindex="-1"></a><span class="fu">dgeom</span>(<span class="at">x =</span> n, <span class="at">prob =</span> p)</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb134-1" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.80</span></span>
+<span id="cb134-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb134-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>) <span class="co"># Uma vez que na 1, 2, 3, e 4 repetições ocorrerão os &#39;sucessos&#39; (alinhamentos óticos bem sucedidos)</span></span>
+<span id="cb134-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb134-3" tabindex="-1"></a><span class="fu">dgeom</span>(<span class="at">x =</span> n, <span class="at">prob =</span> p)</span></code></pre></div>
 <pre><code>## [1] 0.8000 0.1600 0.0320 0.0064</code></pre>
 <p><br />
 </p>
@@ -908,11 +908,11 @@ f(X=n; (p, k)) &amp; = P(X=10; (p=0,1; k=4)) = \binom{n-1}{k-1} \cdot {p}^{k} \c
 <p>A probabilidade de se observar 4 sucessos em 10 tentativas é de 0,4464104%.</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb134-1" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">4</span></span>
-<span id="cb134-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb134-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">10</span></span>
-<span id="cb134-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb134-3" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.10</span></span>
-<span id="cb134-4"><a href="modelos-téoricos-do-tempo-de-espera.html#cb134-4" tabindex="-1"></a>x <span class="ot">=</span> n<span class="sc">-</span>k <span class="co"># Entrar com n-k na função pois ela espera o número de falhas</span></span>
-<span id="cb134-5"><a href="modelos-téoricos-do-tempo-de-espera.html#cb134-5" tabindex="-1"></a><span class="fu">dnbinom</span>(<span class="at">x =</span> x , <span class="at">size =</span> k, <span class="at">prob =</span> p)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb136-1" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">4</span></span>
+<span id="cb136-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb136-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">10</span></span>
+<span id="cb136-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb136-3" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.10</span></span>
+<span id="cb136-4"><a href="modelos-téoricos-do-tempo-de-espera.html#cb136-4" tabindex="-1"></a>x <span class="ot">=</span> n<span class="sc">-</span>k <span class="co"># Entrar com n-k na função pois ela espera o número de falhas</span></span>
+<span id="cb136-5"><a href="modelos-téoricos-do-tempo-de-espera.html#cb136-5" tabindex="-1"></a><span class="fu">dnbinom</span>(<span class="at">x =</span> x , <span class="at">size =</span> k, <span class="at">prob =</span> p)</span></code></pre></div>
 <pre><code>## [1] 0.004464104</code></pre>
 <p><br />
 </p>
@@ -948,11 +948,11 @@ f(X=n; (p; r)) &amp; = P(X=5; (p=0,7; k=3 )) = \binom{n-1}{k-1} \cdot {p}^{k} \c
 <p>A probabilidade de Bob acertar 3 arremessos em 5 tentativas é de 18,522%.</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb136-1" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">3</span></span>
-<span id="cb136-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb136-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">5</span></span>
-<span id="cb136-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb136-3" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.70</span></span>
-<span id="cb136-4"><a href="modelos-téoricos-do-tempo-de-espera.html#cb136-4" tabindex="-1"></a>x <span class="ot">=</span> n<span class="sc">-</span>k <span class="co"># Entrar com n-k na função pois ela espera o número de falhas</span></span>
-<span id="cb136-5"><a href="modelos-téoricos-do-tempo-de-espera.html#cb136-5" tabindex="-1"></a><span class="fu">dnbinom</span>(<span class="at">x =</span> x , <span class="at">size =</span> k, <span class="at">prob =</span> p)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb138-1" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb138-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb138-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">5</span></span>
+<span id="cb138-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb138-3" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.70</span></span>
+<span id="cb138-4"><a href="modelos-téoricos-do-tempo-de-espera.html#cb138-4" tabindex="-1"></a>x <span class="ot">=</span> n<span class="sc">-</span>k <span class="co"># Entrar com n-k na função pois ela espera o número de falhas</span></span>
+<span id="cb138-5"><a href="modelos-téoricos-do-tempo-de-espera.html#cb138-5" tabindex="-1"></a><span class="fu">dnbinom</span>(<span class="at">x =</span> x , <span class="at">size =</span> k, <span class="at">prob =</span> p)</span></code></pre></div>
 <pre><code>## [1] 0.18522</code></pre>
 <p><br />
 </p>
@@ -992,11 +992,11 @@ f(X=n; p; r) &amp; = P(X=12; p=0.5; k=7 ) = \binom{n-1}{k-1} \cdot {p}^{k} \cdot
 <p>A probabilidade de se obter 7 sucessos em 12 tentativas é de 11,28%.</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb138-1" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">7</span></span>
-<span id="cb138-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb138-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">12</span></span>
-<span id="cb138-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb138-3" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.50</span></span>
-<span id="cb138-4"><a href="modelos-téoricos-do-tempo-de-espera.html#cb138-4" tabindex="-1"></a>x <span class="ot">=</span> n<span class="sc">-</span>k <span class="co"># Entrar com n-k na função pois ela espera o número de falhas</span></span>
-<span id="cb138-5"><a href="modelos-téoricos-do-tempo-de-espera.html#cb138-5" tabindex="-1"></a><span class="fu">dnbinom</span>(<span class="at">x =</span> x , <span class="at">size =</span> k, <span class="at">prob =</span> p)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="modelos-téoricos-do-tempo-de-espera.html#cb140-1" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">7</span></span>
+<span id="cb140-2"><a href="modelos-téoricos-do-tempo-de-espera.html#cb140-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">12</span></span>
+<span id="cb140-3"><a href="modelos-téoricos-do-tempo-de-espera.html#cb140-3" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.50</span></span>
+<span id="cb140-4"><a href="modelos-téoricos-do-tempo-de-espera.html#cb140-4" tabindex="-1"></a>x <span class="ot">=</span> n<span class="sc">-</span>k <span class="co"># Entrar com n-k na função pois ela espera o número de falhas</span></span>
+<span id="cb140-5"><a href="modelos-téoricos-do-tempo-de-espera.html#cb140-5" tabindex="-1"></a><span class="fu">dnbinom</span>(<span class="at">x =</span> x , <span class="at">size =</span> k, <span class="at">prob =</span> p)</span></code></pre></div>
 <pre><code>## [1] 0.112793</code></pre>
 <p><br />
 </p>

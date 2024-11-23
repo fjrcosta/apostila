@@ -536,20 +536,9 @@ Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa
 <div id="função-massa-de-probabilidade-probability-mass-function---pmf" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Função massa de probabilidade (<em>Probability Mass Function - PMF</em>)<a href="função-massa-de-probabilidade-probability-mass-function---pmf.html#função-massa-de-probabilidade-probability-mass-function---pmf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p> </p>
-<p>Considere <span class="math inline">\(X\)</span> uma variável aleatória discreta e suponha que os valores de interesse que o experimento aleatório pode produzir sejam <span class="math inline">\(x_{1},x_{2},x_{3}, \dots x_{n} \dots\)</span>.</p>
-<p><br />
-</p>
-<p>Uma <em>função (discreta) de probabilidade</em> pode ser definida de modo a associar a cada um dos possíveis valores <span class="math inline">\(x_{i}\)</span> da variável aleatória <span class="math inline">\(X\)</span> sua probabilidade de ocorrência.</p>
-<p><br />
-</p>
-<p>Assim, para <span class="math inline">\(x = x_{i}\)</span>,</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-f(x_{i}) = P (X=x_{i})  
-\]</span></p>
+<p>Considere <span class="math inline">\(X\)</span> uma variável aleatória discreta com o contradomínio <span class="math inline">\(x_{1},x_{2},x_{3}, \dots x_{n} \dots\)</span>. Uma <em>função (de distribuição) de probabilidade</em> <span class="math inline">\(f(x)\)</span> é assim denominada se, aplicada a cada um dos possíveis valores <span class="math inline">\(x_{i}\)</span> da variável aleatória <span class="math inline">\(X\)</span>, resultar em sua probabilidade de ocorrência. Assim, para <span class="math inline">\(x = x_{i}\)</span>, <span class="math inline">\(f(x_{i}) = P(X=x_{i})=p(x{i})\)</span>.</p>
 <p> </p>
-<p>Mas, para essa <em>função</em> <span class="math inline">\(f(x)\)</span> possa ser considerada uma <strong>função de distribuição de probabilidade</strong>, ela precisa necessariamente atender às seguintes condições:</p>
+<p>Para que essa <em>função</em> <span class="math inline">\(f(x)\)</span> possa ser considerada uma <strong>função de distribuição de probabilidade</strong>, ela precisa necessariamente atender às seguintes condições:</p>
 <p> </p>
 <blockquote>
 <p>Postulado do intervalo:</p>
@@ -566,6 +555,11 @@ f(x_{i}) = P (X=x_{i})
 \]</span></p>
 <p> </p>
 <p>Equivale afirmar que a probabilidade de ocorrência de um dos valores que a variável aleatória pode assumir está sempre compreendida no intervalo <span class="math inline">\(0 \leq P(X = x_{i}) \leq 1\)</span>. E mais, que a soma das probabilidades de todos os possíveis valores de <span class="math inline">\(X\)</span> será 1.</p>
+<p><br />
+</p>
+<blockquote>
+<p>Observação: somente se a soma acma for finita há a posibilidade de se ter probabilidades <span class="math inline">\(p(x_{i})\)</span> iguais para todos <span class="math inline">\(x_{i}\)</span></p>
+</blockquote>
 <p> </p>
 <blockquote>
 <p>Exemplo: Suponha que uma moeda seja lançada duas vezes e que <span class="math inline">\(X\)</span> seja a variável aleatória que represente o número de <span class="math inline">\(caras\)</span> verificado. Defina o espaço amostral, associe para cada evento possível o valor da variável aleatória e definda uma função discreta de probabilidade correspondente.</p>
@@ -690,7 +684,7 @@ X
 <span id="cb113-15"><a href="função-massa-de-probabilidade-probability-mass-function---pmf.html#cb113-15" tabindex="-1"></a></span>
 <span id="cb113-16"><a href="função-massa-de-probabilidade-probability-mass-function---pmf.html#cb113-16" tabindex="-1"></a><span class="co"># Adicionando linhas no eixo y para reforçar a interpretação</span></span>
 <span id="cb113-17"><a href="função-massa-de-probabilidade-probability-mass-function---pmf.html#cb113-17" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.25</span>), <span class="at">col =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="apostila_files/figure-html/unnamed-chunk-101-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="apostila_files/figure-html/unnamed-chunk-102-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Uma <em>função de distribuição cumulativa</em> <span class="math inline">\(F(x)\)</span> para uma variável aleatória <span class="math inline">\(X\)</span> exprime a probabilidade de que a variável aleatória <span class="math inline">\(X\)</span> assuma um valor <em>menor ou igual a determinado <span class="math inline">\(x\)</span></em> , sendo definida por:</p>
 <p><br />
@@ -837,7 +831,7 @@ F(x) =
 <span id="cb114-46"><a href="função-massa-de-probabilidade-probability-mass-function---pmf.html#cb114-46" tabindex="-1"></a></span>
 <span id="cb114-47"><a href="função-massa-de-probabilidade-probability-mass-function---pmf.html#cb114-47" tabindex="-1"></a><span class="co"># Adicionando grades para facilitar a interpretação</span></span>
 <span id="cb114-48"><a href="função-massa-de-probabilidade-probability-mass-function---pmf.html#cb114-48" tabindex="-1"></a><span class="fu">grid</span>(<span class="at">nx =</span> <span class="cn">NULL</span>, <span class="at">ny =</span> <span class="cn">NULL</span>, <span class="at">col =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="at">lty =</span> <span class="st">&quot;dotted&quot;</span>)</span></code></pre></div>
-<p><img src="apostila_files/figure-html/unnamed-chunk-103-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="apostila_files/figure-html/unnamed-chunk-104-1.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
             </section>
 

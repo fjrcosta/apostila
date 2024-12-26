@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>13.2 Processo de Poisson | apostila.knit</title>
+  <title>13.4 Processo de Poisson | apostila.knit</title>
   <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="13.2 Processo de Poisson | apostila.knit" />
+  <meta property="og:title" content="13.4 Processo de Poisson | apostila.knit" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
   <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="13.2 Processo de Poisson | apostila.knit" />
+  <meta name="twitter:title" content="13.4 Processo de Poisson | apostila.knit" />
   
   <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="processos-estocásticos.html"/>
-<link rel="next" href="orientações-gerais.html"/>
+<link rel="prev" href="processos-estocásticos-temporais-espaciais-e-espaçotemporais.html"/>
+<link rel="next" href="simulações-monte-carlo.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -52,6 +52,70 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <style type="text/css">
   
@@ -422,16 +486,38 @@
 <ul>
 <li class="chapter" data-level="12.12.1" data-path="intervalos-de-confiança-2.html"><a href="intervalos-de-confiança-2.html#intervalos-de-confiança-nos-modelos-de-regressão-linear-simples"><i class="fa fa-check"></i><b>12.12.1</b> Intervalos de confiança nos modelos de regressão linear simples</a></li>
 </ul></li>
-<li class="chapter" data-level="12.13" data-path="verificações-gráficas-visuais-das-premissas-do-mmqo.html"><a href="verificações-gráficas-visuais-das-premissas-do-mmqo.html"><i class="fa fa-check"></i><b>12.13</b> Verificações gráficas (visuais) das premissas do MMQO</a></li>
-<li class="chapter" data-level="12.14" data-path="verificações-adicionais.html"><a href="verificações-adicionais.html"><i class="fa fa-check"></i><b>12.14</b> Verificações adicionais</a></li>
+<li class="chapter" data-level="12.13" data-path="simulador-2-com-t.html"><a href="simulador-2-com-t.html"><i class="fa fa-check"></i><b>12.13</b> (SIMULADOR 2 COM t)</a></li>
+<li class="chapter" data-level="12.14" data-path="verificações-gráficas-visuais-das-premissas-do-mmqo.html"><a href="verificações-gráficas-visuais-das-premissas-do-mmqo.html"><i class="fa fa-check"></i><b>12.14</b> Verificações gráficas (visuais) das premissas do MMQO</a></li>
+<li class="chapter" data-level="12.15" data-path="verificações-adicionais.html"><a href="verificações-adicionais.html"><i class="fa fa-check"></i><b>12.15</b> Verificações adicionais</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="introdução-a-processos-estocásticos.html"><a href="introdução-a-processos-estocásticos.html"><i class="fa fa-check"></i><b>13</b> Introdução a processos estocásticos</a>
+<li class="chapter" data-level="13" data-path="introdução-à-modelagem-de-processos-estocásticos.html"><a href="introdução-à-modelagem-de-processos-estocásticos.html"><i class="fa fa-check"></i><b>13</b> Introdução à modelagem de processos estocásticos</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="processos-estocásticos.html"><a href="processos-estocásticos.html"><i class="fa fa-check"></i><b>13.1</b> Processos estocásticos</a>
+<li class="chapter" data-level="13.1" data-path="modelos-determinísticos-e-estocásticos.html"><a href="modelos-determinísticos-e-estocásticos.html"><i class="fa fa-check"></i><b>13.1</b> Modelos determinísticos e estocásticos</a></li>
+<li class="chapter" data-level="13.2" data-path="dedução-e-indução.html"><a href="dedução-e-indução.html"><i class="fa fa-check"></i><b>13.2</b> Dedução e indução</a></li>
+<li class="chapter" data-level="13.3" data-path="processos-estocásticos-temporais-espaciais-e-espaçotemporais.html"><a href="processos-estocásticos-temporais-espaciais-e-espaçotemporais.html"><i class="fa fa-check"></i><b>13.3</b> Processos estocásticos temporais, espaciais e espaçotemporais</a>
 <ul>
-<li class="chapter" data-level="13.1.1" data-path="processos-estocásticos.html"><a href="processos-estocásticos.html#definição"><i class="fa fa-check"></i><b>13.1.1</b> Definição</a></li>
+<li class="chapter" data-level="13.3.1" data-path="processos-estocásticos-temporais-espaciais-e-espaçotemporais.html"><a href="processos-estocásticos-temporais-espaciais-e-espaçotemporais.html#processos-estocásticos-temporais"><i class="fa fa-check"></i><b>13.3.1</b> Processos Estocásticos Temporais</a></li>
+<li class="chapter" data-level="13.3.2" data-path="processos-estocásticos-temporais-espaciais-e-espaçotemporais.html"><a href="processos-estocásticos-temporais-espaciais-e-espaçotemporais.html#processos-estocásticos-espaciais"><i class="fa fa-check"></i><b>13.3.2</b> Processos Estocásticos Espaciais</a></li>
+<li class="chapter" data-level="13.3.3" data-path="processos-estocásticos-temporais-espaciais-e-espaçotemporais.html"><a href="processos-estocásticos-temporais-espaciais-e-espaçotemporais.html#processos-estocásticos-espaçotemporais"><i class="fa fa-check"></i><b>13.3.3</b> Processos Estocásticos Espaçotemporais</a></li>
 </ul></li>
-<li class="chapter" data-level="13.2" data-path="processo-de-poisson.html"><a href="processo-de-poisson.html"><i class="fa fa-check"></i><b>13.2</b> Processo de Poisson</a></li>
+<li class="chapter" data-level="13.4" data-path="processo-de-poisson.html"><a href="processo-de-poisson.html"><i class="fa fa-check"></i><b>13.4</b> Processo de Poisson</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="processo-de-poisson.html"><a href="processo-de-poisson.html#natureza"><i class="fa fa-check"></i><b>13.4.1</b> Natureza</a></li>
+<li class="chapter" data-level="13.4.2" data-path="processo-de-poisson.html"><a href="processo-de-poisson.html#processo-de-poisson-com-classificação-de-eventos"><i class="fa fa-check"></i><b>13.4.2</b> Processo de Poisson com classificação de eventos</a></li>
+<li class="chapter" data-level="13.4.3" data-path="processo-de-poisson.html"><a href="processo-de-poisson.html#processos-de-poisson-não-homogêneos"><i class="fa fa-check"></i><b>13.4.3</b> Processos de Poisson não homogêneos</a></li>
+<li class="chapter" data-level="13.4.4" data-path="processo-de-poisson.html"><a href="processo-de-poisson.html#tempo-de-espera-em-um-processo-de-poisson"><i class="fa fa-check"></i><b>13.4.4</b> Tempo de espera em um processo de Poisson</a></li>
+<li class="chapter" data-level="13.4.5" data-path="processo-de-poisson.html"><a href="processo-de-poisson.html#distribuição-condicional-dos-tempos-de-chegada"><i class="fa fa-check"></i><b>13.4.5</b> Distribuição condicional dos tempos de chegada</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="simulações-monte-carlo.html"><a href="simulações-monte-carlo.html"><i class="fa fa-check"></i><b>13.5</b> Simulações Monte Carlo</a>
+<ul>
+<li class="chapter" data-level="13.5.1" data-path="simulações-monte-carlo.html"><a href="simulações-monte-carlo.html#introdução-1"><i class="fa fa-check"></i><b>13.5.1</b> Introdução</a></li>
+<li class="chapter" data-level="13.5.2" data-path="simulações-monte-carlo.html"><a href="simulações-monte-carlo.html#fundamentação"><i class="fa fa-check"></i><b>13.5.2</b> Fundamentação</a></li>
+<li class="chapter" data-level="13.5.3" data-path="simulações-monte-carlo.html"><a href="simulações-monte-carlo.html#números-aleatórios-e-pseudoaleatórios"><i class="fa fa-check"></i><b>13.5.3</b> Números Aleatórios e Pseudoaleatórios</a></li>
+<li class="chapter" data-level="13.5.4" data-path="simulações-monte-carlo.html"><a href="simulações-monte-carlo.html#geração-de-amostras-aleatórias-de-distribuições-de-probabilidade"><i class="fa fa-check"></i><b>13.5.4</b> Geração de amostras aleatórias de distribuições de probabilidade</a></li>
+<li class="chapter" data-level="13.5.5" data-path="simulações-monte-carlo.html"><a href="simulações-monte-carlo.html#exemplo-1-goodwin-e-wright-2009"><i class="fa fa-check"></i><b>13.5.5</b> Exemplo 1 (Goodwin e Wright, 2009)</a></li>
+<li class="chapter" data-level="13.5.6" data-path="simulações-monte-carlo.html"><a href="simulações-monte-carlo.html#exemplo-2-the-elite-pottery-company-goodwin-e-wright-2009"><i class="fa fa-check"></i><b>13.5.6</b> Exemplo 2: The Elite Pottery Company (Goodwin e Wright, 2009)</a></li>
+<li class="chapter" data-level="13.5.7" data-path="simulações-monte-carlo.html"><a href="simulações-monte-carlo.html#exemplo-3-integração-numérica-usando-o-método-de-monte-carlo"><i class="fa fa-check"></i><b>13.5.7</b> Exemplo 3: Integração Numérica Usando o Método de Monte Carlo</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="orientações-gerais.html"><a href="orientações-gerais.html"><i class="fa fa-check"></i><b>14</b> Orientações Gerais</a>
 <ul>
@@ -477,47 +563,565 @@ Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="processo-de-poisson" class="section level2 hasAnchor" number="13.2">
-<h2><span class="header-section-number">13.2</span> Processo de Poisson<a href="processo-de-poisson.html#processo-de-poisson" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>número de clientes que entram num supermercado por minuto
-número de chamadas que uma central telefônica recebe por hora
-número de pacotes que passam por um roteador por minuto
-número de ataques de tubarão por ano
-número de chamadas ao SIATE por dia
-número de trens que chegam a uma estação a cada 2 horas</p>
-<p>estamos sempre contando eventos em um certo intervalo</p>
-<p>aumenta-se o intervalo, aumenta-se a probabilidade de se observar uma certa contagem</p>
-<p>Um <strong>processo de contagem</strong> é um <strong>processo estocástico temporal</strong> representado por:</p>
+<div id="processo-de-poisson" class="section level2 hasAnchor" number="13.4">
+<h2><span class="header-section-number">13.4</span> Processo de Poisson<a href="processo-de-poisson.html#processo-de-poisson" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="natureza" class="section level3 hasAnchor" number="13.4.1">
+<h3><span class="header-section-number">13.4.1</span> Natureza<a href="processo-de-poisson.html#natureza" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><br />
 </p>
-<p><span class="math display">\[
+<blockquote>
+<p>Alguns experimentos aleatórios envolvem, essencialmente, contagens observadas em um certo intervalo de tempo como, por exemplo:<br />
+1- clientes que entram num supermercado por dia,<br />
+2- chamadas que uma central telefônica recebe por hora,<br />
+3. pacotes que passam por um roteador por minuto,<br />
+4. chamadas ao SIATE por semana,<br />
+5. trens que chegam a uma estação a cada 12 horas.<br />
+Ao se aumentar o intervalo, aumenta-se a probabilidade de se observar uma certa contagem.</p>
+</blockquote>
+<p><br />
+</p>
+<blockquote>
+<p>Definição 1: um <strong>processo de contagem</strong> é um <strong>processo estocástico temporal</strong> representado por:
+<span class="math display">\[
 \{N_t : t \in [0, \infty) \}
-\]</span></p>
+\]</span>
+em que: <span class="math inline">\(N_t\)</span> representa o <strong>número de eventos ocorridos no intervalo [0, t]</strong>.</p>
+</blockquote>
 <p><br />
 </p>
-<p>em que:
-- <span class="math inline">\(N_t\)</span> representa o <strong>número de eventos ocorridos no intervalo [0, t]</strong>. Esse processo deve satisfazer as seguintes propriedades:</p>
+<p>Esse processo deve satisfazer as seguintes propriedades:</p>
 <p><br />
 </p>
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(N_0 = 0\)</span><br />
+<li><span class="math inline">\(N_0 = 0\)</span> (no exato momento do início do processo a contagem é zero)<br />
 </li>
-<li><span class="math inline">\(N_t \in \{0, 1, 2, \ldots \}\)</span><br />
+<li><span class="math inline">\(N_t \in \{0, 1, 2, \ldots \}\)</span> (<span class="math inline">\(ie\)</span>, são contagens)<br />
 </li>
-<li>Se <span class="math inline">\(s &lt; t\)</span>, então <span class="math inline">\(N_s \leq N_t\)</span><br />
+<li>Se <span class="math inline">\(s &lt; t\)</span>, então <span class="math inline">\(N_s \leq N_t\)</span> (a contagem no intervalo [0,s] não é superior à contagem no intervalo [0,t], para <span class="math inline">\(s &lt; t\)</span>)<br />
 </li>
-<li>Para <span class="math inline">\(s &lt; t\)</span>, a diferença <span class="math inline">\(N_t - N_s\)</span> representa o número de eventos no intervalo <span class="math inline">\((s, t]\)</span></li>
+<li>Para <span class="math inline">\(s &lt; t\)</span>, a diferença <span class="math inline">\(N_t - N_s\)</span> representa o número de eventos ocorridos no intervalo <span class="math inline">\((s, t]\)</span><br />
+</li>
+<li><span class="math inline">\(N_t\)</span> é uma função não descrescente</li>
 </ol>
-
+<p><br />
+</p>
+<blockquote>
+<p>Definição 2: um <strong>processo de contagem</strong> tem <strong>incrementos independentes</strong> se o <strong>número de eventos que ocorrem em intervalos de tempo disjuntos são independentes</strong>. Para <span class="math inline">\(0 \leq t_1 &lt; t_2 &lt; \ldots &lt; t_n\)</span>, temos que as variáveis aleatórias:
+<span class="math display">\[
+N(t_2) - N(t_1), N(t_3) - N(t_2), \ldots, N(t_n) - N(t_{n-1})
+\]</span>
+são <strong>variáveis independentes</strong>.</p>
+</blockquote>
+<p><br />
+</p>
+<blockquote>
+<p>Definição 3: um <strong>processo de contagem</strong> tem <strong>incrementos estacionários</strong> se a <strong>distribuição de probabilidade do número de eventos que ocorrem em qualquer intervalo</strong> é a mesma e <strong>depende apenas da duração do intervalo</strong> (a probabilidade de chegar um cliente entre 9 e 10 h é a mesma de chegar um cliente entre 15 e 16 h: <span class="math inline">\(P(N([9,10])=P(N([15,16])\)</span>): <strong>falta de memória</strong></p>
+</blockquote>
+<p><br />
+</p>
+<p><img src="images13/poissonProcess.jpg" width="60%" style="display: block; margin: auto;" /></p>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-226"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-226-1.png" alt="O processo de Poisson: (1) tem contagem zero em t=0; (2) se s&lt;t então  N(s)&lt;N(t); (4) N(t) é não descrescente e (4) os incrementos são independentes  " width="70%" />
+<p class="caption">
+Figure 13.1: O processo de Poisson: (1) tem contagem zero em t=0; (2) se s&lt;t então N(s)&lt;N(t); (4) N(t) é não descrescente e (4) os incrementos são independentes
+</p>
 </div>
-<!-- </div> -->
+<p><br />
+</p>
+<p>Um <strong>processo de contagem</strong> <span class="math inline">\(\{N_t : t \geq 0 \}\)</span> é dito ser um <strong>processo de Poisson</strong> com taxa <span class="math inline">\(\lambda &gt; 0\)</span> se:</p>
+<p><br />
+</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(N(0) = 0\)</span>.<br />
+</li>
+<li>o processo tem <strong>incrementos independentes e estacionários</strong>.<br />
+</li>
+<li>o número de eventos em qualquer intervalo de comprimento <span class="math inline">\(t\)</span> tem distribuição de <strong>Poisson</strong> com média <span class="math inline">\(\lambda t\)</span>.</li>
+</ol>
+<p><br />
+</p>
+<p>Ou seja, para <span class="math inline">\(s, t \geq 0\)</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(N(t + s) - N(s) = n) = \frac{e^{-\lambda t} (\lambda t)^n}{n!}
+\]</span></p>
+<p><br />
+</p>
+<p>em que <span class="math inline">\(P(N(t + s) - N(s) = n)\)</span> é a probabilidade de serem observados <span class="math inline">\(n\)</span> eventos no intervalo de tempo <span class="math inline">\((t+s)-t=t\)</span>. Desse modo, para um intervalo de tempo <span class="math inline">\(t\)</span>, a probabilidade de serem observados <span class="math inline">\(n\)</span> eventos é</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(N(t) = n) = \frac{e^{-\lambda t} (\lambda t)^n}{n!}
+\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo 1: Fregueses chegam a uma certa loja de acordo com um <strong>processo de Poisson</strong> com taxa <span class="math inline">\(\lambda = 4\)</span> fregueses por hora. Admita que a loja abra às <strong>9h</strong> e que que os fregueses <strong>não</strong> deixam a loja. Quais são as probabilidades de que:
+1. um freguês chegue até às 9:30h<br />
+2. um total de 5 fregueses estejam na loja até às 11:30h?</p>
+</blockquote>
+<p><br />
+</p>
+<p>A loja abre às 9 h então até as 9 h 30 min o primeiro intervalo de tempo será <span class="math inline">\(t_1 = 0.5\)</span> horas e até as 11 h 30 min o segundo intervalode tempo será <span class="math inline">\(t_2 = 2.5\)</span>. A taxa média de chegadas por hora é <span class="math inline">\(\lambda = 4\)</span>.</p>
+<p><br />
+</p>
+<p>O que se pede é a <span class="math inline">\(P[N(t_1)=1,N(t_2)=5]\)</span>.</p>
+<p><br />
+</p>
+<p>Essa probabilidade é a mesma que <span class="math inline">\(P[N(t_1)=1 \cap N(t_2-t_1)=4]\)</span> e, sendo os intervalos de tempo disjuntos, as probabilidades <span class="math inline">\(P[N(t_1)=1]\)</span> e <span class="math inline">\(P[N(t_2 - t_1)=4]\)</span> são independentes e podemos escrever:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align}
+P[N(t_1)=1 \cap N(t_2-t_1)=4] &amp; = P[N(t_1)=1] \times P[N(t_2-t_1)=4] \\
+&amp; = \frac{\varepsilon^{-\lambda t_1} (\lambda t_1)^{n_1}}{n_1!} \times \frac{\varepsilon^{-\lambda (t_2-t_1)}[\lambda (t_2-t_1)]^{n_2}}{n_2!}\\
+&amp; = \frac{\varepsilon^{-(4\times 0.5)} (4 \times 0.5)^{1}}{1!} \times \frac{\varepsilon^{-(4 \times 2)} (4 \times 2)^{4}}{4!}\\
+&amp; = 2\varepsilon^{-2} \times 170.67\varepsilon^{-8}\\
+&amp; = 0.2707 \times 0.0573 \approx 0.0155
+\end{align}\]</span></p>
+<p><br />
+</p>
+<p>Um valor bastante baixo posto a taxa média <span class="math inline">\(\lambda\)</span> de 4 clientes por hora indicar que se esperam 2 em meia hora (apenas 1 chegou) e 8 em duas horas (apenas 4 chegaram). Ambos os eventos: chegar 1 pessoa em meia hora e 4 pessoas em duas horas são raros.<br />
+<br />
+</p>
+<blockquote>
+<p>Exemplo 2: Suponha que pacotes <strong>SMTP</strong> chegam a um servidor de e-mails de acordo com um <strong>processo de Poisson</strong> com frequência <span class="math inline">\(\lambda = 2\)</span> pacotes por segundo. Seja <span class="math inline">\(N(t)\)</span> o número de mensagens que chegam até o tempo <span class="math inline">\(t\)</span>. Quais são as probabilidades de que:
+1. <span class="math inline">\(P(N(1) = 2)\)</span>: 2 pacotes em um intervalo de 1 segundo<br />
+2. <span class="math inline">\(P(N(1) = 2 \cap N(3) = 6)\)</span>: 2 pacotes em um intervalo de 1 segundo e 6 pacotes em um intervalo de 3 segundos
+3. <span class="math inline">\(P(N(1) = 2  | N(3) = 6)\)</span>
+4. <span class="math inline">\(P(N(3) = 6  | N(1) = 2)\)</span></p>
+</blockquote>
+<p><br />
+</p>
+<p>A primeira probabilidade é imediata:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align}
+P(N(1) = 2) &amp; = \frac{e^{-2 \times 1} (2 \times 1)^2}{2!}\\
+&amp; = \frac{e^{-2} \cdot 4}{2} \\
+&amp; = 2 e^{-2} \approx 0.27
+\end{align}\]</span></p>
+<p><br />
+</p>
+<p>A segunda,recorrendo à mesma definição do exemplo anterior, será dada por:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align}
+P[N(1)=2 \cap N(3)=6] &amp; = P[N(1)=2] \times P[N(2)=4] \\
+&amp; = \frac{\varepsilon^{-(2\times 1)} (2 \times 1)^{2}}{2!} \times \frac{\varepsilon^{-(2 \times 2)} (2 \times 2 )^{4}}{4!}\\
+&amp; = 0.2707 \times 0.1952 \approx 0.052  
+\end{align}\]</span></p>
+<p><br />
+</p>
+<p>A terceira, recorrendo à probabilidade de dois eventos condicionado <span class="math inline">\(P(A|B)=\frac{P(A\cap B)}{P(B)}\)</span>, será dada por:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align}
+P(N(1) = 2  | N(3) = 6)  &amp; = \frac{P(N(1) = 2 \cap N(3) = 6)}{P(N(3) = 6)}\\
+&amp; = \frac{0.052}{P(N(3) = 6)}\\
+&amp; = \frac{0.052}{0.1606} \approx 0.32 \\
+\end{align}\]</span></p>
+<p><br />
+</p>
+<p>A quarta podemos entender que a probabilidade de N(3)=6 dado N(1) = 2, ilustrada a seguir:</p>
+<p><br />
+</p>
+<p><img src="images13/poissonProcess2.jpg" width="60%" style="display: block; margin: auto;" /></p>
+<p><br />
+</p>
+<p>Portanto, calcular <span class="math inline">\(P(N(3) = 6  | N(1) = 2)\)</span> equivale a calcular a probabilidade de <span class="math inline">\(P(N(2)=4)\)</span> (os incrementos são independentes em um processo de Poisson), dada por <span class="math inline">\(\frac{\varepsilon^{-(2\times 2)} (2 \times 2)^{4}}{4!} \approx 0.19\)</span> .</p>
+<p><br />
+</p>
+</div>
+<div id="processo-de-poisson-com-classificação-de-eventos" class="section level3 hasAnchor" number="13.4.2">
+<h3><span class="header-section-number">13.4.2</span> Processo de Poisson com classificação de eventos<a href="processo-de-poisson.html#processo-de-poisson-com-classificação-de-eventos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Seja <span class="math inline">\(\{N(t), t \geq 0\}\)</span> um <strong>processo de Poisson</strong> com taxa <span class="math inline">\(\lambda\)</span>, que descreve o número de eventos ocorridos em um intervalo de tempo <span class="math inline">\([0, t]\)</span>. Admita que cada evento nesse processo possa ser <strong>classificado em dois tipos distintos (Tipo I e Tipo II)</strong>:</p>
+<p><br />
+</p>
+<ul>
+<li>Cada evento tem <strong>probabilidade <span class="math inline">\(p\)</span></strong> de ser classificado como <strong>Tipo I</strong>.<br />
+</li>
+<li>Cada evento tem <strong>probabilidade <span class="math inline">\(1-p\)</span></strong> de ser classificado como <strong>Tipo II</strong>.</li>
+</ul>
+<p><br />
+</p>
+<p>Se a classificação de cada evento é <strong>independente das demais classificações e da ocorrência dos eventos</strong>, demonstra-se (Sheldon Ross, in Introduction to Probability Models, <span class="math inline">\(6^{a}\)</span> ed., Cap. 5) que</p>
+<p><br />
+</p>
+<ul>
+<li><span class="math inline">\(\{N_1(t), t \geq 0\}\)</span>: Número de eventos do <strong>Tipo I</strong> no intervalo <span class="math inline">\([0, t]\)</span>.<br />
+</li>
+<li><span class="math inline">\(\{N_2(t), t \geq 0\}\)</span>: Número de eventos do <strong>Tipo II</strong> no intervalo <span class="math inline">\([0, t]\)</span>,</li>
+</ul>
+<p><br />
+</p>
+<p>e <span class="math inline">\(N(t) = N_1(t) + N_2(t)\)</span>.</p>
+<p><br />
+</p>
+<blockquote>
+<p>Os processos <span class="math inline">\(\{N_1(t), t \geq 0\}\)</span> e <span class="math inline">\(\{N_2(t), t \geq 0\}\)</span> têm as seguintes propriedades:<br />
+1. Ambos são <strong>processos de Poisson</strong> com taxas:<br />
+- <span class="math inline">\(\lambda_1 = \lambda p\)</span> para eventos do <strong>Tipo I</strong>.<br />
+- <span class="math inline">\(\lambda_2 = \lambda (1-p)\)</span> para eventos do <strong>Tipo II</strong>.<br />
+2. Os dois processos são <strong>independentes</strong>.</p>
+</blockquote>
+<p><br />
+</p>
+<p><span class="math display">\[
+N_1(t) \sim \text{Poisson}(\lambda p), \quad N_2(t) \sim \text{Poisson}(\lambda (1-p))
+\]</span></p>
+<p><br />
+</p>
+<p>De modo <strong>geral</strong>, considere um <strong>processo de Poisson</strong> com <strong>taxa <span class="math inline">\(\lambda\)</span></strong>. Cada evento pode ser classificado em <strong>n tipos diferentes</strong> com probabilidades:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+p_1, p_2, \ldots, p_n, \quad p_1 + p_2 + \cdots + p_n = 1
+\]</span></p>
+<p><br />
+</p>
+<p>Seja <span class="math inline">\(N_i(t)\)</span> o número de eventos do tipo <span class="math inline">\(i\)</span> até o tempo <span class="math inline">\(t\)</span>.Cada subprocesso segue uma <strong>distribuição de Poisson</strong> com taxa:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+N_i(t) \sim \text{Poisson}(p_i \lambda t)
+\]</span></p>
+<p><br />
+</p>
+<p>Os subprocessos <span class="math inline">\(N_1(t), N_2(t), \ldots, N_n(t)\)</span> são <strong>independentes</strong> entre si.</p>
+<p><br />
+</p>
+<p>A ocorrência de um evento de um tipo <strong>não afeta</strong> a probabilidade de ocorrência de eventos de outro tipo.</p>
+<p><br />
+</p>
+<p>Cada tipo de evento mantém suas próprias propriedades estatísticas e comportamentos, preservando a estrutura probabilística do processo original.</p>
+<p><br />
+</p>
+<p>A proposição afirma que podemos <strong>decompor um processo de Poisson subprocessos independentes</strong>, onde cada subprocesso segue uma distribuição de Poisson ajustada pela probabilidade de classificação de cada evento.</p>
+<p><br />
+</p>
+<p>Esse resultado é frequentemente utilizado em aplicações práticas, como: filas com diferentes tipos de clientes e sistemas de telecomunicações com pacotes de dados de diferentes tipos.</p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo 3: Clientes entram em uma loja de acordo com um processo de Poisson com taxa λ = 10 por hora. De forma independente, cada cliente compra alguma coisa com probabilidade 0.3 ou sai da loja sem comprar nada com probabilidade 0.7. Calcule a probabilidade de que durante a primeira hora 9 pessoas entrem
+na loja e, dentre essas 9 pessoas, 3 comprem alguma coisa e 6 não.</p>
+</blockquote>
+<p><br />
+</p>
+<p>Considerando que <span class="math inline">\(N_0(t)\)</span> e <span class="math inline">\(N_1(t)\)</span> são processos de Poisson independentes com taxas <span class="math inline">\((1 − p)\lambda\)</span> e <span class="math inline">\(p \lambda\)</span>, em que <span class="math inline">\(N_0(t)\)</span> o número de clientes que não compram nada até o tempo <span class="math inline">\(t\)</span> e <span class="math inline">\(N_1(t)\)</span> o número de clientes que compram até o tempo <span class="math inline">\(t\)</span>, a probabilidade pedida é</p>
+<p><br />
+</p>
+<p><span class="math display">\[ P(N_0(t=1)=6, N_1(t=1)=3)\]</span></p>
+<p><br />
+</p>
+<p>em que <span class="math inline">\(N_0(t=1) \sim Poisson(\lambda_0=7)\)</span> e <span class="math inline">\(N_1(t=1) \sim Poisson(\lambda_1=3)\)</span>.</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align}
+P(N_0(t=1)=6 \land N_1(t=1)=3) &amp; = P(N_0(t=1)=6) \times P(N_1(t=1)=3)\\
+&amp; = \frac{e^{-\lambda_0 t} (\lambda_0 t)^n_0}{n_0!} \times  \frac{e^{-\lambda_1 t} (\lambda_1 t)^n_1}{n_1!} \\
+&amp; = \frac{e^{-7 \times 1}\dot(7 \times 1)^6}{6!} \times \frac{e^{-3 \times 1}\dot(3 \times 1)^3}{3!}  \\
+&amp; \approx 0.1251 \times 0.2666 \\
+&amp; \approx 0.0333
+\end{align}\]</span></p>
+<p><br />
+</p>
+</div>
+<div id="processos-de-poisson-não-homogêneos" class="section level3 hasAnchor" number="13.4.3">
+<h3><span class="header-section-number">13.4.3</span> Processos de Poisson não homogêneos<a href="processo-de-poisson.html#processos-de-poisson-não-homogêneos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+</div>
+<div id="tempo-de-espera-em-um-processo-de-poisson" class="section level3 hasAnchor" number="13.4.4">
+<h3><span class="header-section-number">13.4.4</span> Tempo de espera em um processo de Poisson<a href="processo-de-poisson.html#tempo-de-espera-em-um-processo-de-poisson" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Seja <span class="math inline">\(\{N_t : t \geq 0 \}\)</span> um <strong>processo de Poisson</strong> com taxa <span class="math inline">\(\lambda\)</span>:</p>
+<ul>
+<li>denota-se por <span class="math inline">\(T_{n}\)</span> o tempo entre a <span class="math inline">\((n − 1)\)</span> e a <span class="math inline">\(n-ésima\)</span> ocorrência de eventos, sendo <span class="math inline">\(T_{1}\)</span> o tempo até a primeira
+ocorrência</li>
+<li>a sequência <span class="math inline">\(T_{n}, n=1,2,...\)</span> é a chamada sequência de tempos entre ocorrências (ou entre chagadas)</li>
+</ul>
+<p><br />
+</p>
+<blockquote>
+<p>Proposição: <span class="math inline">\(T_{1},T_{2},...\)</span> são variáveis aleatórias com distribuição exponencial de parâmetro <span class="math inline">\(\frac{1}{\lambda}\)</span>.</p>
+</blockquote>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-228"></span>
+<img src="images13/poissonProcess3.jpg" alt="Os tempos de espera entre cada observação não são constantes." width="70%" />
+<p class="caption">
+Figure 13.2: Os tempos de espera entre cada observação não são constantes.
+</p>
+</div>
+<p><br />
+</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb240-1"><a href="processo-de-poisson.html#cb240-1" tabindex="-1"></a></span>
+<span id="cb240-2"><a href="processo-de-poisson.html#cb240-2" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb240-3"><a href="processo-de-poisson.html#cb240-3" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb240-4"><a href="processo-de-poisson.html#cb240-4" tabindex="-1"></a>matplotlib.use(<span class="st">&#39;Agg&#39;</span>) </span>
+<span id="cb240-5"><a href="processo-de-poisson.html#cb240-5" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb240-6"><a href="processo-de-poisson.html#cb240-6" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> expon</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb241-1"><a href="processo-de-poisson.html#cb241-1" tabindex="-1"></a></span>
+<span id="cb241-2"><a href="processo-de-poisson.html#cb241-2" tabindex="-1"></a><span class="co">#A função **`generate_poisson_events`** simula um **Processo de Poisson**, gerando um número aleatório de eventos com taxa média `rate` em um intervalo de duração `time_duration`, retornando o número total de eventos, os tempos ordenados de ocorrência e os intervalos entre eventos consecutivos.</span></span>
+<span id="cb241-3"><a href="processo-de-poisson.html#cb241-3" tabindex="-1"></a></span>
+<span id="cb241-4"><a href="processo-de-poisson.html#cb241-4" tabindex="-1"></a><span class="kw">def</span> generate_poisson_events(rate, time_duration):</span>
+<span id="cb241-5"><a href="processo-de-poisson.html#cb241-5" tabindex="-1"></a>    num_events <span class="op">=</span> np.random.poisson(rate <span class="op">*</span> time_duration)</span>
+<span id="cb241-6"><a href="processo-de-poisson.html#cb241-6" tabindex="-1"></a>    event_times <span class="op">=</span> np.sort(np.random.uniform(<span class="dv">0</span>, time_duration, num_events))</span>
+<span id="cb241-7"><a href="processo-de-poisson.html#cb241-7" tabindex="-1"></a>    inter_arrival_times <span class="op">=</span> np.diff(event_times)</span>
+<span id="cb241-8"><a href="processo-de-poisson.html#cb241-8" tabindex="-1"></a>    <span class="cf">return</span> num_events, event_times, inter_arrival_times</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb242-1"><a href="processo-de-poisson.html#cb242-1" tabindex="-1"></a></span>
+<span id="cb242-2"><a href="processo-de-poisson.html#cb242-2" tabindex="-1"></a><span class="co"># A função **`plot_non_sequential_poisson`** visualiza um **Processo de Poisson**, exibindo em dois gráficos o tempo cumulativo dos eventos (em uma curva de passos) e o histograma dos intervalos entre eventos, destacando a distribuição exponencial dos tempos de espera, com taxa média `rate` e duração total `time_duration`.</span></span>
+<span id="cb242-3"><a href="processo-de-poisson.html#cb242-3" tabindex="-1"></a></span>
+<span id="cb242-4"><a href="processo-de-poisson.html#cb242-4" tabindex="-1"></a><span class="kw">def</span> plot_non_sequential_poisson(num_events, event_times, inter_arrival_times, rate, time_duration):</span>
+<span id="cb242-5"><a href="processo-de-poisson.html#cb242-5" tabindex="-1"></a>    fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">5</span>))  </span>
+<span id="cb242-6"><a href="processo-de-poisson.html#cb242-6" tabindex="-1"></a>    fig.suptitle(<span class="ss">f&#39;Simulação de um Processo de Poisson (λ = </span><span class="sc">{</span>rate<span class="sc">}</span><span class="ss">, Duração = </span><span class="sc">{</span>time_duration<span class="sc">}</span><span class="ss"> segundos)</span><span class="ch">\n</span><span class="ss">&#39;</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb242-7"><a href="processo-de-poisson.html#cb242-7" tabindex="-1"></a></span>
+<span id="cb242-8"><a href="processo-de-poisson.html#cb242-8" tabindex="-1"></a>    <span class="co"># Gráfico 1: Tempo dos Eventos</span></span>
+<span id="cb242-9"><a href="processo-de-poisson.html#cb242-9" tabindex="-1"></a>    axs[<span class="dv">0</span>].step(event_times, np.arange(<span class="dv">1</span>, num_events <span class="op">+</span> <span class="dv">1</span>), where<span class="op">=</span><span class="st">&#39;post&#39;</span>, color<span class="op">=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb242-10"><a href="processo-de-poisson.html#cb242-10" tabindex="-1"></a>    axs[<span class="dv">0</span>].set_xlabel(<span class="st">&#39;Tempo (s)&#39;</span>)</span>
+<span id="cb242-11"><a href="processo-de-poisson.html#cb242-11" tabindex="-1"></a>    axs[<span class="dv">0</span>].set_ylabel(<span class="st">&#39;Número de Eventos&#39;</span>)</span>
+<span id="cb242-12"><a href="processo-de-poisson.html#cb242-12" tabindex="-1"></a>    axs[<span class="dv">0</span>].set_title(<span class="ss">f&#39;Evolução Incremental dos Eventos no Tempo</span><span class="ch">\n</span><span class="ss">N(t) é não descrescente</span><span class="ch">\n</span><span class="ss">Total: </span><span class="sc">{</span>num_events<span class="sc">}</span><span class="ss"> eventos</span><span class="ch">\n</span><span class="ss">&#39;</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb242-13"><a href="processo-de-poisson.html#cb242-13" tabindex="-1"></a>    axs[<span class="dv">0</span>].grid(<span class="va">True</span>)</span>
+<span id="cb242-14"><a href="processo-de-poisson.html#cb242-14" tabindex="-1"></a></span>
+<span id="cb242-15"><a href="processo-de-poisson.html#cb242-15" tabindex="-1"></a>    <span class="co"># Gráfico 2: Histograma dos Tempos de Espera</span></span>
+<span id="cb242-16"><a href="processo-de-poisson.html#cb242-16" tabindex="-1"></a>    axs[<span class="dv">1</span>].hist(inter_arrival_times, bins<span class="op">=</span><span class="dv">20</span>, density<span class="op">=</span><span class="va">True</span>, color<span class="op">=</span><span class="st">&#39;green&#39;</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">&#39;Dados Empíricos&#39;</span>)</span>
+<span id="cb242-17"><a href="processo-de-poisson.html#cb242-17" tabindex="-1"></a>    axs[<span class="dv">1</span>].set_xlabel(<span class="st">&#39;Tempo de Espera entre Eventos (s)&#39;</span>)</span>
+<span id="cb242-18"><a href="processo-de-poisson.html#cb242-18" tabindex="-1"></a>    axs[<span class="dv">1</span>].set_ylabel(<span class="st">&#39;Densidade&#39;</span>)</span>
+<span id="cb242-19"><a href="processo-de-poisson.html#cb242-19" tabindex="-1"></a>    axs[<span class="dv">1</span>].set_title(</span>
+<span id="cb242-20"><a href="processo-de-poisson.html#cb242-20" tabindex="-1"></a>        <span class="ss">f&#39;Distribuição dos Tempos de Espera entre Eventos</span><span class="ch">\n</span><span class="ss">E(T): </span><span class="sc">{</span><span class="dv">1</span><span class="op">/</span>rate<span class="sc">:.2f}</span><span class="ss">, Sd(T): </span><span class="sc">{</span>np<span class="sc">.</span>std(inter_arrival_times)<span class="sc">:.2f}</span><span class="ss">&#39;</span>,</span>
+<span id="cb242-21"><a href="processo-de-poisson.html#cb242-21" tabindex="-1"></a>        fontsize<span class="op">=</span><span class="dv">12</span></span>
+<span id="cb242-22"><a href="processo-de-poisson.html#cb242-22" tabindex="-1"></a>    )</span>
+<span id="cb242-23"><a href="processo-de-poisson.html#cb242-23" tabindex="-1"></a>    axs[<span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb242-24"><a href="processo-de-poisson.html#cb242-24" tabindex="-1"></a>    </span>
+<span id="cb242-25"><a href="processo-de-poisson.html#cb242-25" tabindex="-1"></a>    <span class="co"># Sobreposição da curva exponencial teórica</span></span>
+<span id="cb242-26"><a href="processo-de-poisson.html#cb242-26" tabindex="-1"></a>    lambda_param <span class="op">=</span> rate  </span>
+<span id="cb242-27"><a href="processo-de-poisson.html#cb242-27" tabindex="-1"></a>    x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="bu">max</span>(inter_arrival_times), <span class="dv">100</span>)</span>
+<span id="cb242-28"><a href="processo-de-poisson.html#cb242-28" tabindex="-1"></a>    y <span class="op">=</span> expon.pdf(x, scale<span class="op">=</span><span class="dv">1</span><span class="op">/</span>lambda_param)  </span>
+<span id="cb242-29"><a href="processo-de-poisson.html#cb242-29" tabindex="-1"></a>    axs[<span class="dv">1</span>].plot(x, y, <span class="st">&#39;r-&#39;</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f&#39;Modelo Exponencial (λ=</span><span class="sc">{</span>lambda_param<span class="sc">:.2f}</span><span class="ss">)&#39;</span>)</span>
+<span id="cb242-30"><a href="processo-de-poisson.html#cb242-30" tabindex="-1"></a></span>
+<span id="cb242-31"><a href="processo-de-poisson.html#cb242-31" tabindex="-1"></a>    <span class="co"># Legenda</span></span>
+<span id="cb242-32"><a href="processo-de-poisson.html#cb242-32" tabindex="-1"></a>    axs[<span class="dv">1</span>].legend()</span>
+<span id="cb242-33"><a href="processo-de-poisson.html#cb242-33" tabindex="-1"></a></span>
+<span id="cb242-34"><a href="processo-de-poisson.html#cb242-34" tabindex="-1"></a>    <span class="co"># Ajustar espaçamento entre gráficos</span></span>
+<span id="cb242-35"><a href="processo-de-poisson.html#cb242-35" tabindex="-1"></a>    plt.subplots_adjust(left<span class="op">=</span><span class="fl">0.08</span>, right<span class="op">=</span><span class="fl">0.95</span>, top<span class="op">=</span><span class="fl">0.85</span>, bottom<span class="op">=</span><span class="fl">0.1</span>, wspace<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb242-36"><a href="processo-de-poisson.html#cb242-36" tabindex="-1"></a></span>
+<span id="cb242-37"><a href="processo-de-poisson.html#cb242-37" tabindex="-1"></a>    <span class="co"># Ajustar layout final</span></span>
+<span id="cb242-38"><a href="processo-de-poisson.html#cb242-38" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb242-39"><a href="processo-de-poisson.html#cb242-39" tabindex="-1"></a>    plt.show()</span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb243-1"><a href="processo-de-poisson.html#cb243-1" tabindex="-1"></a></span>
+<span id="cb243-2"><a href="processo-de-poisson.html#cb243-2" tabindex="-1"></a><span class="co"># A função **`plot_sequential_poisson`** visualiza múltiplos **Processos de Poisson** com diferentes taxas `rate`, exibindo em dois gráficos a evolução cumulativa dos eventos no tempo e os histogramas dos intervalos entre eventos, destacando a distribuição exponencial dos tempos de espera para cada taxa ao longo de uma duração definida `time_duration`.</span></span>
+<span id="cb243-3"><a href="processo-de-poisson.html#cb243-3" tabindex="-1"></a></span>
+<span id="cb243-4"><a href="processo-de-poisson.html#cb243-4" tabindex="-1"></a></span>
+<span id="cb243-5"><a href="processo-de-poisson.html#cb243-5" tabindex="-1"></a><span class="kw">def</span> plot_sequential_poisson(num_events_list, event_times_list, inter_arrival_times_list, rate, time_duration):</span>
+<span id="cb243-6"><a href="processo-de-poisson.html#cb243-6" tabindex="-1"></a>    fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">5</span>))  </span>
+<span id="cb243-7"><a href="processo-de-poisson.html#cb243-7" tabindex="-1"></a>    fig.suptitle(<span class="ss">f&#39;Simulação de Processos de Poisson com diferentes λ (Duração = </span><span class="sc">{</span>time_duration<span class="sc">}</span><span class="ss"> segundos)</span><span class="ch">\n</span><span class="ss">&#39;</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb243-8"><a href="processo-de-poisson.html#cb243-8" tabindex="-1"></a></span>
+<span id="cb243-9"><a href="processo-de-poisson.html#cb243-9" tabindex="-1"></a>    <span class="co"># Gráfico 1: Tempo dos Eventos</span></span>
+<span id="cb243-10"><a href="processo-de-poisson.html#cb243-10" tabindex="-1"></a>    axs[<span class="dv">0</span>].set_xlabel(<span class="st">&#39;Tempo (s)&#39;</span>)</span>
+<span id="cb243-11"><a href="processo-de-poisson.html#cb243-11" tabindex="-1"></a>    axs[<span class="dv">0</span>].set_ylabel(<span class="st">&#39;Número de Eventos&#39;</span>)</span>
+<span id="cb243-12"><a href="processo-de-poisson.html#cb243-12" tabindex="-1"></a>    axs[<span class="dv">0</span>].set_title(<span class="ss">f&#39;Evolução Incremental dos Eventos no Tempo </span><span class="ch">\n</span><span class="ss">N(t) é não decrescente&#39;</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb243-13"><a href="processo-de-poisson.html#cb243-13" tabindex="-1"></a>    axs[<span class="dv">0</span>].grid(<span class="va">True</span>)</span>
+<span id="cb243-14"><a href="processo-de-poisson.html#cb243-14" tabindex="-1"></a></span>
+<span id="cb243-15"><a href="processo-de-poisson.html#cb243-15" tabindex="-1"></a>    <span class="co"># Gráfico 2: Histograma dos Tempos de Espera</span></span>
+<span id="cb243-16"><a href="processo-de-poisson.html#cb243-16" tabindex="-1"></a>    axs[<span class="dv">1</span>].set_xlabel(<span class="st">&#39;Tempo de Espera entre Eventos (s)&#39;</span>)</span>
+<span id="cb243-17"><a href="processo-de-poisson.html#cb243-17" tabindex="-1"></a>    axs[<span class="dv">1</span>].set_ylabel(<span class="st">&#39;Densidade&#39;</span>)</span>
+<span id="cb243-18"><a href="processo-de-poisson.html#cb243-18" tabindex="-1"></a>    axs[<span class="dv">1</span>].set_title(<span class="ss">f&#39;Distribuição dos Tempos de Espera: T(n) ~ Exp</span><span class="ch">\n</span><span class="ss"> E(T)=1/λ, Sd(T)=sqrt(1/λ²)&#39;</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb243-19"><a href="processo-de-poisson.html#cb243-19" tabindex="-1"></a>    axs[<span class="dv">1</span>].grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb243-20"><a href="processo-de-poisson.html#cb243-20" tabindex="-1"></a></span>
+<span id="cb243-21"><a href="processo-de-poisson.html#cb243-21" tabindex="-1"></a>    color_palette <span class="op">=</span> plt.get_cmap(<span class="st">&#39;tab20&#39;</span>)</span>
+<span id="cb243-22"><a href="processo-de-poisson.html#cb243-22" tabindex="-1"></a>    colors <span class="op">=</span> [color_palette(i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(rate))]</span>
+<span id="cb243-23"><a href="processo-de-poisson.html#cb243-23" tabindex="-1"></a></span>
+<span id="cb243-24"><a href="processo-de-poisson.html#cb243-24" tabindex="-1"></a>    <span class="cf">for</span> n, individual_rate <span class="kw">in</span> <span class="bu">enumerate</span>(rate):</span>
+<span id="cb243-25"><a href="processo-de-poisson.html#cb243-25" tabindex="-1"></a>        num_events <span class="op">=</span> num_events_list[n]</span>
+<span id="cb243-26"><a href="processo-de-poisson.html#cb243-26" tabindex="-1"></a>        event_times <span class="op">=</span> event_times_list[n]</span>
+<span id="cb243-27"><a href="processo-de-poisson.html#cb243-27" tabindex="-1"></a>        inter_arrival_times <span class="op">=</span> inter_arrival_times_list[n]</span>
+<span id="cb243-28"><a href="processo-de-poisson.html#cb243-28" tabindex="-1"></a></span>
+<span id="cb243-29"><a href="processo-de-poisson.html#cb243-29" tabindex="-1"></a>        <span class="co"># Gráfico 1: Curva de passos para os tempos de chegada</span></span>
+<span id="cb243-30"><a href="processo-de-poisson.html#cb243-30" tabindex="-1"></a>        axs[<span class="dv">0</span>].step(event_times, np.arange(<span class="dv">1</span>, num_events <span class="op">+</span> <span class="dv">1</span>), where<span class="op">=</span><span class="st">&#39;post&#39;</span>, color<span class="op">=</span>colors[n],</span>
+<span id="cb243-31"><a href="processo-de-poisson.html#cb243-31" tabindex="-1"></a>                    label<span class="op">=</span><span class="ss">f&#39;λ = </span><span class="sc">{</span>individual_rate<span class="sc">}</span><span class="ss">, Total: </span><span class="sc">{</span>num_events<span class="sc">}</span><span class="ss">&#39;</span>)</span>
+<span id="cb243-32"><a href="processo-de-poisson.html#cb243-32" tabindex="-1"></a></span>
+<span id="cb243-33"><a href="processo-de-poisson.html#cb243-33" tabindex="-1"></a>        <span class="co"># Gráfico 2: Histograma dos tempos entre eventos</span></span>
+<span id="cb243-34"><a href="processo-de-poisson.html#cb243-34" tabindex="-1"></a>        axs[<span class="dv">1</span>].hist(inter_arrival_times, bins<span class="op">=</span><span class="dv">20</span>, density<span class="op">=</span><span class="va">True</span>, color<span class="op">=</span>colors[n], alpha<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb243-35"><a href="processo-de-poisson.html#cb243-35" tabindex="-1"></a>                    label<span class="op">=</span><span class="ss">f&#39;λ = </span><span class="sc">{</span>individual_rate<span class="sc">}</span><span class="ss">, E(T): </span><span class="sc">{</span><span class="dv">1</span><span class="op">/</span>individual_rate<span class="sc">:.2f}</span><span class="ss">, Sd(T): </span><span class="sc">{</span>np<span class="sc">.</span>std(inter_arrival_times)<span class="sc">:.2f}</span><span class="ss">&#39;</span>)</span>
+<span id="cb243-36"><a href="processo-de-poisson.html#cb243-36" tabindex="-1"></a></span>
+<span id="cb243-37"><a href="processo-de-poisson.html#cb243-37" tabindex="-1"></a>        <span class="co"># Sobreposição da curva exponencial teórica</span></span>
+<span id="cb243-38"><a href="processo-de-poisson.html#cb243-38" tabindex="-1"></a>        x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="bu">max</span>(inter_arrival_times), <span class="dv">100</span>)</span>
+<span id="cb243-39"><a href="processo-de-poisson.html#cb243-39" tabindex="-1"></a>        y <span class="op">=</span> expon.pdf(x, scale<span class="op">=</span><span class="dv">1</span><span class="op">/</span>individual_rate) </span>
+<span id="cb243-40"><a href="processo-de-poisson.html#cb243-40" tabindex="-1"></a>        axs[<span class="dv">1</span>].plot(x, y, color<span class="op">=</span>colors[n], lw<span class="op">=</span><span class="dv">2</span>, linestyle<span class="op">=</span><span class="st">&#39;--&#39;</span>, label<span class="op">=</span><span class="ss">f&#39;Modelo Exp (λ=</span><span class="sc">{</span>individual_rate<span class="sc">:.2f}</span><span class="ss">)&#39;</span>)</span>
+<span id="cb243-41"><a href="processo-de-poisson.html#cb243-41" tabindex="-1"></a></span>
+<span id="cb243-42"><a href="processo-de-poisson.html#cb243-42" tabindex="-1"></a>    axs[<span class="dv">0</span>].legend(loc<span class="op">=</span><span class="st">&#39;upper left&#39;</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb243-43"><a href="processo-de-poisson.html#cb243-43" tabindex="-1"></a>    axs[<span class="dv">1</span>].legend(loc<span class="op">=</span><span class="st">&#39;upper right&#39;</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb243-44"><a href="processo-de-poisson.html#cb243-44" tabindex="-1"></a></span>
+<span id="cb243-45"><a href="processo-de-poisson.html#cb243-45" tabindex="-1"></a>    <span class="co"># Ajustar espaçamento entre gráficos</span></span>
+<span id="cb243-46"><a href="processo-de-poisson.html#cb243-46" tabindex="-1"></a>    plt.subplots_adjust(left<span class="op">=</span><span class="fl">0.08</span>, right<span class="op">=</span><span class="fl">0.95</span>, top<span class="op">=</span><span class="fl">0.85</span>, bottom<span class="op">=</span><span class="fl">0.1</span>, wspace<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb243-47"><a href="processo-de-poisson.html#cb243-47" tabindex="-1"></a></span>
+<span id="cb243-48"><a href="processo-de-poisson.html#cb243-48" tabindex="-1"></a>    <span class="co"># Ajustar layout final</span></span>
+<span id="cb243-49"><a href="processo-de-poisson.html#cb243-49" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb243-50"><a href="processo-de-poisson.html#cb243-50" tabindex="-1"></a>    plt.show()</span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb244-1"><a href="processo-de-poisson.html#cb244-1" tabindex="-1"></a></span>
+<span id="cb244-2"><a href="processo-de-poisson.html#cb244-2" tabindex="-1"></a><span class="co"># A função **`poisson_simulation`** simula um ou vários **Processos de Poisson**, dependendo se `rate` é um valor único (int) ou uma lista de taxas, gerando tempos de ocorrência e intervalos entre eventos; além disso, visualiza os resultados por meio de gráficos que exibem a evolução temporal dos eventos e a distribuição dos tempos de espera ao longo de um intervalo definido por `time_duration`.</span></span>
+<span id="cb244-3"><a href="processo-de-poisson.html#cb244-3" tabindex="-1"></a></span>
+<span id="cb244-4"><a href="processo-de-poisson.html#cb244-4" tabindex="-1"></a><span class="kw">def</span> poisson_simulation(rate, time_duration, show_visualization<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb244-5"><a href="processo-de-poisson.html#cb244-5" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(rate, <span class="bu">int</span>):</span>
+<span id="cb244-6"><a href="processo-de-poisson.html#cb244-6" tabindex="-1"></a>        num_events, event_times, inter_arrival_times <span class="op">=</span> generate_poisson_events(rate, time_duration)</span>
+<span id="cb244-7"><a href="processo-de-poisson.html#cb244-7" tabindex="-1"></a>        </span>
+<span id="cb244-8"><a href="processo-de-poisson.html#cb244-8" tabindex="-1"></a>        <span class="cf">if</span> show_visualization:</span>
+<span id="cb244-9"><a href="processo-de-poisson.html#cb244-9" tabindex="-1"></a>            fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>))  <span class="co"># Aumentar tamanho da figura</span></span>
+<span id="cb244-10"><a href="processo-de-poisson.html#cb244-10" tabindex="-1"></a>            plot_non_sequential_poisson(num_events, event_times, inter_arrival_times, rate, time_duration)</span>
+<span id="cb244-11"><a href="processo-de-poisson.html#cb244-11" tabindex="-1"></a>            fig.set_tight_layout(<span class="va">True</span>)  <span class="co"># Ajuste automático do layout</span></span>
+<span id="cb244-12"><a href="processo-de-poisson.html#cb244-12" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb244-13"><a href="processo-de-poisson.html#cb244-13" tabindex="-1"></a>            <span class="cf">return</span> num_events, event_times, inter_arrival_times</span>
+<span id="cb244-14"><a href="processo-de-poisson.html#cb244-14" tabindex="-1"></a></span>
+<span id="cb244-15"><a href="processo-de-poisson.html#cb244-15" tabindex="-1"></a>    <span class="cf">elif</span> <span class="bu">isinstance</span>(rate, <span class="bu">list</span>):</span>
+<span id="cb244-16"><a href="processo-de-poisson.html#cb244-16" tabindex="-1"></a>        num_events_list <span class="op">=</span> []</span>
+<span id="cb244-17"><a href="processo-de-poisson.html#cb244-17" tabindex="-1"></a>        event_times_list <span class="op">=</span> []</span>
+<span id="cb244-18"><a href="processo-de-poisson.html#cb244-18" tabindex="-1"></a>        inter_arrival_times_list <span class="op">=</span> []</span>
+<span id="cb244-19"><a href="processo-de-poisson.html#cb244-19" tabindex="-1"></a></span>
+<span id="cb244-20"><a href="processo-de-poisson.html#cb244-20" tabindex="-1"></a>        <span class="cf">for</span> individual_rate <span class="kw">in</span> rate:</span>
+<span id="cb244-21"><a href="processo-de-poisson.html#cb244-21" tabindex="-1"></a>            num_events, event_times, inter_arrival_times <span class="op">=</span> generate_poisson_events(individual_rate, time_duration)</span>
+<span id="cb244-22"><a href="processo-de-poisson.html#cb244-22" tabindex="-1"></a>            num_events_list.append(num_events)</span>
+<span id="cb244-23"><a href="processo-de-poisson.html#cb244-23" tabindex="-1"></a>            event_times_list.append(event_times)</span>
+<span id="cb244-24"><a href="processo-de-poisson.html#cb244-24" tabindex="-1"></a>            inter_arrival_times_list.append(inter_arrival_times)</span>
+<span id="cb244-25"><a href="processo-de-poisson.html#cb244-25" tabindex="-1"></a></span>
+<span id="cb244-26"><a href="processo-de-poisson.html#cb244-26" tabindex="-1"></a>        <span class="cf">if</span> show_visualization:</span>
+<span id="cb244-27"><a href="processo-de-poisson.html#cb244-27" tabindex="-1"></a>            fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">18</span>, <span class="dv">8</span>))  <span class="co"># Maior espaço para gráficos sequenciais</span></span>
+<span id="cb244-28"><a href="processo-de-poisson.html#cb244-28" tabindex="-1"></a>            plot_sequential_poisson(num_events_list, event_times_list, inter_arrival_times_list, rate, time_duration)</span>
+<span id="cb244-29"><a href="processo-de-poisson.html#cb244-29" tabindex="-1"></a>            fig.set_tight_layout(<span class="va">True</span>)  <span class="co"># Ajuste automático do layout</span></span>
+<span id="cb244-30"><a href="processo-de-poisson.html#cb244-30" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb244-31"><a href="processo-de-poisson.html#cb244-31" tabindex="-1"></a>            <span class="cf">return</span> num_events_list, event_times_list, inter_arrival_times_list</span></code></pre></div>
+<p><br />
+</p>
+<p>Nas simulações a seguir confirma-se empiricamente que a evolução incremental da contagem de eventos ao longo do tempo (a variável aleatória <span class="math inline">\(N(t)\)</span>) é crescente e a distribuição dos tempos de espera (a variável aleatória <span class="math inline">\(T(n)\)</span> entre eventos segue um modelo exponencial com parametro 1/λ (código adaptado de <a href="https://medium.com/@abhash-rai/poisson-process-simulation-and-analysis-in-python-e62f69d1fdd0">link</a>).</p>
+<p><br />
+</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb245-1"><a href="processo-de-poisson.html#cb245-1" tabindex="-1"></a>poisson_simulation(rate<span class="op">=</span><span class="dv">5</span>, time_duration<span class="op">=</span><span class="dv">100</span>)</span></code></pre></div>
+<p><img src="apostila_files/figure-html/unnamed-chunk-234-1.png" width="1344" /></p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb246-1"><a href="processo-de-poisson.html#cb246-1" tabindex="-1"></a>poisson_simulation(rate<span class="op">=</span>[<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">10</span>], time_duration<span class="op">=</span><span class="dv">100</span>)</span></code></pre></div>
+<p><img src="apostila_files/figure-html/unnamed-chunk-234-2.png" width="1344" /></p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb247-1"><a href="processo-de-poisson.html#cb247-1" tabindex="-1"></a>plt.close(<span class="st">&#39;all&#39;</span>)</span></code></pre></div>
+<blockquote>
+<p>Exemplo 3: Em um sistema de atendimento telefônico, as chamadas chegam de acordo com um processo de Poisson com taxa média de chegada de λ=3 chamadas por minuto. Responda:<br />
+1) Qual é a probabilidade de que ocorram exatamente 2 chamadas em um intervalo de 1 minuto?<br />
+2) Qual a probabilidade do tempo entre chamadas ser menor que 20 segundos?<br />
+3) Sabendo que o sistema comporta <strong>sem interrupção</strong> o atendimento de até 6 chamadas por minuto, qual é a probabilidade do sistema apresentar falhas?<br />
+4) Sabendo que o sistema comporta <strong>sem interrupção</strong> o atendimento com um intervalo mínimo de 15 segundos entre elas, qual é a probabilidade do sistema apresentar falhas?</p>
+</blockquote>
+<p><br />
+</p>
+<ol style="list-style-type: decimal">
+<li>A probabilidade de ocorrerem exatamente <span class="math inline">\(k = 2\)</span> chamadas em 1 minuto é dada pela fórmula da distribuição de Poisson:</li>
+</ol>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(N(t) = k) = \frac{(\lambda t)^k e^{-\lambda t}}{k!}\\
+P(N(1) = 2) = \frac{(3 \cdot 1)^2 e^{-3}}{2!}\\
+P(N(1) = 2) = \frac{9 e^{-3}}{2}\\
+P(N(1) = 2) \approx \frac{9 \cdot 0.0498}{2} = 0.2241
+\]</span></p>
+<p><br />
+</p>
+<ol start="2" style="list-style-type: decimal">
+<li>A probabilidade de tempo entre chamadas ser menor que 20 segundos é</li>
+</ol>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(T \leq t) = 1 - e^{-\lambda t}\\
+P(T \leq 1/3) = 1 - e^{-3 \cdot \frac{1}{3}}\\
+P(T \leq 1/3) \approx 1 - 0.3679 = 0.6321
+\]</span></p>
+<p><br />
+</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Sabendo que o sistema comporta <strong>sem interrupção</strong> o atendimento de até <strong>6 chamadas por minuto</strong>, a interrupção ocorrerá quando há <strong>mais de 6 chamadas</strong> no intervalo de 1 minuto, e a probabilidade disso ocorrer é</li>
+</ol>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(N(1) &gt; 6) = 1 - P(N \leq 6)\\
+P(N(1) &gt; 6 ) = 1- \sum_{k=0}^{6} \frac{3^k e^{-3}}{k!}\\
+P(N(1) &gt; 6 \approx 1- 0.967\\
+P(N(1) &gt; 6) \approx 0.033\\
+\]</span></p>
+<p><br />
+</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Sabendo que o sistema comporta <strong>sem interrupção</strong> o atendimento com um <strong>intervalo mínimo de 15 segundos entre chamadas consecutivas</strong>, a interrupção ocorrerá quando o sistema receber cahamadas com um intervalo menor que 15 s e essa probabilidade será</li>
+</ol>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(T \leq t) = 1 - e^{-\lambda t}\\
+P(T \leq 0.25) = 1 - e^{-3 \cdot 0.25}\\
+P(T \leq 0.25) = 1 - e^{-0.75}\\
+P(T \leq 0.25) \approx 1 - 0.4724 \\
+P(T \leq 0.25) \approx 0.5276
+\]</span></p>
+<p><br />
+</p>
+<p>Esses resultados ilustram que:<br />
+- É <strong>improvável</strong> que o sistema falhe devido a mais de 6 chamadas em 1 minuto.<br />
+- Há uma <strong>alta probabilidade de falha</strong> devido a <strong>intervalos muito curtos entre chamadas consecutivas</strong>.</p>
+<p><br />
+</p>
+</div>
+<div id="distribuição-condicional-dos-tempos-de-chegada" class="section level3 hasAnchor" number="13.4.5">
+<h3><span class="header-section-number">13.4.5</span> Distribuição condicional dos tempos de chegada<a href="processo-de-poisson.html#distribuição-condicional-dos-tempos-de-chegada" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Considere <span class="math inline">\(N(t), t \geq 0\)</span> com taxa <span class="math inline">\(\lambda\)</span>. Sabendo-se <em>a priori</em> que um evento ocorreu exatamente no intervalo <span class="math inline">\((0, t]\)</span>, qual a distribuição do tempo até a ocorrência desse evento?</p>
+<p><br />
+</p>
+<p>Ou seja, desejamos estimar a probabilidade do evento ter ocorrido em intervalo de tempo <span class="math inline">\(s\)</span> dado que ocorreu um evento no intervalo <span class="math inline">\(t\)</span>, sendo <span class="math inline">\(s \leq t\)</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(T_1 &lt; s \mid N(t) = 1), \, s \leq t.
+\]</span></p>
+<p><br />
+</p>
+<p>Pela hipótese de incrementos independentes e estacionários demonstra-se (Sheldon Ross, in Introduction to Probability Models, <span class="math inline">\(6^{a}\)</span> ed., Cap. 5) que a distribuição é uniforme no intervalo <span class="math inline">\((0, t]\)</span> e pode-se verificar que</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(T_1 &lt; s \mid N(t) = 1) = \frac{s}{t}, \, s \leq t.
+\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo 4: Em um sistema de atendimento telefônico, as chamadas chegam de acordo com um processo de Poisson com taxa média de chegada de λ=3 chamadas por minuto. Dado que ocorreram 2 chamadas em 1 minuto, qual é a probabilidade de que o tempo de espera para a primeira chamada seja inferior a 20 segundos?</p>
+</blockquote>
+<p><br />
+</p>
+<p>A probabilidade de que o tempo de espera para a primeira chamada seja inferior a <span class="math inline">\(s=\frac{1}{3} min\)</span> dado que ocorreram 2 chamadas em <span class="math inline">\(t=1min\)</span> segue uma distribuição uniforme</p>
+<p><br />
+<span class="math display">\[
+P(T_1 &lt; s \mid N(t) = 1) = \frac{s}{t}, \, s \leq t.\\
+P(T_1 &lt; \frac{1}{3} \mid N(t=1) = 1) = \frac{\frac{1}{3}}{1}\\
+P(T_1 &lt; \frac{1}{3} \mid N(t=1) = 1) \approx 0.0333
+\]</span></p>
+<p><br />
+</p>
+<p>Dado que ocorreram 2 chamadas em 1 minuto, a probabilidade de que a primeira chamada ocorra nos primeiros 20 segundos é de 1/3 (aproximadamente 33,33%).</p>
+<p><br />
+</p>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="processos-estocásticos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="orientações-gerais.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="processos-estocásticos-temporais-espaciais-e-espaçotemporais.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="simulações-monte-carlo.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

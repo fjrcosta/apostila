@@ -585,11 +585,16 @@ Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa
 <p><br />
 </p>
 <blockquote>
-<p>As distribuições de probabilidade podem ser determinadas por:<br />
-- dados de séries temporais;<br />
-- estimativas de especialistas;<br />
-- conhecimento prévio.<br />
-A função de distribuição cumulativa (CDF) dá a probabilidade de que a variável aleatória seja <strong>menor ou igual a um valor específico</strong>. A <strong>CDF</strong> desempenha um papel importante nas Simulações Monte Carlo.</p>
+<p>As distribuições de probabilidade podem ser determinadas por:</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>dados de séries temporais;<br />
+</li>
+<li>estimativas de especialistas;<br />
+</li>
+<li>conhecimento prévio.</li>
+</ul>
 </blockquote>
 <p><br />
 </p>
@@ -608,12 +613,17 @@ A função de distribuição cumulativa (CDF) dá a probabilidade de que a vari�
 </blockquote>
 <p><br />
 </p>
+<blockquote>
+<p>A <strong>CDF</strong> desempenha um papel importante nas Simulações Monte Carlo. A função de distribuição cumulativa (CDF) dá a probabilidade de que a variável aleatória seja <strong>menor ou igual a um valor específico</strong>.</p>
+</blockquote>
 </div>
 <div id="fundamentação" class="section level3 hasAnchor" number="13.5.2">
 <h3><span class="header-section-number">13.5.2</span> Fundamentação<a href="simulações-monte-carlo.html#fundamentação" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><br />
 </p>
+<blockquote>
 <p>A Lei dos Grandes Números afirma que, à medida que o número de amostras aumenta, a média das observações converge para o valor esperado:</p>
+</blockquote>
 <p><br />
 </p>
 <p><span class="math display">\[
@@ -621,7 +631,9 @@ A função de distribuição cumulativa (CDF) dá a probabilidade de que a vari�
 \]</span></p>
 <p><br />
 </p>
+<blockquote>
 <p>O Teorema do Limite Central afirma que, para um número suficientemente grande de amostras independentes e identicamente distribuídas (i.i.d), a soma das variáveis converge em distribuição a uma distribuição Normal:</p>
+</blockquote>
 <p><br />
 </p>
 <p><span class="math display">\[
@@ -639,7 +651,9 @@ A função de distribuição cumulativa (CDF) dá a probabilidade de que a vari�
 </ul>
 <p><br />
 </p>
+<blockquote>
 <p>Esses teoremas garantem que métodos de Monte Carlo produzam aproximações confiáveis conforme se aumente o número de simulações.</p>
+</blockquote>
 <p><br />
 </p>
 </div>
@@ -647,10 +661,14 @@ A função de distribuição cumulativa (CDF) dá a probabilidade de que a vari�
 <h3><span class="header-section-number">13.5.3</span> Números Aleatórios e Pseudoaleatórios<a href="simulações-monte-carlo.html#números-aleatórios-e-pseudoaleatórios" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><br />
 </p>
+<blockquote>
 <p>Os números verdadeiramente aleatórios são gerados a partir de processos físicos imprevisíveis, como ruído térmico ou decaimento radioativo. Esses métodos são difíceis de implementar computacionalmente devido ao custo e à dificuldade de captura dos fenômenos físicos.</p>
+</blockquote>
 <p><br />
 </p>
+<blockquote>
 <p>Os números pseudoaleatórios são gerados por <strong>algoritmos determinísticos</strong> que produzem sequências que se assemelham à aleatoriedade. <strong>Um</strong> dos métodos mais comuns é o <strong>Gerador Congruencial Linear (Linear Congruential Generator – LCG)</strong>, cuja fórmula matemática é dada por:</p>
+</blockquote>
 <p><br />
 </p>
 <p><span class="math display">\[
@@ -683,7 +701,12 @@ X_{1} &amp; = 64 \mod 17 \\
 \end{align}\]</span></p>
 <p><br />
 </p>
-<p>Como <span class="math inline">\(\frac{64}{17} \approx 3,76\)</span>, <span class="math inline">\(64-(3*17)=13\)</span> então <span class="math inline">\(X_{1} = 13\)</span>. A sequência é então normalizada para o intervalo <span class="math inline">\([0, 1)\)</span> fazendo-se</p>
+<p>Como <span class="math inline">\(\frac{64}{17} \approx 3,76\)</span>, <span class="math inline">\(64-(3*17)=13\)</span> então <span class="math inline">\(X_{1} = 13\)</span>.</p>
+<p><br />
+</p>
+<blockquote>
+<p>A sequência é então normalizada para o intervalo <span class="math inline">\([0, 1)\)</span> fazendo-se</p>
+</blockquote>
 <p><br />
 </p>
 <p><span class="math display">\[
@@ -691,10 +714,14 @@ U_i = \frac{X_{i+1}}{m}
 \]</span></p>
 <p><br />
 </p>
+<blockquote>
 <p>Essa normalização é essencial para aplicações que requerem números pseudoaleatórios no intervalo <span class="math inline">\([0, 1)\)</span> como as <strong>CDF</strong>.</p>
+</blockquote>
 <p><br />
 </p>
+<blockquote>
 <p>O método LCG é <strong>determinístico</strong>, ou seja, dada uma mesma semente inicial (<span class="math inline">\(X_0\)</span>), ele produzirá sempre a mesma sequência. Isso pode ser problemático em contextos onde a <strong>imprevisibilidade</strong> é desejada (o código a seguir foi adaptado de <a href="https://github.com/rossilor95/lcg-python/blob/main/lcg.py">link</a>).</p>
+</blockquote>
 <p><br />
 </p>
 <div class="sourceCode" id="cb248"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb248-1"><a href="simulações-monte-carlo.html#cb248-1" tabindex="-1"></a></span>
@@ -783,9 +810,12 @@ U_i = \frac{X_{i+1}}{m}
 <div class="sourceCode" id="cb250"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb250-1"><a href="simulações-monte-carlo.html#cb250-1" tabindex="-1"></a>plt.close(<span class="st">&#39;all&#39;</span>)</span></code></pre></div>
 <p><br />
 </p>
+<blockquote>
 <p>De acordo com <strong>Donald Knuth</strong> (<em>The Art Of Computer Programming</em>), um gerador pseudoaleatório linear produz uma sequência <strong>aperiódica</strong> se as seguintes condições forem satisfeitas:</p>
+</blockquote>
 <p><br />
 </p>
+<blockquote>
 <ol style="list-style-type: decimal">
 <li>Se <span class="math inline">\(p\)</span> é um número primo que divide <span class="math inline">\(m\)</span>, então <span class="math inline">\(p\)</span> deve dividir <span class="math inline">\(c\)</span>.<br />
 </li>
@@ -793,9 +823,12 @@ U_i = \frac{X_{i+1}}{m}
 </li>
 <li>O único número inteiro que divide exatamente <span class="math inline">\(a\)</span> e <span class="math inline">\(m\)</span> deve ser 1 (ou seja, <span class="math inline">\(a\)</span> e <span class="math inline">\(m\)</span> devem ser coprimos).</li>
 </ol>
+</blockquote>
 <p><br />
 </p>
+<blockquote>
 <p>Essas condições garantem um <strong>período máximo</strong> e uma boa distribuição dos números gerados.</p>
+</blockquote>
 <p><br />
 </p>
 <div class="sourceCode" id="cb251"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb251-1"><a href="simulações-monte-carlo.html#cb251-1" tabindex="-1"></a><span class="co"># LCG com as condições satisfeitas</span></span>
@@ -833,14 +866,21 @@ U_i = \frac{X_{i+1}}{m}
 <h3><span class="header-section-number">13.5.4</span> Geração de amostras aleatórias de distribuições de probabilidade<a href="simulações-monte-carlo.html#geração-de-amostras-aleatórias-de-distribuições-de-probabilidade" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><br />
 </p>
+<blockquote>
 <p>Os números pseudoaleatórios gerados pelo <strong>LCG</strong> (<span class="math inline">\(U_{i})\)</span> seguem uma <strong>distribuição uniforme</strong> no intervalo <span class="math inline">\([0,1]\)</span>. No entanto, muitos problemas exigem amostras de distribuições diferentes, como a <strong>Normal</strong>, <strong>Exponencial</strong> ou <strong>Poisson</strong>.</p>
+</blockquote>
 <p><br />
 </p>
-<div id="método-da-transformação-inversa-da-cdf" class="section level4 hasAnchor" number="13.5.4.1">
-<h4><span class="header-section-number">13.5.4.1</span> Método da Transformação Inversa da CDF<a href="simulações-monte-carlo.html#método-da-transformação-inversa-da-cdf" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="método-da-inversa-da-cdf" class="section level4 hasAnchor" number="13.5.4.1">
+<h4><span class="header-section-number">13.5.4.1</span> Método da Inversa da CDF<a href="simulações-monte-carlo.html#método-da-inversa-da-cdf" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><br />
 </p>
-<p>A geração de números aleatórios a partir de uma distribuição qualquer pode ser feita por meio da <strong>função de distribuição acumulada (CDF)</strong>. Se <span class="math inline">\(F(x)\)</span> é a CDF de uma variável aleatória <span class="math inline">\(X\)</span>, então:</p>
+<blockquote>
+<p>A geração de números aleatórios de uma distribuição de probabilidade qualquer pode ser feita por meio da <strong>inversa de sua função de distribuição acumulada (CDF)</strong>.</p>
+</blockquote>
+<p><br />
+</p>
+<p>Se <span class="math inline">\(F(x)\)</span> é a CDF de uma variável aleatória <span class="math inline">\(X\)</span>, então:</p>
 <p><br />
 </p>
 <p><span class="math display">\[
@@ -848,9 +888,14 @@ X = F^{-1}(U)
 \]</span></p>
 <p><br />
 </p>
-<p>em que:<br />
-- <span class="math inline">\(U \sim U(0,1)\)</span>: número pseudoaleatório uniforme<br />
-- <span class="math inline">\(F^{-1}\)</span>: função inversa da CDF da distribuição da variável aleatória <span class="math inline">\(X\)</span></p>
+<p>em que:</p>
+<p><br />
+</p>
+<ul>
+<li><span class="math inline">\(U \sim U(0,1)\)</span>: é um número pseudoaleatório que segue uma distribuição uniforme<br />
+</li>
+<li><span class="math inline">\(F^{-1}\)</span>: função inversa da CDF da distribuição da variável aleatória <span class="math inline">\(X\)</span></li>
+</ul>
 <p><br />
 </p>
 <blockquote>
@@ -861,7 +906,14 @@ F(x)=\frac{x-a}{b-a}
 \]</span></p>
 <p><br />
 </p>
-<p>Invertendo-se</p>
+<p>Invertendo-se a <strong>CDF</strong> tem-se</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+x=F^{-1}(p) = a + p.(b-1)
+\]</span></p>
+<p> </p>
+<p>em que <span class="math inline">\(p\)</span> é o valor da probabilidade no intervalo [0,1]. Como <span class="math inline">\(U \sim U(0,1)\)</span> é um número pseudoaleatório uniforme</p>
 <p><br />
 </p>
 <p><span class="math display">\[
@@ -882,7 +934,15 @@ F(x) = 1 - e^{-\lambda x}
 \]</span></p>
 <p><br />
 </p>
-<p>Invertendo-se</p>
+<p>Invertendo-se a <strong>CDF</strong> tem-se</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+x=F^{-1}(p) = -\frac{1}{\lambda} \ln(1 - p).
+\]</span></p>
+<p><br />
+</p>
+<p>em que <span class="math inline">\(p\)</span> é o valor da probabilidade no intervalo [0,1]. Como <span class="math inline">\(U \sim U(0,1)\)</span> é um número pseudoaleatório uniforme</p>
 <p><br />
 </p>
 <p><span class="math display">\[

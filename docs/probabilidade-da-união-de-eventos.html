@@ -798,10 +798,10 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb101-3"><a href="probabilidade-da-união-de-eventos.html#cb101-3" tabindex="-1"></a><span class="fu">table</span>(popSim<span class="sc">$</span>Curso, popSim<span class="sc">$</span>Sexo)</span></code></pre></div>
 <pre><code>##                      
 ##                           F     M
-##   Computação           4989 10011
-##   Estatística         10021  4979
-##   Matemática aplicada  7407  7593
-##   Matemática pura     19928 35072</code></pre>
+##   Computação           4998 10002
+##   Estatística          9931  5069
+##   Matemática aplicada  7507  7493
+##   Matemática pura     20097 34903</code></pre>
 <p><br />
 </p>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="probabilidade-da-união-de-eventos.html#cb103-1" tabindex="-1"></a><span class="co"># Selecionar uma amostra de 200 com reposição (simular a tabela)</span></span>
@@ -815,27 +815,27 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb103-9"><a href="probabilidade-da-união-de-eventos.html#cb103-9" tabindex="-1"></a>tab</span></code></pre></div>
 <pre><code>##                          
 ##                             M   F Total
-##   Matemática pura (M)      66  44   110
-##   Matemática aplicada (A)  16  14    30
-##   Estatística (E)          12  18    30
-##   Computação (C)           16  14    30
-##   Total                   110  90   200</code></pre>
+##   Matemática pura (M)      68  39   107
+##   Matemática aplicada (A)  15  18    33
+##   Estatística (E)          10  23    33
+##   Computação (C)           12  15    27
+##   Total                   105  95   200</code></pre>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="probabilidade-da-união-de-eventos.html#cb105-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb105-2"><a href="probabilidade-da-união-de-eventos.html#cb105-2" tabindex="-1"></a>pMasc<span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb105-3"><a href="probabilidade-da-união-de-eventos.html#cb105-3" tabindex="-1"></a>pMasc</span></code></pre></div>
-<pre><code>## [1] 0.55</code></pre>
+<pre><code>## [1] 0.525</code></pre>
 <div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="probabilidade-da-união-de-eventos.html#cb107-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; na amostra</span></span>
 <span id="cb107-2"><a href="probabilidade-da-união-de-eventos.html#cb107-2" tabindex="-1"></a>pMatAp <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span>)</span>
 <span id="cb107-3"><a href="probabilidade-da-união-de-eventos.html#cb107-3" tabindex="-1"></a>pMatAp</span></code></pre></div>
-<pre><code>## [1] 0.15</code></pre>
+<pre><code>## [1] 0.165</code></pre>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="probabilidade-da-união-de-eventos.html#cb109-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -E- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb109-2"><a href="probabilidade-da-união-de-eventos.html#cb109-2" tabindex="-1"></a>pMatAp_and_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">&amp;</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb109-3"><a href="probabilidade-da-união-de-eventos.html#cb109-3" tabindex="-1"></a>pMatAp_and_Masc</span></code></pre></div>
-<pre><code>## [1] 0.08</code></pre>
+<pre><code>## [1] 0.075</code></pre>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="probabilidade-da-união-de-eventos.html#cb111-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -OU- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb111-2"><a href="probabilidade-da-união-de-eventos.html#cb111-2" tabindex="-1"></a>pMatAp_or_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">|</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb111-3"><a href="probabilidade-da-união-de-eventos.html#cb111-3" tabindex="-1"></a>pMatAp_or_Masc</span></code></pre></div>
-<pre><code>## [1] 0.62</code></pre>
+<pre><code>## [1] 0.615</code></pre>
 <p><br />
 </p>
 <blockquote>

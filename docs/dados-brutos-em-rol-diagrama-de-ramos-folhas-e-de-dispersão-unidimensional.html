@@ -29,7 +29,7 @@
   
   
 <link rel="prev" href="análise-exploratória.html"/>
-<link rel="next" href="sínteses-numéricas-descritivas.html"/>
+<link rel="next" href="resumos-sínteses-numéricos-descritivos.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -183,11 +183,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.1" data-path="análise-exploratória.html"><a href="análise-exploratória.html"><i class="fa fa-check"></i><b>3.1</b> Análise exploratória</a></li>
 <li class="chapter" data-level="3.2" data-path="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html"><a href="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html"><i class="fa fa-check"></i><b>3.2</b> Dados brutos, em rol, diagrama de ramos &amp; folhas e de dispersão unidimensional</a></li>
-<li class="chapter" data-level="3.3" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html"><i class="fa fa-check"></i><b>3.3</b> Sínteses numéricas descritivas</a>
+<li class="chapter" data-level="3.3" data-path="resumos-sínteses-numéricos-descritivos.html"><a href="resumos-sínteses-numéricos-descritivos.html"><i class="fa fa-check"></i><b>3.3</b> Resumos (sínteses) numéricos descritivos</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html#medidas-de-tendência-central-posição"><i class="fa fa-check"></i><b>3.3.1</b> Medidas de tendência central (posição)</a></li>
-<li class="chapter" data-level="3.3.2" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html#medidas-de-dispersão-variabilidade"><i class="fa fa-check"></i><b>3.3.2</b> Medidas de dispersão (variabilidade)</a></li>
-<li class="chapter" data-level="3.3.3" data-path="sínteses-numéricas-descritivas.html"><a href="sínteses-numéricas-descritivas.html#medidas-de-subdivisão-separatrizes"><i class="fa fa-check"></i><b>3.3.3</b> Medidas de subdivisão (separatrizes)</a></li>
+<li class="chapter" data-level="3.3.1" data-path="resumos-sínteses-numéricos-descritivos.html"><a href="resumos-sínteses-numéricos-descritivos.html#medidas-de-tendência-central-posição"><i class="fa fa-check"></i><b>3.3.1</b> Medidas de tendência central (posição)</a></li>
+<li class="chapter" data-level="3.3.2" data-path="resumos-sínteses-numéricos-descritivos.html"><a href="resumos-sínteses-numéricos-descritivos.html#medidas-de-dispersão-variabilidade"><i class="fa fa-check"></i><b>3.3.2</b> Medidas de dispersão (variabilidade)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="resumos-sínteses-numéricos-descritivos.html"><a href="resumos-sínteses-numéricos-descritivos.html#medidas-de-subdivisão-separatrizes"><i class="fa fa-check"></i><b>3.3.3</b> Medidas de subdivisão (separatrizes)</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="medidas-de-forma-assimetria-curtose.html"><a href="medidas-de-forma-assimetria-curtose.html"><i class="fa fa-check"></i><b>3.4</b> Medidas de forma (assimetria &amp; curtose)</a></li>
 <li class="chapter" data-level="3.5" data-path="diferentes-posições-da-média-moda-e-mediana-2o-quartil.html"><a href="diferentes-posições-da-média-moda-e-mediana-2o-quartil.html"><i class="fa fa-check"></i><b>3.5</b> Diferentes posições da média, moda e mediana (2<span class="math inline">\(^{o}\)</span> quartil)</a></li>
@@ -602,68 +602,7 @@ Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa
 ## [46] 1.62 1.55 1.86 1.44 1.67 1.76 1.79 1.75 1.41 1.65 1.58 1.93 1.57 1.71 1.58</code></pre>
 <p><br />
 </p>
-<p>Esse conjunto de dados certamente contém diversas informações acerca da altura dessas pessoas; todavia, da maneira como estão expostos, a visualização dessas informações fica bastante difícil. Esse modo de apresentação é chamado de dados <em>brutos</em>.</p>
-<p><br />
-</p>
-<p>Com um pequeno refinamento, como pela simples ordenação desses dados (são medidas numéricas contínuas), algumas informações começam a se destacar:</p>
-<p><br />
-</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html#cb13-1" tabindex="-1"></a><span class="fu">sort</span>(alturas)</span></code></pre></div>
-<pre><code>##  [1] 1.41 1.44 1.47 1.54 1.55 1.56 1.56 1.56 1.57 1.58 1.58 1.61 1.62 1.62 1.63
-## [16] 1.64 1.64 1.65 1.65 1.65 1.65 1.66 1.66 1.66 1.66 1.66 1.67 1.67 1.67 1.67
-## [31] 1.68 1.68 1.68 1.69 1.71 1.71 1.72 1.72 1.73 1.73 1.73 1.73 1.73 1.74 1.75
-## [46] 1.76 1.76 1.77 1.78 1.78 1.79 1.82 1.83 1.83 1.84 1.85 1.86 1.93 1.95 2.00</code></pre>
-<p><br />
-</p>
-<p>A interpretabilidade das informações trazidas por esses dados começa a ficar mais fácil como, por exemplo, as alturas:</p>
-<p><br />
-</p>
-<ul>
-<li>mínima; e,</li>
-<li>máxima dos estudantes.</li>
-</ul>
-<p><br />
-</p>
-<p>A uma listagem de valores ordenada (de modo crescente ou decrescente) dá-se o nome de <em>rol</em>.</p>
-<p><br />
-</p>
-<p>Outra forma de apresentação desses dados é por um <em>Diagrama de Ramos e Folhas</em>, uma apresentação híbrida pois ao mesmo tempo que espelha a quantidade de medidas observadas para cada altura, mantém as informações da listagem.</p>
-<p><br />
-</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html#cb15-1" tabindex="-1"></a><span class="fu">stem</span>(alturas)</span></code></pre></div>
-<pre><code>## 
-##   The decimal point is 1 digit(s) to the left of the |
-## 
-##   14 | 147
-##   15 | 45666788
-##   16 | 12234455556666677778889
-##   17 | 11223333345667889
-##   18 | 233456
-##   19 | 35
-##   20 | 0</code></pre>
-<p><br />
-</p>
-<p>À esquerda do traço vertical (os ramos) são apresentadas frações das medidas das alturas (no caso, decímetros) e à direita (as folhas) são apresentadas os complementos dessas medidas (os centímetros) de tal modo que cada um dos dados da amostral original possa ter sua medida resgatada fazendo-se a leitura dos valores à esquerda com cada um deles à direita.</p>
-<p><br />
-</p>
-<p>Essa apresentação também oferece uma apreciação visual a respeito de como os valores se distribuem.</p>
-<p><br />
-</p>
-<p>Um <em>Gráfico de dispersão unidimensional (stripchart)</em> expressa visualmente duas informações: a localização de cada uma das medidas e a dispersão dos dados.</p>
-<p><br />
-</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html#cb17-1" tabindex="-1"></a><span class="fu">stripchart</span>(alturas, <span class="at">method =</span> <span class="st">&quot;stack&quot;</span>, <span class="at">offset=</span><span class="dv">1</span>,</span>
-<span id="cb17-2"><a href="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html#cb17-2" tabindex="-1"></a>           <span class="at">pch=</span><span class="dv">20</span>, <span class="at">at=</span><span class="fl">0.5</span>,</span>
-<span id="cb17-3"><a href="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html#cb17-3" tabindex="-1"></a>           <span class="at">main=</span><span class="st">&quot;Gráfico de dispersão unidimensional&quot;</span>,</span>
-<span id="cb17-4"><a href="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html#cb17-4" tabindex="-1"></a>           <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">cex=</span><span class="dv">1</span>,</span>
-<span id="cb17-5"><a href="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html#cb17-5" tabindex="-1"></a>           <span class="at">xlab=</span><span class="st">&quot;Alturas dos estudantes (m)&quot;</span>,</span>
-<span id="cb17-6"><a href="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html#cb17-6" tabindex="-1"></a>           <span class="at">ylab=</span><span class="st">&quot;Quantidades observadas (un)&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-26"></span>
-<img src="apostila_files/figure-html/unnamed-chunk-26-1.png" alt="Gráfico de dispersão unidimensional (stripchart)" width="80%" />
-<p class="caption">
-Figure 3.2: Gráfico de dispersão unidimensional (stripchart)
-</p>
-</div>
+<p>Esse conjunto de dados certamente contém diversas informações acerca da altura dessas pessoas; todavia, da maneira como está apresentado a compreensão dessas informações fica bastante comprometida.</p>
 </div>
             </section>
 
@@ -671,7 +610,7 @@ Figure 3.2: Gráfico de dispersão unidimensional (stripchart)
         </div>
       </div>
 <a href="análise-exploratória.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sínteses-numéricas-descritivas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="resumos-sínteses-numéricos-descritivos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

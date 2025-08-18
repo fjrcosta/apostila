@@ -1,0 +1,1 @@
+Sys.setenv(RETICULATE_PYTHON = "/home/fjcosta/miniconda3/envs/gee/bin/python3.9")

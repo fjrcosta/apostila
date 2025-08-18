@@ -1,0 +1,46 @@
+--- 
+title: |
+  | UNIVERSIDADE ESTADUAL DE LONDRINA
+  | CCE - Centro de Ciências Exatas
+  | DSTA - Departamento de Estatística (sala 11)
+  | Prof. M.e Eng.$^{o}$ Felinto Junior Da Costa
+  | fjcosta@uel.br
+#author: "Prof. M.e Eng. Felinto Junior Da Costa"
+date: "Londrina, `r format(Sys.time(), '%d de %B de %Y')`."
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+url: https://fjrcosta.github.io/apostila/
+cover-image: images/logo-uel.png
+description: |
+  Apostila com alguns tópicos de estatística e probabilidade.
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+header-includes: 
+- \usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm, a4paper]{geometry}
+- \usepackage{titling}
+- \usepackage{pdfpages}
+- \usepackage{multirow}
+- \usepackage{multicol}
+- \pretitle{\begin{center}\includepdf{images1/logo-uel.png}}
+- \posttitle{\end{center}}
+- \usepackage{atbegshi}% http://ctan.org/pkg/atbegshi
+- \AtBeginDocument{\AtBeginShipoutNext{\AtBeginShipoutDiscard}}
+- \AtBeginDocument{\renewcommand{\chaptername}{Módulo}}
+- \AtBeginDocument{\renewcommand{\contentsname}{Índice}}
+---
+
+
+# {-}
+
+
+```{js, echo = FALSE}
+title=document.getElementById('header');
+title.innerHTML = '<img src="images1/logo-uel.png" alt="UEL">' + title.innerHTML
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```

@@ -566,13 +566,41 @@ Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa
 <h2><span class="header-section-number">3.3</span> Resumos (sínteses) numéricos descritivos<a href="resumos-sínteses-numéricos-descritivos.html#resumos-sínteses-numéricos-descritivos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><br />
 </p>
-<p>Além da apresentação elementar de algumas informações relacionadas aos dados brutos da amostra, tais como os valores <em>mínimo</em> e <em>máximo</em> observados, a estatística descritiva possui muitas outras ferramentas para <em>condensar</em> a informação trazida pelos dados.</p>
+<p>Esse modo de apresentação é chamado de dados <em>brutos</em>.</p>
 <p><br />
 </p>
-<p>São chamadas de <em>sínteses numéricas</em>, medidas que condensam variados aspectos relacionados aos valores dos dados.</p>
+<p>Com um pequeno refinamento, como pela simples ordenação desses dados (são medidas numéricas contínuas), algumas informações começam a se destacar:</p>
 <p><br />
 </p>
-<p>As mais conhecidas <em>sínteses numéricas</em> podem ser agrupadas conforme o aspecto que capturam dos dados:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb13-1" tabindex="-1"></a><span class="fu">sort</span>(alturas)</span></code></pre></div>
+<pre><code>##  [1] 1.41 1.44 1.47 1.54 1.55 1.56 1.56 1.56 1.57 1.58 1.58 1.61 1.62 1.62 1.63
+## [16] 1.64 1.64 1.65 1.65 1.65 1.65 1.66 1.66 1.66 1.66 1.66 1.67 1.67 1.67 1.67
+## [31] 1.68 1.68 1.68 1.69 1.71 1.71 1.72 1.72 1.73 1.73 1.73 1.73 1.73 1.74 1.75
+## [46] 1.76 1.76 1.77 1.78 1.78 1.79 1.82 1.83 1.83 1.84 1.85 1.86 1.93 1.95 2.00</code></pre>
+<p><br />
+</p>
+<p>A interpretabilidade das informações trazidas por esses dados começa a ficar mais fácil como, por exemplo, as alturas:</p>
+<p><br />
+</p>
+<ul>
+<li>mínima; e,</li>
+<li>máxima dos estudantes.</li>
+</ul>
+<p><br />
+</p>
+<p>A uma listagem de valores ordenada (de modo crescente ou decrescente) dá-se o nome de <em>rol</em>.</p>
+<p>Além da apresentação elementar de algumas informações relacionadas aos dados brutos da amostra, tais como os valores <em>mínimo</em> e <em>máximo</em> observados, a estatística descritiva possui muitas outras ferramentas para <em>condensar</em> e <em>expor</em> a informação trazida pelos dados por meio resumos (sínteses) descritivos:</p>
+<ul>
+<li>numéricos</li>
+<li>tabulares</li>
+<li>gráficos.</li>
+</ul>
+<p><br />
+</p>
+<p>Resumos (sínteses) numéricos descritivos são quantidades que condensam variados aspectos relacionados aos valores dos dados.</p>
+<p><br />
+</p>
+<p>As mais conhecidas <em>sínteses numéricas</em> podem ser agrupadas conforme o aspecto que expõem dos dados:</p>
 <p><br />
 </p>
 <ul>
@@ -605,27 +633,27 @@ Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa
 </ul>
 <p><br />
 </p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb18-1" tabindex="-1"></a>alturas_ad<span class="ot">=</span>alturas<span class="fl">+0.05</span></span>
-<span id="cb18-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb18-2" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="resumos-sínteses-numéricos-descritivos.html#cb18-3" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb18-4"><a href="resumos-sínteses-numéricos-descritivos.html#cb18-4" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="resumos-sínteses-numéricos-descritivos.html#cb18-5" tabindex="-1"></a><span class="fu">stripchart</span>(alturas,<span class="at">method =</span> <span class="st">&quot;stack&quot;</span>,  <span class="at">at=</span><span class="fl">0.5</span>, </span>
-<span id="cb18-6"><a href="resumos-sínteses-numéricos-descritivos.html#cb18-6" tabindex="-1"></a><span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">pch =</span> <span class="dv">20</span>,</span>
-<span id="cb18-7"><a href="resumos-sínteses-numéricos-descritivos.html#cb18-7" tabindex="-1"></a><span class="at">col=</span><span class="st">&quot;blue&quot;</span>, <span class="at">cex=</span><span class="dv">1</span>, <span class="at">xlab=</span><span class="st">&quot;Alturas originais dos estudantes (m)&quot;</span>, </span>
-<span id="cb18-8"><a href="resumos-sínteses-numéricos-descritivos.html#cb18-8" tabindex="-1"></a><span class="at">ylab=</span><span class="st">&quot;Quantidades observadas (un)&quot;</span>)</span>
-<span id="cb18-9"><a href="resumos-sínteses-numéricos-descritivos.html#cb18-9" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(alturas), <span class="at">col=</span><span class="st">&quot;red&quot;</span>) </span>
-<span id="cb18-10"><a href="resumos-sínteses-numéricos-descritivos.html#cb18-10" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">mean</span>(alturas)<span class="sc">-</span><span class="fl">0.2</span>, <span class="dv">1</span>, <span class="st">&quot;Média=1,69 m&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>) </span>
-<span id="cb18-11"><a href="resumos-sínteses-numéricos-descritivos.html#cb18-11" tabindex="-1"></a></span>
-<span id="cb18-12"><a href="resumos-sínteses-numéricos-descritivos.html#cb18-12" tabindex="-1"></a><span class="fu">stripchart</span>(alturas_ad,<span class="at">method =</span> <span class="st">&quot;stack&quot;</span>,  <span class="at">at=</span><span class="fl">0.5</span>, </span>
-<span id="cb18-13"><a href="resumos-sínteses-numéricos-descritivos.html#cb18-13" tabindex="-1"></a><span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">pch =</span> <span class="dv">20</span>,</span>
-<span id="cb18-14"><a href="resumos-sínteses-numéricos-descritivos.html#cb18-14" tabindex="-1"></a><span class="at">col=</span><span class="st">&quot;blue&quot;</span>, <span class="at">cex=</span><span class="dv">1</span>, <span class="at">xlab=</span><span class="st">&quot;Alt. dos estudantes (m) adic. de 5cm&quot;</span>, </span>
-<span id="cb18-15"><a href="resumos-sínteses-numéricos-descritivos.html#cb18-15" tabindex="-1"></a><span class="at">ylab=</span><span class="st">&quot;Quantidades observadas (un)&quot;</span>)</span>
-<span id="cb18-16"><a href="resumos-sínteses-numéricos-descritivos.html#cb18-16" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(alturas_ad), <span class="at">col=</span><span class="st">&quot;red&quot;</span>) </span>
-<span id="cb18-17"><a href="resumos-sínteses-numéricos-descritivos.html#cb18-17" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">mean</span>(alturas_ad)<span class="sc">-</span><span class="fl">0.2</span>, <span class="dv">1</span>, <span class="st">&quot;Média=1,74 m&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>) </span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-27"></span>
-<img src="apostila_files/figure-html/unnamed-chunk-27-1.png" alt="Mudanças na média pela adição (subtração) de uma constante $k=0.05$" width="80%" />
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb15-1" tabindex="-1"></a>alturas_ad<span class="ot">=</span>alturas<span class="fl">+0.05</span></span>
+<span id="cb15-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb15-2" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="resumos-sínteses-numéricos-descritivos.html#cb15-3" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb15-4"><a href="resumos-sínteses-numéricos-descritivos.html#cb15-4" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="resumos-sínteses-numéricos-descritivos.html#cb15-5" tabindex="-1"></a><span class="fu">stripchart</span>(alturas,<span class="at">method =</span> <span class="st">&quot;stack&quot;</span>,  <span class="at">at=</span><span class="fl">0.5</span>, </span>
+<span id="cb15-6"><a href="resumos-sínteses-numéricos-descritivos.html#cb15-6" tabindex="-1"></a><span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb15-7"><a href="resumos-sínteses-numéricos-descritivos.html#cb15-7" tabindex="-1"></a><span class="at">col=</span><span class="st">&quot;blue&quot;</span>, <span class="at">cex=</span><span class="dv">1</span>, <span class="at">xlab=</span><span class="st">&quot;Alturas originais dos estudantes (m)&quot;</span>, </span>
+<span id="cb15-8"><a href="resumos-sínteses-numéricos-descritivos.html#cb15-8" tabindex="-1"></a><span class="at">ylab=</span><span class="st">&quot;Quantidades observadas (un)&quot;</span>)</span>
+<span id="cb15-9"><a href="resumos-sínteses-numéricos-descritivos.html#cb15-9" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(alturas), <span class="at">col=</span><span class="st">&quot;red&quot;</span>) </span>
+<span id="cb15-10"><a href="resumos-sínteses-numéricos-descritivos.html#cb15-10" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">mean</span>(alturas)<span class="sc">-</span><span class="fl">0.2</span>, <span class="dv">1</span>, <span class="st">&quot;Média=1,69 m&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>) </span>
+<span id="cb15-11"><a href="resumos-sínteses-numéricos-descritivos.html#cb15-11" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="resumos-sínteses-numéricos-descritivos.html#cb15-12" tabindex="-1"></a><span class="fu">stripchart</span>(alturas_ad,<span class="at">method =</span> <span class="st">&quot;stack&quot;</span>,  <span class="at">at=</span><span class="fl">0.5</span>, </span>
+<span id="cb15-13"><a href="resumos-sínteses-numéricos-descritivos.html#cb15-13" tabindex="-1"></a><span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb15-14"><a href="resumos-sínteses-numéricos-descritivos.html#cb15-14" tabindex="-1"></a><span class="at">col=</span><span class="st">&quot;blue&quot;</span>, <span class="at">cex=</span><span class="dv">1</span>, <span class="at">xlab=</span><span class="st">&quot;Alt. dos estudantes (m) adic. de 5cm&quot;</span>, </span>
+<span id="cb15-15"><a href="resumos-sínteses-numéricos-descritivos.html#cb15-15" tabindex="-1"></a><span class="at">ylab=</span><span class="st">&quot;Quantidades observadas (un)&quot;</span>)</span>
+<span id="cb15-16"><a href="resumos-sínteses-numéricos-descritivos.html#cb15-16" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(alturas_ad), <span class="at">col=</span><span class="st">&quot;red&quot;</span>) </span>
+<span id="cb15-17"><a href="resumos-sínteses-numéricos-descritivos.html#cb15-17" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">mean</span>(alturas_ad)<span class="sc">-</span><span class="fl">0.2</span>, <span class="dv">1</span>, <span class="st">&quot;Média=1,74 m&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>) </span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-25"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-25-1.png" alt="Mudanças na média pela adição (subtração) de uma constante $k=0.05$" width="80%" />
 <p class="caption">
-Figure 3.3: Mudanças na média pela adição (subtração) de uma constante <span class="math inline">\(k=0.05\)</span>
+Figure 3.2: Mudanças na média pela adição (subtração) de uma constante <span class="math inline">\(k=0.05\)</span>
 </p>
 </div>
 <p><br />
@@ -635,28 +663,28 @@ Figure 3.3: Mudanças na média pela adição (subtração) de uma constante <sp
 </ul>
 <p><br />
 </p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb19-1" tabindex="-1"></a>alturas_mult<span class="ot">=</span>alturas<span class="sc">*</span><span class="fl">1.2</span></span>
-<span id="cb19-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb19-2" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="resumos-sínteses-numéricos-descritivos.html#cb19-3" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb19-4"><a href="resumos-sínteses-numéricos-descritivos.html#cb19-4" tabindex="-1"></a></span>
-<span id="cb19-5"><a href="resumos-sínteses-numéricos-descritivos.html#cb19-5" tabindex="-1"></a><span class="fu">stripchart</span>(alturas,<span class="at">method =</span> <span class="st">&quot;stack&quot;</span>,  <span class="at">at=</span><span class="fl">0.5</span>, </span>
-<span id="cb19-6"><a href="resumos-sínteses-numéricos-descritivos.html#cb19-6" tabindex="-1"></a><span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">pch =</span> <span class="dv">20</span>,</span>
-<span id="cb19-7"><a href="resumos-sínteses-numéricos-descritivos.html#cb19-7" tabindex="-1"></a><span class="at">col=</span><span class="st">&quot;blue&quot;</span>,  <span class="at">xlab=</span><span class="st">&quot;Alturas originais dos estudantes (m)&quot;</span>, </span>
-<span id="cb19-8"><a href="resumos-sínteses-numéricos-descritivos.html#cb19-8" tabindex="-1"></a><span class="at">ylab=</span><span class="st">&quot;Quantidades observadas (un)&quot;</span>)</span>
-<span id="cb19-9"><a href="resumos-sínteses-numéricos-descritivos.html#cb19-9" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(alturas), <span class="at">col=</span><span class="st">&quot;red&quot;</span>) </span>
-<span id="cb19-10"><a href="resumos-sínteses-numéricos-descritivos.html#cb19-10" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">mean</span>(alturas)<span class="sc">-</span><span class="fl">0.1</span>, <span class="dv">1</span>, <span class="st">&quot;Média=1,69 m&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>) </span>
-<span id="cb19-11"><a href="resumos-sínteses-numéricos-descritivos.html#cb19-11" tabindex="-1"></a></span>
-<span id="cb19-12"><a href="resumos-sínteses-numéricos-descritivos.html#cb19-12" tabindex="-1"></a></span>
-<span id="cb19-13"><a href="resumos-sínteses-numéricos-descritivos.html#cb19-13" tabindex="-1"></a><span class="fu">stripchart</span>(alturas_mult,<span class="at">method =</span> <span class="st">&quot;stack&quot;</span>,  <span class="at">at=</span><span class="fl">0.5</span>, </span>
-<span id="cb19-14"><a href="resumos-sínteses-numéricos-descritivos.html#cb19-14" tabindex="-1"></a><span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">pch =</span> <span class="dv">20</span>,</span>
-<span id="cb19-15"><a href="resumos-sínteses-numéricos-descritivos.html#cb19-15" tabindex="-1"></a><span class="at">col=</span><span class="st">&quot;blue&quot;</span>,  <span class="at">xlab=</span><span class="st">&quot;Alt. dos estudantes (m) mult. por 1,2&quot;</span>, </span>
-<span id="cb19-16"><a href="resumos-sínteses-numéricos-descritivos.html#cb19-16" tabindex="-1"></a><span class="at">ylab=</span><span class="st">&quot;Quantidades observadas (un)&quot;</span>)</span>
-<span id="cb19-17"><a href="resumos-sínteses-numéricos-descritivos.html#cb19-17" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(alturas_mult), <span class="at">col=</span><span class="st">&quot;red&quot;</span>) </span>
-<span id="cb19-18"><a href="resumos-sínteses-numéricos-descritivos.html#cb19-18" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">mean</span>(alturas_mult)<span class="sc">-</span><span class="fl">0.1</span>, <span class="dv">1</span>, <span class="st">&quot;Média= 2,02 m&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>) </span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-28"></span>
-<img src="apostila_files/figure-html/unnamed-chunk-28-1.png" alt="Mudanças na média pela multiplicação (divisão) de uma constante $k=1.2$" width="80%" />
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb16-1" tabindex="-1"></a>alturas_mult<span class="ot">=</span>alturas<span class="sc">*</span><span class="fl">1.2</span></span>
+<span id="cb16-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb16-2" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="resumos-sínteses-numéricos-descritivos.html#cb16-3" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb16-4"><a href="resumos-sínteses-numéricos-descritivos.html#cb16-4" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="resumos-sínteses-numéricos-descritivos.html#cb16-5" tabindex="-1"></a><span class="fu">stripchart</span>(alturas,<span class="at">method =</span> <span class="st">&quot;stack&quot;</span>,  <span class="at">at=</span><span class="fl">0.5</span>, </span>
+<span id="cb16-6"><a href="resumos-sínteses-numéricos-descritivos.html#cb16-6" tabindex="-1"></a><span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb16-7"><a href="resumos-sínteses-numéricos-descritivos.html#cb16-7" tabindex="-1"></a><span class="at">col=</span><span class="st">&quot;blue&quot;</span>,  <span class="at">xlab=</span><span class="st">&quot;Alturas originais dos estudantes (m)&quot;</span>, </span>
+<span id="cb16-8"><a href="resumos-sínteses-numéricos-descritivos.html#cb16-8" tabindex="-1"></a><span class="at">ylab=</span><span class="st">&quot;Quantidades observadas (un)&quot;</span>)</span>
+<span id="cb16-9"><a href="resumos-sínteses-numéricos-descritivos.html#cb16-9" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(alturas), <span class="at">col=</span><span class="st">&quot;red&quot;</span>) </span>
+<span id="cb16-10"><a href="resumos-sínteses-numéricos-descritivos.html#cb16-10" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">mean</span>(alturas)<span class="sc">-</span><span class="fl">0.1</span>, <span class="dv">1</span>, <span class="st">&quot;Média=1,69 m&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>) </span>
+<span id="cb16-11"><a href="resumos-sínteses-numéricos-descritivos.html#cb16-11" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="resumos-sínteses-numéricos-descritivos.html#cb16-12" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="resumos-sínteses-numéricos-descritivos.html#cb16-13" tabindex="-1"></a><span class="fu">stripchart</span>(alturas_mult,<span class="at">method =</span> <span class="st">&quot;stack&quot;</span>,  <span class="at">at=</span><span class="fl">0.5</span>, </span>
+<span id="cb16-14"><a href="resumos-sínteses-numéricos-descritivos.html#cb16-14" tabindex="-1"></a><span class="at">main=</span><span class="st">&quot;&quot;</span>,<span class="at">pch =</span> <span class="dv">20</span>,</span>
+<span id="cb16-15"><a href="resumos-sínteses-numéricos-descritivos.html#cb16-15" tabindex="-1"></a><span class="at">col=</span><span class="st">&quot;blue&quot;</span>,  <span class="at">xlab=</span><span class="st">&quot;Alt. dos estudantes (m) mult. por 1,2&quot;</span>, </span>
+<span id="cb16-16"><a href="resumos-sínteses-numéricos-descritivos.html#cb16-16" tabindex="-1"></a><span class="at">ylab=</span><span class="st">&quot;Quantidades observadas (un)&quot;</span>)</span>
+<span id="cb16-17"><a href="resumos-sínteses-numéricos-descritivos.html#cb16-17" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(alturas_mult), <span class="at">col=</span><span class="st">&quot;red&quot;</span>) </span>
+<span id="cb16-18"><a href="resumos-sínteses-numéricos-descritivos.html#cb16-18" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">mean</span>(alturas_mult)<span class="sc">-</span><span class="fl">0.1</span>, <span class="dv">1</span>, <span class="st">&quot;Média= 2,02 m&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">srt=</span><span class="dv">90</span>) </span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-26"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-26-1.png" alt="Mudanças na média pela multiplicação (divisão) de uma constante $k=1.2$" width="80%" />
 <p class="caption">
-Figure 3.4: Mudanças na média pela multiplicação (divisão) de uma constante <span class="math inline">\(k=1.2\)</span>
+Figure 3.3: Mudanças na média pela multiplicação (divisão) de uma constante <span class="math inline">\(k=1.2\)</span>
 </p>
 </div>
 <p><br />
@@ -672,7 +700,7 @@ Figure 3.4: Mudanças na média pela multiplicação (divisão) de uma constante
 <p>Usando os dados das medidas das alturas dos 60 estudantes teremos o seguinte valor para a <strong>média</strong>:</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb20-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(alturas),<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb17-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(alturas),<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 1.69</code></pre>
 </div>
 <div id="moda" class="section level4 hasAnchor" number="3.3.1.2">
@@ -690,9 +718,9 @@ Figure 3.4: Mudanças na média pela multiplicação (divisão) de uma constante
 </ul>
 <p><br />
 </p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb22-1" tabindex="-1"></a>tab_alturas<span class="ot">=</span><span class="fu">table</span>(alturas)</span>
-<span id="cb22-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb22-2" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="resumos-sínteses-numéricos-descritivos.html#cb22-3" tabindex="-1"></a>tab_alturas</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb19-1" tabindex="-1"></a>tab_alturas<span class="ot">=</span><span class="fu">table</span>(alturas)</span>
+<span id="cb19-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb19-2" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="resumos-sínteses-numéricos-descritivos.html#cb19-3" tabindex="-1"></a>tab_alturas</span></code></pre></div>
 <pre><code>## alturas
 ## 1.41 1.44 1.47 1.54 1.55 1.56 1.57 1.58 1.61 1.62 1.63 1.64 1.65 1.66 1.67 1.68 
 ##    1    1    1    1    1    3    1    2    1    2    1    2    4    5    4    3 
@@ -700,18 +728,18 @@ Figure 3.4: Mudanças na média pela multiplicação (divisão) de uma constante
 ##    1    2    2    5    1    1    2    1    2    1    1    2    1    1    1    1 
 ## 1.95    2 
 ##    1    1</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-1" tabindex="-1"></a><span class="fu">barplot</span>(tab_alturas,</span>
-<span id="cb24-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-2" tabindex="-1"></a>        <span class="at">main=</span><span class="st">&quot;Valores observados da alturas dos estudantes&quot;</span>,</span>
-<span id="cb24-3"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-3" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">&quot;Altura (cm)&quot;</span>,</span>
-<span id="cb24-4"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-4" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">&quot;Quantidade observada (un)&quot;</span>,</span>
-<span id="cb24-5"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-5" tabindex="-1"></a>        <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">6</span>),</span>
-<span id="cb24-6"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-6" tabindex="-1"></a>        <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb24-7"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-7" tabindex="-1"></a>        <span class="at">las=</span><span class="dv">0</span>, </span>
-<span id="cb24-8"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-8" tabindex="-1"></a>        <span class="at">hor=</span><span class="st">&quot;FALSE&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-30"></span>
-<img src="apostila_files/figure-html/unnamed-chunk-30-1.png" alt="Bimodal: 1,66 m e 1,73 m" width="672" />
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb21-1" tabindex="-1"></a><span class="fu">barplot</span>(tab_alturas,</span>
+<span id="cb21-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb21-2" tabindex="-1"></a>        <span class="at">main=</span><span class="st">&quot;Valores observados da alturas dos estudantes&quot;</span>,</span>
+<span id="cb21-3"><a href="resumos-sínteses-numéricos-descritivos.html#cb21-3" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">&quot;Altura (cm)&quot;</span>,</span>
+<span id="cb21-4"><a href="resumos-sínteses-numéricos-descritivos.html#cb21-4" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">&quot;Quantidade observada (un)&quot;</span>,</span>
+<span id="cb21-5"><a href="resumos-sínteses-numéricos-descritivos.html#cb21-5" tabindex="-1"></a>        <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">6</span>),</span>
+<span id="cb21-6"><a href="resumos-sínteses-numéricos-descritivos.html#cb21-6" tabindex="-1"></a>        <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb21-7"><a href="resumos-sínteses-numéricos-descritivos.html#cb21-7" tabindex="-1"></a>        <span class="at">las=</span><span class="dv">0</span>, </span>
+<span id="cb21-8"><a href="resumos-sínteses-numéricos-descritivos.html#cb21-8" tabindex="-1"></a>        <span class="at">hor=</span><span class="st">&quot;FALSE&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-28"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-28-1.png" alt="Bimodal: 1,66 m e 1,73 m" width="672" />
 <p class="caption">
-Figure 3.5: Bimodal: 1,66 m e 1,73 m
+Figure 3.4: Bimodal: 1,66 m e 1,73 m
 </p>
 </div>
 <p><br />
@@ -719,15 +747,15 @@ Figure 3.5: Bimodal: 1,66 m e 1,73 m
 <p>Usando os dados das medidas das alturas dos 60 estudantes teremos os seguintes valores para a <strong>moda</strong>:</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb25-1" tabindex="-1"></a><span class="co"># função em R para extrair a moda:</span></span>
-<span id="cb25-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb25-2" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="resumos-sínteses-numéricos-descritivos.html#cb25-3" tabindex="-1"></a>Modes <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb25-4"><a href="resumos-sínteses-numéricos-descritivos.html#cb25-4" tabindex="-1"></a>  ux <span class="ot">&lt;-</span> <span class="fu">unique</span>(x)</span>
-<span id="cb25-5"><a href="resumos-sínteses-numéricos-descritivos.html#cb25-5" tabindex="-1"></a>  tab <span class="ot">&lt;-</span> <span class="fu">tabulate</span>(<span class="fu">match</span>(x, ux))</span>
-<span id="cb25-6"><a href="resumos-sínteses-numéricos-descritivos.html#cb25-6" tabindex="-1"></a>  ux[tab <span class="sc">==</span> <span class="fu">max</span>(tab)]</span>
-<span id="cb25-7"><a href="resumos-sínteses-numéricos-descritivos.html#cb25-7" tabindex="-1"></a>}</span>
-<span id="cb25-8"><a href="resumos-sínteses-numéricos-descritivos.html#cb25-8" tabindex="-1"></a></span>
-<span id="cb25-9"><a href="resumos-sínteses-numéricos-descritivos.html#cb25-9" tabindex="-1"></a><span class="fu">Modes</span>(alturas)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb22-1" tabindex="-1"></a><span class="co"># função em R para extrair a moda:</span></span>
+<span id="cb22-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb22-2" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="resumos-sínteses-numéricos-descritivos.html#cb22-3" tabindex="-1"></a>Modes <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb22-4"><a href="resumos-sínteses-numéricos-descritivos.html#cb22-4" tabindex="-1"></a>  ux <span class="ot">&lt;-</span> <span class="fu">unique</span>(x)</span>
+<span id="cb22-5"><a href="resumos-sínteses-numéricos-descritivos.html#cb22-5" tabindex="-1"></a>  tab <span class="ot">&lt;-</span> <span class="fu">tabulate</span>(<span class="fu">match</span>(x, ux))</span>
+<span id="cb22-6"><a href="resumos-sínteses-numéricos-descritivos.html#cb22-6" tabindex="-1"></a>  ux[tab <span class="sc">==</span> <span class="fu">max</span>(tab)]</span>
+<span id="cb22-7"><a href="resumos-sínteses-numéricos-descritivos.html#cb22-7" tabindex="-1"></a>}</span>
+<span id="cb22-8"><a href="resumos-sínteses-numéricos-descritivos.html#cb22-8" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="resumos-sínteses-numéricos-descritivos.html#cb22-9" tabindex="-1"></a><span class="fu">Modes</span>(alturas)</span></code></pre></div>
 <pre><code>## [1] 1.66 1.73</code></pre>
 </div>
 </div>
@@ -818,54 +846,54 @@ S^{2}=\frac{1}{(n-1)} \times \left[ \sum _{i=1}^{n} (x_{i}^{2}) - \frac{({\sum _
 <p>Pode-se demonstrar que em razão dessa restrição a melhor estimativa para a variância populacional é obtida dividindo-se a soma dos quadrados dos desvios por <span class="math inline">\((n-1)\)</span>. Assim <span class="math inline">\(S^{2}\)</span> será um estimador não tendencioso para a variância amostral ao ser dividido por <span class="math inline">\((n-1)\)</span>.</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-1" tabindex="-1"></a>IC.Na <span class="ot">=</span> <span class="cf">function</span> (N, n, mu, sigma) {</span>
-<span id="cb27-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-2" tabindex="-1"></a>  dados<span class="ot">=</span><span class="fu">data.frame</span>()</span>
-<span id="cb27-3"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-3" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="dv">0</span>, <span class="dv">0</span>, </span>
-<span id="cb27-4"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-4" tabindex="-1"></a>       <span class="at">type=</span><span class="st">&quot;n&quot;</span>, </span>
-<span id="cb27-5"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-5" tabindex="-1"></a>       <span class="at">xlim=</span><span class="fu">c</span>(sigma<span class="fl">-0.1</span><span class="sc">*</span>sigma,sigma<span class="fl">+0.1</span><span class="sc">*</span>sigma), </span>
-<span id="cb27-6"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-6" tabindex="-1"></a>       <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,N), </span>
-<span id="cb27-7"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-7" tabindex="-1"></a>       <span class="at">bty=</span><span class="st">&quot;l&quot;</span>,</span>
-<span id="cb27-8"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-8" tabindex="-1"></a>       <span class="at">xlab=</span><span class="st">&quot;Desvio padrão&quot;</span>, </span>
-<span id="cb27-9"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-9" tabindex="-1"></a>       <span class="at">ylab=</span><span class="st">&quot;Amostras extraídas&quot;</span>, </span>
-<span id="cb27-10"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-10" tabindex="-1"></a>       <span class="at">main=</span><span class="fu">paste0</span>(<span class="st">&quot;Flutuação dos valores dos desvios padrão </span><span class="sc">\n</span><span class="st">obtidos em &quot;</span>, N,<span class="st">&quot; amostras de tamanho &quot;</span>,n), </span>
-<span id="cb27-11"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-11" tabindex="-1"></a>       <span class="at">sub=</span><span class="fu">paste0</span>(<span class="st">&quot;A população de origem tem uma distribuição ~ N  (\u03bc:&quot;</span>,mu,<span class="st">&quot; ; \u03c3:&quot;</span>, sigma,<span class="st">&quot;)&quot;</span>))</span>
-<span id="cb27-12"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-12" tabindex="-1"></a>  <span class="fu">abline</span>(<span class="at">v=</span>sigma, <span class="at">col=</span><span class="st">&#39;darkgreen&#39;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb27-13"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-13" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N) {</span>
-<span id="cb27-14"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-14" tabindex="-1"></a>  x <span class="ot">=</span> <span class="fu">rnorm</span>(n, mu, sigma)</span>
-<span id="cb27-15"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-15" tabindex="-1"></a>  media <span class="ot">=</span> <span class="fu">mean</span>(x)</span>
-<span id="cb27-16"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-16" tabindex="-1"></a>  sd <span class="ot">=</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(n<span class="dv">-1</span>))</span>
-<span id="cb27-17"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-17" tabindex="-1"></a>  sd_vies <span class="ot">=</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(n))</span>
-<span id="cb27-18"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-18" tabindex="-1"></a>  temp<span class="ot">=</span><span class="fu">cbind</span>(mu, media, sd, sd_vies)</span>
-<span id="cb27-19"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-19" tabindex="-1"></a>  dados<span class="ot">=</span><span class="fu">rbind</span>(dados, temp)</span>
-<span id="cb27-20"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-20" tabindex="-1"></a>  plotx <span class="ot">=</span> <span class="fu">c</span>(sd)</span>
-<span id="cb27-21"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-21" tabindex="-1"></a>  ploty <span class="ot">=</span> <span class="fu">c</span>(i,i)</span>
-<span id="cb27-22"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-22" tabindex="-1"></a>  <span class="cf">if</span> ( sd <span class="sc">&lt;</span> sigma) <span class="fu">points</span>(sd, i, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">cex=</span><span class="dv">1</span>)<span class="sc">+</span><span class="fu">text</span>(<span class="at">y=</span>i<span class="sc">+</span><span class="dv">3</span>,<span class="at">x=</span>sd, <span class="at">labels=</span><span class="fu">round</span>(sd,<span class="dv">3</span>), <span class="at">cex=</span><span class="dv">1</span>, <span class="at">col=</span><span class="st">&#39;blue&#39;</span>)</span>
-<span id="cb27-23"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-23" tabindex="-1"></a>  <span class="cf">else</span> </span>
-<span id="cb27-24"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-24" tabindex="-1"></a>    <span class="fu">points</span>(sd, i, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>, <span class="at">cex=</span><span class="dv">1</span>)<span class="sc">+</span><span class="fu">text</span>(<span class="at">y=</span>i<span class="sc">+</span><span class="dv">3</span>,<span class="at">x=</span>sd, <span class="at">labels=</span><span class="fu">round</span>(sd,<span class="dv">3</span>), <span class="at">cex=</span><span class="dv">1</span>, <span class="at">col=</span><span class="st">&#39;blue&#39;</span>) </span>
-<span id="cb27-25"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-25" tabindex="-1"></a>  plotx <span class="ot">=</span> <span class="fu">c</span>(sd_vies)</span>
-<span id="cb27-26"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-26" tabindex="-1"></a>  ploty <span class="ot">=</span> <span class="fu">c</span>(i,i)</span>
-<span id="cb27-27"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-27" tabindex="-1"></a>  <span class="cf">if</span> ( sd_vies <span class="sc">&lt;</span> sigma) <span class="fu">points</span>(sd_vies, i, <span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">cex=</span><span class="dv">1</span>)<span class="sc">+</span><span class="fu">text</span>(<span class="at">y=</span>i<span class="sc">+</span><span class="dv">3</span>,<span class="at">x=</span>sd_vies, <span class="at">labels=</span><span class="fu">round</span>(sd_vies,<span class="dv">3</span>), <span class="at">cex=</span><span class="dv">1</span>, <span class="at">col=</span><span class="st">&#39;red&#39;</span>)</span>
-<span id="cb27-28"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-28" tabindex="-1"></a>  <span class="cf">else</span> </span>
-<span id="cb27-29"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-29" tabindex="-1"></a>    <span class="fu">points</span>(sd_vies, i, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">cex=</span><span class="dv">1</span>)<span class="sc">+</span><span class="fu">text</span>(<span class="at">y=</span>i<span class="sc">+</span><span class="dv">3</span>,<span class="at">x=</span>sd_vies, <span class="at">labels=</span><span class="fu">round</span>(sd_vies,<span class="dv">3</span>), <span class="at">cex=</span><span class="dv">1</span>, <span class="at">col=</span><span class="st">&#39;red&#39;</span>) </span>
-<span id="cb27-30"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-30" tabindex="-1"></a>} </span>
-<span id="cb27-31"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-31" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(dados<span class="sc">$</span>sd), <span class="at">col=</span><span class="st">&#39;blue&#39;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb27-32"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-32" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(dados<span class="sc">$</span>sd_vies), <span class="at">col=</span><span class="st">&#39;red&#39;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb27-33"><a href="resumos-sínteses-numéricos-descritivos.html#cb27-33" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-1" tabindex="-1"></a>IC.Na <span class="ot">=</span> <span class="cf">function</span> (N, n, mu, sigma) {</span>
+<span id="cb24-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-2" tabindex="-1"></a>  dados<span class="ot">=</span><span class="fu">data.frame</span>()</span>
+<span id="cb24-3"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-3" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="dv">0</span>, <span class="dv">0</span>, </span>
+<span id="cb24-4"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-4" tabindex="-1"></a>       <span class="at">type=</span><span class="st">&quot;n&quot;</span>, </span>
+<span id="cb24-5"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-5" tabindex="-1"></a>       <span class="at">xlim=</span><span class="fu">c</span>(sigma<span class="fl">-0.1</span><span class="sc">*</span>sigma,sigma<span class="fl">+0.1</span><span class="sc">*</span>sigma), </span>
+<span id="cb24-6"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-6" tabindex="-1"></a>       <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,N), </span>
+<span id="cb24-7"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-7" tabindex="-1"></a>       <span class="at">bty=</span><span class="st">&quot;l&quot;</span>,</span>
+<span id="cb24-8"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-8" tabindex="-1"></a>       <span class="at">xlab=</span><span class="st">&quot;Desvio padrão&quot;</span>, </span>
+<span id="cb24-9"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-9" tabindex="-1"></a>       <span class="at">ylab=</span><span class="st">&quot;Amostras extraídas&quot;</span>, </span>
+<span id="cb24-10"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-10" tabindex="-1"></a>       <span class="at">main=</span><span class="fu">paste0</span>(<span class="st">&quot;Flutuação dos valores dos desvios padrão </span><span class="sc">\n</span><span class="st">obtidos em &quot;</span>, N,<span class="st">&quot; amostras de tamanho &quot;</span>,n), </span>
+<span id="cb24-11"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-11" tabindex="-1"></a>       <span class="at">sub=</span><span class="fu">paste0</span>(<span class="st">&quot;A população de origem tem uma distribuição ~ N  (\u03bc:&quot;</span>,mu,<span class="st">&quot; ; \u03c3:&quot;</span>, sigma,<span class="st">&quot;)&quot;</span>))</span>
+<span id="cb24-12"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-12" tabindex="-1"></a>  <span class="fu">abline</span>(<span class="at">v=</span>sigma, <span class="at">col=</span><span class="st">&#39;darkgreen&#39;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb24-13"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-13" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N) {</span>
+<span id="cb24-14"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-14" tabindex="-1"></a>  x <span class="ot">=</span> <span class="fu">rnorm</span>(n, mu, sigma)</span>
+<span id="cb24-15"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-15" tabindex="-1"></a>  media <span class="ot">=</span> <span class="fu">mean</span>(x)</span>
+<span id="cb24-16"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-16" tabindex="-1"></a>  sd <span class="ot">=</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(n<span class="dv">-1</span>))</span>
+<span id="cb24-17"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-17" tabindex="-1"></a>  sd_vies <span class="ot">=</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(n))</span>
+<span id="cb24-18"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-18" tabindex="-1"></a>  temp<span class="ot">=</span><span class="fu">cbind</span>(mu, media, sd, sd_vies)</span>
+<span id="cb24-19"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-19" tabindex="-1"></a>  dados<span class="ot">=</span><span class="fu">rbind</span>(dados, temp)</span>
+<span id="cb24-20"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-20" tabindex="-1"></a>  plotx <span class="ot">=</span> <span class="fu">c</span>(sd)</span>
+<span id="cb24-21"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-21" tabindex="-1"></a>  ploty <span class="ot">=</span> <span class="fu">c</span>(i,i)</span>
+<span id="cb24-22"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-22" tabindex="-1"></a>  <span class="cf">if</span> ( sd <span class="sc">&lt;</span> sigma) <span class="fu">points</span>(sd, i, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">cex=</span><span class="dv">1</span>)<span class="sc">+</span><span class="fu">text</span>(<span class="at">y=</span>i<span class="sc">+</span><span class="dv">3</span>,<span class="at">x=</span>sd, <span class="at">labels=</span><span class="fu">round</span>(sd,<span class="dv">3</span>), <span class="at">cex=</span><span class="dv">1</span>, <span class="at">col=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb24-23"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-23" tabindex="-1"></a>  <span class="cf">else</span> </span>
+<span id="cb24-24"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-24" tabindex="-1"></a>    <span class="fu">points</span>(sd, i, <span class="at">col=</span><span class="st">&quot;blue&quot;</span>, <span class="at">cex=</span><span class="dv">1</span>)<span class="sc">+</span><span class="fu">text</span>(<span class="at">y=</span>i<span class="sc">+</span><span class="dv">3</span>,<span class="at">x=</span>sd, <span class="at">labels=</span><span class="fu">round</span>(sd,<span class="dv">3</span>), <span class="at">cex=</span><span class="dv">1</span>, <span class="at">col=</span><span class="st">&#39;blue&#39;</span>) </span>
+<span id="cb24-25"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-25" tabindex="-1"></a>  plotx <span class="ot">=</span> <span class="fu">c</span>(sd_vies)</span>
+<span id="cb24-26"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-26" tabindex="-1"></a>  ploty <span class="ot">=</span> <span class="fu">c</span>(i,i)</span>
+<span id="cb24-27"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-27" tabindex="-1"></a>  <span class="cf">if</span> ( sd_vies <span class="sc">&lt;</span> sigma) <span class="fu">points</span>(sd_vies, i, <span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">cex=</span><span class="dv">1</span>)<span class="sc">+</span><span class="fu">text</span>(<span class="at">y=</span>i<span class="sc">+</span><span class="dv">3</span>,<span class="at">x=</span>sd_vies, <span class="at">labels=</span><span class="fu">round</span>(sd_vies,<span class="dv">3</span>), <span class="at">cex=</span><span class="dv">1</span>, <span class="at">col=</span><span class="st">&#39;red&#39;</span>)</span>
+<span id="cb24-28"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-28" tabindex="-1"></a>  <span class="cf">else</span> </span>
+<span id="cb24-29"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-29" tabindex="-1"></a>    <span class="fu">points</span>(sd_vies, i, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">cex=</span><span class="dv">1</span>)<span class="sc">+</span><span class="fu">text</span>(<span class="at">y=</span>i<span class="sc">+</span><span class="dv">3</span>,<span class="at">x=</span>sd_vies, <span class="at">labels=</span><span class="fu">round</span>(sd_vies,<span class="dv">3</span>), <span class="at">cex=</span><span class="dv">1</span>, <span class="at">col=</span><span class="st">&#39;red&#39;</span>) </span>
+<span id="cb24-30"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-30" tabindex="-1"></a>} </span>
+<span id="cb24-31"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-31" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(dados<span class="sc">$</span>sd), <span class="at">col=</span><span class="st">&#39;blue&#39;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb24-32"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-32" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">mean</span>(dados<span class="sc">$</span>sd_vies), <span class="at">col=</span><span class="st">&#39;red&#39;</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb24-33"><a href="resumos-sínteses-numéricos-descritivos.html#cb24-33" tabindex="-1"></a>}</span></code></pre></div>
 <p><br />
 </p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb28-1" tabindex="-1"></a><span class="fu">IC.Na</span>(<span class="at">N=</span><span class="dv">100</span>, <span class="at">n=</span><span class="dv">15</span>, <span class="at">mu=</span><span class="dv">170</span>, <span class="at">sigma=</span><span class="dv">7</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-33"></span>
-<img src="apostila_files/figure-html/unnamed-chunk-33-1.png" alt="Flutuação dos valores do desvio padrão obtidos pelo estimador não viesado (em azul) e pelo estimador viesado (em vermelho) para diversas amostras extraídas de uma mesma população distribuição $\sim N (\mu; \sigma)$ (em verde o desvio padrão populacional, em azul a média dos desvios padrão amostrais correta e em vermelho a estimada de modo viesado)" width="100%" />
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb25-1" tabindex="-1"></a><span class="fu">IC.Na</span>(<span class="at">N=</span><span class="dv">100</span>, <span class="at">n=</span><span class="dv">15</span>, <span class="at">mu=</span><span class="dv">170</span>, <span class="at">sigma=</span><span class="dv">7</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-31"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-31-1.png" alt="Flutuação dos valores do desvio padrão obtidos pelo estimador não viesado (em azul) e pelo estimador viesado (em vermelho) para diversas amostras extraídas de uma mesma população distribuição $\sim N (\mu; \sigma)$ (em verde o desvio padrão populacional, em azul a média dos desvios padrão amostrais correta e em vermelho a estimada de modo viesado)" width="100%" />
 <p class="caption">
-Figure 3.6: Flutuação dos valores do desvio padrão obtidos pelo estimador não viesado (em azul) e pelo estimador viesado (em vermelho) para diversas amostras extraídas de uma mesma população distribuição <span class="math inline">\(\sim N (\mu; \sigma)\)</span> (em verde o desvio padrão populacional, em azul a média dos desvios padrão amostrais correta e em vermelho a estimada de modo viesado)
+Figure 3.5: Flutuação dos valores do desvio padrão obtidos pelo estimador não viesado (em azul) e pelo estimador viesado (em vermelho) para diversas amostras extraídas de uma mesma população distribuição <span class="math inline">\(\sim N (\mu; \sigma)\)</span> (em verde o desvio padrão populacional, em azul a média dos desvios padrão amostrais correta e em vermelho a estimada de modo viesado)
 </p>
 </div>
 <p><br />
 </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-34"></span>
-<img src="apostila_files/figure-html/unnamed-chunk-34-1.png" alt="A distribuição das variâncias amostrais segue uma curva aproximada pela distribuição Qui-quadrado com (n-1) graus de liberdade" width="80%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-32"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-32-1.png" alt="A distribuição das variâncias amostrais segue uma curva aproximada pela distribuição Qui-quadrado com (n-1) graus de liberdade" width="80%" />
 <p class="caption">
-Figure 3.7: A distribuição das variâncias amostrais segue uma curva aproximada pela distribuição Qui-quadrado com (n-1) graus de liberdade
+Figure 3.6: A distribuição das variâncias amostrais segue uma curva aproximada pela distribuição Qui-quadrado com (n-1) graus de liberdade
 </p>
 </div>
 <p><br />
@@ -884,11 +912,11 @@ S= \sqrt{\frac{\sum _{i=1}^{n}\left(x_{i}-\stackrel{-}{x}\right)^{2}}{n-1}}
 <p>Usando os dados das medidas das alturas dos 60 estudantes teremos o seguinte valor para a <strong>variância</strong> (com unidade igual a <span class="math inline">\(m^{2}\)</span>) e o <strong>desvio padrão</strong> (com unidade igual a <span class="math inline">\(m\)</span>):</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb29-1" tabindex="-1"></a><span class="co"># Variãncia</span></span>
-<span id="cb29-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb29-2" tabindex="-1"></a><span class="fu">var</span>(alturas)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb26-1" tabindex="-1"></a><span class="co"># Variãncia</span></span>
+<span id="cb26-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb26-2" tabindex="-1"></a><span class="fu">var</span>(alturas)</span></code></pre></div>
 <pre><code>## [1] 0.0130809</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb31-1" tabindex="-1"></a><span class="co"># Desvio padrão</span></span>
-<span id="cb31-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb31-2" tabindex="-1"></a><span class="fu">sd</span>(alturas) </span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb28-1" tabindex="-1"></a><span class="co"># Desvio padrão</span></span>
+<span id="cb28-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb28-2" tabindex="-1"></a><span class="fu">sd</span>(alturas) </span></code></pre></div>
 <pre><code>## [1] 0.1143718</code></pre>
 <p>Propriedades da variância:</p>
 <p><br />
@@ -899,20 +927,20 @@ S= \sqrt{\frac{\sum _{i=1}^{n}\left(x_{i}-\stackrel{-}{x}\right)^{2}}{n-1}}
 </ul>
 <p><br />
 </p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb33-1" tabindex="-1"></a><span class="co"># Adicionando-se uma constante k=0.05</span></span>
-<span id="cb33-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb33-2" tabindex="-1"></a>alturas_ad<span class="ot">=</span>alturas<span class="fl">+0.05</span></span>
-<span id="cb33-3"><a href="resumos-sínteses-numéricos-descritivos.html#cb33-3" tabindex="-1"></a></span>
-<span id="cb33-4"><a href="resumos-sínteses-numéricos-descritivos.html#cb33-4" tabindex="-1"></a><span class="co"># Variância não se altera</span></span>
-<span id="cb33-5"><a href="resumos-sínteses-numéricos-descritivos.html#cb33-5" tabindex="-1"></a>var_ad<span class="ot">=</span> <span class="fu">var</span>(alturas_ad)</span>
-<span id="cb33-6"><a href="resumos-sínteses-numéricos-descritivos.html#cb33-6" tabindex="-1"></a>var_ad</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb30-1" tabindex="-1"></a><span class="co"># Adicionando-se uma constante k=0.05</span></span>
+<span id="cb30-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb30-2" tabindex="-1"></a>alturas_ad<span class="ot">=</span>alturas<span class="fl">+0.05</span></span>
+<span id="cb30-3"><a href="resumos-sínteses-numéricos-descritivos.html#cb30-3" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="resumos-sínteses-numéricos-descritivos.html#cb30-4" tabindex="-1"></a><span class="co"># Variância não se altera</span></span>
+<span id="cb30-5"><a href="resumos-sínteses-numéricos-descritivos.html#cb30-5" tabindex="-1"></a>var_ad<span class="ot">=</span> <span class="fu">var</span>(alturas_ad)</span>
+<span id="cb30-6"><a href="resumos-sínteses-numéricos-descritivos.html#cb30-6" tabindex="-1"></a>var_ad</span></code></pre></div>
 <pre><code>## [1] 0.0130809</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb35-1" tabindex="-1"></a><span class="co"># Multiplicando-se uma constante k=1.2</span></span>
-<span id="cb35-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb35-2" tabindex="-1"></a>alturas_mult<span class="ot">=</span>alturas<span class="sc">*</span><span class="fl">1.2</span></span>
-<span id="cb35-3"><a href="resumos-sínteses-numéricos-descritivos.html#cb35-3" tabindex="-1"></a></span>
-<span id="cb35-4"><a href="resumos-sínteses-numéricos-descritivos.html#cb35-4" tabindex="-1"></a><span class="co"># Variância fica multiplicada (dividida) pelo quadrado dessa constante)</span></span>
-<span id="cb35-5"><a href="resumos-sínteses-numéricos-descritivos.html#cb35-5" tabindex="-1"></a><span class="fu">var</span>(alturas_mult)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb32-1" tabindex="-1"></a><span class="co"># Multiplicando-se uma constante k=1.2</span></span>
+<span id="cb32-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb32-2" tabindex="-1"></a>alturas_mult<span class="ot">=</span>alturas<span class="sc">*</span><span class="fl">1.2</span></span>
+<span id="cb32-3"><a href="resumos-sínteses-numéricos-descritivos.html#cb32-3" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="resumos-sínteses-numéricos-descritivos.html#cb32-4" tabindex="-1"></a><span class="co"># Variância fica multiplicada (dividida) pelo quadrado dessa constante)</span></span>
+<span id="cb32-5"><a href="resumos-sínteses-numéricos-descritivos.html#cb32-5" tabindex="-1"></a><span class="fu">var</span>(alturas_mult)</span></code></pre></div>
 <pre><code>## [1] 0.0188365</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb37-1" tabindex="-1"></a><span class="fu">all.equal</span>(<span class="fu">var</span>(alturas_mult), <span class="fu">var</span>(alturas)<span class="sc">*</span>(<span class="fl">1.2</span><span class="sc">^</span><span class="dv">2</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb34-1" tabindex="-1"></a><span class="fu">all.equal</span>(<span class="fu">var</span>(alturas_mult), <span class="fu">var</span>(alturas)<span class="sc">*</span>(<span class="fl">1.2</span><span class="sc">^</span><span class="dv">2</span>)) </span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="coeficiente-de-variação." class="section level4 hasAnchor" number="3.3.2.3">
@@ -995,10 +1023,10 @@ Muito alto
 <p>Para se <strong>determinar</strong> qualquer separatriz necessitamos saber antes qual a <strong>posição</strong> que ela ocupa nos <strong>dados ordenados crescentemente</strong>: <span class="math inline">\(x_{1}&lt;x_{2}&lt; \dots&lt; x_{n}\)</span>:</p>
 <p><br />
 </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-38"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-36"></span>
 <img src="images3/vetor_posicao.jpg" alt="Entendendo a indexação de dados" width="50%" />
 <p class="caption">
-Figure 3.8: Entendendo a indexação de dados
+Figure 3.7: Entendendo a indexação de dados
 </p>
 </div>
 <p><br />
@@ -1134,31 +1162,31 @@ L_{Q_{3}} &amp; =\frac{p}{100} \times (n) \\
 <p>Há muitos modos de se estabelecer os quantis descritos na literatura. O próprio <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/quantile">R</a> apresenta 9 modos diferentes:</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb39-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb36-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##   0%  25%  50%  75% 100% 
 ## 1.41 1.63 1.67 1.75 2.00</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb41-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb38-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##    0%   25%   50%   75%  100% 
 ## 1.410 1.635 1.675 1.755 2.000</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb43-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb40-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   0%  25%  50%  75% 100% 
 ## 1.41 1.63 1.67 1.75 2.00</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb45-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb42-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">4</span>)</span></code></pre></div>
 <pre><code>##   0%  25%  50%  75% 100% 
 ## 1.41 1.63 1.67 1.75 2.00</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb47-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb44-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>##    0%   25%   50%   75%  100% 
 ## 1.410 1.635 1.675 1.755 2.000</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb49-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb46-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">6</span>)</span></code></pre></div>
 <pre><code>##     0%    25%    50%    75%   100% 
 ## 1.4100 1.6325 1.6750 1.7575 2.0000</code></pre>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb51-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">7</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb48-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">7</span>)</span></code></pre></div>
 <pre><code>##     0%    25%    50%    75%   100% 
 ## 1.4100 1.6375 1.6750 1.7525 2.0000</code></pre>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb53-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">8</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb50-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">8</span>)</span></code></pre></div>
 <pre><code>##       0%      25%      50%      75%     100% 
 ## 1.410000 1.634167 1.675000 1.755833 2.000000</code></pre>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb55-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb52-1" tabindex="-1"></a><span class="fu">quantile</span>(alturas, <span class="at">type=</span><span class="dv">9</span>)</span></code></pre></div>
 <pre><code>##       0%      25%      50%      75%     100% 
 ## 1.410000 1.634375 1.675000 1.755625 2.000000</code></pre>
 <p><br />
@@ -1192,20 +1220,20 @@ P(|X-\mu|\ge k\sigma) \leq 1 - \frac{1}{k^{2}}
 <p>Assim, se <span class="math inline">\(k=2\)</span> <strong>ao menos</strong> 75% das observações devem estar entre a média e dois desvios padrões acima ou abaixo da média.</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb57-1" tabindex="-1"></a>med<span class="ot">=</span><span class="fu">round</span>(<span class="fu">mean</span>(alturas),<span class="dv">2</span>)</span>
-<span id="cb57-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb57-2" tabindex="-1"></a>desv<span class="ot">=</span> <span class="fu">round</span>(<span class="fu">sd</span>(alturas),<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb54-1" tabindex="-1"></a>med<span class="ot">=</span><span class="fu">round</span>(<span class="fu">mean</span>(alturas),<span class="dv">2</span>)</span>
+<span id="cb54-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb54-2" tabindex="-1"></a>desv<span class="ot">=</span> <span class="fu">round</span>(<span class="fu">sd</span>(alturas),<span class="dv">2</span>)</span></code></pre></div>
 <p><br />
 </p>
 <p>No exemplo das alturas dos estudantes temos a média de 1.69 m e um desvio padrão de 0.11 m. Assim, <strong>ao menos</strong> 75% das alturas deverão estar entre 1.47 m e 1.91 m.</p>
 <p><br />
 </p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb58-1" tabindex="-1"></a><span class="fu">sort</span>(alturas)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb55-1" tabindex="-1"></a><span class="fu">sort</span>(alturas)</span></code></pre></div>
 <pre><code>##  [1] 1.41 1.44 1.47 1.54 1.55 1.56 1.56 1.56 1.57 1.58 1.58 1.61 1.62 1.62 1.63
 ## [16] 1.64 1.64 1.65 1.65 1.65 1.65 1.66 1.66 1.66 1.66 1.66 1.67 1.67 1.67 1.67
 ## [31] 1.68 1.68 1.68 1.69 1.71 1.71 1.72 1.72 1.73 1.73 1.73 1.73 1.73 1.74 1.75
 ## [46] 1.76 1.76 1.77 1.78 1.78 1.79 1.82 1.83 1.83 1.84 1.85 1.86 1.93 1.95 2.00</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb60-1" tabindex="-1"></a><span class="co"># Duas observações menores que 1,47m e trẽs maiores que 1,91m.</span></span>
-<span id="cb60-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb60-2" tabindex="-1"></a><span class="co"># Assim, 54 observações dentro do intervalo, equivalendo a 91,66% do total.</span></span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="resumos-sínteses-numéricos-descritivos.html#cb57-1" tabindex="-1"></a><span class="co"># Duas observações menores que 1,47m e trẽs maiores que 1,91m.</span></span>
+<span id="cb57-2"><a href="resumos-sínteses-numéricos-descritivos.html#cb57-2" tabindex="-1"></a><span class="co"># Assim, 54 observações dentro do intervalo, equivalendo a 91,66% do total.</span></span></code></pre></div>
 <p><br />
 </p>
 </div>

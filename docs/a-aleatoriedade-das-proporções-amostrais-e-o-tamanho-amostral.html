@@ -185,9 +185,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html"><a href="dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispersão-unidimensional.html"><i class="fa fa-check"></i><b>3.2</b> Dados brutos, em rol, diagrama de ramos &amp; folhas e de dispersão unidimensional</a></li>
 <li class="chapter" data-level="3.3" data-path="resumos-descritivos.html"><a href="resumos-descritivos.html"><i class="fa fa-check"></i><b>3.3</b> Resumos descritivos</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="resumos-descritivos.html"><a href="resumos-descritivos.html#medidas-de-tendência-central-posição"><i class="fa fa-check"></i><b>3.3.1</b> Medidas de tendência central (posição)</a></li>
-<li class="chapter" data-level="3.3.2" data-path="resumos-descritivos.html"><a href="resumos-descritivos.html#medidas-de-dispersão-variabilidade"><i class="fa fa-check"></i><b>3.3.2</b> Medidas de dispersão (variabilidade)</a></li>
-<li class="chapter" data-level="3.3.3" data-path="resumos-descritivos.html"><a href="resumos-descritivos.html#medidas-de-subdivisão-separatrizes"><i class="fa fa-check"></i><b>3.3.3</b> Medidas de subdivisão (separatrizes)</a></li>
+<li class="chapter" data-level="3.3.1" data-path="resumos-descritivos.html"><a href="resumos-descritivos.html#estimadores"><i class="fa fa-check"></i><b>3.3.1</b> Estimadores</a></li>
+<li class="chapter" data-level="3.3.2" data-path="resumos-descritivos.html"><a href="resumos-descritivos.html#medidas-de-tendência-central-posição"><i class="fa fa-check"></i><b>3.3.2</b> Medidas de tendência central (posição)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="resumos-descritivos.html"><a href="resumos-descritivos.html#medidas-de-dispersão-variabilidade"><i class="fa fa-check"></i><b>3.3.3</b> Medidas de dispersão (variabilidade)</a></li>
+<li class="chapter" data-level="3.3.4" data-path="resumos-descritivos.html"><a href="resumos-descritivos.html#medidas-de-subdivisão-separatrizes"><i class="fa fa-check"></i><b>3.3.4</b> Medidas de subdivisão (separatrizes)</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="medidas-de-forma-assimetria-curtose.html"><a href="medidas-de-forma-assimetria-curtose.html"><i class="fa fa-check"></i><b>3.4</b> Medidas de forma (assimetria &amp; curtose)</a></li>
 <li class="chapter" data-level="3.5" data-path="diferentes-posições-da-média-moda-e-mediana-2o-quartil.html"><a href="diferentes-posições-da-média-moda-e-mediana-2o-quartil.html"><i class="fa fa-check"></i><b>3.5</b> Diferentes posições da média, moda e mediana (2<span class="math inline">\(^{o}\)</span> quartil)</a></li>
@@ -591,8 +592,8 @@ n = \frac{z_{(1-\alpha)}^{2}}{\varepsilon^{2}} \cdot \pi \left(1-\pi \right)\\
 <div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb198-1" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
 <span id="cb198-2"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb198-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> p <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p)</span>
 <span id="cb198-3"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb198-3" tabindex="-1"></a><span class="fu">plot</span>(p, y, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;\u03c0&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;\u03c0*(1- \u03c0)&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Possíveis valores assumidos pelo produto: \u03c0*(1- \u03c0)&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-166"></span>
-<img src="apostila_files/figure-html/unnamed-chunk-166-1.png" alt="Possíveis valores assumidos pelo produto: π*(1- π)" width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-167"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-167-1.png" alt="Possíveis valores assumidos pelo produto: π*(1- π)" width="60%" />
 <p class="caption">
 Figure 10.4: Possíveis valores assumidos pelo produto: π*(1- π)
 </p>
@@ -650,20 +651,20 @@ n = \frac{z_{(1-\alpha)}^{2}}{\varepsilon^{2}} \cdot \frac{1}{4}\\
 <span id="cb199-34"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb199-34" tabindex="-1"></a><span class="fu">segments</span>(<span class="at">x0=</span>p<span class="sc">+</span>er , <span class="at">y0=</span><span class="dv">0</span>, <span class="at">x1=</span>p<span class="sc">+</span>er ,<span class="at">y1=</span>N,<span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">1</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
 <span id="cb199-35"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb199-35" tabindex="-1"></a>} </span>
 <span id="cb199-36"><a href="a-aleatoriedade-das-proporções-amostrais-e-o-tamanho-amostral.html#cb199-36" tabindex="-1"></a>}</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-168"></span>
-<img src="apostila_files/figure-html/unnamed-chunk-168-1.png" alt="Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento (385 elementos ) foi estimado ignorando-se o conhecimento da proporção populacional (π) para um nível de confiança (1-α)=0,95 e um erro amostral ε=0,05 (em preto as proporções amostrais dentro da tolerância fixada e, em vermelho, as que aleatoriamente ultrapassam a tolerância fixada em π +/-ε)." width="100%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-169"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-169-1.png" alt="Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento (385 elementos ) foi estimado ignorando-se o conhecimento da proporção populacional (π) para um nível de confiança (1-α)=0,95 e um erro amostral ε=0,05 (em preto as proporções amostrais dentro da tolerância fixada e, em vermelho, as que aleatoriamente ultrapassam a tolerância fixada em π +/-ε)." width="100%" />
 <p class="caption">
 Figure 10.5: Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento (385 elementos ) foi estimado ignorando-se o conhecimento da proporção populacional (π) para um nível de confiança (1-α)=0,95 e um erro amostral ε=0,05 (em preto as proporções amostrais dentro da tolerância fixada e, em vermelho, as que aleatoriamente ultrapassam a tolerância fixada em π +/-ε).
 </p>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-169"></span>
-<img src="apostila_files/figure-html/unnamed-chunk-169-1.png" alt="Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento  (217 elementos) foi estimado admitindo-se o conhecimento da proporção populacional (π) para um nível de confiança (1-α)=0,95 e um erro amostral ε=0,05 (em preto as proporções amostrais dentro da tolerância fixada e, em vermelho, as que aleatoriamente ultrapassam a tolerância fixada em π +/-ε)." width="100%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-170"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-170-1.png" alt="Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento  (217 elementos) foi estimado admitindo-se o conhecimento da proporção populacional (π) para um nível de confiança (1-α)=0,95 e um erro amostral ε=0,05 (em preto as proporções amostrais dentro da tolerância fixada e, em vermelho, as que aleatoriamente ultrapassam a tolerância fixada em π +/-ε)." width="100%" />
 <p class="caption">
 Figure 10.6: Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento (217 elementos) foi estimado admitindo-se o conhecimento da proporção populacional (π) para um nível de confiança (1-α)=0,95 e um erro amostral ε=0,05 (em preto as proporções amostrais dentro da tolerância fixada e, em vermelho, as que aleatoriamente ultrapassam a tolerância fixada em π +/-ε).
 </p>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-170"></span>
-<img src="apostila_files/figure-html/unnamed-chunk-170-1.png" alt="Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento foi arbitrariamente fixado (100 elementos) para um nível de confiança (1-α)=0,95 e um erro amostral ε=0,05 (em preto as proporções amostrais dentro da tolerância fixada e, em vermelho, as que aleatoriamente ultrapassam a tolerância fixada em π +/-ε)." width="100%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-171"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-171-1.png" alt="Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento foi arbitrariamente fixado (100 elementos) para um nível de confiança (1-α)=0,95 e um erro amostral ε=0,05 (em preto as proporções amostrais dentro da tolerância fixada e, em vermelho, as que aleatoriamente ultrapassam a tolerância fixada em π +/-ε)." width="100%" />
 <p class="caption">
 Figure 10.7: Flutuação das diversas proporções amostrais obtidas de amostragens cujo dimensionamento foi arbitrariamente fixado (100 elementos) para um nível de confiança (1-α)=0,95 e um erro amostral ε=0,05 (em preto as proporções amostrais dentro da tolerância fixada e, em vermelho, as que aleatoriamente ultrapassam a tolerância fixada em π +/-ε).
 </p>

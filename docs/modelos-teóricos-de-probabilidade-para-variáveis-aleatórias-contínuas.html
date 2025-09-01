@@ -198,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6.2" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#apresentação-tabular-de-dados-quantitativos"><i class="fa fa-check"></i><b>3.6.2</b> Apresentação tabular de dados quantitativos</a></li>
 <li class="chapter" data-level="3.6.3" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#média-1"><i class="fa fa-check"></i><b>3.6.3</b> Média</a></li>
 <li class="chapter" data-level="3.6.4" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#moda-1"><i class="fa fa-check"></i><b>3.6.4</b> Moda</a></li>
-<li class="chapter" data-level="3.6.5" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#mediana"><i class="fa fa-check"></i><b>3.6.5</b> Mediana</a></li>
+<li class="chapter" data-level="3.6.5" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#mediana-q_2d_5p_50"><i class="fa fa-check"></i><b>3.6.5</b> Mediana (<span class="math inline">\(=Q_{2}=D_{5}=P_{50}\)</span>)</a></li>
 <li class="chapter" data-level="3.6.6" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#variância"><i class="fa fa-check"></i><b>3.6.6</b> Variância</a></li>
 <li class="chapter" data-level="3.6.7" data-path="apresentação-tabular-de-dados.html"><a href="apresentação-tabular-de-dados.html#quartis"><i class="fa fa-check"></i><b>3.6.7</b> Quartis</a></li>
 </ul></li>
@@ -724,7 +724,7 @@ P( 0 &lt; T &lt; 50) &amp; = 1-0,939413063 \\
 ## generated.</code></pre>
 <div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="modelos-teóricos-de-probabilidade-para-variáveis-aleatórias-contínuas.html#cb140-1" tabindex="-1"></a><span class="co"># Plote para mostrar a curvatura suave</span></span>
 <span id="cb140-2"><a href="modelos-teóricos-de-probabilidade-para-variáveis-aleatórias-contínuas.html#cb140-2" tabindex="-1"></a>plot</span></code></pre></div>
-<p><img src="apostila_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
+<p><img src="apostila_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
 <div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="modelos-teóricos-de-probabilidade-para-variáveis-aleatórias-contínuas.html#cb141-1" tabindex="-1"></a><span class="co"># Para destacar a área de integração (0 a 50) </span></span>
 <span id="cb141-2"><a href="modelos-teóricos-de-probabilidade-para-variáveis-aleatórias-contínuas.html#cb141-2" tabindex="-1"></a>x_values <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1000</span>, <span class="at">length.out =</span> <span class="dv">50</span>)</span>
 <span id="cb141-3"><a href="modelos-teóricos-de-probabilidade-para-variáveis-aleatórias-contínuas.html#cb141-3" tabindex="-1"></a></span>
@@ -752,7 +752,7 @@ P( 0 &lt; T &lt; 50) &amp; = 1-0,939413063 \\
 <span id="cb141-25"><a href="modelos-teóricos-de-probabilidade-para-variáveis-aleatórias-contínuas.html#cb141-25" tabindex="-1"></a>                           <span class="at">fill =</span> <span class="st">&quot;yellow&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span>
 <span id="cb141-26"><a href="modelos-teóricos-de-probabilidade-para-variáveis-aleatórias-contínuas.html#cb141-26" tabindex="-1"></a></span>
 <span id="cb141-27"><a href="modelos-teóricos-de-probabilidade-para-variáveis-aleatórias-contínuas.html#cb141-27" tabindex="-1"></a>plot</span></code></pre></div>
-<p><img src="apostila_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+<p><img src="apostila_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
 <div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="modelos-teóricos-de-probabilidade-para-variáveis-aleatórias-contínuas.html#cb142-1" tabindex="-1"></a><span class="co"># Valores do intervalo</span></span>
 <span id="cb142-2"><a href="modelos-teóricos-de-probabilidade-para-variáveis-aleatórias-contínuas.html#cb142-2" tabindex="-1"></a><span class="co"># 0.006230509 para [0,50]</span></span>
 <span id="cb142-3"><a href="modelos-teóricos-de-probabilidade-para-variáveis-aleatórias-contínuas.html#cb142-3" tabindex="-1"></a><span class="co"># 0.9937695  para [50 , inf]. 1 - Prob[0,50]</span></span>
@@ -1073,8 +1073,8 @@ Encontre que célula apresenta esse valor de 0,4495 e faça a leitura da <strong
 <span id="cb152-32"><a href="modelos-teóricos-de-probabilidade-para-variáveis-aleatórias-contínuas.html#cb152-32" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span><span class="fl">0.1</span>, <span class="at">y=</span><span class="fl">0.1</span>, <span class="at">label=</span><span class="st">&quot;Probabilidade (área) =0,4495&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
 <span id="cb152-33"><a href="modelos-teóricos-de-probabilidade-para-variáveis-aleatórias-contínuas.html#cb152-33" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">&quot;text&quot;</span>, <span class="at">x=</span><span class="dv">2</span>, <span class="at">y=</span><span class="fl">0.05</span>, <span class="at">label=</span><span class="st">&quot;Probabilidade (área) =0,0505&quot;</span>, <span class="at">angle=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">hjust=</span><span class="dv">0</span>, <span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
 <span id="cb152-34"><a href="modelos-teóricos-de-probabilidade-para-variáveis-aleatórias-contínuas.html#cb152-34" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-134"></span>
-<img src="apostila_files/figure-html/unnamed-chunk-134-1.png" alt="Curva da fdp da Distribuição Normal padronizada mostrando as áreas delimitadas pelo score z arbitrado (1,64)" width="672" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-135"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-135-1.png" alt="Curva da fdp da Distribuição Normal padronizada mostrando as áreas delimitadas pelo score z arbitrado (1,64)" width="672" />
 <p class="caption">
 Figure 6.4: Curva da fdp da Distribuição Normal padronizada mostrando as áreas delimitadas pelo score z arbitrado (1,64)
 </p>

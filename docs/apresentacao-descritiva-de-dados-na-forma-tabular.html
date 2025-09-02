@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7.9 Técnicas de amostragem | apostila.knit</title>
+  <title>3.7 Apresentacao descritiva de dados na forma tabular | apostila.knit</title>
   <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7.9 Técnicas de amostragem | apostila.knit" />
+  <meta property="og:title" content="3.7 Apresentacao descritiva de dados na forma tabular | apostila.knit" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
   <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7.9 Técnicas de amostragem | apostila.knit" />
+  <meta name="twitter:title" content="3.7 Apresentacao descritiva de dados na forma tabular | apostila.knit" />
   
   <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="elaboração-dos-questionários.html"/>
-<link rel="next" href="amostragem-probabilística.html"/>
+<link rel="prev" href="diferentes-posições-da-média-moda-e-mediana-2o-quartil.html"/>
+<link rel="next" href="apresentacao-descritiva-de-dados-na-forma-grafica.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -564,31 +564,1340 @@ Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="técnicas-de-amostragem" class="section level2 hasAnchor" number="7.9">
-<h2><span class="header-section-number">7.9</span> Técnicas de amostragem<a href="técnicas-de-amostragem.html#técnicas-de-amostragem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="apresentacao-descritiva-de-dados-na-forma-tabular" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> Apresentacao descritiva de dados na forma tabular<a href="apresentacao-descritiva-de-dados-na-forma-tabular.html#apresentacao-descritiva-de-dados-na-forma-tabular" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><br />
 </p>
-<p>O modo de se obter uma amostra é tão importante, e existem tantos modos de fazê-lo, que esses procedimentos constituem especialidades dentro da Estatística.</p>
-<p> </p>
-<p>Todavia os que são mais frequentemente empregados estão representados na Figura <span class="math inline">\(\ref{fig35}\)</span>:</p>
+<p>As sínteses numéricas expostas condensam ao máximo a informação trazida pelos dados na forma de estatísticas associadas à:</p>
 <p><br />
 </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig35"></span>
-<img src="images7/amostragem.jpg" alt="Principais procedimentos para se extrair uma amostra" width="80%" />
-<p class="caption">
-Figure 7.2: Principais procedimentos para se extrair uma amostra
+<ul>
+<li>posição: média, moda, mediana;</li>
+<li>dispersão: amplitude total dos dados, variância (esvio padrão), coeficiente de variação;</li>
+<li>separatrizes (repartição): como por exemplo os quartis (<span class="math inline">\(Q_{1}\)</span>; <span class="math inline">\(Q_{2}\)</span>/mediana e <span class="math inline">\(Q_{3}\)</span>).</li>
+</ul>
+<p><br />
+</p>
+<p>A correta exposição dos dados na forma de tabelas e gráficos auxilia o entendimento de muitas outras características relacionadas aos dados trabalhados por parte do leitor com grande riqueza visual.</p>
+<p><br />
+</p>
+<p>Ao se lidar com grandes conjuntos de dados a visualização da informação contida nos dados fica comprometida se eles forem simplesmente apresentados como uma listagem, mesmo que depurados de eventuais inconsistências e ordenados como a lista abaixo:</p>
+<p><br />
+</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="apresentacao-descritiva-de-dados-na-forma-tabular.html#cb48-1" tabindex="-1"></a><span class="fu">sort</span>(alturas)</span></code></pre></div>
+<pre><code>##  [1] 1.41 1.44 1.47 1.54 1.55 1.56 1.56 1.56 1.57 1.58 1.58 1.61 1.62 1.62 1.63
+## [16] 1.64 1.64 1.65 1.65 1.65 1.65 1.66 1.66 1.66 1.66 1.66 1.67 1.67 1.67 1.67
+## [31] 1.68 1.68 1.68 1.69 1.71 1.71 1.72 1.72 1.73 1.73 1.73 1.73 1.73 1.74 1.75
+## [46] 1.76 1.76 1.77 1.78 1.78 1.79 1.82 1.83 1.83 1.84 1.85 1.86 1.93 1.95 2.00</code></pre>
+<p><br />
+</p>
+<p>Um dos modos de se lidar com isso é condensando a informação dos dados brutos em tabelas.</p>
+<p><br />
+</p>
+<p>Uma tabela é uma forma não discursiva de apresentar informações nas quais o dado numérico se destaca como informação central. Uma tabela se diferencia de um quadro por este ter todos os seus campos delimitados por linhas e conter apenas informações de natureza qualitativa.</p>
+<p><br />
+</p>
+<p>Uma tabela deve conter algumas <strong>informações essenciais</strong>, fora daquela estritamente relacionada aos dados, para que a compreensão do leitor acerca dos dados expostos seja a mais imediata possível:</p>
+<p><br />
+</p>
+<ul>
+<li>título que explique o que a tabela contém, local, data;</li>
+<li>cabeçalho nas colunas e linhas com a explicação, ainda que resumis, a que se referem as quantidades expostas no corpo;</li>
+<li>corpo formado pelos dados referentes às variáveis;</li>
+<li>fonte dos dados;</li>
+<li>uniformidade no número de casas decimais apresentadas no corpo;</li>
+<li>todas as casas devem apresentar valores ou símbolos que expliquem a ausência da informação (NI, NE, ou 0-zero).</li>
+</ul>
+<p><br />
+</p>
+<p>Trabalhos de natureza acadêmica ou científica deveriam obrigatoriamente seguir, quando publicados no Brasil, a norma vigente publicada pela ABNT: Associação Brasileira de Normas Técnicas e algumas punlicações do IBGE: Instituto Brasileiro de Geografia e Estatística (como em <a href="https://biblioteca.ibge.gov.br/visualizacao/livros/liv23907.pdf">link</a>).</p>
+<p><br />
+</p>
+<p>Observa-se frequentemente, todavia, que as publicações seguem normas particulares das instituições de ensino (para trabalhos de conclusão de curso, monografias, dissertações e teses) ou das editoras (artigos), muitas vezes mescladas com recomendações da ABNT. Na Universidade Estadual de Londrina o portal da biblioteca possui uma ligação para a seção “Normas para trabalhos” (<a href="https://sites.uel.br/bibliotecas/">link</a>).</p>
+<p><br />
+</p>
+<div id="apresentacão-tabular-de-dados-qualitativos" class="section level3 hasAnchor" number="3.7.1">
+<h3><span class="header-section-number">3.7.1</span> Apresentacão tabular de dados qualitativos<a href="apresentacao-descritiva-de-dados-na-forma-tabular.html#apresentacão-tabular-de-dados-qualitativos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<div id="dados-qualitativos-em-entrada-única" class="section level4 hasAnchor" number="3.7.1.1">
+<h4><span class="header-section-number">3.7.1.1</span> Dados qualitativos em entrada única<a href="apresentacao-descritiva-de-dados-na-forma-tabular.html#dados-qualitativos-em-entrada-única" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><br />
+</p>
+<p>Para alguns tipos de dados, a apresentação tabular é bastante imediata.</p>
+<p><br />
+</p>
+<p>Admita que tenha sido realizada uma pesquisa junto a um terminal de desembarque internacional em algum aeroporto sobre o continente de procedência do passageiro, num determinado período de um certo dia, tendo sido anotados os seguintes valores: AM, AM, A, A, A, AM, EU, EU, EU, EU, AM, AS, AS, AS, OC, AS, EU, AM, onde os continente anotados são assim identificados: americano (AM); africano (A), europeu (EU); asiático (AS) e da oceania (OC). Uma tabela para a apresentação dos resultados poderia ser:</p>
+<p><br />
+</p>
+<table>
+<caption>
+Desembarques no terminal internacional A em Cumbica (SP,
+Brasil)<br />
+(10/10/2021: 8 h 00min às 12 h 00 min)
+</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">
+Continente de procedência
+</th>
+<th style="text-align: left;">
+Desembarques
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">
+América
+</td>
+<td style="text-align: left;">
+5
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+África
+</td>
+<td style="text-align: left;">
+3
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+Europa
+</td>
+<td style="text-align: left;">
+5
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+Ásia
+</td>
+<td style="text-align: left;">
+4
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+Oceania
+</td>
+<td style="text-align: left;">
+1
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+Total
+</td>
+<td style="text-align: left;">
+18
+</td>
+</tr>
+</tbody>
+</table>
+<p>
+Fonte: Próprio autor
+</p>
+<p><br />
+</p>
+<p>Outro exemplo de apresentação tabular onde são apresentadas as proporções relativas observadas de cada nível da variável estudada (“tipo de família”, com quatro níveis diferentes), de um levantamento amostral feito pela Agência do Censo dos Estados Unidos em 2005.</p>
+<p><br />
+</p>
+<table>
+<caption>
+Estrutura domiciliar dos Estados Unidos
+</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">
+Estrutura domiciliar
+</th>
+<th style="text-align: left;">
+Número (milhões)
+</th>
+<th style="text-align: left;">
+Freq. rel.
+</th>
+<th style="text-align: left;">
+Freq. rel. (%)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">
+Casal com filhos
+</td>
+<td style="text-align: left;">
+24,1
+</td>
+<td style="text-align: left;">
+0,22
+</td>
+<td style="text-align: left;">
+22
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+Casal sem filhos
+</td>
+<td style="text-align: left;">
+31,1
+</td>
+<td style="text-align: left;">
+0,28
+</td>
+<td style="text-align: left;">
+28
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+Solteiro, sem parceiro
+</td>
+<td style="text-align: left;">
+19,1
+</td>
+<td style="text-align: left;">
+0,17
+</td>
+<td style="text-align: left;">
+17
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+Morando sozinho
+</td>
+<td style="text-align: left;">
+30,1
+</td>
+<td style="text-align: left;">
+0,27
+</td>
+<td style="text-align: left;">
+27
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+Outros domicílios
+</td>
+<td style="text-align: left;">
+6,7
+</td>
+<td style="text-align: left;">
+0,06
+</td>
+<td style="text-align: left;">
+6
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+Total
+</td>
+<td style="text-align: left;">
+111.1
+</td>
+<td style="text-align: left;">
+1,00
+</td>
+<td style="text-align: left;">
+100%
+</td>
+</tr>
+</tbody>
+</table>
+<p>
+Fonte: Censo dos EUA (2005)
+</p>
+<p><br />
 </p>
 </div>
+<div id="dados-qualitativos-em-entrada-dupla" class="section level4 hasAnchor" number="3.7.1.2">
+<h4><span class="header-section-number">3.7.1.2</span> Dados qualitativos em entrada dupla<a href="apresentacao-descritiva-de-dados-na-forma-tabular.html#dados-qualitativos-em-entrada-dupla" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><br />
 </p>
+<p>Outros tipos de dados são provenientes de pesquisas que têm por base respostas de natureza binária como, por exemplo:</p>
+<p><br />
+</p>
+<ul>
+<li>sim ou não;</li>
+<li>gosto ou não gosto;</li>
+<li>voto em “A” ou voto em “B”; ou,</li>
+<li>concordo ou não concordo.</li>
+</ul>
+<p><br />
+</p>
+<p>Como resultado final, são obtidas contagens que expressam as frequências absolutas observadas para cada uma das variáveis (ou seus níveis) como na apresentação tabular de dados qualitativos por <em>Tabelas de Contingência</em>.</p>
+<p><br />
+</p>
+<p>As <em>tabelas de contingência</em> são usadas para associar duas ou mais variáveis qualitativas (ou seus níveis) às contagens das respostas obtidas, na forma das frequências absoluta e relativa observadas em cada uma dessas variáveis (ou seus níveis).</p>
+<p><br />
+</p>
+<p>O uso desse tipo de tabela é comum quando se pretende investigar se as variáveis estudadas têm alguma associação por meio de testes não paramétricos. Esse tipo de apresentação facilita a extração de informações relacionadas às probabilidades marginais ou condicionadas de cada uma variáveis ou seus níveis.</p>
+<p><br />
+</p>
+<p>Admita agora que a pesquisa anterior junto ao terminal de desembarque internacional tenha também apontado o sexo do passageiro em seu desembarque. Uma tabela de dupla entrada com aqueles dados assumiria a forma:</p>
+<p><br />
+</p>
+<p><br />
+</p>
+<table>
+<caption>
+Desembarques no terminal internacional A em Cumbica (SP,
+Brasil)<br />
+(10/10/2021: 8 h 00min às 12 h 00 min)
+</caption>
+<tbody>
+<tr class="odd">
+<td rowspan="2" style="text-align: left;">
+Desembarques no terminal
+internacional A em Cumbica (SP, Brasil)
+</td>
+<td colspan="2" style="text-align: center;">
+Sexo do passageiro
+</td>
+<td rowspan="2" style="text-align: left;">
+Total
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+M
+</td>
+<td style="text-align: left;">
+F
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+América
+</td>
+<td style="text-align: left;">
+3
+</td>
+<td style="text-align: left;">
+2
+</td>
+<td style="text-align: left;">
+5
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+África
+</td>
+<td style="text-align: left;">
+3
+</td>
+<td style="text-align: left;">
+0
+</td>
+<td style="text-align: left;">
+3
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+Europa
+</td>
+<td style="text-align: left;">
+1
+</td>
+<td style="text-align: left;">
+4
+</td>
+<td style="text-align: left;">
+5
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+Ásia
+</td>
+<td style="text-align: left;">
+2
+</td>
+<td style="text-align: left;">
+2
+</td>
+<td style="text-align: left;">
+4
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+Oceania
+</td>
+<td style="text-align: left;">
+0
+</td>
+<td style="text-align: left;">
+1
+</td>
+<td style="text-align: left;">
+1
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+Total
+</td>
+<td style="text-align: left;">
+9
+</td>
+<td style="text-align: left;">
+9
+</td>
+<td style="text-align: left;">
+18
+</td>
+</tr>
+</tbody>
+</table>
+<p>
+Fonte: Próprio autor
+</p>
+<p><br />
+</p>
+<p>Um outro exemplo, usando dados da incidência de baixo peso ao nascer em recém-nascidos de Pelotas (RS) segundo o hábito tabágico da mãe durante a gravidez (1982):</p>
+<p><br />
+</p>
+<p><br />
+</p>
+<table>
+<caption>
+Incidência de baixo peso ao nascer em recém-nascidos de
+Pelotas, RS, segundo o hábito tabágico da mãe durante a gravidez
+(1982)
+</caption>
+<tbody>
+<tr class="odd">
+<td rowspan="2" style="text-align: center;">
+Classificação da mãe
+</td>
+<td colspan="2" style="text-align: center;">
+Baixo peso ao nascer
+</td>
+<td rowspan="2" style="text-align: center;">
+Total
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+Sim
+</td>
+<td style="text-align: center;">
+Não
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+Fumante
+</td>
+<td style="text-align: center;">
+275
+</td>
+<td style="text-align: center;">
+2.144
+</td>
+<td style="text-align: center;">
+2.419
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">
+Não fumante
+</td>
+<td style="text-align: center;">
+311
+</td>
+<td style="text-align: center;">
+4.496
+</td>
+<td style="text-align: center;">
+4.807
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">
+Total
+</td>
+<td style="text-align: center;">
+586
+</td>
+<td style="text-align: center;">
+6.640
+</td>
+<td style="text-align: center;">
+7.226
+</td>
+</tr>
+</tbody>
+</table>
+<p>
+Fonte: Próprio autor
+</p>
+<p><br />
+</p>
+<p>Ou ainda neste outro estudo que analisa a inclinação partidária de dois tipos de núcleos familiares em relação à presença de filhos:</p>
+<p><br />
+</p>
+<table>
+<caption>
+Inclinação partidária (frequências absolutas)
+</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">
+Estrutura domiciliar
+</th>
+<th style="text-align: left;">
+Democrata
+</th>
+<th style="text-align: left;">
+Republicano
+</th>
+<th style="text-align: left;">
+Totais
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">
+Casal com filho(s)
+</td>
+<td style="text-align: left;">
+762
+</td>
+<td style="text-align: left;">
+468
+</td>
+<td style="text-align: left;">
+1230
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+Casal sem filhos
+</td>
+<td style="text-align: left;">
+484
+</td>
+<td style="text-align: left;">
+477
+</td>
+<td style="text-align: left;">
+961
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+Totais
+</td>
+<td style="text-align: left;">
+1246
+</td>
+<td style="text-align: left;">
+945
+</td>
+<td style="text-align: left;">
+2191
+</td>
+</tr>
+</tbody>
+</table>
+<p>
+Fonte: Próprio autor
+</p>
+<p><br />
+</p>
+<p>A partir das contagens obtidas na pesquisa (as frequências absolutas), uma tabela com as frequências relativas pode ser construída, passando a apresentar as proporções relativas de cada categoria em relação aos níveis pesquisados:</p>
+<p><br />
+</p>
+<table>
+<caption>
+Inclinação partidária (frequências relativas)
+</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">
+Estrutura domiciliar
+</th>
+<th style="text-align: left;">
+Democrata (%)
+</th>
+<th style="text-align: left;">
+Republicano (%)
+</th>
+<th style="text-align: left;">
+Totais (%)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">
+Casal com filho(s)
+</td>
+<td style="text-align: left;">
+34,78
+</td>
+<td style="text-align: left;">
+21,36
+</td>
+<td style="text-align: left;">
+56,14
+</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">
+Casal sem filhos
+</td>
+<td style="text-align: left;">
+22,09
+</td>
+<td style="text-align: left;">
+21,77
+</td>
+<td style="text-align: left;">
+43,86
+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">
+Totais (%)
+</td>
+<td style="text-align: left;">
+56,87
+</td>
+<td style="text-align: left;">
+43,13
+</td>
+<td style="text-align: left;">
+100
+</td>
+</tr>
+</tbody>
+</table>
+<p>
+Fonte: Próprio autor
+</p>
+</div>
+</div>
+<div id="apresentacão-tabular-de-dados-quantitativos" class="section level3 hasAnchor" number="3.7.2">
+<h3><span class="header-section-number">3.7.2</span> Apresentacão tabular de dados quantitativos<a href="apresentacao-descritiva-de-dados-na-forma-tabular.html#apresentacão-tabular-de-dados-quantitativos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Todavia, para grandes quatidades de observações de dados quantitativos, a apresentação na forma de tabelas deve ser precedida do agrupamento dos valores observados em classes. O procedimento estatístico de agrupar os dados em <em>classes</em> ou <em>categorias</em> envolve construir uma <em>tabela de distribuição de frequências</em>.</p>
+<p><br />
+</p>
+<p>Uma <em>tabela de distribuição de frequências</em> associa cada <em>classe</em> (intervalo) de valores da variável estudada ao número de ocorrências observadas. Como <em>regra prática</em>, a repartição dos dados brutos em classes deve sempre observar para que não haja um número excessivo de classes (diminuição da finalidade de resumir os dados, criação de classes sem nenhuma observação) nem tampouco poucas (que não possibilitem a visualização da distribuição e promovam perda da informação original).</p>
+<p><br />
+</p>
+<p>A construção de uma <em>distribuição de frequências</em> consiste essencialmente em:</p>
+<p><br />
+</p>
+<ul>
+<li>escolher as <em>classes</em> ou <em>intervalos</em> (dados quantitativos) ou <em>categorias</em> (dados qualitativos);</li>
+<li>separar ou enquadrar os dados nessas <em>classes</em> ou <em>categorias</em>; e,</li>
+<li>contar o número de dados de cada <em>classe</em> ou <em>categoria</em>.</li>
+</ul>
+<p><br />
+</p>
+<p>A literatura propõe vários modos para se determinar o número <em>k</em> de classes:</p>
+<p><br />
+</p>
+<table>
+<colgroup>
+<col width="35%" />
+<col width="32%" />
+<col width="31%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Crítério</th>
+<th>Tamanho da amostra (<em>n</em>)</th>
+<th>Fórmula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>n <span class="math inline">\(\leq\)</span> 25</td>
+<td>k=5</td>
+</tr>
+<tr class="even">
+<td>Raiz quadrada</td>
+<td>25 <span class="math inline">\(\leq\)</span> n <span class="math inline">\(\leq\)</span> 220</td>
+<td>k=<span class="math inline">\(\sqrt{n}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Raiz quadrada</td>
+<td>25 <span class="math inline">\(\leq\)</span> n <span class="math inline">\(\leq\)</span> 220</td>
+<td><span class="math inline">\(2^{k} &gt; n\)</span></td>
+</tr>
+<tr class="even">
+<td>Herbert <strong>Sturges</strong></td>
+<td>135 <span class="math inline">\(\leq\)</span> 572237</td>
+<td>k=1+3,22.log(n)<span class="math inline">\(^{(1)}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Giuseppe <strong>Milone</strong></td>
+<td>20 <span class="math inline">\(\leq 36315\)</span></td>
+<td>k=-1+2.ln(n) <span class="math inline">\(^{(2)}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<ul>
+<li><span class="math inline">\(^{(1)}\)</span>: logarítmo na base 10; e</li>
+<li><span class="math inline">\(^{(2)}\)</span>: logarítmo na base <em>e</em>.</li>
+</ul>
+<p><br />
+</p>
+<p>Ao se escolher um número (<span class="math inline">\(k\)</span>) de classes deve-se <strong>ponderar</strong> para que:</p>
+<p><br />
+</p>
+<ul>
+<li>os intervalos das classes tenham, geralmente, a mesma amplitude (raramente se necessita dispor de classes com amplitudes diferentes);</li>
+<li>os intervalos, a faixa de variação que vai do limite inferior da <strong>primeira classe</strong> ao limite superior da **última classe*, devem conter todos os valores possíveis da variável;</li>
+<li>cada valor observado deve pertencer <strong>apenas a uma classe</strong>;</li>
+<li><strong>nenhuma classe</strong> deverá estar vazia (sem observação alguma);<br />
+</li>
+<li>não adotar um número muito elevado de classes (de modo que cada classe possua poucas observações) e nem muito reduzido (de modo a esconder a variabilidade dos dados ao se reunir todas as observações em poucas faixas de valores);</li>
+<li>alguns autores <strong>recomendam</strong> um número mínimo de 5 classes e um máximo de 15;</li>
+<li>podemos considerar a amplitude de cada classe com <strong>uma casa decimal a mais que os dados</strong> de modo a facilitar a incorporação do último valor (mais elevado) na última classe.</li>
+</ul>
+<p><br />
+</p>
+<p>Em nosso exemplo das alturas dos estudantes, a determinação do número de classes pelo critério da <em>raiz quadrada</em> ( <em>n</em>=60) sugere 8 classes (outros critérios: pelo menor inteiro tq. <span class="math inline">\(2^{k}&gt;n; k=6\)</span>, pelo critério de Sturges <span class="math inline">\(k=6,86 \sim 7\)</span>, de Giuseppe Milone <span class="math inline">\(k=8,18 \sim 9)\)</span>).</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+k &amp; =\sqrt{n} \\
+&amp; = 7,74 \\
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Arredondar para <strong>mais</strong>: <span class="math inline">\(k=8\)</span>.</p>
+<p><br />
+</p>
+<p>A <em>amplitude total</em> (<em>A</em>) dos valores observados é a simples diferença entre o <em>valor máximo</em> (2,00 m) e o <em>valor mínimo</em> (1,41 m):</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+A &amp; =2,00-1,41 \\
+&amp; =0,59 m
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>A amplitude de cada uma das classes ( <span class="math inline">\(\Delta\)</span>) será dada pelo quociente da <em>amplitude total</em> ( <em>A</em>) pelo <em>número de classes</em> ( <em>k</em>).<br />
+</p>
+<p><span class="math display">\[\begin{align*}
+\Delta &amp; = \frac{A}{k} \\
+  &amp; = \frac{0,59}{8}\\
+  &amp; = 0,07375 m
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>Arredondar para <strong>mais</strong>: <span class="math inline">\(\Delta=0,075 m\)</span>.</p>
+<p><br />
+</p>
+<p>As classes são então assim construídas:</p>
+<p><br />
+</p>
+<ul>
+<li>Limite inferior da <span class="math inline">\(1^{a}\)</span> classe (<span class="math inline">\(L_{inf_1}\)</span>): valor mínimo observado; e,</li>
+<li>Limite superior da <span class="math inline">\(1^{a}\)</span> classe (<span class="math inline">\(L_{sup_1}\)</span>): <span class="math inline">\(L_{inf_1}\)</span> + <span class="math inline">\(\Delta\)</span>.</li>
+</ul>
+<p><br />
+</p>
+<p>e assim sucessivamente atá a última classe.</p>
+<p><br />
+</p>
+<p>Símbolos gráficos para intervalos:</p>
+<p><br />
+</p>
+<ul>
+<li>Os símbolos abaixo indicam que o valor situado à sua esquerda <strong>está incluído</strong> no intervalo e o da direita <strong>não está</strong>:</li>
+</ul>
+<p> </p>
+<p><span class="math display">\[
+\vdash \\
+{\bullet}-{\circ}
+\]</span></p>
+<p><br />
+</p>
+<ul>
+<li>Os símbolos abaixo indicam que o valor situado à sua esquerda <strong>não está</strong> incluído no intervalo e o da direita **está incluído*:</li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[
+\dashv  \\
+{\circ}-{\bullet}
+\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>As tabelas que serão apresentadas a seguir estão sem os requisitos essenciais expostos anteriormente uma vez que o propósito é explicar a construção e cálculo dos valores de suas células.</p>
+</blockquote>
+<p><br />
+</p>
+<p>Com <span class="math inline">\(\Delta=0,075m\)</span> as 8 classes ficam assim estabelecidas, tendo-se como ponto de partida o valor mínimo observado: 1,41 m - 1,485 m; 1,485 m - 1,56 m; 1,56 m - 1,635 m; 1,635 m - 1,71 m; 1,71 m - 1,785 m; 1,785 m - 1,86 m; 1,86 m - 1,935m; 1,935 - 2,01 m.</p>
+<p><br />
+</p>
+<p>Ordenando-se os dados (para facilitar a identificação das observações) e atribuíndo cada elemento a uma única classe:</p>
+<p><br />
+</p>
+<p>{<font color='blue'> 1,41 ; 1,44 ; 1,47</font> ; 1,54 ; 1,55 ; <font color='blue'>1,56 ; 1,56 ; 1,56; 1,57 ; 1,58 ; 1,58 ; 1,61 ; 1,62 ; 1,62 ; 1,63</font>; 1,64 ;1,64 ; 1,65 ; 1,65 ; 1,65 ; 1,65 ; 1,66 ; 1,66 ; 1,66 ; 1,66 ; 1,66 ; 1,67 ; 1,67 ; 1,67 ; 1,67 ; 1,68 ; 1,68 ;1,68 ; 1,69 ; <font color='blue'> 1,71 ; 1,71 ; 1,72 ; 1,72 ; 1,73 ; 1,73 ; 1,73 ; 1,73 ; 1,73 ; 1,74 ; 1,75 ; 1,76 ; 1,76 ; 1,77 ; 1,78 ; 1,78</font>; 1,79 1,82 ; 1,83 ; 1,83 ; 1,84 ; 1,85 ; <font color='blue'> 1,86 ; 1,93</font>; 1,95 ; 2,00}</p>
+<p><br />
+</p>
+<p>A tabela de distribuição de frequências com 8 classes, cada uma com amplitude 0,075 m, assume a forma:</p>
+<p><br />
+</p>
+<table>
+<thead>
+<tr class="header">
+<th>Classe</th>
+<th>Frequência absoluta (<span class="math inline">\(f_{i}\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1,41 m <span class="math inline">\(\vdash\)</span> 1,485 m</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>1,485 m <span class="math inline">\(\vdash\)</span> 1,56 m</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>1,56 m <span class="math inline">\(\vdash\)</span> 1,635 m</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>1,635 m <span class="math inline">\(\vdash\)</span> 1,71 m</td>
+<td>19</td>
+</tr>
+<tr class="odd">
+<td>1,71 m <span class="math inline">\(\vdash\)</span> 1,785 m</td>
+<td>16</td>
+</tr>
+<tr class="even">
+<td>1,785 m <span class="math inline">\(\vdash\)</span> 1,86 m</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>1,86 m <span class="math inline">\(\vdash\)</span> 1,935 m</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>1,935m <span class="math inline">\(\vdash\)</span> 2,01 m</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>60</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>Alternativamente, caso adotássemos como ponto de partida (um pouco abaixo do valor mínimo observado) o valor de 1,40 m e com amplitude de classe 0,08 m, uma tabela alternativa de distribuição de frequẽncias teria como classes : 1,40 m - 1,48 m; 1,48 m - 1,56 m; 1,56 m - 1,64 m; 1,64 m - 1,72 m; 1,72 m - 1,80 m; 1,80 m - 1,88 m; 1,88 m - 2,06 m.</p>
+<p><br />
+</p>
+<p>Ordenando-se os dados (para facilitar a identificação das observações) e atribuíndo cada elemento a uma única classe:</p>
+<p><br />
+</p>
+<p>{
+<font color='blue'>1,41 ; 1,44 ; 1,47 ;</font>
+1,54 ; 1,55 ;
+<font color='blue'>1,56 ; 1,56 ; 1,56 ; 1,57 ; 1,58 ; 1,58 ; 1,61 ; 1,62 ; 1,62 ; 1,63 ;</font>
+1,64 ;1,64 ; 1,65 ; 1,65 ; 1,65 ; 1,65 ; 1,66 ; 1,66 ; 1,66 ; 1,66 ; 1,66 ; 1,67 ; 1,67 ; 1,67 ; 1,67 ; 1,68 ; 1,68 ;1,68 ; 1,69 ; 1,71 ; 1,71 ;
+<font color='blue'>1,72 ; 1,72 ; 1,73 ; 1,73 ; 1,73 ; 1,73 ; 1,73 ; 1,74 ; 1,75 ; 1,76 ; 1,76 ; 1,77 ; 1,78 ; 1,78 ;1,79;</font> 1,82 ; 1,83 ; 1,83 ; 1,84 ; 1,85 ; 1,86 ;
+<font color='blue'>1,93 ; 1,95 ; 2,00;</font> }</p>
+<p><br />
+</p>
+<p>A tabela de distribuição de frequências com 7 classes, cada uma com amplitude 0,08 m, assume a forma:</p>
+<p><br />
+</p>
+<table>
+<thead>
+<tr class="header">
+<th>Classe</th>
+<th>Frequência absoluta (<span class="math inline">\(f_{i}\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1,40 m <span class="math inline">\(\vdash\)</span> 1,48 m</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>1,48 m <span class="math inline">\(\vdash\)</span> 1,56 m</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>1,56 m <span class="math inline">\(\vdash\)</span> 1,64 m</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>1,64 m <span class="math inline">\(\vdash\)</span> 1,72 m</td>
+<td>21</td>
+</tr>
+<tr class="odd">
+<td>1,72 m <span class="math inline">\(\vdash\)</span> 1,80 m</td>
+<td>15</td>
+</tr>
+<tr class="even">
+<td>1,80 m <span class="math inline">\(\vdash\)</span> 1,88 m</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>1,88 m <span class="math inline">\(\vdash\)</span> 2,06 m</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td>60</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p>Também podemos cogitar adotar alternativamente um intervalo de classe <span class="math inline">\(\Delta=0,10\)</span> m, com a primeira classe começando (um pouco abaixo do valor mínimo observado) na altura de 1,40 m; todavia, a última classe não iria contemplar o valor máximo observado (2,00 m) e necessitaíamos abrir mais uma classe apenas para incluí-lo.</p>
+<p><br />
+</p>
+<p>Mas começando-se no valor mínimo obseravado (1,41 m) estaríamos assegurando que o limite superior da última classe incluiria o valor máximo observado (2,00 m). Assim, essas seriam as classes sob uma amplitude de 0,10 m: 1,41 m - 1,51 m; 1,51 m - 1,61 m; 1,61 m - 1,71 m; 1,71 m - 1,81 m; 1,81 m - 1,91 m; 1,91 m - 2,01 m. O total de 6 classes (1,41 m a 2,01 m) cobre toda faixa de variação dos valores dos dados (de 1,41 m a 2,00 m ) e é de rápida assimilação pelo leitor.</p>
+<p><br />
+</p>
+<p>Ordenando-se os dados (para facilitar a identificação das observações) e atribuíndo cada elemento a uma única classe:</p>
+<p><br />
+</p>
+<p>{<font color='blue'>1,41 ; 1,44 ; 1,47 ;</font> 1,54 ; 1,55 ; 1,56 ; 1,56 ; 1,56 ; 1,57 ; 1,58 ; 1,58 ; <font color='blue'>1,61 ; 1,62 ; 1,62 ; 1,63 ; 1,64 ;1,64 ; 1,65 ; 1,65 ; 1,65 ; 1,65 ; 1,66 ; 1,66 ; 1,66 ; 1,66 ; 1,66 ; 1,67 ; 1,67 ; 1,67 ; 1,67 ; 1,68 ; 1,68 ;1,68 ; 1,69 ;</font> 1,71 ; 1,71 ; 1,72 ; 1,72 ; 1,73 ; 1,73 ; 1,73 ; 1,73 ; 1,73 ; 1,74 ; 1,75 ; 1,76 ; 1,76 ; 1,77 ; 1,78 ; 1,78 ; 1,79 ; <font color='blue'>1,82 ; 1,83 ; 1,83 ; 1,84 ; 1,85 ; 1,86 ;</font> 1,93 ; 1,95 ; 2,00}</p>
+<p><br />
+</p>
+<p>A tabela de distribuição de frequências com 6 classes, cada uma com amplitude 0,10 m, assume a forma:</p>
+<p><br />
+</p>
+<table>
+<thead>
+<tr class="header">
+<th>Classe</th>
+<th>Frequência absoluta (<span class="math inline">\(f_{i}\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1,41 m <span class="math inline">\(\vdash\)</span> 1,51 m</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>1,51 m <span class="math inline">\(\vdash\)</span> 1,61 m</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>1,61 m <span class="math inline">\(\vdash\)</span> 1,71 m</td>
+<td>23</td>
+</tr>
+<tr class="even">
+<td>1,71 m <span class="math inline">\(\vdash\)</span> 1,81 m</td>
+<td>17</td>
+</tr>
+<tr class="odd">
+<td>1,81 m <span class="math inline">\(\vdash\)</span> 1,91 m</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>1,91 m <span class="math inline">\(\vdash\)</span> 2,01 m</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>60</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<p><em>Tabelas de distribuição de frequências</em> mais completas podem montadas agregando muitas informações adicionais em novas colunas, mediante simples operações aritméticas.</p>
+<p><br />
+</p>
+<p>Essas informações servem para tornar a visualização mais imediata e muitas delas são obtidas com operações matemáticas elementares:</p>
+<p><br />
+</p>
+<ul>
+<li>Classe <em>i</em>: é a simples identificação de cada classe;</li>
+<li>Amplitude (<span class="math inline">\(\Delta_{i}\)</span>) da classe <span class="math inline">\(i\)</span>: a diferença entre o valor do limite superior e o do inferior de cada classe;</li>
+<li>Intervalo de valores da classe <span class="math inline">\(i\)</span> (onde seu limite inferior <strong>está contido</strong> e o limite superior <strong>não está contido</strong>);</li>
+<li>Valor médio (<span class="math inline">\(\stackrel{-}{x}_{i}\)</span>) de cada classe <span class="math inline">\(i\)</span>: o valor de seu <strong>limite inferior</strong> mais a metade da amplitude da classe;</li>
+<li>Frequência absoluta (<span class="math inline">\(f_{i}\)</span>) da classe <span class="math inline">\(i\)</span>: o número de observações <strong>contidas</strong> no intervalo da classe considerada;</li>
+<li>Frequência relativa (<span class="math inline">\(fr_{i}= \frac{f_{i}}{n}\)</span>) da classe <span class="math inline">\(i\)</span> (ou frequência relativa percentual, se assim apresentada): o quociente do número de observações <span class="math inline">\(n_{i}\)</span> contidas no intervalo da classe <span class="math inline">\(f_{i}\)</span>, pelo número total de observações (<span class="math inline">\(n\)</span>);</li>
+<li>Frequência acumulada (<span class="math inline">\(F_{i}\)</span>) da classe <span class="math inline">\(i\)</span> (ou frequência acumulada percentual, se assim apresentada): o número de observações com medidas contidas na classe <span class="math inline">\(i\)</span> e nas anteriores a ela;</li>
+<li>Densidade absoluta (<span class="math inline">\(\delta_{i}=\frac{f_{i}}{\Delta_{i}}\)</span>): o quociente do número de observações da classe (<span class="math inline">\(f_{i}\)</span>) pela sua amplitude (<span class="math inline">\(\Delta_{i}\)</span>);</li>
+<li>Densidade relativa <span class="math inline">\(\delta_{r_i}=\frac{fr_{i}}{\Delta_{i}}\)</span>: o quociente da frequência relativa (<span class="math inline">\(fr_{i}\)</span>) pela amplitude (<span class="math inline">\(\Delta_{i}\)</span>) da classe.</li>
+</ul>
+<p><br />
+</p>
+<p>Vejo como exemplo as tabelas abaixo:</p>
+<p><br />
+</p>
+<table>
+<colgroup>
+<col width="5%" />
+<col width="15%" />
+<col width="18%" />
+<col width="8%" />
+<col width="11%" />
+<col width="13%" />
+<col width="12%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Classe</th>
+<th>Int. de valores</th>
+<th>Alt. média</th>
+<th>Freq. abs.</th>
+<th>Freq. rel.</th>
+<th>Freq. rel. (%)</th>
+<th>Freq. acumulada</th>
+<th>Freq. acum. (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>(<span class="math inline">\(\stackrel{-}{x}_{i}\)</span>)</td>
+<td>(<span class="math inline">\(f_{i}\)</span>)</td>
+<td>(<span class="math inline">\(fr_{i}\)</span>)</td>
+<td>(<span class="math inline">\(fr_{i\%}\)</span>)</td>
+<td>(<span class="math inline">\(F_{i}\)</span>)</td>
+<td>(<span class="math inline">\(F_{i\%}\)</span>)</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1,41 <span class="math inline">\(\vdash\)</span> 1,51</td>
+<td>1,46</td>
+<td>3</td>
+<td>0,05</td>
+<td>5</td>
+<td>3</td>
+<td>5,00</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>1,51 <span class="math inline">\(\vdash\)</span> 1,61</td>
+<td>1,56</td>
+<td>8</td>
+<td>0,13</td>
+<td>13,33</td>
+<td>11</td>
+<td>18,33</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>1,61 <span class="math inline">\(\vdash\)</span> 1,71</td>
+<td>1,66</td>
+<td>23</td>
+<td>0,38</td>
+<td>38,33</td>
+<td>34</td>
+<td>56,66</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>1,71 <span class="math inline">\(\vdash\)</span> 1,81</td>
+<td>1,76</td>
+<td>17</td>
+<td>0,28</td>
+<td>28,34</td>
+<td>51</td>
+<td>85,00</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>1,81 <span class="math inline">\(\vdash\)</span> 1,91</td>
+<td>1,86</td>
+<td>6</td>
+<td>0,10</td>
+<td>10</td>
+<td>57</td>
+<td>95,00</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>1,91 <span class="math inline">\(\vdash\)</span> 2,01</td>
+<td>1,96</td>
+<td>3</td>
+<td>0,05</td>
+<td>5</td>
+<td>60</td>
+<td>100,00</td>
+</tr>
+<tr class="even">
+<td>Totais</td>
+<td>-</td>
+<td></td>
+<td>60</td>
+<td>1,00</td>
+<td>100,00</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+<table>
+<colgroup>
+<col width="7%" />
+<col width="19%" />
+<col width="10%" />
+<col width="14%" />
+<col width="14%" />
+<col width="11%" />
+<col width="21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Classe</th>
+<th>Int. de valores</th>
+<th>Freq. abs.</th>
+<th>Amplitude</th>
+<th>Dens. abs</th>
+<th>Freq. rel.</th>
+<th>Dens. rel.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>(<span class="math inline">\(f_{i}\)</span>)</td>
+<td>(<span class="math inline">\(\Delta_{i}\)</span>)</td>
+<td>(<span class="math inline">\(\delta_{i}\)</span>)</td>
+<td>(<span class="math inline">\(fr_{i}\)</span>)</td>
+<td>(<span class="math inline">\(\delta_{r_i}\)</span>)</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1,41 <span class="math inline">\(\vdash\)</span> 1,51</td>
+<td>3</td>
+<td>0,10</td>
+<td>30</td>
+<td>0,05</td>
+<td>0,5</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>1,51 <span class="math inline">\(\vdash\)</span> 1,61</td>
+<td>8</td>
+<td>0,10</td>
+<td>80</td>
+<td>0,13</td>
+<td>1,33</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>1,61 <span class="math inline">\(\vdash\)</span> 1,71</td>
+<td>23</td>
+<td>0,10</td>
+<td>230</td>
+<td>0,39</td>
+<td>3,83</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>1,71 <span class="math inline">\(\vdash\)</span> 1,81</td>
+<td>17</td>
+<td>0,10</td>
+<td>170</td>
+<td>0,28</td>
+<td>2,83</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>1,81 <span class="math inline">\(\vdash\)</span> 1,91</td>
+<td>6</td>
+<td>0,10</td>
+<td>60</td>
+<td>0,10</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>1,91 <span class="math inline">\(\vdash\)</span> 2,01</td>
+<td>3</td>
+<td>0,10</td>
+<td>30</td>
+<td>0,05</td>
+<td>0,5</td>
+</tr>
+<tr class="even">
+<td>Totais</td>
+<td>-</td>
+<td>60</td>
+<td>-</td>
+<td>-</td>
+<td>1,00</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p><br />
+</p>
+</div>
+<div id="média-1" class="section level3 hasAnchor" number="3.7.3">
+<h3><span class="header-section-number">3.7.3</span> Média<a href="apresentacao-descritiva-de-dados-na-forma-tabular.html#média-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Nas tabelas de <em>distribuições de frequências</em> os resultados estão agrupados em <em>intervalos de classes (<span class="math inline">\(i\)</span>)</em>. Por essa razão, os dados perdem sua identidade individual e passam a se representados pelo valor médio de cada intervalo (<span class="math inline">\(\stackrel{-}{x}_{i}\)</span>).</p>
+<p><br />
+</p>
+<p>A média será então dada pelo produto deste valor médio de cada intervalo (<span class="math inline">\(\stackrel{-}{x}_{i}\)</span>) pela frequência absoluta que ele apresentou (<span class="math inline">\({n}_{i}\)</span>), dividido pela quantidade de dados (<span class="math inline">\(n\)</span>).</p>
+<p><br />
+</p>
+<p>Sejam <span class="math inline">\(n_{1}, n_{2}, ..., n_{n}\)</span> as frequências apresentadas para cada intervalo <span class="math inline">\(i\)</span> dos valores assumidos pela variável <span class="math inline">\(X\)</span> para o total <span class="math inline">\(n\)</span> de observações. Assim a <em>média aritmética simples</em> para dados agrupados será dada por:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+\stackrel{-}{x}=\frac{\sum _{i=1}^{k}{f}_{i}\cdot{\stackrel{-}{x}}_{i}}{n}
+\]</span><br />
+</p>
+<p>onde:</p>
+<ul>
+<li><span class="math inline">\(\stackrel{-}{x}_{i}\)</span>: o valor médio do intervalo da classe <span class="math inline">\(i\)</span>;</li>
+<li><span class="math inline">\(f_{i}\)</span>: a frequência absoluta da classe <span class="math inline">\(i\)</span>;</li>
+<li><span class="math inline">\(k\)</span> é o número de classes da tabela de distribuição de frequências;</li>
+<li><span class="math inline">\(n\)</span> é o número de dados da tabela (eventualmente, os dados podem se referir a toda a população sob estudo) .</li>
+</ul>
+</div>
+<div id="moda-1" class="section level3 hasAnchor" number="3.7.4">
+<h3><span class="header-section-number">3.7.4</span> Moda<a href="apresentacao-descritiva-de-dados-na-forma-tabular.html#moda-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Moda para dados apresentados na forma de uma distribuição de frequências:</p>
+<p><span class="math display">\[
+Mo = l_{inf} + (\frac{\Delta_{1}}{\Delta_{1} + \Delta_{2}}) \times \Delta_{i}
+\]</span><br />
+<br />
+</p>
+<p>Primeiramente identificamos a(s) classe(s) modal(is): a(s) classe(s) com maior(es) frequência(s) absoluta <span class="math inline">\(f_{i}\)</span>. Os demais elementos da expressão são:<br />
+</p>
+<ul>
+<li><span class="math inline">\(l_{inf}\)</span>: limite inferior da <strong>classe modal</strong>;<br />
+</li>
+<li><span class="math inline">\(\Delta_{1}\)</span> frequência absoluta da <strong>classe modal</strong> menos a frequência absoluta da <strong>classe anterior</strong> à classe modal;</li>
+<li><span class="math inline">\(\Delta_{2}\)</span> frequência absoluta da <strong>classe modal</strong> menos a frequência absoluta da <strong>classe posterior</strong> à classe modal; e,</li>
+<li><span class="math inline">\(\Delta_{i}\)</span> é o intervalo da <strong>classe modal</strong>.</li>
+</ul>
+<p><br />
+</p>
+</div>
+<div id="mediana-q_2d_5p_50" class="section level3 hasAnchor" number="3.7.5">
+<h3><span class="header-section-number">3.7.5</span> Mediana (<span class="math inline">\(=Q_{2}=D_{5}=P_{50}\)</span>)<a href="apresentacao-descritiva-de-dados-na-forma-tabular.html#mediana-q_2d_5p_50" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Mediana para dados apresentados na forma de uma <strong>distribuição de frequências</strong>:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+Md = l_{inf} + \left[ \frac{\frac{\sum_{i}^{k} f_{i}}{2} - F_{(md-1)}}{f_{md}} \right] \times \Delta_{i}
+\]</span></p>
+<p><br />
+</p>
+<p>Primeiramente identificamos a <strong>classe mediana</strong>: a classe que contem o elemento de posição <span class="math inline">\(\frac{n}{2}\)</span> (basta observar a coluna da frequência absoluta acumulada: <span class="math inline">\(F_{i}\)</span>, percorrendo-a até a classe <span class="math inline">\(i\)</span> que tenha valor <span class="math inline">\(&gt;\frac{n}{2}\)</span>. Os demais elementos da expressão da mediana são:</p>
+<p><br />
+</p>
+<ul>
+<li><span class="math inline">\(l_{inf}\)</span>: limite inferior da <strong>classe mediana</strong>;<br />
+</li>
+<li><span class="math inline">\(F_{{(md-1)}}\)</span>: é a frequência absoluta acumulada até a <strong>classe anterior à classe mediana</strong>;<br />
+</li>
+<li><span class="math inline">\(f_{md}\)</span>: é a frequência absoluta da <strong>classe mediana</strong>; e,<br />
+</li>
+<li><span class="math inline">\(\Delta_{i}\)</span>: é o intervalo da <strong>classe mediana</strong>.</li>
+</ul>
+<p><br />
+</p>
+</div>
+<div id="variância" class="section level3 hasAnchor" number="3.7.6">
+<h3><span class="header-section-number">3.7.6</span> Variância<a href="apresentacao-descritiva-de-dados-na-forma-tabular.html#variância" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Variância para dados agrupados:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+S^{2}= \frac{1}{n-1} \times \left[  \sum _{i=1}^{k}{(\stackrel{-}{x}}_{i})^{2} \cdot {f}_{i} - \frac{{\left(\sum _{i=1}^{k}{\stackrel{-}{x}}_{i} \cdot {f}_{i}\right)}^{2}  }{n}\right]
+\]</span></p>
+<p><br />
+</p>
+<p>em que:</p>
+<ul>
+<li><span class="math inline">\(\stackrel{-}{x}_{i}\)</span>: o valor médio do intervalo de cada classe <span class="math inline">\(i\)</span> (<span class="math inline">\(lim_{sup_i}-lim_{inf_i}\)</span>);</li>
+<li><span class="math inline">\(f_{i}\)</span>: a frequência absoluta de cada classe <span class="math inline">\(i\)</span>;</li>
+<li><span class="math inline">\(k\)</span> é o número de classes da tabela de distribuição de frequências;</li>
+<li><span class="math inline">\(n\)</span> é o número de dados da tabela (eventualmente, os dados podem se referir a toda a população sob estudo) .</li>
+</ul>
+<p><br />
+</p>
+</div>
+<div id="quartis" class="section level3 hasAnchor" number="3.7.7">
+<h3><span class="header-section-number">3.7.7</span> Quartis<a href="apresentacao-descritiva-de-dados-na-forma-tabular.html#quartis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
+<p>Quartis para dados agrupados:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+Q_{i}= l_{inf_{Q_{i}}} + \Delta_{i} \frac{L_{Q_{i}} - f_{ac_{Q_{i-1}}}}{f_{Q_{i}}}
+\]</span></p>
+<p><br />
+</p>
+<p>em que:</p>
+<p><br />
+</p>
+<ul>
+<li><span class="math inline">\(n\)</span> é o número de dados;</li>
+<li><span class="math inline">\(Q_{i}\)</span> é o quartil desejado: <span class="math inline">\(i=1, 2, 3\)</span>;</li>
+<li><span class="math inline">\(L_{Q_{i}}\)</span> é posição do quartil desejado tal que:
+<ul>
+<li><span class="math inline">\(L_{Q_{1}}=0.25n\)</span></li>
+<li><span class="math inline">\(L_{Q_{2}}=0.5n\)</span></li>
+<li><span class="math inline">\(L_{Q_{3}}=0.75n\)</span></li>
+</ul></li>
+<li><strong>classe quartílica</strong> é a classe onde a posição do quartil desejado ( <span class="math inline">\(L_{Q_{i}}\)</span>) se localiza;</li>
+<li><span class="math inline">\(l_{inf_{Q_{i}}}\)</span> é o limite inferior da <strong>classe quartílica</strong>;<br />
+</li>
+<li><span class="math inline">\(f_{{Q_{i-1}}}\)</span> é a <em>frequência acumulada</em> da classe imediatamente anterior à <strong>classe quartílica</strong>;</li>
+<li><span class="math inline">\(f_{Q_{i}}\)</span> é a <em>frequência absoluta</em> de <strong>classe quartílica</strong>;</li>
+<li><span class="math inline">\(\Delta_{i}\)</span> é a amplitude da <strong>classe quartílica</strong> (frequentemente igual para todas).</li>
+</ul>
+<p><br />
+</p>
+<p><br />
+</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="elaboração-dos-questionários.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="amostragem-probabilística.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="diferentes-posições-da-média-moda-e-mediana-2o-quartil.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="apresentacao-descritiva-de-dados-na-forma-grafica.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -619,7 +1928,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-planejamento_pesquisas.Rmd",
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-descritiva.Rmd",
     "text": "Edit"
   },
   "history": {

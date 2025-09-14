@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>UNIVERSIDADE ESTADUAL DE LONDRINA CCE - Centro de Ciências Exatas DSTA - Departamento de Estatística (sala 11) Prof. M.e Eng.\(^{o}\) Felinto Junior Da Costa fjcosta@uel.br | apostila.knit</title>
+  <title>3.4 Padronizacao de dados (z-scores) | apostila.knit</title>
   <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="UNIVERSIDADE ESTADUAL DE LONDRINA CCE - Centro de Ciências Exatas DSTA - Departamento de Estatística (sala 11) Prof. M.e Eng.\(^{o}\) Felinto Junior Da Costa fjcosta@uel.br | apostila.knit" />
+  <meta property="og:title" content="3.4 Padronizacao de dados (z-scores) | apostila.knit" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
   <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="UNIVERSIDADE ESTADUAL DE LONDRINA CCE - Centro de Ciências Exatas DSTA - Departamento de Estatística (sala 11) Prof. M.e Eng.\(^{o}\) Felinto Junior Da Costa fjcosta@uel.br | apostila.knit" />
+  <meta name="twitter:title" content="3.4 Padronizacao de dados (z-scores) | apostila.knit" />
   
   <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introdução-histórica-daquilo-que-veio-a-se-chamar-estatística.html"/>
+<link rel="prev" href="apresentacao-descritiva-de-dados-na-forma-de-resumos-numericos.html"/>
+<link rel="next" href="medidas-de-forma-assimetria-curtose.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -564,30 +564,58 @@ Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><div class="line-block">UNIVERSIDADE ESTADUAL DE LONDRINA<br />
-CCE - Centro de Ciências Exatas<br />
-DSTA - Departamento de Estatística (sala 11)<br />
-Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa<br />
-<a href="mailto:fjcosta@uel.br" class="email">fjcosta@uel.br</a></div></h1>
-<p class="date"><em>Londrina, 14 de September de 2025.</em></p>
-</div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
-<script>
-title=document.getElementById('header');
-title.innerHTML = '<img src="images1/logo-uel.png" alt="UEL">' + title.innerHTML
-
-</script>
-
+<div id="padronizacao-de-dados-z-scores" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Padronizacao de dados (<em>z-scores</em>)<a href="padronizacao-de-dados-z-scores.html#padronizacao-de-dados-z-scores" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><br />
+</p>
+<p>À conversão do valor assumido por uma variável em unidades de desvio padrão acima (ou abaixo) do valor médio de sua distribuição é dado o nome de <em>padronização</em>. Essa métrica permite comparações com outras, procedentes de outros fenômenos.</p>
+<p><br />
+</p>
+<p>Para padronizar (achar o seu <em>z-score</em> Z) o valor de uma variável procede-se segundo a fórmula:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+Z=\frac{x_{i} - \stackrel{-}{x}}{s}
+\]</span></p>
+<p><br />
+O valor <span class="math inline">\(Z\)</span> expressa quantos desvios esse dado está acima (ou abaixo) da média da distribuição.</p>
+<p><br />
+</p>
+<p>Pelo <em>Teorema de Tchebichev</em> pode-se estimar a probabilidade mínima dos dados situados a certa distância de <span class="math inline">\(k\)</span> desvios da média dessa distribuição:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(|X-\mu|\ge k\sigma) \leq 1 - \frac{1}{k^{2}}
+\]</span></p>
+<p><br />
+</p>
+<p>Assim, se <span class="math inline">\(k=2\)</span> <strong>ao menos</strong> 75% das observações devem estar entre a média e dois desvios padrões acima ou abaixo da média.</p>
+<p><br />
+</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="padronizacao-de-dados-z-scores.html#cb42-1" tabindex="-1"></a>med<span class="ot">=</span><span class="fu">round</span>(<span class="fu">mean</span>(alturas),<span class="dv">2</span>)</span>
+<span id="cb42-2"><a href="padronizacao-de-dados-z-scores.html#cb42-2" tabindex="-1"></a>desv<span class="ot">=</span> <span class="fu">round</span>(<span class="fu">sd</span>(alturas),<span class="dv">2</span>)</span></code></pre></div>
+<p><br />
+</p>
+<p>No exemplo das alturas dos estudantes temos a média de 1.69 m e um desvio padrão de 0.11 m. Assim, <strong>ao menos</strong> 75% das alturas deverão estar entre 1.47 m e 1.91 m.</p>
+<p><br />
+</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="padronizacao-de-dados-z-scores.html#cb43-1" tabindex="-1"></a><span class="fu">sort</span>(alturas)</span></code></pre></div>
+<pre><code>##  [1] 1.41 1.44 1.47 1.54 1.55 1.56 1.56 1.56 1.57 1.58 1.58 1.61 1.62 1.62 1.63
+## [16] 1.64 1.64 1.65 1.65 1.65 1.65 1.66 1.66 1.66 1.66 1.66 1.67 1.67 1.67 1.67
+## [31] 1.68 1.68 1.68 1.69 1.71 1.71 1.72 1.72 1.73 1.73 1.73 1.73 1.73 1.74 1.75
+## [46] 1.76 1.76 1.77 1.78 1.78 1.79 1.82 1.83 1.83 1.84 1.85 1.86 1.93 1.95 2.00</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="padronizacao-de-dados-z-scores.html#cb45-1" tabindex="-1"></a><span class="co"># Duas observações menores que 1,47m e trẽs maiores que 1,91m.</span></span>
+<span id="cb45-2"><a href="padronizacao-de-dados-z-scores.html#cb45-2" tabindex="-1"></a><span class="co"># Assim, 54 observações dentro do intervalo, equivalendo a 91,66% do total.</span></span></code></pre></div>
+<p><br />
+</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="introdução-histórica-daquilo-que-veio-a-se-chamar-estatística.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="apresentacao-descritiva-de-dados-na-forma-de-resumos-numericos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="medidas-de-forma-assimetria-curtose.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -618,7 +646,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-descritiva.Rmd",
     "text": "Edit"
   },
   "history": {

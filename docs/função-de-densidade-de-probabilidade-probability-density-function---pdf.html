@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.2 Função de densidade de probabilidade (Probability Density Function - PDF) | apostila.knit</title>
+  <title>5.4 Função de densidade de probabilidade (Probability Density Function - PDF) | apostila.knit</title>
   <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.2 Função de densidade de probabilidade (Probability Density Function - PDF) | apostila.knit" />
+  <meta property="og:title" content="5.4 Função de densidade de probabilidade (Probability Density Function - PDF) | apostila.knit" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
   <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.2 Função de densidade de probabilidade (Probability Density Function - PDF) | apostila.knit" />
+  <meta name="twitter:title" content="5.4 Função de densidade de probabilidade (Probability Density Function - PDF) | apostila.knit" />
   
   <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
   <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
@@ -28,7 +28,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="função-massa-de-probabilidade-probability-mass-function---pmf.html"/>
+<link rel="prev" href="função-cumulativa-de-probabilidade.html"/>
 <link rel="next" href="esperança-e-variância-de-uma-variável-aleatória-discreta.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -242,10 +242,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="introdução-a-variáveis-aleatórias.html"><a href="introdução-a-variáveis-aleatórias.html"><i class="fa fa-check"></i><b>5</b> Introdução a variáveis aleatórias</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="função-massa-de-probabilidade-probability-mass-function---pmf.html"><a href="função-massa-de-probabilidade-probability-mass-function---pmf.html"><i class="fa fa-check"></i><b>5.1</b> Função massa de probabilidade (<em>Probability Mass Function - PMF</em>)</a></li>
-<li class="chapter" data-level="5.2" data-path="função-de-densidade-de-probabilidade-probability-density-function---pdf.html"><a href="função-de-densidade-de-probabilidade-probability-density-function---pdf.html"><i class="fa fa-check"></i><b>5.2</b> Função de densidade de probabilidade (<em>Probability Density Function - PDF</em>)</a></li>
-<li class="chapter" data-level="5.3" data-path="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><a href="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><i class="fa fa-check"></i><b>5.3</b> Esperança e variância de uma variável aleatória discreta</a></li>
-<li class="chapter" data-level="5.4" data-path="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><a href="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><i class="fa fa-check"></i><b>5.4</b> Esperança e variância de uma variável aleatória contínua</a></li>
+<li class="chapter" data-level="5.1" data-path="variáveis-aleatórios-discretas-e-contínuas.html"><a href="variáveis-aleatórios-discretas-e-contínuas.html"><i class="fa fa-check"></i><b>5.1</b> Variáveis aleatórios discretas e contínuas</a></li>
+<li class="chapter" data-level="5.2" data-path="função-massa-de-probabilidade-probability-mass-function---pmf.html"><a href="função-massa-de-probabilidade-probability-mass-function---pmf.html"><i class="fa fa-check"></i><b>5.2</b> Função massa de probabilidade (<em>Probability Mass Function - PMF</em>)</a></li>
+<li class="chapter" data-level="5.3" data-path="função-cumulativa-de-probabilidade.html"><a href="função-cumulativa-de-probabilidade.html"><i class="fa fa-check"></i><b>5.3</b> Função cumulativa de probabilidade</a></li>
+<li class="chapter" data-level="5.4" data-path="função-de-densidade-de-probabilidade-probability-density-function---pdf.html"><a href="função-de-densidade-de-probabilidade-probability-density-function---pdf.html"><i class="fa fa-check"></i><b>5.4</b> Função de densidade de probabilidade (<em>Probability Density Function - PDF</em>)</a></li>
+<li class="chapter" data-level="5.5" data-path="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><a href="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><i class="fa fa-check"></i><b>5.5</b> Esperança e variância de uma variável aleatória discreta</a></li>
+<li class="chapter" data-level="5.6" data-path="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><a href="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><i class="fa fa-check"></i><b>5.6</b> Esperança e variância de uma variável aleatória contínua</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="introdução-a-modelos-teóricos-de-probabilidade.html"><a href="introdução-a-modelos-teóricos-de-probabilidade.html"><i class="fa fa-check"></i><b>6</b> Introdução a modelos teóricos de probabilidade</a>
 <ul>
@@ -564,34 +566,38 @@ Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="função-de-densidade-de-probabilidade-probability-density-function---pdf" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Função de densidade de probabilidade (<em>Probability Density Function - PDF</em>)<a href="função-de-densidade-de-probabilidade-probability-density-function---pdf.html#função-de-densidade-de-probabilidade-probability-density-function---pdf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Considerem os espaços amostrais a seguir (<span class="math inline">\(\Omega_{1},\Omega_{2},\Omega_{3},\Omega_{4},\Omega_{5}\)</span>) representativos de 4 experimentos aleatórios e admitam também que todos os eventos possíveis são equiprováveis.</p>
+<div id="função-de-densidade-de-probabilidade-probability-density-function---pdf" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Função de densidade de probabilidade (<em>Probability Density Function - PDF</em>)<a href="função-de-densidade-de-probabilidade-probability-density-function---pdf.html#função-de-densidade-de-probabilidade-probability-density-function---pdf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Considerem que os cinco alvos da imagem abaixo sejam como que espaços amostrais (<span class="math inline">\(\Omega_{1},\dots \Omega_{5}\)</span>) representativos de 5 experimentos aleatórios nos quais uma pessoa irá atirar um dardo.</p>
+<p><br />
+</p>
+<p>Admitam também também esses espaços amostrais seja equiprováveis.</p>
+<p><br />
+</p>
+<p>Admitam o último deles como um espaço amostral formado por <span class="math inline">\(\to\infty\)</span> pontos.</p>
 <p> </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-109"></span>
-<img src="images5/var_discret_cont.jpg" alt="Diferentes espaços amostrais de um experimento aleatório (por razões gráficas desprezem o espaço fora dos círculos" width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-108"></span>
+<img src="images5/var_aleatoria_continua.png" alt="Diferentes espaços amostrais de um experimento aleatório." width="100%" />
 <p class="caption">
-Figure 5.2: Diferentes espaços amostrais de um experimento aleatório (por razões gráficas desprezem o espaço fora dos círculos
+Figure 5.1: Diferentes espaços amostrais de um experimento aleatório.
 </p>
 </div>
 <p> </p>
-<p>Interpretem o último deles como um espaço amostral formado por <span class="math inline">\(\infty\)</span> pontos amostrais.</p>
-<p> </p>
-<p>Os eventos que compõem os quatro primeiros espaços amostrais são variável aleatória discretas.</p>
+<p>Nos primeiros experimentos a probabilidade do arqueiro acertar <strong>especificamente um dos dos possíveis quadradinhos (.)</strong> parece ser bastante alta.</p>
 <p><br />
 </p>
-<p>Discretas pois permitem a contagem dos possíveis valores (finitos ou infinitos contáveis) aleatórios que o experimento pode assumir. Mas no quinto espaço amostral temos incontáveis possibilidades.</p>
+<p>Mas últimos experimentos, a probabilidade do arqueiro acertar <strong>especificamente um dos dos possíveis quadradinhos (.)</strong> é sensivelmente menor.</p>
 <p> </p>
-<p>Um <em>espaço amostral</em> com essa característica é representativo de uma <em>variável aleatória contínua</em>.</p>
+<p>Um <em>espaço amostral</em> com a característica do último pode bem representar um <strong>experimento aleatório continuo</strong>.</p>
 <p> </p>
 <p>Sendo todos os eventos representados nos espaços amostrais <strong>equiprováveis</strong>, comparemos as probabilidades associadas a cada um desses possíveis resultados.</p>
 <p><br />
 </p>
-<p>Em <span class="math inline">\(\Omega_{1}\)</span>, <span class="math inline">\(P(\omega_{1})=1\)</span><br />
-Em <span class="math inline">\(\Omega_{2}\)</span>, <span class="math inline">\(P(\omega_{1})=P(\omega_{2})=P(\omega_{3})=P(\omega_{4})=0,50\)</span><br />
-Em <span class="math inline">\(\Omega_{3}\)</span>, <span class="math inline">\(P(\omega_{1})=P(\omega_{2})=...=P(\omega_{16})=0,0625\)</span><br />
-Em <span class="math inline">\(\Omega_{4}\)</span>, <span class="math inline">\(P(\omega_{1})=P(\omega_{2})=...=P(\omega_{64})=0,015625\)</span><br />
-Em <span class="math inline">\(\Omega_{5}\)</span>, <span class="math inline">\(P(\omega_{n}) \rightarrow 0\)</span>, à medida que o número de eventos <span class="math inline">\(n \rightarrow \infty\)</span></p>
+<p>Em <span class="math inline">\(\Omega_{1}\)</span>, <span class="math inline">\(P(\omega_{.})=0,25\)</span><br />
+Em <span class="math inline">\(\Omega_{2}\)</span>, <span class="math inline">\(P(\omega_{.})=0,111\)</span><br />
+Em <span class="math inline">\(\Omega_{3}\)</span>, <span class="math inline">\(P(\omega_{.})=0,0625\)</span><br />
+Em <span class="math inline">\(\Omega_{4}\)</span>, <span class="math inline">\(P(\omega_{.})=0,01\)</span><br />
+Em <span class="math inline">\(\Omega_{5}\)</span>, <span class="math inline">\(P(\omega_{.}) \rightarrow 0\)</span>, à medida que o número de eventos <span class="math inline">\(n \rightarrow \infty\)</span></p>
 <p><br />
 </p>
 <p>A probabilidade individual de qualquer evento do quinto espaço amostral ocorrer <span class="math inline">\(\rightarrow 0\)</span>.</p>
@@ -603,7 +609,7 @@ Em <span class="math inline">\(\Omega_{5}\)</span>, <span class="math inline">\(
 <p>Experimentos aleatórios nos quais os possíveis resultados assumem valores resultantes de processos de mensuração tais como, por exemplo, rendas, pesos, velocidades, tempos, comprimentos, pertencentes aos números Reais, podem ser adequadamente modelados por variáveis aleatórias contínuas.</p>
 <p><br />
 </p>
-<p>Para estes uma função densidade de probabilidade é definida de modo a retornar a probabilidade de ocorrência associada a um intervalo de valores, posto a probabilidade de ocorrência de um valor aleatório contínuo específico <span class="math inline">\(x\)</span> tender a zero: <span class="math inline">\(P(X=x) \to 0\)</span>.</p>
+<p>Para estes uma <em>função densidade de probabilidade</em> (<span class="math inline">\(f(x)\)</span>) é definida de modo a retornar a probabilidade de ocorrência associada a um intervalo de valores, posto a probabilidade de ocorrência de um valor aleatório contínuo específico <span class="math inline">\(x\)</span> tender a zero: <span class="math inline">\(P(X=x) \to 0\)</span>.</p>
 <p><br />
 </p>
 <p>A função <span class="math inline">\(f(x)\)</span> é uma função densidade de probabilidade para a variável aleatória contínua <span class="math inline">\(X\)</span> se atende às seguintes condições relacionadas aos axiomas da probabilidade:</p>
@@ -618,7 +624,7 @@ Em <span class="math inline">\(\Omega_{5}\)</span>, <span class="math inline">\(
 \]</span>.</p>
 <p><br />
 </p>
-<p>Se <span class="math inline">\(X\)</span> é uma variável aleatória contínua, a probabilidade de <span class="math inline">\(X\)</span> assumir qualquer valor exato é <span class="math inline">\(P(X = x) = 0\)</span>. No entanto, a <strong>probabilidade intervalar</strong> de <span class="math inline">\(X\)</span> estar entre dois valores distintos, <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span>, é dada por:</p>
+<p>Sendo <span class="math inline">\(f(x)\)</span> a <em>função densidade de probabilidade</em> da variável aleatória contínua <span class="math inline">\(X\)</span>, a <strong>probabilidade de <span class="math inline">\(X\)</span> assumir valores em um intervalo de valores: <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> (<span class="math inline">\(b&gt;a\)</span>)</strong> será dada por:</p>
 <p><br />
 </p>
 <p><span class="math display">\[
@@ -626,18 +632,23 @@ P(a &lt; X &lt; b) = \int_{a}^{b} f(x) \, dx.
 \]</span></p>
 <p><br />
 </p>
-<p>Graficamente, a interpretação de uma função densidade de probabilidade contínua é representada pela <strong>área sob a curva</strong> da função <span class="math inline">\(f(x)\)</span>, delimitada pelos valores de interesse <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span>. Essa área corresponde à probabilidade de <span class="math inline">\(X\)</span> estar no intervalo <span class="math inline">\((a, b)\)</span>.</p>
+<p><strong>Graficamente</strong>, a interpretação de uma função densidade de probabilidade contínua é representada pela <strong>área sob a curva</strong> da função <span class="math inline">\(f(x)\)</span>, delimitada pelos valores de interesse da variável aletatória <span class="math inline">\(X\)</span>r.</p>
 <p><br />
 </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-110"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-109"></span>
 <img src="images5/func_dist_cont.jpg" alt="A área sob a curva de uma função de probabilidade de uma variável contínua entre dois valores quaisquer é a probabilidade de se observar valores entre esses dois pontos" width="60%" />
 <p class="caption">
-Figure 5.3: A área sob a curva de uma função de probabilidade de uma variável contínua entre dois valores quaisquer é a probabilidade de se observar valores entre esses dois pontos
+Figure 5.2: A área sob a curva de uma função de probabilidade de uma variável contínua entre dois valores quaisquer é a probabilidade de se observar valores entre esses dois pontos
 </p>
 </div>
 <p><br />
 </p>
-<p>Como <span class="math inline">\(f(x) \geq 0\)</span>, a curva da função densidade de probabilidade estará acima do eixo <span class="math inline">\(x\)</span> e a totalidade da área será igual a <span class="math inline">\(1\)</span>, conforme</p>
+<p>Se admitirmos <span class="math inline">\((a \leq X \leq b)\)</span> temos que a área será igual a um (1) posto estarmos calculando a probabilidade do espaço amostral de <span class="math inline">\(X\)</span>, o intervalo <span class="math inline">\((a, b)\)</span>.</p>
+<p><br />
+</p>
+<p>De modo geral,</p>
+<p><br />
+</p>
 <p><span class="math display">\[
 \underset{-\infty }{\overset{\infty }{\int }}f\left(x\right)dx = 1.
 \]</span></p>
@@ -649,7 +660,7 @@ Figure 5.3: A área sob a curva de uma função de probabilidade de uma variáve
 <p>A função <span class="math inline">\(f(x)\)</span> é uma função densidade de probabilidade para a variável aleatória contínua <span class="math inline">\(X\)</span> se atende às seguintes condições relacionadas aos axiomas da probabilidade:</p>
 <p><br />
 </p>
-<p>Para tornar o conceito de densidade mais compreensível admita a função densidade de probabilidade (fdp) a seguir e sua representação gráfica na Figura <a href="função-de-densidade-de-probabilidade-probability-density-function---pdf.html#fig:fig15">5.4</a></p>
+<p>Para tornar o conceito de densidade mais compreensível admita a função densidade de probabilidade (fdp) a seguir e sua representação gráfica na Figura <a href="função-de-densidade-de-probabilidade-probability-density-function---pdf.html#fig:fig15">5.3</a></p>
 <p><br />
 </p>
 <p><span class="math display">\[
@@ -664,7 +675,7 @@ f(X=x)=
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig15"></span>
 <img src="images5/massa.jpg" alt="A área definida por (ODA) equivale à probabilidade de $f(X=x)$ no intervalo $0 \le x \le 0,50$ é notadamente menor que a área definida por (ABCD) equivalente à probabilidade de $f(X=x)$ no intervalo $0,5 \le x \le 1$. Tendo os intervalos [0;0,50] e [0,50; 1,00] igual amplitude, depreende-se que uma fdp é uma função indicadora da concentração massa (probabilidade) nos possíveis valores de $X$" width="60%" />
 <p class="caption">
-Figure 5.4: A área definida por (ODA) equivale à probabilidade de <span class="math inline">\(f(X=x)\)</span> no intervalo <span class="math inline">\(0 \le x \le 0,50\)</span> é notadamente menor que a área definida por (ABCD) equivalente à probabilidade de <span class="math inline">\(f(X=x)\)</span> no intervalo <span class="math inline">\(0,5 \le x \le 1\)</span>. Tendo os intervalos [0;0,50] e [0,50; 1,00] igual amplitude, depreende-se que uma fdp é uma função indicadora da concentração massa (probabilidade) nos possíveis valores de <span class="math inline">\(X\)</span>
+Figure 5.3: A área definida por (ODA) equivale à probabilidade de <span class="math inline">\(f(X=x)\)</span> no intervalo <span class="math inline">\(0 \le x \le 0,50\)</span> é notadamente menor que a área definida por (ABCD) equivalente à probabilidade de <span class="math inline">\(f(X=x)\)</span> no intervalo <span class="math inline">\(0,5 \le x \le 1\)</span>. Tendo os intervalos [0;0,50] e [0,50; 1,00] igual amplitude, depreende-se que uma fdp é uma função indicadora da concentração massa (probabilidade) nos possíveis valores de <span class="math inline">\(X\)</span>
 </p>
 </div>
 <p><br />
@@ -684,10 +695,10 @@ Figure 5.4: A área definida por (ODA) equivale à probabilidade de <span class=
 <p>Assim, <span class="math inline">\(F(x)\)</span> descreve graficamente a probabilidade acumulada até qualquer valor <span class="math inline">\(x\)</span>, reforçando a relação entre a densidade de probabilidade e a probabilidade cumulativa.</p>
 <p><br />
 </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-111"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-110"></span>
 <img src="images5/func_dist_cont_cum.jpg" alt="Função de probabilidade cumulativa" width="60%" />
 <p class="caption">
-Figure 5.5: Função de probabilidade cumulativa
+Figure 5.4: Função de probabilidade cumulativa
 </p>
 </div>
 <p><br />
@@ -703,10 +714,10 @@ Figure 5.5: Função de probabilidade cumulativa
 <p>A resolução deste exemplo será feita de um modo <em>geométrico</em>.</p>
 <p><br />
 </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-112"></span>
-<img src="apostila_files/figure-html/unnamed-chunk-112-1.png" alt="A probabilidade de se observar valores entre 0 e 1/2 é igual à area sob a função densidade de probabilidade entre esses dois valores" width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-111"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-111-1.png" alt="A probabilidade de se observar valores entre 0 e 1/2 é igual à area sob a função densidade de probabilidade entre esses dois valores" width="60%" />
 <p class="caption">
-Figure 5.6: A probabilidade de se observar valores entre 0 e 1/2 é igual à area sob a função densidade de probabilidade entre esses dois valores
+Figure 5.5: A probabilidade de se observar valores entre 0 e 1/2 é igual à area sob a função densidade de probabilidade entre esses dois valores
 </p>
 </div>
 <p><br />
@@ -762,7 +773,7 @@ f(X=x)=
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig16"></span>
 <img src="images5/item1.jpg" alt="A área definida por $f(x)$ no intervalo $0 \le x \le 1$ é maior que 1. Por essa razão não pode ser uma fdp" width="60%" />
 <p class="caption">
-Figure 5.7: A área definida por <span class="math inline">\(f(x)\)</span> no intervalo <span class="math inline">\(0 \le x \le 1\)</span> é maior que 1. Por essa razão não pode ser uma fdp
+Figure 5.6: A área definida por <span class="math inline">\(f(x)\)</span> no intervalo <span class="math inline">\(0 \le x \le 1\)</span> é maior que 1. Por essa razão não pode ser uma fdp
 </p>
 </div>
 <p><br />
@@ -770,7 +781,7 @@ Figure 5.7: A área definida por <span class="math inline">\(f(x)\)</span> no in
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig17"></span>
 <img src="images5/item2.jpg" alt="A área definida por $f(x)$ no intervalo $x \ge 0$ é maior que 1. Por essa razão não pode ser uma fdp" width="60%" />
 <p class="caption">
-Figure 5.8: A área definida por <span class="math inline">\(f(x)\)</span> no intervalo <span class="math inline">\(x \ge 0\)</span> é maior que 1. Por essa razão não pode ser uma fdp
+Figure 5.7: A área definida por <span class="math inline">\(f(x)\)</span> no intervalo <span class="math inline">\(x \ge 0\)</span> é maior que 1. Por essa razão não pode ser uma fdp
 </p>
 </div>
 <p><br />
@@ -778,7 +789,7 @@ Figure 5.8: A área definida por <span class="math inline">\(f(x)\)</span> no in
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig18"></span>
 <img src="images5/item3.jpg" alt="Os valores assumidos por $f(x)$ são $\ge 0$ e a área definida por f(x) o intervalo $3 \le x \le 5$ é igual a 1. Por essa razão pode ser uma fdp" width="60%" />
 <p class="caption">
-Figure 5.9: Os valores assumidos por <span class="math inline">\(f(x)\)</span> são <span class="math inline">\(\ge 0\)</span> e a área definida por f(x) o intervalo <span class="math inline">\(3 \le x \le 5\)</span> é igual a 1. Por essa razão pode ser uma fdp
+Figure 5.8: Os valores assumidos por <span class="math inline">\(f(x)\)</span> são <span class="math inline">\(\ge 0\)</span> e a área definida por f(x) o intervalo <span class="math inline">\(3 \le x \le 5\)</span> é igual a 1. Por essa razão pode ser uma fdp
 </p>
 </div>
 <p><br />
@@ -786,7 +797,7 @@ Figure 5.9: Os valores assumidos por <span class="math inline">\(f(x)\)</span> s
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig19"></span>
 <img src="images5/item4.jpg" alt="A área definida por $f(x)$ no intervalo $0 \le x \le 2$ é maior que 1. Por essa razão não pode ser uma fdp" width="60%" />
 <p class="caption">
-Figure 5.10: A área definida por <span class="math inline">\(f(x)\)</span> no intervalo <span class="math inline">\(0 \le x \le 2\)</span> é maior que 1. Por essa razão não pode ser uma fdp
+Figure 5.9: A área definida por <span class="math inline">\(f(x)\)</span> no intervalo <span class="math inline">\(0 \le x \le 2\)</span> é maior que 1. Por essa razão não pode ser uma fdp
 </p>
 </div>
 <p><br />
@@ -794,7 +805,7 @@ Figure 5.10: A área definida por <span class="math inline">\(f(x)\)</span> no i
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig20"></span>
 <img src="images5/item5.jpg" alt="Os valores assumidos por $f(x)$ são $\ge 0$ e a área definida por $f(x)$ nos intervalos $-2 \le x \le 0$ e $0 \le x \le 2$ é igual a 1. Pode ser uma fdp" width="60%" />
 <p class="caption">
-Figure 5.11: Os valores assumidos por <span class="math inline">\(f(x)\)</span> são <span class="math inline">\(\ge 0\)</span> e a área definida por <span class="math inline">\(f(x)\)</span> nos intervalos <span class="math inline">\(-2 \le x \le 0\)</span> e <span class="math inline">\(0 \le x \le 2\)</span> é igual a 1. Pode ser uma fdp
+Figure 5.10: Os valores assumidos por <span class="math inline">\(f(x)\)</span> são <span class="math inline">\(\ge 0\)</span> e a área definida por <span class="math inline">\(f(x)\)</span> nos intervalos <span class="math inline">\(-2 \le x \le 0\)</span> e <span class="math inline">\(0 \le x \le 2\)</span> é igual a 1. Pode ser uma fdp
 </p>
 </div>
 <p><br />
@@ -802,7 +813,7 @@ Figure 5.11: Os valores assumidos por <span class="math inline">\(f(x)\)</span> 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig21"></span>
 <img src="images5/item6.jpg" alt="Os valores assumidos por f(x) são $&lt;0$. Por esa razão não pode ser uma fdp." width="60%" />
 <p class="caption">
-Figure 5.12: Os valores assumidos por f(x) são <span class="math inline">\(&lt;0\)</span>. Por esa razão não pode ser uma fdp.
+Figure 5.11: Os valores assumidos por f(x) são <span class="math inline">\(&lt;0\)</span>. Por esa razão não pode ser uma fdp.
 </p>
 </div>
 <p><br />
@@ -837,7 +848,7 @@ f(X=x)=
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig22"></span>
 <img src="images5/exerc_15.jpg" alt="Os valores assumidos por $f(x)$ são $\ge 0$ e a área definida por $f(x)$ no intervalo $50 \le x \le 70$ é igual a 1. Por essa razão pode ser uma fdp. A probabilidade pedida equivale à área $P(60 \le x \le 55) = (60-55) .  0,05=0,25$." width="60%" />
 <p class="caption">
-Figure 5.13: Os valores assumidos por <span class="math inline">\(f(x)\)</span> são <span class="math inline">\(\ge 0\)</span> e a área definida por <span class="math inline">\(f(x)\)</span> no intervalo <span class="math inline">\(50 \le x \le 70\)</span> é igual a 1. Por essa razão pode ser uma fdp. A probabilidade pedida equivale à área <span class="math inline">\(P(60 \le x \le 55) = (60-55) .  0,05=0,25\)</span>.
+Figure 5.12: Os valores assumidos por <span class="math inline">\(f(x)\)</span> são <span class="math inline">\(\ge 0\)</span> e a área definida por <span class="math inline">\(f(x)\)</span> no intervalo <span class="math inline">\(50 \le x \le 70\)</span> é igual a 1. Por essa razão pode ser uma fdp. A probabilidade pedida equivale à área <span class="math inline">\(P(60 \le x \le 55) = (60-55) .  0,05=0,25\)</span>.
 </p>
 </div>
 <p><br />
@@ -848,7 +859,7 @@ Figure 5.13: Os valores assumidos por <span class="math inline">\(f(x)\)</span> 
           </div>
         </div>
       </div>
-<a href="função-massa-de-probabilidade-probability-mass-function---pmf.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="função-cumulativa-de-probabilidade.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="esperança-e-variância-de-uma-variável-aleatória-discreta.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

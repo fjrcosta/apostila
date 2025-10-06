@@ -29,7 +29,7 @@
   
   
 <link rel="prev" href="teoremas-da-teoria-das-probabilidades.html"/>
-<link rel="next" href="função-massa-de-probabilidade-probability-mass-function---pmf.html"/>
+<link rel="next" href="variáveis-aleatórios-discretas-e-contínuas.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -242,10 +242,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="introdução-a-variáveis-aleatórias.html"><a href="introdução-a-variáveis-aleatórias.html"><i class="fa fa-check"></i><b>5</b> Introdução a variáveis aleatórias</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="função-massa-de-probabilidade-probability-mass-function---pmf.html"><a href="função-massa-de-probabilidade-probability-mass-function---pmf.html"><i class="fa fa-check"></i><b>5.1</b> Função massa de probabilidade (<em>Probability Mass Function - PMF</em>)</a></li>
-<li class="chapter" data-level="5.2" data-path="função-de-densidade-de-probabilidade-probability-density-function---pdf.html"><a href="função-de-densidade-de-probabilidade-probability-density-function---pdf.html"><i class="fa fa-check"></i><b>5.2</b> Função de densidade de probabilidade (<em>Probability Density Function - PDF</em>)</a></li>
-<li class="chapter" data-level="5.3" data-path="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><a href="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><i class="fa fa-check"></i><b>5.3</b> Esperança e variância de uma variável aleatória discreta</a></li>
-<li class="chapter" data-level="5.4" data-path="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><a href="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><i class="fa fa-check"></i><b>5.4</b> Esperança e variância de uma variável aleatória contínua</a></li>
+<li class="chapter" data-level="5.1" data-path="variáveis-aleatórios-discretas-e-contínuas.html"><a href="variáveis-aleatórios-discretas-e-contínuas.html"><i class="fa fa-check"></i><b>5.1</b> Variáveis aleatórios discretas e contínuas</a></li>
+<li class="chapter" data-level="5.2" data-path="função-massa-de-probabilidade-probability-mass-function---pmf.html"><a href="função-massa-de-probabilidade-probability-mass-function---pmf.html"><i class="fa fa-check"></i><b>5.2</b> Função massa de probabilidade (<em>Probability Mass Function - PMF</em>)</a></li>
+<li class="chapter" data-level="5.3" data-path="função-cumulativa-de-probabilidade.html"><a href="função-cumulativa-de-probabilidade.html"><i class="fa fa-check"></i><b>5.3</b> Função cumulativa de probabilidade</a></li>
+<li class="chapter" data-level="5.4" data-path="função-de-densidade-de-probabilidade-probability-density-function---pdf.html"><a href="função-de-densidade-de-probabilidade-probability-density-function---pdf.html"><i class="fa fa-check"></i><b>5.4</b> Função de densidade de probabilidade (<em>Probability Density Function - PDF</em>)</a></li>
+<li class="chapter" data-level="5.5" data-path="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><a href="esperança-e-variância-de-uma-variável-aleatória-discreta.html"><i class="fa fa-check"></i><b>5.5</b> Esperança e variância de uma variável aleatória discreta</a></li>
+<li class="chapter" data-level="5.6" data-path="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><a href="esperança-e-variância-de-uma-variável-aleatória-contínua.html"><i class="fa fa-check"></i><b>5.6</b> Esperança e variância de uma variável aleatória contínua</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="introdução-a-modelos-teóricos-de-probabilidade.html"><a href="introdução-a-modelos-teóricos-de-probabilidade.html"><i class="fa fa-check"></i><b>6</b> Introdução a modelos teóricos de probabilidade</a>
 <ul>
@@ -583,7 +585,7 @@ Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa
 <p>Essas quantidades de interesse, ou mais formalmente, essas funções de valor real definidas no espaço amostral (o conjunto de todos os possíveis resultados do experimento), são conhecidas como variáveis aleatórias.</p>
 <p><br />
 </p>
-<p>Em outras palavras, uma função <span class="math inline">\(X\)</span> (geralmente representada por uma letra maiúscula) que associa cada elemento <span class="math inline">\(\omega\)</span> pertencente ao espaço amostral <span class="math inline">\(\Omega\)</span> um número real é denominada, de forma mais precisa, como uma variável aleatória ou função estocástica.</p>
+<p>Em outras palavras, uma função, geralmente representada por uma letra maiúscula (<span class="math inline">\(X\)</span>), que associa cada elemento <span class="math inline">\(\omega\)</span> pertencente ao espaço amostral <span class="math inline">\(\Omega\)</span> um número real é denominada, de forma mais precisa, como uma variável aleatória.</p>
 <p><br />
 </p>
 <p><span class="math display">\[
@@ -591,55 +593,45 @@ X (\Omega) \to \mathcal{R}_{X} \text{, estando } \mathcal{R}_{X}\subseteq \mathc
 \]</span></p>
 <p><br />
 </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-103"></span>
-<img src="images5/v_aleatoria.jpg" alt="Variável aleatória" width="50%" />
-<p class="caption">
-Figure 5.1: Variável aleatória
-</p>
-</div>
-<p><br />
-</p>
 <p>O <em>domínio</em> dessa função (<span class="math inline">\(X\)</span>) é o conjunto de todos os possíveis valores numéricos de interesse do experimento aleatório e seu <em>contradomínio</em> está em <span class="math inline">\(\mathbb{R}\)</span>.</p>
 <p><br />
 </p>
 <blockquote>
-<p>Exemplo 1: considere o espaço amostral do experimento aleatório relacionado ao sexo do bebê em três gestações bem sucedidas:
-<span class="math inline">\(\Omega=\{\omega_{1}:(FFF), \omega_{2}:(FFM),\omega_{3}:(FMF), \omega_{4}:(MFF),\\
-\omega_{5}:(FMM), \omega_{6}:(MFM), \omega_{7}:(MMF), \omega_{8}:(MMM)\}.\)</span>
-Se estivermos interessados no número de nascimentos do sexo masculino, podemos definir a função <span class="math inline">\(X\)</span> para associar cada elemento <span class="math inline">\(\omega_{i}\)</span> em <span class="math inline">\(\Omega\)</span> a um valor <span class="math inline">\(x_{i} \in \mathbb{R}\)</span> que apresentará os seguintes resutados:
-<span class="math inline">\(X(FFF)=0; X(FFM)=1; X(FMF)=1; X(MFF)=1;\\
+<p>Exemplo 1: considere o espaço amostral do experimento aleatório relacionado ao sexo do bebê em três gestações bem sucedidas:</p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\(\Omega=\{\omega_{1}:(FFF), \omega_{2}:(FFM),\omega_{3}:(FMF), \omega_{4}:(MFF),\\
+\omega_{5}:(FMM), \omega_{6}:(MFM), \omega_{7}:(MMF), \omega_{8}:(MMM)\}.\)</span></p>
+</blockquote>
+<blockquote>
+<p>Se estivermos interessados no número de nascimentos do sexo masculino, podemos definir a função <span class="math inline">\(X\)</span> para associar cada elemento <span class="math inline">\(\omega_{i}\)</span> em <span class="math inline">\(\Omega\)</span> a um valor <span class="math inline">\(x_{i} \in \mathbb{R}\)</span> que apresentará os seguintes resutados:</p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\(X(FFF)=0; X(FFM)=1; X(FMF)=1; X(MFF)=1;\\
 X(FMM)=2; X(MFM)=2; X(MMF)=2; X(MMM)=3\)</span>
 <span class="math inline">\(\mathcal{R}_{X}=\{x_{1}=0; x_{2}=1; x_{3}=2; x_{4}=3\}\subseteq \mathcal{R}\)</span></p>
 </blockquote>
 <p><br />
 </p>
 <blockquote>
-<p>Exemplo 2: considere o espaço amostral do experimento aleatório relacionado à sobrevivência de paciente ao final de 1 dia em uma UTI com quatro leitos:
-<span class="math inline">\(\Omega=\{(0,0,0,0),(0,0,0,1),(0,0,1,0),(0,0,1,1),\\
+<p>Exemplo 2: considere o espaço amostral do experimento aleatório relacionado à sobrevivência de paciente ao final de 1 dia em uma UTI com quatro leitos:</p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\(\Omega=\{(0,0,0,0),(0,0,0,1),(0,0,1,0),(0,0,1,1),\\
 (0,1,0,0),(0,1,0,1),(0,1,1,0),(0,1,1,1),(1,0,0,0),\\
 (1,0,0,1),(1,0,1,0),(1,0,1,1),(1,1,0,0),(1,1,0,1),\\
-(1,1,1,0),(1,1,1,1)\}.\)</span>
-Cada elemento do espaço amostral é uma sequência de quatro valores binários <span class="math inline">\((x_{1},x_{2},x_{3},x_{4})\)</span>, onde: <span class="math inline">\(x_{i}=0\)</span> indica que o paciente no leito <span class="math inline">\(i\)</span> sobreviveu e <span class="math inline">\(x_{i}=1\)</span> caso contrário.
-Se estivermos interessados no número de falecimentos podemos definir a função <span class="math inline">\(X\)</span> para associar cada elemento <span class="math inline">\(\omega_{i}\)</span> em <span class="math inline">\(\Omega\)</span> a um valor <span class="math inline">\(x_{i} \in \mathbb{R}\)</span> que apresentará os seguintes resultados:
-<span class="math inline">\(X(0000)=0; X(0001)=1; X(0010)=1; \dots ; X(1111)=4\)</span>
+(1,1,1,0),(1,1,1,1)\}.\)</span></p>
+</blockquote>
+<blockquote>
+<p>Cada elemento do espaço amostral é uma sequência de quatro valores binários <span class="math inline">\((x_{1},x_{2},x_{3},x_{4})\)</span>, onde: <span class="math inline">\(x_{i}=0\)</span> indica que o paciente no leito <span class="math inline">\(i\)</span> sobreviveu e <span class="math inline">\(x_{i}=1\)</span> caso contrário.</p>
+</blockquote>
+<blockquote>
+<p>Se estivermos interessados no número de falecimentos podemos definir a função <span class="math inline">\(X\)</span> para associar cada elemento <span class="math inline">\(\omega_{i}\)</span> em <span class="math inline">\(\Omega\)</span> a um valor <span class="math inline">\(x_{i} \in \mathbb{R}\)</span> que apresentará os seguintes resultados:</p>
+</blockquote>
+<blockquote>
+<p><span class="math inline">\(X(0000)=0; X(0001)=1; X(0010)=1; \dots ; X(1111)=4\)</span>
 <span class="math inline">\(\mathcal{R}_{X}=\{x_{1}=0; x_{2}=1; x_{3}=2; x_{4}=3; x_{5}=4\}\subseteq \mathcal{R}\)</span></p>
 </blockquote>
-<p><br />
-</p>
-<p>Existem dois tipos de variáveis aleatórias: <strong>discretas</strong> e <strong>contínuas</strong>:</p>
-<p><br />
-</p>
-<blockquote>
-<p>Os valores possíveis de uma variável aleatória discreta pertencem a um conjunto finito ou infinito enumerável, como <span class="math inline">\(\{0,1,2, \dots \}\)</span>. Exemplos incluem: o número de acidentes em uma semana; o número de partículas αα emitidas por uma fonte radioativa em um intervalo de tempo; ou o número de casos de uma doença em um mês.</p>
-</blockquote>
-<p><br />
-</p>
-<blockquote>
-<p>Os valores possíveis de uma variável aleatória contínua pertencem a um intervalo contínuo de números reais, como <span class="math inline">\([a,b]\)</span>, <span class="math inline">\([0,\infty)\)</span> ou <span class="math inline">\(-\infty, \infty)\)</span>. Exemplos incluem: o peso ou a altura de um grupo de pessoas; o tempo de vida de uma lâmpada; o tempo de reação a um estímulo; a concentração de álcool em um certo volume de sangue, a temperatura mínima no inverno Antártico.</p>
-</blockquote>
-<p><br />
-</p>
-<p>A função aletória <span class="math inline">\(X\)</span> não irá, em geral, simplesmente relacionar os possíveis resultados de interesse do experimento aleatório a números reais. Mas sim computar algumas informações úteis como a probabilidade de sua verificação.</p>
 <p><br />
 </p>
 </div>
@@ -649,7 +641,7 @@ Se estivermos interessados no número de falecimentos podemos definir a função
         </div>
       </div>
 <a href="teoremas-da-teoria-das-probabilidades.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="função-massa-de-probabilidade-probability-mass-function---pmf.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="variáveis-aleatórios-discretas-e-contínuas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

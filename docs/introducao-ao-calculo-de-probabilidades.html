@@ -386,7 +386,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4.2" data-path="04-probabilidade.html"><a href="#intervalos-de-confian%C3%A7a-para-a-diferen%C3%A7a-de-duas-m%C3%A9dias-independentes-com-vari%C3%A2ncias-populacionais-desconhecidas-mas-admitidas-iguais"><i class="fa fa-check"></i><b>9.4.2</b> Intervalos de confiança para a diferença de duas médias independentes com variâncias populacionais desconhecidas mas admitidas iguais</a></li>
 <li class="chapter" data-level="9.4.3" data-path="04-probabilidade.html"><a href="#intervalos-de-confian%C3%A7a-para-a-diferen%C3%A7a-de-duas-m%C3%A9dias-com-vari%C3%A2ncias-populacionais-desconhecidas-e-a-admitidas-desiguais"><i class="fa fa-check"></i><b>9.4.3</b> Intervalos de confiança para a diferença de duas médias com variâncias populacionais desconhecidas e a admitidas desiguais</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="04-probabilidade.html"><a href="#distribui%C3%A7%C3%A3o-das-diferen%C3%A7as-de-m%C3%A9dias-n%C3%A3o-independentes-e-seus-intervalos-de-confian%C3%A7a"><i class="fa fa-check"></i><b>9.5</b> Distribuição das diferenças de médias não independentes e seus intervalos de confiança</a></li>
+<li class="chapter" data-level="9.5" data-path="04-probabilidade.html"><a href="#distribui%C3%A7%C3%A3o-das-diferen%C3%A7as-de-m%C3%A9dias-n%C3%A3o-independentes-e-seus-intervalos-de-confian%C3%A7a"><i class="fa fa-check"></i><b>9.5</b> Distribuição das diferenças de médias não independentes e seus intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="introducao-a-distribuicao-das-medias-e-diferencas-entre-medias-e-seus-intervalos-de-confianca.html"><a href="introducao-a-distribuicao-das-medias-e-diferencas-entre-medias-e-seus-intervalos-de-confianca.html#fluxograma-auxiliar-1"><i class="fa fa-check"></i><b>9.5.1</b> Fluxograma auxiliar</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="introducao-a-distribuicao-das-proporcoes-e-seus-intervalos-de-confianca.html"><a href="introducao-a-distribuicao-das-proporcoes-e-seus-intervalos-de-confianca.html"><i class="fa fa-check"></i><b>10</b> Introdução à distribuição das proporções e seus intervalos de confiança</a>
 <ul>
@@ -1354,9 +1357,9 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb73-14"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-14" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;A frequência observada da face&quot;</span>, face_escolhida, <span class="st">&quot;foi de&quot;</span>, frequencia, <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb73-15"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-15" tabindex="-1"></a>}</span></code></pre></div>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb74-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 30 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 20 %</code></pre>
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb76-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10000</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 17.53 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 16.47 %</code></pre>
 <p><br />
 </p>
 <p>Ao simular o lançamento de um dado, por exemplo, é possível observar como as frequências relativas de todas as faces começam a se aproximar das probabilidades teóricas (<span class="math inline">\(P(1)=P(2)=P(3)=P(4)=P(5)=P(6)=\frac{1}{6}\)</span>) à medida que aumentamos o número de repetições.</p>
@@ -1805,10 +1808,10 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb85-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb85-3" tabindex="-1"></a><span class="fu">table</span>(popSim<span class="sc">$</span>Curso, popSim<span class="sc">$</span>Sexo)</span></code></pre></div>
 <pre><code>##                      
 ##                           F     M
-##   Computação           5089  9911
-##   Estatística         10065  4935
-##   Matemática aplicada  7489  7511
-##   Matemática pura     19982 35018</code></pre>
+##   Computação           5093  9907
+##   Estatística         10022  4978
+##   Matemática aplicada  7467  7533
+##   Matemática pura     20041 34959</code></pre>
 <p><br />
 </p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb87-1" tabindex="-1"></a><span class="co"># Selecionar uma amostra de 200 com reposição (simular a tabela)</span></span>
@@ -1822,10 +1825,10 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb87-9"><a href="introducao-ao-calculo-de-probabilidades.html#cb87-9" tabindex="-1"></a>tab</span></code></pre></div>
 <pre><code>##                          
 ##                             M   F Total
-##   Matemática pura (M)      68  40   108
-##   Matemática aplicada (A)  13  13    26
-##   Estatística (E)          11  26    37
-##   Computação (C)           17  12    29
+##   Matemática pura (M)      62  43   105
+##   Matemática aplicada (A)  14  15    29
+##   Estatística (E)          12  17    29
+##   Computação (C)           21  16    37
 ##   Total                   109  91   200</code></pre>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb89-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb89-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb89-2" tabindex="-1"></a>pMasc<span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
@@ -1834,15 +1837,15 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb91-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; na amostra</span></span>
 <span id="cb91-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb91-2" tabindex="-1"></a>pMatAp <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span>)</span>
 <span id="cb91-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb91-3" tabindex="-1"></a>pMatAp</span></code></pre></div>
-<pre><code>## [1] 0.13</code></pre>
+<pre><code>## [1] 0.145</code></pre>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb93-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -E- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb93-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb93-2" tabindex="-1"></a>pMatAp_and_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">&amp;</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb93-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb93-3" tabindex="-1"></a>pMatAp_and_Masc</span></code></pre></div>
-<pre><code>## [1] 0.065</code></pre>
+<pre><code>## [1] 0.07</code></pre>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb95-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -OU- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb95-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb95-2" tabindex="-1"></a>pMatAp_or_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">|</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb95-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb95-3" tabindex="-1"></a>pMatAp_or_Masc</span></code></pre></div>
-<pre><code>## [1] 0.61</code></pre>
+<pre><code>## [1] 0.62</code></pre>
 <p><br />
 </p>
 <blockquote>

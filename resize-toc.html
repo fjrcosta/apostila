@@ -1,0 +1,71 @@
+<script>
+$(document).ready(function() {
+  var $summary = $('.book-summary');
+  var $body = $('.book-body');
+  var $header = $('.book-header');
+  var isResizing = false;
+  var startX, startWidth;
+
+  // Adicionar handle de redimensionamento
+  $summary.append('<div class="resize-handle"></div>');
+  
+  var $handle = $('.resize-handle');
+
+  $handle.on('mousedown', function(e) {
+    isResizing = true;
+    startX = e.clientX;
+    startWidth = $summary.width();
+    
+    $('body').css('cursor', 'ew-resize');
+    e.preventDefault();
+  });
+
+  $(document).on('mousemove', function(e) {
+    if (!isResizing) return;
+    
+    var width = startWidth + (e.clientX - startX);
+    
+    // Limites de largura
+    if (width < 200) width = 200;
+    if (width > 600) width = 600;
+    
+    $summary.css('width', width + 'px');
+    
+    // Atualizar left do body e header se o TOC estiver visível
+    if ($('.book').hasClass('with-summary')) {
+      $body.css('left', width + 'px');
+      $header.css('left', width + 'px');
+    }
+  });
+
+  $(document).on('mouseup', function() {
+    if (isResizing) {
+      isResizing = false;
+      $('body').css('cursor', 'default');
+    }
+  });
+  
+  // Observar mudanças na classe 'with-summary'
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.attributeName === 'class') {
+        var hasSummary = $('.book').hasClass('with-summary');
+        if (!hasSummary) {
+          // TOC colapsado
+          $body.css('left', '0');
+          $header.css('left', '0');
+        } else {
+          // TOC expandido
+          var width = $summary.width();
+          $body.css('left', width + 'px');
+          $header.css('left', width + 'px');
+        }
+      }
+    });
+  });
+  
+  observer.observe($('.book')[0], {
+    attributes: true
+  });
+});
+</script>

@@ -1,19 +1,32 @@
 bookdown::gitbook:
   css: style.css
-  split_by: section
+  split_by: chapter #era section
+  encoding: UTF-8
   config:
     toc:
+      collapse: none
+      depth: 8
       before: |
         <li><a href="./">Índice</a></li>
       after: |
         <li><a href="https://fjrcosta.github.io/apostila/" target="blank">FJCosta Github</a></li>
-    edit: https://github.com/USERNAME/REPO/edit/BRANCH/%s
-    download: ["pdf", "epub"]
-bookdown::pdf_book:
+    edit: https://github.com/fjrcosta/apostila/edit/main/%s
+    #edit: https://github.com/USERNAME/REPO/edit/BRANCH/%s
+    #download: ["pdf", "epub"]
   includes:
-    in_header: preamble.tex
-  latex_engine: xelatex
-  citation_package: natbib
-  lang: pt
-  keep_tex: yes
-bookdown::epub_book: default
+    after_body: resize-toc.html
+# bookdown::pdf_book:
+#   depth: 8
+#   includes:
+#     in_header: preamble.tex
+#   latex_engine: xelatex
+#   citation_package: natbib
+#   lang: pt
+#   keep_tex: yes
+# bookdown::epub_book: default
+# bookdown::html_document2:
+#   css: style.css
+#   encoding: UTF-8
+#   toc: true
+#   toc_depth: 8
+#   number_sections: true

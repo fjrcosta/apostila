@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 14 Introdução | apostila.knit</title>
+  <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 14 Introdução | apostila.knit" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
+  <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 14 Introdução | apostila.knit" />
+  
+  <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introducao-a-regressao-linear.html"/>
+<link rel="next" href="introducao-a-modelagem-de-processos-estocasticos.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Índice</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section" id="toc-section"></a></li>
+<li class="chapter" data-level="1" data-path="introducao-historica-daquilo-que-veio-a-se-chamar-estatistica.html"><a href="introducao-historica-daquilo-que-veio-a-se-chamar-estatistica.html"><i class="fa fa-check"></i><b>1</b> Introdução histórica daquilo que veio a se chamar estatística</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introducao-historica-daquilo-que-veio-a-se-chamar-estatistica.html"><a href="introducao-historica-daquilo-que-veio-a-se-chamar-estatistica.html#filosofia-da-ciencia-teoria-do-conhecimento-epistemologia"><i class="fa fa-check"></i><b>1.1</b> Filosofia da ciencia (teoria do conhecimento, epistemologia)</a></li>
+<li class="chapter" data-level="1.2" data-path="13-regressao_linear.html"><a href="#diferentes-usos-relacionados-ao-termo-primeiros-levantamentos-estudos-e-publica%C3%A7%C3%B5es-o-passado-distante"><i class="fa fa-check"></i><b>1.2</b> Diferentes usos relacionados ao termo, primeiros levantamentos, estudos e publicações (o passado distante)</a></li>
+<li class="chapter" data-level="1.3" data-path="13-regressao_linear.html"><a href="#visualiza%C3%A7%C3%A3o-de-dados-estudos-e-primeiras-publica%C3%A7%C3%B5es"><i class="fa fa-check"></i><b>1.3</b> Visualização de dados &amp; Estudos e primeiras publicações</a></li>
+<li class="chapter" data-level="1.4" data-path="13-regressao_linear.html"><a href="#pesquisadores-cuja-contribui%C3%A7%C3%A3o-foi-fundamental-na-%C3%A1rea"><i class="fa fa-check"></i><b>1.4</b> Pesquisadores cuja contribuição foi fundamental na área</a></li>
+<li class="chapter" data-level="1.5" data-path="introducao-historica-daquilo-que-veio-a-se-chamar-estatistica.html"><a href="introducao-historica-daquilo-que-veio-a-se-chamar-estatistica.html#revista-biometrika"><i class="fa fa-check"></i><b>1.5</b> Revista Biometrika</a></li>
+<li class="chapter" data-level="1.6" data-path="introducao-historica-daquilo-que-veio-a-se-chamar-estatistica.html"><a href="introducao-historica-daquilo-que-veio-a-se-chamar-estatistica.html#eugenia"><i class="fa fa-check"></i><b>1.6</b> Eugenia</a></li>
+<li class="chapter" data-level="1.7" data-path="13-regressao_linear.html"><a href="#estat%C3%ADstica-e-machine-learning-uma-livre-tradu%C3%A7%C3%A3o-deste-link"><i class="fa fa-check"></i><b>1.7</b> Estatística e <em>machine learning</em> : uma livre tradução deste link</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introducao-conceitual-essencial.html"><a href="introducao-conceitual-essencial.html"><i class="fa fa-check"></i><b>2</b> Introdução conceitual essencial</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="13-regressao_linear.html"><a href="#estat%C3%ADstica-descritiva"><i class="fa fa-check"></i><b>2.1</b> Estatística descritiva</a></li>
+<li class="chapter" data-level="2.2" data-path="13-regressao_linear.html"><a href="#estat%C3%ADstica-inferencial"><i class="fa fa-check"></i><b>2.2</b> Estatística inferencial</a></li>
+<li class="chapter" data-level="2.3" data-path="13-regressao_linear.html"><a href="#produ%C3%A7%C3%A3o-de-conhecimento"><i class="fa fa-check"></i><b>2.3</b> Produção de conhecimento</a></li>
+<li class="chapter" data-level="2.4" data-path="13-regressao_linear.html"><a href="#popula%C3%A7%C3%A3o-universo-amostra"><i class="fa fa-check"></i><b>2.4</b> População (universo) &amp; amostra</a></li>
+<li class="chapter" data-level="2.5" data-path="13-regressao_linear.html"><a href="#par%C3%A2metros-e-estat%C3%ADsticas"><i class="fa fa-check"></i><b>2.5</b> Parâmetros e estatísticas</a></li>
+<li class="chapter" data-level="2.6" data-path="13-regressao_linear.html"><a href="#tipos-de-vari%C3%A1veis"><i class="fa fa-check"></i><b>2.6</b> Tipos de variáveis</a></li>
+<li class="chapter" data-level="2.7" data-path="13-regressao_linear.html"><a href="#indexa%C3%A7%C3%A3o-de-dados-i"><i class="fa fa-check"></i><b>2.7</b> Indexação de dados (<span class="math inline">\(i\)</span>)</a></li>
+<li class="chapter" data-level="2.8" data-path="13-regressao_linear.html"><a href="#no%C3%A7%C3%B5es-b%C3%A1sicas-sobre-somat%C3%B3rios-sigma"><i class="fa fa-check"></i><b>2.8</b> Noções básicas sobre somatórios (<span class="math inline">\(\Sigma\)</span>)</a></li>
+<li class="chapter" data-level="2.9" data-path="13-regressao_linear.html"><a href="#an%C3%A1lise-combinat%C3%B3ria-m%C3%A9todos-de-enumera%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>2.9</b> Análise combinatória (métodos de enumeração)</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="13-regressao_linear.html"><a href="#princ%C3%ADpio-b%C3%A1sico-da-contagem-regra-da-multiplica%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>2.9.1</b> Princípio básico da contagem (regra da multiplicação)</a></li>
+<li class="chapter" data-level="2.9.2" data-path="13-regressao_linear.html"><a href="#regra-da-adi%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>2.9.2</b> Regra da adição</a></li>
+<li class="chapter" data-level="2.9.3" data-path="13-regressao_linear.html"><a href="#permuta%C3%A7%C3%B5es-ordena%C3%A7%C3%A3o-de-elementos"><i class="fa fa-check"></i><b>2.9.3</b> Permutações (ordenação de elementos)</a></li>
+<li class="chapter" data-level="2.9.4" data-path="13-regressao_linear.html"><a href="#arranjos-sem-repeti%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>2.9.4</b> Arranjos sem repetição</a></li>
+<li class="chapter" data-level="2.9.5" data-path="13-regressao_linear.html"><a href="#arranjos-com-repeti%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>2.9.5</b> Arranjos com repetição</a></li>
+<li class="chapter" data-level="2.9.6" data-path="13-regressao_linear.html"><a href="#combina%C3%A7%C3%B5es-sem-repeti%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>2.9.6</b> Combinações sem repetição</a></li>
+<li class="chapter" data-level="2.9.7" data-path="13-regressao_linear.html"><a href="#combina%C3%A7%C3%B5es-com-repeti%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>2.9.7</b> Combinações com Repetição</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="introducao-conceitual-essencial.html"><a href="introducao-conceitual-essencial.html#fatoriais"><i class="fa fa-check"></i><b>2.10</b> Fatoriais</a></li>
+<li class="chapter" data-level="2.11" data-path="13-regressao_linear.html"><a href="#conectivos-l%C3%B3gicos"><i class="fa fa-check"></i><b>2.11</b> Conectivos lógicos</a></li>
+<li class="chapter" data-level="2.12" data-path="introducao-conceitual-essencial.html"><a href="introducao-conceitual-essencial.html#leis-de-de-morgan"><i class="fa fa-check"></i><b>2.12</b> Leis de De Morgan</a></li>
+<li class="chapter" data-level="2.13" data-path="13-regressao_linear.html"><a href="#no%C3%A7%C3%B5es-b%C3%A1sicas-para-o-uso-de-calculadora-cassio-fx-82ms"><i class="fa fa-check"></i><b>2.13</b> Noções básicas para o uso de calculadora (Cassio fx-82MS)</a></li>
+<li class="chapter" data-level="2.14" data-path="13-regressao_linear.html"><a href="#instala%C3%A7%C3%A3o-do-software-r-em-conjunto-com-a-interface-gr%C3%A1fica-rstudio"><i class="fa fa-check"></i><b>2.14</b> Instalação do software R em conjunto com a interface gráfica RStudio</a>
+<ul>
+<li class="chapter" data-level="2.14.1" data-path="introducao-conceitual-essencial.html"><a href="introducao-conceitual-essencial.html#rstudio"><i class="fa fa-check"></i><b>2.14.1</b> RStudio</a></li>
+<li class="chapter" data-level="2.14.2" data-path="introducao-conceitual-essencial.html"><a href="introducao-conceitual-essencial.html#pacotes"><i class="fa fa-check"></i><b>2.14.2</b> Pacotes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html"><i class="fa fa-check"></i><b>3</b> Introdução à estatística descritiva</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="13-regressao_linear.html"><a href="#an%C3%A1lise-explorat%C3%B3ria"><i class="fa fa-check"></i><b>3.1</b> Análise exploratória</a></li>
+<li class="chapter" data-level="3.2" data-path="13-regressao_linear.html"><a href="#dados-brutos-em-rol-diagrama-de-ramos-folhas-e-de-dispers%C3%A3o-unidimensional"><i class="fa fa-check"></i><b>3.2</b> Dados brutos, em rol, diagrama de ramos &amp; folhas e de dispersão unidimensional</a></li>
+<li class="chapter" data-level="3.3" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#apresentacao-descritiva-de-dados-na-forma-de-resumos-numericos"><i class="fa fa-check"></i><b>3.3</b> Apresentacao descritiva de dados na forma de resumos numericos</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#estimadores"><i class="fa fa-check"></i><b>3.3.1</b> Estimadores</a></li>
+<li class="chapter" data-level="3.3.2" data-path="13-regressao_linear.html"><a href="#medidas-de-tend%C3%AAncia-central-posi%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>3.3.2</b> Medidas de tendência central (posição)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="13-regressao_linear.html"><a href="#medidas-de-dispers%C3%A3o-variabilidade"><i class="fa fa-check"></i><b>3.3.3</b> Medidas de dispersão (variabilidade)</a></li>
+<li class="chapter" data-level="3.3.4" data-path="13-regressao_linear.html"><a href="#medidas-de-subdivis%C3%A3o-separatrizes"><i class="fa fa-check"></i><b>3.3.4</b> Medidas de subdivisão (separatrizes)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#padronizacao-de-dados-z-scores"><i class="fa fa-check"></i><b>3.4</b> Padronizacao de dados (<em>z-scores</em>)</a></li>
+<li class="chapter" data-level="3.5" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#medidas-de-forma-assimetria-curtose"><i class="fa fa-check"></i><b>3.5</b> Medidas de forma (assimetria &amp; curtose)</a></li>
+<li class="chapter" data-level="3.6" data-path="13-regressao_linear.html"><a href="#diferentes-posi%C3%A7%C3%B5es-da-m%C3%A9dia-moda-e-mediana-2o-quartil"><i class="fa fa-check"></i><b>3.6</b> Diferentes posições da média, moda e mediana (2<span class="math inline">\(^{o}\)</span> quartil)</a></li>
+<li class="chapter" data-level="3.7" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#apresentacao-descritiva-de-dados-na-forma-tabular"><i class="fa fa-check"></i><b>3.7</b> Apresentacao descritiva de dados na forma tabular</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#apresentacao-tabular-de-dados-qualitativos"><i class="fa fa-check"></i><b>3.7.1</b> Apresentacao tabular de dados qualitativos</a></li>
+<li class="chapter" data-level="3.7.2" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#apresentacao-tabular-de-dados-quantitativos"><i class="fa fa-check"></i><b>3.7.2</b> Apresentacao tabular de dados quantitativos</a></li>
+<li class="chapter" data-level="3.7.3" data-path="13-regressao_linear.html"><a href="#m%C3%A9dia-1"><i class="fa fa-check"></i><b>3.7.3</b> Média</a></li>
+<li class="chapter" data-level="3.7.4" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#moda-1"><i class="fa fa-check"></i><b>3.7.4</b> Moda</a></li>
+<li class="chapter" data-level="3.7.5" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#mediana-q_2d_5p_50"><i class="fa fa-check"></i><b>3.7.5</b> Mediana (<span class="math inline">\(=Q_{2}=D_{5}=P_{50}\)</span>)</a></li>
+<li class="chapter" data-level="3.7.6" data-path="13-regressao_linear.html"><a href="#vari%C3%A2ncia"><i class="fa fa-check"></i><b>3.7.6</b> Variância</a></li>
+<li class="chapter" data-level="3.7.7" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#quartis"><i class="fa fa-check"></i><b>3.7.7</b> Quartis</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#apresentacao-descritiva-de-dados-na-forma-grafica"><i class="fa fa-check"></i><b>3.8</b> Apresentacao descritiva de dados na forma grafica</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="13-regressao_linear.html"><a href="#gr%C3%A1ficos-para-uma-vari%C3%A1vel-qualitativa"><i class="fa fa-check"></i><b>3.8.1</b> Gráficos para uma variável qualitativa</a></li>
+<li class="chapter" data-level="3.8.2" data-path="13-regressao_linear.html"><a href="#gr%C3%A1ficos-para-uma-vari%C3%A1vel-quantitativa"><i class="fa fa-check"></i><b>3.8.2</b> Gráficos para uma variável quantitativa</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html"><i class="fa fa-check"></i><b>4</b> Introdução ao cálculo de probabilidades</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="13-regressao_linear.html"><a href="#introdu%C3%A7%C3%A3o-hist%C3%B3rica"><i class="fa fa-check"></i><b>4.1</b> Introdução histórica</a></li>
+<li class="chapter" data-level="4.2" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#conceitos-essenciais"><i class="fa fa-check"></i><b>4.2</b> Conceitos essenciais</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="13-regressao_linear.html"><a href="#experimentos-determin%C3%ADsticos-e-experimentos-aleat%C3%B3rios"><i class="fa fa-check"></i><b>4.2.1</b> Experimentos determinísticos e experimentos aleatórios</a></li>
+<li class="chapter" data-level="4.2.2" data-path="13-regressao_linear.html"><a href="#o-espa%C3%A7o-amostral"><i class="fa fa-check"></i><b>4.2.2</b> O espaço amostral</a></li>
+<li class="chapter" data-level="4.2.3" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#evento"><i class="fa fa-check"></i><b>4.2.3</b> Evento</a></li>
+<li class="chapter" data-level="4.2.4" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#probabilidade"><i class="fa fa-check"></i><b>4.2.4</b> Probabilidade</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="13-regressao_linear.html"><a href="#probabilidade-da-uni%C3%A3o-de-eventos"><i class="fa fa-check"></i><b>4.3</b> Probabilidade da união de eventos</a></li>
+<li class="chapter" data-level="4.4" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#probabilidade-de-eventos-condicionados"><i class="fa fa-check"></i><b>4.4</b> Probabilidade de eventos condicionados</a></li>
+<li class="chapter" data-level="4.5" data-path="13-regressao_linear.html"><a href="#depend%C3%AAncia-e-independ%C3%AAncia-de-eventos"><i class="fa fa-check"></i><b>4.5</b> Dependência e independência de eventos</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="13-regressao_linear.html"><a href="#demonstra%C3%A7%C3%A3o-cl%C3%A1ssica-de-independ%C3%AAncia"><i class="fa fa-check"></i><b>4.5.1</b> Demonstração clássica de independência</a></li>
+<li class="chapter" data-level="4.5.2" data-path="13-regressao_linear.html"><a href="#demonstra%C3%A7%C3%A3o-cl%C3%A1ssica-de-depend%C3%AAncia"><i class="fa fa-check"></i><b>4.5.2</b> Demonstração clássica de dependência</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#probabilidade-de-eventos-independentes-regra-da-cadeia"><i class="fa fa-check"></i><b>4.6</b> Probabilidade de eventos independentes (regra da cadeia)</a></li>
+<li class="chapter" data-level="4.7" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teorema-de-bayes"><i class="fa fa-check"></i><b>4.7</b> Teorema de Bayes</a></li>
+<li class="chapter" data-level="4.8" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teoremas-da-teoria-das-probabilidades"><i class="fa fa-check"></i><b>4.8</b> Teoremas da Teoria das probabilidades</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teorema-01"><i class="fa fa-check"></i><b>4.8.1</b> Teorema 01</a></li>
+<li class="chapter" data-level="4.8.2" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teorema-02"><i class="fa fa-check"></i><b>4.8.2</b> Teorema 02</a></li>
+<li class="chapter" data-level="4.8.3" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teorema-03"><i class="fa fa-check"></i><b>4.8.3</b> Teorema 03</a></li>
+<li class="chapter" data-level="4.8.4" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teorema-04"><i class="fa fa-check"></i><b>4.8.4</b> Teorema 04</a></li>
+<li class="chapter" data-level="4.8.5" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teorema-05"><i class="fa fa-check"></i><b>4.8.5</b> Teorema 05</a></li>
+<li class="chapter" data-level="4.8.6" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teorema-06"><i class="fa fa-check"></i><b>4.8.6</b> Teorema 06</a></li>
+<li class="chapter" data-level="4.8.7" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teorema-07"><i class="fa fa-check"></i><b>4.8.7</b> Teorema 07</a></li>
+<li class="chapter" data-level="4.8.8" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teorema-08"><i class="fa fa-check"></i><b>4.8.8</b> Teorema 08</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="introducao-a-variaveis-aleatorias.html"><a href="introducao-a-variaveis-aleatorias.html"><i class="fa fa-check"></i><b>5</b> Introdução a variáveis aleatórias</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="introducao-a-variaveis-aleatorias.html"><a href="introducao-a-variaveis-aleatorias.html#variaveis-aleatorias-discretas-continuas"><i class="fa fa-check"></i><b>5.1</b> Variáveis aleatórias discretas e contínuas</a></li>
+<li class="chapter" data-level="5.2" data-path="13-regressao_linear.html"><a href="#fun%C3%A7%C3%A3o-massa-de-probabilidade-probability-mass-function---pmf"><i class="fa fa-check"></i><b>5.2</b> Função massa de probabilidade (<em>Probability Mass Function - PMF</em>)</a></li>
+<li class="chapter" data-level="5.3" data-path="13-regressao_linear.html"><a href="#fun%C3%A7%C3%A3o-cumulativa-de-probabilidade"><i class="fa fa-check"></i><b>5.3</b> Função cumulativa de probabilidade</a></li>
+<li class="chapter" data-level="5.4" data-path="13-regressao_linear.html"><a href="#fun%C3%A7%C3%A3o-de-densidade-de-probabilidade-probability-density-function---pdf"><i class="fa fa-check"></i><b>5.4</b> Função de densidade de probabilidade (<em>Probability Density Function - PDF</em>)</a></li>
+<li class="chapter" data-level="5.5" data-path="13-regressao_linear.html"><a href="#esperan%C3%A7a-e-vari%C3%A2ncia-de-uma-vari%C3%A1vel-aleat%C3%B3ria-discreta"><i class="fa fa-check"></i><b>5.5</b> Esperança e variância de uma variável aleatória discreta</a></li>
+<li class="chapter" data-level="5.6" data-path="13-regressao_linear.html"><a href="#esperan%C3%A7a-e-vari%C3%A2ncia-de-uma-vari%C3%A1vel-aleat%C3%B3ria-cont%C3%ADnua"><i class="fa fa-check"></i><b>5.6</b> Esperança e variância de uma variável aleatória contínua</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html"><i class="fa fa-check"></i><b>6</b> Introdução a modelos teóricos de probabilidade</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="13-regressao_linear.html"><a href="#modelos-te%C3%B3ricos-de-probabilidade-para-vari%C3%A1veis-aleat%C3%B3rias-discretas"><i class="fa fa-check"></i><b>6.1</b> Modelos teóricos de probabilidade para variáveis aleatórias discretas</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#uniforme"><i class="fa fa-check"></i><b>6.1.1</b> Uniforme</a></li>
+<li class="chapter" data-level="6.1.2" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#bernoulli"><i class="fa fa-check"></i><b>6.1.2</b> Bernoulli</a></li>
+<li class="chapter" data-level="6.1.3" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#binomial"><i class="fa fa-check"></i><b>6.1.3</b> Binomial</a></li>
+<li class="chapter" data-level="6.1.4" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#poisson"><i class="fa fa-check"></i><b>6.1.4</b> Poisson</a></li>
+<li class="chapter" data-level="6.1.5" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#multinomial"><i class="fa fa-check"></i><b>6.1.5</b> Multinomial</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="13-regressao_linear.html"><a href="#modelos-t%C3%A9oricos-do-tempo-de-espera"><i class="fa fa-check"></i><b>6.2</b> Modelos téoricos do tempo de espera</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="13-regressao_linear.html"><a href="#geom%C3%A9trica"><i class="fa fa-check"></i><b>6.2.1</b> Geométrica</a></li>
+<li class="chapter" data-level="6.2.2" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#binomial-negativa"><i class="fa fa-check"></i><b>6.2.2</b> Binomial Negativa</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="13-regressao_linear.html"><a href="#modelos-te%C3%B3ricos-de-probabilidade-para-vari%C3%A1veis-aleat%C3%B3rias-cont%C3%ADnuas"><i class="fa fa-check"></i><b>6.3</b> Modelos teóricos de probabilidade para variáveis aleatórias contínuas</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#uniforme-1"><i class="fa fa-check"></i><b>6.3.1</b> Uniforme</a></li>
+<li class="chapter" data-level="6.3.2" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#exponencial"><i class="fa fa-check"></i><b>6.3.2</b> Exponencial</a></li>
+<li class="chapter" data-level="6.3.3" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#normal"><i class="fa fa-check"></i><b>6.3.3</b> Normal</a></li>
+<li class="chapter" data-level="6.3.4" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#student-t"><i class="fa fa-check"></i><b>6.3.4</b> Student “t”</a></li>
+<li class="chapter" data-level="6.3.5" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#qui-quadrado"><i class="fa fa-check"></i><b>6.3.5</b> Qui-Quadrado</a></li>
+<li class="chapter" data-level="6.3.6" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#fisher-snedecor-f"><i class="fa fa-check"></i><b>6.3.6</b> Fisher-Snedecor “F”</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#tabelas"><i class="fa fa-check"></i><b>6.4</b> Tabelas</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html"><i class="fa fa-check"></i><b>7</b> Introdução ao planejamento de pesquisas</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#planejamento-de-pesquisas"><i class="fa fa-check"></i><b>7.1</b> Planejamento de pesquisas</a></li>
+<li class="chapter" data-level="7.2" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#tipos-de-pesquisas"><i class="fa fa-check"></i><b>7.2</b> Tipos de pesquisas</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="13-regressao_linear.html"><a href="#quanto-%C3%A0-finalidade"><i class="fa fa-check"></i><b>7.2.1</b> Quanto à finalidade</a></li>
+<li class="chapter" data-level="7.2.2" data-path="13-regressao_linear.html"><a href="#quanto-%C3%A0-forma-de-abordagem"><i class="fa fa-check"></i><b>7.2.2</b> Quanto à forma de abordagem</a></li>
+<li class="chapter" data-level="7.2.3" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#quanto-aos-objetivos"><i class="fa fa-check"></i><b>7.2.3</b> Quanto aos objetivos</a></li>
+<li class="chapter" data-level="7.2.4" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#quanto-ao-desenvolvimento-no-tempo"><i class="fa fa-check"></i><b>7.2.4</b> Quanto ao desenvolvimento no tempo</a></li>
+<li class="chapter" data-level="7.2.5" data-path="13-regressao_linear.html"><a href="#quanto-%C3%A0-natureza"><i class="fa fa-check"></i><b>7.2.5</b> Quanto à natureza</a></li>
+<li class="chapter" data-level="7.2.6" data-path="13-regressao_linear.html"><a href="#quanto-%C3%A0-forma-de-obten%C3%A7%C3%A3o-dos-dados"><i class="fa fa-check"></i><b>7.2.6</b> Quanto à forma de obtenção dos dados</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#principais-etapas-de-uma-pesquisa"><i class="fa fa-check"></i><b>7.3</b> Principais etapas de uma pesquisa:</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#objetivo"><i class="fa fa-check"></i><b>7.3.1</b> Objetivo</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="13-regressao_linear.html"><a href="#popula%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>7.4</b> População</a></li>
+<li class="chapter" data-level="7.5" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#censo"><i class="fa fa-check"></i><b>7.5</b> Censo</a></li>
+<li class="chapter" data-level="7.6" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#amostra"><i class="fa fa-check"></i><b>7.6</b> Amostra</a></li>
+<li class="chapter" data-level="7.7" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#planejamento-do-levantamento-amostral"><i class="fa fa-check"></i><b>7.7</b> Planejamento do levantamento amostral</a></li>
+<li class="chapter" data-level="7.8" data-path="13-regressao_linear.html"><a href="#elabora%C3%A7%C3%A3o-dos-question%C3%A1rios"><i class="fa fa-check"></i><b>7.8</b> Elaboração dos questionários</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#tipos-de-perguntas"><i class="fa fa-check"></i><b>7.8.1</b> Tipos de perguntas:</a></li>
+<li class="chapter" data-level="7.8.2" data-path="13-regressao_linear.html"><a href="#execu%C3%A7%C3%A3o-do-levantamento-amostral"><i class="fa fa-check"></i><b>7.8.2</b> Execução do levantamento amostral</a></li>
+<li class="chapter" data-level="7.8.3" data-path="13-regressao_linear.html"><a href="#an%C3%A1lise-explorat%C3%B3ria-dos-dados"><i class="fa fa-check"></i><b>7.8.3</b> Análise exploratória dos dados</a></li>
+<li class="chapter" data-level="7.8.4" data-path="13-regressao_linear.html"><a href="#resultados-e-conclus%C3%B5es"><i class="fa fa-check"></i><b>7.8.4</b> Resultados e conclusões</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="13-regressao_linear.html"><a href="#t%C3%A9cnicas-de-amostragem"><i class="fa fa-check"></i><b>7.9</b> Técnicas de amostragem</a></li>
+<li class="chapter" data-level="7.10" data-path="13-regressao_linear.html"><a href="#amostragem-probabil%C3%ADstica"><i class="fa fa-check"></i><b>7.10</b> Amostragem probabilística</a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="13-regressao_linear.html"><a href="#amostragem-aleat%C3%B3ria-simples-aas"><i class="fa fa-check"></i><b>7.10.1</b> Amostragem aleatória simples (AAS)</a></li>
+<li class="chapter" data-level="7.10.2" data-path="13-regressao_linear.html"><a href="#amostragem-aleat%C3%B3ria-sistem%C3%A1tica"><i class="fa fa-check"></i><b>7.10.2</b> Amostragem aleatória sistemática</a></li>
+<li class="chapter" data-level="7.10.3" data-path="13-regressao_linear.html"><a href="#amostragem-aleat%C3%B3ria-estratificada"><i class="fa fa-check"></i><b>7.10.3</b> Amostragem aleatória estratificada</a></li>
+<li class="chapter" data-level="7.10.4" data-path="13-regressao_linear.html"><a href="#amostragem-aleat%C3%B3ria-por-conglomerados"><i class="fa fa-check"></i><b>7.10.4</b> Amostragem aleatória por conglomerados</a></li>
+</ul></li>
+<li class="chapter" data-level="7.11" data-path="13-regressao_linear.html"><a href="#amostragem-n%C3%A3o-probabil%C3%ADstica"><i class="fa fa-check"></i><b>7.11</b> Amostragem não probabilística</a>
+<ul>
+<li class="chapter" data-level="7.11.1" data-path="13-regressao_linear.html"><a href="#amostragem-por-conveni%C3%AAncia"><i class="fa fa-check"></i><b>7.11.1</b> Amostragem por conveniência</a></li>
+<li class="chapter" data-level="7.11.2" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#amostragem-por-cotas"><i class="fa fa-check"></i><b>7.11.2</b> Amostragem por cotas</a></li>
+</ul></li>
+<li class="chapter" data-level="7.12" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#dimensionamento-de-amostras"><i class="fa fa-check"></i><b>7.12</b> Dimensionamento de amostras</a>
+<ul>
+<li class="chapter" data-level="7.12.1" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#erros"><i class="fa fa-check"></i><b>7.12.1</b> Erros</a></li>
+<li class="chapter" data-level="7.12.2" data-path="13-regressao_linear.html"><a href="#determina%C3%A7%C3%A3o-do-tamanho-de-uma-amostra-para-estima%C3%A7%C3%A3o-da-m%C3%A9dia-populacional"><i class="fa fa-check"></i><b>7.12.2</b> Determinação do tamanho de uma amostra para estimação da média populacional</a></li>
+<li class="chapter" data-level="7.12.3" data-path="13-regressao_linear.html"><a href="#determina%C3%A7%C3%A3o-do-tamanho-de-uma-amostra-para-estima%C3%A7%C3%A3o-da-propor%C3%A7%C3%A3o-populacional"><i class="fa fa-check"></i><b>7.12.3</b> Determinação do tamanho de uma amostra para estimação da proporção populacional</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html"><i class="fa fa-check"></i><b>8</b> Introdução às estatísticas epidemiológicas</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="13-regressao_linear.html"><a href="#tipos-de-estudos-epidemiol%C3%B3gicos"><i class="fa fa-check"></i><b>8.1</b> Tipos de estudos epidemiológicos</a></li>
+<li class="chapter" data-level="8.2" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html#estudos-transversais"><i class="fa fa-check"></i><b>8.2</b> Estudos transversais</a></li>
+<li class="chapter" data-level="8.3" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html#estudos-longitudinais"><i class="fa fa-check"></i><b>8.3</b> Estudos longitudinais</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html#estudos-de-casos-e-controles"><i class="fa fa-check"></i><b>8.3.1</b> Estudos de casos e controles</a></li>
+<li class="chapter" data-level="8.3.2" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html#estudos-de-coorte"><i class="fa fa-check"></i><b>8.3.2</b> Estudos de coorte</a></li>
+<li class="chapter" data-level="8.3.3" data-path="13-regressao_linear.html"><a href="#estudos-cl%C3%ADnicos-aleatorizados"><i class="fa fa-check"></i><b>8.3.3</b> Estudos clínicos aleatorizados</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html#terminologia"><i class="fa fa-check"></i><b>8.4</b> Terminologia</a></li>
+<li class="chapter" data-level="8.5" data-path="13-regressao_linear.html"><a href="#medidas-de-risco-morte-associa%C3%A7%C3%A3o-e-correla%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>8.5</b> Medidas de risco, morte, associação e correlação</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="13-regressao_linear.html"><a href="#incid%C3%AAncia"><i class="fa fa-check"></i><b>8.5.1</b> Incidência</a></li>
+<li class="chapter" data-level="8.5.2" data-path="13-regressao_linear.html"><a href="#preval%C3%AAncia"><i class="fa fa-check"></i><b>8.5.2</b> Prevalência</a></li>
+<li class="chapter" data-level="8.5.3" data-path="13-regressao_linear.html"><a href="#incid%C3%AAncia-cumulativa---ic-risco"><i class="fa fa-check"></i><b>8.5.3</b> Incidência cumulativa - IC (Risco)</a></li>
+<li class="chapter" data-level="8.5.4" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html#fatalidade-dos-casos-fc"><i class="fa fa-check"></i><b>8.5.4</b> Fatalidade dos Casos (FC)</a></li>
+<li class="chapter" data-level="8.5.5" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html#taxas-de-mortalidade-tm"><i class="fa fa-check"></i><b>8.5.5</b> Taxas de mortalidade (TM)</a></li>
+<li class="chapter" data-level="8.5.6" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html#sobrevida"><i class="fa fa-check"></i><b>8.5.6</b> Sobrevida</a></li>
+<li class="chapter" data-level="8.5.7" data-path="13-regressao_linear.html"><a href="#taxas-mais-espec%C3%ADficas"><i class="fa fa-check"></i><b>8.5.7</b> Taxas mais específicas</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="13-regressao_linear.html"><a href="#medidas-de-associa%C3%A7%C3%A3o-em-estudos-de-coorte"><i class="fa fa-check"></i><b>8.6</b> Medidas de associação em estudos de coorte</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="13-regressao_linear.html"><a href="#incid%C3%AAncia-observada-de-nascimentos-com-baixo-peso-entre-m%C3%A3es-expostas-ao-risco-n%C3%A3o-fumantes-i_e"><i class="fa fa-check"></i><b>8.6.1</b> Incidência observada de nascimentos com baixo peso entre mães expostas ao risco (não fumantes): <span class="math inline">\(I_{e}\)</span></a></li>
+<li class="chapter" data-level="8.6.2" data-path="13-regressao_linear.html"><a href="#incid%C3%AAncia-observada-de-nascimentos-com-baixo-peso-entre-m%C3%A3es-n%C3%A3o-expostas-ao-risco-n%C3%A3o-fumantes-i_0"><i class="fa fa-check"></i><b>8.6.2</b> Incidência observada de nascimentos com baixo peso entre mães não expostas ao risco (não fumantes): <span class="math inline">\(I_{0}\)</span></a></li>
+<li class="chapter" data-level="8.6.3" data-path="13-regressao_linear.html"><a href="#preval%C3%AAncia-de-nascimentos-com-baixo-peso-na-popula%C3%A7%C3%A3o-estudada"><i class="fa fa-check"></i><b>8.6.3</b> Prevalência de nascimentos com baixo peso na população estudada</a></li>
+<li class="chapter" data-level="8.6.4" data-path="13-regressao_linear.html"><a href="#diferen%C3%A7a-de-risco-risco-atribu%C3%ADvel---ra"><i class="fa fa-check"></i><b>8.6.4</b> Diferença de risco (Risco atribuível - RA)</a></li>
+<li class="chapter" data-level="8.6.5" data-path="13-regressao_linear.html"><a href="#raz%C3%A3o-de-risco-risco-relativo---rr"><i class="fa fa-check"></i><b>8.6.5</b> Razão de risco (Risco relativo - RR)</a></li>
+<li class="chapter" data-level="8.6.6" data-path="13-regressao_linear.html"><a href="#risco-atribu%C3%ADvel-proporcional-fra%C3%A7%C3%A3o-etiol%C3%B3gica---fe"><i class="fa fa-check"></i><b>8.6.6</b> Risco atribuível proporcional (Fração etiológica - FE)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="13-regressao_linear.html"><a href="#odds-ratio-raz%C3%A3o-das-chances-em-studos-de-casos-e-controles"><i class="fa fa-check"></i><b>8.7</b> <em>Odds ratio</em> (Razão das chances) em studos de casos e controles</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html#chance-odds-de-observar-um-desfecho-entre-os-casos"><i class="fa fa-check"></i><b>8.7.1</b> Chance (<em>odds</em>) de observar um desfecho entre os casos:</a></li>
+<li class="chapter" data-level="8.7.2" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html#chance-odds-de-observar-um-desfecho-entre-os-controles"><i class="fa fa-check"></i><b>8.7.2</b> Chance (<em>odds</em>) de observar um desfecho entre os controles:</a></li>
+<li class="chapter" data-level="8.7.3" data-path="13-regressao_linear.html"><a href="#a-raz%C3%A3o-das-chances-entre-os-casos-e-controle-odds-ratio"><i class="fa fa-check"></i><b>8.7.3</b> A razão das chances entre os casos e controle (<em>odds ratio</em>):</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="13-regressao_linear.html"><a href="#correla%C3%A7%C3%A3o-linear-de-pearson"><i class="fa fa-check"></i><b>8.8</b> Correlação linear de Pearson</a></li>
+<li class="chapter" data-level="8.9" data-path="13-regressao_linear.html"><a href="#intervalos-de-confian%C3%A7a"><i class="fa fa-check"></i><b>8.9</b> Intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="13-regressao_linear.html"><a href="#raz%C3%A3o-de-risco-risco-relativo---rr-1"><i class="fa fa-check"></i><b>8.9.1</b> Razão de risco (Risco relativo - RR)</a></li>
+<li class="chapter" data-level="8.9.2" data-path="13-regressao_linear.html"><a href="#raz%C3%A3o-de-chances-odds-ratio---or"><i class="fa fa-check"></i><b>8.9.2</b> Razão de chances ( <em>odds ratio</em> - OR)</a></li>
+<li class="chapter" data-level="8.9.3" data-path="13-regressao_linear.html"><a href="#diferen%C3%A7a-de-risco-risco-atribu%C3%ADvel---ra-1"><i class="fa fa-check"></i><b>8.9.3</b> Diferença de risco (Risco atribuível - RA)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="introducao-a-distribuicao-das-medias-e-diferencas-entre-medias-e-seus-intervalos-de-confianca.html"><a href="introducao-a-distribuicao-das-medias-e-diferencas-entre-medias-e-seus-intervalos-de-confianca.html"><i class="fa fa-check"></i><b>9</b> Introdução à distribuição das médias e diferenças entre médias e seus intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="13-regressao_linear.html"><a href="#distribui%C3%A7%C3%B5es-amostrais"><i class="fa fa-check"></i><b>9.1</b> Distribuições amostrais</a></li>
+<li class="chapter" data-level="9.2" data-path="13-regressao_linear.html"><a href="#intervalos-de-confian%C3%A7a-1"><i class="fa fa-check"></i><b>9.2</b> Intervalos de confiança</a></li>
+<li class="chapter" data-level="9.3" data-path="13-regressao_linear.html"><a href="#distribui%C3%A7%C3%A3o-das-m%C3%A9dias-amostrais-e-seus-intervalos-de-confian%C3%A7a"><i class="fa fa-check"></i><b>9.3</b> Distribuição das médias amostrais e seus intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="13-regressao_linear.html"><a href="#fator-de-corre%C3%A7%C3%A3o-para-popula%C3%A7%C3%B5es-finitas"><i class="fa fa-check"></i><b>9.3.1</b> Fator de correção para populações finitas</a></li>
+<li class="chapter" data-level="9.3.2" data-path="13-regressao_linear.html"><a href="#intervalo-de-confian%C3%A7a-para-a-m%C3%A9dia-de-uma-popula%C3%A7%C3%A3o-normal"><i class="fa fa-check"></i><b>9.3.2</b> Intervalo de confiança para a média de uma população Normal</a></li>
+<li class="chapter" data-level="9.3.3" data-path="13-regressao_linear.html"><a href="#intervalos-de-confian%C3%A7a-para-a-m%C3%A9dia-de-uma-popula%C3%A7%C3%A3o-normal-com-vari%C3%A2ncia-conhecida-figura-reffigfig28"><i class="fa fa-check"></i><b>9.3.3</b> Intervalos de confiança para a média de uma população Normal com variância conhecida (Figura @ref(fig:fig28))</a></li>
+<li class="chapter" data-level="9.3.4" data-path="13-regressao_linear.html"><a href="#intervalos-de-confian%C3%A7a-para-a-m%C3%A9dia-de-uma-popula%C3%A7%C3%A3o-normal-de-vari%C3%A2ncia-desconhecida-mas-amostra-n%C3%A3o-t%C3%A3o-pequena-n-ge-30-figura-reffigfig55"><i class="fa fa-check"></i><b>9.3.4</b> Intervalos de confiança para a média de uma população Normal de variância desconhecida mas amostra não tão pequena: <span class="math inline">\(n \ge 30\)</span> (Figura @ref(fig:fig55))</a></li>
+<li class="chapter" data-level="9.3.5" data-path="13-regressao_linear.html"><a href="#intervalos-de-confian%C3%A7a-para-a-m%C3%A9dia-de-uma-popula%C3%A7%C3%A3o-normal-com-vari%C3%A2ncia-desconhecida-e-amostra-de-qualquer-tamanho-figura-reffigfig58"><i class="fa fa-check"></i><b>9.3.5</b> Intervalos de confiança para a média de uma população Normal com variância desconhecida e amostra de qualquer tamanho (Figura @ref(fig:fig58))</a></li>
+<li class="chapter" data-level="9.3.6" data-path="introducao-a-distribuicao-das-medias-e-diferencas-entre-medias-e-seus-intervalos-de-confianca.html"><a href="introducao-a-distribuicao-das-medias-e-diferencas-entre-medias-e-seus-intervalos-de-confianca.html#fluxograma-auxiliar"><i class="fa fa-check"></i><b>9.3.6</b> Fluxograma auxiliar</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="13-regressao_linear.html"><a href="#distribui%C3%A7%C3%A3o-das-diferen%C3%A7as-das-m%C3%A9dias-de-duas-popula%C3%A7%C3%B5es-normais-e-seus-intervalos-de-confian%C3%A7a"><i class="fa fa-check"></i><b>9.4</b> Distribuição das diferenças das médias de duas populações Normais e seus intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="13-regressao_linear.html"><a href="#intervalos-de-confian%C3%A7a-para-a-diferen%C3%A7a-das-m%C3%A9dias-de-duas-popula%C3%A7%C3%B5es-nomrais-de-vari%C3%A2ncias-conhecidas-e-amostras-independentes-de-qualquer-tamanho"><i class="fa fa-check"></i><b>9.4.1</b> Intervalos de confiança para a diferença das médias de duas populações Nomrais de variâncias conhecidas e amostras independentes de qualquer tamanho</a></li>
+<li class="chapter" data-level="9.4.2" data-path="13-regressao_linear.html"><a href="#intervalos-de-confian%C3%A7a-para-a-diferen%C3%A7a-das-m%C3%A9dias-de-duas-popula%C3%A7%C3%B5es-normais-de-vari%C3%A2ncias-desconhecidas-e-amostras-independentes-grandes"><i class="fa fa-check"></i><b>9.4.2</b> Intervalos de confiança para a diferença das médias de duas populações Normais de variâncias desconhecidas e amostras independentes grandes</a></li>
+<li class="chapter" data-level="9.4.3" data-path="13-regressao_linear.html"><a href="#intervalos-de-confian%C3%A7a-para-a-diferen%C3%A7a-das-m%C3%A9dias-de-duas-popula%C3%A7%C3%B5es-normais-de-vari%C3%A2ncias-desconhecidas-mas-iguais"><i class="fa fa-check"></i><b>9.4.3</b> Intervalos de confiança para a diferença das médias de duas populações Normais de variâncias desconhecidas mas iguais</a></li>
+<li class="chapter" data-level="9.4.4" data-path="13-regressao_linear.html"><a href="#intervalos-de-confian%C3%A7a-para-a-diferen%C3%A7a-das-m%C3%A9dias-de-duas-popula%C3%A7%C3%B5es-normais-de-vari%C3%A2ncias-desconhecidas-e-desiguais"><i class="fa fa-check"></i><b>9.4.4</b> Intervalos de confiança para a diferença das médias de duas populações Normais de variâncias desconhecidas e desiguais</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="13-regressao_linear.html"><a href="#distribui%C3%A7%C3%A3o-das-diferen%C3%A7as-das-m%C3%A9dias-de-duas-popula%C3%A7%C3%B5es-normais-com-m%C3%A9dias-n%C3%A3o-independentes-e-seus-intervalos-de-confian%C3%A7a"><i class="fa fa-check"></i><b>9.5</b> Distribuição das diferenças das médias de duas populações Normais com médias não independentes e seus intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="introducao-a-distribuicao-das-medias-e-diferencas-entre-medias-e-seus-intervalos-de-confianca.html"><a href="introducao-a-distribuicao-das-medias-e-diferencas-entre-medias-e-seus-intervalos-de-confianca.html#fluxograma-auxiliar-1"><i class="fa fa-check"></i><b>9.5.1</b> Fluxograma auxiliar</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="introducao-a-distribuicao-das-proporcoes-e-seus-intervalos-de-confianca.html"><a href="introducao-a-distribuicao-das-proporcoes-e-seus-intervalos-de-confianca.html"><i class="fa fa-check"></i><b>10</b> Introdução à distribuição das proporções e seus intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="13-regressao_linear.html"><a href="#conceito-elementar-de-uma-propor%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>10.1</b> Conceito elementar de uma proporção</a></li>
+<li class="chapter" data-level="10.2" data-path="13-regressao_linear.html"><a href="#distribui%C3%A7%C3%A3o-das-propor%C3%A7%C3%B5es-amostrais"><i class="fa fa-check"></i><b>10.2</b> Distribuição das proporções amostrais</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="13-regressao_linear.html"><a href="#simula%C3%A7%C3%B5es-ilustrativas-da-aproxima%C3%A7%C3%A3o-da-distribui%C3%A7%C3%A3o-das-propor%C3%A7%C3%B5es-amostrais-pela-distribui%C3%A7%C3%A3o-normal"><i class="fa fa-check"></i><b>10.2.1</b> Simulações ilustrativas da aproximação da distribuição das proporções amostrais pela distribuição Normal</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="13-regressao_linear.html"><a href="#a-aleatoriedade-das-propor%C3%A7%C3%B5es-amostrais-e-o-tamanho-amostral"><i class="fa fa-check"></i><b>10.3</b> A aleatoriedade das proporções amostrais e o tamanho amostral</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="13-regressao_linear.html"><a href="#simula%C3%A7%C3%B5es-ilustrativas-sobre-as-flutua%C3%A7%C3%B5es-das-propor%C3%A7%C3%B5es-amostrais-e-o-erro-amostral-fixado"><i class="fa fa-check"></i><b>10.3.1</b> Simulações ilustrativas sobre as flutuações das proporções amostrais e o erro amostral fixado</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="13-regressao_linear.html"><a href="#intervalos-de-confian%C3%A7a-para-uma-propor%C3%A7%C3%A3o-pi-pela-aproxima%C3%A7%C3%A3o-da-binomial-pela-normal"><i class="fa fa-check"></i><b>10.4</b> Intervalos de confiança para uma proporção <span class="math inline">\(\Pi\)</span> pela aproximação da Binomial pela Normal</a></li>
+<li class="chapter" data-level="10.5" data-path="13-regressao_linear.html"><a href="#intervalo-de-confian%C3%A7a-para-pi-diretamente-da-distribui%C3%A7%C3%A3o-binomial"><i class="fa fa-check"></i><b>10.5</b> Intervalo de confiança para <span class="math inline">\(\Pi\)</span> diretamente da Distribuição Binomial</a></li>
+<li class="chapter" data-level="10.6" data-path="13-regressao_linear.html"><a href="#pobabilidades-associadas-%C3%A0-observa%C3%A7%C3%A3o-de-uma-propor%C3%A7%C3%A3o-amostral-hatp"><i class="fa fa-check"></i><b>10.6</b> Pobabilidades associadas à observação de uma proporção amostral <span class="math inline">\(\hat{p}\)</span></a></li>
+<li class="chapter" data-level="10.7" data-path="13-regressao_linear.html"><a href="#intervalos-de-confian%C3%A7a-para-a-diferen%C3%A7a-entre-duas-propor%C3%A7%C3%B5es-pi_x-pi_ypela-aproxima%C3%A7%C3%A3o-da-binomial-pela-normal"><i class="fa fa-check"></i><b>10.7</b> Intervalos de confiança para a diferença entre duas proporções (<span class="math inline">\(\Pi_{X}-\Pi_{Y}\)</span>)pela aproximação da Binomial pela Normal</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="introducao-a-testes-de-hipoteses.html"><a href="introducao-a-testes-de-hipoteses.html"><i class="fa fa-check"></i><b>11</b> Introdução a testes de hipóteses</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="13-regressao_linear.html"><a href="#filosofia-da-ci%C3%AAncia"><i class="fa fa-check"></i><b>11.1</b> Filosofia da ciência</a></li>
+<li class="chapter" data-level="11.2" data-path="13-regressao_linear.html"><a href="#hist%C3%B3ria"><i class="fa fa-check"></i><b>11.2</b> História</a></li>
+<li class="chapter" data-level="11.3" data-path="introducao-a-testes-de-hipoteses.html"><a href="introducao-a-testes-de-hipoteses.html#conceitos"><i class="fa fa-check"></i><b>11.3</b> Conceitos</a></li>
+<li class="chapter" data-level="11.4" data-path="introducao-a-testes-de-hipoteses.html"><a href="introducao-a-testes-de-hipoteses.html#natureza-dos-erros"><i class="fa fa-check"></i><b>11.4</b> Natureza dos erros</a></li>
+<li class="chapter" data-level="11.5" data-path="13-regressao_linear.html"><a href="#recomenda%C3%A7%C3%B5es-gerais"><i class="fa fa-check"></i><b>11.5</b> Recomendações gerais</a></li>
+<li class="chapter" data-level="11.6" data-path="introducao-a-testes-de-hipoteses.html"><a href="introducao-a-testes-de-hipoteses.html#efeito-do-limite-central"><i class="fa fa-check"></i><b>11.6</b> Efeito do limite central</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="introducao-a-testes-de-hipoteses.html"><a href="introducao-a-testes-de-hipoteses.html#erro-global"><i class="fa fa-check"></i><b>11.6.1</b> Erro global</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="13-regressao_linear.html"><a href="#estruturas-das-hip%C3%B3teses"><i class="fa fa-check"></i><b>11.7</b> Estruturas das hipóteses</a>
+<ul>
+<li class="chapter" data-level="11.7.1" data-path="13-regressao_linear.html"><a href="#interpreta%C3%A7%C3%A3o-gr%C3%A1fica-dos-n%C3%ADveis-de-signific%C3%A2nciaconfian%C3%A7a"><i class="fa fa-check"></i><b>11.7.1</b> Interpretação gráfica dos níveis de significância/confiança</a></li>
+<li class="chapter" data-level="11.7.2" data-path="13-regressao_linear.html"><a href="#teste-de-hip%C3%B3teses-bilateral"><i class="fa fa-check"></i><b>11.7.2</b> Teste de hipóteses Bilateral</a></li>
+<li class="chapter" data-level="11.7.3" data-path="13-regressao_linear.html"><a href="#teste-de-hip%C3%B3teses-unilateral-%C3%A0-esquerda"><i class="fa fa-check"></i><b>11.7.3</b> Teste de hipóteses Unilateral à esquerda</a></li>
+<li class="chapter" data-level="11.7.4" data-path="13-regressao_linear.html"><a href="#teste-de-hip%C3%B3teses-unilateral-%C3%A0-direita"><i class="fa fa-check"></i><b>11.7.4</b> Teste de hipóteses Unilateral à direita</a></li>
+</ul></li>
+<li class="chapter" data-level="11.8" data-path="13-regressao_linear.html"><a href="#teste-de-hip%C3%B3teses-para-a-m%C3%A9dia-mu-de-uma-popula%C3%A7%C3%A3o-normal"><i class="fa fa-check"></i><b>11.8</b> Teste de hipóteses para a média <span class="math inline">\(\mu\)</span> de uma população Normal</a>
+<ul>
+<li class="chapter" data-level="11.8.1" data-path="13-regressao_linear.html"><a href="#cen%C3%A1rios-poss%C3%ADveis"><i class="fa fa-check"></i><b>11.8.1</b> Cenários possíveis</a></li>
+<li class="chapter" data-level="11.8.2" data-path="introducao-a-testes-de-hipoteses.html"><a href="introducao-a-testes-de-hipoteses.html#roteiro-geral"><i class="fa fa-check"></i><b>11.8.2</b> Roteiro geral</a></li>
+<li class="chapter" data-level="11.8.3" data-path="13-regressao_linear.html"><a href="#probabilidade-dos-intervalos-de-confian%C3%A7a-para-os-testes-de-hip%C3%B3teses-com-o-uso-da-estat%C3%ADstica-z-z-sim-mathcaln01"><i class="fa fa-check"></i><b>11.8.3</b> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística Z (<span class="math inline">\(Z \sim \mathcal{N}(0,1)\)</span>):</a></li>
+<li class="chapter" data-level="11.8.4" data-path="13-regressao_linear.html"><a href="#probabilidade-dos-intervalos-de-confian%C3%A7a-para-os-testes-de-hip%C3%B3teses-com-o-uso-da-estat%C3%ADstica-t-tsim-t_n-1"><i class="fa fa-check"></i><b>11.8.4</b> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística T (<span class="math inline">\(T\sim t_{(n-1)}\)</span>):</a></li>
+</ul></li>
+<li class="chapter" data-level="11.9" data-path="13-regressao_linear.html"><a href="#teste-de-hip%C3%B3teses-para-a-raz%C3%A3o-de-duas-vari%C3%A2ncias-fracsigma_12sigma_22"><i class="fa fa-check"></i><b>11.9</b> Teste de hipóteses para a razão de duas variâncias (<span class="math inline">\(\frac{\sigma_{1}^{2}}{\sigma_{2}^{2}}\)</span>)</a></li>
+<li class="chapter" data-level="11.10" data-path="13-regressao_linear.html"><a href="#teste-de-hip%C3%B3teses-para-as-m%C3%A9dias-mu_1mu_2-de-duas-popula%C3%A7%C3%B5es-normais-independentes"><i class="fa fa-check"></i><b>11.10</b> Teste de hipóteses para as médias (<span class="math inline">\(\mu_{1};\mu_{2}\)</span>) de duas populações Normais independentes</a>
+<ul>
+<li class="chapter" data-level="11.10.1" data-path="13-regressao_linear.html"><a href="#as-estruturas-poss%C3%ADveis-dos-testes-de-hip%C3%B3teses-relacionados-%C3%A0s-suas-m%C3%A9dias-ser%C3%A3o"><i class="fa fa-check"></i><b>11.10.1</b> As estruturas possíveis dos testes de hipóteses relacionados às suas médias serão:</a></li>
+<li class="chapter" data-level="11.10.2" data-path="13-regressao_linear.html"><a href="#testes-de-hip%C3%B3teses-para-as-m%C3%A9dias-de-duas-popula%C3%A7%C3%B5es-normais-com-vari%C3%A2ncias-conhecidas-ou-n%C3%A3o-conhecidas-mas-o-tamanho-das-amostras-%C3%A9-grande-nge30-s2approxsigma2"><i class="fa fa-check"></i><b>11.10.2</b> Testes de hipóteses para as médias de duas populações Normais com variâncias conhecidas (ou não conhecidas mas o tamanho das amostras é grande: <span class="math inline">\(n\ge30\)</span>: <span class="math inline">\(S^{2}\approx\sigma^{2}\)</span>)</a></li>
+<li class="chapter" data-level="11.10.3" data-path="13-regressao_linear.html"><a href="#testes-de-hip%C3%B3teses-para-as-m%C3%A9dias-de-duas-popula%C3%A7%C3%B5es-normais-com-vari%C3%A2ncias-desconhecidas-mas-iguais-teste-t-homoced%C3%A1stico-sigma_12sigma_22"><i class="fa fa-check"></i><b>11.10.3</b> Testes de hipóteses para as médias de duas populações Normais com variâncias desconhecidas mas iguais: teste “t’’ homocedástico (<span class="math inline">\(\sigma_{1}^{2}=\sigma_{2}^{2}=?\)</span>)</a></li>
+<li class="chapter" data-level="11.10.4" data-path="13-regressao_linear.html"><a href="#teste-de-hip%C3%B3teses-para-as-m%C3%A9dias-de-duas-popula%C3%A7%C3%B5es-normais-com-vari%C3%A2ncias-desconhecidas-e-desiguais-teste-t-heteroced%C3%A1stico-sigma_12-neq-sigma_22"><i class="fa fa-check"></i><b>11.10.4</b> Teste de hipóteses para as médias de duas populações Normais com variâncias desconhecidas e desiguais: teste “``t’’ heterocedástico (<span class="math inline">\(\sigma_{1}^{2} \neq \sigma_{2}^{2}=?\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="11.11" data-path="13-regressao_linear.html"><a href="#teste-de-hip%C3%B3teses-para-uma-propor%C3%A7%C3%A3o-pi-de-uma-popula%C3%A7%C3%A3o-binomial"><i class="fa fa-check"></i><b>11.11</b> Teste de hipóteses para uma proporção <span class="math inline">\(\Pi\)</span> de uma população binomial</a>
+<ul>
+<li class="chapter" data-level="11.11.1" data-path="13-regressao_linear.html"><a href="#estruturas-poss%C3%ADveis-para-as-hip%C3%B3teses"><i class="fa fa-check"></i><b>11.11.1</b> Estruturas possíveis para as hipóteses</a></li>
+<li class="chapter" data-level="11.11.2" data-path="13-regressao_linear.html"><a href="#probabilidade-dos-intervalos-de-confian%C3%A7a-para-os-testes-de-hip%C3%B3teses-com-o-uso-da-estat%C3%ADstica-z-z-sim-mathcaln01-1"><i class="fa fa-check"></i><b>11.11.2</b> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística Z (<span class="math inline">\(Z \sim \mathcal{N}(0,1)\)</span>):</a></li>
+</ul></li>
+<li class="chapter" data-level="11.12" data-path="13-regressao_linear.html"><a href="#testes-n%C3%A3o-param%C3%A9tricos"><i class="fa fa-check"></i><b>11.12</b> Testes não paramétricos</a>
+<ul>
+<li class="chapter" data-level="11.12.1" data-path="13-regressao_linear.html"><a href="#teste-qui-quadrado-para-verifica%C3%A7%C3%A3o-da-independ%C3%AAncia-homogeneidade"><i class="fa fa-check"></i><b>11.12.1</b> Teste Qui-quadrado para verificação da independência (homogeneidade)</a></li>
+<li class="chapter" data-level="11.12.2" data-path="13-regressao_linear.html"><a href="#corre%C3%A7%C3%A3o-de-continuidade-em-tabelas-2x2"><i class="fa fa-check"></i><b>11.12.2</b> Correção de continuidade em tabelas 2x2</a></li>
+<li class="chapter" data-level="11.12.3" data-path="13-regressao_linear.html"><a href="#coeficiente-de-conting%C3%AAncia-de-pearson-modificado-c"><i class="fa fa-check"></i><b>11.12.3</b> Coeficiente de contingência de Pearson (modificado: <span class="math inline">\(C^{*})\)</span> }</a></li>
+<li class="chapter" data-level="11.12.4" data-path="13-regressao_linear.html"><a href="#teste-qui-quadrado-para-verifica%C3%A7%C3%A3o-da-qualidade-do-ajuste-a-uma-distribui%C3%A7%C3%A3o-te%C3%B3rica-de-probabilidade"><i class="fa fa-check"></i><b>11.12.4</b> Teste Qui-quadrado para verificação da qualidade do ajuste a uma distribuição teórica de probabilidade</a></li>
+<li class="chapter" data-level="11.12.5" data-path="13-regressao_linear.html"><a href="#teste-de-signific%C3%A2ncia-para-as-m%C3%A9dias-de-duas-popula%C3%A7%C3%B5es-dependentes"><i class="fa fa-check"></i><b>11.12.5</b> Teste de significância para as médias de duas populações dependentes</a></li>
+</ul></li>
+<li class="chapter" data-level="11.13" data-path="13-regressao_linear.html"><a href="#fluxograma-auxiliar-para-escolha-da-estat%C3%ADstica-do-teste-de-hip%C3%B3teses"><i class="fa fa-check"></i><b>11.13</b> Fluxograma auxiliar para escolha da estatística do teste de hipóteses</a></li>
+<li class="chapter" data-level="11.14" data-path="introducao-a-testes-de-hipoteses.html"><a href="introducao-a-testes-de-hipoteses.html#tabelas-1"><i class="fa fa-check"></i><b>11.14</b> Tabelas</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="introducao-a-correlacao-linear-de-pearson.html"><a href="introducao-a-correlacao-linear-de-pearson.html"><i class="fa fa-check"></i><b>12</b> Introdução à Correlação Linear de Pearson</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="13-regressao_linear.html"><a href="#contexto-hist%C3%B3rico"><i class="fa fa-check"></i><b>12.1</b> Contexto histórico</a></li>
+<li class="chapter" data-level="12.2" data-path="introducao-a-correlacao-linear-de-pearson.html"><a href="introducao-a-correlacao-linear-de-pearson.html#conceitos-1"><i class="fa fa-check"></i><b>12.2</b> Conceitos</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="13-regressao_linear.html"><a href="#correla%C3%A7%C3%A3o-linear-versus-regress%C3%A3o"><i class="fa fa-check"></i><b>12.2.1</b> Correlação linear <em>versus</em> regressão</a></li>
+<li class="chapter" data-level="12.2.2" data-path="13-regressao_linear.html"><a href="#correla%C3%A7%C3%A3o-versus-causa%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>12.2.2</b> Correlação <em>versus</em> causação</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="13-regressao_linear.html"><a href="#diagrama-de-dispers%C3%A3o"><i class="fa fa-check"></i><b>12.3</b> Diagrama de dispersão</a></li>
+<li class="chapter" data-level="12.4" data-path="13-regressao_linear.html"><a href="#coeficiente-de-correla%C3%A7%C3%A3o-linear-de-pearson"><i class="fa fa-check"></i><b>12.4</b> Coeficiente de correlação linear de Pearson</a></li>
+<li class="chapter" data-level="12.5" data-path="13-regressao_linear.html"><a href="#teste-de-hip%C3%B3teses-para-a-correla%C3%A7%C3%A3o-linear-na-popula%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>12.5</b> Teste de hipóteses para a correlação linear na população</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="13-regressao_linear.html"><a href="#outros-testes-de-hip%C3%B3teses-sobre-a-correla%C3%A7%C3%A3o-linear-na-popula%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>12.5.1</b> Outros testes de hipóteses sobre a correlação linear na população</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="introducao-a-regressao-linear.html"><a href="introducao-a-regressao-linear.html"><i class="fa fa-check"></i><b>13</b> Introdução à Regressão Linear</a></li>
+<li class="chapter" data-level="14" data-path="13-regressao_linear.html"><a href="#introdu%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>14</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="13-regressao_linear.html"><a href="#regress%C3%A3o-linear-simples"><i class="fa fa-check"></i><b>14.1</b> Regressão Linear Simples</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="13-regressao_linear.html"><a href="#linearidade-nos-par%C3%A2metros"><i class="fa fa-check"></i><b>14.1.1</b> Linearidade nos parâmetros</a></li>
+<li class="chapter" data-level="14.1.2" data-path="13-regressao_linear.html"><a href="#m%C3%A9todo-dos-m%C3%ADnimos-quadrados"><i class="fa fa-check"></i><b>14.1.2</b> Método dos mínimos quadrados</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="13-regressao_linear.html"><a href="#modelo-de-regress%C3%A3o-linear-sob-erros-normais"><i class="fa fa-check"></i><b>14.2</b> Modelo de regressão linear sob erros Normais</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="introdução.html"><a href="introdução.html"><i class="fa fa-check"></i><b>14.2.1</b> O Teorema de Gauss-Markov e os Estimadores BLUE</a></li>
+<li class="chapter" data-level="14.2.2" data-path="13-regressao_linear.html"><a href="#pressupostos-do-modelo-de-regress%C3%A3o-linear-com-erros-normais"><i class="fa fa-check"></i><b>14.2.2</b> Pressupostos do Modelo de Regressão Linear com Erros Normais</a></li>
+<li class="chapter" data-level="14.2.3" data-path="introdução.html"><a href="introdução.html#propriedades-dos-estimadores-sob-erro-normal"><i class="fa fa-check"></i><b>14.2.3</b> Propriedades dos Estimadores sob Erro Normal</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="introducao-a-modelagem-de-processos-estocasticos.html"><a href="introducao-a-modelagem-de-processos-estocasticos.html"><i class="fa fa-check"></i><b>15</b> Introdução à modelagem de processos estocásticos</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="13-regressao_linear.html"><a href="#modelos-determin%C3%ADsticos-e-estoc%C3%A1sticos"><i class="fa fa-check"></i><b>15.1</b> Modelos determinísticos e estocásticos</a></li>
+<li class="chapter" data-level="15.2" data-path="13-regressao_linear.html"><a href="#dedu%C3%A7%C3%A3o-e-indu%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>15.2</b> Dedução e indução</a></li>
+<li class="chapter" data-level="15.3" data-path="13-regressao_linear.html"><a href="#processos-estoc%C3%A1sticos-temporais-espaciais-e-espa%C3%A7otemporais"><i class="fa fa-check"></i><b>15.3</b> Processos estocásticos temporais, espaciais e espaçotemporais</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="13-regressao_linear.html"><a href="#processos-estoc%C3%A1sticos-temporais"><i class="fa fa-check"></i><b>15.3.1</b> Processos Estocásticos Temporais</a></li>
+<li class="chapter" data-level="15.3.2" data-path="13-regressao_linear.html"><a href="#processos-estoc%C3%A1sticos-espaciais"><i class="fa fa-check"></i><b>15.3.2</b> Processos Estocásticos Espaciais</a></li>
+<li class="chapter" data-level="15.3.3" data-path="13-regressao_linear.html"><a href="#processos-estoc%C3%A1sticos-espa%C3%A7otemporais"><i class="fa fa-check"></i><b>15.3.3</b> Processos Estocásticos Espaçotemporais</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="introducao-a-modelagem-de-processos-estocasticos.html"><a href="introducao-a-modelagem-de-processos-estocasticos.html#processo-de-poisson"><i class="fa fa-check"></i><b>15.4</b> Processo de Poisson</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="introducao-a-modelagem-de-processos-estocasticos.html"><a href="introducao-a-modelagem-de-processos-estocasticos.html#natureza"><i class="fa fa-check"></i><b>15.4.1</b> Natureza</a></li>
+<li class="chapter" data-level="15.4.2" data-path="13-regressao_linear.html"><a href="#processo-de-poisson-com-classifica%C3%A7%C3%A3o-de-eventos"><i class="fa fa-check"></i><b>15.4.2</b> Processo de Poisson com classificação de eventos</a></li>
+<li class="chapter" data-level="15.4.3" data-path="13-regressao_linear.html"><a href="#processos-de-poisson-n%C3%A3o-homog%C3%AAneos"><i class="fa fa-check"></i><b>15.4.3</b> Processos de Poisson não homogêneos</a></li>
+<li class="chapter" data-level="15.4.4" data-path="introducao-a-modelagem-de-processos-estocasticos.html"><a href="introducao-a-modelagem-de-processos-estocasticos.html#tempo-de-espera-em-um-processo-de-poisson"><i class="fa fa-check"></i><b>15.4.4</b> Tempo de espera em um processo de Poisson</a></li>
+<li class="chapter" data-level="15.4.5" data-path="13-regressao_linear.html"><a href="#distribui%C3%A7%C3%A3o-condicional-dos-tempos-de-chegada"><i class="fa fa-check"></i><b>15.4.5</b> Distribuição condicional dos tempos de chegada</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="13-regressao_linear.html"><a href="#simula%C3%A7%C3%B5es-monte-carlo"><i class="fa fa-check"></i><b>15.5</b> Simulações Monte Carlo</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="13-regressao_linear.html"><a href="#introdu%C3%A7%C3%A3o-1"><i class="fa fa-check"></i><b>15.5.1</b> Introdução</a></li>
+<li class="chapter" data-level="15.5.2" data-path="13-regressao_linear.html"><a href="#fundamenta%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>15.5.2</b> Fundamentação</a></li>
+<li class="chapter" data-level="15.5.3" data-path="13-regressao_linear.html"><a href="#n%C3%BAmeros-aleat%C3%B3rios-e-pseudoaleat%C3%B3rios"><i class="fa fa-check"></i><b>15.5.3</b> Números Aleatórios e Pseudoaleatórios</a></li>
+<li class="chapter" data-level="15.5.4" data-path="13-regressao_linear.html"><a href="#gera%C3%A7%C3%A3o-de-amostras-aleat%C3%B3rias-de-distribui%C3%A7%C3%B5es-de-probabilidade"><i class="fa fa-check"></i><b>15.5.4</b> Geração de amostras aleatórias de distribuições de probabilidade</a></li>
+<li class="chapter" data-level="15.5.5" data-path="introducao-a-modelagem-de-processos-estocasticos.html"><a href="introducao-a-modelagem-de-processos-estocasticos.html#exemplo-1-goodwin-e-wright-2009"><i class="fa fa-check"></i><b>15.5.5</b> Exemplo 1 (Goodwin e Wright, 2009)</a></li>
+<li class="chapter" data-level="15.5.6" data-path="introducao-a-modelagem-de-processos-estocasticos.html"><a href="introducao-a-modelagem-de-processos-estocasticos.html#exemplo-2-the-elite-pottery-company-goodwin-e-wright-2009"><i class="fa fa-check"></i><b>15.5.6</b> Exemplo 2: The Elite Pottery Company (Goodwin e Wright, 2009)</a></li>
+<li class="chapter" data-level="15.5.7" data-path="13-regressao_linear.html"><a href="#exemplo-3-integra%C3%A7%C3%A3o-num%C3%A9rica-usando-o-m%C3%A9todo-de-monte-carlo"><i class="fa fa-check"></i><b>15.5.7</b> Exemplo 3: Integração Numérica Usando o Método de Monte Carlo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="numeros-indices.html"><a href="numeros-indices.html"><i class="fa fa-check"></i><b>16</b> Introdução a números índices</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="13-regressao_linear.html"><a href="#defini%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>16.1</b> Definição</a></li>
+<li class="chapter" data-level="16.2" data-path="13-regressao_linear.html"><a href="#caracter%C3%ADsticas-principais"><i class="fa fa-check"></i><b>16.2</b> Características principais</a></li>
+<li class="chapter" data-level="16.3" data-path="13-regressao_linear.html"><a href="#aplica%C3%A7%C3%B5es"><i class="fa fa-check"></i><b>16.3</b> Aplicações</a></li>
+<li class="chapter" data-level="16.4" data-path="13-regressao_linear.html"><a href="#n%C3%BAmeros-%C3%ADndice-relativos-simples-apenas-um-produto-est%C3%A1-sendo-analisado."><i class="fa fa-check"></i><b>16.4</b> Números índice relativos simples: apenas um produto está sendo analisado.</a></li>
+<li class="chapter" data-level="16.5" data-path="13-regressao_linear.html"><a href="#n%C3%BAmeros-%C3%ADndice-compostos-mais-de-um-produto-est%C3%A1-sendo-analisado-cesta-de-produtos."><i class="fa fa-check"></i><b>16.5</b> Números índice compostos: mais de um produto está sendo analisado (cesta de produtos).</a>
+<ul>
+<li class="chapter" data-level="16.5.1" data-path="13-regressao_linear.html"><a href="#m%C3%A9todo-dos-agregados-simples"><i class="fa fa-check"></i><b>16.5.1</b> Método dos agregados simples</a></li>
+<li class="chapter" data-level="16.5.2" data-path="13-regressao_linear.html"><a href="#m%C3%A9todo-dos-agregados-ponderados"><i class="fa fa-check"></i><b>16.5.2</b> Método dos agregados ponderados</a></li>
+<li class="chapter" data-level="16.5.3" data-path="13-regressao_linear.html"><a href="#%C3%ADndice-de-fisher-m%C3%A9dia-geom%C3%A9trica"><i class="fa fa-check"></i><b>16.5.3</b> Índice de Fisher (Média geométrica)</a></li>
+</ul></li>
+<li class="chapter" data-level="16.6" data-path="numeros-indices.html"><a href="numeros-indices.html#exemplo-completo"><i class="fa fa-check"></i><b>16.6</b> Exemplo completo</a>
+<ul>
+<li class="chapter" data-level="16.6.1" data-path="13-regressao_linear.html"><a href="#%C3%ADndices-simples-pre%C3%A7os-quantidades-e-valoresreceitas"><i class="fa fa-check"></i><b>16.6.1</b> Índices Simples (preços, quantidades e valores/receitas)</a></li>
+<li class="chapter" data-level="16.6.2" data-path="13-regressao_linear.html"><a href="#%C3%ADndices-agregativos"><i class="fa fa-check"></i><b>16.6.2</b> Índices Agregativos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="orientacoes-gerais.html"><a href="orientacoes-gerais.html"><i class="fa fa-check"></i><b>17</b> Orientações Gerais</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="13-regressao_linear.html"><a href="#informa%C3%A7%C3%B5es-administrativas"><i class="fa fa-check"></i><b>17.1</b> Informações administrativas</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="orientacoes-gerais.html"><a href="orientacoes-gerais.html#regimento-geral-da-uel"><i class="fa fa-check"></i><b>17.1.1</b> Regimento geral da UEL</a></li>
+<li class="chapter" data-level="17.1.2" data-path="orientacoes-gerais.html"><a href="orientacoes-gerais.html#amparos-e-apoios-na-uel"><i class="fa fa-check"></i><b>17.1.2</b> Amparos e apoios na UEL</a></li>
+<li class="chapter" data-level="17.1.3" data-path="13-regressao_linear.html"><a href="#tutoriais-para-os-estudantes-da-gradua%C3%A7%C3%A3o-da-uel"><i class="fa fa-check"></i><b>17.1.3</b> Tutoriais para os estudantes da graduação da UEL</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="13-regressao_linear.html"><a href="#programas-de-atividade-acad%C3%AAmica"><i class="fa fa-check"></i><b>17.2</b> Programas de atividade acadêmica</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="13-regressao_linear.html"><a href="#geografia-1sta004---estat%C3%ADstica-aplicada-%C3%A0-geografia"><i class="fa fa-check"></i><b>17.2.1</b> Geografia: 1STA004 - Estatística Aplicada à Geografia</a></li>
+<li class="chapter" data-level="17.2.2" data-path="13-regressao_linear.html"><a href="#qu%C3%ADmica-2sta032---estat%C3%ADstica"><i class="fa fa-check"></i><b>17.2.2</b> Química: 2STA032 - Estatística</a></li>
+<li class="chapter" data-level="17.2.3" data-path="13-regressao_linear.html"><a href="#farm%C3%A1cia-2sta010---elementos-de-bioestat%C3%ADstica"><i class="fa fa-check"></i><b>17.2.3</b> Farmácia: 2STA010 - Elementos de bioestatística</a></li>
+<li class="chapter" data-level="17.2.4" data-path="13-regressao_linear.html"><a href="#computa%C3%A7%C3%A3o-2sta030---estat%C3%ADstica"><i class="fa fa-check"></i><b>17.2.4</b> Computação: 2STA030 - Estatística</a></li>
+<li class="chapter" data-level="17.2.5" data-path="13-regressao_linear.html"><a href="#engenharia-civil-2sta016---estat%C3%ADstica-e-probabilidades-202502"><i class="fa fa-check"></i><b>17.2.5</b> Engenharia Civil: 2STA016 - Estatística e probabilidades (2025/02)</a></li>
+<li class="chapter" data-level="17.2.6" data-path="13-regressao_linear.html"><a href="#ci%C3%AAncia-de-dados-e-intelig%C3%AAncia-artifical-2sta011---probabilidade"><i class="fa fa-check"></i><b>17.2.6</b> Ciência de dados e Inteligência Artifical: 2STA011 - Probabilidade</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://fjrcosta.github.io/apostila/" target="blank">FJCosta Github</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><div class="line-block">UNIVERSIDADE ESTADUAL DE LONDRINA<br />
+CCE - Centro de Ciências Exatas<br />
+DSTA - Departamento de Estatística (sala 11)<br />
+Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa<br />
+<a href="mailto:fjcosta@uel.br" class="email">fjcosta@uel.br</a></div></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introdução" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">Capítulo 14</span> Introdução<a href="#introdu%C3%A7%C3%A3o" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>A teoria de Regressão teve origem no século XIX com Galton. Em um de seus trabalhos, estudou a relação entre a altura dos pais e dos filhos <span class="math inline">\((X_i, Y_i)\)</span>, procurando saber como a altura do pai influenciava a altura do filho. Notou que se o pai fosse muito alto ou muito baixo, o filho teria uma altura tendendo à média.</p>
+<p><br></p>
+<p>Em muitos problemas há duas ou mais variáveis que são relacionadas, conhecendo os efeitos que algumas variáveis exercem sobre outras. Dessa relação pode-se relacioná-las por meio de uma expressão matemática, utilizada para estimar o valor de uma das variáveis quando conhecemos os valores das outras.</p>
+<p><br></p>
+<p>Em geral, suponha que haja uma única variável dependente, ou resposta, <span class="math inline">\(Y\)</span> que depende de <span class="math inline">\(k\)</span> variáveis independentes ou regressoras, denominadas <span class="math inline">\(X_1, X_2, \ldots, X_k\)</span>. A relação entre essas variáveis é caracterizada por um modelo matemático chamado de equação de regressão. O modelo de regressão é ajustado a um conjunto de dados amostrais.</p>
+<p><br></p>
+<p>Modelos de regressão são frequentemente usados para analisar dados de um experimento não planejado, tal como pode surgir de observações de um fenômeno não controlado ou registros históricos.</p>
+<p><br></p>
+<hr />
+<div id="regressão-linear-simples" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> Regressão Linear Simples<a href="#regress%C3%A3o-linear-simples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><br></p>
+<p>Na regressão linear simples objetiva-se determinar relação entre uma única variável regressora <span class="math inline">\(X\)</span> e uma variável resposta <span class="math inline">\(Y\)</span>. Pode-se assumir que a variável regressora <span class="math inline">\(X\)</span> seja contínua e controlada pelo pesquisador. Caso o experimento seja planejado, escolhem-se os valores de <span class="math inline">\(X\)</span> e observam-se os valores correspondentes de <span class="math inline">\(Y\)</span>.</p>
+<p><br></p>
+<p>Considerem a proposição de John Maynard Keynes para a relação entre o consumo e a renda, onde ele postulava haver uma relação positiva entre ambos: uma mudança em uma das variáveis iria alterar a outra. Seu modelo funcional para essa relação, com <span class="math inline">\(Y\)</span> sendo as despesas de consumo e <span class="math inline">\(X\)</span> a renda, é:</p>
+<p><br></p>
+<p><span class="math display">\[
+Y = \alpha + \beta \cdot X
+\]</span></p>
+<p><br></p>
+<p>Esse modelo admite que a verdadeira relação entre <span class="math inline">\(Y\)</span> e <span class="math inline">\(X\)</span> seja uma linha reta e que a observação <span class="math inline">\(Y\)</span> para cada nível de <span class="math inline">\(X\)</span> seja uma variável aleatória. Assim, o valor esperado de <span class="math inline">\(Y\)</span> para cada valor de <span class="math inline">\(X\)</span> é:</p>
+<p><br></p>
+<p><span class="math display">\[
+E(Y | X) = \alpha + \beta \cdot X
+\]</span></p>
+<p><br></p>
+<p>É um modelo puramente teórico, de limitada aplicabilidade prática, pois pretende exprimir por uma relação exata (<em>determinística</em>) o consumo e a renda, quando se sabe que grande parte das relações entre duas variáveis não são exatas.</p>
+<p><br></p>
+<p>Ao se fixar um único valor para a variável explicativa, observa-se que há flutuações nos valores observados da variável explicada. Essa inexatidão, esse desvio do valor observado <span class="math inline">\(Y_i\)</span> em relação ao seu valor esperado, pode ser expresso da seguinte maneira:</p>
+<p><br></p>
+<p><span class="math display">\[
+\varepsilon_i = Y_i - E(Y | X_i)
+\]</span></p>
+<p><br></p>
+<p>de modo que o modelo completo pode ser expresso como:</p>
+<p><br></p>
+<p><span class="math display">\[
+Y_i = E(Y | X_i) + \varepsilon_i = \alpha + \beta \cdot X_i + \varepsilon_i
+\]</span></p>
+<p><br></p>
+<p>Nesse modelo, os componentes são:</p>
+<p><br></p>
+<ul>
+<li><span class="math inline">\(\alpha\)</span>: intercepto da reta, representando o valor esperado de <span class="math inline">\(Y\)</span> quando <span class="math inline">\(X = 0\)</span> (no contexto de Keynes, um consumo mínimo observado mesmo quando a renda é nula, em razão de programas de assistência governamental).</li>
+<li><span class="math inline">\(\beta\)</span>: inclinação da reta, representando a variação esperada de <span class="math inline">\(Y\)</span> para um aumento unitário em <span class="math inline">\(X\)</span> (a propensão marginal a consumir: <span class="math inline">\(\frac{\Delta C}{\Delta Y}\)</span>).</li>
+<li><span class="math inline">\(E(Y | X_i) = \alpha + \beta \cdot X_i\)</span>: componente sistemático ou determinístico, representando o gasto médio de todas as famílias com um mesmo nível de renda.</li>
+<li><span class="math inline">\(\varepsilon_i\)</span>: termo de erro ou distúrbio estocástico, admitido como substituto para todas as demais variáveis omitidas ou negligenciadas no modelo e que podem afetar <span class="math inline">\(Y\)</span>.</li>
+</ul>
+<hr />
+<div id="linearidade-nos-parâmetros" class="section level3 hasAnchor" number="14.1.1">
+<h3><span class="header-section-number">14.1.1</span> Linearidade nos parâmetros<a href="#linearidade-nos-par%C3%A2metros" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br></p>
+<p>Um modelo de regressão pode ser linear nas variáveis ou nos parâmetros. A linearidade nos parâmetros é a relevante para a formulação da teoria da regressão.</p>
+<p><br></p>
+<p>Uma função é <strong>linear nos parâmetros</strong> se pode ser expressa como uma combinação linear dos parâmetros, onde nenhum parâmetro está elevado a uma potência ou multiplicado por outro parâmetro.</p>
+<p><br></p>
+<blockquote>
+<p>Exemplos de modelos lineares nos parâmetros:</p>
+</blockquote>
+<p><br></p>
+<ul>
+<li><span class="math inline">\(Y = \alpha + \beta X^2\)</span> (linear nos parâmetros, não linear em <span class="math inline">\(X\)</span>)</li>
+<li><span class="math inline">\(Y = \alpha + \beta \ln(X)\)</span></li>
+<li><span class="math inline">\(Y = \alpha + \beta_1 X + \beta_2 X^2\)</span></li>
+</ul>
+<blockquote>
+<p>Exemplos de modelos NÃO lineares nos parâmetros:</p>
+</blockquote>
+<p><br></p>
+<ul>
+<li><span class="math inline">\(Y = \alpha e^{\beta X}\)</span></li>
+<li><span class="math inline">\(Y = \alpha X^{\beta}\)</span></li>
+</ul>
+<blockquote>
+<p>No contexto deste curso, o modelo será linear tanto nos parâmetros quanto na variável.</p>
+</blockquote>
+<p><br></p>
+<p>Nessa função:</p>
+<p><br></p>
+<ul>
+<li><span class="math inline">\(Y\)</span>: variável dependente (ou explicada, resposta, endógena) — aqui, representando o consumo.</li>
+<li><span class="math inline">\(X\)</span>: variável independente (ou explicativa, preditora, exógena) — aqui, representando a renda.</li>
+</ul>
+<p><br></p>
+<p>Se o termo de erro <span class="math inline">\(\varepsilon_i\)</span> representa todas aquelas variáveis omitidas no modelo (mas que, coletivamente, afetam <span class="math inline">\(Y\)</span>), <strong>por que não formular um modelo de regressão com o máximo de variáveis possíveis?</strong></p>
+<p><br></p>
+<ul>
+<li>Embasamento teórico vago: A teoria existente suporta com certeza apenas algumas variáveis; o termo de erro <span class="math inline">\(\varepsilon_i\)</span> serve como um substituto para todas as variáveis excluídas no modelo.</li>
+<li>Princípio da parcimônia: Um modelo mais simples que explique bem a relação é preferível.</li>
+<li>Forma funcional equivocada: Em gráficos de dispersão, é mais fácil inferir a relação entre duas variáveis do que com muitas.</li>
+<li>Limitação na quantidade de observações: Muitas variáveis exigem mais observações para garantir a precisão do modelo.</li>
+</ul>
+<p><br></p>
+<p>Sendo inviável (muitas vezes impossível) impossível observar toda a população e construir um <em>modelo populacional</em>, focamos o estudo em uma parte observada dessa população: uma <em>amostra</em>. Um modelo funcional estimado com base em uma <em>amostra</em> apresenta <strong>estimativas</strong> dos parâmetros da função que descreve a população de origem (os quais são desconhecidos).</p>
+<p><br></p>
+<p>Por isso, adota-se uma notação diferente para a <strong>função de regressão amostral</strong>:</p>
+<p><br></p>
+<p><span class="math display">\[
+\hat{Y} = a + b \cdot X
+\]</span></p>
+<p><br></p>
+<p>em que <span class="math inline">\(\hat{Y}\)</span> é um estimador de <span class="math inline">\(E(Y | X)\)</span>, <span class="math inline">\(a\)</span> é uma estimativa do parâmetro <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(b\)</span> é uma estimativa do parâmetro <span class="math inline">\(\beta\)</span>.</p>
+<p><br></p>
+<p>Para um determinado valor de <span class="math inline">\(X = x_i\)</span>, temos uma observação amostral <span class="math inline">\(Y = y_i\)</span> que pode ser expressa pela <strong>função de regressão amostral</strong> como:</p>
+<p><br></p>
+<p><span class="math display">\[
+y_i = \hat{y}_i + e_i \\
+y_i = a + b \cdot x_i + e_i
+\]</span></p>
+<p><br></p>
+<p>em que <span class="math inline">\(\hat{y}_i\)</span> é o valor estimado de <span class="math inline">\(Y_i\)</span> para um determinado <span class="math inline">\(X_i\)</span>, <span class="math inline">\(e_i\)</span> é o erro amostral, que representa a diferença entre o valor observado <span class="math inline">\(y_i\)</span> e o valor estimado <span class="math inline">\(\hat{y}_i\)</span>.</p>
+<p><br></p>
+<blockquote>
+<p>Mas, como estimar <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span>?</p>
+</blockquote>
+<hr />
+</div>
+<div id="método-dos-mínimos-quadrados" class="section level3 hasAnchor" number="14.1.2">
+<h3><span class="header-section-number">14.1.2</span> Método dos mínimos quadrados<a href="#m%C3%A9todo-dos-m%C3%ADnimos-quadrados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br></p>
+<p>Na literatura estatística há vários métodos de estimação dos parâmetros de um modelo de regressão linear, dentre os quais:</p>
+<p><br></p>
+<ul>
+<li><strong>Método dos mínimos quadrados</strong>: desenvolvido por Carl Friedrich Gauss (1795), publicado por Adrien-Marie Legendre (1805), Friedrich Robert Helmert (1872).<br />
+</li>
+<li><strong>Método dos momentos</strong>: introduzido por Pafnuty Chebyshev (1887), desenvolvido por Karl Pearson (1894-1895), e posteriormente generalizado por Lars Peter Hansen (Método Generalizado dos Momentos - GMM, 1982).<br />
+</li>
+<li><strong>Método da máxima verossimilhança</strong>: formas rudimentares foram utilizadas por Carl Friedrich Gauss, Pierre-Simon Laplace, Thorvald N. Thiele e Francis Ysidro Edgeworth; a versão moderna foi criada e popularizada por Ronald Aylmer Fisher (1912-1922).</li>
+</ul>
+<hr />
+<div id="contexto-histórico-1" class="section level4 hasAnchor" number="14.1.2.1">
+<h4><span class="header-section-number">14.1.2.1</span> Contexto histórico<a href="#contexto-hist%C3%B3rico-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><br></p>
+<p>Desde tempos remotos as pessoas têm se interessado pelo problema de escolher o melhor valor único (médio) para resumir as informações fornecidas por várias observações, cada uma sujeita a erro.</p>
+<p><br></p>
+<p>O problema de se estimar as constantes na equação da linha reta que melhor se ajusta a três ou mais pontos não colineares no plano (x, y) cujas coordenadas são pares de valores associados de duas variáveis relacionadas: <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> remonta a Galileu Galilei (1632).</p>
+<p><br></p>
+<p>Credita-se Johann Carl Friedrich Gauss como o desenvolvedor das bases fundamentais do Método dos mínimos quadrados, em 1795, quando Gauss tinha apenas dezoito anos.</p>
+<p><br></p>
+<p>Mas o Método dos mínimos quadrados foi publicado pela primeira vez por por Adrien-Marie Legendre (1752-1833) em 1805: <em>Nouvelles méthodes pour la détermination des orbites des comètes</em>.</p>
+<p><br></p>
+<p>Alguns demonstradores:</p>
+<p><br></p>
+<ul>
+<li>Robert Adrain (1775-1843) em 1808: <em>Research concerning the probabilities of the errors which happen in making observations</em><br />
+</li>
+<li>Johann Carl Friedrich Gauss (1777-1855) em 1809: <em>Theoria motus corporum coelestium</em></li>
+<li>Pierre-Simon Laplace (1749-1827) em 1810: <em>Theorie analytique des Probabilite</em> - Johann Carl Friedrich Gauss (1777-1855) em 1823: <em>Theoria combinationis observationum erroribus obnoxiae</em></li>
+<li>James Ivory (1765-1842) em 1825: <em>On the Method of the Least Squares</em>.</li>
+</ul>
+<p><br></p>
+<p>Para o modelo <span class="math inline">\(y_{i}= a + b.x_{i}\)</span> na simulação mostrada:</p>
+<p><br></p>
+<ul>
+<li><strong>problema</strong>: determinar as constantes <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> da equação de uma linha reta que melhor se ajusta a três ou mais pontos não colineares.</li>
+<li><strong>solução</strong>: minimizar a soma dos quadrados dos resíduos como mostrado na simulação.</li>
+</ul>
+<p><br></p>
+<p><span class="math display">\[
+min\left(\sum _{i=1}^{n}{e}_{i}^{2}\right)
+\]</span></p>
+<p><br></p>
+<p>O método dos mínimos quadrados (MMQ) é puramente geométrico: não faz nenhuma suposição sobre a distribuição dos dados ou dos erros (resíduos). Em outras palavras, ele é aplicado sem se preocupar com a natureza probabilística dos erros (resíduos). (SIMULADOR 3)</p>
+<p><br></p>
+<p>O objetivo é apenas ajustar a melhor reta possível para um conjunto de pontos de dados. A partir da igualdade:</p>
+<p><br></p>
+<p><span class="math display">\[
+\sum _{i=1}^{n} [ y_{i} - \hat{y} ]^{2} = \sum _{i=1}^{n}{\left[yi-\left(a+b{x}_{i}\right)\right]}^{2}
+\]</span></p>
+<p><br></p>
+<p>a solução passar por derivar-se em relação a: <span class="math inline">\(a|b \text{fixo}\)</span>, e em relação b: <span class="math inline">\(b|a  \text{fixo}\)</span>, igualando-se a <em>zero</em>:</p>
+<p><br></p>
+<p><span class="math display">\[
+\frac{\delta }{\delta a}\sum _{i=1}^{n}{\left[y_i-\left(a + b \cdot x_{i}\right)\right]}^{2}= 2 \cdot \sum _{i=1}^{n}\left(y_{i} - a - b \cdot x_{i}\right)\left(-1\right)=0 \\
+\frac{\delta }{\delta b}\sum _{i=1}^{n}{\left[y_i-\left(a + b \cdot x_{i}\right)\right]}^{2}= 2\cdot \sum _{i=1}^{n}\left(y_{i} - a - b \cdot x_{i}\right)\left(-x_i\right)=0
+\]</span></p>
+<p><br></p>
+<p>Expandindo as derivadas e simplificando (dividindo por 2 e removendo os sinais negativos):</p>
+<p><br></p>
+<p><span class="math display">\[
+\sum _{i=1}^{n}\left(y_{i}-a-b \cdot x_{i}\right) = 0 \\
+\sum _{i=1}^{n}\left(y_{i}-a-b \cdot x_{i}\right) \cdot x_i = 0
+\]</span></p>
+<p><br></p>
+<p>Desenvolvendo a primeira equação:</p>
+<p><br></p>
+<p><span class="math display">\[
+\sum _{i=1}^{n}y_{i} - \sum _{i=1}^{n}a - \sum _{i=1}^{n}b \cdot x_{i} = 0 \\
+\sum _{i=1}^{n}y_{i} - n \cdot a - b \cdot \sum _{i=1}^{n}x_{i} = 0
+\]</span></p>
+<p><br></p>
+<p>Desenvolvendo a segunda equação:</p>
+<p><br></p>
+<p><span class="math display">\[
+\sum _{i=1}^{n}y_{i} \cdot x_i - \sum _{i=1}^{n}a \cdot x_i - \sum _{i=1}^{n}b \cdot x_{i}^2 = 0 \\
+\sum _{i=1}^{n}y_{i} \cdot x_i - a \cdot \sum _{i=1}^{n}x_i - b \cdot \sum _{i=1}^{n}x_{i}^2 = 0
+\]</span></p>
+<p><br></p>
+<p>Rearranjando ambas as equações, obtemos o <strong>sistema de equações normais</strong>:</p>
+<p><br></p>
+<p><span class="math display">\[
+\begin{cases}
+n \cdot a + \left(\sum_{i=1}^{n}x_{i}\right) \cdot b = \sum_{i=1}^{n}y_{i} \\
+\left(\sum_{i=1}^{n}x_{i}\right) \cdot a + \left(\sum_{i=1}^{n}x_{i}^{2}\right) \cdot b = \sum_{i=1}^{n}x_{i} \cdot y_{i}
+\end{cases}
+\]</span></p>
+<p><br></p>
+<p>ou, equivalentemente:</p>
+<p><br></p>
+<p><span class="math display">\[
+\begin{cases}
+a \cdot n + b \cdot \sum_{i=1}^{n}x_{i} = \sum_{i=1}^{n}y_{i} \\
+a \cdot \sum_{i=1}^{n}x_{i} + b \cdot \sum_{i=1}^{n}x_{i}^{2} = \sum_{i=1}^{n}x_{i} \cdot y_{i}
+\end{cases}
+\]</span></p>
+<p><br></p>
+<p>Após algumas manipulações algébricas obtemos as seguintes expressões para as estimativas: <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span>:</p>
+<p><br></p>
+<p><span class="math display">\[
+b\cdot n+a\cdot \sum _{i=1}^{n}{x}_{i}=\sum _{i=1}^{n}{y}_{i}
+\]</span>
+<br></p>
+<p><span class="math display">\[
+b\cdot \sum _{i=1}^{n}{x}_{i}+a\cdot \sum _{i=1}^{n}{x}_{i}^{2}=\sum _{i=1}^{n}{x}_{i}\cdot {y}_{i}
+\]</span></p>
+<p><br></p>
+<p>chegando-se à <strong>estimativa</strong> <span class="math inline">\(b\)</span> do parâmetro <span class="math inline">\(\beta\)</span>, dada pelo <strong>estimador de mínimos quadrados</strong>:</p>
+<p><br></p>
+<p><span class="math display">\[
+b=\frac{n\cdot \left(\sum _{i=1}^{n}{x}_{i}{y}_{i}\right)-\sum _{i=1}^{n}{x}_{i}\sum _{i=1}^{n}{y}_{i}}{n\cdot \sum _{i=1}^{n}{x}_{i}^{2}-{\left(\sum _{i=1}^{n}{x}_{i}\right)}^{2}}
+\]</span></p>
+<p><br></p>
+<p>e à <strong>estimativa</strong> <span class="math inline">\(a\)</span> do parâmetro <span class="math inline">\(\alpha\)</span>, dada pelo <strong>estimador de mínimos quadrados</strong>:</p>
+<p><span class="math display">\[
+a=\frac{\left(\sum _{i=1}^{n}{x}_{i}^{2}\right)\cdot \left(\sum _{i=1}^{n}{y}_{i}\right)-\left(\sum _{i=1}^{n}{x}_{i}{y}_{i}\right)\cdot \left(\sum _{i=1}^{n}{x}_{i}\right)}{n\cdot \left(\sum _{i=1}^{n}{x}_{\stackrel{.}{i}}^{2}\right)-{\left(\sum _{i=1}^{n}{x}_{i}\right)}^{2}}
+\]</span></p>
+<p><br></p>
+<p>Se definirmos <span class="math inline">\(S_{xy}\)</span> e <span class="math inline">\(S_{xx}\)</span> como sendo:</p>
+<p><br></p>
+<p><span class="math display">\[
+S_{xy} = \sum _{i=1}^{n} x_{i}y_{i} - \frac{\sum _{i=1}^{n}x_{i}\cdot\sum _{i=1}^{n}y_{i}}{n}
+\]</span></p>
+<p><br></p>
+<p>e</p>
+<p><br></p>
+<p><span class="math display">\[
+S_{xx} = \sum _{i=1}^{n} x_{i}^{2} - \frac{(\sum _{i=1}^{n} x_{i})^{2}}{n}
+\]</span></p>
+<p><br></p>
+<p>então podemos escrever:</p>
+<p><br></p>
+<p><span class="math display">\[
+b = \frac{S_{xy}}{S_ {xx}}\\
+\text{e} \\
+a = \stackrel{-}{y} - b\cdot\stackrel{-}{x}.
+\]</span></p>
+<p><br></p>
+<p>Uma vez que</p>
+<p><br></p>
+<p><span class="math display">\[
+\stackrel{-}{y}=\frac{\sum _{i=1}^{n}{y}_{i}}{n}\\
+\text{e}\\
+\stackrel{-}{x}=\frac{\sum _{i=1}^{n}{x}_{i}}{n}
+\]</span></p>
+<p><br></p>
+<p>o estimador <strong><span class="math inline">\(a\)</span></strong> pode ser reescrito na forma:</p>
+<p><br></p>
+<p><span class="math display">\[
+a = \frac{\sum _{i=1}^{n}{y}_{i} - b . \sum _{i=1}^{n}{x}_{i}}{n}
+\]</span></p>
+<p><br></p>
+<p>Portanto, <span class="math inline">\(a\)</span> (<span class="math inline">\(\hat{\beta}_0\)</span>) e <span class="math inline">\(b\)</span> (<span class="math inline">\(\hat{\beta}_1\)</span>) são os estimadores de mínimos quadrados do intercepto e inclinação, respectivamente. O modelo de regressão linear simples ajustado é dado por:</p>
+<p><br></p>
+<p><span class="math display">\[\hat{y}_i = a  + b  x_i\]</span></p>
+<p><br></p>
+<p>que dá uma estimativa pontual da média de <span class="math inline">\(Y\)</span> para cada valor de <span class="math inline">\(X\)</span>.</p>
+<hr />
+</div>
+<div id="forma-matricial" class="section level4 hasAnchor" number="14.1.2.2">
+<h4><span class="header-section-number">14.1.2.2</span> Forma Matricial<a href="introdução.html#forma-matricial" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><br></p>
+<p>Na forma matricial, sejam os vetores:</p>
+<p><br></p>
+<p><span class="math display">\[
+Y = \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix}, \quad
+X = \begin{bmatrix} 1 &amp; x_1 \\ 1 &amp; x_2 \\ \vdots &amp; \vdots \\ 1 &amp; x_n \end{bmatrix}, \quad
+\boldsymbol{\beta} = \begin{bmatrix} \beta_0 \\ \beta_1 \end{bmatrix}, \quad
+e = \begin{bmatrix} e_1 \\ e_2 \\ \vdots \\ e_n \end{bmatrix}
+\]</span></p>
+<p><br></p>
+<p>Note que o número de colunas de <span class="math inline">\(X\)</span> é igual ao número de elementos de parâmetros a serem estimados <span class="math inline">\((\boldsymbol{\beta})\)</span> e o número de linhas de <span class="math inline">\(X\)</span> é o tamanho da amostra. A primeira coluna de <span class="math inline">\(X\)</span> é um vetor com os valores que multiplicam <span class="math inline">\(\beta_0\)</span>, portanto, um vetor com elementos iguais a um (1). A segunda coluna de <span class="math inline">\(X\)</span> é um vetor com os valores que multiplicam <span class="math inline">\(\beta_1\)</span>, portanto os valores <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span>.</p>
+<p><br></p>
+<p>O vetor aleatório ‘e’ (erro) é composto de variáveis independentes, com distribuição normal <span class="math inline">\(e \sim N(0, \sigma^2 I)\)</span>. O vetor esperança dos elementos de <span class="math inline">\(e_i\)</span> é o vetor nulo de dimensão <span class="math inline">\(n\)</span> e matriz, cuja diagonal é formada pelas variâncias e os demais elementos são as covariâncias <span class="math inline">\(Cov[e_i, e_j] = 0\)</span>, se <span class="math inline">\(i \neq j\)</span> com <span class="math inline">\(i, j = 1, 2, \ldots, n\)</span>.</p>
+<p><br></p>
+<p>Assim, pode-se assumir o modelo de regressão linear simples amostral da forma:</p>
+<p><br></p>
+<p><span class="math display">\[
+Y = X\boldsymbol{\beta} + \varepsilon
+\]</span>
+<br></p>
+<p>O estimador de mínimos quadrados é:</p>
+<p><br></p>
+<p><span class="math display">\[
+\hat{\boldsymbol{\beta}} = (X&#39;X)^{-1}X&#39;Y
+\]</span></p>
+<p><br></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introdução.html#cb1-1" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">cbind</span>(<span class="dv">1</span>, x))   <span class="co"># Matriz X</span></span>
+<span id="cb1-2"><a href="introdução.html#cb1-2" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">cbind</span>(y))      <span class="co"># Matriz Y</span></span>
+<span id="cb1-3"><a href="introdução.html#cb1-3" tabindex="-1"></a>XtX <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> X             <span class="co"># (X&#39;X)</span></span>
+<span id="cb1-4"><a href="introdução.html#cb1-4" tabindex="-1"></a>XtY <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> Y             <span class="co"># X&#39;Y</span></span>
+<span id="cb1-5"><a href="introdução.html#cb1-5" tabindex="-1"></a>INV <span class="ot">&lt;-</span> <span class="fu">solve</span>(XtX)             <span class="co"># Inversa da matriz (X&#39;X)</span></span>
+<span id="cb1-6"><a href="introdução.html#cb1-6" tabindex="-1"></a>Betas <span class="ot">&lt;-</span> INV <span class="sc">%*%</span> XtY          <span class="co"># Coeficientes</span></span></code></pre></div>
+<p><br></p>
+<hr />
+<p><br></p>
+<blockquote>
+<p>Exemplo 3: Um jornal deseja verificar a eficácia de seus anúncios na venda de carros usados e para isso realizou um levantamento de todos os seus anúncios e informações dos resultados obtidos pelas empresas que o contrataram e dele extraiu uma pequena amostra. A tabela abaixo mostra o número de anúncios e o correspondente número de veículos vendidos por 6 companhias que usaram apenas este jornal como veículo de propaganda. Obtenha a equação de regressão linear simples e estime o número de carros vendidos para um volume de 70 anúncios?</p>
+</blockquote>
+<p><br></p>
+<center>
+<div class="small-equation80">
+<table>
+<caption>
+Quadro de dados da quantidade de carros vendidos por 6 empresas
+distintas em função da quantidade de anúncios feitos
+</caption>
+<thead>
+<tr>
+<th style="text-align: center;">
+Companhia
+</th>
+<th style="text-align: center;">
+Anúncios feitos (X)
+</th>
+<th style="text-align: center;">
+Carros vendidos (Y)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">
+A
+</td>
+<td style="text-align: center;">
+74
+</td>
+<td style="text-align: center;">
+139
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+B
+</td>
+<td style="text-align: center;">
+45
+</td>
+<td style="text-align: center;">
+108
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+C
+</td>
+<td style="text-align: center;">
+48
+</td>
+<td style="text-align: center;">
+98
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+D
+</td>
+<td style="text-align: center;">
+36
+</td>
+<td style="text-align: center;">
+76
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+E
+</td>
+<td style="text-align: center;">
+27
+</td>
+<td style="text-align: center;">
+62
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+F
+</td>
+<td style="text-align: center;">
+16
+</td>
+<td style="text-align: center;">
+57
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</center>
+<hr />
+<p><br></p>
+<table>
+<caption>
+Quadro para cálculo das estimativas <span class="math inline"><em>a</em></span> e <span class="math inline"><em>b</em></span> dos parâmetros do modelo
+</caption>
+<thead>
+<tr>
+<th style="text-align: center;">
+Companhia
+</th>
+<th style="text-align: center;">
+Anúncios (<span class="math inline"><em>x</em></span>)
+</th>
+<th style="text-align: center;">
+Carros vendidos (<span class="math inline"><em>y</em></span>)
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>i</em></sub>.<em>y</em><sub><em>i</em></sub></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>i</em></sub><sup>2</sup></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>y</em><sub><em>i</em></sub><sup>2</sup></span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">
+A
+</td>
+<td style="text-align: center;">
+74
+</td>
+<td style="text-align: center;">
+139
+</td>
+<td style="text-align: center;">
+10286
+</td>
+<td style="text-align: center;">
+5476
+</td>
+<td style="text-align: center;">
+19321
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+B
+</td>
+<td style="text-align: center;">
+45
+</td>
+<td style="text-align: center;">
+108
+</td>
+<td style="text-align: center;">
+4860
+</td>
+<td style="text-align: center;">
+2025
+</td>
+<td style="text-align: center;">
+11664
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+C
+</td>
+<td style="text-align: center;">
+48
+</td>
+<td style="text-align: center;">
+98
+</td>
+<td style="text-align: center;">
+4704
+</td>
+<td style="text-align: center;">
+2304
+</td>
+<td style="text-align: center;">
+9604
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+D
+</td>
+<td style="text-align: center;">
+36
+</td>
+<td style="text-align: center;">
+76
+</td>
+<td style="text-align: center;">
+2736
+</td>
+<td style="text-align: center;">
+1296
+</td>
+<td style="text-align: center;">
+5776
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+E
+</td>
+<td style="text-align: center;">
+27
+</td>
+<td style="text-align: center;">
+62
+</td>
+<td style="text-align: center;">
+1674
+</td>
+<td style="text-align: center;">
+729
+</td>
+<td style="text-align: center;">
+3844
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+F
+</td>
+<td style="text-align: center;">
+16
+</td>
+<td style="text-align: center;">
+57
+</td>
+<td style="text-align: center;">
+912
+</td>
+<td style="text-align: center;">
+256
+</td>
+<td style="text-align: center;">
+3249
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+Totais
+</td>
+<td style="text-align: center;">
+246
+</td>
+<td style="text-align: center;">
+540
+</td>
+<td style="text-align: center;">
+25172
+</td>
+<td style="text-align: center;">
+12086
+</td>
+<td style="text-align: center;">
+53458
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+Valor médio
+</td>
+<td style="text-align: center;">
+41
+</td>
+<td style="text-align: center;">
+90
+</td>
+<td style="text-align: center;">
+</td>
+<td style="text-align: center;">
+</td>
+<td style="text-align: center;">
+</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+<p><br></p>
+<p>Sendo <span class="math inline">\(n= 6\)</span>, <span class="math inline">\(\stackrel{-}{y}= 90\)</span> e <span class="math inline">\(\stackrel{-}{x} = 41\)</span>:</p>
+<p><span class="math display">\[
+S_{xy} = \sum _{i=1}^{n} x_{i}y_{i} - \frac{\sum _{i=1}^{n}x_{i}\cdot\sum _{i=1}^{n}y_{i}}{n} = 25172 - \frac{246 \cdot 540}{6} = 3032 \\
+S_{xx} = \sum _{i=1}^{n} x_{i}^{2} - \frac{(\sum _{i=1}^{n} x_{i})^{2}}{n} = 12086 - \frac{246^2}{6} = 2000 \\
+{S}_{yy} = \sum _{i=1}^{n}y_{i}^{2} - \frac{(\sum _{i=1}^{n} y_{i})^{2}}{n}=   53458 - \frac{540^2}{6} = 4858
+\]</span></p>
+<p><br></p>
+<p>As estimativas dos parâmetros do modelo serão:</p>
+<p><span class="math display">\[
+b = \frac{S_{xy}}{S_ {xx}} = \frac{3032}{2000} = 1,5160
+\]</span></p>
+<p>e</p>
+<p><span class="math display">\[
+a = \stackrel{-}{y} - b\cdot\stackrel{-}{x} = 90 - 1,5160 \cdot 41 = 27,844
+\]</span></p>
+<hr />
+<p><br></p>
+<p>e o modelo toma a seguinte forma <span class="math inline">\(\hat{y} = 27,844 + 1,5160 \cdot x\)</span>. Para um volume de anúncios de 70 veiculações teremos, em média, 134 carros vendidos.</p>
+<hr />
+<p><br></p>
+<pre><code>## Equação: Y = 27.844 + 1.5160 * X</code></pre>
+<p><br></p>
+<pre><code>## Equação: Y = 27.844 + 1.5160 * X</code></pre>
+<pre><code>## Predição para 70 anúncios: 134 carros</code></pre>
+<p><br></p>
+<hr />
+</div>
+</div>
+</div>
+<div id="modelo-de-regressão-linear-sob-erros-normais" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">14.2</span> Modelo de regressão linear sob erros Normais<a href="#modelo-de-regress%C3%A3o-linear-sob-erros-normais" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><br></p>
+<p>O método dos mínimos quadrados (MMQ) é um procedimento puramente algébrico e geométrico que fornece estimativas para <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span>. Para compreender as propriedades estatísticas dessas estimativas, devemos distinguir dois conjuntos de pressupostos:</p>
+<hr />
+<div id="o-teorema-de-gauss-markov-e-os-estimadores-blue" class="section level3 hasAnchor" number="14.2.1">
+<h3><span class="header-section-number">14.2.1</span> O Teorema de Gauss-Markov e os Estimadores BLUE<a href="introdução.html#o-teorema-de-gauss-markov-e-os-estimadores-blue" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br></p>
+<p>O <strong>Teorema de Gauss-Markov</strong> estabelece que, sob certas condições (pressupostos), os estimadores de MQO são os <strong>BLUE</strong> (<em>Best Linear Unbiased Estimators</em>), ou seja, possuem a <strong>menor variância</strong> possível dentro da classe de todos os estimadores lineares e não-enviesados.</p>
+<p><br></p>
+<p>Pressupostos de Gauss-Markov:</p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Linearidade nos parâmetros: O modelo deve ser linear em relação aos parâmetros <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(\beta\)</span>, ou seja, a variável dependente <span class="math inline">\(Y\)</span> pode ser expressa como uma combinação linear desses parâmetros: <span class="math inline">\(Y_i = \alpha + \beta X_i + \varepsilon_i\)</span>.</li>
+</ol>
+</blockquote>
+<p><strong>Importante:</strong> A linearidade refere-se aos <strong>parâmetros</strong>, não necessariamente à variável <span class="math inline">\(X\)</span>. Por exemplo, os modelos <span class="math inline">\(Y = \alpha + \beta X^2 + \varepsilon\)</span> ou <span class="math inline">\(Y = \alpha + \beta \ln(X) + \varepsilon\)</span> ainda são <strong>lineares nos parâmetros</strong> <span class="math inline">\(\alpha\)</span> e <span class="math inline">\(\beta\)</span>, mesmo que a relação com <span class="math inline">\(X\)</span> seja não-linear. Por outro lado, modelos como <span class="math inline">\(Y = \alpha \cdot e^{\beta X} + \varepsilon\)</span> ou <span class="math inline">\(Y = \alpha \cdot X^{\beta} + \varepsilon\)</span> <strong>não são lineares</strong> nos parâmetros (embora possam ser linearizados por transformações logarítmicas).</p>
+<hr />
+<blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>Exogeneidade (ou Independência Média): A média condicional dos erros é zero dado qualquer valor de <span class="math inline">\(X\)</span>: <span class="math inline">\(E[\varepsilon_i | X_i] = 0\)</span>. Isto implica que não há correlação sistemática entre a variável explicativa <span class="math inline">\(X\)</span> e o termo de erro <span class="math inline">\(\varepsilon\)</span>.</li>
+</ol>
+</blockquote>
+<p><strong>Importante:</strong> Este pressuposto garante que <span class="math inline">\(X\)</span> não carrega informação sobre o erro médio, ou seja, conhecer o valor de <span class="math inline">\(X_i\)</span> não nos ajuda a prever <span class="math inline">\(\varepsilon_i\)</span>. Violações deste pressuposto ocorrem quando há variáveis omitidas relevantes (que estão em <span class="math inline">\(\varepsilon\)</span> mas correlacionadas com <span class="math inline">\(X\)</span>), erros de medida em <span class="math inline">\(X\)</span>, ou simultaneidade (quando <span class="math inline">\(Y\)</span> também influencia <span class="math inline">\(X\)</span>). Quando este pressuposto é violado, os estimadores de MQO são <strong>enviesados</strong>.</p>
+<hr />
+<blockquote>
+<ol start="3" style="list-style-type: decimal">
+<li>Homocedasticidade (Variância Constante): A variância do erro é constante para todas as observações, independentemente do valor de <span class="math inline">\(X\)</span>: <span class="math inline">\(Var(\varepsilon_i | X_i) = \sigma^2\)</span> para todo <span class="math inline">\(i\)</span>.</li>
+</ol>
+</blockquote>
+<p><strong>Importante:</strong> Este pressuposto estabelece que a dispersão dos erros ao redor da linha de regressão é a mesma para todos os níveis de <span class="math inline">\(X\)</span>. A violação deste pressuposto — <strong>heterocedasticidade</strong> — ocorre quando <span class="math inline">\(Var(\varepsilon_i | X_i) = \sigma_i^2\)</span> varia com <span class="math inline">\(X_i\)</span>. Por exemplo, em dados de renda familiar versus gastos com alimentação, a variabilidade dos gastos tende a aumentar com a renda. Sob heterocedasticidade, os estimadores de MQO permanecem não-enviesados, mas <strong>perdem eficiência</strong> (não são mais BLUE) e os <strong>erros padrão</strong> usuais ficam incorretos, comprometendo testes de hipóteses e intervalos de confiança.</p>
+<hr />
+<blockquote>
+<ol start="4" style="list-style-type: decimal">
+<li>Ausência de Autocorrelação (Independência dos Erros): Os erros de observações diferentes não estão correlacionados entre si: <span class="math inline">\(Cov(\varepsilon_i, \varepsilon_j) = 0\)</span> para todo <span class="math inline">\(i \neq j\)</span>, ou equivalentemente, <span class="math inline">\(E[\varepsilon_i \cdot \varepsilon_j] = 0\)</span> para <span class="math inline">\(i \neq j\)</span>.</li>
+</ol>
+</blockquote>
+<p><strong>Importante:</strong> Este pressuposto é especialmente relevante para dados de <strong>séries temporais</strong> ou dados com estrutura <strong>espacial</strong>. Em séries temporais, a autocorrelação ocorre quando o erro no período <span class="math inline">\(t\)</span> está correlacionado com o erro no período <span class="math inline">\(t-1, t-2\)</span>, etc. Por exemplo, em dados mensais de vendas, choques positivos tendem a persistir por vários meses. Em dados espaciais, propriedades vizinhas tendem a ter erros correlacionados. Sob autocorrelação, os estimadores de MQO permanecem não-enviesados, mas <strong>perdem eficiência</strong> e os <strong>erros padrão</strong> são subestimados, levando a intervalos de confiança artificialmente estreitos e rejeição excessiva de <span class="math inline">\(H_0\)</span> em testes.</p>
+<hr />
+<p>O Teorema de Gauss-Markov não <strong>exige</strong> normalidade dos erros. Sob esses quatro pressupostos, os estimadores de MQO já são os melhores estimadores lineares não-enviesados, mesmo que os erros não sejam normalmente distribuídos.</p>
+<p><br></p>
+<p>Embora o Teorema de Gauss-Markov garanta que os estimadores sejam BLUE, <strong>ele não nos permite fazer inferências estatísticas</strong> tais como construir intervalos de confiança ou realizar testes de hipóteses.</p>
+<p><br></p>
+<p>Para realizar <strong>inferências estatísticas</strong>, devemos fazer uma <strong>suposição adicional</strong>: introduzimos o <strong>modelo de regressão linear com erro normal</strong>, que assume que os erros (<span class="math inline">\(\varepsilon_i\)</span>) são variáveis aleatórias <strong>Normalmente distribuídas</strong> com média zero e variância constante: <span class="math inline">\(\varepsilon_i \sim N(0, \sigma^2)\)</span></p>
+<hr />
+</div>
+<div id="pressupostos-do-modelo-de-regressão-linear-com-erros-normais" class="section level3 hasAnchor" number="14.2.2">
+<h3><span class="header-section-number">14.2.2</span> Pressupostos do Modelo de Regressão Linear com Erros Normais<a href="#pressupostos-do-modelo-de-regress%C3%A3o-linear-com-erros-normais" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br></p>
+<p><strong>Consolidando</strong> os pressupostos de Gauss-Markov com a normalidade, temos que as premissas do modelo de regressão linear podem ser classificadas em <strong>quatro categorias</strong>:</p>
+<p><br></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Linearidade: A relação entre a variável preditora <span class="math inline">\(X\)</span> e a variável resposta <span class="math inline">\(Y\)</span> é linear nos parâmetros; o valor esperado da variável resposta é uma função linear da variável preditora</li>
+</ol>
+</blockquote>
+<hr />
+<blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>Normalidade: <span class="math inline">\(\varepsilon_i \sim N(0, \sigma^2)\)</span> — os erros são normalmente distribuídos com média zero e variância constante.</li>
+</ol>
+</blockquote>
+<p><strong>Importante:</strong> Este pressuposto é <strong>adicional</strong> aos pressupostos de Gauss-Markov e não é necessário para garantir que os estimadores de MQO sejam BLUE. A normalidade dos erros é fundamental para: (i) garantir que os estimadores <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> sejam também normalmente distribuídos, permitindo o uso das distribuições <span class="math inline">\(t\)</span> e <span class="math inline">\(F\)</span> para inferência; (ii) construir intervalos de confiança válidos; (iii) realizar testes de hipóteses em <strong>amostras pequenas</strong>. Para <strong>amostras grandes</strong>, o Teorema Central do Limite garante que os estimadores sejam aproximadamente normais mesmo sem este pressuposto. A violação da normalidade compromete principalmente a validade de intervalos de confiança e testes em amostras pequenas (<span class="math inline">\(n &lt; 30\)</span>).</p>
+<hr />
+<blockquote>
+<ol start="3" style="list-style-type: decimal">
+<li>Independência estatística dos resíduos: <span class="math inline">\(Cov(\varepsilon_i, \varepsilon_j) = E(\varepsilon_i \cdot \varepsilon_j) = 0\)</span> para <span class="math inline">\(i \neq j\)</span>, e, em particular, nenhuma correlação entre erros de observações sucessivas no caso de dados provenientes de uma série.</li>
+</ol>
+</blockquote>
+<p><strong>Importante:</strong> Este pressuposto estabelece que o erro associado a uma observação não fornece informação sobre o erro de outra observação. A violação deste pressuposto — <strong>autocorrelação</strong> ou <strong>correlação serial</strong> — é particularmente comum em: (i) <strong>séries temporais</strong>, onde choques em <span class="math inline">\(t\)</span> persistem em períodos subsequentes <span class="math inline">\(t+1, t+2, ...\)</span>; (ii) <strong>dados espaciais</strong>, onde observações geograficamente próximas tendem a ter erros correlacionados; (iii) <strong>dados em painel</strong>, com observações repetidas da mesma unidade ao longo do tempo. A presença de autocorrelação não enviesa os estimadores de MQO, mas os torna <strong>ineficientes</strong> (não são mais BLUE), e os <strong>erros padrão usuais</strong> ficam <strong>subestimados</strong>, levando a intervalos de confiança artificialmente estreitos e rejeição excessiva de <span class="math inline">\(H_0\)</span> em testes. A detecção pode ser feita pelo teste de Durbin-Watson ou análise gráfica dos resíduos ao longo do tempo.</p>
+<hr />
+<blockquote>
+<ol start="4" style="list-style-type: decimal">
+<li>Homocedasticidade: <span class="math inline">\(Var(\varepsilon_i) = E(\varepsilon_i^2) = \sigma^2\)</span> — a variância dos resíduos é constante quando analisada frente aos valores estimados pelo modelo (<span class="math inline">\(\hat{Y}\)</span>), a variável preditora (<span class="math inline">\(X\)</span>) ou o tempo de coleta nos casos de dados provenientes de uma série.</li>
+</ol>
+</blockquote>
+<p><strong>Importante:</strong> Este pressuposto requer que a dispersão dos erros seja <strong>uniforme</strong> ao longo de toda a amplitude de <span class="math inline">\(X\)</span> ou <span class="math inline">\(\hat{Y}\)</span>. A violação deste pressuposto — <strong>heterocedasticidade</strong> — ocorre quando <span class="math inline">\(Var(\varepsilon_i) = \sigma_i^2\)</span> varia sistematicamente, sendo comum em: (i) dados de <strong>corte transversal</strong> com unidades de diferentes tamanhos (ex: renda e gastos de famílias, onde famílias ricas têm maior variabilidade); (ii) dados onde a <strong>precisão da medição</strong> varia entre observações; (iii) modelos onde a variável dependente cresce exponencialmente. Sob heterocedasticidade, os estimadores de MQO permanecem <strong>não-enviesados</strong> e <strong>consistentes</strong>, mas perdem <strong>eficiência</strong> (não são BLUE), e os <strong>erros padrão</strong> calculados pela fórmula usual ficam <strong>incorretos</strong> (geralmente subestimados), comprometendo testes de hipóteses e intervalos de confiança. A detecção pode ser feita por gráficos de resíduos versus valores ajustados ou testes formais (Breusch-Pagan, White). Correções incluem transformações (Box-Cox, logarítmica) ou uso de erros padrão robustos (White, HC).—</p>
+<hr />
+</div>
+<div id="propriedades-dos-estimadores-sob-erro-normal" class="section level3 hasAnchor" number="14.2.3">
+<h3><span class="header-section-number">14.2.3</span> Propriedades dos Estimadores sob Erro Normal<a href="introdução.html#propriedades-dos-estimadores-sob-erro-normal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br></p>
+<p>Demonstra-se que, para um modelo <span class="math inline">\(Y_{i}=\alpha+\beta\cdot X_{i}+\varepsilon_{i}\)</span> que:</p>
+<p><br></p>
+<ul>
+<li><span class="math inline">\(b\)</span> é um estimador não tendencioso do parâmetro <span class="math inline">\(\beta\)</span> com:</li>
+</ul>
+<p><br></p>
+<p><span class="math display">\[
+E\left(b\right)=\beta \\
+\text{e} \\
+Var\left(b\right)=\frac{{\sigma }^{2}}{{S}_{xx}}
+\]</span>
+<br></p>
+<ul>
+<li><span class="math inline">\(a\)</span> é um estimador não tendencioso do parâmetro <span class="math inline">\(\alpha\)</span> com:</li>
+</ul>
+<p><br></p>
+<p><span class="math display">\[
+E\left(a\right)=\alpha\\
+\text{e} \\
+Var\left(a\right)={\sigma }^{2}\cdot \left(\frac{1}{n}+\frac{{\stackrel{-}{X}}^{2}}{{S}_{xx}}\right)
+\]</span></p>
+<p><br></p>
+<ul>
+<li><span class="math inline">\(\hat{\sigma^{2}}\)</span> é um estimador não tendencioso de <span class="math inline">\(\sigma^{2}\)</span>:</li>
+</ul>
+<p><br></p>
+<p><span class="math display">\[
+\hat{\sigma^{2}} =  \text{QMR} = \frac{S_{yy} -b  \cdot S{xy}}{n-2}
+\]</span></p>
+<p><br></p>
+<p>Assim as variâncias dos estimadores <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> serão,</p>
+<p><br></p>
+<p><span class="math display">\[
+s_{b} = \sqrt{\frac{{\hat{\sigma}}^{2}}{{S}_{xx}}}  = \sqrt{\frac{\text{QMRES}}{S_{xx}}}
+\]</span></p>
+<p><br></p>
+<p><span class="math display">\[
+s_{a} = \sqrt{{\hat{\sigma} }^{2}\cdot \left(\frac{1}{n}+\frac{{\stackrel{-}{x}}^{2}}{{S}_{xx}}\right)} = \sqrt{\text{QMRES} \cdot \left(\frac{1}{n}+\frac{{\stackrel{-}{x}}^{2}}{{S}_{xx}}\right)}
+\]</span></p>
+<p><br></p>
+<p>lembrando que:</p>
+<p><br></p>
+<p><span class="math display">\[
+S_{yy} = \sum (Y_i - \bar{Y})^2 \\
+S_{xy} = \sum (X_i - \bar{X})(Y_i - \bar{Y}),
+\]</span></p>
+<p><br>
+]</p>
+<p>e <span class="math inline">\(n - 2\)</span> representa os graus de liberdade, já que dois parâmetros (<span class="math inline">\(\alpha\)</span> e <span class="math inline">\(\beta\)</span>) são estimados.</p>
+<table style="width:6%;">
+<colgroup>
+<col width="5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>### Consequências da Normalidade</td>
+</tr>
+<tr class="even">
+<td><br></td>
+</tr>
+<tr class="odd">
+<td>&gt;A normalidade dos resíduos <span class="math inline">\(\varepsilon_i\)</span> garante que os estimadores <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> também sejam Normalmente distribuídos, o que é fundamental para realizar testes de hipóteses e construir intervalos de confiança nos modelos de regressão linear.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<blockquote>
+<p>Isso permite o uso de distribuições de referência, como as distribuições <span class="math inline">\(t\)</span> e <span class="math inline">\(F\)</span>, especialmente em amostras pequenas, onde a variância dos estimadores não pode ser assumida como conhecida com precisão.</p>
+</blockquote>
+<hr />
+<p><br></p>
+<blockquote>
+<p>Na estimação de um modelo de regressão linear simples com erro Normal (na forma <span class="math inline">\(Y=\beta_{0}+\beta_{1}X+ \varepsilon\)</span>) muitas premissas preliminarmente como válidas deverão ser efetivamente verificadas a posteriori, na chamada etapa de diagnóstico do modelo, de modo a que a condução de inferências com esse modelo sejam dotada de razoável segurança.</p>
+</blockquote>
+<hr />
+<p><br></p>
+<blockquote>
+<p>Se qualquer uma dessas premissas for violada então uma conclusão científica baseada em resultados advindos desse modelo de regressão poderá estar seriamente comprometida. As violações desses pressupostos não podem ser detectadas pelas estatísticas de resumo do modelo que usualmente se dipõe logo após sua estimação: estatísticas <span class="math inline">\(t\)</span>, <span class="math inline">\(F\)</span> dos testes de significância ou então o coeficiente de determinação <span class="math inline">\(R^{2}\)</span>.</p>
+</blockquote>
+<hr />
+<p><br></p>
+<blockquote>
+<p>Assim, é sobretudo fundamental examinar mais aprofundadamente o modelo de modo a se assegurar com razoável confiança de sua adequação aos dados antes de se avançar com seu uso. A esse exame denominamos diagnóstico do modelo.</p>
+</blockquote>
+<hr />
+
+</div>
+</div>
+</div>
+<script>
+$(document).ready(function() {
+  var $summary = $('.book-summary');
+  var $body = $('.book-body');
+  var $header = $('.book-header');
+  var isResizing = false;
+  var startX, startWidth;
+
+  // Adicionar handle de redimensionamento
+  $summary.append('<div class="resize-handle"></div>');
+  
+  var $handle = $('.resize-handle');
+
+  $handle.on('mousedown', function(e) {
+    isResizing = true;
+    startX = e.clientX;
+    startWidth = $summary.width();
+    
+    $('body').css('cursor', 'ew-resize');
+    e.preventDefault();
+  });
+
+  $(document).on('mousemove', function(e) {
+    if (!isResizing) return;
+    
+    var width = startWidth + (e.clientX - startX);
+    
+    // Limites de largura
+    if (width < 200) width = 200;
+    if (width > 600) width = 600;
+    
+    $summary.css('width', width + 'px');
+    
+    // Atualizar left do body e header se o TOC estiver visível
+    if ($('.book').hasClass('with-summary')) {
+      $body.css('left', width + 'px');
+      $header.css('left', width + 'px');
+    }
+  });
+
+  $(document).on('mouseup', function() {
+    if (isResizing) {
+      isResizing = false;
+      $('body').css('cursor', 'default');
+    }
+  });
+  
+  // Observar mudanças na classe 'with-summary'
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.attributeName === 'class') {
+        var hasSummary = $('.book').hasClass('with-summary');
+        if (!hasSummary) {
+          // TOC colapsado
+          $body.css('left', '0');
+          $header.css('left', '0');
+        } else {
+          // TOC expandido
+          var width = $summary.width();
+          $body.css('left', width + 'px');
+          $header.css('left', width + 'px');
+        }
+      }
+    });
+  });
+  
+  observer.observe($('.book')[0], {
+    attributes: true
+  });
+});
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introducao-a-regressao-linear.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introducao-a-modelagem-de-processos-estocasticos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/13-regressao_linear.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["apostila.pdf", "apostila.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "none",
+    "depth": 8
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

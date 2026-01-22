@@ -41,7 +41,7 @@ library(formatR)
 ```
 
 
-# Introdução a testes de hipóteses {#teste_hipoteses}
+# Introdução a testes de hipóteses{#introducao-a-testes-de-hipoteses}
 
 
 ## Filosofia da ciência
@@ -254,11 +254,11 @@ Um *teste de hipóteses* guarda uma certa semelhança a um julgamento. Caso não
 
 \
 
-> A *hipótese nula* (H0) é a proposição ``tradicional'' que reflete a situação na qual não há mudança. É, pois, uma _hipótese conservadora_, resultado de experimentos anteriores. 
+> A *hipótese nula* ($H_{0}$) é a proposição ``tradicional'' que reflete a situação na qual não há mudança. É, pois, uma _hipótese conservadora_, resultado de experimentos anteriores. 
 
 \
 
-> A *hipótese alternativa* (H1) contradiz aquilo anunciado pela hipótese nula, é uma _hipótese inovadora_.
+> A *hipótese alternativa* ($H_{1}$) contradiz aquilo anunciado pela hipótese nula, é uma _hipótese inovadora_.
 
 \
 
@@ -274,7 +274,7 @@ Um *teste de hipóteses* guarda uma certa semelhança a um julgamento. Caso não
 
 \
 
-> ``Em relação a qualquer experimento não devemos falar desta hipótese como a *hipótese nula*, e deve-se atentar que a *hipótese nula* nunca é provada ou estabelecida, mas é, possivelmente, refutada, no decorrer da experimentação. Todo experimento deve existir apenas para das aos fatos a chance de refutar a *hipótese nula*...'' (*The Design of Experiments*, Ronald Aylmer Fisher,  1935, p. 19)
+> ``"Em relação a qualquer experimento, podemos referir-nos a esta hipótese como a *hipótese nula*, e deve-se notar que a hipótese nula nunca é provada ou estabelecida, mas é possivelmente refutada no decorrer da experimentação. Todo experimento pode ser considerado como existindo apenas para dar aos fatos uma chance de refutar a hipótese nula.'' (*The Design of Experiments*, Ronald Aylmer Fisher,  1935, p. 19)
 
 \
 
@@ -748,8 +748,8 @@ Essa comparação é por demais facilitada se visualizada no gráfico da densida
 \
 
 - testes bilaterais ( _hipótese alternativa do tipo: diferente de_ ): a região é fechada, delimitada à esquerda e à direita por valores críticos de estatística do teste;
-- testes unilaterais à direita ( _hipótese alternativa do tipo: maior que_ ): a região é fecfada à esquerda, delimitada por um valor crítico da estatística do teste e aberta à direita (ao $\rightarrow \infty$[; e,
-- testes unilaterais à esquerda ( _hipótese alternativa do tipo: menor que_ ): a região é fechada à direita, delimitada por um valor crítico da estatística do teste e aberta à esquerda ]$ -\infty \leftarrow $).
+- testes unilaterais à direita ( _hipótese alternativa do tipo: maior que_ ): a região é fechada à esquerda, delimitada por um valor crítico da estatística do teste e aberta à direita: $[\rightarrow \infty[$; e,
+- testes unilaterais à esquerda ( _hipótese alternativa do tipo: menor que_ ): a região é fechada à direita, delimitada por um valor crítico da estatística do teste e aberta à esquerda $]-\infty \leftarrow]$).
 
 \
 
@@ -792,7 +792,7 @@ $$
 $$
 \
 
-em que $\mu_{0}$ é um valor conservador do parâmetro $\mu$ que se deseja testar.
+em que $\mu_{0}$ é o valor inferido ao parâmetro $\mu$ que se deseja testar.
 
 \
 
@@ -878,7 +878,7 @@ $$
 
 \
 
-em que $\mu_{0}$ é um valor conservador do parâmetro $\mu$ que se deseja.
+em que $\mu_{0}$ é o valor inferido ao parâmetro $\mu$ que se deseja.
 
 \
 
@@ -958,7 +958,7 @@ $$
 
 \
 
-em que $\mu_{0}$ é um valor conservador do parâmetro $\mu$ que se deseja testar .
+em que $\mu_{0}$ é o valor inferido ao parâmetro $\mu$ que se deseja testar .
 
 \
 
@@ -1012,14 +1012,16 @@ Na Figura \@ref(fig:fig72) observa-se:
 
 
 
-## Teste de hipóteses para uma média $\mu$
+## Teste de hipóteses para a média $\mu$ de uma população Normal
+
+\
 
 ### Cenários possíveis
 
 \
 
 
-- variância populacional ($\sigma^2$) *teoricamente conhecida*;  
+- variância populacional ($\sigma^2$) conhecida;  
 - variância populacional ($\sigma^2$) desconhecida, mas o tamanho da amostra ($n$) é grande: $n\ge 30$; e,  
 - variância populacional ($\sigma$) desconhecida e as amostras de tamanho ($n$) reduzido: $n < 30$.
 
@@ -1029,7 +1031,7 @@ Na Figura \@ref(fig:fig72) observa-se:
 
 
 $$
-Z = \frac{\stackrel{-}{X} - \mu}{\frac{\sigma}{\sqrt{n}}} \sim  \mathcal{N}(0,1)
+Z = \frac{\stackrel{-}{X} - \mu_{0}}{\frac{\sigma}{\sqrt{n}}} \sim  \mathcal{N}(0,1)
 $$
 \
 
@@ -1037,8 +1039,8 @@ em que:
 
 \
 
-- $\stackrel{-}{X}$ é a média observada na amostra;  
-- $\mu$ o valor (desconhecido) inferido à média populacional, a ser testado frente à média amostral observada;  
+- $\stackrel{-}{X}$ é uma média amostral;  
+- $\mu_{0}$ o valor inferido ao parâmetro, a ser testado frente à média amostral observada;  
 - $\sigma$ é o desvio padrão populacional; e,  
 - $n$ é o tamanho da amostra.
 
@@ -1051,7 +1053,7 @@ em que:
 \
 
 $$
-Z = \frac{\stackrel{-}{X} - \mu}{\frac{S}{\sqrt{n}}}   \sim \mathcal{N}(0,1)
+Z = \frac{\stackrel{-}{X} - \mu_{0}}{\frac{S}{\sqrt{n}}}   \sim \mathcal{N}(0,1)
 $$
 
 \
@@ -1060,8 +1062,8 @@ $$
 em que:  
 \
 
-- $\stackrel{-}{X}$ é a média observada na amostra;  
-- $\mu$ o valor (desconhecido) inferido à média populacional a ser testado frente à média amostral observada;  
+- $\stackrel{-}{X}$ é uma média amostral;  
+- $\mu_{0}$ o valor inferido ao parâmetro, a ser testado frente à média amostral observada;    
 - $S$ é o desvio padrão amostral; e,  
 - $n$ é o tamanho da amostra. 
 
@@ -1075,7 +1077,7 @@ em que:
 
 
 $$
-T = \frac{(\stackrel{-}{X} - \mu)}{    \frac{S}{\sqrt{n}} } \sim t_{(n-1)}
+T = \frac{(\stackrel{-}{X} - \mu_{0})}{    \frac{S}{\sqrt{n}} } \sim t_{(n-1)}
 $$
 
 \
@@ -1083,8 +1085,8 @@ $$
 em que:
 \
 
-- $\stackrel{-}{X}$ é a média observada na amostra;  
-- $\mu$ o valor (desconhecido) inferido à média populacional, a ser testado frente à média amostral;   
+- $\stackrel{-}{X}$ é uma média amostral;  
+- $\mu_{0}$ o valor inferido ao parâmetro, a ser testado frente à média amostral observada;     
 - $S$ é o desvio padrão amostral; e,   
 - $n$ é o tamanho da amostra.
 
@@ -1191,7 +1193,7 @@ P(Z_{calc} \le {Z}_{tab\left(\alpha \right)}) & =(1-\alpha)\\
 
 \
 
-- Teste de hipóteses bilateral (tipo: diferente de): 
+- Teste de hipóteses bilateral: 
 
 \
 
@@ -1203,7 +1205,7 @@ P(-{t}_{tab\left(\frac{\alpha }{2};n-1\right)} \le  t_{calc}  \le  {t}_{tab\left
 
 \
 
-- Teste de hipóteses unilateral à esquerda (tipo: menor que):
+- Teste de hipóteses unilateral à esquerda:
 
 \
 
@@ -1217,7 +1219,7 @@ P( t_{calc}  \ge -{t}_{tab\left(\alpha;n-1\right)}) & = (1-\alpha)
 	
 \
 	
-- Teste de hipóteses unilateral à direita (tipo: maior que):
+- Teste de hipóteses unilateral à direita:
 
 \
 
@@ -1265,8 +1267,8 @@ $$
 Extraindo os dados do problema:
 
 
-- $\stackrel{-}{X}=1570h$ é a média amostral;  
-- $\mu_{0}=1600$ o valor (desconhecido) inferido à média populacional a ser testado frente à média amostral;  
+- $\stackrel{-}{x}=1570h$ é a média amostral;  
+- $\mu_{0}=1600$ o valor inferido à média populacional a ser testado frente à média amostral;  
 - $S=120h$ é o desvio padrão amostral; e,    
 - $n=100$ é o tamanho da amostra.
 
@@ -1355,7 +1357,7 @@ Podemos ainda realizar testes de hipóteses unilaterais ($\mu<\mu_{0}$ ou $\mu>\
 
 \
 
-> Teste unilateral à esquerda (tipo: menor que)
+> Teste unilateral à esquerda
 
 \
 
@@ -1382,7 +1384,7 @@ Da tabela da distribuição Normal reduzida obtemos o valor crítico monocaudal:
 
 
 
-```{r fig74,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral à esquerda (tipo: menor que) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $z_{crit} = -1,64$. O valor calculado da estatística ($z_{calc}=-2,50$) situa-se na faixa de significância do teste, possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig74,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $z_{crit} = -1,64$. O valor calculado da estatística ($z_{calc}=-2,50$) situa-se na faixa de significância do teste, possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 
@@ -1443,7 +1445,7 @@ Conclusão: Os resultados obtidos na análise estatística realizada nos permite
 
 
 
-> Teste unilateral à direita (tipo: maior que)
+> Teste unilateral à direita 
 
 \
 
@@ -1468,7 +1470,7 @@ Da tabela da distribuição Normal reduzida obtemos o valor crítico monocaudal:
 
 
 
-```{r fig75,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral à direita (tipo: maior que) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $z_{crit} = 1,64$. O valor calculado da estatística ($z_{calc}=-2,50$) situa-se na faixa de não significância do teste, não possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig75,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $z_{crit} = 1,64$. O valor calculado da estatística ($z_{calc}=-2,50$) situa-se na faixa de não significância do teste, não possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 alfa=0.95
@@ -1521,7 +1523,7 @@ Conclusão: Os resultados obtidos na análise estatística realizada não nos pe
 
 \
 
-> O problema nos pede um teste bilateral (tipo: diferente de):
+> O problema nos pede um teste bilateral:
 
 \
 
@@ -1547,7 +1549,7 @@ Pelo enunciado do problema a variância populacional $\sigma^{2}$ é desconhecid
 \
 
 $$
-T = \frac{(\stackrel{-}{X} - \mu_{0})}{    \frac{s}{\sqrt{n}} } \sim t_{(n-1)}    
+T = \frac{(\stackrel{-}{X} - \mu_{0})}{    \frac{S}{\sqrt{n}} } \sim t_{(n-1)}    
 $$
 
 \
@@ -1569,7 +1571,7 @@ Calculando-se o valor da estatística do teste:
 
 
 $$
-t_{calc} = \frac{(\stackrel{-}{X} - \mu_{0})}{    \frac{s}{\sqrt{n}} }  = -2,02
+t_{calc} = \frac{(\stackrel{-}{X} - \mu_{0})}{    \frac{S}{\sqrt{n}} }  = -2,02
 $$    
 
 \
@@ -1578,7 +1580,7 @@ Da tabela ``t'' de Student obtemos o valor crítico bicaudal: $|{t}_{tab\left(\f
 
 \
 
-```{r fig76, out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral (tipo: diferente de) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $t_{crit} =\\pm 2,306$. O valor calculado da estatística ($t_{calc}=-2,02$) situa-se na faixa de significância do teste, possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig76, out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $t_{crit} =\\pm 2,306$. O valor calculado da estatística ($t_{calc}=-2,02$) situa-se na faixa de significância do teste, possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 alfa=0.05
@@ -1680,7 +1682,7 @@ if (p_valor < alfa) {
 }
 ```
 \
-> Teste unilateral à esquerda (tipo: menor que)
+> Teste unilateral à esquerda 
 
 \
 
@@ -1706,7 +1708,7 @@ Da tabela ``t'' de Student obtemos o valor crítico monocaudal: $|{t}_{tab_(\alp
 
 
 
-```{r fig77, out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral à esquerda (tipo: menor que) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $t_{crit} = -1,86$. O valor calculado da estatística ($t_{calc}=-2,02$) situa-se na faixa de significância do teste possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig77, out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $t_{crit} = -1,86$. O valor calculado da estatística ($t_{calc}=-2,02$) situa-se na faixa de significância do teste possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 
@@ -1791,7 +1793,7 @@ if (p_valor < alfa) {
 \
 
 
-> Teste unilateral à direita (tipo: maior que)
+> Teste unilateral à direita 
 
 \
 
@@ -1816,7 +1818,7 @@ Da tabela ``t'' de Student obtemos o valor crítico monocaudal: $|{t}_{tab_(\alp
 
 
 
-```{r fig78, out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral à direita (tipo: maior que) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $t_{crit} = 1,86$. O valor calculado da estatística ($t_{calc}=-2,02$) situa-se na faixa de não significância do teste, não possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig78, out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral  realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $t_{crit} = 1,86$. O valor calculado da estatística ($t_{calc}=-2,02$) situa-se na faixa de não significância do teste, não possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 
@@ -1900,689 +1902,8 @@ if (p_valor < alfa) {
 \
 
 
-## Teste de hipóteses para as médias ($\mu_{1};\mu_{2}$) de duas  populações Normais independentes 
 
-
-\
-
-
-
-```{r fig82, echo=FALSE, out.width='100%', fig.align='center', fig.cap='Visão esquemática das amostras de duas populações'}
-
-knitr::include_graphics("images11/ilustração_01.png")
-
-
-```
-
-
-\
-
-
-
-Pelo Teorema Limite Central, para tamanhos amostrais $n$ suficientemente grandes a média amostral $\stackrel{-}{X}$ tem distribuição aproximadamente Normal, com média $\mu$ e variância $\frac{\sigma^{2}}{n}$, independente da distribuição da população, onde $\mu$ e $\sigma^{2}$  são a média e a variância populacionais.    
-
-\
-
-
-- grandes: $n \geq 30 (40)$; e  
-- pequenas: $n < 30$.
-
-\
-
-> Situações possíveis:
-
-\
-
-
-- Variâncias populacionais conhecidas ou não conhecidas mas com amostras de grande tamanho;  
-- Variâncias populacionais desconhecidas: 
-  - Variâncias populacionais admitidas iguais; ou,  
-  - Variâncias populacionais quaisquer.
-
-
-\
-
-
-Os valores assumidos pelas características de nosso interesse nas populações são tais que: 
-
-\
-
-
-$$
-X_{1} \sim \mathcal{N}(\mu_{1}; \sigma^{2}_{1})
-$$
-
-\
-
-e 
-
-
-\
-
-$$
-X_{2} \sim \mathcal{N}(\mu_{2}; \sigma^{2}_{2})
-$$ 
-
-Ao se extrair duas amostras, os valores amostrais assumidos por essas características serão duas variáveis aleatórias tais que:
-
-\
-
-$$
-\stackrel{-}{X}_{1} \sim \mathcal{N} (\mu_{1}\frac{\sigma^{2}_{1}}{n_{1}}) 
-$$
-
-\
-
-e
-
-\
-
-$$
-\stackrel{-}{X}_{2} \sim \mathcal{N} (\mu_{2};\frac{\sigma^{2}_{2}}{n_{2}}).
-$$
-
-\
-
-
-
-É de nosso particular interesse definir uma variável aleatória expressa como a diferença das variáveis $\stackrel{-}{X}_{1}$ e $\stackrel{-}{X}_{2}$. 
-
-\
-Segue-se assim (por serem independentes) que
-
-\
-
-$$
-\stackrel{-}{X}_{1}-\stackrel{-}{X}_{2}  \sim \mathcal{N} (\mu_{1}-\mu_{2}; \frac{\sigma^{2}_{1}}{n_{1}} +  \frac{\sigma^{2}_{2}}{n_{2}}) .
-$$
-
-\
-
-### As estruturas possíveis dos testes de hipóteses relacionados às suas médias serão:
-
-\
-
-> Teste bilateral (tipo: diferente de)
-
-\
-
-
-$$
-\begin{cases}
-	H_{0}:(\mu_{1} - \mu_{2}) = \Delta_{0} \\
-	H_{1}:(\mu_{1} - \mu_{2}) \ne \Delta_{0} \\
-\end{cases}
-$$ 
-\
-
-> Teste unilateral à esquerda (tipo: menor que)
- 
-\
- 
-
-$$
-\begin{cases}
-	H_{0}: (\mu_{1} - \mu_{2}) \ge \Delta_{0}\\
-	H_{1}: (\mu_{1} - \mu_{2}) < \Delta_{0}\\
-\end{cases}
-$$
-
-\
-
-> Teste unilateral à direita (tipo: maior que)
-
-\
-
-$$
-\begin{cases}
-	H_{0}: (\mu_{1} - \mu_{2}) \le \Delta_{0}\\
-	H_{1}: (\mu_{1} - \mu_{2}) > \Delta_{0}\\
-\end{cases}
-$$
-
-\
-
-Os valores assumidos pelas diferenças amostrais são tais que:
-
-\
-
-
-
-$$
-\frac{(\stackrel{-}{X}_{1}-\stackrel{-}{X}_{2}) - \Delta_{0}}{\sqrt{\frac{\sigma^{2}_{1}}{n_{1}} +  \frac{\sigma^{2}_{2}}{n_{2}}}} \sim \mathcal{N} (0,1)
-$$
-
-\
-
-para
-
-\
-
-- amostras Normais: $n_{1}$ e $n_{2}$ qualquer;  
-- amostras sob outras distribuições, desde que: $n_{1}$ e $n_{2} \ge 30(40)$:  
-- ${Z}_{tab\left(\frac{\alpha }{2}\right)}$ ou ${Z}_{tab\left(\alpha \right)}$: valores da distribuição Normal padronizada para o nível de significância pretendido no teste (bilateral ou unilateral); e,  
-- $Z_{calc} =   \frac{(\stackrel{-}{X}_{1} - \stackrel{-}{X}_{2})-\Delta_{0}}{\sqrt{\frac{\sigma^{2}_{1}}{n_{1}}+\frac{\sigma^{2}_{2}}{n_{2}}}} \sim \mathcal{N}(0,1)$
-
-\
-
-em que: 
-
-\
-
-- $\Delta_{0}$ é o valor inferido à diferença das médias populacionais $\mu_{1}$ e $\mu_{2}$, usualmente 0 (igualdade);  
-- $\sigma_{1}^{2}$ é a variância  da população 1;  
-- $\sigma_{2}^{2}$ é a variância da população 2;  
-- $\stackrel{-}{X}_{1}, n_{1}$ são a média e o tamanho da amostra 1; e,  
-- $\stackrel{-}{X}_{2}, n_{2}$ são a média e o tamanho da amostra 2.
-
-\
-
-
-
-### Testes de hipóteses para as médias de duas populações com variâncias conhecidas (ou não conhecidas mas o tamanho das amostras é grande)
-
-
-> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística Z ($Z \sim \mathcal{N}(0,1)$):
-
-\
-
-- Teste de hipóteses bilateral (tipo: diferente de): 
-
-\
-
-\begin{align*}
-P[\left|Z_{calc}\right| \le {Z}_{tab\left(\frac{\alpha }{2}\right)}|\mu_{1}=\mu_{2}] & =(1-\alpha)\\
-P(-{Z}_{tab\left(\frac{\alpha }{2}\right)} \le Z_{calc} \le {Z}_{tab\left(\frac{\alpha }{2}\right)}) & = (1-\alpha)\\
-\end{align*}
-
-\
-
-
-- Teste de hipóteses unilateral à esquerda (tipo: menor que): 
-
-\
-
-\begin{align*}
-P[Z_{calc} \ge -{Z}_{tab\left(\alpha \right)}|\mu_{1} \ge \mu_{2}] & =(1-\alpha) \\
-P( Z_{calc}  \ge -{Z}_{tab\left(\alpha \right)}) & = (1-\alpha) \\
-\end{align*}
-
-\
-
-		
-- Teste de hipóteses unilateral à direita (tipo maior que):
-
-\
-
-
-
-\begin{align*}
-P[Z_{calc} \le {Z}_{tab\left(\alpha \right)}|\mu_{1} \le \mu_{2}] & =(1-\alpha)  \\
-P( Z_{calc}  \le {Z}_{tab\left(\alpha \right)}) & = (1-\alpha) \\
-\end{align*}
-
-
-\
-
-
-
-Nas figuras \@ref(fig:fig70), \@ref(fig:fig71) e  \@ref(fig:fig72) observam-se: 
-
-
-\	
-
-- as regiões de rejeição da hipótese nula (subdivididas nos dois ou em apenas um dos lados) sob a curva da função densidade de probabilidade da distribuição adequada ao teste com probabilidades iguais ao nível de significância $\alpha$ ;   
-- a região de não rejeição da hipótese nula (delimitada à esquerda e à direita ou apenas em um dos lados) com probabilidade igual ao nível de confiança $(1-\alpha)$; e,   
-- os valores críticos da estatística do teste.
-
-\
-
-> Exemplo: Duas máquinas são usadas para encher garrafas plásticas com um volume líquido de 16oz. Os volumes de enchimento podem ser admitidos como normais, tendo desvios padrão iguais a $\sigma_{1}=0,020$oz e $\sigma_{2}=0,025$oz. O departamento de engenharia da fábrica deseja saber a um nível de significância de $\alpha=0,01$ se ambas as máquinas enchem um mesmo volume e para isso coletou uma amostra de 10 garrafas enchidas por cada uma das máquinas cf. tabela abaixo: 
-
-\
-
-
-```{=latex }
-\begin{table}[h]
-\centering
-\caption{Enchimento de duas máquinas}	
-\begin{tabular}{|c|c|c|c|}
-\hline 
-\multicolumn{2}{|c|}{Máquina 01} & \multicolumn{2}{|c|}{Máquina 02}   \\ 
-\hline 
-16,03 & 16,01 & 16,02 & 16,03 \\ 
-\hline 
-16,04 & 15,96 & 15,97 & 16,04 \\ 
-\hline 
-16,05 & 15,98 & 15,96 & 16,02 \\ 
-\hline 
-16,05 & 16,02 & 16,01 & 16,01 \\ 
-\hline 
-16,02 & 15,99 & 15,99 & 16,00 \\ 
-\hline 
-\end{tabular}  
-\end{table}
-
-```
-
-
-
-
-```{r eval=knitr::is_html_output(), results = "asis", echo = FALSE, message = FALSE}
-
-tex2markdown <- function(texstring) {
-  writeLines(text = texstring,
-             con = myfile <- tempfile(fileext = ".tex"))
-  texfile <- pandoc(input = myfile, format = "html")
-  cat(readLines(texfile), sep = "\n")
-  unlink(c(myfile, texfile))
-}
-
-textable <- "
-\\begin{table}[h]
-\\caption*{Enchimento de duas máquinas}	
-\\begin{tabular}{|c|c|c|c|}
-\\hline 
-\\multicolumn{2}{|c|}{Máquina 01} & \\multicolumn{2}{|c|}{Máquina 02}   \\\\
-\\hline 
-	16,03 & 16,01 & 16,02 & 16,03 \\\\
-\\hline 
-	16,04 & 15,96 & 15,97 & 16,04 \\\\
-\\hline 
-	16,05 & 15,98 & 15,96 & 16,02 \\\\
-\\hline 
-	16,05 & 16,02 & 16,01 & 16,01 \\\\
-\\hline 
-	16,02 & 15,99 & 15,99 & 16,00 \\\\
-\\hline 
-\\end{tabular}  
-\\end{table}
-"
-
-tex2markdown(textable)
-```
-
-
-
-\
-
-As variâncias populacionais $\sigma_{1}^{2}$ e $\sigma_{2}^{2}$ são conhecidas e as populações seguem uma distribuição Normal. A estatística do teste é: 
-
-\
-
-$$
-Z_{calc} =   \frac{(\stackrel{-}{X}_{1} - \stackrel{-}{X}_{2}) }{\sqrt{\frac{\sigma^{2}_{1}}{n_{1}}+\frac{\sigma^{2}_{2}}{n_{2}}}}
-$$
-\
-
-tal que tal que Z ($Z \sim \mathcal{N}(0,1)$), em que:
-
-\
-
-- $\mu_{1} , \mu_{2}$ são as médias das populações em teste;  
-- $\sigma_{1}^{2}=0,020^{2}, \sigma_{2}^{2}=0,025^{2}$ são as variâncias das populações em teste;  
-- $\stackrel{-}{x}_{1}=16,015, n_{1}=10$ são a média e o tamanho da amostra 1;  
-- $\stackrel{-}{x}_{2}=16,005, n_{2}=10$ são a média e o tamanho da amostra 2; e,   
-- o nível de significância estabelecido para o teste é $\alpha=0,01$.
-
-\
-
-
-> O problema nos pede um teste bilateral (tipo: diferente de):
-
-
-$$
-\begin{cases}
-	H_{0}: (\mu_{1} - \mu_{2}) = 0 \\
-	H_{1}: (\mu_{1} - \mu_{2}) \ne 0 \\
-\end{cases}
-$$
-\
-
-Se $z_{calc}$ for tal que: 
-
-\
-
-
-$$
--{z}_{tab\left(\frac{\alpha }{2}\right)} \le z_{calc} \le {z}_{tab\left(\frac{\alpha }{2}\right)}
-$$
-
-\
-
-
-não se rejeita a hipótese nula sob o nível de signficância estabelecido. Da tabela da distribuição Normal padronziada obtemos o valor crítico bicaudal: $|{Z}_{tab\left(\frac{\alpha }{2}\right)}|=2,57$. Pelo cálculo, a estatística do teste é  $z_{calc}=0,98773$.
-
-
-
-\
-
-
-
-```{r fig83,  out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral (tipo: diferente de) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $z_{crit} =\\pm 2,57$. O valor calculado da estatística ($z_{calc}=0,987$) não nos possibilita a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
-
-
-alfa=0.01
-
-prob_desejada1=alfa/2
-z_desejado1=round(qnorm(prob_desejada1),4)
-d_desejada1=dnorm(z_desejado1, 0, 1)
-
-prob_desejada2=1-alfa/2
-z_desejado2=round(qnorm(prob_desejada2),4)
-d_desejada2=dnorm(z_desejado2, 0, 1)
-
-z_calculado=0.98773
-d_calculado=dnorm(z_calculado, 0, 1)
-
-
-ggplot(NULL, aes(c(-4,4))) +
-  geom_area(stat = "function", 
-            fun = dnorm, 
-            fill = "red", 
-            xlim = c(-4, z_desejado1),
-            colour="black") +
-  geom_area(stat = "function", 
-            fun = dnorm, 
-            fill = "lightgrey", 
-            xlim = c(z_desejado1,0),
-            colour="black") +
-  geom_area(stat = "function", 
-            fun = dnorm, 
-            fill = "lightgrey", 
-            xlim = c(0, z_desejado2),
-            colour="black") +
-  geom_area(stat = "function", 
-            fun = dnorm, 
-            fill = "red", 
-            xlim = c(z_desejado2,4),
-            colour="black") +
-  scale_y_continuous(name="Densidade") +
-  scale_x_continuous(name="Valores de z", breaks = c(z_desejado1,z_desejado2))  +
-  labs(title= 
-         "Regiões críticas sob a curva da função densidade da \ndistribuição apropriada ao teste", 
-       subtitle = "P(-2,57, 2,57)=(1-\u03b1) em cinza (nível de confiança=0,99) \nP(-\U221e; -2,57)= P(2,57; \U221e)= \u03b1/2 em vermelho (nível de significância/2=0,005) ")+
-  geom_segment(aes(x = z_desejado1, y = 0, xend = z_desejado1, yend = d_desejada1), color="blue", lty=2, lwd=0.3)+
-  geom_segment(aes(x = z_desejado2, y = 0, xend = z_desejado2, yend = d_desejada2), color="blue", lty=2, lwd=0.3)+
-  annotate(geom="text", x=z_desejado1-0.1, y=d_desejada1, label="valor crítico=-2,57", angle=90, vjust=0, hjust=0, color="blue",size=3)+
-  annotate(geom="text", x=z_desejado2+0.3, y=d_desejada2, label="valor crítico=2,57", angle=90, vjust=0, hjust=0, color="blue",size=3)+
-  annotate(geom="text", x=z_desejado1-1.5, y=0.1, label="Região de rejeição da hipótese nula \nprobabilidade=\u03b1/2", angle=0, vjust=0, hjust=0, color="blue",size=3)+
-  annotate(geom="text", x=z_desejado2+0.5, y=0.1, label="Região de rejeição da hipótese nula \nprobabilidade=\u03b1/2", angle=0, vjust=0, hjust=0, color="blue",size=3)+
-  annotate(geom="text", x=z_desejado1+2, y=0.2, label="Região de não rejeição da hipótese nula \nprobabilidade= (1-\u03b1)", angle=0, vjust=0, hjust=0, color="blue",size=3)+
-  geom_segment(aes(x = z_calculado, y = 0, xend = z_calculado, yend = d_calculado), color="blue", lty=2, lwd=0.3)+
-  annotate(geom="text", x=z_calculado-0.1, y=d_calculado, label="valor da estatística do teste=0,9877", angle=90, vjust=0, hjust=0, color="blue",size=3)+
-  theme_bw()
-
-
-```
-
-\
-
-Conclusão: Os resultados obtidos pela análise estatística de comparação de médias das duas amostras colhidas de garrafas de plástico enchidas por duas máquinas diferentes $1$ e $2$ não nos permitem rejeitar a hipótese de que suas médias sejam iguais sob um nível de confiança de 99\% (Figura \@ref(fig:fig83)).    
-
-\
-
-Podemos ainda realizar testes de hipóteses para as diferenças entre as médias observadas ($\mu_{1}<\mu_{2}$ ou $\mu_{1}>\mu_{2}$). As conclusões derivadas desses testes deverão indicar que as médias não diferem entre si ao nível de significância dos testes chegando assim, por outras vias (agora não se rejeitando a hipótese nula), à mesma conclusão do teste de igualdade das médias antes realizado. 
-
-\
-
-> Teste unilateral à esquerda (tipo: menor que)
-
-\
-
-Nessa situação postula-se que a diferença da média 1 **para** a média 2 é **no mínimo** 0 (o que equivale dizer que a média 1 **é no mínimo igual** à média 2):
-
-\
-
-$$
-\begin{cases}
-	H_{0}: (\mu_{1} - \mu_{2}) \ge 0 \\
-	H_{1}: (\mu_{1} - \mu_{2}) < 0 
-\end{cases}
-$$
-\
-
-Da tabela da distribuição Normal padronizada obtemos o valor crítico monocaudal: ${Z}_{tab\left(\alpha \right)}=-2,33$. Pelo cálculo, a estatística do teste é $Z_{calc}=0,98773$.
-
-\
-
-
-
-```{r fig84,  out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste unilateral à esquerda (tipo: menor que) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valor crítico da estatística do teste: $z_{crit}=-2,33$. O valor calculado da estatística ($z_{calc}=0,98773$) não nos possibilita a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
-
-
-
-alfa=0.01
-prob_desejada=alfa
-z_desejado=round(qnorm(prob_desejada),4)
-d_desejada=dnorm(z_desejado, 0, 1)
-
-z_calculado=0.98773
-d_calculado=dnorm(z_calculado, 0, 1)
-
-
-
-
-ggplot(NULL, aes(c(-4,4))) +
-  geom_area(stat = "function", 
-            fun = dnorm, 
-            fill = "red", 
-            xlim = c(-4, z_desejado),
-            colour="black") +
-  geom_area(stat = "function", 
-            fun = dnorm, 
-            fill = "lightgrey", 
-            xlim = c(z_desejado,0),
-            colour="black") +
-  geom_area(stat = "function", 
-            fun = dnorm, 
-            fill = "lightgrey", 
-            xlim = c(0, z_desejado),
-            colour="black") +
-  geom_area(stat = "function", 
-            fun = dnorm, 
-            fill = "lightgrey", 
-            xlim = c(z_desejado,4),
-            colour="black") +
-  scale_y_continuous(name="Densidade") +
-  scale_x_continuous(name="Valores de z", breaks = c(z_desejado))  +
-  labs(title= 
-         "Região crítica sob a curva da função densidade da \ndistribuição apropriada ao teste", 
-       subtitle = "P( -2,33,\U221e,)=(1-\u03b1) em cinza (nível de confiança=0,99) \nP(-\U221e; -2,33)=\u03b1 em vermelho (nível de significância=0,01) ")+
-geom_segment(aes(x = z_desejado, y = 0, xend = z_desejado, yend = d_desejada), color="blue", lty=2, lwd=0.3)+
-annotate(geom="text", x=z_desejado-0.1, y=d_desejada, label="valor crítico=-2,33", angle=90, vjust=0, hjust=0, color="blue",size=3)+
-annotate(geom="text", x=z_desejado-2, y=0.1, label="Região de rejeição da hipótese nula \nprobabilidade=\u03b1", angle=0, vjust=0, hjust=0, color="blue",size=3)+
-annotate(geom="text", x=z_desejado+1, y=0.2, label="Região de não rejeição da hipótese nula  \nprobabilidade= (1-\u03b1)", angle=0, vjust=0, hjust=0, color="blue",size=3)+
-  geom_segment(aes(x = z_calculado, y = 0, xend = z_calculado, yend = d_calculado), color="blue", lty=2, lwd=0.3)+
-  annotate(geom="text", x=z_calculado-0.1, y=d_calculado, label="valor da estatística do teste=0,98773", angle=90, vjust=0, hjust=0, color="blue",size=3)+
-  theme_bw()
-
-```
-
-\
-
-
-Conclusão: Os resultados obtidos pela análise estatística de comparação de médias das duas amostras colhidas de garrafas de plástico enchidas por duas máquinas diferentes $1$ e $2$ não nos permitem rejeitar a hipótese de que a média de enchimento da máquina 1 seja no mínimo igual à da máquina 2 sob um nível de confiança de 99\% (Figura \@ref(fig:fig84)).   
-
-
-
-
-
-\
-
-
-> Teste unilateral à direita (tipo: maior que)
-
-Nessa situação postula-se  que a diferença da média 1 **para** a média 2 é **no máximo** 0 (o que equivale dizer que a média 1 **é no máximo igual** à média 2):
-
-\
-
-$$
-\begin{cases}
-	H_{0}: (\mu_{1} - \mu_{2}) \le 0 \\
-	H_{1}: (\mu_{1} - \mu_{2}) >  0 \\
-\end{cases}
-$$
-\
-
-Da tabela da distribuição Normal padronizada obtemos o valor crítico monocaudal: ${Z}_{tab\left(\alpha \right)}=-2,33$. Pelo cálculo, a estatística do teste é $Z_{calc}=0,98773$.
-
-\
-
-
-
-
-```{r fig85,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral à direita (tipo: maior que) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $z_{crit} = 2,33$. O valor calculado da estatística ($z_{calc}=0,98773$) não nos possibilita a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
-
-
-alfa=0.99
-prob_desejada=alfa
-z_desejado=round(qnorm(prob_desejada),4)
-d_desejada=dnorm(z_desejado, 0, 1)
-
-z_calculado=0.98773
-d_calculado=dnorm(z_calculado, 0, 1)
-
-
-
-
-ggplot(NULL, aes(c(-4,4))) +
-  geom_area(stat = "function", 
-            fun = dnorm, 
-            fill = "lightgrey", 
-            xlim = c(-4, z_desejado),
-            colour="black") +
-  geom_area(stat = "function", 
-            fun = dnorm, 
-            fill = "red", 
-            xlim = c(z_desejado,4),
-            colour="black") +
-  scale_y_continuous(name="Densidade") +
-  scale_x_continuous(name="Valores de z", breaks = c(z_desejado))  +
-  labs(title= 
-         "Região crítica sob a curva da função densidade da \ndistribuição apropriada ao teste", 
-       subtitle = "P(- \U221e; 2,33)=(1-\u03b1) em cinza (nível de confiança=0,99) \nP(2,33 ; \U221e)=\u03b1 em vermelho (nível de significância=0,01) ")+
-geom_segment(aes(x = z_desejado, y = 0, xend = z_desejado, yend = d_desejada), color="blue", lty=2, lwd=0.3)+
-annotate(geom="text", x=z_desejado-0.1, y=d_desejada, label="valor crítico=-1,88", angle=90, vjust=0, hjust=0, color="blue",size=3)+
-annotate(geom="text", x=z_desejado, y=0.1, label="Região de rejeição da hipótese nula \nprobabilidade=\u03b1", angle=0, vjust=0, hjust=0, color="blue",size=3)+
-annotate(geom="text", x=z_desejado-3, y=0.2, label="Região de não rejeição da hipótese nula  \nprobabilidade= (1-\u03b1)", angle=0, vjust=0, hjust=0, color="blue",size=3)+
-  geom_segment(aes(x = z_calculado, y = 0, xend = z_calculado, yend = d_calculado), color="blue", lty=2, lwd=0.3)+
-  annotate(geom="text", x=z_calculado-0.1, y=d_calculado, label="valor da estatística do teste=0,98773", angle=90, vjust=0, hjust=0, color="blue",size=3)+
-  theme_bw()
-```
-
-
-\
-
-Conclusão: Os resultados obtidos pela análise estatística de comparação de médias das duas amostras colhidas de garrafas de plástico enchidas por duas máquinas diferentes $1$ e $2$ não nos permitem rejeitar a hipótese de que a média de enchimento da máquina 1 seja no máximo igual à da máquina 2 sob um nível de confiança de 99\% (Figura \@ref(fig:fig85)).   
-
-\
-
-Pelo teste unilateral à esquerda concluiu-se que $\mu_{1} \ge \mu_{2}$; pelo teste unilateral à direita conclui-se que $\mu_{1} \le \mu_{2}$. Sob o nível de significânca estabelecido conclui-se que $\mu_{1} = \mu_{2}$.  
-
-\
-
-
-### Testes de hipóteses para as médias de duas populações Normais independentes com variâncias desconhecidas mas iguais: teste "t'' homocedástico ($\sigma_{1}^{2}=\sigma_{2}^{2}=?$)
-
-
-> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística t ($T \sim t_{(n_{1} + n_{2} - 2)}$). Os valores assumidos pelas diferenças amostrais são tais que
-
-\
-
-
-$$
-T =  \frac{(\stackrel{-}{X}_{1} - \stackrel{-}{X}_{2})-\Delta_{0}}  {S_{c} \cdot \sqrt{\frac{1}{n_{1}}+\frac{1}{n_{2}}}}  \sim t_{(n_{1} + n_{2} - 2)}
-$$
-\
-
-em que:
-
-\
-
-
-- $\Delta_{0}$ usualmente é 0 (igualdade);  
-- $\sigma_{1}^{2} = \sigma_{2}^{2} = \sigma^{2}$ são as variâncias populacionais desconhecidas, mas admitidas iguais (homogêneas);  
-- $\stackrel{-}{X}_{1}, S_{1}^{2}, n_{1}$ são a média, a variância e o tamanho referentes à  amostra 1;  
-- $\stackrel{-}{X}_{2}, S_{2}^{2}, n_{2}$ são a média, a variância e o tamanho referentes à amostra 2; e,  
-- $S_{c}^{2}$ é a variância conjunta ou ponderada.
-
-\
-
-Condições: 
-
-
-\
-
-- amostras Normais ($n_{1}$ e $n_{2}$ qualquer);  
-- amostras sob outras distribuições (desde que $n_{1}$ e $n_{2}$ $\ge 30$);  
-- a utilização da estatística ``t'' para $n_{1}$ e $n_{2} \ge 30$ apenas pressupõe que $S_{c}$ e  seja um estimador suficientemente bom para $\sigma_{i}$; e,
-- ${t}_{tab\left(\frac{\alpha }{2};{n}_{1}+{n}_{2}-2\right)}$ ou ${t}_{tab\left(\alpha ;{n}_{1}+{n}_{2}-2\right)}$: o quantil associado na distribuição ``t'' de *Student* ao nível de significância pretendido no teste, com $({n}_{1}+{n}_{2}-2)$ graus de liberdade.
-
-\
-
-
-A variância conjunta (ou variância ponderada) $S_{c}^{2}$ a ser utilizada no cálculo da estatística do teste é definida como:
-
-\
-
-$$
-S_{c}^{2} =  \frac{\left({n}_{1}-1\right)\cdot {S}_{1}^{2}+\left({n}_{2}-1\right)\cdot {S}_{2}^{2}}{{n}_{1}+{n}_{2}-2}
-$$ 
-
-\
-
-> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística t (T $\sim t_{(n_{1} + n_{2} - 2)}$)
-
-\
-
-
-- Teste de hipóteses bilateral (tipo: diferente de): 
-
-
-\begin{align*}
-P[\left|t_{calc}\right| \ge  {t}_{tab\left(\frac{\alpha }{2};{n}_{1}+{n}_{2}-2\right)}|\mu_{1}=\mu_{2}] & =(1-\alpha) \\
-P(-  {t}_{tab\left(\frac{\alpha }{2};{n}_{1}+{n}_{2}-2\right)} \le t_{calc}  \le  {t}_{tab\left(\frac{\alpha }{2};{n}_{1}+{n}_{2}-2\right)}) & =(1-\alpha)\\
-\end{align*}
-
-
-\
-
-- Teste de hipóteses unilateral à esquerda (tipo: menor que): 
-
-\
-
-\begin{align*}
-P[t_{calc} \ge -{t}_{tab\left(\alpha \right)}|\mu_{1} \ge \mu_{2}] & = (1-\alpha) \\  
-P( t_{calc}  \ge -{t}_{tab\left(\alpha;{n}_{1}+{n}_{2}-2\right)} ) & = (1-\alpha) \\ 
-\end{align*}
-
-\
-
-- Teste de hipóteses unilateral à direita (tipo: maior que):
-	
-\
-
-\begin{align*}
-P[t_{calc} \le {t}_{tab\left(\alpha \right)}|\mu_{1} \le \mu_{2}] &  =(1-\alpha)  
-P( t_{calc}  \le {t}_{tab\left(\alpha;{n}_{1}+{n}_{2}-2\right)})  & = (1-\alpha) 
-\end{align*}
-
-\
-
-Nas figuras \@ref(fig:fig70), \@ref(fig:fig71) e  \@ref(fig:fig72) observam-se: 
-
-\	
-
-- as regiões de rejeição da hipótese nula (subdivididas nos dois ou em apenas um dos lados) sob a curva da função densidade de probabilidade da distribuição adequada ao teste com probabilidades iguais ao nível de significância $\alpha$ ;   
-- a região de não rejeição da hipótese nula (delimitada à esquerda e à direita ou apenas em um dos lados) com probabilidade igual ao nível de confiança $(1-\alpha)$; e,   
-- os valores críticos da estatística do teste.
-
-\
-	
-
-### Teste de hipóteses para a razão de duas variâncias ($\frac{\sigma_{1}^{2}}{\sigma_{2}^{2}}$)
-
+## Teste de hipóteses para a razão de duas variâncias ($\frac{\sigma_{1}^{2}}{\sigma_{2}^{2}}$)
 
 \
 
@@ -2593,13 +1914,13 @@ Para se verificar se a consideração de igualdade das variâncias é estatistic
 
 $$
 \begin{cases}
-    H_{0}: (\sigma_{1}^{2}-\sigma_{2}^{2})=\Delta \\
-    H_{1}: (\sigma_{1}^{2} - \sigma_{2}^{2}) \ne \Delta
+    H_{0}: (\sigma_{1}^{2}-\sigma_{2}^{2})=\Delta_0 \\
+    H_{1}: (\sigma_{1}^{2} - \sigma_{2}^{2}) \ne \Delta)o
 \end{cases}
 $$
 \
 
-em que, usualmente, $\Delta=0$ (igualdade).
+em que, **usualmente**, $\Delta=0$, a fim de se testar se as variâncias podem ou não serem admitidas iguais.
 
 
 \
@@ -2663,7 +1984,7 @@ Considera eo exemplo:
 Regiões de rejeição da hipótese nula (Figura \@ref(fig:fig86)):
  
  
-```{r fig86,  out.width='100%', fig.align='center', fig.cap='Regiões de rejeição da hipótese nula para o teste bilateral (tipo: diferente de) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $f_{crit1}$ e $f_{crit2}$ para o nível de significância pretendido ($\\alpha$ dividido em ambas as caudas) e ($df_{1}; df_{2}$) graus de liberdade. A curva não é simétrica e assim, os valores críticos são diferentes', warning = FALSE}
+```{r fig86,  out.width='100%', fig.align='center', fig.cap='Regiões de rejeição da hipótese nula para o teste bilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $f_{crit1}$ e $f_{crit2}$ para o nível de significância pretendido ($\\alpha$ dividido em ambas as caudas) e ($df_{1}; df_{2}$) graus de liberdade. A curva não é simétrica e assim, os valores críticos são diferentes', warning = FALSE}
 
 
 # Parâmetros
@@ -2789,7 +2110,7 @@ Região de rejeição da hipótese nula (Figura \@ref(fig:fig87)):
  
 \
  
-```{r fig87,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste uniletaral à direita (tipo: menor que): a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $f_{crit}$ para o nível de significância pretendido ($\\alpha$ em uma cauda)  e ($df_{1}; df_{2}$) graus de liberdade.", warning = FALSE}
+```{r fig87,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $f_{crit}$ para o nível de significância pretendido ($\\alpha$ em uma cauda)  e ($df_{1}; df_{2}$) graus de liberdade.", warning = FALSE}
 
 # Parâmetros
 prob_desejada1 = 0.95
@@ -2857,7 +2178,693 @@ print(plot)
 
 
 
-> Exemplo: A Secretaria de Educação de um município deseja saber se o desempenho dos alunos de duas diferentes escolas municipais na disciplina de matemática pode ser considerado igual a um nível de significância de $\alpha=0,05$. Verifique antes de as variâncias são \textcolor{red}{iguais}. Para tanto ministrou um mesmo teste a 10 alunos de cada uma delas e obteve os seguintes notas:  
+## Teste de hipóteses para as médias ($\mu_{1};\mu_{2}$) de duas  populações Normais independentes 
+
+
+\
+
+
+
+```{r fig82, echo=FALSE, out.width='100%', fig.align='center', fig.cap='Visão esquemática das amostras de duas populações'}
+
+knitr::include_graphics("images11/ilustração_01.png")
+
+
+```
+
+
+\
+
+
+
+Pelo Teorema Limite Central, para tamanhos amostrais $n$ suficientemente grandes a média amostral $\stackrel{-}{X}$ tem distribuição aproximadamente Normal, com média $\mu$ e variância $\frac{\sigma^{2}}{n}$, independente da distribuição da população, onde $\mu$ e $\sigma^{2}$  são a média e a variância populacionais.    
+
+\
+
+
+- grandes: $n \geq 30 (40)$; e  
+- pequenas: $n < 30$.
+
+\
+
+> Situações possíveis:
+
+\
+
+
+- Variâncias populacionais conhecidas ou não conhecidas mas com amostras de grande tamanho;  
+- Variâncias populacionais desconhecidas: 
+  - Variâncias populacionais admitidas iguais; ou,  
+  - Variâncias populacionais quaisquer.
+
+
+\
+
+
+Os valores assumidos pelas características de nosso interesse nas populações são tais que: 
+
+\
+
+
+$$
+X_{1} \sim \mathcal{N}(\mu_{1}; \sigma^{2}_{1})
+$$
+
+\
+
+e 
+
+
+\
+
+$$
+X_{2} \sim \mathcal{N}(\mu_{2}; \sigma^{2}_{2})
+$$ 
+
+Ao se extrair duas amostras, os valores amostrais assumidos por essas características serão duas variáveis aleatórias tais que:
+
+\
+
+$$
+\stackrel{-}{X}_{1} \sim \mathcal{N} (\mu_{1}\frac{\sigma^{2}_{1}}{n_{1}}) 
+$$
+
+\
+
+e
+
+\
+
+$$
+\stackrel{-}{X}_{2} \sim \mathcal{N} (\mu_{2};\frac{\sigma^{2}_{2}}{n_{2}}).
+$$
+
+\
+
+
+
+É de nosso particular interesse definir uma variável aleatória expressa como a diferença das variáveis $\stackrel{-}{X}_{1}$ e $\stackrel{-}{X}_{2}$. 
+
+\
+Segue-se assim (por serem independentes) que
+
+\
+
+$$
+\stackrel{-}{X}_{1}-\stackrel{-}{X}_{2}  \sim \mathcal{N} (\mu_{1}-\mu_{2}; \frac{\sigma^{2}_{1}}{n_{1}} +  \frac{\sigma^{2}_{2}}{n_{2}}) .
+$$
+
+\
+
+### As estruturas possíveis dos testes de hipóteses relacionados às suas médias serão:
+
+\
+
+> Teste bilateral
+
+\
+
+
+$$
+\begin{cases}
+	H_{0}:(\mu_{1} - \mu_{2}) = \Delta_{0} \\
+	H_{1}:(\mu_{1} - \mu_{2}) \ne \Delta_{0} \\
+\end{cases}
+$$ 
+\
+
+> Teste unilateral à esquerda
+ 
+\
+ 
+
+$$
+\begin{cases}
+	H_{0}: (\mu_{1} - \mu_{2}) \ge \Delta_{0}\\
+	H_{1}: (\mu_{1} - \mu_{2}) < \Delta_{0}\\
+\end{cases}
+$$
+
+\
+
+> Teste unilateral à direita 
+
+\
+
+$$
+\begin{cases}
+	H_{0}: (\mu_{1} - \mu_{2}) \le \Delta_{0}\\
+	H_{1}: (\mu_{1} - \mu_{2}) > \Delta_{0}\\
+\end{cases}
+$$
+
+\
+
+Os valores assumidos pelas diferenças amostrais são tais que:
+
+\
+
+
+
+$$
+\frac{(\stackrel{-}{X}_{1}-\stackrel{-}{X}_{2}) - \Delta_{0}}{\sqrt{\frac{\sigma^{2}_{1}}{n_{1}} +  \frac{\sigma^{2}_{2}}{n_{2}}}} \sim \mathcal{N} (0,1)
+$$
+
+\
+
+para
+
+\
+
+- amostras Normais: $n_{1}$ e $n_{2}$ qualquer;  
+- amostras sob outras distribuições, desde que: $n_{1}$ e $n_{2} \ge 30(40)$:  
+- ${Z}_{tab\left(\frac{\alpha }{2}\right)}$ ou ${Z}_{tab\left(\alpha \right)}$: valores da distribuição Normal padronizada para o nível de significância pretendido no teste (bilateral ou unilateral); e,  
+- $Z_{calc} =   \frac{(\stackrel{-}{X}_{1} - \stackrel{-}{X}_{2})-\Delta_{0}}{\sqrt{\frac{\sigma^{2}_{1}}{n_{1}}+\frac{\sigma^{2}_{2}}{n_{2}}}} \sim \mathcal{N}(0,1)$
+
+\
+
+em que: 
+
+\
+
+- $\Delta_{0}$ é o valor inferido à diferença das médias populacionais $\mu_{1}$ e $\mu_{2}$, usualmente 0 (igualdade);  
+- $\sigma_{1}^{2}$ é a variância  da população 1;  
+- $\sigma_{2}^{2}$ é a variância da população 2;  
+- $\stackrel{-}{X}_{1}, n_{1}$ são a média e o tamanho da amostra 1; e,  
+- $\stackrel{-}{X}_{2}, n_{2}$ são a média e o tamanho da amostra 2.
+
+\
+
+
+
+### Testes de hipóteses para as médias de duas populações Normais com variâncias conhecidas (ou não conhecidas mas o tamanho das amostras é grande: $n\ge30$: $S^{2}\approx\sigma^{2}$)
+
+
+> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística Z ($Z \sim \mathcal{N}(0,1)$):
+
+\
+
+- Teste de hipóteses bilateral: 
+
+\
+
+\begin{align*}
+P[\left|Z_{calc}\right| \le {Z}_{tab\left(\frac{\alpha }{2}\right)}|\mu_{1}=\mu_{2}] & =(1-\alpha)\\
+P(-{Z}_{tab\left(\frac{\alpha }{2}\right)} \le Z_{calc} \le {Z}_{tab\left(\frac{\alpha }{2}\right)}) & = (1-\alpha)\\
+\end{align*}
+
+\
+
+
+- Teste de hipóteses unilateral à esquerda: 
+
+\
+
+\begin{align*}
+P[Z_{calc} \ge -{Z}_{tab\left(\alpha \right)}|\mu_{1} \ge \mu_{2}] & =(1-\alpha) \\
+P( Z_{calc}  \ge -{Z}_{tab\left(\alpha \right)}) & = (1-\alpha) \\
+\end{align*}
+
+\
+
+		
+- Teste de hipóteses unilateral à direita:
+
+\
+
+
+
+\begin{align*}
+P[Z_{calc} \le {Z}_{tab\left(\alpha \right)}|\mu_{1} \le \mu_{2}] & =(1-\alpha)  \\
+P( Z_{calc}  \le {Z}_{tab\left(\alpha \right)}) & = (1-\alpha) \\
+\end{align*}
+
+
+\
+
+
+
+Nas figuras \@ref(fig:fig70), \@ref(fig:fig71) e  \@ref(fig:fig72) observam-se: 
+
+
+\	
+
+- as regiões de rejeição da hipótese nula (subdivididas nos dois ou em apenas um dos lados) sob a curva da função densidade de probabilidade da distribuição adequada ao teste com probabilidades iguais ao nível de significância $\alpha$ ;   
+- a região de não rejeição da hipótese nula (delimitada à esquerda e à direita ou apenas em um dos lados) com probabilidade igual ao nível de confiança $(1-\alpha)$; e,   
+- os valores críticos da estatística do teste.
+
+\
+
+> Exemplo: Duas máquinas são usadas para encher garrafas plásticas com um volume líquido de 16oz. Os volumes de enchimento podem ser admitidos como normais, tendo desvios padrão iguais a $\sigma_{1}=0,020$oz e $\sigma_{2}=0,025$oz. O departamento de engenharia da fábrica deseja saber a um nível de significância de $\alpha=0,01$ se ambas as máquinas enchem um mesmo volume e para isso coletou uma amostra de 10 garrafas enchidas por cada uma das máquinas cf. tabela abaixo: 
+
+\
+
+
+```{=latex }
+\begin{table}[h]
+\centering
+\caption{Enchimento de duas máquinas}	
+\begin{tabular}{|c|c|c|c|}
+\hline 
+\multicolumn{2}{|c|}{Máquina 01} & \multicolumn{2}{|c|}{Máquina 02}   \\ 
+\hline 
+16,03 & 16,01 & 16,02 & 16,03 \\ 
+\hline 
+16,04 & 15,96 & 15,97 & 16,04 \\ 
+\hline 
+16,05 & 15,98 & 15,96 & 16,02 \\ 
+\hline 
+16,05 & 16,02 & 16,01 & 16,01 \\ 
+\hline 
+16,02 & 15,99 & 15,99 & 16,00 \\ 
+\hline 
+\end{tabular}  
+\end{table}
+
+```
+
+
+
+
+```{r eval=knitr::is_html_output(), results = "asis", echo = FALSE, message = FALSE}
+
+tex2markdown <- function(texstring) {
+  writeLines(text = texstring,
+             con = myfile <- tempfile(fileext = ".tex"))
+  texfile <- pandoc(input = myfile, format = "html")
+  cat(readLines(texfile), sep = "\n")
+  unlink(c(myfile, texfile))
+}
+
+textable <- "
+\\begin{table}[h]
+\\caption*{Enchimento de duas máquinas}	
+\\begin{tabular}{|c|c|c|c|}
+\\hline 
+\\multicolumn{2}{|c|}{Máquina 01} & \\multicolumn{2}{|c|}{Máquina 02}   \\\\
+\\hline 
+	16,03 & 16,01 & 16,02 & 16,03 \\\\
+\\hline 
+	16,04 & 15,96 & 15,97 & 16,04 \\\\
+\\hline 
+	16,05 & 15,98 & 15,96 & 16,02 \\\\
+\\hline 
+	16,05 & 16,02 & 16,01 & 16,01 \\\\
+\\hline 
+	16,02 & 15,99 & 15,99 & 16,00 \\\\
+\\hline 
+\\end{tabular}  
+\\end{table}
+"
+
+tex2markdown(textable)
+```
+
+
+
+\
+
+As variâncias populacionais $\sigma_{1}^{2}$ e $\sigma_{2}^{2}$ são conhecidas e as populações seguem uma distribuição Normal. A estatística do teste é: 
+
+\
+
+$$
+Z_{calc} =   \frac{(\stackrel{-}{X}_{1} - \stackrel{-}{X}_{2}) }{\sqrt{\frac{\sigma^{2}_{1}}{n_{1}}+\frac{\sigma^{2}_{2}}{n_{2}}}}
+$$
+\
+
+tal que $Z \sim \mathcal{N}(0,1)$, em que:
+
+\
+
+- $\mu_{1} , \mu_{2}$ são as médias das populações em teste;  
+- $\sigma_{1}^{2}=0,020^{2}, \sigma_{2}^{2}=0,025^{2}$ são as variâncias das populações em teste;  
+- $\stackrel{-}{x}_{1}=16,015, n_{1}=10$ são a média e o tamanho da amostra 1;  
+- $\stackrel{-}{x}_{2}=16,005, n_{2}=10$ são a média e o tamanho da amostra 2; e,   
+- o nível de significância estabelecido para o teste é $\alpha=0,01$.
+
+\
+
+
+> O problema nos pede um teste bilateral:
+
+
+$$
+\begin{cases}
+	H_{0}: (\mu_{1} - \mu_{2}) = 0 \\
+	H_{1}: (\mu_{1} - \mu_{2}) \ne 0 \\
+\end{cases}
+$$
+\
+
+Se $z_{calc}$ for tal que: 
+
+\
+
+
+$$
+-{z}_{tab\left(\frac{\alpha }{2}\right)} \le z_{calc} \le {z}_{tab\left(\frac{\alpha }{2}\right)}
+$$
+
+\
+
+
+não se rejeita a hipótese nula sob o nível de signficância estabelecido. Da tabela da distribuição Normal padronizada obtemos o valor crítico bicaudal: $|{Z}_{tab\left(\frac{\alpha }{2}\right)}|=2,57$. Pelo cálculo, a estatística do teste é  $z_{calc}=0,98773$.
+
+
+
+\
+
+
+
+```{r fig83,  out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $z_{crit} =\\pm 2,57$. O valor calculado da estatística ($z_{calc}=0,987$) não nos possibilita a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+
+
+alfa=0.01
+
+prob_desejada1=alfa/2
+z_desejado1=round(qnorm(prob_desejada1),4)
+d_desejada1=dnorm(z_desejado1, 0, 1)
+
+prob_desejada2=1-alfa/2
+z_desejado2=round(qnorm(prob_desejada2),4)
+d_desejada2=dnorm(z_desejado2, 0, 1)
+
+z_calculado=0.98773
+d_calculado=dnorm(z_calculado, 0, 1)
+
+
+ggplot(NULL, aes(c(-4,4))) +
+  geom_area(stat = "function", 
+            fun = dnorm, 
+            fill = "red", 
+            xlim = c(-4, z_desejado1),
+            colour="black") +
+  geom_area(stat = "function", 
+            fun = dnorm, 
+            fill = "lightgrey", 
+            xlim = c(z_desejado1,0),
+            colour="black") +
+  geom_area(stat = "function", 
+            fun = dnorm, 
+            fill = "lightgrey", 
+            xlim = c(0, z_desejado2),
+            colour="black") +
+  geom_area(stat = "function", 
+            fun = dnorm, 
+            fill = "red", 
+            xlim = c(z_desejado2,4),
+            colour="black") +
+  scale_y_continuous(name="Densidade") +
+  scale_x_continuous(name="Valores de z", breaks = c(z_desejado1,z_desejado2))  +
+  labs(title= 
+         "Regiões críticas sob a curva da função densidade da \ndistribuição apropriada ao teste", 
+       subtitle = "P(-2,57, 2,57)=(1-\u03b1) em cinza (nível de confiança=0,99) \nP(-\U221e; -2,57)= P(2,57; \U221e)= \u03b1/2 em vermelho (nível de significância/2=0,005) ")+
+  geom_segment(aes(x = z_desejado1, y = 0, xend = z_desejado1, yend = d_desejada1), color="blue", lty=2, lwd=0.3)+
+  geom_segment(aes(x = z_desejado2, y = 0, xend = z_desejado2, yend = d_desejada2), color="blue", lty=2, lwd=0.3)+
+  annotate(geom="text", x=z_desejado1-0.1, y=d_desejada1, label="valor crítico=-2,57", angle=90, vjust=0, hjust=0, color="blue",size=3)+
+  annotate(geom="text", x=z_desejado2+0.3, y=d_desejada2, label="valor crítico=2,57", angle=90, vjust=0, hjust=0, color="blue",size=3)+
+  annotate(geom="text", x=z_desejado1-1.5, y=0.1, label="Região de rejeição da hipótese nula \nprobabilidade=\u03b1/2", angle=0, vjust=0, hjust=0, color="blue",size=3)+
+  annotate(geom="text", x=z_desejado2+0.5, y=0.1, label="Região de rejeição da hipótese nula \nprobabilidade=\u03b1/2", angle=0, vjust=0, hjust=0, color="blue",size=3)+
+  annotate(geom="text", x=z_desejado1+2, y=0.2, label="Região de não rejeição da hipótese nula \nprobabilidade= (1-\u03b1)", angle=0, vjust=0, hjust=0, color="blue",size=3)+
+  geom_segment(aes(x = z_calculado, y = 0, xend = z_calculado, yend = d_calculado), color="blue", lty=2, lwd=0.3)+
+  annotate(geom="text", x=z_calculado-0.1, y=d_calculado, label="valor da estatística do teste=0,9877", angle=90, vjust=0, hjust=0, color="blue",size=3)+
+  theme_bw()
+
+
+```
+
+\
+
+Conclusão: Os resultados obtidos pela análise estatística de comparação de médias das duas amostras colhidas de garrafas de plástico enchidas por duas máquinas diferentes $1$ e $2$ não nos permitem rejeitar a hipótese de que suas médias sejam iguais sob um nível de confiança de 99\% (Figura \@ref(fig:fig83)).    
+
+\
+
+Podemos ainda realizar testes de hipóteses para as diferenças entre as médias observadas ($\mu_{1}<\mu_{2}$ ou $\mu_{1}>\mu_{2}$). As conclusões derivadas desses testes deverão indicar que as médias não diferem entre si ao nível de significância dos testes chegando assim, por outras vias (agora não se rejeitando a hipótese nula), à mesma conclusão do teste de igualdade das médias antes realizado. 
+
+\
+
+> Teste unilateral à esquerda
+
+\
+
+Nessa situação postula-se que a diferença da média 1 **para** a média 2 é **no mínimo** 0 (o que equivale dizer que a média 1 **é no mínimo igual** à média 2):
+
+\
+
+$$
+\begin{cases}
+	H_{0}: (\mu_{1} - \mu_{2}) \ge 0 \\
+	H_{1}: (\mu_{1} - \mu_{2}) < 0 
+\end{cases}
+$$
+\
+
+Da tabela da distribuição Normal padronizada obtemos o valor crítico monocaudal: ${Z}_{tab\left(\alpha \right)}=-2,33$. Pelo cálculo, a estatística do teste é $Z_{calc}=0,98773$.
+
+\
+
+
+
+```{r fig84,  out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste unilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valor crítico da estatística do teste: $z_{crit}=-2,33$. O valor calculado da estatística ($z_{calc}=0,98773$) não nos possibilita a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+
+
+
+alfa=0.01
+prob_desejada=alfa
+z_desejado=round(qnorm(prob_desejada),4)
+d_desejada=dnorm(z_desejado, 0, 1)
+
+z_calculado=0.98773
+d_calculado=dnorm(z_calculado, 0, 1)
+
+
+
+
+ggplot(NULL, aes(c(-4,4))) +
+  geom_area(stat = "function", 
+            fun = dnorm, 
+            fill = "red", 
+            xlim = c(-4, z_desejado),
+            colour="black") +
+  geom_area(stat = "function", 
+            fun = dnorm, 
+            fill = "lightgrey", 
+            xlim = c(z_desejado,0),
+            colour="black") +
+  geom_area(stat = "function", 
+            fun = dnorm, 
+            fill = "lightgrey", 
+            xlim = c(0, z_desejado),
+            colour="black") +
+  geom_area(stat = "function", 
+            fun = dnorm, 
+            fill = "lightgrey", 
+            xlim = c(z_desejado,4),
+            colour="black") +
+  scale_y_continuous(name="Densidade") +
+  scale_x_continuous(name="Valores de z", breaks = c(z_desejado))  +
+  labs(title= 
+         "Região crítica sob a curva da função densidade da \ndistribuição apropriada ao teste", 
+       subtitle = "P( -2,33,\U221e,)=(1-\u03b1) em cinza (nível de confiança=0,99) \nP(-\U221e; -2,33)=\u03b1 em vermelho (nível de significância=0,01) ")+
+geom_segment(aes(x = z_desejado, y = 0, xend = z_desejado, yend = d_desejada), color="blue", lty=2, lwd=0.3)+
+annotate(geom="text", x=z_desejado-0.1, y=d_desejada, label="valor crítico=-2,33", angle=90, vjust=0, hjust=0, color="blue",size=3)+
+annotate(geom="text", x=z_desejado-2, y=0.1, label="Região de rejeição da hipótese nula \nprobabilidade=\u03b1", angle=0, vjust=0, hjust=0, color="blue",size=3)+
+annotate(geom="text", x=z_desejado+1, y=0.2, label="Região de não rejeição da hipótese nula  \nprobabilidade= (1-\u03b1)", angle=0, vjust=0, hjust=0, color="blue",size=3)+
+  geom_segment(aes(x = z_calculado, y = 0, xend = z_calculado, yend = d_calculado), color="blue", lty=2, lwd=0.3)+
+  annotate(geom="text", x=z_calculado-0.1, y=d_calculado, label="valor da estatística do teste=0,98773", angle=90, vjust=0, hjust=0, color="blue",size=3)+
+  theme_bw()
+
+```
+
+\
+
+
+Conclusão: Os resultados obtidos pela análise estatística de comparação de médias das duas amostras colhidas de garrafas de plástico enchidas por duas máquinas diferentes $1$ e $2$ não nos permitem rejeitar a hipótese de que a média de enchimento da máquina 1 seja no mínimo igual à da máquina 2 sob um nível de confiança de 99\% (Figura \@ref(fig:fig84)).   
+
+
+
+
+
+\
+
+
+> Teste unilateral à direita 
+\
+
+
+Nessa situação postula-se  que a diferença da média 1 **para** a média 2 é **no máximo** 0 (o que equivale dizer que a média 1 **é no máximo igual** à média 2):
+
+\
+
+$$
+\begin{cases}
+	H_{0}: (\mu_{1} - \mu_{2}) \le 0 \\
+	H_{1}: (\mu_{1} - \mu_{2}) >  0 \\
+\end{cases}
+$$
+\
+
+Da tabela da distribuição Normal padronizada obtemos o valor crítico monocaudal: ${Z}_{tab\left(\alpha \right)}=-2,33$. Pelo cálculo, a estatística do teste é $Z_{calc}=0,98773$.
+
+\
+
+
+
+
+```{r fig85,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $z_{crit} = 2,33$. O valor calculado da estatística ($z_{calc}=0,98773$) não nos possibilita a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+
+
+alfa=0.99
+prob_desejada=alfa
+z_desejado=round(qnorm(prob_desejada),4)
+d_desejada=dnorm(z_desejado, 0, 1)
+
+z_calculado=0.98773
+d_calculado=dnorm(z_calculado, 0, 1)
+
+
+
+
+ggplot(NULL, aes(c(-4,4))) +
+  geom_area(stat = "function", 
+            fun = dnorm, 
+            fill = "lightgrey", 
+            xlim = c(-4, z_desejado),
+            colour="black") +
+  geom_area(stat = "function", 
+            fun = dnorm, 
+            fill = "red", 
+            xlim = c(z_desejado,4),
+            colour="black") +
+  scale_y_continuous(name="Densidade") +
+  scale_x_continuous(name="Valores de z", breaks = c(z_desejado))  +
+  labs(title= 
+         "Região crítica sob a curva da função densidade da \ndistribuição apropriada ao teste", 
+       subtitle = "P(- \U221e; 2,33)=(1-\u03b1) em cinza (nível de confiança=0,99) \nP(2,33 ; \U221e)=\u03b1 em vermelho (nível de significância=0,01) ")+
+geom_segment(aes(x = z_desejado, y = 0, xend = z_desejado, yend = d_desejada), color="blue", lty=2, lwd=0.3)+
+annotate(geom="text", x=z_desejado-0.1, y=d_desejada, label="valor crítico=-1,88", angle=90, vjust=0, hjust=0, color="blue",size=3)+
+annotate(geom="text", x=z_desejado, y=0.1, label="Região de rejeição da hipótese nula \nprobabilidade=\u03b1", angle=0, vjust=0, hjust=0, color="blue",size=3)+
+annotate(geom="text", x=z_desejado-3, y=0.2, label="Região de não rejeição da hipótese nula  \nprobabilidade= (1-\u03b1)", angle=0, vjust=0, hjust=0, color="blue",size=3)+
+  geom_segment(aes(x = z_calculado, y = 0, xend = z_calculado, yend = d_calculado), color="blue", lty=2, lwd=0.3)+
+  annotate(geom="text", x=z_calculado-0.1, y=d_calculado, label="valor da estatística do teste=0,98773", angle=90, vjust=0, hjust=0, color="blue",size=3)+
+  theme_bw()
+```
+
+
+\
+
+Conclusão: Os resultados obtidos pela análise estatística de comparação de médias das duas amostras colhidas de garrafas de plástico enchidas por duas máquinas diferentes $1$ e $2$ não nos permitem rejeitar a hipótese de que a média de enchimento da máquina 1 seja no máximo igual à da máquina 2 sob um nível de confiança de 99\% (Figura \@ref(fig:fig85)).   
+
+\
+
+Pelo teste unilateral à esquerda concluiu-se que $\mu_{1} \ge \mu_{2}$; pelo teste unilateral à direita conclui-se que $\mu_{1} \le \mu_{2}$. Sob o nível de significânca estabelecido conclui-se que $\mu_{1} = \mu_{2}$.  
+
+\
+
+
+
+### Testes de hipóteses para as médias de duas populações Normais com variâncias desconhecidas mas iguais: teste "t'' homocedástico ($\sigma_{1}^{2}=\sigma_{2}^{2}=?$)
+
+
+> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística t ($T \sim t_{(n_{1} + n_{2} - 2)}$). Os valores assumidos pelas diferenças amostrais são tais que
+
+\
+
+
+$$
+T =  \frac{(\stackrel{-}{X}_{1} - \stackrel{-}{X}_{2})-\Delta_{0}}  {S_{c} \cdot \sqrt{\frac{1}{n_{1}}+\frac{1}{n_{2}}}}  \sim t_{(n_{1} + n_{2} - 2)}
+$$
+\
+
+em que:
+
+\
+
+
+- $\Delta_{0}$ usualmente é 0 (igualdade);  
+- $\sigma_{1}^{2} = \sigma_{2}^{2} = \sigma^{2}$ são as variâncias populacionais desconhecidas, mas admitidas iguais (homogêneas);  
+- $\stackrel{-}{X}_{1}, S_{1}^{2}, n_{1}$ são a média, a variância e o tamanho referentes à  amostra 1;  
+- $\stackrel{-}{X}_{2}, S_{2}^{2}, n_{2}$ são a média, a variância e o tamanho referentes à amostra 2; e,  
+- $S_{c}^{2}$ é a variância conjunta ou ponderada.
+
+\
+
+Condições: 
+
+
+\
+
+- amostras Normais ($n_{1}$ e $n_{2}$ qualquer);  
+- amostras sob outras distribuições (desde que $n_{1}$ e $n_{2}$ $\ge 30$);  
+- a utilização da estatística ``t'' para $n_{1}$ e $n_{2} \ge 30$ apenas pressupõe que $S_{c}$ e  seja um estimador suficientemente bom para $\sigma_{i}$; e,
+- ${t}_{tab\left(\frac{\alpha }{2};{n}_{1}+{n}_{2}-2\right)}$ ou ${t}_{tab\left(\alpha ;{n}_{1}+{n}_{2}-2\right)}$: o quantil associado na distribuição ``t'' de *Student* ao nível de significância pretendido no teste, com $({n}_{1}+{n}_{2}-2)$ graus de liberdade.
+
+\
+
+
+A variância conjunta (ou variância ponderada) $S_{c}^{2}$ a ser utilizada no cálculo da estatística do teste é definida como:
+
+\
+
+$$
+S_{c}^{2} =  \frac{\left({n}_{1}-1\right)\cdot {S}_{1}^{2}+\left({n}_{2}-1\right)\cdot {S}_{2}^{2}}{{n}_{1}+{n}_{2}-2}
+$$ 
+
+\
+
+> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística t (T $\sim t_{(n_{1} + n_{2} - 2)}$)
+
+\
+
+
+- Teste de hipóteses bilateral: 
+
+
+\begin{align*}
+P[\left|t_{calc}\right| \ge  {t}_{tab\left(\frac{\alpha }{2};{n}_{1}+{n}_{2}-2\right)}|\mu_{1}=\mu_{2}] & =(1-\alpha) \\
+P(-  {t}_{tab\left(\frac{\alpha }{2};{n}_{1}+{n}_{2}-2\right)} \le t_{calc}  \le  {t}_{tab\left(\frac{\alpha }{2};{n}_{1}+{n}_{2}-2\right)}) & =(1-\alpha)\\
+\end{align*}
+
+
+\
+
+- Teste de hipóteses unilateral à esquerda: 
+
+\
+
+\begin{align*}
+P[t_{calc} \ge -{t}_{tab\left(\alpha \right)}|\mu_{1} \ge \mu_{2}] & = (1-\alpha) \\  
+P( t_{calc}  \ge -{t}_{tab\left(\alpha;{n}_{1}+{n}_{2}-2\right)} ) & = (1-\alpha) \\ 
+\end{align*}
+
+\
+
+- Teste de hipóteses unilateral à direita:
+	
+\
+
+\begin{align*}
+P[t_{calc} \le {t}_{tab\left(\alpha \right)}|\mu_{1} \le \mu_{2}] &  =(1-\alpha)  
+P( t_{calc}  \le {t}_{tab\left(\alpha;{n}_{1}+{n}_{2}-2\right)})  & = (1-\alpha) 
+\end{align*}
+
+\
+
+Nas figuras \@ref(fig:fig70), \@ref(fig:fig71) e  \@ref(fig:fig72) observam-se: 
+
+\	
+
+- as regiões de rejeição da hipótese nula (subdivididas nos dois ou em apenas um dos lados) sob a curva da função densidade de probabilidade da distribuição adequada ao teste com probabilidades iguais ao nível de significância $\alpha$ ;   
+- a região de não rejeição da hipótese nula (delimitada à esquerda e à direita ou apenas em um dos lados) com probabilidade igual ao nível de confiança $(1-\alpha)$; e,   
+- os valores críticos da estatística do teste.
+
+\
+
+
+
+
+> Exemplo: A Secretaria de Educação de um município deseja saber se o desempenho dos alunos de duas diferentes escolas municipais na disciplina de matemática pode ser considerado igual a um nível de significância de $\alpha=0,05$ (verifique antes de as variâncias são podem sem admitidas como iguais). Para tanto ministrou um mesmo teste a 10 alunos de cada uma delas e obteve os seguintes notas:  
 \
 
 
@@ -3049,7 +3056,7 @@ $$
 - $\sigma_{1}^{2}=\sigma_{2}^{2}=\sigma^{2}$ são as variâncias das populações em teste, desconhecidas e estatisticamente iguais;  
 - $\stackrel{-}{x}_{1}=80, S_{1}^{2}= 3,366^{2}  , n_{1}=10$ são a média, a variância e o tamanho referentes à amostra 1;  
 - $\stackrel{-}{x}_{2}=84, S_{2}^{2}= 5,395^{2}  , n_{2}=10$ são a média, a variância e o tamanho referentes à amostra 2;  
-- ${t}_{tab\left(\frac{\alpha }{2};{n}_{1}+{n}_{2}-2\right)}$: o quantil associado na distribuição ``t'' de **Student** ao nível de significância pretendido no teste, com $({n}_{1}+{n}_{2}-2)$ graus de liberdade.
+- ${t}_{tab\left(\frac{\alpha }{2};{n}_{1}+{n}_{2}-2\right)}$: o quantil associado na distribuição ``t'' de **Student** ao nível de significância pretendido no teste, com $({n}_{1}+{n}_{2}-2):18$ graus de liberdade.
 
 \
 
@@ -3097,18 +3104,18 @@ $$
 \
 
 
-```{r fig89, out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral (tipo: diferente de) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $t_{crit} =\\pm 2,101$. O valor calculado da estatística ($t_{calc}=-1,9892$) situa-se na faixa de não significância do teste, impossibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig89, out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $t_{crit} =\\pm 2,101$. O valor calculado da estatística ($t_{calc}=-1,9892$) situa-se na faixa de não significância do teste, impossibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 alfa=0.05
 
 prob_desejada1=alfa/2
-df=8
+df=18
 t_desejado1=round(qt(prob_desejada1,df ),df)
 d_desejada1=dt(t_desejado1,df)
 
 prob_desejada2=1-alfa/2
-df=8
+df=18
 t_desejado2=round(qt(prob_desejada2, df),df)
 d_desejada2=dt(t_desejado2,df)
 
@@ -3173,7 +3180,7 @@ Conclusão: Os resultados obtidos pela análise estatística de comparação de 
 
 \
 
-### Teste de hipóteses para as médias de duas populações Normais independentes com variâncias desconhecidas e desiguais: teste "``t'' heterocedástico ($\sigma_{1}^{2} \neq \sigma_{2}^{2}=?$)
+### Teste de hipóteses para as médias de duas populações Normais com variâncias desconhecidas e desiguais: teste "``t'' heterocedástico ($\sigma_{1}^{2} \neq \sigma_{2}^{2}=?$)
 
 
 
@@ -3205,9 +3212,12 @@ em que:
 \
 
 $$
-\nu=\frac{{\left(\frac{{S}_{1}^{2}}{{n}_{1}}+\frac{{S}_{2}^{2}}{{n}_{2}}\right)}^{2}}{\frac{{\left(\frac{{S}_{1}^{2}}{{n}_{1}}\right)}^{2}}{{n}_{1}-1}+\frac{{\left(\frac{{S}_{2}^{2}}{{n}_{2}}\right)}^{2}}{{n}_{2}-1}}
+\nu=\frac{{\left(\frac{{S}_{1}^{2}}{{n}_{1}}+\frac{{S}_{2}^{2}}{{n}_{2}}\right)}^{2}}{\frac{{\left(\frac{{S}_{1}^{2}}{{n}_{1}}\right)}^{2}}{{n}_{1}-1}+\frac{{\left(\frac{{S}_{2}^{2}}{{n}_{2}}\right)}^{2}}{{n}_{2}-1}},
 $$
 
+\
+
+arredondado pára o inteiro inferior mais próximo.
 
 
 \
@@ -3230,7 +3240,7 @@ Condições:
 
 \
 
-- Teste de hipóteses bilateral (tipo: diferente de): 
+- Teste de hipóteses bilateral: 
 
 
 \
@@ -3245,7 +3255,7 @@ P( - {t}_{tab\left(\frac{\alpha }{2};\nu \right)}  \le t_{calc}  \le  {t}_{tab\l
 \
 
 
-- Teste de hipóteses unilateral à esquerda (tipo: menor que): 
+- Teste de hipóteses unilateral à esquerda: 
 
 \
 
@@ -3258,7 +3268,7 @@ P(t_{calc}  \ge  {t}_{tab \left(\alpha ;\nu \right)}) & = (1-\alpha) \\
 
 \
 
-- Teste de hipóteses unilateral à direita (tipo: maior que):
+- Teste de hipóteses unilateral à direita:
 
 \
 
@@ -3353,7 +3363,7 @@ $$
 \
 
 
-- Teste de hipóteses bilateral (tipo: diferente de):
+- Teste de hipóteses bilateral:
 
 $$
 P (- {t}_{tab\left(\frac{\alpha }{2};\nu \right)}  \le t_{calc}  \le  {t}_{tab\left(\frac{\alpha }{2};\nu \right)}) = (1-\alpha)
@@ -3404,7 +3414,7 @@ $$
 
 
 
-```{r ,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste uniletaral à direita (tipo: menor que): a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $F_{crit}$ para o nível de significância pretendido ($\\alpha$ em uma cauda)  e ($df_{1}; df_{2}$) graus de liberdade.", warning = FALSE}
+```{r ,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste uniletaral à direita : a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $F_{crit}$ para o nível de significância pretendido ($\\alpha$ em uma cauda)  e ($df_{1}; df_{2}$) graus de liberdade.", warning = FALSE}
 
 
 
@@ -3485,8 +3495,8 @@ $$
 em que:
 
 - $\mu_{1} , \mu_{2}$ são as médias das populações em teste;  
-- $\stackrel{-}{X}_{1}=70,90, S_{1}^{2}= 25,339^{2}  , n_{1}=10$ são a média, a variância e o tamanho amostral 1;  
-- $\stackrel{-}{X}_{2}=84, S_{2}^{2}= 5,395^{2}  , n_{2}=10$ são a média, a variância e o tamanho amostral 2;  
+- $\stackrel{-}{x}_{1}=70,90, S_{1}^{2}= 25,339^{2}  , n_{1}=10$ são a média, a variância e o tamanho da amostra da população 1;  
+- $\stackrel{-}{x}_{2}=84, S_{2}^{2}= 5,395^{2}  , n_{2}=10$ são a média, a variância e o tamanho da amostra da população 2;  
 - ${t}_{tab \left(\frac{\alpha }{2};\nu \right)}$ ou ${t}_{tab \left(\alpha ;\nu \right)}$:  o quantil associado na distribuição ``t'' de *Student* ao nível de significância pretendido no teste, com graus de liberdade $(\nu)$.
 
 \
@@ -3496,12 +3506,12 @@ A aproximação dos graus de liberdade ($\nu$) é dada por uma combinação line
 	
 
 $$
-\nu=\frac{{\left(\frac{{S}_{1}^{2}}{{n}_{1}}+\frac{{S}_{2}^{2}}{{n}_{2}}\right)}^{2}}{\frac{{\left(\frac{{S}_{1}^{2}}{{n}_{1}}\right)}^{2}}{{n}_{1}-1}+\frac{{\left(\frac{{S}_{2}^{2}}{{n}_{2}}\right)}^{2}}{{n}_{2}-1}}=10
+\nu=\frac{{\left(\frac{{S}_{1}^{2}}{{n}_{1}}+\frac{{S}_{2}^{2}}{{n}_{2}}\right)}^{2}}{\frac{{\left(\frac{{S}_{1}^{2}}{{n}_{1}}\right)}^{2}}{{n}_{1}-1}+\frac{{\left(\frac{{S}_{2}^{2}}{{n}_{2}}\right)}^{2}}{{n}_{2}-1}}=9
 $$
 
 \
 
-(aproximar o resultado para o inteiro superior mais próximo).
+aproximar o resultado para o inteiro inferior mais próximo.
 
 \
 
@@ -3523,7 +3533,7 @@ Da tabela `t'' de Student obtemos o valor crítico bicaudal da estatística:
 
 
 $$
-|{t}_{tab \left(\frac{\alpha }{2};\nu \right)}| = |{t}_{tab \left(\frac{0,025}{2};10 \right)}| = 2,22
+|{t}_{tab \left(\frac{\alpha }{2};\nu \right)}| = |{t}_{tab \left(\frac{0,025}{2};9 \right)}| = 2,26
 $$
 
 
@@ -3531,18 +3541,18 @@ $$
 
 
 
-```{r fig91, out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral (tipo: diferente de) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $t_{crit} =\\pm 2,22$. O valor calculado da estatística ($t_{calc}=-1,599$) não se situa na faixa de significância do teste, não nos permitindo a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig91, out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $t_{crit} =\\pm 2,26$. O valor calculado da estatística ($t_{calc}=-1,599$) não se situa na faixa de significância do teste, não nos permitindo a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 alfa=0.05
 
 prob_desejada1=alfa/2
-df=8
+df=9
 t_desejado1=round(qt(prob_desejada1,df ),df)
 d_desejada1=dt(t_desejado1,df)
 
 prob_desejada2=1-alfa/2
-df=8
+df=9
 t_desejado2=round(qt(prob_desejada2, df),df)
 d_desejada2=dt(t_desejado2,df)
 
@@ -3579,7 +3589,7 @@ ggplot(NULL, aes(c(-4,4))) +
   scale_x_continuous(name="Valores de t", breaks = c(t_desejado1, t_desejado2))  +
   labs(title= 
          "Regiões críticas sob a curva da função densidade da \ndistribuição apropriada ao teste", 
-       subtitle = "P(-2,22, 2,22)=(1-\u03b1) em cinza (nível de confiança=0,95) \nP(-\U221e; -2,22)= P(2,22; \U221e)= \u03b1/2 em vermelho (nível de significância/2=0,025) ")+ geom_segment(aes(x = t_desejado1, y = 0, xend = t_desejado1, yend = d_desejada1), color="blue", lty=2, lwd=0.3)+
+       subtitle = "P(-2,26, 2,26)=(1-\u03b1) em cinza (nível de confiança=0,95) \nP(-\U221e; -2,26)= P(2,26; \U221e)= \u03b1/2 em vermelho (nível de significância/2=0,025) ")+ geom_segment(aes(x = t_desejado1, y = 0, xend = t_desejado1, yend = d_desejada1), color="blue", lty=2, lwd=0.3)+
  geom_segment(aes(x = t_desejado2, y = 0, xend = t_desejado2, yend = d_desejada2), color="blue", lty=2, lwd=0.3)+
   annotate(geom="text", x=t_desejado1-0.1, y=d_desejada1, label="valor crítico=-2,101", angle=90, vjust=0, hjust=0, color="blue",size=3)+
   annotate(geom="text", x=t_desejado2+0.3, y=d_desejada2, label="valor crítico=2,101", angle=90, vjust=0, hjust=0, color="blue",size=3)+
@@ -3604,7 +3614,7 @@ Conclusão: Os resultados obtidos pela análise estatística de comparação de 
 
 
 
-## Teste de hipóteses para uma proporção $\pi$
+## Teste de hipóteses para uma proporção $\Pi$ de uma população binomial
 
 \
 
@@ -3613,12 +3623,9 @@ A aproximação de uma população sob distribuição Binomial pela distribuiç�
 
 \
 
-- a amostra é colhida de modo aleatório, os ensaios são independentes e com probabilidade de ``sucesso'' constante;  
-- se a amostra é colhida sem reposição, o tamanho da população deve ser ao menos 10 (20) vezes o tamanho da amostra ($N \ge 10,20 \cdot n$);  
 - tamanho de amostra deve ser de ao menos 30 ($n \ge 30$);  
-- a proporção populacional não extrema (próxima a 0 ou 1);  
-- o número de ``sucessos'' deve ser de ao menos 5 ($n \cdot \pi_{0} \ge 5$); e,  
-- o número de ``fracassos'' deve ser de ao menos 5 ($n \cdot (1-\pi_{0}) \ge 5$).
+- o número de ``sucessos'' deve ser de ao menos 5: ($n \cdot \Pi_{0} \ge 5$); e,  
+- o número de ``fracassos'' deve ser de ao menos 5: ($n \cdot (1-\Pi_{0}) \ge 5$).
 
 \
 
@@ -3629,40 +3636,40 @@ A aproximação de uma população sob distribuição Binomial pela distribuiç�
 
 \
 
-> Teste bilateral (tipo: diferente de)
+> Teste bilateral 
 
 \
 
 $$
 \begin{cases}
-	H_{0}: \pi = \pi_{0}\\
-	H_{1}: \pi \ne \pi_{0}\\
+	H_{0}: \Pi = \Pi_{0}\\
+	H_{1}: \Pi \ne \Pi_{0}\\
 \end{cases}
 $$
 
 \
 
-> Teste unilateral à esquerda (tipo: menor que)
+> Teste unilateral à esquerda 
 
 \
 
 $$
 \begin{cases}
-	H_{0}: \pi \ge \pi_{0}\\
-	H_{1}: \pi < \pi_{0}\\
+	H_{0}: \Pi \ge \Pi_{0}\\
+	H_{1}: \Pi < \Pi_{0}\\
 \end{cases}
 $$
 
 \
 
-> Teste unilateral à direita (tipo: maior que)
+> Teste unilateral à direita 
 
 \
 
 $$
 \begin{cases}
-	H_{0}: \pi \le \pi_{0}\\
-	H_{1}: \pi > \pi_{0}\\
+	H_{0}: \Pi \le \Pi_{0}\\
+	H_{1}: \Pi > \Pi_{0}\\
 \end{cases}
 $$
 \
@@ -3671,7 +3678,7 @@ $$
 > Estatística do teste:  
 
 $$
-Z=\frac{p-\pi_{0} }{\sqrt{\frac{\pi_{0} \left(1-\pi_{0}) \right)}{n}}} \sim \mathcal{N}(0,1)
+Z=\frac{\hat{p}-\Pi_{0} }{\sqrt{\frac{\Pi_{0} \left(1-\Pi_{0}) \right)}{n}}} \sim \mathcal{N}(0,1)
 $$
 
 \
@@ -3680,8 +3687,8 @@ em que:
 
 \
 
-- $p$ é a proporção observada na amostra, uma estimativa da proporção populacional $\pi$;  
-- $\pi_{0}$ o valor (desconhecido) inferido à proporção populacional, a ser testado frente à proporção amostral; e,   
+- $\hat{p}$ é a proporção observada na amostra, uma estimativa da proporção populacional $\Pi$;  
+- $\Pi_{0}$ o valor inferido à proporção populacional, a ser testado frente à proporção amostral; e,   
 - $n$: é o tamanho da amostra.
 
 \
@@ -3691,12 +3698,12 @@ em que:
 
 \
 
-- Teste de hipóteses bilateral (tipo: diferente de): 
+- Teste de hipóteses bilateral : 
 
 \
 
 \begin{align*}
-P[\left|Z_{calc}\right| \le {Z}_{tab\left(\frac{\alpha }{2}\right)}|\pi= \pi_{0}] & =(1-\alpha) \\
+P[\left|Z_{calc}\right| \le {Z}_{tab\left(\frac{\alpha }{2}\right)}|\Pi= \Pi_{0}] & =(1-\alpha) \\
 P( -{Z}_{tab\left(\frac{\alpha }{2}\right)} \le Z_{calc} \le {Z}_{tab\left(\frac{\alpha }{2}\right)} ) & =(1-\alpha)\\
 \end{align*}
 
@@ -3708,19 +3715,19 @@ P( -{Z}_{tab\left(\frac{\alpha }{2}\right)} \le Z_{calc} \le {Z}_{tab\left(\frac
 \
 
 \begin{align*}
-P[Z_{calc} \ge  {Z}_{tab\left(\alpha \right)}|\pi \ge \pi_{0}] & =(1-\alpha)\\  
+P[Z_{calc} \ge  {Z}_{tab\left(\alpha \right)}|\Pi \ge \Pi_{0}] & =(1-\alpha)\\  
 P( Z_{calc}  \ge  {Z}_{tab\left(\alpha \right)}) & = (1-\alpha)\\ 
 \end{align*}
 
 \
 
 
-- Teste de hipóteses unilateral à direita (tipo maior que):
+- Teste de hipóteses unilateral à direita :
 
 \
 
 \begin{align*}
-P[Z_{calc} \le  {Z}_{tab\left(\alpha \right)}|\pi \le \pi_{0}] & =(1-\alpha)\\  
+P[Z_{calc} \le  {Z}_{tab\left(\alpha \right)}|\Pi \le \Pi_{0}] & =(1-\alpha)\\  
 P( Z_{calc}  \le  {Z}_{tab\left(\alpha \right)}) & = (1-\alpha)\\
 \end{align*}
 
@@ -3741,15 +3748,15 @@ Nas figuras \@ref(fig:fig70), \@ref(fig:fig71) e  \@ref(fig:fig72) observam-se:
 
 \
 
-> O problema nos pede um teste bilateral (tipo: diferente de):
+> O problema nos pede um teste bilateral:
 
 \
 
 
 $$
 \begin{cases}
-	H_{0}: \pi = 0,40\\
-	H_{1}: \pi \ne 0,40\\
+	H_{0}: \Pi = 0,40\\
+	H_{1}: \Pi \ne 0,40\\
 \end{cases}
 $$
 \
@@ -3766,10 +3773,7 @@ Verificação das condições:
 
 \
 
-- nada se afirmou sobre o tamanho da população para se verificar: $N ge 10n$); 
-- tamanho de amostra $n \ge 30$: nossa amostra é de 400 poços;  
-- proporção populacional não extrema (próxima a 0 ou 1): a afirmação é de que $\pi=0,40$; e,  
-- $(n \cdot \pi)$ e $(n \cdot (1-\pi)$ são maiores que 5 (160 e 240, respectivamente).
+- $(n \cdot \Pi_{0})$ e $(n \cdot (1-\Pi_{0})$ são maiores que 5 (160 e 240, respectivamente).
 
 \
 
@@ -3779,7 +3783,7 @@ Assim, a estatística do teste fica definida como sendo:
 \
 
 $$
-Z=\frac{p-\pi_{0} }{\sqrt{\frac{\pi_{0} \left(1-\pi_{0}) \right)}{n}}} \sim \mathcal{N}(0,1)
+Z=\frac{\hat{p}-\Pi_{0} }{\sqrt{\frac{\Pi_{0} \left(1-\Pi_{0}) \right)}{n}}} \sim \mathcal{N}(0,1)
 $$
 
 \
@@ -3787,8 +3791,8 @@ $$
 em que:
 \
 
-- $p=0,30$ é a proporção amostral, uma estimativa da proporção populaciona $\pi$;  
-- $\pi_{0}=0,40$ é o valor (desconhecido) inferido à proporção populacional, a ser testado frente à proporção amostral; e,    
+- $\hat{p}=0,30$ é a proporção amostral
+- $\Pi_{0}=0,40$ é o valor inferido à proporção populacional
 - $n=400$: é o tamanho da amostra.
 
 \
@@ -3798,7 +3802,7 @@ Da tabela da distribuição Normal padronizada obtemos o valor crítico bicaudal
 \
 
 
-```{r fig92,  out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral (tipo: diferente de) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $z_{crit} =\\pm 2,17$. O valor calculado da estatística ($z_{calc}=-4,082$) situa-se na faixa de significância do teste, possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig92,  out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $z_{crit} =\\pm 2,17$. O valor calculado da estatística ($z_{calc}=-4,082$) situa-se na faixa de significância do teste, possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 alfa=0.03
@@ -3863,7 +3867,7 @@ Conclusão: Os resultados obtidos na análise estatística realizada nos permite
 
 
 
-> Teste unilateral à esquerda (tipo: menor que)
+> Teste unilateral à esquerda 
 
 \
 
@@ -3871,8 +3875,8 @@ Conclusão: Os resultados obtidos na análise estatística realizada nos permite
 
 $$
 \begin{cases}
-	H_{0}: \pi \ge 0,40\\
-	H_{1}: \pi < 0,40\\
+	H_{0}: \Pi \ge 0,40\\
+	H_{1}: \Pi < 0,40\\
 \end{cases}
 $$
 
@@ -3888,7 +3892,7 @@ Da tabela obtemos o valor crítico monocaudal: $Z_{tab\left(\alpha\right)}=-1,88
 \
 
 
-```{r fig93,  out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste unilateral à esquerda (tipo: menor que) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valor crítico da estatística do teste: $z_{crit} = -1,88$. O valor calculado da estatística ($z_{calc}=-4,082$) situa-se na faixa de significância do teste, o que nos permite a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig93,  out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste unilateral à esquerda realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valor crítico da estatística do teste: $z_{crit} = -1,88$. O valor calculado da estatística ($z_{calc}=-4,082$) situa-se na faixa de significância do teste, o que nos permite a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 
@@ -3947,7 +3951,7 @@ Conclusão: Os resultados obtidos na análise estatística realizada nos permite
 \
 
 
-> Teste unilateral à direita (tipo: maior que)
+> Teste unilateral à direita 
 
 \
 
@@ -3955,8 +3959,8 @@ Conclusão: Os resultados obtidos na análise estatística realizada nos permite
 
 $$
 \begin{cases}
-	H_{0}: \pi \le 0,40\\
-	H_{1}: \pi > 0,40\\
+	H_{0}: \Pi \le 0,40\\
+	H_{1}: \Pi > 0,40\\
 \end{cases}
 $$
 
@@ -3973,7 +3977,7 @@ Da tabela obtemos o valor crítico monocaudal: $Z_{tab\left(\alpha\right)}=1,88$
 
 
 
-```{r fig94,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral à direita (tipo: maior que) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $z_{crit} = 1,88$. O valor calculado da estatística ($z_{calc}=-4,082$) situa-se na faixa de não significância do teste, não possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig94,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral à direita realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $z_{crit} = 1,88$. O valor calculado da estatística ($z_{calc}=-4,082$) situa-se na faixa de não significância do teste, não possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 alfa=0.97

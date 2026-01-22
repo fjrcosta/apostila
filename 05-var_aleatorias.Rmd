@@ -30,7 +30,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 
-# Introdução a variáveis aleatórias 
+# Introdução a variáveis aleatórias{#introducao-a-variaveis-aleatorias}
+
+\
 
 \
 
@@ -48,24 +50,28 @@ Essas quantidades de interesse, ou mais formalmente, essas funções de valor re
 
 \
 
-Em outras palavras, uma função $X$ (geralmente representada por uma letra maiúscula) que associa cada elemento $\omega$ pertencente ao espaço amostral $\Omega$ um número real é denominada, de forma mais precisa, como uma variável aleatória ou função estocástica.
+```{r, echo=FALSE, out.width='60%', fig.align='center', fig.cap="Variável aleatória $X$"}
 
-\
-
-
-$$
-X (\Omega) \to \mathcal{R}_{X} \text{, estando } \mathcal{R}_{X}\subseteq \mathcal{R}
-$$
-
-\
-
-```{r, echo=FALSE, out.width='50%', fig.align='center', fig.cap="Variável aleatória"}
-
-knitr::include_graphics("images5/v_aleatoria.jpg")
+knitr::include_graphics("images5/v_aleatoria2.png")
 
 ```
 
+
 \
+
+
+
+Em outras palavras, uma função, geralmente representada por uma letra maiúscula ($X$), que associa cada elemento $\omega$ pertencente ao espaço amostral $\Omega$ um número real é denominada, de forma mais precisa, como uma variável aleatória.
+
+\
+
+
+$$
+X (\Omega) \to \mathbb{R}_{X} \text{, estando } \mathbb{R}_{X}\subseteq \mathbb{R}
+$$
+
+\
+
 
 
 O *domínio* dessa função ($X$) é o conjunto de todos os possíveis valores numéricos de interesse do experimento aleatório e seu *contradomínio* está em $\mathbb{R}$. 
@@ -73,29 +79,41 @@ O *domínio* dessa função ($X$) é o conjunto de todos os possíveis valores n
 \
 
 >Exemplo 1: considere o espaço amostral do experimento aleatório relacionado ao sexo do bebê em três gestações bem sucedidas:
-$\Omega=\{\omega_{1}:(FFF), \omega_{2}:(FFM),\omega_{3}:(FMF), \omega_{4}:(MFF),\\
+
+>$\Omega=\{\omega_{1}:(FFF), \omega_{2}:(FFM),\omega_{3}:(FMF), \omega_{4}:(MFF),\\
 \omega_{5}:(FMM), \omega_{6}:(MFM), \omega_{7}:(MMF), \omega_{8}:(MMM)\}.$
-Se estivermos interessados no número de nascimentos do sexo masculino, podemos definir a função $X$ para associar cada elemento $\omega_{i}$ em $\Omega$ a um valor $x_{i} \in \mathbb{R}$ que apresentará os seguintes resutados:
-$X(FFF)=0; X(FFM)=1; X(FMF)=1; X(MFF)=1;\\
+
+>Se estivermos interessados no número de nascimentos do sexo masculino, podemos definir a função $X$ para associar cada elemento $\omega_{i}$ em $\Omega$ a um valor $x_{i} \in \mathbb{R}$ que apresentará os seguintes resutados:
+
+>$X(FFF)=0; X(FFM)=1; X(FMF)=1; X(MFF)=1;\\
 X(FMM)=2; X(MFM)=2; X(MMF)=2; X(MMM)=3$
 $\mathcal{R}_{X}=\{x_{1}=0; x_{2}=1; x_{3}=2; x_{4}=3\}\subseteq \mathcal{R}$
 
 \
 
 >Exemplo 2: considere o espaço amostral do experimento aleatório relacionado à sobrevivência de paciente ao final de 1 dia em uma UTI com quatro leitos:
-$\Omega=\{(0,0,0,0),(0,0,0,1),(0,0,1,0),(0,0,1,1),\\
+
+>$\Omega=\{(0,0,0,0),(0,0,0,1),(0,0,1,0),(0,0,1,1),\\
 (0,1,0,0),(0,1,0,1),(0,1,1,0),(0,1,1,1),(1,0,0,0),\\
 (1,0,0,1),(1,0,1,0),(1,0,1,1),(1,1,0,0),(1,1,0,1),\\
 (1,1,1,0),(1,1,1,1)\}.$ 
-Cada elemento do espaço amostral é uma sequência de quatro valores binários $(x_{1},x_{2},x_{3},x_{4})$, onde: $x_{i}=0$ indica que o paciente no leito $i$ sobreviveu e $x_{i}=1$ caso contrário.
-Se estivermos interessados no número de falecimentos podemos definir a função $X$ para associar cada elemento $\omega_{i}$ em $\Omega$ a um valor $x_{i} \in \mathbb{R}$ que apresentará os seguintes resultados:
-$X(0000)=0; X(0001)=1; X(0010)=1; \dots ; X(1111)=4$
+
+
+>Cada elemento do espaço amostral é uma sequência de quatro valores binários $(x_{1},x_{2},x_{3},x_{4})$, onde: $x_{i}=0$ indica que o paciente no leito $i$ sobreviveu e $x_{i}=1$ caso contrário.
+
+
+>Se estivermos interessados no número de falecimentos podemos definir a função $X$ para associar cada elemento $\omega_{i}$ em $\Omega$ a um valor $x_{i} \in \mathbb{R}$ que apresentará os seguintes resultados:
+
+>$X(0000)=0; X(0001)=1; X(0010)=1; \dots ; X(1111)=4$
 $\mathcal{R}_{X}=\{x_{1}=0; x_{2}=1; x_{3}=2; x_{4}=3; x_{5}=4\}\subseteq \mathcal{R}$
 
 \
 
+## Variáveis aleatórias discretas e contínuas {#variaveis-aleatorias-discretas-continuas}
 
-Existem dois tipos de variáveis aleatórias: **discretas** e **contínuas**:
+\
+
+A depender do experimento aleatório podemos propor variáveis aleatórias **discretas** ou **contínuas**:
 
 
 \
@@ -109,29 +127,28 @@ Existem dois tipos de variáveis aleatórias: **discretas** e **contínuas**:
 \
 
 
-A função aletória $X$ não irá, em geral, simplesmente relacionar os possíveis resultados de interesse do experimento aleatório a números reais. Mas sim computar algumas informações úteis como a probabilidade de sua verificação.
-
-\
-
 
 ## Função massa de probabilidade (*Probability Mass Function - PMF*)
 
 
 \	
 
-Considere $X$ uma variável aleatória discreta com o contradomínio $x_{1},x_{2},x_{3}, \dots x_{n} \dots$. Uma  _função (de distribuição) de probabilidade_ $f(x)$ é assim denominada se, aplicada a cada um dos possíveis valores $x_{i}$ da variável aleatória $X$, resultar em sua probabilidade de ocorrência. Assim, para $x = x_{i}$, $f(x_{i}) = P(X=x_{i})=p(x{i})$.  
+Considere $X$ uma variável aleatória discreta e seus valores possíveis $X:\{x_{1},x_{2},x_{3}, \dots x_{n} \dots\}$.
 
- 
+\
+
+Uma  _função (de distribuição) de probabilidade_ $f(x)$ é assim denominada quando, aplicada a cada um dos possíveis valores $x_{i}$ que a variável aleatória $X$ assume, entregar a probabilidade de sua ocorrência: para $x = x_{i}$, $f(x_{i}) = P(X=x_{i})=p(x{i})$.  
+
 \	
 
-Para que essa _função_ $f(x)$ possa ser considerada uma **função de distribuição de probabilidade**, ela precisa necessariamente atender às seguintes condições:
+Desse modo, sendo $f(x)$ uma **função de distribuição de probabilidade**, ela precisa **necessariamente** atender às seguintes condições:
 
 \	
 
->Postulado do intervalo:
+>Postulado do intervalo: 
 
 $$
-0 \leq f(x_{i}) \leq 1
+0 < f(x_{i}) < 1
 $$
 
 para qualquer $x_{i} \in \mathcal{R}_{X}$, onde $\mathcal{R}_{X}$ é o contradomínio de $X$.
@@ -307,6 +324,12 @@ abline(h = seq(0, 1, by = 0.25), col = "lightgray", lty = 2)
 
  
 \	
+
+
+## Função cumulativa de probabilidade
+
+
+\
 
 
 Uma _função de distribuição cumulativa_ $F(x)$ para uma variável aleatória $X$ exprime a probabilidade de que a variável aleatória $X$ assuma um valor _menor  ou igual a determinado $x$_ , sendo definida por:
@@ -518,41 +541,40 @@ grid(nx = NULL, ny = NULL, col = "lightgray", lty = "dotted")
  
 
 
-Considerem os espaços amostrais a seguir ($\Omega_{1},\Omega_{2},\Omega_{3},\Omega_{4},\Omega_{5}$) representativos de 4 experimentos aleatórios e admitam também que todos os eventos possíveis são equiprováveis. 
+Considerem que os cinco alvos da imagem abaixo sejam como que espaços amostrais ($\Omega_{1},\dots \Omega_{5}$) representativos de 5 experimentos aleatórios nos quais uma pessoa irá atirar um dardo. 
 
- 
+\
+
+Admitam também também esses espaços amostrais seja equiprováveis.
+
+\
+
+Admitam o último deles como um espaço amostral formado por $\to\infty$ pontos.  
+
 \	
 
 
 
-```{r, echo=FALSE, out.width='60%', fig.align='center', fig.cap="Diferentes espaços amostrais de um experimento aleatório (por razões gráficas desprezem o espaço fora dos círculos"}
+```{r, echo=FALSE, out.width='100%', fig.align='center', fig.cap="Diferentes espaços amostrais de um experimento aleatório."}
 
-knitr::include_graphics("images5/var_discret_cont.jpg")
+knitr::include_graphics("images5/var_aleatoria_continua.png")
 
 ```
 
 
-
- 
 \	
 
-Interpretem o último deles como um espaço amostral formado por $\infty$ pontos amostrais.  
-
-
- 
-\	
-
-Os eventos que compõem os quatro primeiros espaços amostrais são variável aleatória discretas. 
+Nos primeiros experimentos a probabilidade do arqueiro acertar **especificamente um dos dos possíveis quadradinhos (.)** parece ser bastante alta.  
 
 \
 
-Discretas pois permitem a contagem dos possíveis valores (finitos ou infinitos contáveis) aleatórios que o experimento pode assumir. Mas no quinto espaço amostral temos incontáveis possibilidades.
+Mas últimos experimentos, a probabilidade do arqueiro acertar **especificamente um dos dos possíveis quadradinhos (.)** é sensivelmente menor.
 
 
  
 \	
 
-Um _espaço amostral_ com essa característica é representativo de uma _variável aleatória contínua_.  
+Um _espaço amostral_ com a característica do último pode bem representar um **experimento aleatório continuo**.  
 
  
 \	
@@ -562,11 +584,11 @@ Sendo todos os eventos representados nos espaços amostrais **equiprováveis**, 
 \
 
  
-Em $\Omega_{1}$, $P(\omega_{1})=1$  
-Em $\Omega_{2}$, $P(\omega_{1})=P(\omega_{2})=P(\omega_{3})=P(\omega_{4})=0,50$  
-Em $\Omega_{3}$, $P(\omega_{1})=P(\omega_{2})=...=P(\omega_{16})=0,0625$  
-Em $\Omega_{4}$, $P(\omega_{1})=P(\omega_{2})=...=P(\omega_{64})=0,015625$  
-Em $\Omega_{5}$, $P(\omega_{n}) \rightarrow 0$, à medida que o número de eventos $n \rightarrow \infty$
+Em $\Omega_{1}$, $P(\omega_{.})=0,25$  
+Em $\Omega_{2}$, $P(\omega_{.})=0,111$  
+Em $\Omega_{3}$, $P(\omega_{.})=0,0625$  
+Em $\Omega_{4}$, $P(\omega_{.})=0,01$  
+Em $\Omega_{5}$, $P(\omega_{.}) \rightarrow 0$, à medida que o número de eventos $n \rightarrow \infty$
 
 \
 
@@ -587,7 +609,7 @@ Experimentos aleatórios nos quais os possíveis resultados assumem valores resu
 
 \
 
-Para estes uma função densidade de probabilidade é definida de modo a retornar a probabilidade de ocorrência associada a um intervalo de valores, posto a probabilidade de ocorrência de um valor aleatório contínuo específico $x$ tender a zero: $P(X=x) \to 0$.  
+Para estes uma _função densidade de probabilidade_ ($f(x)$) é definida de modo a retornar a probabilidade de ocorrência associada a um intervalo de valores, posto a probabilidade de ocorrência de um valor aleatório contínuo específico $x$ tender a zero: $P(X=x) \to 0$.  
 
 \
 
@@ -614,7 +636,7 @@ $$.
  
 \
 
-Se $X$ é uma variável aleatória contínua, a probabilidade de $X$ assumir qualquer valor exato é $P(X = x) = 0$. No entanto, a **probabilidade intervalar** de $X$ estar entre dois valores distintos, $a$ e $b$, é dada por:
+Sendo $f(x)$ a _função densidade de probabilidade_ da  variável aleatória contínua $X$, a **probabilidade de $X$ assumir valores em um intervalo de valores: $a$ e $b$ ($b>a$)** será dada por:
 
 \
 
@@ -624,7 +646,7 @@ $$
 
 \
 
-Graficamente, a interpretação de uma função densidade de probabilidade contínua é representada pela **área sob a curva** da função $f(x)$, delimitada pelos valores de interesse $a$ e $b$. Essa área corresponde à probabilidade de $X$ estar no intervalo $(a, b)$.
+**Graficamente**, a interpretação de uma função densidade de probabilidade contínua é representada pela **área sob a curva** da função $f(x)$, delimitada pelos valores de interesse da variável aletatória $X$r.
 
  
 \
@@ -638,15 +660,19 @@ knitr::include_graphics("images5/func_dist_cont.jpg")
 ```
 
 
+\
+
+Se admitirmos $(a \leq X \leq b)$ temos que a área será igual a um (1) posto estarmos calculando a probabilidade do espaço amostral de $X$, o intervalo $(a, b)$.
 
 \
 
-Como $f(x) \geq 0$, a curva da função densidade de probabilidade estará acima do eixo $x$ e a totalidade da área será igual a $1$, conforme 
+De modo geral, 
+
+\
 
 $$
 \underset{-\infty }{\overset{\infty }{\int }}f\left(x\right)dx = 1.
 $$ 
-
 
 \
 
@@ -979,11 +1005,11 @@ A expressão anterior é semelhante àquela usada para se calcular a média para
 Algumas propriedades envolvendo a esperança:
 
 \	
-1- Se $c$ é uma contante qualquer, então: $E(c) = c$ ($c \in \mathbb{R}$);  
-2- Se $c$ é uma contante qualquer, então: $E(c X) = c . E(X)$ ($c \in \mathbb{R}$);  
-3- Se $c$ é uma contante qualquer, então: $E(X \frac{+}{-} c) = E(X) \frac{+}{-} c$ ($c \in \mathbb{R}$);  
-4- Se $X$ e $Y$ são duas variáveis aleatórias quaisquer, então: $E(X +/- Y) = E(X) +/- E(Y)$;  
-5- Se $X$ e $Y$ são duas variáveis aleatórias independentes quaisquer, então:  $E(X . Y) = E(X). E(Y)$.
+1- Se $c$ é uma constante qualquer, então: $E(c) = c$ ($c \in \mathbb{R}$);  
+2- Se $c$ é uma constante qualquer, então: $E(c X) = c . E(X)$ ($c \in \mathbb{R}$);  
+3- Se $c$ é uma constante qualquer, então: $E(X \pm c) = E(X) \pm c$ ($c \in \mathbb{R}$);  
+4- Se $X$ e $Y$ são duas variáveis aleatórias quaisquer, então: $E(X \pm Y) = E(X) \pm E(Y)$;  
+5- Se $X$ e $Y$ são duas variáveis aleatórias independentes quaisquer, então:  $E(X.Y) = E(X).E(Y)$.
 
  
 \
@@ -1005,22 +1031,18 @@ Algumas propriedades envolvendo a variância:
 
 \	
 
-1- Se $c$ é uma contante qualquer, então: $Var(c)=0$ ($c\in\mathbb{R}$);  
+1- Se $c$ é uma constante qualquer, então: $Var(c)=0$ ($c\in\mathbb{R}$);  
 
 
-2- Se $c$ é uma contante qualquer, então: $Var(cX)=c^{2}.Var(X)$ ($c\in\mathbb{R}$);  
+2- Se $c$ é uma constante qualquer, então: $Var(cX)=c^{2}.Var(X)$ ($c\in\mathbb{R}$);  
 
 
 3- Se $X$ e $Y$ são duas variáveis aleatórias **independentes** quaisquer, então:  $Var(X \pm Y)=Var(X)+Var(Y)$; 
  
  
-4- Se $X$ e $Y$ são duas variáveis aleatórias **quaisquer**, então: $Var(X \pm Y)=Var(X)+Var(Y) \pm 2Cov(X,Y)$ (também).
- 
-\
+4- Se $X$ e $Y$ são duas variáveis aleatórias **quaisquer**, então: $Var(X \pm Y)=Var(X)+Var(Y) \pm 2Cov(X,Y)$. A covariância ($Cov(X,Y)$) entre duas variáveis aleatórias quaisquer $X$ e $Y$ é dada por:
 
-A covariância ($Cov(X,Y)$) entre duas variáveis aleatórias quaisquer $X$ e $Y$ é dada por:
 
-\
 
 $$
 Cov \left(X,Y\right)= E(XY) - E(X)E(Y)

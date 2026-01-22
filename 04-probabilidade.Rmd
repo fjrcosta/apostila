@@ -21,8 +21,9 @@ colFmt <- function(x,color) {
 
 
 
-# Introdução ao cálculo de probabilidades
+# Introdução ao cálculo de probabilidades{#introducao-ao-calculo-de-probabilidades}
 
+\
 
 \
 \
@@ -1507,65 +1508,64 @@ Admita dois eventos definidos sobre o exprimento aleatório de se sortear uma ca
 
 \
 
-- \( A: \{1, 2,3,4,5,6,7,8,9,10,J,Q,K\}_{vermelho}\): cartas vermelhas, e
-- \( B: \{J, Q, K\}_{qualquer}\): cartas de figuras.
-
-\
-
-A probabilidade de se sortear aleatoriamente uma carta vermelha é \( P(A)=26/52=0,5\) e a probabilidade de escolher uma carta de figura é \( P(B)=12/52=0,23\). 
-
-\
-
-Se nosso interesse é agora determinar a probabilidade de um evento definido como uma  **vermelha e de figura ao mesmo tempo** ou seja, uma carta que está simultaneamente nos conjuntos \( A \) e \( B \), estamos então interessados na probabilidade da **interseção** (conectivo $\cap$) desses dois eventos: \( P(A \cap B) \).
-
-\
-
-A interseção acaba impondo restrições no espaço amostral inicial (todas as 52 cartas do baralho):
-
-
-- olhando-se por um prisma vemos que o espaço amostral agora é reduzido para \( A \) (apenas as 26 cartas vermelhas) e, **dentro desse novo espaço amostral**, estamos interessados nos elementos \( B \) (apenas cartas de figura);
-- do mesmo modo se olharmos por outro prisma, quando o espaço amostral agora é reduzido para \( B \) (apenas as 12 cartas de figuras) e, **dentro desse novo espaço amostral**, estamos interessados nos elementos \( A \) (apenas cartas vermelhas);
+- \( A: \{A, 2,3,4,5,6,7,8,9,10,J,Q,K\}_{vermelho}\): cartas vermelhas (ouro e copas), e
+- \( B: \{A, J, Q, K\}_{qualquer}\): cartas com figuras.
 
 \
 
 
-A probabilidade de um evento \( A \) condicionada à ocorrência prévia de um outro evento \( B \), pode ser entendida como a fração de \( A \) dentro de \( B \), ou seja:
+
+Se nosso interesse é agora determinar a probabilidade de um evento definido como uma  **vermelha e de figura ao mesmo tempo** ou seja, uma carta que está simultaneamente nos conjuntos \( A \) e \( B \), estamos então interessados na probabilidade da **interseção** (conectivo $\cap$) desses dois eventos: \( P(A \cap B) \). Esse evento (interseção) acaba impondo restrições no espaço amostral inicial (todas as 52 cartas do baralho)
+
+\
+
+- Olhando-se por um prisma, podemos considerar que o espaço amostral agora é reduzido para \( A \): apenas as 26 cartas vermelhas: copas e ouro e, **dentro desse novo espaço amostral**, estamos interessados nos elementos \( B \): apenas as 4 cartas de figura: A, J, Q ou K.
+
+
+\
+
+A probabilidade do um evento \( B \) condicionada à ocorrência prévia do evento \( A \), pode ser entendida como a fração de \( B \) dentro de \( A \), ou seja:
+
 \
 
 $$
-P(\text{ocorreu A, ocorrer B}) = \frac{ P(A \cap B)}{ P(A)}\\
-P(\text{foi sorteada uma carta vermelha, sortear-se uma figura})= \frac{6}{12}=0,50
+P(\text{foi sorteada uma carta vermelha, sortear-se uma figura})=\\
+\frac{  \text{resultados favoráveis (número de cartas de figuras e vermelhas)}}{\text{resultados possíveis (número de cartas vermelhas)}}=\\
+\frac{8}{26}=0,3076\\
 $$ 
+<!-- P(\text{foi sorteada uma carta vermelha, sortear-se uma figura})= \frac{P(B \cap A)}{P(A)}\\ -->
+<!-- P(\text{foi sorteada uma carta vermelha, sortear-se uma figura}) \times P(A)= P(B \cap A) \\ -->
+<!-- P(\text{foi sorteada uma carta de figura, sortear-se uma carta vermelha})= \frac{P(A \cap B)}{P(B)}\\ -->
+<!-- P(\text{foi sorteada uma carta de figura, sortear-se uma carta vermelha})  \times P(B)= P(A \cap B)\\ -->
+
 \
 
 
+- Alternativamente, se olharmos por outro prisma, podemos considerar que o espaço amostral agora é reduzido para \( B \): apenas as 16 cartas de figuras e, **dentro desse novo espaço amostral**, estamos interessados nos elementos \( A \): apenas as 8 cartas vermelhas.
+
+
+\
+
 $$
-P(\text{ocorreu B, ocorrer A}) = \frac{ P(B\cap A)}{ P(B)}\\
-P(\text{foi sorteada uma figura, sortear-se uma carta vermelha})= \frac{6}{12}=0,50
+P(\text{foi sorteada uma carta de figura, sortear-se uma carta vermelha})=\\
+\frac{  \text{resultados favoráveis (número de cartas vermelhas e com figuras)}}{\text{resultados possíveis (número de cartas de figuras )}}=\\
+\frac{8}{16}=0,50\\
 $$ 
 
 
 \
 
 
-Reescrevendo-se
+>Dois eventos quaisquer $A$ e $B$ definidos sobre um experimento aleatório são ditos **condicionados** quando a ocorrência prévia de um deles impõe **uma restrição** no espaço amostral do segundo, alterando sua probabilidade original do outro. *Ocorrência* pode ser entendido alternativamente como uma informação adicional trazida *a priori* ao experimento, e que alterará a incerteza inicial que pairava sobre os possíveis resultados.
 
-$$
-P(A \cap B) = P(\text{ocorreu A, ocorrer B}) \times P(A)\\
-P(B \cap A) = P(\text{ocorreu B, ocorrer A}) \times P(B)\\
-P(A \cap B)=P(B \cap A)\\
-$$
-
-
-\
-
-
-Dois eventos $A$ e $B$ definidos sobre um experimento aleatório qualquer são ditos **condicionados** quando a ocorrência prévia de um deles impõe **uma restrição** no espaço amostral do segundo. 
 
 \
 
 
 A **probabilidade** de um evento qualquer $A$ **condicionada** a um segundo evento $B$ é representada como $P(A|B)$.
+
+\
+
 
 A _barra_ vertical pode ser "lida" adotando-se termos correlatos que facilitam o entendimento da relação existente, tais como :
 
@@ -1578,10 +1578,9 @@ A _barra_ vertical pode ser "lida" adotando-se termos correlatos que facilitam o
 \
 
 
-A **regra geral da probabilidade de dois eventos condicionados** estabelece que:
+Uma **regra geral para o cálculo da probabilidade de dois eventos condicionados** pode ser apresentada como:
 
 \
-
 
 \begin{align*}
 P(A|B) & = \frac{ P(A\cap B)}{ P(B)} \\
@@ -1590,10 +1589,53 @@ P(B|A) & = \frac{ P(B\cap A)}{ P(A)}
 
 \
 
-sendo $P(B)>0$ e $P(A)>0$ nas expressões acima.
+para $P(B)>0$ e $P(A)>0$ nas expressões acima.
 
 
 \
+
+Trazendo-se ao exemplo das cartas de baralho, as probabilidades **marginais** de aleatoriamente serem sorteadas cartas vermelhas, de figuras e vermelhas e de figuras são:
+
+\
+
+- uma carta vermelha: \( P(A)=26/52=0,50\)
+- uma carta de figura é \( P(B)=16/52=0,3076\). 
+- uma carta vermelha e de figura é  \( P(A \cap B) = 8/52=0,1538\)
+
+\
+
+$$
+P(\text{foi sorteada uma carta vermelha, sortear-se uma figura}) -> P(B|A) =\\
+\frac{ P(B\cap A)}{ P(A)}=\\
+\frac{0,1538}{0,50}=\\
+0,3076\\
+$$
+
+\
+
+A probabilidade marginal de se sortear uma carta de figura é 0,3076; **todavia**, com a informação *a priori* de que a carta sorteada foi uma carta vermelha, **não se alterou**.
+
+\
+
+$$
+P(\text{foi sorteada uma carta de figura, sortear-se uma carta vermelha}) -> P(A|B)  =\\
+\frac{ P(A\cap B)}{ P(B)}=\\
+\frac{0,1538}{0,3076}=\\
+0,50 \\
+$$
+
+
+\
+  Do mesmo modo, a probabilidade marginal de se sortear uma carta vermelha é 0,50; **todavia**, com a informação *a priori* de que a carta sorteada foi uma carta de figura, **não se alterou**.
+
+\
+
+
+>Se P(B|A)=P(B) (naturalmente P(A|B)=P(A)) dizemos que os eventos A e B não são condicionados. 
+
+
+\
+
 
 
 <!-- De modo geral, se os eventos $E_{1}$, $E_{2}$,...,$E_{n}$ particionam um espaço amostral (não têm interseções entre si e sua a união é o espaço amostral). Admita $B$ um evento qualquer definido sobre as partições desse espaço. A probabilidade de ocorrência de $B$ evento será: -->

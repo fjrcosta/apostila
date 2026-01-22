@@ -32,9 +32,22 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
+```{r}
 
-# Introdução à estatística descritiva
+library(reticulate)
+#use_condaenv("r-python")
+#use_python('/opt/homebrew/Caskroom/miniconda/base/envs/r-python/python3.9')
 
+library(reticulate)
+Sys.setenv(RETICULATE_CONDA = "/opt/homebrew/Caskroom/miniconda/base/bin/conda")
+use_condaenv("r-python")
+
+```
+
+
+# Introdução à estatística descritiva{#introducao-a-estatistica-descritiva}
+
+\
 
 \
 
@@ -68,7 +81,7 @@ Habitualmente uma _EDA_ envolve:
 - verificar quais são os tipos de variáveis presentes nos dados;
 - verificar os padrões de cada variável e eventuais associações entre duas ou mais delas; e,
 - apresentar os valores assumidos por cada uma das variáveis em formas resumidas como: 
-  - resumos (sínteses) numéricas
+  - resumos (sínteses) numéricos
   - tabulares e 
   - gráficos.
 
@@ -122,7 +135,7 @@ alturas
 Esse conjunto de dados certamente contém diversas informações acerca da altura dessas pessoas; todavia, da maneira como está apresentado a compreensão dessas informações fica bastante comprometida.
 
 
-## Resumos (sínteses) numéricos descritivos
+## Apresentacao descritiva de dados na forma de resumos numericos
 
 \
 
@@ -179,6 +192,20 @@ As mais conhecidas _sínteses numéricas_ podem ser agrupadas conforme o aspecto
 
 Uma  medida de posição ou dispersão é dita **resistente** quando forem pouco afetadas pela alteração de uma pequena porção dos dados. A mediana é uma medida resistente, já a média e a variância não são.
 
+
+### Estimadores
+
+\
+
+
+
+```{r, echo=FALSE, out.width='50%', fig.align='center', fig.cap="Viés e variância"}
+
+knitr::include_graphics("images3/bias_variance.jpg")
+
+```
+
+\
 
 
 ### Medidas de tendência central (posição)
@@ -700,7 +727,7 @@ knitr::include_graphics("images3/vetor_posicao.jpg")
 
 \
 
-De modo geral, um _quantil_ de ordem $p$ (ou também $p-quantil$, indicado por $q_{p}$) é uma medida separatriz onde $p$ é uma proporção qualquer (limitada no intervalo 0 < p < 1), tal que 100$p$\% das observações sejam menores que seu valor $q_{p}$. Desse modo, o valor $q_{p}$ de uma variável aleatória $X$ remete à medida da probabilidade:
+De modo geral, um _quantil_ de ordem $p$ (ou também $p-quantil$, indicado por $q_{p}$) é uma medida separatriz onde $p$ estabelece uma proporção qualquer (limitada no intervalo 0 < p < 1), tal que 100$p$\% das observações sejam aproximadamente menores ou iguais que $q_{p}$. Desse modo, o valor $q_{p}$ de uma variável aleatória $X$ remete à medida da probabilidade:
 
 \
 
@@ -708,6 +735,45 @@ $$
 P(X=x | x\leq q_{p})=p
 $$ 
 \
+
+
+Para calcular o p-ésimo quantil de uma amostra de tamanho $n$, Hyndman e Fan (1996) estabeleceram:
+
+\
+
+$$j = (floor) [Np + m \rfloor]$$, 
+
+
+\
+
+em que:
+
+\
+
+
+- $j$ = índice calculado
+- $N$ = tamanho da amostra
+- $p$ = percentil desejado (0 ≤ p ≤ 1)  
+- $m$ = parâmetro específico do método
+
+\
+
+
+| Tipo | Parâmetro m |
+|------|-------------|
+| 1    | 0           |
+| 2    | 0           |
+| 3    | -0.5        |
+| 4    | 0           |
+| 5    | 0.5         |
+| 6    | p           |
+| 7    | 1 - p       |
+| 8    | (p+1)/3     |
+| 9    | p/4 + 3/8   |
+
+
+\
+
 
 Os quantis recebem diferentes nomes em função do modo como subdividem o conjunto de dados:
 
@@ -851,22 +917,20 @@ E os quartis serão:
 
 
 
-Há muitos modos de se estabelecer os quantis descritos na literatura. O próprio [R](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/quantile) apresenta 9 modos diferentes: 
+Em razão das variadas proposições existentes na literatura para se estabelecer os quantis o [R](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/quantile) apresenta 9 modos diferentes: 
 
 \
 
 
 ```{r}
-quantile(alturas, type=1)
-quantile(alturas, type=2)
-quantile(alturas, type=3)
-quantile(alturas, type=4)
-quantile(alturas, type=5)
-quantile(alturas, type=6)
-quantile(alturas, type=7)
-quantile(alturas, type=8)
-quantile(alturas, type=9)
+q <- c(0.25, 0.50, 0.75)
+types <- c("1", "2", "3", "4", "5", "6", "7", "8", "9")
 
+for(i in 1:9) {
+  estimates <- quantile(alturas, q, type=i)
+  cat(sprintf("Estimativas dos quartis segundo o método type %-2s => Q1: %.5f, Q2: %.5f, Q3: %.5f\n", 
+              types[i], estimates[1], estimates[2], estimates[3]))
+}
 
 ```
 
@@ -874,11 +938,45 @@ quantile(alturas, type=9)
 \
 
 
+```{python, include=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
+
+import numpy as np
+
+```
+
+
+
+```{python, include=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
+
+methods = [
+   'inverted_cdf',
+   'averaged_inverted_cdf',
+   'closest_observation',
+   'interpolated_inverted_cdf',
+   'hazen',
+   'weibull',
+   'linear',
+   'median_unbiased',
+   'normal_unbiased',
+   'nearest',
+   'lower',
+   'higher',
+   'midpoint',
+]
+alpha = [0.25, 0.5, 0.75]
+for m in methods:
+   estimates = np.quantile(r.alturas, alpha, method=m)
+   print(f"Estimativas dos quartis segundo o método {m:<25} => Q1: {estimates[0]:.4f}, Q2: {estimates[1]:.4f}, Q3: {estimates[2]:.4f}")
+
+```
+\
+
 
 Para grandes conjuntos de dados a diferença entre os quantis determinados sob esses diferentes modos será desprezível.
 
 \
-## Padronização (_z-scores_)
+
+## Padronizacao de dados (_z-scores_)
 
 
 \
@@ -1116,9 +1214,9 @@ knitr::include_graphics("images3/comp_sinteses.jpg")
 
 ```
 
+\
 
-
-## Apresentação tabular de dados 
+## Apresentacao descritiva de dados na forma tabular
 
 
 \
@@ -1183,7 +1281,8 @@ Observa-se frequentemente, todavia, que  as publicações seguem normas particul
 
 \
 
-### Apresentação tabular de dados qualitativos
+### Apresentacao tabular de dados qualitativos
+
 
 \
 
@@ -1667,7 +1766,7 @@ tex2markdown(textable)
 
 
 
-### Apresentação tabular de dados quantitativos
+### Apresentacao tabular de dados quantitativos
 
 \
 
@@ -1721,10 +1820,9 @@ Ao se escolher um número ($k$) de classes deve-se **ponderar** para que:
 - os intervalos das classes tenham, geralmente, a mesma amplitude (raramente se necessita dispor de classes com amplitudes diferentes);
 - os intervalos, a faixa de variação que vai do limite inferior da **primeira classe** ao limite superior da **última classe*, devem conter todos os valores possíveis da variável;
 - cada valor observado deve pertencer **apenas a uma classe**;
-- nenhuma classe deverá estar vazia (sem observação alguma);  
-- não adotar um número muito elevado de classes de modo que cada classe possua poucas observações (ou mesmo nenhuma); e,
-- não adotar um número muito reduzido de classes de modo a esconder a variabilidade dos dados ao se reunir todas as observações em poucas faixas de valores;
-- alguns autores recomendam um número mínimo de 5 classes e um máximo de 15;
+- **nenhuma classe** deverá estar vazia (sem observação alguma);  
+- não adotar um número muito elevado de classes (de modo que cada classe possua poucas observações) e nem muito reduzido (de modo a esconder a variabilidade dos dados ao se reunir todas as observações em poucas faixas de valores);
+- alguns autores **recomendam** um número mínimo de 5 classes e um máximo de 15;
 - podemos considerar a amplitude de cada classe com **uma casa decimal a mais que os dados** de modo a facilitar a incorporação do último valor (mais elevado) na última classe. 
 
 \
@@ -1746,31 +1844,31 @@ Arredondar para **mais**: $k=8$.
 
 \
 
-A _amplitude total_ (_C_) dos valores observados é a simples diferença entre o _valor máximo_ (2,00 m) e o _valor mínimo_ (1,41 m):
+A _amplitude total_ (_A_) dos valores observados é a simples diferença entre o _valor máximo_ (2,00 m) e o _valor mínimo_ (1,41 m):
 
 
 \
 
 \begin{align*}
-C & =2,00-1,41 \\
+A & =2,00-1,41 \\
  & =0,59 m 
 \end{align*}
 
 \
 
 
-A amplitude de cada uma das classes ( _c_) será dada pelo quociente da _amplitude total_ ( _C_) pelo _número de classes_ ( _k_). 
+A amplitude de cada uma das classes ( $\Delta$) será dada pelo quociente da _amplitude total_ ( _A_) pelo _número de classes_ ( _k_). 
 \
 
 \begin{align*}
-c & = \frac{C}{k} \\
+\Delta & = \frac{A}{k} \\
   & = \frac{0,59}{8}\\ 
   & = 0,07375 m
 \end{align*}
 
 \
 
-Arredondar para **mais**: $c=0,075 m$.
+Arredondar para **mais**: $\Delta=0,075 m$.
 
 \
 
@@ -1778,8 +1876,8 @@ As classes são então assim construídas:
 
 \
 
-- Limite inferior da $1^{a}$ classe ($LI_{1}$): valor mínimo observado; e, 
-- Limite superior da $1^{a}$ classe ($LS_{1}$): $LI_{1}$ + c. 
+- Limite inferior da $1^{a}$ classe ($L_{inf_1}$): valor mínimo observado; e, 
+- Limite superior da $1^{a}$ classe ($L_{sup_1}$): $L_{inf_1}$ + $\Delta$. 
 
 \
 
@@ -1820,14 +1918,22 @@ $$
 
 \
 
-Com $c=0,075m$ as 8 classes ficam assim estabelecidas, tendo-se como ponto de partida o valor mínimo observado: 1,41 m - 1,485 m; 1,485 m - 1,56 m;  1,56 m - 1,635 m;  1,635 m - 1,71 m;  1,71 m - 1,785 m; 1,785 m - 1,86 m; 1,86 m - 1,935m; 1,935 - 2,01 m.
+Com $\Delta=0,075m$ as 8 classes ficam assim estabelecidas, tendo-se como ponto de partida o valor mínimo observado: 1,41 m - 1,485 m; 1,485 m - 1,56 m;  1,56 m - 1,635 m;  1,635 m - 1,71 m;  1,71 m - 1,785 m; 1,785 m - 1,86 m; 1,86 m - 1,935m; 1,935 - 2,01 m.
+
+\
+
+
+
+Ordenando-se os dados (para facilitar a identificação das observações) e atribuíndo cada elemento a uma única classe: 
+ 
+
 
 \
 
 
 {`r colFmt(" 1,41 ; 1,44 ; 1,47",'blue')` ; 1,54 ; 1,55 ; `r colFmt("1,56 ; 1,56 ; 1,56; 1,57 ; 1,58 ; 1,58 ; 1,61 ; 1,62 ; 1,62 ; 1,63", 'blue')`; 1,64 ;1,64 ; 1,65 ; 1,65 ; 1,65 ; 1,65 ; 1,66 ; 1,66 ; 1,66 ; 1,66 ; 1,66 ; 1,67 ; 1,67 ; 1,67 ; 1,67 ; 1,68 ; 1,68 ;1,68 ; 1,69 ; `r colFmt(" 1,71 ; 1,71 ; 1,72 ; 1,72 ; 1,73 ; 1,73 ; 1,73 ; 1,73 ; 1,73 ; 1,74 ; 1,75 ; 1,76 ; 1,76 ; 1,77 ;  1,78 ; 1,78" , 'blue')`; 1,79 1,82 ; 1,83 ; 1,83 ; 1,84 ; 1,85 ;  `r colFmt(" 1,86  ; 1,93", 'blue')`;  1,95 ; 2,00}
 
-\
+
 \
 
 
@@ -1852,7 +1958,14 @@ A tabela de distribuição de frequências com 8 classes, cada uma com amplitude
 \
 
 
-Alternativamente, caso adotássemos como ponto de partida (um pouco abaixo do valor mínimo observado) o valor de 1,40 m e como aplitude de classe 0,08 m, uma tabela alternativa de distribuição de frequẽncias teria como  classes : 1,40 m - 1,48 m; 1,48 m - 1,56 m;  1,56 m - 1,64 m;  1,64 m - 1,72 m;  1,72 m - 1,80 m; 1,80 m - 1,88 m; 1,88 m - 2,06 m e, para facilitar a contagem das observações pertencentes a cada uma das classes ordenamos os dados:
+Alternativamente, caso adotássemos como ponto de partida (um pouco abaixo do valor mínimo observado) o valor de 1,40 m e com amplitude de classe 0,08 m, uma tabela alternativa de distribuição de frequẽncias teria como  classes : 1,40 m - 1,48 m; 1,48 m - 1,56 m;  1,56 m - 1,64 m;  1,64 m - 1,72 m;  1,72 m - 1,80 m; 1,80 m - 1,88 m; 1,88 m - 2,06 m.
+
+
+
+\
+
+Ordenando-se os dados (para facilitar a identificação das observações) e atribuíndo cada elemento a uma única classe: 
+ 
 
 \
 
@@ -1887,7 +2000,7 @@ A tabela de distribuição de frequências com 7 classes, cada uma com amplitude
 
 
 
-Também podemos cogitar adotar alternativamente um intervalo de classe $c=0,10$ m, com a primeira classe começando (um pouco abaixo do valor mínimo observado) na altura de 1,40 m; todavia, a última classe não iria contemplar o valor máximo observado (2,00 m) e necessitaíamos abrir mais uma classe apenas para incluí-lo. 
+Também podemos cogitar adotar alternativamente um intervalo de classe $\Delta=0,10$ m, com a primeira classe começando (um pouco abaixo do valor mínimo observado) na altura de 1,40 m; todavia, a última classe não iria contemplar o valor máximo observado (2,00 m) e necessitaíamos abrir mais uma classe apenas para incluí-lo. 
 
 
 \
@@ -1897,7 +2010,7 @@ Mas começando-se no valor mínimo obseravado (1,41 m) estaríamos assegurando q
 
 \
 
-Ordenando-se os dados para facilitar a contagem das observações pertencentes a cada uma das classes: 
+Ordenando-se os dados (para facilitar a identificação das observações) e atribuíndo cada elemento a uma única classe: 
  
 
 \
@@ -1938,11 +2051,11 @@ Essas informações servem para tornar a visualização mais imediata e muitas d
 - Amplitude ($\Delta_{i}$) da classe $i$: a diferença entre o valor do limite superior e o do inferior de cada classe; 
 - Intervalo de valores da classe  $i$  (onde seu limite inferior **está contido** e o limite superior **não está contido**); 
 - Valor médio ($\stackrel{-}{x}_{i}$) de cada classe $i$: o valor de seu **limite inferior** mais a metade da amplitude da classe;
-- Frequência absoluta ($f_{i}$) da classe  $i$: o número de observações contidas no intervalo da classe considerada; 
+- Frequência absoluta ($f_{i}$) da classe  $i$: o número de observações **contidas** no intervalo da classe considerada; 
 - Frequência relativa ($fr_{i}= \frac{f_{i}}{n}$) da classe $i$  (ou frequência relativa percentual, se assim apresentada):  o quociente do número de observações $n_{i}$ contidas no intervalo da classe $f_{i}$,  pelo número total de observações ($n$);
-- Frequência acumulada ($fac_{i}$) da classe $i$  (ou frequência acumulada percentual, se assim apresentada): o número de observações com medidas contidas na classe $i$ e nas anteriores a ela; 
+- Frequência acumulada ($F_{i}$) da classe $i$  (ou frequência acumulada percentual, se assim apresentada): o número de observações com medidas contidas na classe $i$ e nas anteriores a ela; 
 - Densidade absoluta ($\delta_{i}=\frac{f_{i}}{\Delta_{i}}$):  o quociente do número de observações da classe ($f_{i}$) pela sua  amplitude  ($\Delta_{i}$); 
-- Densidade relativa $\delta_{fr_{i}}=\frac{fr_{i}}{\Delta_{i}}$:  o quociente da frequência relativa ($fr_{i}$) pela amplitude ($\Delta_{i}$)  da classe. 
+- Densidade relativa $\delta_{r_i}=\frac{fr_{i}}{\Delta_{i}}$:  o quociente da frequência relativa ($fr_{i}$) pela amplitude ($\Delta_{i}$)  da classe. 
 
 \
 
@@ -1955,7 +2068,7 @@ Vejo como exemplo as tabelas abaixo:
 
 | Classe | Int. de valores     | Alt. média              | Freq. abs.| Freq. rel.     | Freq. rel.  (\%) | Freq. acumulada | Freq. acum. (\%) |
 |--------|---------------------|-------------------------|-----------|----------------|------------------|-----------------|------------------|
-|        |                     | ($\stackrel{-}{x}_{i}$) | ($f_{i}$) | ($fr_{i}$)     | ($fr_{i}\%$)     | ($fac_{i}$)     | ($fac_{i}\%$)    |
+|        |                     | ($\stackrel{-}{x}_{i}$) | ($f_{i}$) | ($fr_{i}$)     | ($fr_{i\%}$)     | ($F_{i}$)     | ($F_{i\%}$)    |
 | 1      | 1,41  $\vdash$ 1,51 | 1,46                    | 3         | 0,05           | 5                | 3               | 5,00             |
 | 2      | 1,51  $\vdash$ 1,61 | 1,56                    | 8         | 0,13           | 13,33            | 11              | 18,33            |
 | 3      | 1,61  $\vdash$ 1,71 | 1,66                    | 23        | 0,38           | 38,33            | 34              | 56,66            |
@@ -1969,7 +2082,7 @@ Vejo como exemplo as tabelas abaixo:
 
 | Classe | Int. de valores     | Freq. abs.| Amplitude      | Dens. abs      | Freq. rel. | Dens. rel.            |
 |--------|---------------------|-----------|----------------|----------------|------------|-----------------------|
-|        |                     | ($f_{i}$) | ($\Delta_{i}$) | ($\delta_{i}$) | ($fr_{i}$) | ($\delta_{fr_{i}}$)   |
+|        |                     | ($f_{i}$) | ($\Delta_{i}$) | ($\delta_{i}$) | ($fr_{i}$) | ($\delta_{r_i}$)   |
 | 1      | 1,41  $\vdash$ 1,51 | 3         | 0,10           | 30             | 0,05       | 0,5                   |
 | 2      | 1,51  $\vdash$ 1,61 | 8         | 0,10           | 80             | 0,13       | 1,33                  |
 | 3      | 1,61  $\vdash$ 1,71 | 23        | 0,10           | 230            | 0,39       | 3,83                  |
@@ -1978,8 +2091,8 @@ Vejo como exemplo as tabelas abaixo:
 | 6      | 1,91  $\vdash$ 2,01 | 3         | 0,10           | 30             | 0,05       | 0,5                   |
 | Totais | -                   | 60        | -              | -              | 1,00       | -                     |
 
-\
 
+\
 
 
 ### Média
@@ -2027,18 +2140,18 @@ Mo = l_{inf} + (\frac{\Delta_{1}}{\Delta_{1} + \Delta_{2}}) \times \Delta_{i}
 $$    
 \
 
-Primeiramente identificamos a(s) classe(s) modal(is), que é (são) a(s) classe(s) com maior(es) frequência(s) absoluta $f_{i}$. Os demias elementos da expressã da moda são: 
+Primeiramente identificamos a(s) classe(s) modal(is): a(s) classe(s) com maior(es) frequência(s) absoluta $f_{i}$. Os demais elementos da expressão são: 
 \
 
 
-- $l_{inf}$: limite inferior da classe modal;  
+- $l_{inf}$: limite inferior da **classe modal**;  
 - $\Delta_{1}$ frequência absoluta da **classe modal** menos a frequência absoluta da **classe anterior** à classe modal; 
 - $\Delta_{2}$ frequência absoluta da **classe modal** menos a frequência absoluta da **classe posterior** à classe modal; e, 
-- $\Delta_{i}$ é o intervalo de cada classe.
+- $\Delta_{i}$ é o intervalo da **classe modal**.
 
 \
 
-### Mediana 
+### Mediana ($=Q_{2}=D_{5}=P_{50}$)
 
 \
 
@@ -2049,20 +2162,20 @@ Mediana para dados apresentados na forma de uma **distribuição de frequências
     
 
 $$
-Md = l_{inf} + \left[ \frac{\frac{\sum_{i}^{k} f_{i}}{2} - f_{ac_{(md-1)}}}{f_{md}} \right] \times \Delta_{i}
+Md = l_{inf} + \left[ \frac{\frac{\sum_{i}^{k} f_{i}}{2} - F_{(md-1)}}{f_{md}} \right] \times \Delta_{i}
 $$ 
 
 
 \
 
-Primeiramente identificamos a classe mediana, que é a classe que contem o elemento de posição $\frac{n}{2}$ (basta observar a coluna da frequência absoluta acumulada: $f_{ac_i}$, percorrendo-a até a classe $i$ que tenha valor $>\frac{n}{2}$. Os demais elementos da expressão da mediana são:   
+Primeiramente identificamos a **classe mediana**: a classe que contem o elemento de posição $\frac{n}{2}$ (basta observar a coluna da frequência absoluta acumulada: $F_{i}$, percorrendo-a até a classe $i$ que tenha valor $>\frac{n}{2}$. Os demais elementos da expressão da mediana são:   
 
 \
 
 - $l_{inf}$: limite inferior da **classe mediana**;  
-- $f_{ac_{(i-1)}}$: é a frequência absoluta acumulada até a **classe anterior à classe mediana**;  
+- $F_{{(md-1)}}$: é a frequência absoluta acumulada até a **classe anterior à classe mediana**;  
 - $f_{md}$: é a frequência absoluta da **classe mediana**; e,  
-- $\Delta_{i}$: é o intervalo de cada classe.
+- $\Delta_{i}$: é o intervalo da **classe mediana**.
 
 \
 
@@ -2084,8 +2197,8 @@ $$
 
 em que: 
 
-- $\stackrel{-}{x}_{i}$: o valor médio do intervalo da classe $i$; 
-- $f_{i}$: a frequência absoluta da classe $i$; 
+- $\stackrel{-}{x}_{i}$: o valor médio do intervalo de cada classe $i$ ($lim_{sup_i}-lim_{inf_i}$); 
+- $f_{i}$: a frequência absoluta de cada classe $i$; 
 - $k$ é o número de classes da tabela de distribuição de frequências;
 - $n$ é o número de dados da tabela (eventualmente, os dados podem se referir a toda a população sob estudo) .
 
@@ -2121,11 +2234,11 @@ em que:
     -   $L_{Q_{1}}=0.25n$
     -   $L_{Q_{2}}=0.5n$
     -   $L_{Q_{3}}=0.75n$ 
--   *classe quartílica* é a classe onde a posição do quartil desejado ( $L_{Q_{i}}$) se localiza;
--   $l_{inf_{Q_{i}}}$ é o limite inferior da *classe quartílica*;    
--   $f_{ac_{Q_{i-1}}}$ é a *frequência acumulada* da classe imediatamente anterior à classe quartílica;
--   $f_{Q_{i}}$ é a *frequência absoluta* de classe quartílica;
--   $\Delta_{i}$ é a amplitude de cada classe (fraquentemente igual para todas).
+-   **classe quartílica** é a classe onde a posição do quartil desejado ( $L_{Q_{i}}$) se localiza;
+-   $l_{inf_{Q_{i}}}$ é o limite inferior da **classe quartílica**;    
+-   $f_{{Q_{i-1}}}$ é a *frequência acumulada* da classe imediatamente anterior à **classe quartílica**;
+-   $f_{Q_{i}}$ é a *frequência absoluta* de **classe quartílica**;
+-   $\Delta_{i}$ é a amplitude da **classe quartílica** (frequentemente igual para todas).
 
 \
 
@@ -2133,9 +2246,7 @@ em que:
 
 \
 
-
-
-## Apresentação gráfica de dados
+## Apresentacao descritiva de dados na forma grafica
 
 
 \
@@ -2159,7 +2270,7 @@ Uma apresentação na forma gráfica torna ainda mais fácil a visualização da
 
 \
 
-A partir das tabelas mostradas na seção 3.5.1.1 Dados qualitativos em entrada única poderíamos eleborar a apresentação gráfica na forma de _Gráficos de colunas_:
+A partir das tabelas mostradas na seção 3.5.1.1 Dados qualitativos em entrada única, podemos elaborar a apresentação gráfica na forma de _Gráficos de colunas_:
  
 
 \
@@ -2537,7 +2648,18 @@ lines(density(alturas, adjust=2), col="orange")
 
 \
 
-Como a área de cada retângulo é igual à proporção  ($fr_{i}$) da classe ($i$) a soma de todas essas áreas será igual a 1:
+
+Uma aproximação para a **área sob a curva da Função de Densidade** pode ser a soma das áreas das colunas, pois a área de cada retângulo é igual à proporção  ($fr_{i}$) da classe ($i$) com:
+
+\
+
+- Base = $\Delta_{i}$; e,\
+- Altura =$\delta_{r_i}=\frac{fr_{i}}{\Delta_{i}}$. 
+
+
+\
+
+cuja soma resultará em: 
 
 \
 
@@ -2546,15 +2668,18 @@ Como a área de cada retângulo é igual à proporção  ($fr_{i}$) da classe ($
 (0.10*0.5)+(0.10*1.333)+(0.10*3.833)+(0.10*2.833)+(0.10*1)+(0.10*0.50)
 ```
 
-\
-
-
-Uma aproximação para a **área sob a curva da Função de Densidade** pode ser soma das áreas de um dos retângulo com:
 
 \
 
-- Base = $\Delta_{i}$; e,\\
-- Altura =$\frac{fr_{i}}{\Delta_{i}}$. 
+Alternativamente, determinadas as densidades relativas da cada classe, uma **poligonal** pode ser traçada e as áreas formadas por ela e a base desse gráfico podem ser igualmente determinadas a partir dos valores de $\Delta_{i}$ e $\delta_{r_i}$, cuja soma resultará aproximadamente 1.      
+
+\
+
+```{r, echo=FALSE, out.width='70%', fig.align='center', fig.cap="Polígono de densidades relativas como uma densidade empírica de probabilidade"}
+
+knitr::include_graphics("images3/dens_rel.jpg")
+
+```
 
 
 \
@@ -2564,7 +2689,7 @@ A  **área da curva da Função de Densidade delimitada por dois valores quaisqu
 \
 
 **Equivale dizer que**, amostrando-se aleatoriamente um estudante dentre todos os 60 alunos, a probabilidade de que a altura desse estudante estaje contida entre os valores mínimo e máximo da amostra é, **naturalmente**, igual a  1 (100\%)  
-
+\
 
 #### Setores
 
@@ -2636,10 +2761,31 @@ O gráfico **Box-plot** ( _box and whisker plot_ ): esse gráfico apresenta de m
 - um limite superior: $LS=Q_{3} + 1,50.d_{q}$;  
 - um limite inferior: $LI=Q_{1} - 1,50.d_{q}$;  
 - os valores mínimo e máximo observados (caso não existam valores superiores aos limites _LI_ e _LS_); ou  
-- as observações mais extremas, situadas fora dos limites _LI_ e _LS_ (que **podem ou não** ser _outliers_ , dados atípicos).
+- as observações mais extremas, situadas fora dos limites _LI_ e _LS_ (são rotuladas como _outliers_).
 
 \
 
+Um _outlier_ é uma observação que merece atenção do pesquisador. Pode tanto representar um dado **realmente** observado (pouco provável de sê-lo, mas que na pesquisa o foi), quanto um **erro não amostral**. 
+
+\
+
+
+Roteiro para o _Box-Plot_ cf. John Tukey ( _Exploratory Data Analysis_, 1977)
+
+\
+
+- ordenar os valores (menor para o maior);
+- determinar os quartis;
+- calcular o intervalo (distância interquartílica);
+- calcular os limites superior e inferior;
+- traçar a caixa tendo por base os valores dos quartis;
+- traçar os limites inferior e superior;
+- analisar os valores dos dados pelo lado inferior (menores valores) e superior (maiores valores) e comparar com os limites
+- as hastes se estendem da caixa (primeiro quartil para baixo e terceiro quartil para cima) até a **observação mais adjacente aos limites e que não os superam**
+- as observações que superaram os limites ( _outliers_ ) são identificadas com seus valores e permanecem no gráfico
+- remover o tracejado dos limites
+
+\
 
 ```{r,  output.width='80%',  fig.align='center', fig.cap="Box-plot de um rol de valores com Distribuição Normal (média 20 e variãncia 5"}
 

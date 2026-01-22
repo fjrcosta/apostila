@@ -30,7 +30,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-# Introdução à distribuição das proporções amostrais e seus intervalos de confiança 
+# Introdução à distribuição das proporções e seus intervalos de confiança{#introducao-a-distribuicao-das-proporcoes-e-seus-intervalos-de-confianca}
+
+\
+
 
 \
 A finalidade de uma amostra reside em obter uma estimativa do valor de um ou mais parâmetros associados a uma população. Verifica-se que, ao se extrair repetidamente valores amostrais de forma aleatória da mesma população, estes variam de uma amostra para outra, assim como em relação ao verdadeiro parâmetro dessa população. No entanto, é possível demonstrar que essa variabilidade pode ser caracterizada por meio de distribuições de probabilidade.
@@ -67,6 +70,20 @@ O conceito básico de proporção remete à razão entre duas grandezas. Vejam o
 Na primeira afirmação, a ideia de proporcionalidade advém do quociente do número habitantes do sexo feminino pelo numero total de habitantes naquele ano ($\frac{827.885}{1.537.704}=0,5384$). Já na segunda, a afirmação resulta do quociente do número de brasileiros vacinados pelo total da população-alvo ($\frac{13.600.000}{54.200.000}=0,2509$).
 
 \
+
+
+
+```{r , echo=FALSE, out.width='100%', fig.align='center', fig.cap="À esquerda temos um exemplo do universo (população) de uma característica de interesse de natureza contínua (altura) e, à direita, de uma característica de interesse de natureza dicotômica, que se manifesta sob uma proporção populacional $\\pi$"}
+
+knitr::include_graphics("images10/proporcao_1.jpeg")
+
+```
+
+
+
+\
+
+
 
 
 ## Distribuição das proporções amostrais
@@ -123,7 +140,7 @@ $$.
 
 \
 
-em que $\hat{p}$ é uma estimativa amostral da proporção populacional $\pi$.
+em que $\hat{p}$ é uma estimativa amostral da proporção populacional $\Pi$.
 
 
 \
@@ -133,12 +150,12 @@ Demonstra-se que para:
 \
 
 - um razoável número de repetições: $n \ge 30$;  
-- de uma população onde a proporção $\pi$ não é extrema: próximas a 0 ou 1; e tal que 
-- $(n \cdot \pi)$ e $(n \cdot (1-\pi))$ sejam maiores que 15 (alguns autores consideram limites mais brandos, iguais a 10 ou ainda a 5),
+- de uma população onde a proporção $\hat{p}$ não é extrema: $\hat{p} \leq 0,0275$ ou $\hat{p} \geq 0,975$; e,   
+- $n \cdot \hat{p}$ e $n \cdot (1-\hat{p})$ sejam maiores que 5,
 
 \
 
-ao se repetir o experimento anotando-se as proporções amostrais $\hat{p}$ obtida em cada uma das $n$ repetições de *Bernoulli* , o perfil da curva de distribuição dessas proporções amostrais torna-se razoavelmente simétrico à medida que o número $n$ de repetições de *Bernoulli* cresce, para qualquer que seja a proporção populacional, e oscila em torno de $\pi$.
+ao se repetir o experimento anotando-se as proporções amostrais $\hat{p}$ obtida em cada uma das $n$ repetições de *Bernoulli* , o perfil da curva de distribuição dessas proporções amostrais torna-se razoavelmente simétrico à medida que o número $n$ de repetições de *Bernoulli* cresce, para qualquer que seja a proporção populacional, e oscila em torno de $\Pi$.
 
 \
 
@@ -147,18 +164,18 @@ Pelo Teorema de *DeMoivre* e *Laplace* (anteriores ao Teorema do Limite Central)
 \
 
 \begin{align*}
-E(Y) & =n \cdot \pi \\
-Var(Y) & =n \cdot \pi \cdot (1-\pi)
+E(Y) & =n \cdot \Pi \\
+Var(Y) & =n \cdot \Pi \cdot (1-\Pi)
 \end{align*}
 
 \
 
-e a distribuição das proporções amostrais será aproximadamente Normal com parâmetros $\mu=n.\pi$ e $\sigma^{2}=n.\pi.(1-\pi)$:
+e a distribuição das proporções amostrais será aproximadamente Normal com parâmetros $\mu=n.\Pi$ e $\sigma^{2}=n.\Pi.(1-\Pi)$:
 
 \
 
 $$
-Y \sim N \left( n\cdot\pi ; n\cdot\pi\cdot(1-\pi)  \right)
+Y \sim N \left( n\cdot\Pi ; n\cdot\Pi\cdot(1-\Pi)  \right)
 $$
 
 \
@@ -170,15 +187,15 @@ Uma vez que a proporção amostral está definida como: $\hat{p} = \frac{Y_{n}}{
 \begin{align*}
 E(\hat{p}) & = E(\frac{Y}{n}) \\
            & = \frac{1}{n} \cdot E(Y) \\
-           & = \frac{1}{n} \cdot n \cdot \pi \\
-           & = \pi
+           & = \frac{1}{n} \cdot n \cdot \Pi \\
+           & = \Pi
 \end{align*}
 
 
 
 \
 
-e a variância $Var(\hat{p}=\frac{1}{n}.\pi.(1-\pi)$): 
+e a variância $Var(\hat{p}=\frac{1}{n}.\Pi.(1-\Pi)$): 
 
 
 \
@@ -186,21 +203,21 @@ e a variância $Var(\hat{p}=\frac{1}{n}.\pi.(1-\pi)$):
 \begin{align*}
 Var(\hat{p})& = Var(\frac{Y}{n}) \\
             & = \frac{1}{n^{2}} \cdot Var(Y)\\
-            & = \frac{1}{n^{2}} \cdot n \cdot \pi \cdot (1-\pi)\\
-            & = \frac{1}{n} \cdot \pi \cdot (1-\pi )
+            & = \frac{1}{n^{2}} \cdot n \cdot \Pi \cdot (1-\Pi)\\
+            & = \frac{1}{n} \cdot \Pi \cdot (1-\Pi )
 \end{align*}
 
 
 
 \
 
-Assim, as proporções amostrais se distribuem de modo aproximadamente Normal sob uma média $\mu=\pi$ e com uma variância $\sigma^{2}=\frac{\pi \cdot (1- \pi)}{n}$:
+Assim, as proporções amostrais se distribuem de modo aproximadamente Normal sob uma média $\mu=\Pi$ e com uma variância $\sigma^{2}=\frac{\Pi \cdot (1- \pi)}{n}$:
 
 \
 
 
 $$
-\hat{p}  \sim  N \left(\pi ;  \frac{\pi \cdot (1- \pi) }{n} \right)
+\hat{p}  \sim  N \left(\Pi ;  \frac{\Pi \cdot (1- \Pi) }{n} \right)
 $$
 
 \
@@ -380,86 +397,20 @@ ggplot(dados_100, aes(x = prop_100rep)) +
 
 \
 
-## Pobabilidades associadas à observação de uma proporção amostral $\hat{p}$ 
-
-\
-
-Ao se definir a estatística $Z$ como a simples padronização da variável $\hat{p}$ vemos que esta seguirá uma distribuição normal com média $0$ e desvio-padrão $1$:
-
-\
- 
-$$
-Z=\frac{\hat{p}-\pi }{\sqrt{\frac{\pi \left(1-\pi \right)}{n}}} \sim N\left(0,1\right)
-$$
-
-\
-
-Essa aproximação da distribuição de uma variável binomial (proporções amostrais $\hat{p}$) pela distribuição Normal será tanto mais simétrica e com perfil de um sino quanto vier a atender ($n$ grande e $\pi$ não próximo de 0 ou 1) e nos permite determinar probabilidades associadas a proporções amostrais.
-
-\
-
->Exemplo: um sistema de produção opera de tal maneira que 10% das peças produzidas são defeituosas. Suponha que os itens sejam vendidos em caixas com 100 unidades e calcule as probabilidades de que em uma caixa:
-- tenha mais do que 10% de defeituosas?
-- tenha menos do que 15% de defeituosas? 
-
-\
-
-Dados do problema:  $\pi=0,10$ e $n=100$.
-
-\
-
-Considerando que a proporção populacional $\pi$ não é extrema (próxima a 0 ou 1) e $(n \cdot \pi)$ e $(n \cdot (1-\pi))$ são maiores que 5, as proporções amostrais $\hat{p}$ se distribuem, aproximadamente, do modo:
-
-\
-
-
-$$
-\hat{p}  \sim  N \left(\mu: \pi ; \sigma^{2}:   \frac{\pi \cdot (1- \pi) }{n} \right)\\
-\hat{p}  \sim  N \left(0,10 ;  \frac{0,10 \cdot (1- 0,10) }{100} \right)\\
-\hat{p}  \sim  N (0,10; 0,0009)
-$$
-\
-
-Para se calcular as probabilidades de serem observadas proporções amostrais $\hat{p}>0,10$ e $\hat{p}<0,15$, basta-se mapear essas proporções amostrais à distribuição Normal padronizada. Assim, denotando-se uma variável aleatória (as proporções amostrais) $X \sim n(\mu: 0,1; \sigma^{2}: 0,0009 (\sigma: 0,03))$ segue-se:
-
-\
-
-\begin{align*}
-P(\hat{p}> 0,10) & = P(X > 0,10 ) \\
-        & = P\left(\frac{X-0,10}{0,03} > \frac{0,10-0,10}{0,03}\right ) \\
-        & = P\left(Z >0 \right ) \\
-        & = 0,50
-\end{align*}
-
-\
-
-e
-
-\
-\begin{align*}
-P(\hat{p} < 0,15) & = P(X < 0,15 ) \\
-        & = P\left(\frac{X-0,15}{0,03} < \frac{0,15-0,10}{0,03}\right ) \\
-        & = P\left(Z < 1,67\right ) \\
-        & = 0,9525
-\end{align*}
-
-\
-
-
 ## A aleatoriedade das proporções amostrais e o tamanho amostral 
 
 \
 
 
 
-No módulo ``Introdução ao planejamento de pesquisas'' explicamos que quando não se dispõe de nenhuma informação _a priori_ sobre a proporção populacional ($\pi$) a adoção do máximo valor possível ao produto: $\pi.(1-\pi)=\frac{1}{4}$ assegura que o o tamanho de amostra obtido será suficiente para a estimação qualquer que seja a proporção populacional $\pi$.  Trazendo a variável $Z$ antes definida:
+No módulo ``Introdução ao planejamento de pesquisas'' explicamos que quando não se dispõe de nenhuma informação _a priori_ sobre a proporção populacional ($\Pi$) a adoção do máximo valor possível ao produto: $\Pi.(1-\Pi)=\frac{1}{4}$ assegura que o o tamanho de amostra obtido será suficiente para a estimação qualquer que seja a proporção populacional $\Pi$.  Trazendo a variável $Z$ antes definida:
 
 \
 
 
 
 $$
-Z=\frac{\hat{p}-\pi }{\sqrt{\frac{\pi \left(1-\pi \right)}{n}}} \sim N\left(0,1\right)
+Z=\frac{\hat{p}-\Pi }{\sqrt{\frac{\Pi \left(1-\Pi \right)}{n}}} \sim N\left(0,1\right)
 $$
 \
 
@@ -467,10 +418,10 @@ podemos reescrevê-la de modo a se obter o dimensionamento amostral em função 
 
 
 $$
-z_{(1-\alpha)}=\frac{\hat{p}-\pi }{\sqrt{\frac{\pi \left(1-\pi \right)}{n}}} \\
-z_{(1-\alpha)}.\sqrt{\frac{\pi \left(1-\pi \right)}{n}}=\hat{p}-\pi \\
-\frac{\pi \left(1-\pi \right)}{n}=(\frac{\varepsilon}{z_{(1-\alpha)}})^{2}\\
-n = \frac{z_{(1-\alpha)}^{2}}{\varepsilon^{2}} \cdot \pi \left(1-\pi \right)\\
+z_{(1-\alpha)}=\frac{\hat{p}-\Pi }{\sqrt{\frac{\Pi \left(1-\Pi \right)}{n}}} \\
+z_{(1-\alpha)}.\sqrt{\frac{\Pi \left(1-\Pi \right)}{n}}=\hat{p}-\Pi \\
+\frac{\Pi \left(1-\Pi \right)}{n}=(\frac{\varepsilon}{z_{(1-\alpha)}})^{2}\\
+n = \frac{z_{(1-\alpha)}^{2}}{\varepsilon^{2}} \cdot \Pi \left(1-\Pi \right)\\
 $$
 
 \
@@ -479,7 +430,7 @@ Deste modo podemos simular a flutuação dos valores das proporções obtidas em
 
 \
 
-Desconhecendo-se qualquer informação acerca da proporção populacional ($\pi$), a dimensão da amostra pode ser estipulada tomando-se o maior valor do produto $\pi \left(1-\pi \right)$ como sendo igual a $\frac{1}{4}$ pois:
+Desconhecendo-se qualquer informação acerca da proporção populacional ($\Pi$), a dimensão da amostra pode ser estipulada tomando-se o maior valor do produto $\Pi \left(1-\Pi \right)$ como sendo igual a $\frac{1}{4}$ pois:
 
 \
 
@@ -588,19 +539,19 @@ flut.N(100, 100, 0.17, 0.95, 0.05)
 
 
 
-## Intervalos de confiança para proporções amostrais
+## Intervalos de confiança para uma proporção $\Pi$ pela aproximação da Binomial pela Normal
 
 
 \
 
-Podemos escrever o parâmetro ($\pi$) da proporção populacional  em função da proporção amostral observada $\hat{p}$ e de seu desvio padrão $\sigma_{\hat{p}}$:
+Podemos escrever o parâmetro ($\Pi$) da proporção populacional  em função da proporção amostral observada $\hat{p}$ e de seu desvio padrão $\sigma_{\hat{p}}$:
 
 \
 
 
 
 $$
-Z=\frac{\hat{p}-\pi }{\sqrt{\frac{\pi \left(1-\pi \right)}{n}}} \sim N\left(0,1\right),
+Z=\frac{\hat{p}-\Pi }{\sqrt{\frac{\Pi \left(1-\Pi \right)}{n}}} \sim N\left(0,1\right),
 $$
 
 \
@@ -610,7 +561,7 @@ ou
 \
 
 $$
-Z=\frac{\hat{p}-\pi }{{\sigma }_{\hat{p}}}
+Z=\frac{\hat{p}-\Pi }{{\sigma }_{\hat{p}}}
 $$
 
 \
@@ -624,7 +575,7 @@ Assim,
 \
 
 $$
-\hat{p} - \pi = Z \cdot  {\sigma }_{\hat{p}}
+\hat{p} - \Pi = Z \cdot  {\sigma }_{\hat{p}}
 $$
 
 \
@@ -632,25 +583,25 @@ e
 \
 
 $$
-\pi = \hat{p} + Z \cdot  {\sigma }_{\hat{p}}
+\Pi = \hat{p} + Z \cdot  {\sigma }_{\hat{p}}
 $$
 
 \
 
 
-> Observa-se, todavia, que a variância da distribuição Normal da aproximação da distribuição das proporções amostrais é expressa em termos do parâmetro da proporção populacional $\pi$ que não é conhecido:
+> Observa-se, todavia, que a variância da distribuição Normal da aproximação da distribuição das proporções amostrais é expressa em termos do parâmetro da proporção populacional $\Pi$ que não é conhecido:
 
 \
 
 $$
-\hat{p}  \sim  N [\pi ;  \frac{\pi \cdot (1- \pi) }{n} ]
+\hat{p}  \sim  N [\Pi ;  \frac{\Pi \cdot (1- \Pi) }{n} ]
 $$
 
 \
 
 
 $$
-{\sigma }_{\hat{p}}=\sqrt{\frac{\pi \left(1-\pi \right)}{n}}.
+{\sigma }_{\hat{p}}=\sqrt{\frac{\Pi \left(1-\Pi \right)}{n}}.
 $$
 
 
@@ -662,12 +613,12 @@ Demonstra-se que para:
 
 
 - um razoável número de repetições: $n \ge 30$;  
-- de uma população onde a proporção $\pi$ não é extrema: próximas a 0 ou 1; e tal que 
-- $(n \cdot \pi)$ e $(n \cdot (1-\pi))$ sejam maiores que 15 (alguns autores consideram limites mais brandos, iguais a 10 ou ainda a 5),
+- de uma população onde a proporção $\hat{p}$ não é extrema ($\hat{p} \leq 0,0275$ ou $\hat{p} \geq 0,975$); e  
+- $(n \cdot \hat{p})$ e $n \cdot (1-\hat{p})$ sejam maiores 5,
 
 \
 
-> Podemos tomar a proporção amostral $\hat{p}$ como uma aproximação direta da proporção populacional $\pi$ na expressão da variância da distribuição Normal que modela a distribuição das proporções amostrais sem que isso resulte em grande alteração na distribuição da variável $Z$.
+> Podemos tomar a proporção amostral $\hat{p}$ como uma aproximação direta da proporção populacional $\Pi$ na expressão da variância da distribuição Normal que modela a distribuição das proporções amostrais sem que isso resulte em grande alteração na distribuição da variável $Z$.
 
 
 \
@@ -721,7 +672,8 @@ Assim (com $\hat{p}$ ou $\hat{p}_{c}$) podemos construir *intervalos de confian�
 \
 
 $$
-P[\hat{p} - {z}_{\left(\frac{\alpha }{2}\right)} \cdot  \sqrt{\frac{\hat{p} \cdot \left(1- \hat{p} \right)}{n}} \hspace{0.1cm} \le \hspace{0.1cm} \pi \hspace{0.1cm} \le \hspace{0.1cm} \hat{p} + {z}_{\left(\frac{\alpha }{2}\right)} \cdot \sqrt{\frac{\hat{p} \cdot \left(1-\hat{p} \right)}{n}}] = (1-\alpha)
+P[\hat{p} - {z}_{\left(\frac{\alpha }{2}\right)} \cdot  \sqrt{\frac{\hat{p} \cdot \left(1- \hat{p} \right)}{n}} \hspace{0.1cm} \le \hspace{0.1cm} \Pi \hspace{0.1cm} \le \hspace{0.1cm} \hat{p} + {z}_{\left(\frac{\alpha }{2}\right)} \cdot \sqrt{\frac{\hat{p} \cdot \left(1-\hat{p} \right)}{n}}] = (1-\alpha)\\
+IC_{[\Pi, (1-\alpha)]} = \hat{p} \pm {z}_{c} \cdot  \sqrt{\frac{\hat{p} \cdot \left(1- \hat{p} \right)}{n}}
 $$
 
 
@@ -737,7 +689,8 @@ $$
 \
 
 $$
-P[\pi \le \hat{p} + {z}_{\alpha} \cdot  \sqrt{\frac{\hat{p} \cdot \left(1- \hat{p} \right)}{n}} ] = (1- \alpha)
+P[\Pi \le \hat{p} + {z}_{\alpha} \cdot  \sqrt{\frac{\hat{p} \cdot \left(1- \hat{p} \right)}{n}} ] = (1- \alpha)\\
+IC_{[\Pi, (1-\alpha)]} = \hat{p} - {z}_{c} \cdot  \sqrt{\frac{\hat{p} \cdot \left(1- \hat{p} \right)}{n}} 
 $$
 
 
@@ -749,7 +702,8 @@ $$
 \
 
 $$
-P [\pi \hspace{0.1cm} \ge \hat{p} - {z}_{\alpha} \cdot  \sqrt{\frac{\hat{p} \cdot \left(1- \hat{p} \right)}{n}} \hspace{0.1cm}] = (1-\alpha)
+P [\Pi \hspace{0.1cm} \ge \hat{p} - {z}_{\alpha} \cdot  \sqrt{\frac{\hat{p} \cdot \left(1- \hat{p} \right)}{n}} \hspace{0.1cm}] = (1-\alpha)\\
+IC_{[\Pi, (1-\alpha)]} = \hat{p} + {z}_{c} \cdot  \sqrt{\frac{\hat{p} \cdot \left(1- \hat{p} \right)}{n}}
 $$
 
 \
@@ -802,6 +756,8 @@ segments(x0=p , y0=0, x1=p ,y1=N,col="blue", lwd=2, lty=1)
        
 ```
 
+
+
 ```{r ,  out.width='100%', fig.align='center', fig.cap="Intervalos de confiança construídos para as diversas proporções amostrais obtidas de amostragens (com reposição) de elementos de uma população que apresentam a característica de interesse se manifestando de modo dicotômico. O dimensionamento foi estimado ignorando-se o conhecimento da proporção populacional (\u03c0) para um nível de confiança (1-\u03b1) e um erro amostral (\u03b5) estipulados: 385 elementos.", warning = FALSE, echo=FALSE}
 
 IC.N(100, 385, 0.17, 0.95, 0.05)
@@ -819,8 +775,9 @@ Dados do problema:
 \
 
 - $\hat{p}=\frac{136}{400}=0,34$ é a *proporção amostral* observada; 
-- o tamanho amostral ($n=400$) é grande e a proporção amostral ($\hat{p}=0,34$) não é extrema (próxima a zero ou um);  
-- $\pi$ é a proporção populacional (desconhecida); e,
+- o tamanho da amostra ($n=400$) é grande 
+- a proporção amostral ($\hat{p}=0,34$) não é extrema: ($\hat{p} \leq 0,0275$ ou $\hat{p} \geq 0,975$);   
+- $\Pi$ é a proporção populacional (desconhecida); 
 - para o nível de confiança solicitado ($(1-\alpha)=0,95$)  temos da tabela ${z}_{\left(\frac{\alpha }{2}\right)}= +/-1,96$.
 
 
@@ -849,8 +806,9 @@ Dados do problema:
 \
 
 - $\hat{p}=0,43$ é a *proporção amostral* observada; 
-- o tamanho amostral ($n=2000$) é grande e a proporção amostral ($\hat{p}=0,43$) não é extrema (próxima a zero ou um);  
-- $\pi$ é a proporção populacional (desconhecida); e,
+- o tamanho da amostra ($n=2000$) é grande;
+- a proporção amostral ($\hat{p}=0,43$) não é extrema ($\hat{p} \leq 0,0275$ ou $\hat{p} \geq 0,975$);     
+- $\Pi$ é a proporção populacional (desconhecida); e,
 - para o nível de confiança solicitado ($(1-\alpha)=0,99$)  temos da tabela ${z}_{\left(\frac{\alpha }{2}\right)}= +/-2,58$.
 
 
@@ -858,45 +816,127 @@ Dados do problema:
 
 
 
-Um intervalo bilateral (fechado) para a proporção populacional desconhecida ($\pi$) sob um nível de confiança ($1-\alpha$) de 0,99 estará delimitado:
+Um intervalo bilateral (fechado) para a proporção populacional desconhecida ($\Pi$) sob um nível de confiança ($1-\alpha$) de 0,99 estará delimitado:
  
  
 \
 
 
 \begin{align*}
-\hat{p} - {z}_{\left(\frac{\alpha }{2}\right)} \cdot  \sqrt{\frac{\hat{p} \cdot \left(1- \hat{p} \right)}{n}}  \le  & \pi  \le  \hat{p} + {z}_{\left(\frac{\alpha }{2}\right)} \cdot \sqrt{\frac{\hat{p} \cdot \left(1-\hat{p} \right)}{n}}\\
-0,43 - 2,58 \cdot \sqrt{  \frac{0,43 \cdot (1-0,43)}{2000} }  \le &  \pi \le  0,43 + 2,58 \cdot \sqrt{  \frac{0,43 \cdot (1-0,43)}{2000} }\\
-0,4014\le &  \pi \le 0,4586\\
+\hat{p} - {z}_{\left(\frac{\alpha }{2}\right)} \cdot  \sqrt{\frac{\hat{p} \cdot \left(1- \hat{p} \right)}{n}}  \le  & \Pi  \le  \hat{p} + {z}_{\left(\frac{\alpha }{2}\right)} \cdot \sqrt{\frac{\hat{p} \cdot \left(1-\hat{p} \right)}{n}}\\
+0,43 - 2,58 \cdot \sqrt{  \frac{0,43 \cdot (1-0,43)}{2000} }  \le &  \Pi \le  0,43 + 2,58 \cdot \sqrt{  \frac{0,43 \cdot (1-0,43)}{2000} }\\
+0,4014\le &  \Pi \le 0,4586\\
+\end{align*}
+
+\
+
+## Intervalo de confiança para $\Pi$ diretamente da Distribuição Binomial
+
+\
+
+Quando:
+
+- $n < 30$
+- $\Pi < 0,0275$ ou $\Pi \geq 0,975$
+- $(n \cdot \Pi)$ e $(n \cdot (1-\Pi))$ são menores que 5, 
+
+a construção de um intervalo de confiança para $\Pi$ é feita utilizando-se as probabilidades acumuladas calculadas com o modelo binomial com parametros $(n, \hat{p})$. 
+
+
+\
+
+
+## Pobabilidades associadas à observação de uma proporção amostral $\hat{p}$ 
+
+\
+
+Ao se definir a estatística $Z$ como a simples padronização da variável $\hat{p}$ vemos que esta seguirá uma distribuição normal com média $0$ e desvio-padrão $1$:
+
+\
+ 
+$$
+Z=\frac{\hat{p}-\Pi }{\sqrt{\frac{\Pi \left(1-\Pi \right)}{n}}} \sim N\left(0,1\right)
+$$
+
+\
+
+Essa aproximação da distribuição de uma variável binomial (proporções amostrais $\hat{p}$) pela distribuição Normal será tanto mais simétrica e com perfil de um sino quanto vier a atender ($n$ grande e $\hat{p}$ não próximo de 0 ou 1) e nos permite determinar probabilidades associadas a proporções amostrais.
+
+\
+
+>Exemplo: um sistema de produção opera de tal maneira que 10% das peças produzidas são defeituosas. Suponha que os itens sejam vendidos em caixas com 100 unidades e calcule as probabilidades de que em uma caixa:
+- tenha mais do que 10% de defeituosas?
+- tenha menos do que 15% de defeituosas? 
+
+\
+
+Dados do problema:  $\hat{p}=0,10$ e $n=100$.
+
+\
+
+Considerando que a proporção $\hat{p}$ não é extrema (próxima a 0 ou 1) e $(n \cdot \hat{p})$ e $(n \cdot (1-\hat{p}))$ são maiores que 5, tomando $\hat{p}$ como uma aproximação de $\Pi$ as proporções amostrais $\hat{p}$ se distribuem, aproximadamente, do modo:
+
+\
+
+
+$$
+\hat{p}  \sim  N \left(\mu: \Pi ; \sigma^{2}:   \frac{\Pi \cdot (1- \Pi) }{n} \right)\\
+\hat{p}  \sim  N \left(0,10 ;  \frac{0,10 \cdot (1- 0,10) }{100} \right)\\
+\hat{p}  \sim  N (0,10; 0,0009)
+$$
+\
+
+Para se calcular as probabilidades de serem observadas proporções amostrais $\hat{p}>0,10$ e $\hat{p}<0,15$, basta-se mapear essas proporções amostrais à distribuição Normal padronizada. Assim, denotando-se uma variável aleatória (as proporções amostrais) $X \sim n(\mu: 0,1; \sigma^{2}: 0,0009 (\sigma: 0,03))$ segue-se:
+
+\
+
+\begin{align*}
+P(\hat{p}> 0,10) & = P(X > 0,10 ) \\
+        & = P\left(\frac{X-0,10}{0,03} > \frac{0,10-0,10}{0,03}\right ) \\
+        & = P\left(Z >0 \right ) \\
+        & = 0,50
+\end{align*}
+
+\
+
+e
+
+\
+\begin{align*}
+P(\hat{p} < 0,15) & = P(X < 0,15 ) \\
+        & = P\left(\frac{X-0,15}{0,03} < \frac{0,15-0,10}{0,03}\right ) \\
+        & = P\left(Z < 1,67\right ) \\
+        & = 0,9525
 \end{align*}
 
 \
 
 
 
-### Intervalos de confiança para a diferença entre duas proporções amostrais
+## Intervalos de confiança para a diferença entre duas proporções ($\Pi_{X}-\Pi_{Y}$)pela aproximação da Binomial pela Normal
 
 \
 
 
-Para a construção de um intervalo de confiança para a diferença de duas proporções populacionais $\pi_{X}$ e $\pi_{Y}$ a partir das proporções obtidas em duas amostras de razoável tamanho ($n_{X} \ge 30$ e $n_{Y} \ge 30$) e proporções amostrais  $\hat{p}_{X}$ e $\hat{p}_{Y}$ não extremas (próximos a zero ou um) demosntra-se que a variável aleatória dessa diferença é tal que
+Para a construção de um intervalo de confiança para a diferença de duas proporções populacionais $\Pi_{X}$ e $\Pi_{Y}$ a partir das proporções obtidas em duas amostras de razoável tamanho ($n_{X} \ge 30$ e $n_{Y} \ge 30$) e proporções amostrais  $\hat{p}_{X}$ e $\hat{p}_{Y}$ não extremas: $\hat{p} \leq 0,0275$ ou $\hat{p} \geq 0,975$ e $n \cdot \hat{p}$ e $n \cdot (1-\hat{p})$ para ambas as amostras sejam maiores que 5,
+, demonstra-se que a variável aleatória dessa diferença é tal que
 
 \
 
 
 $$
-Z=\frac{(\hat{p}_{X}-\hat{p}_{Y}  )- (\pi_{X}-\pi_{Y}) }{\sqrt{ \frac{\pi_{X}(1-\pi_{X})}{n_{X}}+ \frac{\pi_{Y}(1-\pi_{Y})}{n_{Y}}}} \sim N\left(0,1\right),
+Z=\frac{(\hat{p}_{X}-\hat{p}_{Y}  )- (\Pi_{X}-\Pi_{Y}) }{\sqrt{ \frac{\Pi_{X}(1-\Pi_{X})}{n_{X}}+ \frac{\Pi_{Y}(1-\Pi_{Y})}{n_{Y}}}} \sim N\left(0,1\right),
 $$
 
 \
 
 
-Sob as condições anunciadas, demostran-se que se pode tomar as proporções amostrais $\hat{p}_{X}$ e $\hat{p}_{Y}$  como  aproximações diretas das proporções populacionais $\pi_{X}$ e $\pi_{Y}$  na expressão da variância da distribuição Normal que modela a distribuição das diferenças das proporções amostrais sem que isso resulte em grande alteração na distribuição da variável $Z$.
+Sob as condições anunciadas, demostran-se que se pode tomar as proporções amostrais $\hat{p}_{X}$ e $\hat{p}_{Y}$  como  aproximações diretas das proporções populacionais $\Pi_{X}$ e $\Pi_{Y}$  na expressão da variância da distribuição Normal que modela a distribuição das diferenças das proporções amostrais sem que isso resulte em grande alteração na distribuição da variável $Z$.
 
 \
 
 $$
-Z=\frac{(\hat{p}_{X}-\hat{p}_{Y}  )- (\pi_{X}-\pi_{Y}) }{\sqrt{ \frac{\hat{p}_{X}(1-\hat{p}_{X})}{n_{X}}+ \frac{\hat{p}_{Y}(1-\hat{p}_{Y})}{n_{Y}}}} \sim N\left(0,1\right),
+Z=\frac{(\hat{p}_{X}-\hat{p}_{Y}  )- (\Pi_{X}-\Pi_{Y}) }{\sqrt{ \frac{\hat{p}_{X}(1-\hat{p}_{X})}{n_{X}}+ \frac{\hat{p}_{Y}(1-\hat{p}_{Y})}{n_{Y}}}} \sim N\left(0,1\right),
 $$
 \
 
@@ -911,7 +951,7 @@ Assim podemos construir *intervalos de confiança* em torno da diferença das pr
 
 $$
 P\left[(\hat{p}_{X}-\hat{p}_{Y}) - {z}_{\left(\frac{\alpha }{2}\right)} \cdot  \sqrt{{\frac{\hat{p}_{X}(1-\hat{p}_{X})}{n_{X}}+ \frac{\hat{p}_{Y}(1-\hat{p}_{Y})}{n_{Y}}}} \\
-\le \hspace{0.1cm}  (\pi_{X}-\pi_{Y}) \hspace{0.1cm} \le \hspace{0.1cm} \\
+\le \hspace{0.1cm}  (\Pi_{X}-\Pi_{Y}) \hspace{0.1cm} \le \hspace{0.1cm} \\
 (\hat{p}_{X}-\hat{p}_{Y}) + {z}_{\left(\frac{\alpha }{2}\right)} \cdot \sqrt{{\frac{\hat{p}_{X}(1-\hat{p}_{X})}{n_{X}}+ \frac{\hat{p}_{Y}(1-\hat{p}_{Y})}{n_{Y}}}}\right] = (1-\alpha)
 $$
 \
@@ -927,7 +967,7 @@ $$
 \
 
 $$
-P\left[(\pi_{X}-\pi_{Y})  \hspace{0.1cm} \le \hspace{0.1cm} (\hat{p}_{X}-\hat{p}_{Y}) + {z}_{\left(\frac{\alpha }{2}\right)} \cdot \sqrt{{\frac{\hat{p}_{X}(1-\hat{p}_{X})}{n_{X}}+ \frac{\hat{p}_{Y}(1-\hat{p}_{Y})}{n_{Y}}}}\right] = (1-\alpha)
+P\left[(\Pi_{X}-\Pi_{Y})  \hspace{0.1cm} \le \hspace{0.1cm} (\hat{p}_{X}-\hat{p}_{Y}) + {z}_{\left(\frac{\alpha }{2}\right)} \cdot \sqrt{{\frac{\hat{p}_{X}(1-\hat{p}_{X})}{n_{X}}+ \frac{\hat{p}_{Y}(1-\hat{p}_{Y})}{n_{Y}}}}\right] = (1-\alpha)
 $$ 
 
 
@@ -940,7 +980,7 @@ $$
 
 
 $$
-P\left[(\pi_{X}-\pi_{Y})  \hspace{0.1cm} \ge \hspace{0.1cm} (\hat{p}_{X}-\hat{p}_{Y}) - {z}_{\left(\frac{\alpha }{2}\right)} \cdot \sqrt{{\frac{\hat{p}_{X}(1-\hat{p}_{X})}{n_{X}}+ \frac{\hat{p}_{Y}(1-\hat{p}_{Y})}{n_{Y}}}}\right] = (1-\alpha)
+P\left[(\Pi_{X}-\Pi_{Y})  \hspace{0.1cm} \ge \hspace{0.1cm} (\hat{p}_{X}-\hat{p}_{Y}) - {z}_{\left(\frac{\alpha }{2}\right)} \cdot \sqrt{{\frac{\hat{p}_{X}(1-\hat{p}_{X})}{n_{X}}+ \frac{\hat{p}_{Y}(1-\hat{p}_{Y})}{n_{Y}}}}\right] = (1-\alpha)
 $$
 
 

@@ -74,6 +74,7 @@ library(lmtest)    # Para testes de heterocedasticidade
 library(nortest)   # Para testes de normalidade
 library(car)       # Para vif e outras diagnósticas
 knitr::opts_chunk$set(echo = TRUE)
+library(caret)
 
 ```
 
@@ -832,7 +833,6 @@ A estratificação por múltiplas variáveis é adequada quando há interdepend�
 
 
 ```{r, echo=TRUE, fig.align='center', fig.width=7, fig.height=5, message=FALSE, warning=FALSE, results='hold'}
-
 # Definir proporção treino/validação
 prop_treino <- 0.8
 
@@ -844,27 +844,37 @@ treino_aleatorio <- dados_clean[indice_aleatorio, ]
 validacao_aleatorio <- dados_clean[-indice_aleatorio, ]
 
 # Repartição ESTRATIFICADA por UMA VARIÁVEL (event_factor)
-set.seed(123)
-indice_estratificado <- createDataPartition(dados_clean$event_factor,
-                                            p = prop_treino,
-                                            list = FALSE)
-treino_estratificado <- dados_clean[indice_estratificado, ]
-validacao_estratificado <- dados_clean[-indice_estratificado, ]
+# Verificar se dados_clean tem dados suficientes e se event_factor existe
+if(nrow(dados_clean) >= 2 && "event_factor" %in% names(dados_clean)) {
+  library(caret)
+  set.seed(123)
+  indice_estratificado <- createDataPartition(dados_clean$event_factor,
+                                              p = prop_treino,
+                                              list = FALSE)
+  treino_estratificado <- dados_clean[indice_estratificado, ]
+  validacao_estratificado <- dados_clean[-indice_estratificado, ]
+} else {
+  message("Dados insuficientes ou variável event_factor não encontrada")
+}
 
 # Repartição ESTRATIFICADA por MÚLTIPLAS VARIÁVEIS
-library(sampling)
-set.seed(123)
-dados_clean$estrato <- paste(dados_clean$event_factor, 
-                              dados_clean$outra_variavel, 
-                              sep = "_")
-tamanho_treino <- round(nrow(dados_clean) * prop_treino)
-indice_multi <- strata(dados_clean, 
-                       stratanames = "estrato",
-                       size = proportional(dados_clean$estrato, tamanho_treino),
-                       method = "srswor")$ID_unit
-treino_multi <- dados_clean[indice_multi, ]
-validacao_multi <- dados_clean[-indice_multi, ]
-dados_clean$estrato <- NULL  # Remover coluna auxiliar
+if(nrow(dados_clean) >= 2 && all(c("event_factor", "outra_variavel") %in% names(dados_clean))) {
+  library(sampling)
+  set.seed(123)
+  dados_clean$estrato <- paste(dados_clean$event_factor, 
+                                dados_clean$outra_variavel, 
+                                sep = "_")
+  tamanho_treino <- round(nrow(dados_clean) * prop_treino)
+  indice_multi <- strata(dados_clean, 
+                         stratanames = "estrato",
+                         size = proportional(dados_clean$estrato, tamanho_treino),
+                         method = "srswor")$ID_unit
+  treino_multi <- dados_clean[indice_multi, ]
+  validacao_multi <- dados_clean[-indice_multi, ]
+  dados_clean$estrato <- NULL  # Remover coluna auxiliar
+} else {
+  message("Dados insuficientes ou variáveis necessárias não encontradas")
+}
 ```
 
 

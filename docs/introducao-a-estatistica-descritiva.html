@@ -1472,7 +1472,7 @@ L_{p}=[p \times (n-1)]+1,\\
 <p>se o valor calculado da <strong>posição virtual</strong> <span class="math inline">\(L_{p}\)</span> for <strong>inteiro</strong>, a estimativa do quantil de ordem <span class="math inline">\(p\)</span> será determinada pela média entre os valores dos dados que estão nas <strong>posições</strong> imediatamente anterior e imediatamente posterior à posição <span class="math inline">\(L_{p}\)</span>:</p>
 </blockquote>
 <p><span class="math display">\[
-Q_p=\frac{x_{L_p} + x_{L_(p+1)}}{2}
+Q_p=\frac{x_{L_{p}} + x_{(L_{p+1})}}{2}
 \]</span></p>
 <blockquote>
 <p>se valor calculado da <strong>posição virtual</strong> <span class="math inline">\(L_{p}\)</span> for um <strong>fracionário</strong>, a estimativa do quantil de ordem <span class="math inline">\(p\)</span> será o elemento localizado na posição inteira imediatamente superior a <span class="math inline">\(L_p\)</span>.</p>
@@ -1620,8 +1620,8 @@ L_{Q_{3}} &amp; =p \times (n) \\
 <th align="left">Proposição da posição virtual</th>
 <th align="left">Se <span class="math inline">\(L_p\)</span> é inteiro</th>
 <th align="left">Se <span class="math inline">\(L_p\)</span> é fracionário</th>
-<th align="left">Forma usual</th>
 <th align="left">Correspondência no R</th>
+<th align="left"></th>
 </tr>
 </thead>
 <tbody>
@@ -1629,26 +1629,28 @@ L_{Q_{3}} &amp; =p \times (n) \\
 <td align="left"><span class="math inline">\(L_p = pn\)</span></td>
 <td align="left"><span class="math inline">\(Q(p)=\dfrac{x_{(L_p)}+x_{(L_p+1)}}{2}\)</span></td>
 <td align="left"><span class="math inline">\(Q(p)=x_{(\lceil L_p\rceil)}\)</span></td>
-<td align="left">média no inteiro, próximo superior no fracionário</td>
 <td align="left"><code>type = 2</code></td>
+<td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(L_p = p(n+1)\)</span></td>
 <td align="left"><span class="math inline">\(Q(p)=x_{(L_p)}\)</span></td>
 <td align="left"><span class="math inline">\(Q(p)=x_{(k)}+\delta\bigl(x_{(k+1)}-x_{(k)}\bigr)\)</span>, com <span class="math inline">\(L_p=k+\delta\)</span></td>
-<td align="left">interpolação linear</td>
 <td align="left"><code>type = 6</code></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(L_p = p(n-1)+1\)</span></td>
 <td align="left"><span class="math inline">\(Q(p)=x_{(L_p)}\)</span></td>
 <td align="left"><span class="math inline">\(Q(p)=x_{(k)}+\delta\bigl(x_{(k+1)}-x_{(k)}\bigr)\)</span>, com <span class="math inline">\(L_p=k+\delta\)</span></td>
-<td align="left">interpolação linear</td>
 <td align="left"><code>type = 7</code></td>
+<td align="left"></td>
 </tr>
 </tbody>
 </table>
 <p><br />
+</p>
+<p>em que <span class="math inline">\(k\)</span> é a parte inteira de <span class="math inline">\(L_p\)</span> e <span class="math inline">\(\delta\)</span> a parte fracionária de <span class="math inline">\(L_p\)</span> (<span class="math inline">\(0&lt;\delta&lt;1\)</span>): <span class="math inline">\(L_p=k+\delta\)</span>.<br />
 </p>
 </div>
 </div>
@@ -1915,8 +1917,8 @@ Figure 3.12: Quadro comparativo entre as medidas de tendência central (posiçã
 <h3><span class="header-section-number">3.7.1</span> Apresentacao tabular de dados qualitativos<a href="introducao-a-estatistica-descritiva.html#apresentacao-tabular-de-dados-qualitativos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><br />
 </p>
-<div id="dados-qualitativos-em-entrada-única" class="section level4 hasAnchor" number="3.7.1.1">
-<h4><span class="header-section-number">3.7.1.1</span> Dados qualitativos em entrada única<a href="#dados-qualitativos-em-entrada-%C3%BAnica" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="tabelas-de-entrada-única" class="section level4 hasAnchor" number="3.7.1.1">
+<h4><span class="header-section-number">3.7.1.1</span> Tabelas de entrada única<a href="#tabelas-de-entrada-%C3%BAnica" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><br />
 </p>
 <p>Para alguns tipos de dados, a apresentação tabular é bastante imediata.</p>
@@ -2113,8 +2115,8 @@ Fonte: Censo dos EUA (2005)
 <p><br />
 </p>
 </div>
-<div id="dados-qualitativos-em-entrada-dupla" class="section level4 hasAnchor" number="3.7.1.2">
-<h4><span class="header-section-number">3.7.1.2</span> Dados qualitativos em entrada dupla<a href="introducao-a-estatistica-descritiva.html#dados-qualitativos-em-entrada-dupla" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="tabelas-de-dupla-entrada" class="section level4 hasAnchor" number="3.7.1.2">
+<h4><span class="header-section-number">3.7.1.2</span> Tabelas de dupla entrada<a href="introducao-a-estatistica-descritiva.html#tabelas-de-dupla-entrada" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><br />
 </p>
 <p>Outros tipos de dados são provenientes de pesquisas que têm por base respostas de natureza binária como, por exemplo:</p>
@@ -3865,7 +3867,7 @@ gitbook.start({
     "link": null,
     "text": null
   },
-  "download": null,
+  "download": ["apostila.pdf"],
   "search": {
     "engine": "fuse",
     "options": null

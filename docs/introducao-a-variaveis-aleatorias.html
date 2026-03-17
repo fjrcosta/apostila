@@ -50,6 +50,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -680,7 +682,7 @@ contato (sugestões): <a href="mailto:fjcosta@uel.br" class="email">fjcosta@uel.
 <p>Essas quantidades de interesse, ou mais formalmente, essas funções de valor real definidas no espaço amostral (o conjunto de todos os possíveis resultados do experimento), são conhecidas como variáveis aleatórias.</p>
 <p><br />
 </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-101"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-104"></span>
 <img src="images5/v_aleatoria2.png" alt="Variável aleatória $X$" width="60%" />
 <p class="caption">
 Figure 5.1: Variável aleatória <span class="math inline">\(X\)</span>
@@ -892,24 +894,24 @@ X
 </table>
 <p><br />
 </p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="introducao-a-variaveis-aleatorias.html#cb107-1" tabindex="-1"></a><span class="co"># Valores possíveis para o número de caras</span></span>
-<span id="cb107-2"><a href="introducao-a-variaveis-aleatorias.html#cb107-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb107-3"><a href="introducao-a-variaveis-aleatorias.html#cb107-3" tabindex="-1"></a><span class="co"># Probabilidades associadas (calculadas com o modelo binomial)</span></span>
-<span id="cb107-4"><a href="introducao-a-variaveis-aleatorias.html#cb107-4" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.25</span>)</span>
-<span id="cb107-5"><a href="introducao-a-variaveis-aleatorias.html#cb107-5" tabindex="-1"></a><span class="co"># Criando o gráfico de barras</span></span>
-<span id="cb107-6"><a href="introducao-a-variaveis-aleatorias.html#cb107-6" tabindex="-1"></a><span class="fu">barplot</span>(</span>
-<span id="cb107-7"><a href="introducao-a-variaveis-aleatorias.html#cb107-7" tabindex="-1"></a>  p,</span>
-<span id="cb107-8"><a href="introducao-a-variaveis-aleatorias.html#cb107-8" tabindex="-1"></a>  <span class="at">names.arg =</span> x,</span>
-<span id="cb107-9"><a href="introducao-a-variaveis-aleatorias.html#cb107-9" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb107-10"><a href="introducao-a-variaveis-aleatorias.html#cb107-10" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="fu">expression</span>(<span class="fu">f</span>(x)),</span>
-<span id="cb107-11"><a href="introducao-a-variaveis-aleatorias.html#cb107-11" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&quot;gray&quot;</span>,</span>
-<span id="cb107-12"><a href="introducao-a-variaveis-aleatorias.html#cb107-12" tabindex="-1"></a>  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
-<span id="cb107-13"><a href="introducao-a-variaveis-aleatorias.html#cb107-13" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Probabilidade de observar caras ao lançar 2 moedas&quot;</span></span>
-<span id="cb107-14"><a href="introducao-a-variaveis-aleatorias.html#cb107-14" tabindex="-1"></a>)</span>
-<span id="cb107-15"><a href="introducao-a-variaveis-aleatorias.html#cb107-15" tabindex="-1"></a></span>
-<span id="cb107-16"><a href="introducao-a-variaveis-aleatorias.html#cb107-16" tabindex="-1"></a><span class="co"># Adicionando linhas no eixo y para reforçar a interpretação</span></span>
-<span id="cb107-17"><a href="introducao-a-variaveis-aleatorias.html#cb107-17" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.25</span>), <span class="at">col =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="apostila_files/figure-html/unnamed-chunk-104-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="introducao-a-variaveis-aleatorias.html#cb111-1" tabindex="-1"></a><span class="co"># Valores possíveis para o número de caras</span></span>
+<span id="cb111-2"><a href="introducao-a-variaveis-aleatorias.html#cb111-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb111-3"><a href="introducao-a-variaveis-aleatorias.html#cb111-3" tabindex="-1"></a><span class="co"># Probabilidades associadas (calculadas com o modelo binomial)</span></span>
+<span id="cb111-4"><a href="introducao-a-variaveis-aleatorias.html#cb111-4" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.25</span>)</span>
+<span id="cb111-5"><a href="introducao-a-variaveis-aleatorias.html#cb111-5" tabindex="-1"></a><span class="co"># Criando o gráfico de barras</span></span>
+<span id="cb111-6"><a href="introducao-a-variaveis-aleatorias.html#cb111-6" tabindex="-1"></a><span class="fu">barplot</span>(</span>
+<span id="cb111-7"><a href="introducao-a-variaveis-aleatorias.html#cb111-7" tabindex="-1"></a>  p,</span>
+<span id="cb111-8"><a href="introducao-a-variaveis-aleatorias.html#cb111-8" tabindex="-1"></a>  <span class="at">names.arg =</span> x,</span>
+<span id="cb111-9"><a href="introducao-a-variaveis-aleatorias.html#cb111-9" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb111-10"><a href="introducao-a-variaveis-aleatorias.html#cb111-10" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="fu">expression</span>(<span class="fu">f</span>(x)),</span>
+<span id="cb111-11"><a href="introducao-a-variaveis-aleatorias.html#cb111-11" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&quot;gray&quot;</span>,</span>
+<span id="cb111-12"><a href="introducao-a-variaveis-aleatorias.html#cb111-12" tabindex="-1"></a>  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb111-13"><a href="introducao-a-variaveis-aleatorias.html#cb111-13" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Probabilidade de observar caras ao lançar 2 moedas&quot;</span></span>
+<span id="cb111-14"><a href="introducao-a-variaveis-aleatorias.html#cb111-14" tabindex="-1"></a>)</span>
+<span id="cb111-15"><a href="introducao-a-variaveis-aleatorias.html#cb111-15" tabindex="-1"></a></span>
+<span id="cb111-16"><a href="introducao-a-variaveis-aleatorias.html#cb111-16" tabindex="-1"></a><span class="co"># Adicionando linhas no eixo y para reforçar a interpretação</span></span>
+<span id="cb111-17"><a href="introducao-a-variaveis-aleatorias.html#cb111-17" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.25</span>), <span class="at">col =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="apostila_files/figure-html/unnamed-chunk-107-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p> </p>
 </div>
 <div id="função-cumulativa-de-probabilidade" class="section level2 hasAnchor" number="5.3">
@@ -1013,55 +1015,55 @@ F(x) =
 <p> </p>
 <p>O gráfico de sua função de probabilidade cumulativa é:</p>
 <p> </p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="introducao-a-variaveis-aleatorias.html#cb108-1" tabindex="-1"></a><span class="co"># Valores possíveis para o número de caras</span></span>
-<span id="cb108-2"><a href="introducao-a-variaveis-aleatorias.html#cb108-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb108-3"><a href="introducao-a-variaveis-aleatorias.html#cb108-3" tabindex="-1"></a></span>
-<span id="cb108-4"><a href="introducao-a-variaveis-aleatorias.html#cb108-4" tabindex="-1"></a><span class="co"># Probabilidades associadas (calculadas com o modelo binomial)</span></span>
-<span id="cb108-5"><a href="introducao-a-variaveis-aleatorias.html#cb108-5" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.25</span>)</span>
-<span id="cb108-6"><a href="introducao-a-variaveis-aleatorias.html#cb108-6" tabindex="-1"></a></span>
-<span id="cb108-7"><a href="introducao-a-variaveis-aleatorias.html#cb108-7" tabindex="-1"></a><span class="co"># Probabilidade acumulada</span></span>
-<span id="cb108-8"><a href="introducao-a-variaveis-aleatorias.html#cb108-8" tabindex="-1"></a>p_cumulative <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(p)</span>
-<span id="cb108-9"><a href="introducao-a-variaveis-aleatorias.html#cb108-9" tabindex="-1"></a></span>
-<span id="cb108-10"><a href="introducao-a-variaveis-aleatorias.html#cb108-10" tabindex="-1"></a><span class="co"># Criando o gráfico de probabilidade acumulada com linhas verticais</span></span>
-<span id="cb108-11"><a href="introducao-a-variaveis-aleatorias.html#cb108-11" tabindex="-1"></a><span class="fu">plot</span>(</span>
-<span id="cb108-12"><a href="introducao-a-variaveis-aleatorias.html#cb108-12" tabindex="-1"></a>  x,</span>
-<span id="cb108-13"><a href="introducao-a-variaveis-aleatorias.html#cb108-13" tabindex="-1"></a>  p_cumulative,</span>
-<span id="cb108-14"><a href="introducao-a-variaveis-aleatorias.html#cb108-14" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;s&quot;</span>, <span class="co"># Tipo &quot;steps&quot; para probabilidade acumulada</span></span>
-<span id="cb108-15"><a href="introducao-a-variaveis-aleatorias.html#cb108-15" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb108-16"><a href="introducao-a-variaveis-aleatorias.html#cb108-16" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="fu">expression</span>(<span class="fu">F</span>(x)),</span>
-<span id="cb108-17"><a href="introducao-a-variaveis-aleatorias.html#cb108-17" tabindex="-1"></a>  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
-<span id="cb108-18"><a href="introducao-a-variaveis-aleatorias.html#cb108-18" tabindex="-1"></a>  <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>), <span class="co"># Expandido para incluir margens</span></span>
-<span id="cb108-19"><a href="introducao-a-variaveis-aleatorias.html#cb108-19" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Função de distribuição acumulada (CDF)&quot;</span>,</span>
-<span id="cb108-20"><a href="introducao-a-variaveis-aleatorias.html#cb108-20" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb108-21"><a href="introducao-a-variaveis-aleatorias.html#cb108-21" tabindex="-1"></a>  <span class="at">lwd =</span> <span class="dv">2</span>,</span>
-<span id="cb108-22"><a href="introducao-a-variaveis-aleatorias.html#cb108-22" tabindex="-1"></a>  <span class="at">axes =</span> <span class="cn">FALSE</span> <span class="co"># Desabilita os eixos padrão para customização</span></span>
-<span id="cb108-23"><a href="introducao-a-variaveis-aleatorias.html#cb108-23" tabindex="-1"></a>)</span>
-<span id="cb108-24"><a href="introducao-a-variaveis-aleatorias.html#cb108-24" tabindex="-1"></a></span>
-<span id="cb108-25"><a href="introducao-a-variaveis-aleatorias.html#cb108-25" tabindex="-1"></a><span class="co"># Adicionando linhas verticais para conectar os valores</span></span>
-<span id="cb108-26"><a href="introducao-a-variaveis-aleatorias.html#cb108-26" tabindex="-1"></a><span class="fu">segments</span>(</span>
-<span id="cb108-27"><a href="introducao-a-variaveis-aleatorias.html#cb108-27" tabindex="-1"></a>  <span class="at">x0 =</span> x[<span class="sc">-</span><span class="dv">1</span>], <span class="co"># Exclui o primeiro valor (X=0)</span></span>
-<span id="cb108-28"><a href="introducao-a-variaveis-aleatorias.html#cb108-28" tabindex="-1"></a>  <span class="at">y0 =</span> <span class="fu">c</span>(<span class="dv">0</span>, p_cumulative[<span class="sc">-</span><span class="fu">length</span>(p_cumulative)])[<span class="sc">-</span><span class="dv">1</span>], <span class="co"># Exclui o valor inicial (F(0))</span></span>
-<span id="cb108-29"><a href="introducao-a-variaveis-aleatorias.html#cb108-29" tabindex="-1"></a>  <span class="at">x1 =</span> x[<span class="sc">-</span><span class="dv">1</span>],</span>
-<span id="cb108-30"><a href="introducao-a-variaveis-aleatorias.html#cb108-30" tabindex="-1"></a>  <span class="at">y1 =</span> p_cumulative[<span class="sc">-</span><span class="dv">1</span>], <span class="co"># Exclui o valor inicial (F(0))</span></span>
-<span id="cb108-31"><a href="introducao-a-variaveis-aleatorias.html#cb108-31" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&quot;red&quot;</span>,</span>
-<span id="cb108-32"><a href="introducao-a-variaveis-aleatorias.html#cb108-32" tabindex="-1"></a>  <span class="at">lty =</span> <span class="dv">2</span> <span class="co"># Linhas tracejadas</span></span>
-<span id="cb108-33"><a href="introducao-a-variaveis-aleatorias.html#cb108-33" tabindex="-1"></a>)</span>
-<span id="cb108-34"><a href="introducao-a-variaveis-aleatorias.html#cb108-34" tabindex="-1"></a></span>
-<span id="cb108-35"><a href="introducao-a-variaveis-aleatorias.html#cb108-35" tabindex="-1"></a><span class="co"># Adicionando bolinhas abertas nos limites inferiores (apenas X &gt; 0)</span></span>
-<span id="cb108-36"><a href="introducao-a-variaveis-aleatorias.html#cb108-36" tabindex="-1"></a><span class="fu">points</span>(x[<span class="sc">-</span><span class="dv">1</span>], <span class="fu">c</span>(<span class="dv">0</span>, p_cumulative[<span class="sc">-</span><span class="fu">length</span>(p_cumulative)])[<span class="sc">-</span><span class="dv">1</span>], <span class="at">pch =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
-<span id="cb108-37"><a href="introducao-a-variaveis-aleatorias.html#cb108-37" tabindex="-1"></a></span>
-<span id="cb108-38"><a href="introducao-a-variaveis-aleatorias.html#cb108-38" tabindex="-1"></a><span class="co"># Adicionando bolinhas fechadas no limite superior de cada degrau</span></span>
-<span id="cb108-39"><a href="introducao-a-variaveis-aleatorias.html#cb108-39" tabindex="-1"></a><span class="fu">points</span>(x, p_cumulative, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
-<span id="cb108-40"><a href="introducao-a-variaveis-aleatorias.html#cb108-40" tabindex="-1"></a></span>
-<span id="cb108-41"><a href="introducao-a-variaveis-aleatorias.html#cb108-41" tabindex="-1"></a><span class="co"># Customizando o eixo X</span></span>
-<span id="cb108-42"><a href="introducao-a-variaveis-aleatorias.html#cb108-42" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">labels =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">3</span>)</span>
-<span id="cb108-43"><a href="introducao-a-variaveis-aleatorias.html#cb108-43" tabindex="-1"></a></span>
-<span id="cb108-44"><a href="introducao-a-variaveis-aleatorias.html#cb108-44" tabindex="-1"></a><span class="co"># Customizando o eixo Y com frações</span></span>
-<span id="cb108-45"><a href="introducao-a-variaveis-aleatorias.html#cb108-45" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">2</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;1/4&quot;</span>, <span class="st">&quot;1/2&quot;</span>, <span class="st">&quot;3/4&quot;</span>, <span class="st">&quot;1&quot;</span>), <span class="at">las =</span> <span class="dv">1</span>)</span>
-<span id="cb108-46"><a href="introducao-a-variaveis-aleatorias.html#cb108-46" tabindex="-1"></a></span>
-<span id="cb108-47"><a href="introducao-a-variaveis-aleatorias.html#cb108-47" tabindex="-1"></a><span class="co"># Adicionando grades para facilitar a interpretação</span></span>
-<span id="cb108-48"><a href="introducao-a-variaveis-aleatorias.html#cb108-48" tabindex="-1"></a><span class="fu">grid</span>(<span class="at">nx =</span> <span class="cn">NULL</span>, <span class="at">ny =</span> <span class="cn">NULL</span>, <span class="at">col =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="at">lty =</span> <span class="st">&quot;dotted&quot;</span>)</span></code></pre></div>
-<p><img src="apostila_files/figure-html/unnamed-chunk-106-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="introducao-a-variaveis-aleatorias.html#cb112-1" tabindex="-1"></a><span class="co"># Valores possíveis para o número de caras</span></span>
+<span id="cb112-2"><a href="introducao-a-variaveis-aleatorias.html#cb112-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb112-3"><a href="introducao-a-variaveis-aleatorias.html#cb112-3" tabindex="-1"></a></span>
+<span id="cb112-4"><a href="introducao-a-variaveis-aleatorias.html#cb112-4" tabindex="-1"></a><span class="co"># Probabilidades associadas (calculadas com o modelo binomial)</span></span>
+<span id="cb112-5"><a href="introducao-a-variaveis-aleatorias.html#cb112-5" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.25</span>)</span>
+<span id="cb112-6"><a href="introducao-a-variaveis-aleatorias.html#cb112-6" tabindex="-1"></a></span>
+<span id="cb112-7"><a href="introducao-a-variaveis-aleatorias.html#cb112-7" tabindex="-1"></a><span class="co"># Probabilidade acumulada</span></span>
+<span id="cb112-8"><a href="introducao-a-variaveis-aleatorias.html#cb112-8" tabindex="-1"></a>p_cumulative <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(p)</span>
+<span id="cb112-9"><a href="introducao-a-variaveis-aleatorias.html#cb112-9" tabindex="-1"></a></span>
+<span id="cb112-10"><a href="introducao-a-variaveis-aleatorias.html#cb112-10" tabindex="-1"></a><span class="co"># Criando o gráfico de probabilidade acumulada com linhas verticais</span></span>
+<span id="cb112-11"><a href="introducao-a-variaveis-aleatorias.html#cb112-11" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb112-12"><a href="introducao-a-variaveis-aleatorias.html#cb112-12" tabindex="-1"></a>  x,</span>
+<span id="cb112-13"><a href="introducao-a-variaveis-aleatorias.html#cb112-13" tabindex="-1"></a>  p_cumulative,</span>
+<span id="cb112-14"><a href="introducao-a-variaveis-aleatorias.html#cb112-14" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;s&quot;</span>, <span class="co"># Tipo &quot;steps&quot; para probabilidade acumulada</span></span>
+<span id="cb112-15"><a href="introducao-a-variaveis-aleatorias.html#cb112-15" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb112-16"><a href="introducao-a-variaveis-aleatorias.html#cb112-16" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="fu">expression</span>(<span class="fu">F</span>(x)),</span>
+<span id="cb112-17"><a href="introducao-a-variaveis-aleatorias.html#cb112-17" tabindex="-1"></a>  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb112-18"><a href="introducao-a-variaveis-aleatorias.html#cb112-18" tabindex="-1"></a>  <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>), <span class="co"># Expandido para incluir margens</span></span>
+<span id="cb112-19"><a href="introducao-a-variaveis-aleatorias.html#cb112-19" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Função de distribuição acumulada (CDF)&quot;</span>,</span>
+<span id="cb112-20"><a href="introducao-a-variaveis-aleatorias.html#cb112-20" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb112-21"><a href="introducao-a-variaveis-aleatorias.html#cb112-21" tabindex="-1"></a>  <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb112-22"><a href="introducao-a-variaveis-aleatorias.html#cb112-22" tabindex="-1"></a>  <span class="at">axes =</span> <span class="cn">FALSE</span> <span class="co"># Desabilita os eixos padrão para customização</span></span>
+<span id="cb112-23"><a href="introducao-a-variaveis-aleatorias.html#cb112-23" tabindex="-1"></a>)</span>
+<span id="cb112-24"><a href="introducao-a-variaveis-aleatorias.html#cb112-24" tabindex="-1"></a></span>
+<span id="cb112-25"><a href="introducao-a-variaveis-aleatorias.html#cb112-25" tabindex="-1"></a><span class="co"># Adicionando linhas verticais para conectar os valores</span></span>
+<span id="cb112-26"><a href="introducao-a-variaveis-aleatorias.html#cb112-26" tabindex="-1"></a><span class="fu">segments</span>(</span>
+<span id="cb112-27"><a href="introducao-a-variaveis-aleatorias.html#cb112-27" tabindex="-1"></a>  <span class="at">x0 =</span> x[<span class="sc">-</span><span class="dv">1</span>], <span class="co"># Exclui o primeiro valor (X=0)</span></span>
+<span id="cb112-28"><a href="introducao-a-variaveis-aleatorias.html#cb112-28" tabindex="-1"></a>  <span class="at">y0 =</span> <span class="fu">c</span>(<span class="dv">0</span>, p_cumulative[<span class="sc">-</span><span class="fu">length</span>(p_cumulative)])[<span class="sc">-</span><span class="dv">1</span>], <span class="co"># Exclui o valor inicial (F(0))</span></span>
+<span id="cb112-29"><a href="introducao-a-variaveis-aleatorias.html#cb112-29" tabindex="-1"></a>  <span class="at">x1 =</span> x[<span class="sc">-</span><span class="dv">1</span>],</span>
+<span id="cb112-30"><a href="introducao-a-variaveis-aleatorias.html#cb112-30" tabindex="-1"></a>  <span class="at">y1 =</span> p_cumulative[<span class="sc">-</span><span class="dv">1</span>], <span class="co"># Exclui o valor inicial (F(0))</span></span>
+<span id="cb112-31"><a href="introducao-a-variaveis-aleatorias.html#cb112-31" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb112-32"><a href="introducao-a-variaveis-aleatorias.html#cb112-32" tabindex="-1"></a>  <span class="at">lty =</span> <span class="dv">2</span> <span class="co"># Linhas tracejadas</span></span>
+<span id="cb112-33"><a href="introducao-a-variaveis-aleatorias.html#cb112-33" tabindex="-1"></a>)</span>
+<span id="cb112-34"><a href="introducao-a-variaveis-aleatorias.html#cb112-34" tabindex="-1"></a></span>
+<span id="cb112-35"><a href="introducao-a-variaveis-aleatorias.html#cb112-35" tabindex="-1"></a><span class="co"># Adicionando bolinhas abertas nos limites inferiores (apenas X &gt; 0)</span></span>
+<span id="cb112-36"><a href="introducao-a-variaveis-aleatorias.html#cb112-36" tabindex="-1"></a><span class="fu">points</span>(x[<span class="sc">-</span><span class="dv">1</span>], <span class="fu">c</span>(<span class="dv">0</span>, p_cumulative[<span class="sc">-</span><span class="fu">length</span>(p_cumulative)])[<span class="sc">-</span><span class="dv">1</span>], <span class="at">pch =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
+<span id="cb112-37"><a href="introducao-a-variaveis-aleatorias.html#cb112-37" tabindex="-1"></a></span>
+<span id="cb112-38"><a href="introducao-a-variaveis-aleatorias.html#cb112-38" tabindex="-1"></a><span class="co"># Adicionando bolinhas fechadas no limite superior de cada degrau</span></span>
+<span id="cb112-39"><a href="introducao-a-variaveis-aleatorias.html#cb112-39" tabindex="-1"></a><span class="fu">points</span>(x, p_cumulative, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
+<span id="cb112-40"><a href="introducao-a-variaveis-aleatorias.html#cb112-40" tabindex="-1"></a></span>
+<span id="cb112-41"><a href="introducao-a-variaveis-aleatorias.html#cb112-41" tabindex="-1"></a><span class="co"># Customizando o eixo X</span></span>
+<span id="cb112-42"><a href="introducao-a-variaveis-aleatorias.html#cb112-42" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">labels =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb112-43"><a href="introducao-a-variaveis-aleatorias.html#cb112-43" tabindex="-1"></a></span>
+<span id="cb112-44"><a href="introducao-a-variaveis-aleatorias.html#cb112-44" tabindex="-1"></a><span class="co"># Customizando o eixo Y com frações</span></span>
+<span id="cb112-45"><a href="introducao-a-variaveis-aleatorias.html#cb112-45" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">2</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="dv">1</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;1/4&quot;</span>, <span class="st">&quot;1/2&quot;</span>, <span class="st">&quot;3/4&quot;</span>, <span class="st">&quot;1&quot;</span>), <span class="at">las =</span> <span class="dv">1</span>)</span>
+<span id="cb112-46"><a href="introducao-a-variaveis-aleatorias.html#cb112-46" tabindex="-1"></a></span>
+<span id="cb112-47"><a href="introducao-a-variaveis-aleatorias.html#cb112-47" tabindex="-1"></a><span class="co"># Adicionando grades para facilitar a interpretação</span></span>
+<span id="cb112-48"><a href="introducao-a-variaveis-aleatorias.html#cb112-48" tabindex="-1"></a><span class="fu">grid</span>(<span class="at">nx =</span> <span class="cn">NULL</span>, <span class="at">ny =</span> <span class="cn">NULL</span>, <span class="at">col =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="at">lty =</span> <span class="st">&quot;dotted&quot;</span>)</span></code></pre></div>
+<p><img src="apostila_files/figure-html/unnamed-chunk-109-1.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="função-de-densidade-de-probabilidade-probability-density-function---pdf" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> Função de densidade de probabilidade (<em>Probability Density Function - PDF</em>)<a href="#fun%C3%A7%C3%A3o-de-densidade-de-probabilidade-probability-density-function---pdf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1073,7 +1075,7 @@ F(x) =
 </p>
 <p>Admitam o último deles como um espaço amostral formado por <span class="math inline">\(\to\infty\)</span> pontos.</p>
 <p> </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-107"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-110"></span>
 <img src="images5/var_aleatoria_continua.png" alt="Diferentes espaços amostrais de um experimento aleatório." width="100%" />
 <p class="caption">
 Figure 5.2: Diferentes espaços amostrais de um experimento aleatório.
@@ -1132,7 +1134,7 @@ P(a &lt; X &lt; b) = \int_{a}^{b} f(x) \, dx.
 <p><strong>Graficamente</strong>, a interpretação de uma função densidade de probabilidade contínua é representada pela <strong>área sob a curva</strong> da função <span class="math inline">\(f(x)\)</span>, delimitada pelos valores de interesse da variável aletatória <span class="math inline">\(X\)</span>r.</p>
 <p><br />
 </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-108"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-111"></span>
 <img src="images5/func_dist_cont.jpg" alt="A área sob a curva de uma função de probabilidade de uma variável contínua entre dois valores quaisquer é a probabilidade de se observar valores entre esses dois pontos" width="60%" />
 <p class="caption">
 Figure 5.3: A área sob a curva de uma função de probabilidade de uma variável contínua entre dois valores quaisquer é a probabilidade de se observar valores entre esses dois pontos
@@ -1192,7 +1194,7 @@ Figure 5.4: A área definida por (ODA) equivale à probabilidade de <span class=
 <p>Assim, <span class="math inline">\(F(x)\)</span> descreve graficamente a probabilidade acumulada até qualquer valor <span class="math inline">\(x\)</span>, reforçando a relação entre a densidade de probabilidade e a probabilidade cumulativa.</p>
 <p><br />
 </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-109"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-112"></span>
 <img src="images5/func_dist_cont_cum.jpg" alt="Função de probabilidade cumulativa" width="60%" />
 <p class="caption">
 Figure 5.5: Função de probabilidade cumulativa
@@ -1211,8 +1213,8 @@ Figure 5.5: Função de probabilidade cumulativa
 <p>A resolução deste exemplo será feita de um modo <em>geométrico</em>.</p>
 <p><br />
 </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-110"></span>
-<img src="apostila_files/figure-html/unnamed-chunk-110-1.png" alt="A probabilidade de se observar valores entre 0 e 1/2 é igual à area sob a função densidade de probabilidade entre esses dois valores" width="60%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-113"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-113-1.png" alt="A probabilidade de se observar valores entre 0 e 1/2 é igual à area sob a função densidade de probabilidade entre esses dois valores" width="60%" />
 <p class="caption">
 Figure 5.6: A probabilidade de se observar valores entre 0 e 1/2 é igual à area sob a função densidade de probabilidade entre esses dois valores
 </p>

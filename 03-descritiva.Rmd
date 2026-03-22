@@ -49,6 +49,15 @@ use_condaenv("r-python")
 
 \
 
+Neste capítulo apresentaremos as etapas iniciais da exploração de um conjunto de dado e sua representação na forma de tabelas, gráficos e sínteses numéricas que permitem descrever com precisão o comportamento geral desse conjunto.
+
+
+\
+
+<iframe src="assets\descritiva.html" width="100%" height="500px" style="border:none;"></iframe>
+
+
+
 \
 
 Sobre o estudo da estatística por áreas nas quais, aparentemente, não se vislumbra sua utilidade trazemos o prefácio da tradução do livro de Jack Levin (Estatística aplicada às ciências humanas) por Sérgio Francisco Costa, ao dizer que o livro: 
@@ -85,7 +94,7 @@ Habitualmente uma _EDA_ envolve:
   - tabulares e 
   - gráficos.
 
-## Dados brutos, em rol, diagrama de ramos & folhas e de dispersão unidimensional
+## Dados brutos e pr-e-processamentos elementares
 
 
 Consideremos os dados obtidos da medição das alturas em metros de 60 estudantes de uma determinada classe de um certo curso aqui na UEL: 
@@ -101,11 +110,13 @@ alturas
 ```
 
 \
+
 _Garbage in_, _garbage out_. Não são raras as vezes nas quais o relatório com os dados coletados em uma pesquisa apresentam uma série de erros. Não estamos a nos refeir aqui aos **erros amostrais** mas sim aos erros experimentais (não amostrais), aqueles decorrentes de dados coletados incorretamente, tais como aqueles resultantes de omissões na transcrição das informações, da leitura de instrumentos descalibrados ou de informações simplesmente não coletadas.
 
 \
 
-Denomina-se pré-processamento essa etapa de _limpeza_ do conjunto de dados na qual busca-se corrigir de mdo extremamente criterioso esses problemas e, para tanto, um profundo conhecimento do objeto que está sendo pesquisado é necessário de modo a não serem liminarmente eliminados dados simplesmente por destoarem da alguma tendência (para essas tituações há ferramentas estatísticas apropriadas). \
+Denomina-se pré-processamento essa etapa de _limpeza_ do conjunto de dados na qual busca-se corrigir de mdo extremamente criterioso esses problemas e, para tanto, um profundo conhecimento do objeto que está sendo pesquisado é necessário de modo a não serem liminarmente eliminados dados simplesmente por destoarem da alguma tendência (para essas tituações há ferramentas estatísticas apropriadas). 
+
 
 \
 
@@ -197,6 +208,21 @@ Uma  medida de posição ou dispersão é dita **resistente** quando forem pouco
 
 \
 
+Em estatística, um estimador é uma função definida sobre os dados observados em uma amostra e utilizada para aproximar um parâmetro desconhecido da população.
+
+\
+
+
+Como, em geral, não se dispõe de informação completa sobre todos os elementos da população, recorremos à amostragem e ao cálculo de estatísticas que sirvam como aproximações desses parâmetros teóricos. 
+
+\
+
+
+Assim, quantidades como a média, a variância ou determinados quantis calculados a partir da amostra atuam como estimadores dos correspondentes parâmetros populacionais da distribuição da variável aleatória em estudo. 
+
+
+
+\
 
 
 ```{r, echo=FALSE, out.width='50%', fig.align='center', fig.cap="Viés e variância"}
@@ -206,6 +232,11 @@ knitr::include_graphics("images3/bias_variance.jpg")
 ```
 
 \
+
+A qualidade de um estimador é frequentemente analisada em termos de propriedades como viés e variância, que indicam, respectivamente, o grau de proximidade média em relação ao parâmetro verdadeiro e a variabilidade das estimativas obtidas em diferentes amostras.
+
+
+---
 
 
 ### Medidas de tendência central (posição)
@@ -572,7 +603,7 @@ Usando os dados das medidas das alturas dos 60 estudantes  teremos o seguinte va
 
 
 ```{r}
-# Variãncia
+# Variância
 var(alturas)
 
 # Desvio padrão
@@ -737,43 +768,6 @@ $$
 \
 
 
-Para calcular o p-ésimo quantil de uma amostra de tamanho $n$, Hyndman e Fan (1996) estabeleceram:
-
-\
-
-$$j = (floor) [Np + m \rfloor]$$, 
-
-
-\
-
-em que:
-
-\
-
-
-- $j$ = índice calculado
-- $N$ = tamanho da amostra
-- $p$ = percentil desejado (0 ≤ p ≤ 1)  
-- $m$ = parâmetro específico do método
-
-\
-
-
-| Tipo | Parâmetro m |
-|------|-------------|
-| 1    | 0           |
-| 2    | 0           |
-| 3    | -0.5        |
-| 4    | 0           |
-| 5    | 0.5         |
-| 6    | p           |
-| 7    | 1 - p       |
-| 8    | (p+1)/3     |
-| 9    | p/4 + 3/8   |
-
-
-\
-
 
 Os quantis recebem diferentes nomes em função do modo como subdividem o conjunto de dados:
 
@@ -803,66 +797,203 @@ Todavia a medicina utiliza para muitos propósitos os percentis como, por exempl
 
 \
 
+>Hyndman e Fan (1996) unificaram as definições de quantis amostrais implementadas em pacotes estatísticos em uma notação comum. Para uma amostra de tamanho $n$ com estatísticas de ordem $X_{(1)} \leq X_{(2)} \leq \cdots \leq X_{(n)}$, o $p$-ésimo quantil amostral é definido como:
 
-De modo geral, para se calcular a posição _L_ que um quantil qualquer de ordem _p_ assume em um rol de dados há algumas regras empíricas:
+\
+
 
 $$
-L_{p}=\frac{p}{100} \times (n)\\
-L_{p}=\frac{p}{100} \times (n+1)\\
-L_{p}=[\frac{p}{100} \times (n-1)]+1\\
+\hat{Q}(p) = (1 - \gamma)\, X_{(j)} + \gamma\, X_{(j+1)}
 $$
 \
 
-Onde:
-
-\
-
-- _p_ é a **ordem** do quantil em \% (50\% no caso mediana, por exemplo);
-- _n_ é o número de dados do rol;  e,
-- _L_ é a **posição** do valor referente ao quantil desejado.
-
-\
-
-Os quartis calculados a partir das posições determinadas por essas regras *aproximadamente* subdividem o conjunto de dados em 25\%, 50\% e 75\%.
-
-\
-
-Assim, para a determinação dos quartis pela primeira regra o valor de _p_ seria:
+em que
 
 \
 
 
-- para o _primeiro quartil_ ($Q_{1}$): $L_{q_{0,25}}=\frac{25}{100} \times (n)$; 
-- para o _segundo quartil_ (a mediana ou $Q_{2}$): $L_{q_{0,50}}=\frac{50}{100} \times (n)$; ou,  
-- para o _terceiro quartil_ ($Q_{3}$): $L_{q_{0,75}}=\frac{75}{100} \times (n)$. 
+
+$$
+j = \lfloor pn + m \rfloor, \qquad \gamma = pn + m - j
+$$
+
+\
+
+e $m$ é um parâmetro que varia conforme a definição adotada.
+
+\
+
+A equação acima aplica-se diretamente às definições de funções lineares contínuas (Types 4–9). Para as definições descontínuas (Types 1–3), $\gamma$ não é o resíduo fracionário $g = pn + m - j$, mas assume valores discretos específicos a cada definição — ver Seção 2 de Hyndman e Fan (1996).
+
+\
+
+
+Parâmetro $m$ por definição
+
+\
+
+
+A Tabela 1 apresenta os valores de $m$ para cada uma das nove definições
+catalogadas por Hyndman e Fan (1996), com indicação da família a que pertencem.
+
+\
+
+| Type (R) | Definição | Família | $m$ |
+|:--------:|:---------:|:-------:|:---:|
+| 1 | $\hat{Q}_1$ | Descontínua | $0$ |
+| 2 | $\hat{Q}_2$ | Descontínua | $0$ |
+| 3 | $\hat{Q}_3$ | Descontínua | $-\tfrac{1}{2}$ |
+| 4 | $\hat{Q}_4$ | Linear contínua | $0$ |
+| 5 | $\hat{Q}_5$ | Linear contínua | $\tfrac{1}{2}$ |
+| 6 | $\hat{Q}_6$ | Linear contínua | $p$ |
+| 7 | $\hat{Q}_7$ | Linear contínua | $1 - p$ |
+| 8 | $\hat{Q}_8$ | Linear contínua | $\dfrac{p + 1}{3}$ |
+| 9 | $\hat{Q}_9$ | Linear contínua | $\dfrac{p}{4} + \dfrac{3}{8}$ |
+
+\
+
+Definição recomendada: $\hat{Q}_8(p)$
+
+\
+
+Hyndman e Fan (1996) recomendam $\hat{Q}_8(p)$ por ser **median-unbiased** e **distribution-free**. Ela corresponde a $\alpha = \beta = \frac{1}{3}$ na família de plotting positions de Blom (1958), com posição de plotting:
+
+\
+
+
+$$
+p_k = \frac{k - \tfrac{1}{3}}{n + \tfrac{1}{3}}
+$$
+
+\
+
+O parâmetro é $m = \frac{p+1}{3}$, de modo que o índice e o peso de interpolação
+são:
+
+\
+
+$$
+j = \left\lfloor pn + \frac{p+1}{3} \right\rfloor, \qquad
+\gamma = pn + \frac{p+1}{3} - j
+$$
+\
+
+e o quantil estimado é:
+
+\
+
+$$
+\hat{Q}_8(p) = (1 - \gamma)\, X_{(j)} + \gamma\, X_{(j+1)}
+$$
+
+\
+
+
+```{r}
+
+x <- sort(alturas)
+n <- length(x)
+
+q8 <- function(p, x) {
+  n <- length(x)
+  m <- (p + 1) / 3
+  h <- p * n + m
+  j <- floor(h)
+  gamma <- h - j
+  (1 - gamma) * x[j] + gamma * x[j + 1]
+}
+
+Q1 <- q8(0.25, x)
+Q2 <- q8(0.50, x)
+Q3 <- q8(0.75, x)
+
+cat("Q1 =", Q1, "\n")
+cat("Q2 =", Q2, "\n")
+cat("Q3 =", Q3, "\n")
+
+cat("\nVerificacao via quantile(..., type = 8):\n")
+print(quantile(x, probs = c(0.25, 0.50, 0.75), type = 8))
+
+```
+
+\
+
+
+
+>As regras apresentadas a seguir para o cálculo da posição virtual $L_{p}$ de um quantil de ordem $p$ em um rol de dados envolvem dois tipos de aproximação. As fórmulas de posição correspondem, cada uma, a uma escolha particular do parâmetro $m$ na formulação geral de Hyndman e Fan (1996) — nenhuma delas é universalmente correta, e produzem valores ligeiramente diferentes entre si, especialmente para $n$ pequeno. 
 
 
 \
 
 
-Novamente podemos nos deparar com **duas situações possíveis** para o valor calculado para a posição _L_ qualquer que seja a regra:
+$$
+L_{p}=p\times n\\
+L_{p}=p \times (n+1)\\
+L_{p}=[p \times (n-1)]+1,\\
+$$
+\
+
+em que:
+
+\
+
+- $p$ é a **ordem** do quantil em proporção (0,25 para $Q_{1}$, 0,50 para $Q_{2}$ ou 0,75 para $Q_{3}$ por exemplo);
+- $n$ é o número de dados;  e,
+- $L_{p}$ é a **posição virtual** do valor referente ao quantil procurado.
+
+\
+
+Os quartis estimados a partir das posições virtuais determinadas por essas regras *aproximadamente* subdividem o conjunto de dados de tal modo que, aproximadamente, em partes com 25\%, 50\% e 75\% (por exemplo) de seus elementos possuem valores inferiores a, respectivamente, $Q_{1}$, $Q_{2}$ e $Q_{3}$.
+
+\
+
+Assim, para a determinação das **posições virtuais** dos 3 quartis pela **primeira regra** o valor de _p_ seria:
+
+\
+
+
+- para o _primeiro quartil_ ($L_{q_{0,25}}=0,25 \times (n)$; 
+- para o _segundo quartil_ ($L_{q_{0,50}}=0,50 \times (n)$; ou,  
+- para o _terceiro quartil_ ($L_{q_{0,75}}=0,75 \times (n)$. 
 
 
 \
 
-- se valor calculado da **posição**  L for um **inteiro**, nessa posição encontraremos o valor referente ao quantil desejado;  
-- se o valor calculado da **posição  L** for **fracionário**, o valor desse quantil será determinado pela média entre os dois valores dos dados que estão nas **posições** imediatamente anterior e imediatamente posterior à posição **L** calculada.
+
+Novamente podemos nos deparar com **duas situações possíveis** para o valor calculado para a posição $L_{p}$. No $R$ a função ``quantile'' com argumento ``type=2'' faz a estimação do quantil seguindo as regras ao se usar $L_{p}=p\times n$: 
 
 
 \
+
+
+>se o valor calculado da **posição virtual** $L_{p}$ for **inteiro**, a estimativa do quantil de ordem $p$ será determinada pela média entre os valores dos dados que estão nas **posições** imediatamente anterior e imediatamente posterior à posição $L_{p}$:
+
+$$
+Q_p=\frac{x_{L_{p}} + x_{(L_{p+1})}}{2}
+$$
+
+
+
+
+>se valor calculado da **posição virtual**  $L_{p}$ for um **fracionário**, a estimativa do quantil de ordem $p$ será o elemento localizado na posição inteira imediatamente superior a $L_p$.  
+
+
+
+\
+
 
 
 Juntamente com as observações mínima ($x_{i}$) e máxima ($x_{n}$), o  1$^{o}$, 2$^{o}$ e 3$^{o}$ Quartis são importantes para se ter uma boa idéia da assimetria da distribuição dos dados. 
 
 \
 
-Para uma distribuição simétrica (ou aproximadamente simétrica) deveremos observar (Distribuição Gaussiana):
+Para uma distribuição **simétrica** (ou aproximadamente simétrica), deveremos
+observar:
 
-\
+- $Q_2 - x_1 \approx x_n - Q_2$ (dispersão inferior $\approx$ dispersão superior);
+- $Q_2 - Q_1 \approx Q_3 - Q_2$; e
+- $Q_1 - x_1 \approx x_n - Q_3$.
 
-- a dispersão inferior: $q_{2} - x_{1} \approx x_{n} - q_{2}$ à dispersão superior ;
-- $q_{2} - q_{1}  \approx   q_{3} - q_{2}$; e,
-- $q_{1} - x_{1}  \approx   x_{n} - q_{3}$.
 
 \
 
@@ -874,8 +1005,7 @@ Para nosso conjunto de dados, segundo a regra empírica apresentada teremos as s
 - para o _primeiro quartil_:
 
 \begin{align*}
-L_{Q_{1}} & =\frac{p}{100} \times (n) \\
-          & =\frac{25}{100} \times (60) \\
+L_{Q_{1}} & =p \times (n) \\
           & = 0,25*60 \\
           & = 15
 \end{align*}
@@ -885,8 +1015,7 @@ L_{Q_{1}} & =\frac{p}{100} \times (n) \\
 
 
 \begin{align*}
-L_{Q_{2}} & =\frac{p}{100} \times (n) \\
-          & =\frac{50}{100} \times (60) \\
+L_{Q_{2}} & =p \times (n) \\
           & = 0,5*60 \\
           & = 30
 \end{align*}
@@ -896,8 +1025,7 @@ L_{Q_{2}} & =\frac{p}{100} \times (n) \\
 - para o _terceiro quartil_:
 
 \begin{align*}
-L_{Q_{3}} & =\frac{p}{100} \times (n) \\
-          & =\frac{75}{100} \times (60) \\
+L_{Q_{3}} & =p \times (n) \\
           & = 0,75*60 \\
           & = 45
 \end{align*}
@@ -905,7 +1033,7 @@ L_{Q_{3}} & =\frac{p}{100} \times (n) \\
 
 \
 
-E os quartis serão:
+E as aproximações dos quartis serão:
 
 \
 
@@ -920,6 +1048,7 @@ E os quartis serão:
 Em razão das variadas proposições existentes na literatura para se estabelecer os quantis o [R](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/quantile) apresenta 9 modos diferentes: 
 
 \
+
 
 
 ```{r}
@@ -938,12 +1067,26 @@ for(i in 1:9) {
 \
 
 
+
+No R, a definição $\hat{Q}_8(p)$ corresponde ao argumento `type = 8` na função `quantile()`.
+
+
+\
+
+Na biblioteca NumPy do Python, temos 13 métodos cosiderados:
+
+\
+
+
 ```{python, include=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
 
 import numpy as np
 
 ```
 
+
+
+\
 
 
 ```{python, include=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
@@ -966,15 +1109,44 @@ methods = [
 alpha = [0.25, 0.5, 0.75]
 for m in methods:
    estimates = np.quantile(r.alturas, alpha, method=m)
-   print(f"Estimativas dos quartis segundo o método {m:<25} => Q1: {estimates[0]:.4f}, Q2: {estimates[1]:.4f}, Q3: {estimates[2]:.4f}")
+   print(f"Estimativas dos quartis segundo o método {m:<25} => Q1: {estimates[0]:.5f}, Q2: {estimates[1]:.5f}, Q3: {estimates[2]:.5f}")
 
 ```
+
+\
+
+
+
+Em Python, a definição $\hat{Q}_8(p)$ corresponde ao argumento method='median_unbiased' na função `np.quantile()`.
+
+
 \
 
 
-Para grandes conjuntos de dados a diferença entre os quantis determinados sob esses diferentes modos será desprezível.
+
+>Para grandes conjuntos de dados a diferença entre os quantis determinados sob esses diferentes modos será desprezível.
 
 \
+
+>Tabela resumo:
+
+\
+
+
+
+| Proposição da posição virtual | Se \(L_p\) é inteiro | Se \(L_p\) é fracionário | Correspondência no R |
+|:--|:--|:--|:--|:--|
+| \(L_p = pn\) | \(Q(p)=\dfrac{x_{(L_p)}+x_{(L_p+1)}}{2}\) | \(Q(p)=x_{(\lceil L_p\rceil)}\) | `type = 2` |
+| \(L_p = p(n+1)\) | \(Q(p)=x_{(L_p)}\) | \(Q(p)=x_{(k)}+\delta\bigl(x_{(k+1)}-x_{(k)}\bigr)\), com \(L_p=k+\delta\)| `type = 6` |
+| \(L_p = p(n-1)+1\) | \(Q(p)=x_{(L_p)}\) | \(Q(p)=x_{(k)}+\delta\bigl(x_{(k+1)}-x_{(k)}\bigr)\), com \(L_p=k+\delta\) |`type = 7` |
+
+
+\
+
+em que $k$ é a parte inteira de \(L_p\) e $\delta$ a parte fracionária de \(L_p\) ($0<\delta<1$): \(L_p=k+\delta\). 
+\
+
+
 
 ## Padronizacao de dados (_z-scores_)
 
@@ -1208,11 +1380,15 @@ text(c(16.3-0.5, 23.5-0.5), 5, c("Moda=1,66","Moda=1,73"), col = "darkgray", srt
 
 \
 
-```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Quadro comparativo entre as medidas de tendência central (posição)"}
+| | Média | Mediana | Moda |
+|---|---|---|---|
+| **Definição** | $\bar{x} = \dfrac{\sum x}{n}$ | Valor do meio | Valor mais freqüente |
+| **Existência** | Sempre existe | Sempre existe | Pode não existir, pode haver mais de uma |
+| **Leva em conta todos os valores** | Sim | Não | Não |
+| **Afetada por valores discrepantes** | Sim | Não | Não |
+| **Vantagens** | Usada em muitos métodos estatísticos | Menos sensível a valores discrepantes | Apropriada para dados qualitativos |
 
-knitr::include_graphics("images3/comp_sinteses.jpg")
-
-```
+: Quadro comparativo entre as medidas de tendência central (posição)
 
 \
 
@@ -1286,7 +1462,7 @@ Observa-se frequentemente, todavia, que  as publicações seguem normas particul
 
 \
 
-#### Dados qualitativos em entrada única 
+#### Tabelas de entrada única 
 
 \
 
@@ -1442,7 +1618,7 @@ tex2markdown(textable)
 
 \
 
-#### Dados qualitativos em entrada dupla 
+#### Tabelas de dupla entrada  
 
 \
 
@@ -1631,66 +1807,93 @@ Ou ainda neste outro estudo que analisa a inclinação partidária de dois tipos
 
 \
 
+```{r, results='asis', echo=FALSE, message=FALSE}
 
-```{=latex }
+tab <- data.frame(
+  `Estrutura domiciliar` = c("Casal com filho(s)", "Casal sem filhos", "Totais"),
+  Democrata              = c(762, 484, 1246),
+  Republicano            = c(468, 477, 945),
+  Totais                 = c(1230, 961, 2191),
+  check.names = FALSE
+)
 
-\begin{table}[h]
-\begin{center}
-\caption{Inclinação partidária (frequências absolutas)}
-\begin{tabular}{|l|l|l|l|}
-\hline
-Estrutura domiciliar    & Democrata          & Republicano &  Totais        \\
-\hline
-Casal com filho(s)    & 762                & 468         & 1230            \\
-Casal sem filhos      & 484                & 477         & 961             \\
-\hline
-Totais                & 1246               & 945         & 2191           \\
-\hline
-\end{tabular} \vspace{4pt}
-
-Fonte: Próprio autor
-\end{center}
-\end{table}
-
+knitr::kable(tab,
+             caption = "Inclinação partidária (frequências absolutas)",
+             align   = "lrrr",
+             booktabs = FALSE) |>
+  kableExtra::kable_styling(
+    full_width        = FALSE,
+    position          = "center",
+    bootstrap_options = c("bordered", "hover", "condensed")
+  ) |>
+  kableExtra::row_spec(nrow(tab), bold = TRUE) |>
+  kableExtra::footnote(general = "Fonte: Próprio autor",
+                       general_title = "")
 
 
 ```
 
 
 
+<!-- ```{=latex } -->
 
-```{r eval=knitr::is_html_output(), results = "asis", echo = FALSE, message = FALSE}
+<!-- \begin{table}[h] -->
+<!-- \begin{center} -->
+<!-- \caption{Inclinação partidária (frequências absolutas)} -->
+<!-- \begin{tabular}{|l|l|l|l|} -->
+<!-- \hline -->
+<!-- Estrutura domiciliar    & Democrata          & Republicano &  Totais        \\ -->
+<!-- \hline -->
+<!-- Casal com filho(s)    & 762                & 468         & 1230            \\ -->
+<!-- Casal sem filhos      & 484                & 477         & 961             \\ -->
+<!-- \hline -->
+<!-- Totais                & 1246               & 945         & 2191           \\ -->
+<!-- \hline -->
+<!-- \end{tabular} \vspace{4pt} -->
 
-tex2markdown <- function(texstring) {
-  writeLines(text = texstring,
-             con = myfile <- tempfile(fileext = ".tex"))
-  texfile <- pandoc(input = myfile, format = "html")
-  cat(readLines(texfile), sep = "\n")
-  unlink(c(myfile, texfile))
-}
+<!-- Fonte: Próprio autor -->
+<!-- \end{center} -->
+<!-- \end{table} -->
 
-textable <- "
-\\begin{table}[h]
-\\centering
-\\caption{Inclinação partidária (frequências absolutas)}
-\\begin{tabular}{|l|l|l|l|}
-\\hline
-Estrutura domiciliar   & Democrata          & Republicano &  Totais        \\\\
-\\hline
-Casal com filho(s)    & 762                & 468         & 1230            \\\\
-Casal sem filhos      & 484                & 477         & 961             \\\\
-\\hline
-Totais                & 1246               & 945         & 2191           \\\\
-\\hline
-\\end{tabular}
-\\vspace{4pt}
-Fonte: Próprio autor                                                
-\\end{table}		
 
-"
 
-tex2markdown(textable)
-```
+<!-- ``` -->
+
+
+
+
+<!-- ```{r eval=knitr::is_html_output(), results = "asis", echo = FALSE, message = FALSE} -->
+
+<!-- tex2markdown <- function(texstring) { -->
+<!--   writeLines(text = texstring, -->
+<!--              con = myfile <- tempfile(fileext = ".tex")) -->
+<!--   texfile <- pandoc(input = myfile, format = "html") -->
+<!--   cat(readLines(texfile), sep = "\n") -->
+<!--   unlink(c(myfile, texfile)) -->
+<!-- } -->
+
+<!-- textable <- " -->
+<!-- \\begin{table}[h] -->
+<!-- \\centering -->
+<!-- \\caption{Inclinação partidária (frequências absolutas)} -->
+<!-- \\begin{tabular}{|l|l|l|l|} -->
+<!-- \\hline -->
+<!-- Estrutura domiciliar   & Democrata          & Republicano &  Totais        \\\\ -->
+<!-- \\hline -->
+<!-- Casal com filho(s)    & 762                & 468         & 1230            \\\\ -->
+<!-- Casal sem filhos      & 484                & 477         & 961             \\\\ -->
+<!-- \\hline -->
+<!-- Totais                & 1246               & 945         & 2191           \\\\ -->
+<!-- \\hline -->
+<!-- \\end{tabular} -->
+<!-- \\vspace{4pt} -->
+<!-- Fonte: Próprio autor                                                 -->
+<!-- \\end{table}		 -->
+
+<!-- " -->
+
+<!-- tex2markdown(textable) -->
+<!-- ``` -->
 
 
 
@@ -1800,7 +2003,7 @@ A literatura propõe vários modos para se determinar o número _k_ de classes:
 |----------------------------|--------------------------|-------------------------|
 |                            | n $\leq$ 25              | k=5                     |
 | Raiz quadrada              | 25  $\leq$ n $\leq$ 220  | k=$\sqrt{n}$            |
-| Raiz quadrada              | 25  $\leq$ n $\leq$ 220  | $2^{k} > n$             |
+| Potência de 2              | 25  $\leq$ n $\leq$ 220  | $2^{k} > n$             |
 | Herbert **Sturges**        | 135 $\leq$ 572237        | k=1+3,22.log(n)$^{(1)}$ |
 | Giuseppe **Milone**        | 20 $\leq 36315$          | k=-1+2.ln(n) $^{(2)}$   |
 
@@ -1937,10 +2140,9 @@ Ordenando-se os dados (para facilitar a identificação das observações) e atr
 \
 
 
-A tabela de distribuição de frequências com 8 classes, cada uma com amplitude 0,075 m, assume a forma:
+>A tabela de distribuição de frequências com **k=8 classes**, cada uma com **amplitude $\Delta=0,075$m**, assume a forma:
 
 \
-
 
 
 | Classe                  | Frequência absoluta ($f_{i}$) |
@@ -1979,7 +2181,7 @@ Ordenando-se os dados (para facilitar a identificação das observações) e atr
 
 \
 
-A tabela de distribuição de frequências com 7 classes, cada uma com amplitude 0,08 m, assume a forma:
+>A tabela de distribuição de frequências com **k=7 classes**, cada uma com **amplitude $\Delta=0,08$m**, assume a forma:
 
 \
 
@@ -2019,7 +2221,7 @@ Ordenando-se os dados (para facilitar a identificação das observações) e atr
 
 \
 
-A tabela de distribuição de frequências com 6 classes, cada uma com amplitude 0,10 m, assume a forma:
+>A tabela de distribuição de frequências com **k=6 classes**, cada uma com **amplitude $\Delta=0,10$m**, assume a forma:
 
 \
 
@@ -2038,7 +2240,7 @@ A tabela de distribuição de frequências com 6 classes, cada uma com amplitude
 \
 
 
-_Tabelas de distribuição de frequências_ mais completas podem montadas agregando muitas informações adicionais em novas colunas, mediante simples operações aritméticas.
+>_Tabelas de distribuição de frequências_ mais completas podem montadas agregando muitas informações adicionais em novas colunas, mediante simples operações aritméticas.
 
 \
 
@@ -2059,8 +2261,7 @@ Essas informações servem para tornar a visualização mais imediata e muitas d
 
 \
 
-
-Vejo como exemplo as tabelas abaixo:
+>Para a tabela de distribuição de frequências com **k=6 classes**, cada uma com **amplitude $\Delta=0,10$m**:
 
 
 \
@@ -2091,6 +2292,237 @@ Vejo como exemplo as tabelas abaixo:
 | 6      | 1,91  $\vdash$ 2,01 | 3         | 0,10           | 30             | 0,05       | 0,5                   |
 | Totais | -                   | 60        | -              | -              | 1,00       | -                     |
 
+
+\
+
+
+>Para a tabela de distribuição de frequências com **k=8 classes**, cada uma com **amplitude $\Delta=0,075$m**:
+
+\
+
+
+```{r, echo=FALSE}
+# -------------------------------------------------------
+# Função: tabela_freq()
+# Parâmetros:
+#   x       : vetor numérico de dados brutos
+#   k       : número de classes
+#   delta   : amplitude de cada classe (igual para todas)
+#   lim_inf : limite inferior da primeira classe
+#   format  : "console" (padrão) ou "html"
+# -------------------------------------------------------
+
+tabela_freq <- function(x, k, delta, lim_inf, format = "console") {
+  n <- length(x)
+  casas <- nchar(sub("^[0-9]*\\.?", "", as.character(delta)))
+  casas <- ifelse(grepl("\\.", as.character(delta)), casas, 0)
+  limites_inf <- lim_inf + (0:(k - 1)) * delta
+  limites_sup <- limites_inf + delta
+  pm <- (limites_inf + limites_sup) / 2
+  fi <- integer(k)
+  for (i in seq_len(k)) {
+    if (i < k) {
+      fi[i] <- sum(x >= limites_inf[i] & x < limites_sup[i])
+    } else {
+      fi[i] <- sum(x >= limites_inf[i] & x <= limites_sup[i])
+    }
+  }
+  fri <- fi / n
+  Fi  <- cumsum(fi)
+  Fri <- cumsum(fri)
+  di  <- fi  / delta
+  dri <- fri / delta
+  fri_arred <- round(fri * 100, 4)
+  diff_fri  <- 100 - sum(fri_arred)
+  if (diff_fri != 0) {
+    idx <- which.max(fri_arred)
+    fri_arred[idx] <- fri_arred[idx] + diff_fri
+  }
+  Fri_pct_arred    <- round(Fri * 100, 4)
+  Fri_pct_arred[k] <- 100
+  classe_label <- paste0(
+    "[", format(limites_inf, nsmall = 2), " ; ",
+         format(limites_sup, nsmall = 2), ")"
+  )
+  classe_label[k] <- sub("\\)$", "]", classe_label[k])
+  tab <- data.frame(
+    Classe = classe_label,
+    PM     = pm,
+    fi     = fi,
+    fri    = round(fri, casas),
+    Fi     = Fi,
+    Fri    = round(Fri, casas),
+    fi_pct = fri_arred,
+    Fi_pct = Fri_pct_arred,
+    di     = round(di, casas),
+    dri    = round(dri, casas)
+  )
+  names(tab) <- c(
+    "Classe", "PM",
+    "fi", "fri",
+    "Fi", "Fri",
+    "fi (%)", "Fi (%)",
+    "di (abs.)", "dri (rel.)"
+  )
+  totais <- c(
+    "Total", "",
+    sum(fi), round(sum(fri), casas),
+    "", "",
+    sum(fri_arred), "",
+    "", ""
+  )
+  tab_total <- rbind(sapply(tab, as.character), totais)
+  tab_total <- as.data.frame(tab_total, stringsAsFactors = FALSE)
+  names(tab_total) <- names(tab)
+  rownames(tab_total) <- c(as.character(1:k), "Total")
+
+  if (format == "html") {
+    if (knitr::is_latex_output()) {
+       knitr::kable(tab_total, format = "latex", align = "c",
+                   booktabs = TRUE,
+                   row.names = TRUE,
+                   col.names = c("$i$", "Classe", "$\\bar{x}_i$", "$f_i$", "$f_{ri}$",
+                                 "$F_i$", "$F_{ri}$", "$f_i$ (%)", "$F_i$ (%)",
+                                 "$\\delta_{i}$", "$\\delta_{ri}$")) |>
+        kableExtra::kable_styling(
+          latex_options = c("striped", "hold_position"),
+          full_width    = FALSE
+        ) |>
+        kableExtra::row_spec(nrow(tab_total), bold = TRUE)
+    } else {
+      knitr::kable(tab_total, format = "html", align = "c",
+                   row.names = TRUE,
+                   col.names = c("$i$", "Classe", "$\\bar{x}_i$", "$f_i$", "$f_{ri}$",
+                                 "$F_i$", "$F_{ri}$", "$f_i$ (%)", "$F_i$ (%)",
+                                 "$\\delta_{i}$", "$\\delta_{ri}$"),
+                   table.attr = 'class="table table-striped table-bordered"') |>
+        kableExtra::kable_styling(
+          full_width        = FALSE,
+          position          = "center",
+          bootstrap_options = c("striped", "bordered", "hover", "condensed")
+        ) |>
+        kableExtra::row_spec(nrow(tab_total), bold = TRUE)
+    }
+  } else {
+    return(tab_total)
+  }
+}
+
+
+
+```
+
+
+
+
+```{r}
+# -------------------------------------------------------
+# Aplicação aos 60 valores de alturas
+# -------------------------------------------------------
+
+tabela_freq(alturas, k = 8, delta = 0.075, lim_inf = 1.41, format = "html")
+
+```
+
+
+
+\
+
+A partir das densidades relativas podemos traçar um gráfico com essa poligonal. A **área delimitada por essa poligonal entre dois valores quaisquer** é uma equivalente numérico da probabilidade de que um determinado valor de altura de um estudante (amostrado aleatoriamente dentre todos os 60 estudantes) esteja contida nesse intervalo, uma vez que a área total sob essa poligonal soma 1. 
+
+
+\
+
+
+```{r, echo=FALSE, message=FALSE,out.width='80%', fig.align='center', fig.cap="Polígono de densidades relativas"}
+
+
+
+
+tabela_freq_obj <- tabela_freq(x, k = 8, delta = 0.075, lim_inf = 1.41)
+
+linhas_classes  <- tabela_freq_obj$Classe != "Total"
+pm              <- as.numeric(tabela_freq_obj$PM[linhas_classes])
+dri             <- as.numeric(tabela_freq_obj[linhas_classes, "dri (rel.)"])
+
+delta   <- 0.075
+pm_ext  <- c(pm[1] - delta, pm, pm[length(pm)] + delta)
+dri_ext <- c(0, dri, 0)
+areas     <- dri * delta
+area_total <- sum(areas)
+
+cat("Áreas por classe:\n")
+print(data.frame(
+  Classe = tabela_freq_obj$Classe[linhas_classes],
+  PM     = pm,
+  dri    = dri,
+  area   = round(areas, 6)
+))
+
+cat("\nÁrea total sob o polígono:", round(area_total, 6), "\n")
+
+cores <- c("#E07070", "#90C090", "#8080D0", "#D4C060",
+           "#C080C0", "#70A0C0", "#C09070", "#80C0A0")
+
+cores_ext <- c(cores[1], cores, cores[length(cores)])
+areas_ext <- c(0, areas, 0)
+
+plot(pm_ext, dri_ext,
+     type = "n",
+     xlab = "Altura (m)",
+     ylab = "Densidade relativa",
+     main = "Polígono de densidades relativas",
+     xaxt = "n",
+     panel.first = grid(col = "gray85", lty = 1))
+
+for (i in seq_len(length(pm_ext) - 1)) {
+  polygon(x      = c(pm_ext[i], pm_ext[i + 1], pm_ext[i + 1], pm_ext[i]),
+          y      = c(dri_ext[i], dri_ext[i + 1], 0, 0),
+          col    = adjustcolor(cores_ext[i], alpha.f = 0.50),
+          border = NA)
+}
+
+lines(pm_ext, dri_ext, col = "red", lwd = 2)
+points(pm_ext, dri_ext, pch = 16, col = "red", cex = 1.2)
+
+axis(1, at = pm_ext, labels = round(pm_ext, 3))
+abline(h = 0, col = "gray70", lty = 2)
+
+for (i in seq_len(length(pm_ext) - 1)) {
+  if (areas_ext[i] == 0) next
+
+  label <- paste0("A=", round(areas_ext[i], 4))
+  lw    <- strwidth(label, cex = 0.72)
+  lh    <- strheight(label, cex = 0.72)
+  cx    <- (pm_ext[i] + pm_ext[i + 1]) / 2
+  cy    <- (dri_ext[i] + dri_ext[i + 1]) / 4
+
+  rect(xleft   = cx - lw / 2 - 0.003,
+       xright  = cx + lw / 2 + 0.003,
+       ybottom = cy - lh * 0.9,
+       ytop    = cy + lh * 0.9,
+       col     = adjustcolor(cores_ext[i], alpha.f = 0.35),
+       border  = adjustcolor(cores_ext[i], alpha.f = 0.90),
+       lwd     = 0.6)
+
+  text(x      = cx,
+       y      = cy,
+       labels = label,
+       cex    = 0.72,
+       col    = "gray10")
+}
+
+legend("topright",
+       legend = "Polígono de densidades relativas",
+       col    = "red",
+       lwd    = 2,
+       pch    = 16,
+       bty    = "o",
+       bg     = "white",
+       cex    = 0.85)
+
+
+```
 
 \
 
@@ -2684,7 +3116,7 @@ knitr::include_graphics("images3/dens_rel.jpg")
 
 \
 
-A  **área da curva da Função de Densidade delimitada por dois valores quaisquer** é uma analogia para a probabilidade de que um determinado valor de altura de um estudante (amostrado aleatoriamente dentre todos os 60 estudantes) esteja contida nesse intervalo.
+A  **área da curva da Função de Densidade delimitada por dois valores quaisquer** é uma equivalente numérico da probabilidade de que um determinado valor de altura de um estudante (amostrado aleatoriamente dentre todos os 60 estudantes) esteja contida nesse intervalo.
 
 \
 

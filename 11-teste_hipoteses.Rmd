@@ -4355,6 +4355,9 @@ ggplot(data.frame(x = c(0, 30)), aes(x)) +
 
 ```
 
+\
+
+
 
 > Exemplo: verifique a independência (homogeneidade) nas contagens da intenção de voto de quatro candidatos distintos em amostras de três diferentes bairros, partindo das informações consolidadas na tabela abaixo.
 
@@ -4626,6 +4629,284 @@ ggplot(data.frame(x = c(0, 50)), aes(x)) +
 
 \
 
+
+> Exemplo: Incidência de baixo peso ao nascer em recém-nascidos de Pelotas (RS) segundo o hábito tabágico da mãe durante a gravidez (1982)
+
+
+
+\
+
+
+```{=latex}
+
+\begin{table}
+\centering
+\caption{Incidência de baixo peso ao nascer em recém-nascidos de Pelotas, RS,
+segundo o hábito tabágico da mãe durante a gravidez (1982)}
+\begin{tabular}{c|c|c|c}
+\hline
+\multirow{2}{*}{Classificação da mãe} & \multicolumn{2}{c|}{Baixo peso ao nascer} & \multirow{2}{*}{Total}  \\ 
+& \cline{2-3}
+              Sim & Não        \\ 
+\hline              
+Fumante & 275 (a) & 2.144 (b) & 2.419 (a+b)   \\
+\hline 
+Não fumante & 311 (c) & 4.496 (d) & 4.807 (c+d)  \\
+\hline 
+Total & 586 (a+c) & 6.640 (b+d)  & 7.226 (N=a+b+c+d)  \\
+\hline 
+\end{tabular}
+\label{tab33}
+\end{table}	
+
+```
+
+
+
+```{r eval=knitr::is_html_output(), results = "asis", echo = FALSE, message = FALSE}
+
+tex2markdown <- function(texstring) {
+  writeLines(text = texstring,
+             con = myfile <- tempfile(fileext = ".tex"))
+  texfile <- pandoc(input = myfile, format = "html")
+  cat(readLines(texfile), sep = "\n")
+  unlink(c(myfile, texfile))
+}
+
+textable <- "
+
+\\begin{table}
+\\centering
+\\caption{Incidência de baixo peso ao nascer em recém-nascidos de Pelotas, RS,
+segundo o hábito tabágico da mãe durante a gravidez (1982)}
+\\begin{tabular}{c|c|c|c}
+\\hline
+\\multirow{2}{*}{Classificação da mãe} & \\multicolumn{2}{c|}{Baixo peso ao nascer} & \\multirow{2}{*}{Total}  \\\\ 
+& \\cline{2-3}
+              Sim & Não         \\\\ 
+\\hline              
+Fumante & 275 (a) & 2.144 (b) & 2.419 (a+b)   \\\\
+\\hline 
+Não fumante & 311 (c) & 4.496 (d) & 4.807 (c+d)  \\\\
+\\hline 
+Total & 586 (a+c) & 6.640 (b+d) & 7.226(N=a+b+c+d)  \\\\
+\\hline 
+\\end{tabular}
+\\label{tab33}
+\\end{table}	
+
+"
+
+tex2markdown(textable)
+```
+
+
+\
+
+
+estrutura das hipóteses para o teste a um nível de significância: 0,05
+
+\
+
+$$
+\begin{cases}
+H_{0}: \text{há independêndia entre o hábito/peso} \\
+H_{1}: \text{não há}
+\end{cases}
+$$
+
+\
+
+Equivale dizer que estamos querendo testar se há independência entre o nascimento com baixo peso e o hábito de fumar da mãe.
+
+\
+
+Estatística do teste e sua distribuição:
+
+$$
+X=\sum_{i=1}^r\sum_{j=1}^s \frac{(O_{(i,j)} - E_{(i,j)})^2}{E_{(i,j)}}   \sim \chi^{2}_{((r-1)\times(s-1))} 
+$$
+
+\
+
+Cálculo da frequência esperada em cada casela ($E_{(i,j)}$):
+
+\
+
+
+$$
+E_{(i,j)} = \frac{n_{(i,.)} \times n_{(.,j)}}{n_{(.,.)}}
+$$
+
+\
+
+$$
+\frac{\text{soma da linha i} \times \text{soma da coluna j}}{\text{total de observações}}
+$$
+
+\
+
+$$
+E_{(1,1)} = \frac{2419 \times 586}{7226}= 196\\
+E_{(1,2)} = \frac{2419 \times 6640}{7226}=2223 \\
+E_{(1,2)} = \frac{4807 \times 586}{7226}= 390\\
+E_{(2,2)} = \frac{4807 \times 6640}{7226}=4417 \\
+$$
+
+\
+
+
+
+As frequências esperadas em cada casela ($i,j$) serão calculadas pela fórmula acima seguir e estão apresentadas na tabela a seguir, em conjunto com as frequências observadas. 
+
+
+\
+
+
+```{=latex}
+
+\begin{table}
+\centering
+\caption{Frequências observadas (esperadas)}
+\begin{tabular}{c|c|c|c}
+\hline
+\multirow{2}{*}{Classificação da mãe} & \multicolumn{2}{c|}{Baixo peso ao nascer} & \multirow{2}{*}{Total}  \\ 
+& \cline{2-3}
+              Sim & Não        \\ 
+\hline              
+Fumante & 275 (196) & 2.144 (2223) & 2.419    \\
+\hline 
+Não fumante & 311 (390) & 4.496 (4417) & 4.807   \\
+\hline 
+Total & 586 & 6.640 & 7.226  \\
+\hline 
+\end{tabular}
+\label{tab33}
+\end{table}	
+
+```
+
+
+
+```{r eval=knitr::is_html_output(), results = "asis", echo = FALSE, message = FALSE}
+
+tex2markdown <- function(texstring) {
+  writeLines(text = texstring,
+             con = myfile <- tempfile(fileext = ".tex"))
+  texfile <- pandoc(input = myfile, format = "html")
+  cat(readLines(texfile), sep = "\n")
+  unlink(c(myfile, texfile))
+}
+
+textable <- "
+
+\\begin{table}
+\\centering
+\\caption{Incidência de baixo peso ao nascer em recém-nascidos de Pelotas, RS,
+segundo o hábito tabágico da mãe durante a gravidez (1982)}
+\\begin{tabular}{c|c|c|c}
+\\hline
+\\multirow{2}{*}{Classificação da mãe} & \\multicolumn{2}{c|}{Baixo peso ao nascer} & \\multirow{2}{*}{Total}  \\\\ 
+& \\cline{2-3}
+              Sim & Não         \\\\ 
+\\hline              
+Fumante & 275  (196) & 2.144 (2223) & 2.419 (e)   \\\\
+\\hline 
+Não fumante & 311 (390) & 4.496 (4417) & 4.807 (f)  \\\\
+\\hline 
+Total & 586 & 6.640 & 7.226  \\\\
+\\hline 
+\\end{tabular}
+\\label{tab33}
+\\end{table}	
+
+"
+
+tex2markdown(textable)
+```
+
+
+\
+
+
+$$
+X=\sum_{i=1}^r\sum_{j=1}^s \frac{(O_{(i,j)} - E_{(i,j)})^2}{E_{(i,j)}}   \sim \chi^{2}_{((r-1)\times(s-1))} \\
+X=\frac{(275-196)^{2}}{196}+\frac{(2144-2223)^{2}}{2223}+\frac{(311-390)^{2}}{390}+\frac{(4496-4417)^{2}}{4417}\\
+X=\frac{6241}{196}+\frac{6241}{2223}+\frac{6241}{390}+\frac{6241}{4417}\\
+X=31,84+2,81+16,00+1,41=52,06\\
+\chi^{2}_{1, 5\%}=3,84 
+$$
+
+
+
+
+\
+
+
+
+
+
+```{r ,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste uniletaral à direita (tipo: menor que): a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $x_{crit}=3,84$ para o nível de significância pretendido ($\\alpha=0,05$ em uma cauda)  e ($df=1$) grau de liberdade.", warning = FALSE}
+
+library(ggplot2)
+prob_desejada <- 0.95
+r <- 2
+s <- 2
+df <- (r-1)*(s-1)
+q_desejado <- qchisq(prob_desejada, df)
+d_desejada <- dchisq(q_desejado, df)
+q_calculado <- 52.06
+d_calculado <- dchisq(q_calculado, df)
+
+ggplot(data.frame(x = c(0, 55)), aes(x)) +
+  stat_function(fun = dchisq,
+                geom = "line",
+                colour = "black",
+                args = list(df = df)) +
+  stat_function(fun = dchisq,
+                geom = "area",
+                fill = "lightgrey",
+                xlim = c(0, q_desejado),
+                args = list(df = df)) +
+  stat_function(fun = dchisq,
+                geom = "area",
+                fill = "red",
+                alpha = 0.5,
+                xlim = c(q_desejado, 55),
+                args = list(df = df)) +
+  geom_vline(xintercept = q_desejado, linetype = "dashed", color = "blue", linewidth = 0.5) +
+  geom_vline(xintercept = q_calculado, linetype = "dashed", color = "darkgreen", linewidth = 0.5) +
+  scale_y_continuous(name = "Densidade") +
+  scale_x_continuous(name = "Valores score (X)", breaks = 0:6) +  
+  labs(title = "Curva da função densidade \nDistribuição Qui-quadrado", 
+       subtitle = paste0("P(0; ", round(q_desejado, 2), ") = (1-\u03b1) em cinza (região de não rejeição) \nP(", 
+                        round(q_desejado, 2), "; \U221e) = \u03b1 em vermelho (região de rejeição)")) +
+  annotate(geom = "text", x = q_desejado+0.5, y = -0.05, 
+           label = paste0("x crítico = ", round(q_desejado, 2)), 
+           color = "blue", size = 3.5, hjust = 0.5) +
+  annotate(geom = "text", x = q_calculado-0.5, y = -0.05, 
+           label = paste0("x calculado = ", q_calculado), 
+           color = "darkgreen", size = 3.5, hjust = 0.5) +
+  annotate(geom = "text", x = 2, y = 0.3, 
+           label = "Região de não rejeição", 
+           color = "black", size = 3.5) +
+  annotate(geom = "text", x = 5, y = 0.05, 
+           label = "Região de rejeição", 
+           color = "black", size = 3.5) +
+  theme_bw() +
+  theme(plot.margin = margin(10, 10, 20, 10))
+
+```
+
+\
+
+
+>Conclusão: Os dados analisados nos permitem afirmar, sob um nível de significância de 5\% que não há independência entre o hábito de fumar da mãe durante a gravidez e a incidência de baixo peso ao nascer em recém-nascidos. Ou seja, existe associação estatisticamente significativa entre essas duas variáveis.
+
+\
+
+
+
 ### Correção de continuidade em tabelas 2x2
 
 \
@@ -4644,13 +4925,34 @@ Ou seja, em cada casela, depois de calculada a diferença entre a frequência ob
 
 \
 
-### Coeficiente de contingência de Pearson (modificado: $C^{*})$ }
+
+
+
+
+### Coeficiente de contingência de Pearson (modificado: $C^{*}$)
+
+\
+
+Como vimos, a aplicação do teste qui-quadrado permite verificar se existe associação entre duas variáveis, com base em um conjunto de observações.
+
+\
+
+A intensidade dessa associação pode ser quantificada por coeficientes que têm por objetivo medir a força da associação entre duas variáveis categorizadas. Um deles é o **coeficiente de contingência de Pearson** ($C$), definido como:
+
+\
+
+$$
+C = \sqrt{\frac{X^2}{n + X^2}}
+$$
 
 \
 
 
+Embora $C$ varie entre 0 e 1, seu valor máximo teórico não é 1, mas depende da dimensão da tabela --- especificamente do menor valor entre o número de linhas e de colunas ($k$). Em uma tabela $2 \times 2$, por exemplo, o máximo atingível é aproximadamente 0,707; em uma $3 \times 3$, aproximadamente 0,816. Isso impede a comparação direta de valores de $C$ entre tabelas de dimensões diferentes.
 
-Como vimos, a aplicação do teste qui-quadrado permite verificar se existe associação entre duas variáveis, com base em um conjunto de observações. A intensidade dessa associação pode ser quantificada por coeficientes que têm por objetivo medir a força da associação entre duas variáveis categorizadas. Um deles é o chamado coeficiente de contingência de Pearson modificado (uma correção em razão da dimensão da tabela). 
+\
+
+Para contornar essa limitação, utiliza-se o **coeficiente de contingência de Pearson modificado** ($C^{*}$), que reescalona $C$ de modo que seu valor máximo seja sempre 1, independentemente da dimensão da tabela.
 
 \
 
@@ -4670,17 +4972,13 @@ em que:
 
 - $k$ é o menor valor entre o número de linhas (l) e de colunas (c) da tabela;  
 - $n$ é o número de elementos da tabela; e,  
-- $X{2}$: valor calculado da estatística do teste qui-quadrado. 
+- $X^{2}$: valor calculado da estatística do teste qui-quadrado. 
 
 \
-
 
 > Exemplo: no exercício resolvido anteriormente ($X^{2}=37,88$ e uma tabela $3 \times 4$ com 500 observaçoes) teremos o seguinte valor para o coeficiente de contingência modificado ($C^{*}$:)
 
-
 \
-
-
 
 \begin{align*}
 C^{*} & =  \sqrt{ \frac{k \times X^{2}}{(k-1)\times (n + X^{2}) } }\\   

@@ -163,7 +163,7 @@ Apostila com alguns tópicos de estatística, probabilidade e inferência\\
 Prof.~M.e Eng.\(^{o}\) Felinto Junior Da Costa\\
 contato (sugestões): \href{mailto:fjcosta@uel.br}{\nolinkurl{fjcosta@uel.br}}}
 \author{}
-\date{\vspace{-2.5em}Londrina, 22 de March de 2026.}
+\date{\vspace{-2.5em}Londrina, 23 de March de 2026.}
 
 \begin{document}
 \maketitle
@@ -4070,7 +4070,7 @@ Fórmula
 \endlastfoot
 & n \(\leq\) 25 & k=5 \\
 Raiz quadrada & 25 \(\leq\) n \(\leq\) 220 & k=\(\sqrt{n}\) \\
-Potência de 2 & 25 \(\leq\) n \(\leq\) 220 & \(2^{k} > n\) \\
+Herbert \textbf{Sturges} Discretizada & 25 \(\leq\) n \(\leq\) 220 & \(2^{k} > n\) \\
 Herbert \textbf{Sturges} & 135 \(\leq\) 572237 & k=1+3,22.log(n)\(^{(1)}\) \\
 Giuseppe \textbf{Milone} & 20 \(\leq 36315\) & k=-1+2.ln(n) \(^{(2)}\) \\
 \end{longtable}
@@ -5367,39 +5367,45 @@ Roteiro para o \emph{Box-Plot} cf.~John Tukey ( \emph{Exploratory Data Analysis}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{boxplot}\NormalTok{(alturas, }
-        \AttributeTok{main=}\StringTok{"Boxplot do conjunto de dados de alturas"}\NormalTok{,}
-        \AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\FloatTok{1.2}\NormalTok{, }\FloatTok{2.1}\NormalTok{))}
+\FunctionTok{boxplot}\NormalTok{(alturas,}
+        \AttributeTok{main =} \StringTok{"Boxplot do conjunto de dados de alturas"}\NormalTok{,}
+        \AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\FloatTok{2.5}\NormalTok{))}
 
-\FunctionTok{lines}\NormalTok{( }\AttributeTok{y=}\FunctionTok{c}\NormalTok{(}\FloatTok{1.47}\NormalTok{, }\FloatTok{1.47}\NormalTok{), }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\FloatTok{0.6}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{) }
-\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{0.60}\NormalTok{, }\AttributeTok{y=}\FloatTok{1.47{-}0.05}\NormalTok{, }\StringTok{"Delimitador inferior do bigode=1,47"}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
+\CommentTok{\# ── Lado ESQUERDO ─────────────────────────────────────────────────────────────}
 
-\FunctionTok{lines}\NormalTok{( }\AttributeTok{y=}\FunctionTok{c}\NormalTok{(}\FloatTok{1.93}\NormalTok{,}\FloatTok{1.93}\NormalTok{), }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\FloatTok{0.6}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{) }
-\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{0.60}\NormalTok{, }\AttributeTok{y=}\FloatTok{1.93+0.05}\NormalTok{, }\StringTok{"Delimitador superior do bigode=1,93"}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\AttributeTok{y =} \FunctionTok{c}\NormalTok{(q2, q2),  }\AttributeTok{x =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.55}\NormalTok{, }\DecValTok{1}\NormalTok{), }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x =} \FloatTok{0.55}\NormalTok{, }\AttributeTok{y =}\NormalTok{ q2 }\SpecialCharTok{{-}} \FloatTok{0.05}\NormalTok{, }\StringTok{"Mediana: Q2 = 1,675"}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{adj =} \DecValTok{0}\NormalTok{)}
 
-\FunctionTok{lines}\NormalTok{(}\AttributeTok{y=}\FunctionTok{c}\NormalTok{(med, med),  }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\FloatTok{1.4}\NormalTok{), }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{) }
-\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{1.4}\NormalTok{ , }\AttributeTok{y=}\NormalTok{ med}\FloatTok{+0.05}\NormalTok{ , }\StringTok{"Média=1,6907"}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
+\CommentTok{\# Superior: três rótulos escalonados para cima}
+\FunctionTok{lines}\NormalTok{(}\AttributeTok{y =} \FunctionTok{c}\NormalTok{(}\FloatTok{1.93}\NormalTok{, }\FloatTok{1.93}\NormalTok{), }\AttributeTok{x =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.55}\NormalTok{, }\DecValTok{1}\NormalTok{), }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x =} \FloatTok{0.55}\NormalTok{, }\AttributeTok{y =} \FloatTok{1.93} \SpecialCharTok{+} \FloatTok{0.04}\NormalTok{, }\StringTok{"Del. sup. bigode = 1,93"}\NormalTok{,  }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{adj =} \DecValTok{0}\NormalTok{)}
 
-\FunctionTok{lines}\NormalTok{(}\AttributeTok{y=}\FunctionTok{c}\NormalTok{(q1, q1), }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\FloatTok{1.4}\NormalTok{), }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{) }
-\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{1.4}\NormalTok{, }\AttributeTok{y=}\NormalTok{q1 }\SpecialCharTok{{-}}\FloatTok{0.05}\NormalTok{, }\StringTok{"Primeiro quartil: Q1=1,635"}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
 
-\FunctionTok{lines}\NormalTok{(}\AttributeTok{y=}\FunctionTok{c}\NormalTok{(q2, q2),  }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\FloatTok{0.6}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{) }
-\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{0.60}\NormalTok{ , }\AttributeTok{y=}\NormalTok{ q2 }\SpecialCharTok{{-}} \FloatTok{0.05}\NormalTok{, }\StringTok{"Mediana: Q2=1,675"}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(}\AttributeTok{y =} \FloatTok{1.93}\NormalTok{, }\AttributeTok{x =} \DecValTok{1}\NormalTok{, }\AttributeTok{col =} \StringTok{"green"}\NormalTok{, }\AttributeTok{cex =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{lwd =} \DecValTok{3}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x =} \FloatTok{0.9}\NormalTok{, }\AttributeTok{y =} \FloatTok{1.93} \SpecialCharTok{{-}} \FloatTok{0.05}\NormalTok{, }\StringTok{"Ult. obs. dentro do LS: h = 1,93"}\NormalTok{, }\AttributeTok{col =} \StringTok{"darkgreen"}\NormalTok{, }\AttributeTok{adj =} \DecValTok{0}\NormalTok{)}
 
-\FunctionTok{lines}\NormalTok{(}\AttributeTok{y=}\FunctionTok{c}\NormalTok{(q3, q3), }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\FloatTok{1.4}\NormalTok{), }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{) }
-\FunctionTok{text}\NormalTok{(}\AttributeTok{x=} \FloatTok{1.4}\NormalTok{ , }\AttributeTok{y=}\NormalTok{q3 }\SpecialCharTok{+} \FloatTok{0.05}\NormalTok{, }\StringTok{"Terceiro quartil: Q3=1,755"}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
+\CommentTok{\# Inferior: três rótulos escalonados para baixo}
+\FunctionTok{lines}\NormalTok{(}\AttributeTok{y =} \FunctionTok{c}\NormalTok{(}\FloatTok{1.47}\NormalTok{, }\FloatTok{1.47}\NormalTok{), }\AttributeTok{x =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.55}\NormalTok{, }\DecValTok{1}\NormalTok{), }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x =} \FloatTok{0.55}\NormalTok{, }\AttributeTok{y =} \FloatTok{1.47} \SpecialCharTok{{-}} \FloatTok{0.04}\NormalTok{, }\StringTok{"Del. inf. bigode = 1,47"}\NormalTok{,  }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{adj =} \DecValTok{0}\NormalTok{)}
 
-\FunctionTok{lines}\NormalTok{(}\AttributeTok{y=}\FunctionTok{c}\NormalTok{(li,li) , }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\FloatTok{1.01}\NormalTok{,}\FloatTok{1.4}\NormalTok{) , }\AttributeTok{col=}\StringTok{"red"}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{) }
-\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{y=}\NormalTok{q1}\FloatTok{{-}1.5}\SpecialCharTok{*}\NormalTok{iq}\FloatTok{{-}0.05}\NormalTok{ , }\StringTok{"Limite inferior teórico: LI=1,455) "}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(}\AttributeTok{y =} \FloatTok{1.47}\NormalTok{, }\AttributeTok{x =} \DecValTok{1}\NormalTok{, }\AttributeTok{col =} \StringTok{"green"}\NormalTok{, }\AttributeTok{cex =} \FloatTok{1.5}\NormalTok{, }\AttributeTok{lwd =} \DecValTok{3}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x =} \FloatTok{0.9}\NormalTok{, }\AttributeTok{y =} \FloatTok{1.47} \SpecialCharTok{+} \FloatTok{0.05}\NormalTok{, }\StringTok{"Ult. obs. dentro do LI: h = 1,47"}\NormalTok{, }\AttributeTok{col =} \StringTok{"darkgreen"}\NormalTok{, }\AttributeTok{adj =} \DecValTok{0}\NormalTok{)}
 
-\FunctionTok{lines}\NormalTok{(}\AttributeTok{y=}\FunctionTok{c}\NormalTok{(ls,ls) , }\AttributeTok{x=}\FunctionTok{c}\NormalTok{(}\FloatTok{1.01}\NormalTok{,}\FloatTok{1.4}\NormalTok{) , }\AttributeTok{col=}\StringTok{"red"}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{) }
-\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\FloatTok{1.2}\NormalTok{, }\AttributeTok{y=}\NormalTok{q3}\FloatTok{+1.5}\SpecialCharTok{*}\NormalTok{iq }\SpecialCharTok{+}\FloatTok{0.05}\NormalTok{ , }\StringTok{"Limite superior teórico: LS=1,935"}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
+\CommentTok{\# ── Lado DIREITO ──────────────────────────────────────────────────────────────}
+\FunctionTok{lines}\NormalTok{(}\AttributeTok{y =} \FunctionTok{c}\NormalTok{(ls, ls), }\AttributeTok{x =} \FunctionTok{c}\NormalTok{(}\FloatTok{1.0}\NormalTok{, }\FloatTok{1.45}\NormalTok{), }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{lty =} \DecValTok{2}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x =} \FloatTok{1.35}\NormalTok{, }\AttributeTok{y =}\NormalTok{ ls  }\SpecialCharTok{+} \FloatTok{0.12}\NormalTok{, }\StringTok{"Lim. sup. teórico: LS = 1,935"}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{,  }\AttributeTok{adj =} \DecValTok{0}\NormalTok{)}
 
-\FunctionTok{points}\NormalTok{ (}\AttributeTok{y=}\FloatTok{1.47}\NormalTok{, }\AttributeTok{x=}\DecValTok{1}\NormalTok{ , }\AttributeTok{col=}\StringTok{"green"}\NormalTok{, }\AttributeTok{cex=}\DecValTok{1}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{5}\NormalTok{) }
-\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\DecValTok{1}\NormalTok{, }\AttributeTok{y=}\FloatTok{1.47{-}0.05}\NormalTok{ , }\StringTok{"Última observação dentro do LI: h=1,47 "}\NormalTok{, }\AttributeTok{col =} \StringTok{"green"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\AttributeTok{y =} \FunctionTok{c}\NormalTok{(li, li), }\AttributeTok{x =} \FunctionTok{c}\NormalTok{(}\FloatTok{1.0}\NormalTok{, }\FloatTok{1.45}\NormalTok{), }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{lty =} \DecValTok{2}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x =} \FloatTok{1.35}\NormalTok{, }\AttributeTok{y =}\NormalTok{ li  }\SpecialCharTok{{-}} \FloatTok{0.12}\NormalTok{, }\StringTok{"Lim. inf. teórico: LI = 1,455"}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{,  }\AttributeTok{adj =} \DecValTok{0}\NormalTok{)}
 
-\FunctionTok{points}\NormalTok{ (}\AttributeTok{y=}\FloatTok{1.93}\NormalTok{, }\AttributeTok{x=}\DecValTok{1}\NormalTok{ , }\AttributeTok{col=}\StringTok{"green"}\NormalTok{, }\AttributeTok{cex=}\DecValTok{1}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{5}\NormalTok{) }
-\FunctionTok{text}\NormalTok{(}\AttributeTok{x=}\DecValTok{1}\NormalTok{, }\AttributeTok{y=}\FloatTok{1.93+0.05}\NormalTok{ , }\StringTok{"Última observação dentro do LS: h=1,93 "}\NormalTok{, }\AttributeTok{col =} \StringTok{"green"}\NormalTok{, }\AttributeTok{srt=}\DecValTok{0}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\AttributeTok{y =} \FunctionTok{c}\NormalTok{(q1, q1),  }\AttributeTok{x =} \FunctionTok{c}\NormalTok{(}\FloatTok{1.0}\NormalTok{, }\FloatTok{1.45}\NormalTok{), }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x =} \FloatTok{1.45}\NormalTok{, }\AttributeTok{y =}\NormalTok{ q1 }\SpecialCharTok{{-}} \FloatTok{0.05}\NormalTok{, }\StringTok{"Q1 = 1,635"}\NormalTok{,    }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{adj =} \DecValTok{1}\NormalTok{)}
+
+\FunctionTok{lines}\NormalTok{(}\AttributeTok{y =} \FunctionTok{c}\NormalTok{(med, med), }\AttributeTok{x =} \FunctionTok{c}\NormalTok{(}\FloatTok{1.0}\NormalTok{, }\FloatTok{1.45}\NormalTok{), }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x =} \FloatTok{1.45}\NormalTok{, }\AttributeTok{y =}\NormalTok{ med }\SpecialCharTok{+} \FloatTok{0.02}\NormalTok{, }\StringTok{"Média = 1,6907"}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{adj =} \DecValTok{1}\NormalTok{)}
+
+\FunctionTok{lines}\NormalTok{(}\AttributeTok{y =} \FunctionTok{c}\NormalTok{(q3, q3),  }\AttributeTok{x =} \FunctionTok{c}\NormalTok{(}\FloatTok{1.0}\NormalTok{, }\FloatTok{1.45}\NormalTok{), }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x =} \FloatTok{1.45}\NormalTok{, }\AttributeTok{y =}\NormalTok{ q3 }\SpecialCharTok{+} \FloatTok{0.05}\NormalTok{, }\StringTok{"Q3 = 1,755"}\NormalTok{,    }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{adj =} \DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6391,7 +6397,7 @@ Ao simular o lançamento de um dado, por exemplo, é possível observar como a f
 \end{Shaded}
 
 \begin{verbatim}
-## A frequência observada da face 3 foi de 17.48 %
+## A frequência observada da face 3 foi de 16.79 %
 \end{verbatim}
 
 \hfill\break
@@ -6932,10 +6938,10 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 \begin{verbatim}
 ##                      
 ##                           F     M
-##   Computação           4893 10107
-##   Estatística          9948  5052
-##   Matemática aplicada  7533  7467
-##   Matemática pura     20024 34976
+##   Computação           5005  9995
+##   Estatística          9994  5006
+##   Matemática aplicada  7442  7558
+##   Matemática pura     20034 34966
 \end{verbatim}
 
 \hfill\break
@@ -6957,11 +6963,11 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 \begin{verbatim}
 ##                          
 ##                             M   F Total
-##   Matemática pura (M)      89  40   129
-##   Matemática aplicada (A)  15   7    22
-##   Estatística (E)           8  19    27
-##   Computação (C)           15   7    22
-##   Total                   127  73   200
+##   Matemática pura (M)      58  45   103
+##   Matemática aplicada (A)  12  18    30
+##   Estatística (E)          14  21    35
+##   Computação (C)           20  12    32
+##   Total                   104  96   200
 \end{verbatim}
 
 \begin{Shaded}
@@ -6973,7 +6979,7 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.635
+## [1] 0.52
 \end{verbatim}
 
 \begin{Shaded}
@@ -6985,7 +6991,7 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.11
+## [1] 0.15
 \end{verbatim}
 
 \begin{Shaded}
@@ -6997,7 +7003,7 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.075
+## [1] 0.06
 \end{verbatim}
 
 \begin{Shaded}
@@ -7009,7 +7015,7 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.67
+## [1] 0.61
 \end{verbatim}
 
 \hfill\break
@@ -13271,7 +13277,7 @@ Amostragem aleatória simples com reposição. Considere agora a mesma populaç�
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "b" "c" "d"
+## [1] "d" "e" "c"
 \end{verbatim}
 
 \begin{Shaded}
@@ -13283,7 +13289,7 @@ Amostragem aleatória simples com reposição. Considere agora a mesma populaç�
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "c" "a" "a"
+## [1] "d" "d" "a"
 \end{verbatim}
 
 \hfill\break
@@ -15698,106 +15704,106 @@ Usando conceitos já explicados em uma unidade anterior podemos determinar o tam
 
 \begin{verbatim}
 ##       mu media     erro   li   ls
-## 1   1600  1615  14.5132 1593 1636
-## 2   1600  1611  11.4788 1590 1633
-## 3   1600  1608   7.8710 1588 1627
-## 4   1600  1596  -3.9891 1577 1615
-## 5   1600  1599  -1.2769 1579 1618
-## 6   1600  1610   9.5199 1587 1632
-## 7   1600  1615  15.1822 1595 1636
-## 8   1600  1607   6.7083 1584 1629
-## 9   1600  1607   7.1596 1591 1623
-## 10  1600  1611  11.1438 1592 1630
-## 11  1600  1592  -8.4700 1571 1612
-## 12  1600  1611  11.3981 1591 1632
-## 13  1600  1609   8.5645 1590 1628
-## 14  1600  1612  12.1269 1592 1632
-## 15  1600  1580 -20.3421 1560 1600
-## 16  1600  1602   1.7803 1582 1622
-## 17  1600  1589 -11.3146 1571 1607
-## 18  1600  1599  -1.2277 1577 1621
-## 19  1600  1579 -20.6302 1557 1602
-## 20  1600  1595  -5.3129 1574 1616
-## 21  1600  1618  18.3664 1601 1636
-## 22  1600  1604   4.0616 1584 1624
-## 23  1600  1602   1.5286 1582 1621
-## 24  1600  1606   6.3762 1588 1625
-## 25  1600  1606   5.8074 1586 1626
-## 26  1600  1599  -0.6988 1580 1619
-## 27  1600  1609   9.0191 1590 1628
-## 28  1600  1620  20.2166 1601 1640
-## 29  1600  1599  -1.2304 1579 1618
-## 30  1600  1591  -9.3414 1571 1610
-## 31  1600  1604   3.6280 1583 1625
-## 32  1600  1604   3.9710 1584 1624
-## 33  1600  1614  14.0264 1594 1634
-## 34  1600  1593  -6.5471 1573 1614
-## 35  1600  1587 -13.1471 1568 1606
-## 36  1600  1591  -8.9831 1571 1611
-## 37  1600  1603   2.5921 1582 1623
-## 38  1600  1603   2.6950 1582 1623
-## 39  1600  1611  11.2075 1590 1632
-## 40  1600  1598  -1.5330 1579 1618
-## 41  1600  1609   8.9903 1590 1628
-## 42  1600  1592  -7.6540 1572 1612
-## 43  1600  1589 -10.8108 1571 1608
-## 44  1600  1595  -4.7487 1573 1617
-## 45  1600  1614  13.9320 1594 1634
-## 46  1600  1609   9.1324 1592 1626
-## 47  1600  1595  -4.9935 1575 1615
-## 48  1600  1603   3.0142 1582 1624
-## 49  1600  1608   8.0231 1589 1627
-## 50  1600  1606   5.6501 1585 1626
-## 51  1600  1605   4.8373 1582 1627
-## 52  1600  1592  -8.2214 1572 1611
-## 53  1600  1598  -2.0399 1579 1617
-## 54  1600  1596  -4.0515 1577 1615
-## 55  1600  1582 -17.6019 1562 1603
-## 56  1600  1605   5.1809 1586 1624
-## 57  1600  1592  -8.2201 1572 1612
-## 58  1600  1602   2.1431 1583 1621
-## 59  1600  1598  -2.2256 1578 1618
-## 60  1600  1611  11.0965 1593 1629
-## 61  1600  1594  -5.6523 1576 1613
-## 62  1600  1600  -0.1597 1579 1620
-## 63  1600  1599  -0.7850 1578 1620
-## 64  1600  1601   1.4553 1581 1622
-## 65  1600  1592  -7.7669 1574 1611
-## 66  1600  1616  15.7227 1594 1637
-## 67  1600  1610   9.5139 1590 1629
-## 68  1600  1611  10.7310 1592 1629
-## 69  1600  1586 -14.1933 1567 1604
-## 70  1600  1613  13.2568 1595 1632
-## 71  1600  1594  -5.6798 1573 1616
-## 72  1600  1601   0.8030 1580 1622
-## 73  1600  1604   3.6980 1585 1622
-## 74  1600  1609   9.4155 1590 1629
-## 75  1600  1597  -3.1627 1577 1616
-## 76  1600  1593  -7.2507 1573 1613
-## 77  1600  1609   8.9392 1587 1631
-## 78  1600  1604   4.0457 1585 1623
-## 79  1600  1592  -8.4489 1572 1611
-## 80  1600  1613  13.2905 1593 1633
-## 81  1600  1601   1.2364 1583 1620
-## 82  1600  1605   5.1274 1587 1624
-## 83  1600  1591  -8.8887 1571 1612
-## 84  1600  1606   5.8737 1587 1625
-## 85  1600  1604   3.9160 1585 1623
-## 86  1600  1603   2.8032 1584 1622
-## 87  1600  1593  -6.6209 1574 1613
-## 88  1600  1597  -3.0620 1577 1617
-## 89  1600  1598  -1.5680 1579 1618
-## 90  1600  1584 -15.7173 1565 1603
-## 91  1600  1586 -13.6529 1565 1607
-## 92  1600  1595  -5.4916 1574 1615
-## 93  1600  1615  15.3677 1598 1633
-## 94  1600  1606   6.1911 1585 1627
-## 95  1600  1599  -1.1772 1578 1620
-## 96  1600  1615  14.9432 1597 1633
-## 97  1600  1610   9.7891 1592 1628
-## 98  1600  1612  12.4143 1590 1635
-## 99  1600  1605   5.2130 1583 1628
-## 100 1600  1605   5.4364 1586 1625
+## 1   1600  1610  10.1467 1591 1629
+## 2   1600  1605   4.9081 1585 1625
+## 3   1600  1605   4.8719 1585 1624
+## 4   1600  1606   5.6672 1586 1625
+## 5   1600  1605   4.9494 1586 1624
+## 6   1600  1619  18.5802 1599 1638
+## 7   1600  1598  -2.1082 1578 1617
+## 8   1600  1599  -1.2393 1579 1618
+## 9   1600  1617  16.9506 1598 1636
+## 10  1600  1589 -11.1266 1570 1608
+## 11  1600  1605   5.2749 1585 1625
+## 12  1600  1606   5.9709 1584 1628
+## 13  1600  1599  -0.6805 1577 1621
+## 14  1600  1593  -7.4391 1573 1612
+## 15  1600  1613  12.8968 1594 1632
+## 16  1600  1602   1.6875 1581 1623
+## 17  1600  1587 -13.0728 1567 1607
+## 18  1600  1594  -5.7216 1575 1613
+## 19  1600  1601   1.2721 1580 1623
+## 20  1600  1596  -3.6281 1576 1616
+## 21  1600  1598  -1.5975 1578 1619
+## 22  1600  1606   5.9066 1587 1625
+## 23  1600  1610  10.2975 1592 1629
+## 24  1600  1598  -2.2593 1577 1619
+## 25  1600  1604   4.2905 1585 1623
+## 26  1600  1606   5.9615 1587 1625
+## 27  1600  1590  -9.7439 1571 1609
+## 28  1600  1582 -18.2174 1563 1601
+## 29  1600  1596  -3.9695 1579 1613
+## 30  1600  1595  -5.1046 1574 1615
+## 31  1600  1599  -1.0276 1579 1619
+## 32  1600  1606   6.0598 1586 1626
+## 33  1600  1611  11.1103 1591 1631
+## 34  1600  1606   5.8516 1587 1625
+## 35  1600  1593  -6.7329 1573 1614
+## 36  1600  1589 -10.6022 1569 1610
+## 37  1600  1587 -13.3671 1568 1605
+## 38  1600  1622  21.9211 1602 1642
+## 39  1600  1610  10.1564 1591 1630
+## 40  1600  1588 -12.4074 1568 1607
+## 41  1600  1585 -15.2232 1564 1606
+## 42  1600  1595  -4.7892 1577 1614
+## 43  1600  1589 -10.5527 1570 1609
+## 44  1600  1588 -11.8468 1570 1606
+## 45  1600  1608   7.6968 1588 1628
+## 46  1600  1607   7.3032 1588 1626
+## 47  1600  1606   5.7153 1586 1625
+## 48  1600  1612  11.5192 1591 1632
+## 49  1600  1612  11.5684 1593 1630
+## 50  1600  1603   2.7431 1583 1623
+## 51  1600  1604   4.0699 1583 1625
+## 52  1600  1606   5.8257 1587 1625
+## 53  1600  1612  12.2905 1593 1631
+## 54  1600  1588 -11.9457 1567 1609
+## 55  1600  1609   8.8520 1590 1628
+## 56  1600  1604   3.7701 1583 1625
+## 57  1600  1611  11.1653 1591 1631
+## 58  1600  1597  -3.3902 1577 1616
+## 59  1600  1589 -11.4227 1571 1606
+## 60  1600  1615  14.5326 1594 1635
+## 61  1600  1603   3.1350 1584 1622
+## 62  1600  1605   5.3491 1586 1624
+## 63  1600  1590  -9.6019 1570 1611
+## 64  1600  1590  -9.5631 1570 1611
+## 65  1600  1598  -2.1673 1577 1618
+## 66  1600  1594  -5.9338 1572 1616
+## 67  1600  1597  -2.7503 1576 1618
+## 68  1600  1606   6.3104 1584 1629
+## 69  1600  1587 -13.2439 1567 1606
+## 70  1600  1617  17.4779 1599 1636
+## 71  1600  1603   2.7648 1581 1624
+## 72  1600  1598  -1.7727 1580 1616
+## 73  1600  1601   1.3065 1581 1621
+## 74  1600  1599  -1.4038 1579 1618
+## 75  1600  1598  -1.9972 1578 1618
+## 76  1600  1593  -6.5149 1573 1614
+## 77  1600  1591  -8.9057 1572 1610
+## 78  1600  1587 -12.8805 1567 1607
+## 79  1600  1584 -16.2246 1564 1604
+## 80  1600  1594  -6.0458 1573 1615
+## 81  1600  1592  -8.3584 1571 1612
+## 82  1600  1583 -17.4721 1561 1604
+## 83  1600  1607   6.8949 1587 1627
+## 84  1600  1599  -1.0789 1578 1620
+## 85  1600  1604   4.0606 1585 1623
+## 86  1600  1603   2.7577 1583 1622
+## 87  1600  1611  11.3337 1593 1629
+## 88  1600  1600  -0.4660 1580 1619
+## 89  1600  1603   3.2923 1586 1620
+## 90  1600  1580 -20.4869 1558 1601
+## 91  1600  1610  10.0708 1589 1631
+## 92  1600  1585 -14.7900 1566 1605
+## 93  1600  1579 -21.4767 1557 1600
+## 94  1600  1602   2.3255 1581 1624
+## 95  1600  1600  -0.3573 1578 1621
+## 96  1600  1595  -4.9780 1578 1612
+## 97  1600  1601   0.9341 1582 1620
+## 98  1600  1588 -11.6057 1568 1608
+## 99  1600  1598  -1.6355 1580 1616
+## 100 1600  1583 -17.1220 1562 1604
 \end{verbatim}
 
 \hfill\break
@@ -15923,107 +15929,107 @@ Assim, \((1-\alpha)\) traduz o grau de confiança que se tem que um intervalo de
 \pandocbounded{\includegraphics[keepaspectratio]{apostila_files/figure-latex/unnamed-chunk-162-1.pdf}}
 
 \begin{verbatim}
-##        mu  media      erro    li     ls
-## 1   9.421  9.451  0.030007 8.433 10.469
-## 2   9.421  9.720  0.299403 8.719 10.721
-## 3   9.421 10.459  1.038062 9.277 11.641
-## 4   9.421 10.155  0.733844 9.211 11.098
-## 5   9.421  9.652  0.230764 8.565 10.738
-## 6   9.421  9.013 -0.407777 8.039  9.987
-## 7   9.421  9.685  0.263861 8.722 10.647
-## 8   9.421  9.185 -0.235505 8.190 10.181
-## 9   9.421  9.494  0.073286 8.446 10.542
-## 10  9.421 10.527  1.106288 9.366 11.689
-## 11  9.421 10.680  1.259151 9.537 11.823
-## 12  9.421 10.183  0.762194 9.317 11.050
-## 13  9.421  9.139 -0.282493 8.142 10.135
-## 14  9.421  9.776  0.355370 8.715 10.837
-## 15  9.421  9.468  0.046877 8.485 10.451
-## 16  9.421  9.554  0.132693 8.568 10.539
-## 17  9.421  8.861 -0.560208 7.944  9.777
-## 18  9.421  9.781  0.359805 8.722 10.840
-## 19  9.421  9.122 -0.299287 8.074 10.169
-## 20  9.421  9.262 -0.159182 8.264 10.260
-## 21  9.421  9.889  0.468042 8.926 10.852
-## 22  9.421  8.572 -0.849290 7.525  9.618
-## 23  9.421  8.796 -0.625084 7.799  9.793
-## 24  9.421  8.135 -1.285707 7.210  9.060
-## 25  9.421 10.105  0.683975 9.099 11.111
-## 26  9.421  8.808 -0.612695 7.630  9.986
-## 27  9.421  9.908  0.487116 8.851 10.965
-## 28  9.421  9.881  0.460435 8.978 10.785
-## 29  9.421  9.804  0.382583 8.727 10.880
-## 30  9.421  9.726  0.305256 8.832 10.621
-## 31  9.421  9.895  0.473876 8.841 10.949
-## 32  9.421 10.404  0.982996 9.496 11.312
-## 33  9.421  8.800 -0.621448 7.704  9.895
-## 34  9.421  9.281 -0.139614 8.300 10.263
-## 35  9.421  9.031 -0.390338 8.136  9.926
-## 36  9.421  9.525  0.104497 8.484 10.567
-## 37  9.421 10.005  0.584003 9.097 10.913
-## 38  9.421  9.284 -0.136618 8.447 10.121
-## 39  9.421  8.718 -0.703073 7.636  9.800
-## 40  9.421  9.103 -0.317830 8.241  9.966
-## 41  9.421  8.437 -0.983532 7.475  9.400
-## 42  9.421  9.085 -0.335767 8.029 10.141
-## 43  9.421  9.355 -0.065636 8.291 10.420
-## 44  9.421  9.795  0.373633 8.906 10.684
-## 45  9.421  8.967 -0.453849 8.092  9.843
-## 46  9.421  9.716  0.294583 8.554 10.877
-## 47  9.421  8.787 -0.633794 7.758  9.816
-## 48  9.421  9.779  0.358162 8.773 10.786
-## 49  9.421  9.961  0.540178 8.905 11.018
-## 50  9.421  9.708  0.287144 8.535 10.882
-## 51  9.421  8.631 -0.790370 7.538  9.724
-## 52  9.421  9.220 -0.201076 8.111 10.329
-## 53  9.421  8.679 -0.741549 7.662  9.697
-## 54  9.421  9.631  0.210262 8.504 10.759
-## 55  9.421  9.926  0.505459 8.662 11.191
-## 56  9.421  9.430  0.008547 8.456 10.403
-## 57  9.421  9.616  0.195402 8.607 10.626
-## 58  9.421  9.717  0.295708 8.583 10.850
-## 59  9.421  9.502  0.080706 8.393 10.610
-## 60  9.421  9.530  0.109389 8.446 10.615
-## 61  9.421  9.625  0.203790 8.648 10.601
-## 62  9.421  9.871  0.449954 8.794 10.948
-## 63  9.421  9.868  0.447120 8.698 11.038
-## 64  9.421  8.248 -1.173138 7.458  9.038
-## 65  9.421  9.841  0.419695 8.781 10.900
-## 66  9.421  9.216 -0.205224 8.255 10.177
-## 67  9.421  9.502  0.081035 8.590 10.414
-## 68  9.421  9.405 -0.015582 8.265 10.546
-## 69  9.421  9.758  0.336563 8.850 10.665
-## 70  9.421  9.854  0.433182 8.790 10.918
-## 71  9.421  8.527 -0.893887 7.416  9.638
-## 72  9.421 10.048  0.626574 8.983 11.113
-## 73  9.421  9.954  0.532656 8.962 10.945
-## 74  9.421  9.965  0.543781 8.896 11.033
-## 75  9.421  9.254 -0.166788 8.039 10.469
-## 76  9.421 10.069  0.647887 8.964 11.173
-## 77  9.421  9.524  0.103023 8.587 10.461
-## 78  9.421  9.323 -0.097891 8.447 10.200
-## 79  9.421  8.547 -0.874464 7.556  9.537
-## 80  9.421  9.357 -0.064428 8.446 10.268
-## 81  9.421  9.154 -0.266886 8.260 10.048
-## 82  9.421  9.805  0.384095 8.826 10.784
-## 83  9.421 10.024  0.602930 9.012 11.036
-## 84  9.421  9.955  0.533766 8.837 11.072
-## 85  9.421  9.594  0.172888 8.634 10.554
-## 86  9.421  9.372 -0.048674 8.485 10.259
-## 87  9.421  9.173 -0.247942 8.206 10.140
-## 88  9.421  8.447 -0.973877 7.501  9.393
-## 89  9.421 10.039  0.617783 8.996 11.081
-## 90  9.421  8.652 -0.769243 7.714  9.590
-## 91  9.421  9.945  0.523840 8.779 11.111
-## 92  9.421 10.191  0.769719 9.194 11.188
-## 93  9.421  9.995  0.573775 8.969 11.020
-## 94  9.421  9.822  0.400907 8.947 10.697
-## 95  9.421  9.203 -0.218089 8.181 10.225
-## 96  9.421  8.911 -0.509516 8.132  9.691
-## 97  9.421  9.518  0.097382 8.589 10.448
-## 98  9.421  9.410 -0.011194 8.173 10.647
-## 99  9.421  9.710  0.289332 8.814 10.606
-## 100 9.421  9.582  0.160683 8.569 10.595
+##        mu  media     erro    li     ls
+## 1   9.421 10.078  0.65687 9.044 11.112
+## 2   9.421  9.077 -0.34360 7.995 10.160
+## 3   9.421  9.519  0.09781 8.501 10.537
+## 4   9.421  8.947 -0.47449 8.150  9.743
+## 5   9.421  9.697  0.27628 8.805 10.590
+## 6   9.421  9.941  0.52042 8.857 11.026
+## 7   9.421  9.314 -0.10728 8.386 10.242
+## 8   9.421  9.505  0.08351 8.412 10.597
+## 9   9.421  9.683  0.26168 8.560 10.805
+## 10  9.421  9.038 -0.38252 8.049 10.028
+## 11  9.421  8.779 -0.64184 7.715  9.844
+## 12  9.421  8.811 -0.61000 7.797  9.825
+## 13  9.421  9.065 -0.35576 7.964 10.166
+## 14  9.421  9.263 -0.15797 8.357 10.169
+## 15  9.421 10.572  1.15099 9.363 11.781
+## 16  9.421  9.387 -0.03369 8.198 10.576
+## 17  9.421 10.614  1.19327 9.566 11.662
+## 18  9.421  8.236 -1.18525 7.122  9.350
+## 19  9.421  9.801  0.37966 8.972 10.630
+## 20  9.421  8.243 -1.17844 7.325  9.160
+## 21  9.421  9.649  0.22756 8.666 10.631
+## 22  9.421  8.466 -0.95500 7.522  9.410
+## 23  9.421  9.255 -0.16617 8.326 10.184
+## 24  9.421  9.875  0.45406 8.806 10.944
+## 25  9.421  9.896  0.47457 8.729 11.062
+## 26  9.421  8.670 -0.75130 7.722  9.618
+## 27  9.421  8.488 -0.93263 7.579  9.397
+## 28  9.421  9.799  0.37833 8.812 10.787
+## 29  9.421  8.696 -0.72482 7.538  9.854
+## 30  9.421  9.887  0.46642 8.841 10.934
+## 31  9.421  9.380 -0.04104 8.281 10.479
+## 32  9.421  9.528  0.10748 8.486 10.571
+## 33  9.421  9.513  0.09169 8.492 10.534
+## 34  9.421  9.154 -0.26701 8.195 10.113
+## 35  9.421  9.555  0.13421 8.436 10.674
+## 36  9.421  9.382 -0.03945 8.260 10.503
+## 37  9.421  9.614  0.19278 8.425 10.803
+## 38  9.421 10.149  0.72801 9.235 11.063
+## 39  9.421  9.715  0.29399 8.712 10.718
+## 40  9.421 10.394  0.97308 9.314 11.474
+## 41  9.421  9.477  0.05578 8.509 10.445
+## 42  9.421  8.558 -0.86254 7.505  9.612
+## 43  9.421  9.142 -0.27940 8.239 10.045
+## 44  9.421  8.418 -1.00317 7.434  9.402
+## 45  9.421  9.778  0.35692 8.752 10.803
+## 46  9.421  9.548  0.12707 8.529 10.568
+## 47  9.421  9.458  0.03663 8.385 10.530
+## 48  9.421  9.431  0.01008 8.398 10.464
+## 49  9.421  8.762 -0.65941 7.731  9.792
+## 50  9.421 10.042  0.62078 9.020 11.064
+## 51  9.421  9.386 -0.03506 8.470 10.302
+## 52  9.421  9.256 -0.16506 8.292 10.219
+## 53  9.421  9.099 -0.32237 7.986 10.211
+## 54  9.421  9.789  0.36799 8.744 10.834
+## 55  9.421  9.453  0.03188 8.287 10.619
+## 56  9.421 10.152  0.73126 9.113 11.192
+## 57  9.421  9.740  0.31948 8.779 10.702
+## 58  9.421  9.343 -0.07846 8.303 10.382
+## 59  9.421  9.482  0.06115 8.405 10.559
+## 60  9.421  9.370 -0.05128 8.352 10.388
+## 61  9.421  9.507  0.08571 8.573 10.440
+## 62  9.421  9.303 -0.11813 8.200 10.405
+## 63  9.421  9.929  0.50816 8.902 10.956
+## 64  9.421 10.030  0.60947 9.000 11.060
+## 65  9.421  9.088 -0.33273 8.074 10.103
+## 66  9.421  9.803  0.38155 8.914 10.691
+## 67  9.421  9.941  0.52003 8.976 10.906
+## 68  9.421  9.384 -0.03743 8.314 10.453
+## 69  9.421  9.342 -0.07942 8.398 10.285
+## 70  9.421  9.701  0.28049 8.628 10.775
+## 71  9.421  9.608  0.18671 8.695 10.520
+## 72  9.421  9.859  0.43817 8.895 10.824
+## 73  9.421 10.093  0.67189 9.106 11.079
+## 74  9.421 10.197  0.77594 9.155 11.238
+## 75  9.421 10.601  1.17966 9.487 11.714
+## 76  9.421  9.815  0.39439 8.498 11.133
+## 77  9.421  9.750  0.32928 8.867 10.634
+## 78  9.421  8.526 -0.89547 7.551  9.500
+## 79  9.421  8.903 -0.51831 7.870  9.935
+## 80  9.421  9.730  0.30920 8.717 10.743
+## 81  9.421  9.193 -0.22769 8.171 10.215
+## 82  9.421  8.600 -0.82088 7.609  9.592
+## 83  9.421  8.362 -1.05880 7.309  9.415
+## 84  9.421  9.569  0.14827 8.352 10.787
+## 85  9.421  9.290 -0.13097 8.198 10.382
+## 86  9.421 10.325  0.90434 9.252 11.399
+## 87  9.421  9.502  0.08139 8.413 10.592
+## 88  9.421  8.874 -0.54688 7.797  9.951
+## 89  9.421  8.017 -1.40439 7.039  8.995
+## 90  9.421 10.049  0.62835 9.150 10.949
+## 91  9.421  9.566  0.14461 8.364 10.767
+## 92  9.421  9.722  0.30077 8.677 10.766
+## 93  9.421  8.589 -0.83188 7.587  9.592
+## 94  9.421  9.147 -0.27412 8.225 10.068
+## 95  9.421 10.609  1.18841 9.640 11.579
+## 96  9.421  9.333 -0.08767 8.177 10.490
+## 97  9.421  9.511  0.09034 8.560 10.462
+## 98  9.421  9.561  0.14021 8.649 10.474
+## 99  9.421  9.619  0.19828 8.680 10.559
+## 100 9.421  9.342 -0.07942 8.421 10.262
 \end{verbatim}
 
 \hfill\break
@@ -19683,106 +19689,106 @@ Usando conceitos já explicados em uma unidade anterior podemos determinar o tam
 
 \begin{verbatim}
 ##       mu media      erro   li   ls
-## 1   1600  1603   3.44351 1585 1622
-## 2   1600  1592  -8.11641 1575 1609
-## 3   1600  1595  -4.54974 1576 1615
-## 4   1600  1583 -17.05027 1564 1602
-## 5   1600  1600  -0.06994 1581 1619
-## 6   1600  1610  10.37095 1591 1630
-## 7   1600  1596  -3.96274 1576 1617
-## 8   1600  1615  14.91831 1595 1635
-## 9   1600  1602   2.40655 1582 1623
-## 10  1600  1590 -10.44547 1571 1608
-## 11  1600  1591  -8.79283 1572 1610
-## 12  1600  1603   3.19599 1585 1622
-## 13  1600  1589 -10.98742 1569 1609
-## 14  1600  1597  -3.16710 1577 1617
-## 15  1600  1629  28.77207 1610 1648
-## 16  1600  1594  -6.14727 1578 1610
-## 17  1600  1617  16.63023 1597 1636
-## 18  1600  1596  -3.56735 1575 1618
-## 19  1600  1588 -12.42974 1568 1607
-## 20  1600  1587 -12.80421 1567 1608
-## 21  1600  1604   3.78271 1583 1625
-## 22  1600  1606   5.53616 1586 1625
-## 23  1600  1604   4.33710 1584 1625
-## 24  1600  1609   9.44654 1590 1629
-## 25  1600  1596  -3.90775 1576 1616
-## 26  1600  1588 -12.28013 1566 1609
-## 27  1600  1594  -6.06332 1573 1615
-## 28  1600  1598  -1.93018 1576 1620
-## 29  1600  1605   5.14999 1585 1625
-## 30  1600  1598  -1.85179 1579 1618
-## 31  1600  1627  26.56472 1607 1646
-## 32  1600  1605   4.80300 1586 1624
-## 33  1600  1590  -9.80992 1572 1609
-## 34  1600  1594  -6.34635 1573 1614
-## 35  1600  1606   5.90352 1585 1627
-## 36  1600  1596  -3.69200 1575 1618
-## 37  1600  1614  14.22085 1595 1634
-## 38  1600  1595  -5.25509 1575 1615
-## 39  1600  1606   5.88192 1587 1625
-## 40  1600  1604   4.06339 1584 1624
-## 41  1600  1594  -5.74735 1575 1614
-## 42  1600  1599  -1.47217 1578 1619
-## 43  1600  1609   8.83340 1588 1630
-## 44  1600  1614  14.14931 1596 1633
-## 45  1600  1597  -2.92605 1577 1617
-## 46  1600  1590  -9.98619 1570 1610
-## 47  1600  1583 -16.87147 1560 1606
-## 48  1600  1595  -5.08946 1575 1615
-## 49  1600  1602   1.98562 1581 1623
-## 50  1600  1580 -20.16955 1560 1599
-## 51  1600  1601   0.98476 1582 1620
-## 52  1600  1581 -18.84014 1562 1601
-## 53  1600  1607   6.74110 1586 1627
-## 54  1600  1591  -8.89344 1570 1613
-## 55  1600  1621  20.51849 1603 1638
-## 56  1600  1609   9.15301 1590 1629
-## 57  1600  1588 -11.80346 1569 1607
-## 58  1600  1596  -3.84029 1576 1616
-## 59  1600  1608   8.41995 1589 1627
-## 60  1600  1620  19.67834 1602 1637
-## 61  1600  1615  15.40965 1598 1633
-## 62  1600  1619  18.98109 1599 1639
-## 63  1600  1596  -4.26843 1574 1618
-## 64  1600  1603   2.61842 1585 1620
-## 65  1600  1596  -3.72558 1577 1616
-## 66  1600  1605   4.88135 1585 1624
-## 67  1600  1594  -6.45879 1575 1612
-## 68  1600  1593  -7.27003 1572 1613
-## 69  1600  1580 -19.77747 1561 1599
-## 70  1600  1609   9.27447 1589 1629
-## 71  1600  1603   2.91291 1582 1623
-## 72  1600  1599  -0.79097 1579 1619
-## 73  1600  1598  -2.05368 1580 1616
-## 74  1600  1593  -6.75341 1572 1614
-## 75  1600  1611  11.36958 1591 1631
-## 76  1600  1600  -0.03562 1580 1620
-## 77  1600  1594  -5.67463 1574 1615
-## 78  1600  1586 -13.56174 1565 1608
-## 79  1600  1589 -10.59749 1569 1609
-## 80  1600  1595  -4.53567 1574 1616
-## 81  1600  1583 -17.45720 1563 1602
-## 82  1600  1609   9.10358 1588 1631
-## 83  1600  1587 -13.29791 1566 1608
-## 84  1600  1590  -9.76378 1571 1609
-## 85  1600  1610  10.12050 1591 1629
-## 86  1600  1600  -0.38365 1579 1621
-## 87  1600  1599  -0.78560 1579 1620
-## 88  1600  1592  -7.63523 1574 1611
-## 89  1600  1601   1.14090 1583 1620
-## 90  1600  1616  15.91731 1595 1637
-## 91  1600  1600   0.32773 1582 1619
-## 92  1600  1608   8.33798 1589 1627
-## 93  1600  1595  -4.71747 1575 1616
-## 94  1600  1601   0.69151 1581 1621
-## 95  1600  1607   6.56694 1587 1626
-## 96  1600  1608   7.70032 1589 1626
-## 97  1600  1607   6.86277 1587 1627
-## 98  1600  1619  19.00516 1598 1640
-## 99  1600  1612  12.33515 1593 1632
-## 100 1600  1612  12.48857 1591 1634
+## 1   1600  1598  -2.24954 1577 1619
+## 2   1600  1608   7.82309 1588 1627
+## 3   1600  1610   9.91019 1590 1630
+## 4   1600  1604   3.73906 1585 1623
+## 5   1600  1599  -1.18884 1578 1620
+## 6   1600  1606   6.18965 1585 1628
+## 7   1600  1591  -9.28769 1572 1610
+## 8   1600  1610  10.03020 1590 1630
+## 9   1600  1596  -3.61653 1576 1617
+## 10  1600  1589 -10.58166 1570 1609
+## 11  1600  1575 -25.08128 1555 1595
+## 12  1600  1605   5.37046 1585 1625
+## 13  1600  1603   2.81493 1583 1623
+## 14  1600  1619  19.20147 1599 1639
+## 15  1600  1596  -3.93284 1577 1615
+## 16  1600  1609   8.54033 1589 1628
+## 17  1600  1605   5.04760 1586 1624
+## 18  1600  1610  10.29604 1591 1629
+## 19  1600  1599  -1.26332 1579 1619
+## 20  1600  1588 -11.99135 1568 1608
+## 21  1600  1619  19.08489 1599 1639
+## 22  1600  1606   5.51526 1584 1627
+## 23  1600  1613  12.60434 1592 1633
+## 24  1600  1575 -25.29140 1557 1592
+## 25  1600  1608   7.82838 1587 1629
+## 26  1600  1609   8.91208 1589 1628
+## 27  1600  1601   0.65068 1578 1623
+## 28  1600  1600  -0.14144 1579 1621
+## 29  1600  1619  19.15847 1601 1637
+## 30  1600  1620  20.46200 1602 1639
+## 31  1600  1597  -2.66360 1579 1616
+## 32  1600  1605   4.52627 1586 1624
+## 33  1600  1595  -4.96177 1578 1612
+## 34  1600  1595  -4.97903 1574 1616
+## 35  1600  1595  -4.84083 1576 1614
+## 36  1600  1596  -4.10517 1574 1617
+## 37  1600  1604   4.47909 1585 1624
+## 38  1600  1588 -11.56720 1569 1608
+## 39  1600  1622  21.97001 1602 1642
+## 40  1600  1611  10.59740 1591 1630
+## 41  1600  1594  -6.21683 1575 1612
+## 42  1600  1607   6.99712 1588 1626
+## 43  1600  1582 -17.57126 1560 1605
+## 44  1600  1604   4.35719 1586 1623
+## 45  1600  1607   6.97104 1588 1626
+## 46  1600  1616  15.60416 1598 1633
+## 47  1600  1591  -9.30558 1570 1611
+## 48  1600  1599  -1.04077 1579 1619
+## 49  1600  1596  -3.51245 1577 1616
+## 50  1600  1609   8.80207 1588 1630
+## 51  1600  1599  -1.48467 1578 1619
+## 52  1600  1600   0.17964 1581 1619
+## 53  1600  1586 -13.58647 1566 1607
+## 54  1600  1608   8.09226 1589 1628
+## 55  1600  1601   0.84506 1579 1623
+## 56  1600  1604   3.81876 1585 1623
+## 57  1600  1587 -13.06887 1568 1606
+## 58  1600  1602   1.84585 1580 1623
+## 59  1600  1587 -13.30996 1567 1606
+## 60  1600  1614  13.88945 1593 1635
+## 61  1600  1590  -9.54765 1571 1610
+## 62  1600  1597  -2.80639 1577 1617
+## 63  1600  1596  -3.87330 1575 1617
+## 64  1600  1588 -12.12774 1569 1607
+## 65  1600  1603   3.01759 1583 1623
+## 66  1600  1603   3.32983 1582 1625
+## 67  1600  1610   9.76795 1589 1631
+## 68  1600  1605   4.96769 1584 1626
+## 69  1600  1600  -0.14773 1580 1620
+## 70  1600  1579 -20.64301 1561 1598
+## 71  1600  1589 -11.10278 1570 1608
+## 72  1600  1587 -12.51807 1569 1606
+## 73  1600  1596  -4.28068 1578 1613
+## 74  1600  1587 -12.76687 1570 1604
+## 75  1600  1582 -18.43658 1562 1601
+## 76  1600  1594  -6.25290 1575 1612
+## 77  1600  1600  -0.21901 1581 1619
+## 78  1600  1599  -0.63671 1581 1618
+## 79  1600  1598  -1.81973 1579 1618
+## 80  1600  1611  11.13658 1592 1630
+## 81  1600  1590  -9.81821 1570 1611
+## 82  1600  1597  -2.87415 1577 1617
+## 83  1600  1590  -9.67071 1570 1611
+## 84  1600  1603   3.38458 1583 1624
+## 85  1600  1600   0.09708 1582 1618
+## 86  1600  1586 -13.60503 1566 1607
+## 87  1600  1580 -20.06079 1559 1601
+## 88  1600  1589 -11.45451 1571 1606
+## 89  1600  1601   0.58536 1579 1623
+## 90  1600  1587 -12.84006 1568 1607
+## 91  1600  1625  25.38279 1606 1644
+## 92  1600  1603   2.51986 1583 1622
+## 93  1600  1594  -5.80589 1573 1616
+## 94  1600  1592  -7.84617 1572 1613
+## 95  1600  1606   6.43362 1587 1626
+## 96  1600  1622  21.97130 1604 1640
+## 97  1600  1600   0.36483 1580 1621
+## 98  1600  1596  -4.41636 1577 1615
+## 99  1600  1612  11.76914 1592 1631
+## 100 1600  1616  16.24101 1596 1636
 \end{verbatim}
 
 \hfill\break

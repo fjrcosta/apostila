@@ -1449,7 +1449,7 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb88-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10</span>, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## A frequência observada da face 3 foi de 0 %</code></pre>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb90-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10000</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 16.61 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 16.82 %</code></pre>
 <p><br />
 </p>
 <p>Ao simular o lançamento de um dado, por exemplo, é possível observar como as frequências relativas de todas as faces começam a se aproximar das probabilidades teóricas (<span class="math inline">\(P(1)=P(2)=P(3)=P(4)=P(5)=P(6)=\frac{1}{6}\)</span>) à medida que aumentamos o número de repetições.</p>
@@ -1898,10 +1898,10 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb99-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb99-3" tabindex="-1"></a><span class="fu">table</span>(popSim<span class="sc">$</span>Curso, popSim<span class="sc">$</span>Sexo)</span></code></pre></div>
 <pre><code>##                      
 ##                           F     M
-##   Computação           5145  9855
-##   Estatística          9994  5006
-##   Matemática aplicada  7532  7468
-##   Matemática pura     19919 35081</code></pre>
+##   Computação           5011  9989
+##   Estatística          9975  5025
+##   Matemática aplicada  7508  7492
+##   Matemática pura     19966 35034</code></pre>
 <p><br />
 </p>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb101-1" tabindex="-1"></a><span class="co"># Selecionar uma amostra de 200 com reposição (simular a tabela)</span></span>
@@ -1915,27 +1915,27 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb101-9"><a href="introducao-ao-calculo-de-probabilidades.html#cb101-9" tabindex="-1"></a>tab</span></code></pre></div>
 <pre><code>##                          
 ##                             M   F Total
-##   Matemática pura (M)      80  31   111
-##   Matemática aplicada (A)  17  18    35
-##   Estatística (E)           8  18    26
-##   Computação (C)           20   8    28
-##   Total                   125  75   200</code></pre>
+##   Matemática pura (M)      72  42   114
+##   Matemática aplicada (A)  12  10    22
+##   Estatística (E)          12  23    35
+##   Computação (C)           19  10    29
+##   Total                   115  85   200</code></pre>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb103-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb103-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb103-2" tabindex="-1"></a>pMasc<span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb103-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb103-3" tabindex="-1"></a>pMasc</span></code></pre></div>
-<pre><code>## [1] 0.625</code></pre>
+<pre><code>## [1] 0.575</code></pre>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb105-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; na amostra</span></span>
 <span id="cb105-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb105-2" tabindex="-1"></a>pMatAp <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span>)</span>
 <span id="cb105-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb105-3" tabindex="-1"></a>pMatAp</span></code></pre></div>
-<pre><code>## [1] 0.175</code></pre>
+<pre><code>## [1] 0.11</code></pre>
 <div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb107-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -E- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb107-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb107-2" tabindex="-1"></a>pMatAp_and_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">&amp;</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb107-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb107-3" tabindex="-1"></a>pMatAp_and_Masc</span></code></pre></div>
-<pre><code>## [1] 0.085</code></pre>
+<pre><code>## [1] 0.06</code></pre>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb109-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -OU- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb109-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb109-2" tabindex="-1"></a>pMatAp_or_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">|</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb109-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb109-3" tabindex="-1"></a>pMatAp_or_Masc</span></code></pre></div>
-<pre><code>## [1] 0.715</code></pre>
+<pre><code>## [1] 0.625</code></pre>
 <p><br />
 </p>
 <blockquote>

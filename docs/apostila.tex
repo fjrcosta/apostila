@@ -163,7 +163,7 @@ Apostila com alguns tópicos de estatística, probabilidade e inferência\\
 Prof.~M.e Eng.\(^{o}\) Felinto Junior Da Costa\\
 contato (sugestões): \href{mailto:fjcosta@uel.br}{\nolinkurl{fjcosta@uel.br}}}
 \author{}
-\date{\vspace{-2.5em}Londrina, 14 de April de 2026.}
+\date{\vspace{-2.5em}Londrina, 15 de April de 2026.}
 
 \begin{document}
 \maketitle
@@ -6053,9 +6053,9 @@ De modo análogo, para \(E=(B^{c})=\{1,3,5\}\) e o Diagrama de Venn corresponden
 
 \hfill\break
 
-\subsubsection{Eventos simples e eventos compostos}\label{eventos-simples-e-eventos-compostos}
+\subsubsection{Eventos simples (elementares) e eventos compostos}\label{eventos-simples-elementares-e-eventos-compostos}
 
-O evento de interesse (\(E(2)\)) definido no experimento aleatório anterior (obter o número \emph{2}) é formado por apenas um elemento do espaço amostral. Eventos formados por apenas um elemento do espaço amostral são denominados de \emph{evento simples}.
+O evento de interesse (\(E(2)\)) definido no experimento aleatório anterior (obter o número \emph{2}) é formado por apenas um elemento do espaço amostral. Eventos formados por apenas um elemento do espaço amostral são denominados de \emph{evento simples/elementares}.
 
 \hfill\break
 \[
@@ -6129,24 +6129,6 @@ Eventos assim definidos são chamados de eventos impossíveis.
 
 \hfill\break
 
-\subsubsection{Eventos independentes}\label{eventos-independentes}
-
-\hfill\break
-
-Dois eventos são considerados \emph{independentes} quando a probabilidade de ocorrência de um evento de interesse em um determinado experimento aleatório não é influenciada pelo \emph{resultado prévio} de outro evento.
-
-\hfill\break
-
-\begin{quote}
-Em outras palavras, a ocorrência de um evento não altera a probabilidade do outro. Caso contrário, esses eventos são classificados como dependentes ou condicionados.
-\end{quote}
-
-\hfill\break
-
-Este conceito será explorado em maior detalhe em seções posteriores.
-
-\hfill\break
-
 \subsubsection{Eventos mutuamente exclusivos}\label{eventos-mutuamente-exclusivos}
 
 \hfill\break
@@ -6195,6 +6177,24 @@ P(E^{c}) = 1 - P(E)
 \hfill\break
 
 Se a probabilidade de sucesso de que ele ocorra for \(P(E)=p\) e a de que ele não ocorra for \(P(E^{c}= q)\) vê-se que a soma dessas quantidades deverá ser \(p + q =1\), novamente antecipando um dos postulados do conceito axiomático de probabilidade.
+
+\hfill\break
+
+\subsubsection{Eventos independentes}\label{eventos-independentes}
+
+\hfill\break
+
+Dois eventos são considerados \emph{independentes} quando a probabilidade de ocorrência de um evento de interesse em um determinado experimento aleatório não é influenciada pelo \emph{resultado prévio} de outro evento.
+
+\hfill\break
+
+\begin{quote}
+Em outras palavras, a ocorrência de um evento não altera a probabilidade do outro. Caso contrário, esses eventos são classificados como dependentes ou condicionados.
+\end{quote}
+
+\hfill\break
+
+Este conceito será explorado em maior detalhe em seções posteriores.
 
 \hfill\break
 
@@ -6426,7 +6426,7 @@ Ao simular o lançamento de um dado, por exemplo, é possível observar como a f
 \end{Shaded}
 
 \begin{verbatim}
-## A frequência observada da face 3 foi de 10 %
+## A frequência observada da face 3 foi de 30 %
 \end{verbatim}
 
 \begin{Shaded}
@@ -6436,7 +6436,7 @@ Ao simular o lançamento de um dado, por exemplo, é possível observar como a f
 \end{Shaded}
 
 \begin{verbatim}
-## A frequência observada da face 3 foi de 17.03 %
+## A frequência observada da face 3 foi de 16.47 %
 \end{verbatim}
 
 \hfill\break
@@ -6615,7 +6615,9 @@ Um \emph{axioma} é uma premissa considerada necessariamente evidente e verdadei
 
 \hfill\break
 
-Admita \(P\) uma função que opera sobre o espaço \(\Omega\); isto é, uma função que associa uma quantidade \(P(\Omega)\) a cada elemento \(\omega\) \(\in\) \(\Omega\).
+Admita \(P\) uma função definida sobre a \(\sigma\)-álgebra \(\mathcal{F}\) de subconjuntos
+de \(\Omega\); isto é, uma função que associa a cada evento \(E \in \mathcal{F}\) um número
+real \(P(E) \in [0, 1]\).
 
 \hfill\break
 
@@ -6625,12 +6627,8 @@ Admita \(P\) uma função que opera sobre o espaço \(\Omega\); isto é, uma fun
 
 }
 
-\caption{Representação gráfica da função $P(\Omega)$}\label{fig:unnamed-chunk-90}
+\caption{Representação gráfica da função de probabilidade $P : \mathcal{F} \to [0, 1]$}\label{fig:unnamed-chunk-90}
 \end{figure}
-
-\hfill\break
-
-Essa função \(P\) será uma \textbf{função de probabilidade} se, e somente se, satisfizer a \textbf{três axiomas} (postulados: conceitos iniciais necessários à construção ou aceitação de uma teoria) estabelecidos por Andrey Kolmogorov (1933).
 
 \hfill\break
 
@@ -6645,70 +6643,178 @@ Essa função \(P\) será uma \textbf{função de probabilidade} se, e somente s
 
 \hfill\break
 
+Formalmente, \(\mathcal{F}\) (também chamado de \(\sigma\)-álgebra sobre \(\Omega\), corpo de Borel ou \(\sigma\)-campo) é uma coleção de subconjuntos de \(\Omega\) que satisfaz três propriedades:
+
+\hfill\break
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(\Omega \in \mathcal{F}\)
+\item
+  Se \(E \in \mathcal{F}\), então \(E^c \in \mathcal{F}\) (fechada para complementação)
+\item
+  Se \(E_1, E_2, E_3, \ldots \in \mathcal{F}\), então \(\bigcup_{n=1}^{\infty} E_n \in \mathcal{F}\) (fechada para uniões enumeráveis)
+\end{enumerate}
+
+\hfill\break
+
+A tripla \((\Omega, \mathcal{F}, P)\) é denominada \textbf{espaço de probabilidade}, onde
+\(\Omega\) é o espaço amostral, \(\mathcal{F}\) é a \(\sigma\)-álgebra dos eventos sobre
+\(\Omega\), e \(P : \mathcal{F} \to [0, 1]\) é a medida de probabilidade.
+
+\hfill\break
+
+Essa função \(P\) será uma \textbf{função de probabilidade} se, e somente se, satisfizer a \textbf{três axiomas} (postulados: conceitos iniciais necessários à construção ou aceitação de uma teoria) estabelecidos por Andrey Kolmogorov (1933).
+
+\hfill\break
+
 Kolmogoroff afirmou que uma \emph{Teoria das probabilidades} poderia ser desenvolvida a partir de \emph{axiomas}, da
 mesma forma que a geometria e a álgebra, e a considerou como caso especial da \emph{Teoria da medida e integração} desenvolvida por Lebesgue, Borel e Fréchet. Ele estabeleceu como postulados as propriedades comuns das noções de probabilidade clássica e frequentista que, desta forma, viraram casos particulares da definição axiomática.
 
 \hfill\break
 
-\paragraph{Postulado do intervalo}\label{postulado-do-intervalo}
+\paragraph{Postulado I --- Não negatividade}\label{postulado-i-nuxe3o-negatividade}
 
-A probabilidade de qualquer \(E\) \textbf{é um número real entre 0 e 1} (pode-se entender isso como uma convenção, onde então se estabelece a medida da probabilidade é um número positivo e que qualquer evento pode ter probabilidade de, no máximo, 1). Esse postulado está plenamente de acordo com a interpretação frequentista de probabilidade.
+\hfill\break
+
+Seja \(\Omega\) um espaço amostral e \(\mathcal{F}\) uma coleção de subconjuntos
+de \(\Omega\). Para todo evento \(E \in \mathcal{F}\),
 
 \hfill\break
 
 \[
-P(E) \ge 0 \text{ (não negatividade e,)}\\
-\text{mais especificamente, }\\
-0 \hspace{0.5cm} \le P(E) \hspace{0.5cm} \le 1
+P(E) \geq 0.
 \]
 
 \hfill\break
 
-\paragraph{Postulado da certeza (normalização)}\label{postulado-da-certeza-normalizauxe7uxe3o}
-
-O segundo postulado refere-se à probabilidade do \textbf{evento certo} ser igua a 1. No que diz respeito à interpretação frequentista, uma probabilidade de 1 implica que o evento em questão ocorrerá 100\% do tempo ou, em outras palavras, \textbf{que é certo que ele ocorra} (como, p.~exemplo, um experimento aleatório de se lançar dois dados e somar o valor de suas faces o evento certo poderia ser definido como observar uym valor menor que 13 ou maior que 2)
+Em espaços amostrais discretos e finitos, \(\Omega = \{\omega_1, \omega_2, \ldots, \omega_k\}\),
+essa condição implica, em particular, que
 
 \hfill\break
 
 \[
-P(\Omega) = 1 
+0 \leq P(\omega_i) \leq 1, \quad \forall\, \omega_i \in \Omega,
 \]
 
 \hfill\break
 
-\paragraph{Postulado da aditividade para eventos mutuamente exclusivos (aditividade)}\label{postulado-da-aditividade-para-eventos-mutuamente-exclusivos-aditividade}
+\paragraph{Postulado II --- Normalização (unidade)}\label{postulado-ii-normalizauxe7uxe3o-unidade}
+
+\hfill\break
+
+A probabilidade do espaço amostral completo é igual a 1:
+
+\hfill\break
 
 \[
-P\left(\bigcup _{n=1}^{\infty }{\omega}_{n}\right)=\sum _{n=1}^{\infty }P\left({\omega}_{n}\right)
+P(\Omega) = 1.
 \]
 
 \hfill\break
 
-para qualquer sequência de eventos \textbf{mutuamente exclusivos} \(\{\omega_{1}, \omega_{2}, \omega_{3}, ..., \omega_{n}, ...\}\) (isto é, tal que \(\omega_{i} \cap \omega_{j} \varnothing\) se \(i \neq j\))
+\(\Omega\) é denominado \textbf{evento certo}, pois representa a ocorrência de algum
+resultado do experimento aleatório. A condição \(P(\Omega) = 1\) estabelece a
+escala da medida de probabilidade e é compatível com a interpretação
+frequentista, segundo a qual a frequência relativa de \(\Omega\) converge a 1
+quando o número de realizações tende ao infinito.
 
 \hfill\break
 
-Tomando o terceiro postulado no caso mais simples, isto é, para \textbf{dois} eventos mutuamente exclusivos \(\omega_{1}\) e \(\omega_{2}\), pode ser facilmente visto que é satisfeito pela interpretação frequentista.
+\paragraph{\texorpdfstring{Postulado III --- \(\sigma\)-aditividade (aditividade enumerável)}{Postulado III --- \textbackslash sigma-aditividade (aditividade enumerável)}}\label{postulado-iii-sigma-aditividade-aditividade-enumeruxe1vel}
 
 \hfill\break
 
-Se um evento ocorrer, digamos, 28\% das vezes, outro evento ocorrerá 39\%, \textbf{e os dois eventos não podem ocorrer ao mesmo tempo (ou seja, são mutuamente exclusivos)}, então um \textbf{ou outro} evento\} ocorrerão em 28 + 39 = 67\% das vezes. Assim, o terceiro postulado é satisfeito, e o mesmo tipo de argumento se aplica quando há mais de dois eventos mutuamente exclusivos.
+Seja \(\{E_n\}_{n=1}^{\infty}\) uma sequência de eventos \textbf{mutuamente exclusivos}
+(dois a dois disjuntos), isto é,
+
+\hfill\break
+
+\[
+E_i \cap E_j = \varnothing, \quad \forall\, i \neq j.
+\]
+
+\hfill\break
+
+Então,
+
+\hfill\break
+
+\[
+P\!\left(\bigcup_{n=1}^{\infty} E_n\right) = \sum_{n=1}^{\infty} P(E_n).
+\]
+
+\hfill\break
+
+\textbf{Caso particular --- aditividade finita.} Para dois eventos mutuamente
+exclusivos \(E_1, E_2 \in \mathcal{F}\) com \(E_1 \cap E_2 = \varnothing\),
+o Postulado III implica imediatamente que
+
+\hfill\break
+
+\[
+P(E_1 \cup E_2) = P(E_1) + P(E_2).
+\]
+
+\hfill\break
+
+Por extensão, para uma coleção finita \(\{E_1, E_2, \ldots, E_m\}\) de eventos
+dois a dois disjuntos,
+
+\hfill\break
+
+\[
+P\!\left(\bigcup_{n=1}^{m} E_n\right) = \sum_{n=1}^{m} P(E_n).
+\]
+
+\hfill\break
+
+\textbf{Compatibilidade com a interpretação frequentista.} Sejam \(E_1\) e \(E_2\)
+dois eventos mutuamente exclusivos com frequências relativas de longo prazo
+\(f_1\) e \(f_2\), respectivamente. Como \(E_1 \cap E_2 = \varnothing\), em nenhuma
+realização do experimento ambos os eventos ocorrem simultaneamente, de modo
+que a frequência relativa de \(E_1 \cup E_2\) é \(f_1 + f_2\). Isso é consistente
+com a igualdade \(P(E_1 \cup E_2) = P(E_1) + P(E_2)\).
+
+\hfill\break
+
+\begin{quote}
+\textbf{Observação.} Os três postulados acima constituem os \textbf{Axiomas de
+Kolmogorov} (1933), que fundamentam a teoria moderna da probabilidade.
+A tripla \((\Omega, \mathcal{F}, P)\), onde \(\mathcal{F}\) é uma
+\(\sigma\)-álgebra sobre \(\Omega\) e \(P : \mathcal{F} \to [0,1]\) satisfaz
+os três postulados, é denominada \textbf{espaço de probabilidade}.
+\end{quote}
 
 \hfill\break
 
 \textbf{Recapitulando}
 
-\hfill\break
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Foi definido o conceito de \textbf{experimento aleatório} como aquele cujos
+  resultados não podem ser determinados com certeza antes de sua realização;
+\item
+  Foi definido o conceito de \textbf{espaço amostral} de um experimento aleatório
+  como o conjunto de \textbf{todos os possíveis resultados} que ele pode apresentar;
+\item
+  Foi definido que um \textbf{evento} é qualquer subconjunto do espaço amostral;
+\item
+  Foi definida uma \textbf{função} com domínio na \(\sigma\)-álgebra \(\mathcal{F}\)
+  sobre \(\Omega\), que associa a cada evento \(E \in \mathcal{F}\) um número real; e,
+  por fim,
+\item
+  Foi estabelecido que \textbf{se} essa função satisfaz os \textbf{três axiomas de
+  Kolmogorov}, então ela constitui uma \textbf{medida de probabilidade} sobre
+  \((\Omega, \mathcal{F})\).
+\end{enumerate}
 
-1- foi definido o conceito de \textbf{experimento aleatório} como sendo aquele cujos resultados não podem ser determinados com certeza antes de sua realização;\\
-2- foi definido o conceito de \textbf{espaço amostral} de um experimento aleatório como sendo o conjunto de \textbf{todos os possíveis resultados} que ele pode apresentar;\\
-3- foi definido que um \textbf{evento de interesse} é um subconjunto do espaço amostral no qual estamos particularmente interessados;\\
-4- foi definida uma \textbf{função} que tem como domínio o espaço amostral e associa uma quantidade (entre \textbf{0} e \textbf{1}) a \textbf{cada elemento} do espaço amostral; e, por fim,\\
-5- estabelecemos que \textbf{se} essa função atende a \textbf{três postulados} então ela será uma \textbf{medida da probabilidade} de ocorrẽncia de cada evento do espaço amostral em questão.
-
-\hfill\break
-
-Assim, quando uma função \(P\) associa uma quantidade \(P(\Omega)\) a um evento \(\omega\) e \(P(\Omega)\) atende aos três axiomas anteriormente estabelecidos, diz-se que que ela é a \textbf{função de probabilidade} de \(\Omega\).
+Formalmente, quando uma função \(P : \mathcal{F} \to [0,1]\) satisfaz os três
+axiomas anteriormente estabelecidos, a tripla \((\Omega, \mathcal{F}, P)\) é
+denominada \textbf{espaço de probabilidade}, e \(P\) é chamada de \textbf{medida de
+probabilidade} --- ou \textbf{função de probabilidade} --- sobre \(\Omega\).
 
 \hfill\break
 
@@ -6977,10 +7083,10 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 \begin{verbatim}
 ##                      
 ##                           F     M
-##   Computação           5021  9979
-##   Estatística         10064  4936
-##   Matemática aplicada  7558  7442
-##   Matemática pura     19933 35067
+##   Computação           5143  9857
+##   Estatística          9936  5064
+##   Matemática aplicada  7525  7475
+##   Matemática pura     20108 34892
 \end{verbatim}
 
 \hfill\break
@@ -7002,11 +7108,11 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 \begin{verbatim}
 ##                          
 ##                             M   F Total
-##   Matemática pura (M)      64  37   101
-##   Matemática aplicada (A)  21  21    42
-##   Estatística (E)           9  16    25
-##   Computação (C)           20  12    32
-##   Total                   114  86   200
+##   Matemática pura (M)      71  34   105
+##   Matemática aplicada (A)  17  14    31
+##   Estatística (E)          16  18    34
+##   Computação (C)           23   7    30
+##   Total                   127  73   200
 \end{verbatim}
 
 \begin{Shaded}
@@ -7018,7 +7124,7 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.57
+## [1] 0.635
 \end{verbatim}
 
 \begin{Shaded}
@@ -7030,7 +7136,7 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.21
+## [1] 0.155
 \end{verbatim}
 
 \begin{Shaded}
@@ -7042,7 +7148,7 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.105
+## [1] 0.085
 \end{verbatim}
 
 \begin{Shaded}
@@ -7054,7 +7160,7 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.675
+## [1] 0.705
 \end{verbatim}
 
 \hfill\break
@@ -13316,7 +13422,7 @@ Amostragem aleatória simples com reposição. Considere agora a mesma populaç�
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "b" "e" "a"
+## [1] "d" "b" "e"
 \end{verbatim}
 
 \begin{Shaded}
@@ -13328,7 +13434,7 @@ Amostragem aleatória simples com reposição. Considere agora a mesma populaç�
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "c" "e" "e"
+## [1] "a" "e" "e"
 \end{verbatim}
 
 \hfill\break
@@ -15742,107 +15848,107 @@ Usando conceitos já explicados em uma unidade anterior podemos determinar o tam
 \end{figure}
 
 \begin{verbatim}
-##       mu media     erro   li   ls
-## 1   1600  1585 -14.7107 1566 1605
-## 2   1600  1602   2.3084 1583 1622
-## 3   1600  1605   4.8390 1585 1625
-## 4   1600  1599  -1.1095 1580 1618
-## 5   1600  1588 -12.1061 1570 1606
-## 6   1600  1594  -6.1917 1573 1615
-## 7   1600  1607   6.8617 1589 1625
-## 8   1600  1589 -10.8779 1570 1608
-## 9   1600  1596  -3.7712 1576 1617
-## 10  1600  1602   2.4733 1580 1625
-## 11  1600  1582 -18.2948 1562 1601
-## 12  1600  1617  16.6316 1597 1636
-## 13  1600  1616  16.2029 1598 1635
-## 14  1600  1595  -4.6191 1576 1615
-## 15  1600  1587 -12.9063 1568 1606
-## 16  1600  1612  12.0567 1592 1632
-## 17  1600  1594  -6.0936 1574 1614
-## 18  1600  1609   9.1946 1590 1628
-## 19  1600  1604   4.3683 1586 1623
-## 20  1600  1597  -2.6531 1577 1618
-## 21  1600  1600   0.2909 1579 1621
-## 22  1600  1595  -4.5878 1576 1614
-## 23  1600  1605   4.9834 1584 1626
-## 24  1600  1589 -11.4894 1570 1607
-## 25  1600  1611  10.8036 1591 1630
-## 26  1600  1589 -10.9974 1570 1608
-## 27  1600  1588 -11.6514 1570 1607
-## 28  1600  1604   4.4748 1584 1625
-## 29  1600  1604   3.6819 1582 1626
-## 30  1600  1621  21.2006 1603 1639
-## 31  1600  1597  -3.2576 1577 1617
-## 32  1600  1600   0.3159 1580 1620
-## 33  1600  1597  -2.7512 1578 1616
-## 34  1600  1603   3.4241 1583 1624
-## 35  1600  1602   2.1599 1584 1620
-## 36  1600  1584 -16.4485 1563 1604
-## 37  1600  1575 -25.4627 1556 1593
-## 38  1600  1599  -1.2691 1579 1619
-## 39  1600  1601   1.0439 1581 1621
-## 40  1600  1603   2.6845 1584 1622
-## 41  1600  1574 -26.4623 1554 1593
-## 42  1600  1590  -9.9623 1570 1610
-## 43  1600  1600   0.2494 1579 1621
-## 44  1600  1614  14.2808 1593 1635
-## 45  1600  1601   0.8808 1582 1620
-## 46  1600  1607   7.0796 1585 1629
-## 47  1600  1601   1.3278 1581 1622
-## 48  1600  1602   1.8927 1582 1621
-## 49  1600  1589 -10.5160 1570 1609
-## 50  1600  1582 -17.8971 1561 1603
-## 51  1600  1603   2.9362 1583 1623
-## 52  1600  1623  23.3197 1602 1644
-## 53  1600  1611  10.6387 1591 1630
-## 54  1600  1599  -1.1332 1579 1619
-## 55  1600  1614  13.8329 1592 1636
-## 56  1600  1606   6.0811 1586 1626
-## 57  1600  1597  -3.3210 1578 1616
-## 58  1600  1614  14.3673 1593 1636
-## 59  1600  1599  -0.9752 1581 1618
-## 60  1600  1613  13.3421 1592 1635
-## 61  1600  1608   7.7962 1589 1627
-## 62  1600  1596  -4.2434 1573 1618
-## 63  1600  1588 -11.9593 1570 1606
-## 64  1600  1612  11.6047 1593 1631
-## 65  1600  1598  -1.7126 1579 1618
-## 66  1600  1604   4.4732 1585 1624
-## 67  1600  1593  -6.7231 1573 1614
-## 68  1600  1595  -5.3193 1577 1613
-## 69  1600  1611  11.2627 1592 1631
-## 70  1600  1608   7.5760 1588 1627
-## 71  1600  1600  -0.1615 1579 1621
-## 72  1600  1594  -5.8891 1575 1614
-## 73  1600  1605   4.6245 1585 1624
-## 74  1600  1607   7.3820 1587 1628
-## 75  1600  1606   6.4416 1587 1626
-## 76  1600  1584 -16.2389 1564 1604
-## 77  1600  1607   6.9713 1588 1626
-## 78  1600  1598  -2.4660 1578 1617
-## 79  1600  1600  -0.1818 1581 1619
-## 80  1600  1605   5.1476 1586 1624
-## 81  1600  1611  10.6554 1592 1630
-## 82  1600  1608   7.5776 1588 1627
-## 83  1600  1614  14.0037 1593 1635
-## 84  1600  1615  14.7169 1595 1635
-## 85  1600  1590  -9.8690 1572 1608
-## 86  1600  1605   4.5908 1583 1626
-## 87  1600  1611  11.2569 1591 1632
-## 88  1600  1605   4.8343 1587 1623
-## 89  1600  1618  18.2710 1596 1640
-## 90  1600  1601   1.4703 1583 1620
-## 91  1600  1584 -16.1477 1564 1604
-## 92  1600  1584 -15.5146 1566 1603
-## 93  1600  1599  -0.7327 1578 1621
-## 94  1600  1596  -3.7081 1576 1616
-## 95  1600  1589 -10.6011 1568 1610
-## 96  1600  1600  -0.3802 1579 1621
-## 97  1600  1585 -14.5503 1565 1606
-## 98  1600  1603   3.2387 1584 1622
-## 99  1600  1594  -6.3679 1572 1615
-## 100 1600  1599  -1.3628 1578 1619
+##       mu media      erro   li   ls
+## 1   1600  1601   1.35910 1583 1620
+## 2   1600  1611  11.36721 1592 1631
+## 3   1600  1581 -19.33400 1563 1599
+## 4   1600  1609   8.69578 1589 1629
+## 5   1600  1593  -6.70373 1574 1612
+## 6   1600  1604   3.75103 1584 1624
+## 7   1600  1610  10.34716 1590 1630
+## 8   1600  1610  10.34434 1589 1632
+## 9   1600  1595  -5.38578 1576 1613
+## 10  1600  1597  -3.06813 1576 1618
+## 11  1600  1599  -0.93946 1578 1620
+## 12  1600  1609   8.69674 1590 1628
+## 13  1600  1583 -17.26842 1564 1602
+## 14  1600  1597  -2.80032 1577 1618
+## 15  1600  1594  -6.33570 1573 1614
+## 16  1600  1599  -1.30931 1580 1617
+## 17  1600  1577 -22.50901 1558 1597
+## 18  1600  1617  16.75792 1598 1635
+## 19  1600  1590  -9.86888 1568 1613
+## 20  1600  1590 -10.45063 1571 1609
+## 21  1600  1604   4.03762 1581 1627
+## 22  1600  1599  -1.41680 1578 1619
+## 23  1600  1571 -28.80132 1552 1590
+## 24  1600  1608   8.03815 1589 1627
+## 25  1600  1622  22.32345 1603 1642
+## 26  1600  1598  -2.47073 1578 1618
+## 27  1600  1606   6.44539 1586 1626
+## 28  1600  1595  -4.68676 1576 1615
+## 29  1600  1609   8.51798 1589 1628
+## 30  1600  1601   0.81485 1582 1620
+## 31  1600  1592  -7.82166 1574 1611
+## 32  1600  1604   4.43925 1584 1625
+## 33  1600  1582 -18.41392 1562 1602
+## 34  1600  1606   5.55591 1588 1624
+## 35  1600  1589 -10.66707 1570 1609
+## 36  1600  1600  -0.18596 1580 1619
+## 37  1600  1583 -16.60175 1564 1602
+## 38  1600  1599  -0.54605 1579 1620
+## 39  1600  1596  -4.39919 1578 1613
+## 40  1600  1604   4.07369 1585 1623
+## 41  1600  1597  -2.59799 1577 1617
+## 42  1600  1586 -14.03205 1565 1606
+## 43  1600  1601   0.53233 1581 1620
+## 44  1600  1590  -9.80781 1571 1610
+## 45  1600  1590  -9.64214 1569 1612
+## 46  1600  1586 -14.15219 1564 1608
+## 47  1600  1614  13.79552 1595 1633
+## 48  1600  1608   7.59659 1589 1627
+## 49  1600  1587 -13.46437 1565 1608
+## 50  1600  1610   9.83902 1593 1626
+## 51  1600  1593  -6.72849 1572 1615
+## 52  1600  1592  -7.67403 1573 1612
+## 53  1600  1594  -5.99653 1574 1614
+## 54  1600  1612  11.71734 1590 1634
+## 55  1600  1598  -1.81120 1580 1617
+## 56  1600  1601   0.71302 1582 1620
+## 57  1600  1615  14.81618 1596 1634
+## 58  1600  1606   5.55650 1585 1626
+## 59  1600  1612  11.94534 1594 1630
+## 60  1600  1607   7.25615 1586 1628
+## 61  1600  1598  -1.90446 1579 1617
+## 62  1600  1588 -11.66411 1567 1609
+## 63  1600  1605   5.31777 1585 1625
+## 64  1600  1617  16.56730 1596 1638
+## 65  1600  1604   4.18639 1583 1625
+## 66  1600  1590  -9.64785 1568 1613
+## 67  1600  1592  -7.82870 1571 1613
+## 68  1600  1620  19.93475 1602 1638
+## 69  1600  1608   7.79898 1586 1630
+## 70  1600  1596  -4.26248 1575 1616
+## 71  1600  1607   6.73397 1587 1627
+## 72  1600  1591  -8.85764 1571 1612
+## 73  1600  1601   0.61548 1580 1621
+## 74  1600  1602   1.77097 1582 1621
+## 75  1600  1595  -5.30582 1575 1614
+## 76  1600  1601   1.34103 1581 1621
+## 77  1600  1610  10.20933 1591 1629
+## 78  1600  1614  14.42039 1593 1636
+## 79  1600  1598  -1.55197 1577 1620
+## 80  1600  1597  -2.78202 1579 1616
+## 81  1600  1608   8.18616 1589 1627
+## 82  1600  1598  -1.76865 1578 1618
+## 83  1600  1592  -7.81759 1574 1610
+## 84  1600  1591  -8.56903 1569 1613
+## 85  1600  1593  -7.30388 1572 1614
+## 86  1600  1635  34.95938 1615 1655
+## 87  1600  1597  -3.03743 1577 1617
+## 88  1600  1609   8.65646 1589 1628
+## 89  1600  1599  -0.65577 1579 1619
+## 90  1600  1608   8.14005 1587 1629
+## 91  1600  1597  -3.13128 1580 1614
+## 92  1600  1599  -0.96654 1580 1618
+## 93  1600  1599  -1.29303 1580 1618
+## 94  1600  1600  -0.01058 1581 1619
+## 95  1600  1619  19.41033 1599 1640
+## 96  1600  1604   4.26800 1585 1624
+## 97  1600  1610   9.58227 1589 1630
+## 98  1600  1600   0.06944 1580 1621
+## 99  1600  1594  -6.30942 1574 1613
+## 100 1600  1608   7.54533 1588 1627
 \end{verbatim}
 
 \hfill\break
@@ -15969,106 +16075,106 @@ Assim, \((1-\alpha)\) traduz o grau de confiança que se tem que um intervalo de
 
 \begin{verbatim}
 ##        mu  media      erro    li     ls
-## 1   9.421  9.125 -0.295725 8.094 10.156
-## 2   9.421 10.139  0.717612 9.233 11.044
-## 3   9.421  9.765  0.344390 8.861 10.669
-## 4   9.421  9.194 -0.226580 8.208 10.181
-## 5   9.421  9.385 -0.035837 8.418 10.353
-## 6   9.421  9.630  0.208966 8.531 10.729
-## 7   9.421  9.065 -0.356217 8.065 10.064
-## 8   9.421  9.700  0.278966 8.767 10.633
-## 9   9.421  8.948 -0.472516 7.803 10.094
-## 10  9.421  8.819 -0.601511 7.896  9.743
-## 11  9.421  9.684  0.262733 8.746 10.621
-## 12  9.421  9.512  0.090770 8.405 10.618
-## 13  9.421  9.712  0.291276 8.644 10.780
-## 14  9.421  9.694  0.273484 8.772 10.617
-## 15  9.421  9.733  0.311815 8.571 10.894
-## 16  9.421  9.396 -0.024985 8.284 10.508
-## 17  9.421  9.336 -0.084766 8.301 10.372
-## 18  9.421  9.228 -0.193125 8.125 10.331
-## 19  9.421  9.647  0.226288 8.569 10.726
-## 20  9.421  9.082 -0.339376 8.114 10.050
-## 21  9.421  8.831 -0.589559 7.767  9.895
-## 22  9.421  9.861  0.440141 8.751 10.972
-## 23  9.421  9.273 -0.148462 8.364 10.181
-## 24  9.421  9.142 -0.279126 8.239 10.044
-## 25  9.421  9.417 -0.004249 8.337 10.497
-## 26  9.421  9.975  0.553642 8.890 11.059
-## 27  9.421  9.737  0.316475 8.649 10.826
-## 28  9.421  9.857  0.436038 8.757 10.957
-## 29  9.421  9.424  0.002746 8.396 10.452
-## 30  9.421  9.945  0.524194 8.932 10.959
-## 31  9.421  9.924  0.503125 8.901 10.947
-## 32  9.421 10.411  0.989677 9.346 11.475
-## 33  9.421  9.858  0.437366 8.856 10.861
-## 34  9.421  9.762  0.341234 8.937 10.588
-## 35  9.421  9.833  0.412121 8.727 10.939
-## 36  9.421  9.760  0.338895 8.675 10.845
-## 37  9.421  9.226 -0.195398 8.083 10.368
-## 38  9.421  9.362 -0.058968 8.313 10.411
-## 39  9.421 10.850  1.428768 9.876 11.823
-## 40  9.421 10.742  1.321477 9.698 11.787
-## 41  9.421  9.537  0.116224 8.623 10.452
-## 42  9.421  9.531  0.110426 8.554 10.509
-## 43  9.421  8.528 -0.893343 7.457  9.598
-## 44  9.421  9.127 -0.294490 8.032 10.221
-## 45  9.421  9.059 -0.361770 7.984 10.135
-## 46  9.421  9.739  0.317927 8.743 10.735
-## 47  9.421 10.398  0.977064 9.306 11.490
-## 48  9.421  8.692 -0.729188 7.538  9.845
-## 49  9.421  9.887  0.465769 8.849 10.925
-## 50  9.421  9.581  0.160480 8.695 10.468
-## 51  9.421  9.752  0.330611 8.701 10.803
-## 52  9.421  9.760  0.339334 8.681 10.840
-## 53  9.421  8.724 -0.696924 7.718  9.730
-## 54  9.421  9.665  0.244448 8.681 10.650
-## 55  9.421  9.415 -0.005839 8.323 10.507
-## 56  9.421  9.721  0.299677 8.844 10.598
-## 57  9.421 10.168  0.747431 9.217 11.120
-## 58  9.421  9.881  0.459567 8.871 10.890
-## 59  9.421 10.173  0.752321 9.202 11.145
-## 60  9.421 10.138  0.717079 9.178 11.098
-## 61  9.421 10.063  0.641930 8.924 11.201
-## 62  9.421  9.994  0.573039 9.130 10.858
-## 63  9.421 10.085  0.664287 9.010 11.161
-## 64  9.421 10.020  0.598529 9.070 10.969
-## 65  9.421 10.166  0.745127 9.118 11.214
-## 66  9.421 10.008  0.586580 9.002 11.013
-## 67  9.421  8.850 -0.571273 7.898  9.802
-## 68  9.421  9.542  0.120993 8.487 10.596
-## 69  9.421  8.866 -0.554774 7.931  9.801
-## 70  9.421  9.453  0.031570 8.259 10.646
-## 71  9.421  9.394 -0.027265 8.481 10.306
-## 72  9.421  9.584  0.163463 8.590 10.579
-## 73  9.421  8.986 -0.434856 8.047  9.925
-## 74  9.421  9.007 -0.413701 7.879 10.135
-## 75  9.421 10.009  0.588441 9.085 10.933
-## 76  9.421  9.559  0.137808 8.601 10.516
-## 77  9.421  9.814  0.393128 8.900 10.728
-## 78  9.421  9.140 -0.280820 8.069 10.212
-## 79  9.421  9.541  0.119963 8.525 10.557
-## 80  9.421  9.678  0.256994 8.604 10.752
-## 81  9.421 10.117  0.696138 8.959 11.276
-## 82  9.421  9.160 -0.261215 8.076 10.243
-## 83  9.421  9.399 -0.022139 8.494 10.304
-## 84  9.421  8.838 -0.583024 7.814  9.862
-## 85  9.421  9.905  0.484157 8.874 10.936
-## 86  9.421  9.444  0.023173 8.232 10.656
-## 87  9.421  9.677  0.255689 8.651 10.702
-## 88  9.421  9.536  0.115040 8.602 10.470
-## 89  9.421  9.673  0.252241 8.561 10.785
-## 90  9.421  9.621  0.200312 8.519 10.724
-## 91  9.421  9.148 -0.272510 8.186 10.111
-## 92  9.421 10.168  0.747382 9.149 11.188
-## 93  9.421  9.620  0.199197 8.703 10.537
-## 94  9.421  9.988  0.567360 9.018 10.958
-## 95  9.421  9.540  0.119093 8.525 10.555
-## 96  9.421  9.526  0.104598 8.662 10.389
-## 97  9.421  9.740  0.318510 8.640 10.840
-## 98  9.421  9.452  0.031444 8.375 10.530
-## 99  9.421  9.898  0.476573 8.952 10.843
-## 100 9.421  9.363 -0.058497 8.317 10.408
+## 1   9.421  8.656 -0.764667 7.540  9.772
+## 2   9.421  9.368 -0.052802 8.247 10.490
+## 3   9.421 10.413  0.992008 9.513 11.313
+## 4   9.421  9.228 -0.192801 8.321 10.135
+## 5   9.421  9.600  0.179499 8.550 10.651
+## 6   9.421  9.542  0.120894 8.466 10.618
+## 7   9.421 10.070  0.648754 9.029 11.110
+## 8   9.421  8.764 -0.657409 7.666  9.861
+## 9   9.421  9.731  0.310443 8.637 10.826
+## 10  9.421  9.573  0.151746 8.622 10.523
+## 11  9.421  9.186 -0.235249 8.267 10.104
+## 12  9.421  8.960 -0.461295 7.798 10.121
+## 13  9.421 10.288  0.867089 9.350 11.226
+## 14  9.421  9.723  0.302372 8.847 10.600
+## 15  9.421  9.705  0.284115 8.590 10.820
+## 16  9.421  9.278 -0.142983 8.078 10.478
+## 17  9.421  9.750  0.328803 8.660 10.839
+## 18  9.421  8.323 -1.097689 7.303  9.343
+## 19  9.421  9.035 -0.385768 8.106  9.964
+## 20  9.421  9.030 -0.391460 7.965 10.094
+## 21  9.421  9.755  0.334019 8.622 10.888
+## 22  9.421  8.780 -0.641140 7.859  9.701
+## 23  9.421  9.976  0.554590 8.867 11.084
+## 24  9.421  8.766 -0.655035 7.673  9.859
+## 25  9.421  9.699  0.277637 8.554 10.843
+## 26  9.421  8.825 -0.596107 7.819  9.831
+## 27  9.421  8.134 -1.286534 7.245  9.024
+## 28  9.421  9.149 -0.271927 8.103 10.195
+## 29  9.421  9.865  0.444443 8.890 10.841
+## 30  9.421  9.298 -0.123007 8.242 10.354
+## 31  9.421  9.440  0.018507 8.447 10.432
+## 32  9.421  9.405 -0.015525 8.238 10.573
+## 33  9.421  8.733 -0.688327 7.780  9.685
+## 34  9.421  8.628 -0.793337 7.624  9.631
+## 35  9.421  8.280 -1.140915 7.193  9.367
+## 36  9.421  9.253 -0.167860 8.227 10.279
+## 37  9.421  9.801  0.379647 8.708 10.893
+## 38  9.421  9.690  0.268744 8.524 10.855
+## 39  9.421  8.896 -0.524654 7.855  9.938
+## 40  9.421  9.551  0.129942 8.401 10.701
+## 41  9.421  9.047 -0.373727 7.970 10.125
+## 42  9.421  9.021 -0.400450 7.812 10.229
+## 43  9.421 10.437  1.016277 9.440 11.434
+## 44  9.421  8.381 -1.039982 7.274  9.488
+## 45  9.421  9.798  0.376764 8.880 10.716
+## 46  9.421 10.219  0.798049 9.367 11.072
+## 47  9.421  9.504  0.083146 8.627 10.381
+## 48  9.421  9.524  0.102978 8.584 10.464
+## 49  9.421  7.904 -1.516990 6.883  8.925
+## 50  9.421  8.759 -0.661922 7.796  9.722
+## 51  9.421  9.814  0.393175 9.042 10.586
+## 52  9.421  9.260 -0.160793 8.274 10.246
+## 53  9.421  8.496 -0.925080 7.376  9.616
+## 54  9.421  9.184 -0.237347 8.067 10.301
+## 55  9.421  9.482  0.061204 8.510 10.455
+## 56  9.421  9.180 -0.240840 8.173 10.187
+## 57  9.421  9.201 -0.219628 8.234 10.169
+## 58  9.421  9.831  0.409594 8.765 10.897
+## 59  9.421  9.565  0.144128 8.517 10.613
+## 60  9.421  9.772  0.350635 8.791 10.753
+## 61  9.421 10.160  0.739411 9.105 11.216
+## 62  9.421  9.416 -0.005179 8.306 10.526
+## 63  9.421  9.758  0.336897 8.717 10.798
+## 64  9.421  9.374 -0.047287 8.329 10.419
+## 65  9.421 10.142  0.720935 9.042 11.242
+## 66  9.421  9.209 -0.211564 7.970 10.449
+## 67  9.421  9.828  0.407170 8.763 10.893
+## 68  9.421  8.831 -0.589684 7.756  9.907
+## 69  9.421  9.688  0.266502 8.635 10.740
+## 70  9.421  9.484  0.063095 8.482 10.487
+## 71  9.421  8.515 -0.905921 7.390  9.640
+## 72  9.421  9.623  0.202435 8.700 10.547
+## 73  9.421  9.443  0.022148 8.255 10.631
+## 74  9.421  9.518  0.096720 8.586 10.450
+## 75  9.421  8.676 -0.744793 7.737  9.616
+## 76  9.421  9.292 -0.129352 8.205 10.378
+## 77  9.421  8.361 -1.059746 7.265  9.458
+## 78  9.421  9.875  0.453740 9.068 10.681
+## 79  9.421 10.182  0.761411 9.158 11.207
+## 80  9.421  9.848  0.427290 8.725 10.972
+## 81  9.421  9.737  0.315753 8.691 10.782
+## 82  9.421  9.192 -0.228563 8.269 10.116
+## 83  9.421  9.339 -0.082075 8.305 10.373
+## 84  9.421  9.558  0.137476 8.481 10.636
+## 85  9.421  9.441  0.020200 8.497 10.385
+## 86  9.421  9.976  0.554854 8.884 11.068
+## 87  9.421 10.350  0.928947 9.425 11.275
+## 88  9.421  9.336 -0.085136 8.243 10.428
+## 89  9.421  8.668 -0.752946 7.633  9.703
+## 90  9.421  9.086 -0.334678 7.926 10.246
+## 91  9.421  9.773  0.352299 8.827 10.720
+## 92  9.421  9.945  0.523708 8.994 10.895
+## 93  9.421 10.241  0.819711 9.205 11.276
+## 94  9.421  8.582 -0.838563 7.598  9.566
+## 95  9.421  8.699 -0.722177 7.653  9.745
+## 96  9.421  9.545  0.123564 8.487 10.602
+## 97  9.421  9.200 -0.220704 8.108 10.293
+## 98  9.421  9.129 -0.291996 8.040 10.218
+## 99  9.421  9.557  0.135762 8.696 10.418
+## 100 9.421  8.566 -0.855295 7.492  9.639
 \end{verbatim}
 
 \hfill\break
@@ -19727,107 +19833,107 @@ Usando conceitos já explicados em uma unidade anterior podemos determinar o tam
 \end{figure}
 
 \begin{verbatim}
-##       mu media      erro   li   ls
-## 1   1600  1592  -8.27654 1571 1613
-## 2   1600  1595  -5.48634 1574 1615
-## 3   1600  1601   0.98824 1579 1623
-## 4   1600  1592  -7.69803 1574 1611
-## 5   1600  1606   5.81238 1585 1626
-## 6   1600  1591  -9.23055 1571 1611
-## 7   1600  1611  11.16457 1592 1631
-## 8   1600  1601   0.57323 1579 1622
-## 9   1600  1613  12.78807 1595 1630
-## 10  1600  1588 -12.27976 1568 1608
-## 11  1600  1609   8.72703 1591 1626
-## 12  1600  1602   1.75301 1582 1621
-## 13  1600  1605   5.11012 1586 1624
-## 14  1600  1588 -11.61189 1570 1607
-## 15  1600  1599  -0.66910 1579 1619
-## 16  1600  1594  -5.54063 1575 1614
-## 17  1600  1591  -8.69700 1571 1611
-## 18  1600  1593  -7.08583 1573 1612
-## 19  1600  1596  -4.31967 1578 1614
-## 20  1600  1599  -0.64726 1579 1620
-## 21  1600  1579 -21.16699 1558 1599
-## 22  1600  1601   1.25075 1580 1622
-## 23  1600  1605   4.59735 1584 1625
-## 24  1600  1606   5.51588 1585 1626
-## 25  1600  1596  -3.99522 1577 1615
-## 26  1600  1596  -3.77042 1575 1617
-## 27  1600  1600   0.07442 1580 1620
-## 28  1600  1619  18.51097 1600 1637
-## 29  1600  1598  -1.80187 1580 1617
-## 30  1600  1613  12.84542 1593 1632
-## 31  1600  1602   2.31667 1583 1622
-## 32  1600  1595  -4.66587 1577 1614
-## 33  1600  1589 -11.04084 1568 1610
-## 34  1600  1612  12.07747 1591 1634
-## 35  1600  1606   5.88980 1588 1624
-## 36  1600  1607   6.70976 1587 1627
-## 37  1600  1606   5.78653 1586 1625
-## 38  1600  1602   2.17324 1582 1623
-## 39  1600  1603   3.14262 1583 1623
-## 40  1600  1610   9.84576 1592 1628
-## 41  1600  1609   9.40379 1592 1627
-## 42  1600  1617  17.02623 1598 1636
-## 43  1600  1625  25.01313 1605 1645
-## 44  1600  1604   4.33794 1585 1624
-## 45  1600  1585 -14.86887 1566 1605
-## 46  1600  1589 -10.78306 1569 1610
-## 47  1600  1606   5.85971 1585 1627
-## 48  1600  1589 -10.80613 1570 1608
-## 49  1600  1601   1.32205 1581 1622
-## 50  1600  1584 -16.28843 1564 1604
-## 51  1600  1612  12.40282 1596 1629
-## 52  1600  1603   3.47148 1582 1625
-## 53  1600  1610  10.16836 1589 1632
-## 54  1600  1599  -1.15303 1580 1618
-## 55  1600  1595  -5.45453 1573 1616
-## 56  1600  1605   5.37794 1586 1625
-## 57  1600  1594  -5.79152 1575 1614
-## 58  1600  1596  -4.01335 1578 1614
-## 59  1600  1614  14.35723 1597 1632
-## 60  1600  1605   4.75774 1586 1624
-## 61  1600  1620  20.16966 1598 1642
-## 62  1600  1601   0.65118 1581 1621
-## 63  1600  1601   0.66031 1579 1622
-## 64  1600  1601   1.05633 1582 1620
-## 65  1600  1600   0.20730 1580 1620
-## 66  1600  1592  -7.97647 1570 1614
-## 67  1600  1596  -3.77565 1576 1616
-## 68  1600  1601   1.03526 1581 1621
-## 69  1600  1593  -7.07940 1573 1613
-## 70  1600  1602   1.58671 1583 1620
-## 71  1600  1614  14.32798 1595 1633
-## 72  1600  1609   9.19572 1590 1629
-## 73  1600  1603   3.09340 1585 1621
-## 74  1600  1585 -14.82253 1563 1607
-## 75  1600  1603   3.46757 1583 1624
-## 76  1600  1596  -3.54191 1576 1617
-## 77  1600  1589 -11.37117 1570 1607
-## 78  1600  1603   3.16556 1582 1625
-## 79  1600  1586 -13.66156 1565 1608
-## 80  1600  1598  -1.76332 1578 1618
-## 81  1600  1594  -6.32767 1575 1612
-## 82  1600  1587 -12.79855 1566 1608
-## 83  1600  1611  10.98459 1593 1629
-## 84  1600  1614  13.75664 1594 1633
-## 85  1600  1603   3.41057 1583 1624
-## 86  1600  1609   9.46705 1591 1628
-## 87  1600  1605   5.30308 1587 1624
-## 88  1600  1609   9.29325 1589 1630
-## 89  1600  1608   7.86302 1588 1627
-## 90  1600  1598  -2.06969 1578 1618
-## 91  1600  1587 -13.41410 1565 1608
-## 92  1600  1600   0.04030 1581 1619
-## 93  1600  1599  -0.97987 1579 1619
-## 94  1600  1621  20.99433 1600 1642
-## 95  1600  1594  -5.81876 1572 1617
-## 96  1600  1595  -5.45184 1575 1614
-## 97  1600  1615  15.06501 1595 1635
-## 98  1600  1620  20.35655 1598 1643
-## 99  1600  1580 -20.05021 1558 1601
-## 100 1600  1580 -19.72950 1559 1601
+##       mu media     erro   li   ls
+## 1   1600  1601   1.1462 1581 1621
+## 2   1600  1598  -1.5963 1579 1618
+## 3   1600  1598  -1.5403 1577 1620
+## 4   1600  1607   6.8596 1586 1627
+## 5   1600  1600   0.1700 1580 1620
+## 6   1600  1601   1.1517 1580 1622
+## 7   1600  1588 -11.9618 1569 1607
+## 8   1600  1591  -8.8749 1571 1611
+## 9   1600  1597  -3.0208 1577 1617
+## 10  1600  1585 -15.1703 1565 1605
+## 11  1600  1604   3.7401 1586 1622
+## 12  1600  1610  10.1414 1590 1631
+## 13  1600  1603   2.7550 1583 1623
+## 14  1600  1596  -4.0254 1577 1615
+## 15  1600  1590  -9.8641 1571 1610
+## 16  1600  1600  -0.4130 1579 1620
+## 17  1600  1608   8.0422 1589 1628
+## 18  1600  1591  -8.6360 1571 1612
+## 19  1600  1574 -26.2187 1554 1594
+## 20  1600  1603   2.7937 1584 1622
+## 21  1600  1582 -18.1469 1561 1603
+## 22  1600  1606   5.5151 1585 1626
+## 23  1600  1587 -12.8198 1566 1608
+## 24  1600  1601   1.3878 1583 1619
+## 25  1600  1582 -17.7208 1565 1600
+## 26  1600  1614  13.7213 1595 1632
+## 27  1600  1600  -0.2152 1578 1622
+## 28  1600  1604   3.6242 1582 1625
+## 29  1600  1583 -16.5872 1564 1603
+## 30  1600  1601   1.4618 1580 1622
+## 31  1600  1598  -1.6961 1578 1619
+## 32  1600  1613  13.1356 1592 1634
+## 33  1600  1599  -1.2857 1579 1618
+## 34  1600  1618  18.0880 1597 1639
+## 35  1600  1602   1.5721 1580 1623
+## 36  1600  1611  10.9453 1592 1630
+## 37  1600  1596  -3.8951 1578 1614
+## 38  1600  1595  -5.1090 1575 1615
+## 39  1600  1606   5.5793 1584 1627
+## 40  1600  1604   3.5553 1585 1623
+## 41  1600  1609   9.2577 1591 1628
+## 42  1600  1614  13.7678 1596 1632
+## 43  1600  1598  -1.9270 1579 1617
+## 44  1600  1603   3.0802 1583 1623
+## 45  1600  1580 -19.8175 1560 1600
+## 46  1600  1585 -14.8307 1566 1605
+## 47  1600  1587 -12.7902 1568 1606
+## 48  1600  1598  -1.9047 1579 1617
+## 49  1600  1596  -4.3311 1576 1615
+## 50  1600  1607   7.2891 1587 1627
+## 51  1600  1616  15.5402 1597 1634
+## 52  1600  1590  -9.5412 1571 1610
+## 53  1600  1597  -2.7753 1579 1615
+## 54  1600  1603   3.4405 1584 1623
+## 55  1600  1591  -9.2847 1570 1612
+## 56  1600  1608   7.6192 1589 1626
+## 57  1600  1611  10.9654 1589 1633
+## 58  1600  1598  -2.2504 1578 1617
+## 59  1600  1599  -1.3610 1577 1620
+## 60  1600  1598  -2.0178 1579 1617
+## 61  1600  1599  -0.8329 1580 1618
+## 62  1600  1625  24.5314 1605 1644
+## 63  1600  1587 -12.7003 1570 1604
+## 64  1600  1591  -9.3753 1572 1609
+## 65  1600  1593  -6.7859 1576 1611
+## 66  1600  1611  11.1401 1592 1631
+## 67  1600  1593  -6.7224 1574 1613
+## 68  1600  1586 -14.4626 1567 1604
+## 69  1600  1595  -5.4136 1576 1613
+## 70  1600  1615  14.9696 1596 1634
+## 71  1600  1586 -13.9902 1565 1607
+## 72  1600  1597  -2.8107 1580 1615
+## 73  1600  1588 -12.2669 1570 1606
+## 74  1600  1586 -14.4169 1568 1603
+## 75  1600  1598  -2.0346 1577 1619
+## 76  1600  1615  14.8322 1595 1635
+## 77  1600  1600   0.2264 1582 1619
+## 78  1600  1587 -12.6598 1569 1605
+## 79  1600  1597  -2.6490 1576 1619
+## 80  1600  1608   8.2679 1589 1628
+## 81  1600  1607   6.7755 1588 1626
+## 82  1600  1621  20.6107 1601 1640
+## 83  1600  1606   6.2229 1587 1626
+## 84  1600  1592  -7.5488 1573 1612
+## 85  1600  1594  -6.1428 1577 1611
+## 86  1600  1604   3.5234 1582 1625
+## 87  1600  1595  -4.9654 1575 1615
+## 88  1600  1603   2.5858 1585 1621
+## 89  1600  1594  -5.6994 1573 1615
+## 90  1600  1602   2.3241 1584 1621
+## 91  1600  1578 -21.5609 1560 1597
+## 92  1600  1609   8.8495 1589 1628
+## 93  1600  1611  11.0087 1592 1630
+## 94  1600  1607   6.6597 1587 1626
+## 95  1600  1612  11.9487 1593 1631
+## 96  1600  1617  16.5461 1597 1636
+## 97  1600  1602   2.2223 1584 1620
+## 98  1600  1584 -16.2402 1565 1603
+## 99  1600  1596  -3.9371 1577 1615
+## 100 1600  1606   5.9419 1585 1626
 \end{verbatim}
 
 \hfill\break

@@ -199,10 +199,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.7.1" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#apresentacao-tabular-de-dados-qualitativos"><i class="fa fa-check"></i><b>3.7.1</b> Apresentacao tabular de dados qualitativos</a></li>
 <li class="chapter" data-level="3.7.2" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#apresentacao-tabular-de-dados-quantitativos"><i class="fa fa-check"></i><b>3.7.2</b> Apresentacao tabular de dados quantitativos</a></li>
-<li class="chapter" data-level="3.7.3" data-path="04-probabilidade.html"><a href="#m%C3%A9dia-1"><i class="fa fa-check"></i><b>3.7.3</b> Média</a></li>
-<li class="chapter" data-level="3.7.4" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#moda-1"><i class="fa fa-check"></i><b>3.7.4</b> Moda</a></li>
-<li class="chapter" data-level="3.7.5" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#mediana-q_2d_5p_50"><i class="fa fa-check"></i><b>3.7.5</b> Mediana (<span class="math inline">\(=Q_{2}=D_{5}=P_{50}\)</span>)</a></li>
-<li class="chapter" data-level="3.7.6" data-path="04-probabilidade.html"><a href="#vari%C3%A2ncia"><i class="fa fa-check"></i><b>3.7.6</b> Variância</a></li>
+<li class="chapter" data-level="3.7.3" data-path="04-probabilidade.html"><a href="#m%C3%A9dia-para-dados-tabelados"><i class="fa fa-check"></i><b>3.7.3</b> Média para dados tabelados</a></li>
+<li class="chapter" data-level="3.7.4" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#moda-para-dados-tabelados"><i class="fa fa-check"></i><b>3.7.4</b> Moda para dados tabelados</a></li>
+<li class="chapter" data-level="3.7.5" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#mediana-q_2d_5p_50-para-dados-tabelados"><i class="fa fa-check"></i><b>3.7.5</b> Mediana (<span class="math inline">\(=Q_{2}=D_{5}=P_{50}\)</span>) para dados tabelados</a></li>
+<li class="chapter" data-level="3.7.6" data-path="04-probabilidade.html"><a href="#vari%C3%A2ncia-e-desvio-padr%C3%A3o-para-dados-tabelados"><i class="fa fa-check"></i><b>3.7.6</b> Variância e desvio padrão para dados tabelados</a></li>
 <li class="chapter" data-level="3.7.7" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#quartis"><i class="fa fa-check"></i><b>3.7.7</b> Quartis</a></li>
 </ul></li>
 <li class="chapter" data-level="3.8" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#apresentacao-descritiva-de-dados-na-forma-grafica"><i class="fa fa-check"></i><b>3.8</b> Apresentacao descritiva de dados na forma grafica</a>
@@ -1451,9 +1451,9 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb87-14"><a href="introducao-ao-calculo-de-probabilidades.html#cb87-14" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;A frequência observada da face&quot;</span>, face_escolhida, <span class="st">&quot;foi de&quot;</span>, frequencia, <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb87-15"><a href="introducao-ao-calculo-de-probabilidades.html#cb87-15" tabindex="-1"></a>}</span></code></pre></div>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb88-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 20 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 10 %</code></pre>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb90-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10000</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 16.82 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 17 %</code></pre>
 <p><br />
 </p>
 <p>Ao simular o lançamento de um dado, por exemplo, é possível observar como as frequências relativas de todas as faces começam a se aproximar das probabilidades teóricas (<span class="math inline">\(P(1)=P(2)=P(3)=P(4)=P(5)=P(6)=\frac{1}{6}\)</span>) à medida que aumentamos o número de repetições.</p>
@@ -2013,10 +2013,10 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb99-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb99-3" tabindex="-1"></a><span class="fu">table</span>(popSim<span class="sc">$</span>Curso, popSim<span class="sc">$</span>Sexo)</span></code></pre></div>
 <pre><code>##                      
 ##                           F     M
-##   Computação           4969 10031
-##   Estatística         10097  4903
-##   Matemática aplicada  7591  7409
-##   Matemática pura     19953 35047</code></pre>
+##   Computação           5007  9993
+##   Estatística          9967  5033
+##   Matemática aplicada  7471  7529
+##   Matemática pura     19987 35013</code></pre>
 <p><br />
 </p>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb101-1" tabindex="-1"></a><span class="co"># Selecionar uma amostra de 200 com reposição (simular a tabela)</span></span>
@@ -2030,27 +2030,27 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb101-9"><a href="introducao-ao-calculo-de-probabilidades.html#cb101-9" tabindex="-1"></a>tab</span></code></pre></div>
 <pre><code>##                          
 ##                             M   F Total
-##   Matemática pura (M)      71  40   111
-##   Matemática aplicada (A)  12  12    24
-##   Estatística (E)           6  29    35
-##   Computação (C)           24   6    30
-##   Total                   113  87   200</code></pre>
+##   Matemática pura (M)      69  44   113
+##   Matemática aplicada (A)  22  13    35
+##   Estatística (E)           7  20    27
+##   Computação (C)           19   6    25
+##   Total                   117  83   200</code></pre>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb103-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb103-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb103-2" tabindex="-1"></a>pMasc<span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb103-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb103-3" tabindex="-1"></a>pMasc</span></code></pre></div>
-<pre><code>## [1] 0.565</code></pre>
+<pre><code>## [1] 0.585</code></pre>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb105-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; na amostra</span></span>
 <span id="cb105-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb105-2" tabindex="-1"></a>pMatAp <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span>)</span>
 <span id="cb105-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb105-3" tabindex="-1"></a>pMatAp</span></code></pre></div>
-<pre><code>## [1] 0.12</code></pre>
+<pre><code>## [1] 0.175</code></pre>
 <div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb107-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -E- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb107-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb107-2" tabindex="-1"></a>pMatAp_and_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">&amp;</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb107-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb107-3" tabindex="-1"></a>pMatAp_and_Masc</span></code></pre></div>
-<pre><code>## [1] 0.06</code></pre>
+<pre><code>## [1] 0.11</code></pre>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb109-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -OU- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb109-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb109-2" tabindex="-1"></a>pMatAp_or_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">|</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb109-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb109-3" tabindex="-1"></a>pMatAp_or_Masc</span></code></pre></div>
-<pre><code>## [1] 0.625</code></pre>
+<pre><code>## [1] 0.65</code></pre>
 <p><br />
 </p>
 <blockquote>

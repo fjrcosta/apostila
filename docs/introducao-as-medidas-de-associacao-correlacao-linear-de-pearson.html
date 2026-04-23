@@ -1,0 +1,2723 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 12 Introdução às Medidas de Associação: Correlação Linear de Pearson | apostila.knit</title>
+  <meta name="description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="generator" content="bookdown 0.44 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 12 Introdução às Medidas de Associação: Correlação Linear de Pearson | apostila.knit" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
+  <meta property="og:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 12 Introdução às Medidas de Associação: Correlação Linear de Pearson | apostila.knit" />
+  
+  <meta name="twitter:description" content="Apostila com alguns tópicos de estatística e probabilidade." />
+  <meta name="twitter:image" content="https://fjrcosta.github.io/apostila/images/logo-uel.png" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introducao-a-testes-de-hipoteses.html"/>
+<link rel="next" href="introducao-a-regressao-linear.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Índice</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section" id="toc-section"></a></li>
+<li class="chapter" data-level="1" data-path="introducao-historica-daquilo-que-veio-a-se-chamar-estatistica.html"><a href="introducao-historica-daquilo-que-veio-a-se-chamar-estatistica.html"><i class="fa fa-check"></i><b>1</b> Introdução histórica daquilo que veio a se chamar estatística</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introducao-historica-daquilo-que-veio-a-se-chamar-estatistica.html"><a href="introducao-historica-daquilo-que-veio-a-se-chamar-estatistica.html#filosofia-da-ciencia-teoria-do-conhecimento-epistemologia"><i class="fa fa-check"></i><b>1.1</b> Filosofia da ciencia (teoria do conhecimento, epistemologia)</a></li>
+<li class="chapter" data-level="1.2" data-path="12-correlacao_linear.html"><a href="#diferentes-usos-relacionados-ao-termo-primeiros-levantamentos-estudos-e-publica%C3%A7%C3%B5es-o-passado-distante"><i class="fa fa-check"></i><b>1.2</b> Diferentes usos relacionados ao termo, primeiros levantamentos, estudos e publicações (o passado distante)</a></li>
+<li class="chapter" data-level="1.3" data-path="12-correlacao_linear.html"><a href="#visualiza%C3%A7%C3%A3o-de-dados-estudos-e-primeiras-publica%C3%A7%C3%B5es"><i class="fa fa-check"></i><b>1.3</b> Visualização de dados &amp; Estudos e primeiras publicações</a></li>
+<li class="chapter" data-level="1.4" data-path="12-correlacao_linear.html"><a href="#pesquisadores-cuja-contribui%C3%A7%C3%A3o-foi-fundamental-na-%C3%A1rea"><i class="fa fa-check"></i><b>1.4</b> Pesquisadores cuja contribuição foi fundamental na área</a></li>
+<li class="chapter" data-level="1.5" data-path="introducao-historica-daquilo-que-veio-a-se-chamar-estatistica.html"><a href="introducao-historica-daquilo-que-veio-a-se-chamar-estatistica.html#revista-biometrika"><i class="fa fa-check"></i><b>1.5</b> Revista Biometrika</a></li>
+<li class="chapter" data-level="1.6" data-path="introducao-historica-daquilo-que-veio-a-se-chamar-estatistica.html"><a href="introducao-historica-daquilo-que-veio-a-se-chamar-estatistica.html#eugenia"><i class="fa fa-check"></i><b>1.6</b> Eugenia</a></li>
+<li class="chapter" data-level="1.7" data-path="12-correlacao_linear.html"><a href="#estat%C3%ADstica-e-machine-learning-uma-livre-tradu%C3%A7%C3%A3o-deste-link"><i class="fa fa-check"></i><b>1.7</b> Estatística e <em>machine learning</em> : uma livre tradução deste link</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introducao-conceitual-essencial.html"><a href="introducao-conceitual-essencial.html"><i class="fa fa-check"></i><b>2</b> Introdução conceitual essencial</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="12-correlacao_linear.html"><a href="#estat%C3%ADstica-descritiva"><i class="fa fa-check"></i><b>2.1</b> Estatística descritiva</a></li>
+<li class="chapter" data-level="2.2" data-path="12-correlacao_linear.html"><a href="#estat%C3%ADstica-inferencial"><i class="fa fa-check"></i><b>2.2</b> Estatística inferencial</a></li>
+<li class="chapter" data-level="2.3" data-path="12-correlacao_linear.html"><a href="#popula%C3%A7%C3%A3o-universo-amostra"><i class="fa fa-check"></i><b>2.3</b> População (universo) &amp; amostra</a></li>
+<li class="chapter" data-level="2.4" data-path="12-correlacao_linear.html"><a href="#par%C3%A2metros-e-estat%C3%ADsticas"><i class="fa fa-check"></i><b>2.4</b> Parâmetros e estatísticas</a></li>
+<li class="chapter" data-level="2.5" data-path="12-correlacao_linear.html"><a href="#tipos-de-vari%C3%A1veis"><i class="fa fa-check"></i><b>2.5</b> Tipos de variáveis</a></li>
+<li class="chapter" data-level="2.6" data-path="12-correlacao_linear.html"><a href="#indexa%C3%A7%C3%A3o-de-dados-i"><i class="fa fa-check"></i><b>2.6</b> Indexação de dados (<span class="math inline">\(i\)</span>)</a></li>
+<li class="chapter" data-level="2.7" data-path="12-correlacao_linear.html"><a href="#no%C3%A7%C3%B5es-b%C3%A1sicas-sobre-somat%C3%B3rios-sigma"><i class="fa fa-check"></i><b>2.7</b> Noções básicas sobre somatórios (<span class="math inline">\(\Sigma\)</span>)</a></li>
+<li class="chapter" data-level="2.8" data-path="12-correlacao_linear.html"><a href="#an%C3%A1lise-combinat%C3%B3ria-m%C3%A9todos-de-enumera%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>2.8</b> Análise combinatória (métodos de enumeração)</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="12-correlacao_linear.html"><a href="#princ%C3%ADpio-b%C3%A1sico-da-contagem-regra-da-multiplica%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>2.8.1</b> Princípio básico da contagem (regra da multiplicação)</a></li>
+<li class="chapter" data-level="2.8.2" data-path="12-correlacao_linear.html"><a href="#regra-da-adi%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>2.8.2</b> Regra da adição</a></li>
+<li class="chapter" data-level="2.8.3" data-path="12-correlacao_linear.html"><a href="#permuta%C3%A7%C3%B5es-ordena%C3%A7%C3%A3o-de-elementos"><i class="fa fa-check"></i><b>2.8.3</b> Permutações (ordenação de elementos)</a></li>
+<li class="chapter" data-level="2.8.4" data-path="12-correlacao_linear.html"><a href="#arranjos-sem-repeti%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>2.8.4</b> Arranjos sem repetição</a></li>
+<li class="chapter" data-level="2.8.5" data-path="12-correlacao_linear.html"><a href="#arranjos-com-repeti%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>2.8.5</b> Arranjos com repetição</a></li>
+<li class="chapter" data-level="2.8.6" data-path="12-correlacao_linear.html"><a href="#combina%C3%A7%C3%B5es-sem-repeti%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>2.8.6</b> Combinações sem repetição</a></li>
+<li class="chapter" data-level="2.8.7" data-path="12-correlacao_linear.html"><a href="#combina%C3%A7%C3%B5es-com-repeti%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>2.8.7</b> Combinações com Repetição</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="introducao-conceitual-essencial.html"><a href="introducao-conceitual-essencial.html#fatoriais"><i class="fa fa-check"></i><b>2.9</b> Fatoriais</a></li>
+<li class="chapter" data-level="2.10" data-path="12-correlacao_linear.html"><a href="#conectivos-l%C3%B3gicos"><i class="fa fa-check"></i><b>2.10</b> Conectivos lógicos</a></li>
+<li class="chapter" data-level="2.11" data-path="introducao-conceitual-essencial.html"><a href="introducao-conceitual-essencial.html#leis-de-de-morgan"><i class="fa fa-check"></i><b>2.11</b> Leis de De Morgan</a></li>
+<li class="chapter" data-level="2.12" data-path="12-correlacao_linear.html"><a href="#no%C3%A7%C3%B5es-b%C3%A1sicas-para-o-uso-de-calculadora-cassio-fx-82ms"><i class="fa fa-check"></i><b>2.12</b> Noções básicas para o uso de calculadora (Cassio fx-82MS)</a></li>
+<li class="chapter" data-level="2.13" data-path="12-correlacao_linear.html"><a href="#instala%C3%A7%C3%A3o-do-software-r-em-conjunto-com-a-interface-gr%C3%A1fica-rstudio"><i class="fa fa-check"></i><b>2.13</b> Instalação do software R em conjunto com a interface gráfica RStudio</a>
+<ul>
+<li class="chapter" data-level="2.13.1" data-path="introducao-conceitual-essencial.html"><a href="introducao-conceitual-essencial.html#rstudio"><i class="fa fa-check"></i><b>2.13.1</b> RStudio</a></li>
+<li class="chapter" data-level="2.13.2" data-path="introducao-conceitual-essencial.html"><a href="introducao-conceitual-essencial.html#pacotes"><i class="fa fa-check"></i><b>2.13.2</b> Pacotes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html"><i class="fa fa-check"></i><b>3</b> Introdução à estatística descritiva</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="12-correlacao_linear.html"><a href="#an%C3%A1lise-explorat%C3%B3ria"><i class="fa fa-check"></i><b>3.1</b> Análise exploratória</a></li>
+<li class="chapter" data-level="3.2" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#dados-brutos-e-pr-e-processamentos-elementares"><i class="fa fa-check"></i><b>3.2</b> Dados brutos e pr-e-processamentos elementares</a></li>
+<li class="chapter" data-level="3.3" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#apresentacao-descritiva-de-dados-na-forma-de-resumos-numericos"><i class="fa fa-check"></i><b>3.3</b> Apresentacao descritiva de dados na forma de resumos numericos</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#estimadores"><i class="fa fa-check"></i><b>3.3.1</b> Estimadores</a></li>
+<li class="chapter" data-level="3.3.2" data-path="12-correlacao_linear.html"><a href="#medidas-de-tend%C3%AAncia-central-posi%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>3.3.2</b> Medidas de tendência central (posição)</a></li>
+<li class="chapter" data-level="3.3.3" data-path="12-correlacao_linear.html"><a href="#medidas-de-dispers%C3%A3o-variabilidade"><i class="fa fa-check"></i><b>3.3.3</b> Medidas de dispersão (variabilidade)</a></li>
+<li class="chapter" data-level="3.3.4" data-path="12-correlacao_linear.html"><a href="#medidas-de-subdivis%C3%A3o-separatrizes"><i class="fa fa-check"></i><b>3.3.4</b> Medidas de subdivisão (separatrizes)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#padronizacao-de-dados-z-scores"><i class="fa fa-check"></i><b>3.4</b> Padronizacao de dados (<em>z-scores</em>)</a></li>
+<li class="chapter" data-level="3.5" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#medidas-de-forma-assimetria-curtose"><i class="fa fa-check"></i><b>3.5</b> Medidas de forma (assimetria &amp; curtose)</a></li>
+<li class="chapter" data-level="3.6" data-path="12-correlacao_linear.html"><a href="#diferentes-posi%C3%A7%C3%B5es-da-m%C3%A9dia-moda-e-mediana-2o-quartil"><i class="fa fa-check"></i><b>3.6</b> Diferentes posições da média, moda e mediana (2<span class="math inline">\(^{o}\)</span> quartil)</a></li>
+<li class="chapter" data-level="3.7" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#apresentacao-descritiva-de-dados-na-forma-tabular"><i class="fa fa-check"></i><b>3.7</b> Apresentacao descritiva de dados na forma tabular</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#apresentacao-tabular-de-dados-qualitativos"><i class="fa fa-check"></i><b>3.7.1</b> Apresentacao tabular de dados qualitativos</a></li>
+<li class="chapter" data-level="3.7.2" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#apresentacao-tabular-de-dados-quantitativos"><i class="fa fa-check"></i><b>3.7.2</b> Apresentacao tabular de dados quantitativos</a></li>
+<li class="chapter" data-level="3.7.3" data-path="12-correlacao_linear.html"><a href="#m%C3%A9dia-para-dados-tabelados"><i class="fa fa-check"></i><b>3.7.3</b> Média para dados tabelados</a></li>
+<li class="chapter" data-level="3.7.4" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#moda-para-dados-tabelados"><i class="fa fa-check"></i><b>3.7.4</b> Moda para dados tabelados</a></li>
+<li class="chapter" data-level="3.7.5" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#mediana-q_2d_5p_50-para-dados-tabelados"><i class="fa fa-check"></i><b>3.7.5</b> Mediana (<span class="math inline">\(=Q_{2}=D_{5}=P_{50}\)</span>) para dados tabelados</a></li>
+<li class="chapter" data-level="3.7.6" data-path="12-correlacao_linear.html"><a href="#vari%C3%A2ncia-e-desvio-padr%C3%A3o-para-dados-tabelados"><i class="fa fa-check"></i><b>3.7.6</b> Variância e desvio padrão para dados tabelados</a></li>
+<li class="chapter" data-level="3.7.7" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#quartis"><i class="fa fa-check"></i><b>3.7.7</b> Quartis</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="introducao-a-estatistica-descritiva.html"><a href="introducao-a-estatistica-descritiva.html#apresentacao-descritiva-de-dados-na-forma-grafica"><i class="fa fa-check"></i><b>3.8</b> Apresentacao descritiva de dados na forma grafica</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="12-correlacao_linear.html"><a href="#gr%C3%A1ficos-para-uma-vari%C3%A1vel-qualitativa"><i class="fa fa-check"></i><b>3.8.1</b> Gráficos para uma variável qualitativa</a></li>
+<li class="chapter" data-level="3.8.2" data-path="12-correlacao_linear.html"><a href="#gr%C3%A1ficos-para-uma-vari%C3%A1vel-quantitativa"><i class="fa fa-check"></i><b>3.8.2</b> Gráficos para uma variável quantitativa</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html"><i class="fa fa-check"></i><b>4</b> Introdução ao cálculo de probabilidades</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="12-correlacao_linear.html"><a href="#introdu%C3%A7%C3%A3o-hist%C3%B3rica"><i class="fa fa-check"></i><b>4.1</b> Introdução histórica</a></li>
+<li class="chapter" data-level="4.2" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#conceitos-essenciais"><i class="fa fa-check"></i><b>4.2</b> Conceitos essenciais</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="12-correlacao_linear.html"><a href="#experimentos-determin%C3%ADsticos-e-experimentos-aleat%C3%B3rios"><i class="fa fa-check"></i><b>4.2.1</b> Experimentos determinísticos e experimentos aleatórios</a></li>
+<li class="chapter" data-level="4.2.2" data-path="12-correlacao_linear.html"><a href="#o-espa%C3%A7o-amostral"><i class="fa fa-check"></i><b>4.2.2</b> O espaço amostral</a></li>
+<li class="chapter" data-level="4.2.3" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#evento"><i class="fa fa-check"></i><b>4.2.3</b> Evento</a></li>
+<li class="chapter" data-level="4.2.4" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#probabilidade"><i class="fa fa-check"></i><b>4.2.4</b> Probabilidade</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="12-correlacao_linear.html"><a href="#probabilidade-da-uni%C3%A3o-de-eventos"><i class="fa fa-check"></i><b>4.3</b> Probabilidade da união de eventos</a></li>
+<li class="chapter" data-level="4.4" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#probabilidade-de-eventos-condicionados"><i class="fa fa-check"></i><b>4.4</b> Probabilidade de eventos condicionados</a></li>
+<li class="chapter" data-level="4.5" data-path="12-correlacao_linear.html"><a href="#depend%C3%AAncia-e-independ%C3%AAncia-de-eventos"><i class="fa fa-check"></i><b>4.5</b> Dependência e independência de eventos</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="12-correlacao_linear.html"><a href="#demonstra%C3%A7%C3%A3o-cl%C3%A1ssica-de-independ%C3%AAncia"><i class="fa fa-check"></i><b>4.5.1</b> Demonstração clássica de independência</a></li>
+<li class="chapter" data-level="4.5.2" data-path="12-correlacao_linear.html"><a href="#demonstra%C3%A7%C3%A3o-cl%C3%A1ssica-de-depend%C3%AAncia"><i class="fa fa-check"></i><b>4.5.2</b> Demonstração clássica de dependência</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#probabilidade-de-eventos-independentes-regra-da-cadeia"><i class="fa fa-check"></i><b>4.6</b> Probabilidade de eventos independentes (regra da cadeia)</a></li>
+<li class="chapter" data-level="4.7" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teorema-de-bayes"><i class="fa fa-check"></i><b>4.7</b> Teorema de Bayes</a></li>
+<li class="chapter" data-level="4.8" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teoremas-da-teoria-das-probabilidades"><i class="fa fa-check"></i><b>4.8</b> Teoremas da Teoria das probabilidades</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teorema-01"><i class="fa fa-check"></i><b>4.8.1</b> Teorema 01</a></li>
+<li class="chapter" data-level="4.8.2" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teorema-02"><i class="fa fa-check"></i><b>4.8.2</b> Teorema 02</a></li>
+<li class="chapter" data-level="4.8.3" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teorema-03"><i class="fa fa-check"></i><b>4.8.3</b> Teorema 03</a></li>
+<li class="chapter" data-level="4.8.4" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teorema-04"><i class="fa fa-check"></i><b>4.8.4</b> Teorema 04</a></li>
+<li class="chapter" data-level="4.8.5" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teorema-05"><i class="fa fa-check"></i><b>4.8.5</b> Teorema 05</a></li>
+<li class="chapter" data-level="4.8.6" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teorema-06"><i class="fa fa-check"></i><b>4.8.6</b> Teorema 06</a></li>
+<li class="chapter" data-level="4.8.7" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teorema-07"><i class="fa fa-check"></i><b>4.8.7</b> Teorema 07</a></li>
+<li class="chapter" data-level="4.8.8" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teorema-08"><i class="fa fa-check"></i><b>4.8.8</b> Teorema 08</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="introducao-a-variaveis-aleatorias.html"><a href="introducao-a-variaveis-aleatorias.html"><i class="fa fa-check"></i><b>5</b> Introdução a variáveis aleatórias</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="introducao-a-variaveis-aleatorias.html"><a href="introducao-a-variaveis-aleatorias.html#variaveis-aleatorias-discretas-continuas"><i class="fa fa-check"></i><b>5.1</b> Variáveis aleatórias discretas e contínuas</a></li>
+<li class="chapter" data-level="5.2" data-path="12-correlacao_linear.html"><a href="#fun%C3%A7%C3%A3o-massa-de-probabilidade-probability-mass-function---pmf"><i class="fa fa-check"></i><b>5.2</b> Função massa de probabilidade (<em>Probability Mass Function - PMF</em>)</a></li>
+<li class="chapter" data-level="5.3" data-path="12-correlacao_linear.html"><a href="#fun%C3%A7%C3%A3o-cumulativa-de-probabilidade"><i class="fa fa-check"></i><b>5.3</b> Função cumulativa de probabilidade</a></li>
+<li class="chapter" data-level="5.4" data-path="12-correlacao_linear.html"><a href="#fun%C3%A7%C3%A3o-de-densidade-de-probabilidade-probability-density-function---pdf"><i class="fa fa-check"></i><b>5.4</b> Função de densidade de probabilidade (<em>Probability Density Function - PDF</em>)</a></li>
+<li class="chapter" data-level="5.5" data-path="12-correlacao_linear.html"><a href="#esperan%C3%A7a-e-vari%C3%A2ncia-de-uma-vari%C3%A1vel-aleat%C3%B3ria-discreta"><i class="fa fa-check"></i><b>5.5</b> Esperança e variância de uma variável aleatória discreta</a></li>
+<li class="chapter" data-level="5.6" data-path="12-correlacao_linear.html"><a href="#esperan%C3%A7a-e-vari%C3%A2ncia-de-uma-vari%C3%A1vel-aleat%C3%B3ria-cont%C3%ADnua"><i class="fa fa-check"></i><b>5.6</b> Esperança e variância de uma variável aleatória contínua</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html"><i class="fa fa-check"></i><b>6</b> Introdução a modelos teóricos de probabilidade</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="12-correlacao_linear.html"><a href="#modelos-te%C3%B3ricos-de-probabilidade-para-vari%C3%A1veis-aleat%C3%B3rias-discretas"><i class="fa fa-check"></i><b>6.1</b> Modelos teóricos de probabilidade para variáveis aleatórias discretas</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#uniforme"><i class="fa fa-check"></i><b>6.1.1</b> Uniforme</a></li>
+<li class="chapter" data-level="6.1.2" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#bernoulli"><i class="fa fa-check"></i><b>6.1.2</b> Bernoulli</a></li>
+<li class="chapter" data-level="6.1.3" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#binomial"><i class="fa fa-check"></i><b>6.1.3</b> Binomial</a></li>
+<li class="chapter" data-level="6.1.4" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#poisson"><i class="fa fa-check"></i><b>6.1.4</b> Poisson</a></li>
+<li class="chapter" data-level="6.1.5" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#multinomial"><i class="fa fa-check"></i><b>6.1.5</b> Multinomial</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="12-correlacao_linear.html"><a href="#modelos-t%C3%A9oricos-do-tempo-de-espera"><i class="fa fa-check"></i><b>6.2</b> Modelos téoricos do tempo de espera</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="12-correlacao_linear.html"><a href="#geom%C3%A9trica"><i class="fa fa-check"></i><b>6.2.1</b> Geométrica</a></li>
+<li class="chapter" data-level="6.2.2" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#binomial-negativa"><i class="fa fa-check"></i><b>6.2.2</b> Binomial Negativa</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="12-correlacao_linear.html"><a href="#modelos-te%C3%B3ricos-de-probabilidade-para-vari%C3%A1veis-aleat%C3%B3rias-cont%C3%ADnuas"><i class="fa fa-check"></i><b>6.3</b> Modelos teóricos de probabilidade para variáveis aleatórias contínuas</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#uniforme-1"><i class="fa fa-check"></i><b>6.3.1</b> Uniforme</a></li>
+<li class="chapter" data-level="6.3.2" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#exponencial"><i class="fa fa-check"></i><b>6.3.2</b> Exponencial</a></li>
+<li class="chapter" data-level="6.3.3" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#normal"><i class="fa fa-check"></i><b>6.3.3</b> Normal</a></li>
+<li class="chapter" data-level="6.3.4" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#student-t"><i class="fa fa-check"></i><b>6.3.4</b> Student “t”</a></li>
+<li class="chapter" data-level="6.3.5" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#qui-quadrado"><i class="fa fa-check"></i><b>6.3.5</b> Qui-Quadrado</a></li>
+<li class="chapter" data-level="6.3.6" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#fisher-snedecor-f"><i class="fa fa-check"></i><b>6.3.6</b> Fisher-Snedecor “F”</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#tabelas"><i class="fa fa-check"></i><b>6.4</b> Tabelas</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html"><i class="fa fa-check"></i><b>7</b> Introdução ao planejamento de pesquisas</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#planejamento-de-pesquisas"><i class="fa fa-check"></i><b>7.1</b> Planejamento de pesquisas</a></li>
+<li class="chapter" data-level="7.2" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#tipos-de-pesquisas"><i class="fa fa-check"></i><b>7.2</b> Tipos de pesquisas</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="12-correlacao_linear.html"><a href="#quanto-%C3%A0-finalidade"><i class="fa fa-check"></i><b>7.2.1</b> Quanto à finalidade</a></li>
+<li class="chapter" data-level="7.2.2" data-path="12-correlacao_linear.html"><a href="#quanto-%C3%A0-forma-de-abordagem"><i class="fa fa-check"></i><b>7.2.2</b> Quanto à forma de abordagem</a></li>
+<li class="chapter" data-level="7.2.3" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#quanto-aos-objetivos"><i class="fa fa-check"></i><b>7.2.3</b> Quanto aos objetivos</a></li>
+<li class="chapter" data-level="7.2.4" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#quanto-ao-desenvolvimento-no-tempo"><i class="fa fa-check"></i><b>7.2.4</b> Quanto ao desenvolvimento no tempo</a></li>
+<li class="chapter" data-level="7.2.5" data-path="12-correlacao_linear.html"><a href="#quanto-%C3%A0-natureza"><i class="fa fa-check"></i><b>7.2.5</b> Quanto à natureza</a></li>
+<li class="chapter" data-level="7.2.6" data-path="12-correlacao_linear.html"><a href="#quanto-%C3%A0-forma-de-obten%C3%A7%C3%A3o-dos-dados"><i class="fa fa-check"></i><b>7.2.6</b> Quanto à forma de obtenção dos dados</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#principais-etapas-de-uma-pesquisa"><i class="fa fa-check"></i><b>7.3</b> Principais etapas de uma pesquisa:</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#objetivo"><i class="fa fa-check"></i><b>7.3.1</b> Objetivo</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="12-correlacao_linear.html"><a href="#popula%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>7.4</b> População</a></li>
+<li class="chapter" data-level="7.5" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#censo"><i class="fa fa-check"></i><b>7.5</b> Censo</a></li>
+<li class="chapter" data-level="7.6" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#amostra"><i class="fa fa-check"></i><b>7.6</b> Amostra</a></li>
+<li class="chapter" data-level="7.7" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#planejamento-do-levantamento-amostral"><i class="fa fa-check"></i><b>7.7</b> Planejamento do levantamento amostral</a></li>
+<li class="chapter" data-level="7.8" data-path="12-correlacao_linear.html"><a href="#elabora%C3%A7%C3%A3o-dos-question%C3%A1rios"><i class="fa fa-check"></i><b>7.8</b> Elaboração dos questionários</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#tipos-de-perguntas"><i class="fa fa-check"></i><b>7.8.1</b> Tipos de perguntas:</a></li>
+<li class="chapter" data-level="7.8.2" data-path="12-correlacao_linear.html"><a href="#execu%C3%A7%C3%A3o-do-levantamento-amostral"><i class="fa fa-check"></i><b>7.8.2</b> Execução do levantamento amostral</a></li>
+<li class="chapter" data-level="7.8.3" data-path="12-correlacao_linear.html"><a href="#an%C3%A1lise-explorat%C3%B3ria-dos-dados"><i class="fa fa-check"></i><b>7.8.3</b> Análise exploratória dos dados</a></li>
+<li class="chapter" data-level="7.8.4" data-path="12-correlacao_linear.html"><a href="#resultados-e-conclus%C3%B5es"><i class="fa fa-check"></i><b>7.8.4</b> Resultados e conclusões</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="12-correlacao_linear.html"><a href="#t%C3%A9cnicas-de-amostragem"><i class="fa fa-check"></i><b>7.9</b> Técnicas de amostragem</a></li>
+<li class="chapter" data-level="7.10" data-path="12-correlacao_linear.html"><a href="#amostragem-probabil%C3%ADstica"><i class="fa fa-check"></i><b>7.10</b> Amostragem probabilística</a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="12-correlacao_linear.html"><a href="#amostragem-aleat%C3%B3ria-simples-aas"><i class="fa fa-check"></i><b>7.10.1</b> Amostragem aleatória simples (AAS)</a></li>
+<li class="chapter" data-level="7.10.2" data-path="12-correlacao_linear.html"><a href="#amostragem-aleat%C3%B3ria-sistem%C3%A1tica"><i class="fa fa-check"></i><b>7.10.2</b> Amostragem aleatória sistemática</a></li>
+<li class="chapter" data-level="7.10.3" data-path="12-correlacao_linear.html"><a href="#amostragem-aleat%C3%B3ria-estratificada"><i class="fa fa-check"></i><b>7.10.3</b> Amostragem aleatória estratificada</a></li>
+<li class="chapter" data-level="7.10.4" data-path="12-correlacao_linear.html"><a href="#amostragem-aleat%C3%B3ria-por-conglomerados"><i class="fa fa-check"></i><b>7.10.4</b> Amostragem aleatória por conglomerados</a></li>
+</ul></li>
+<li class="chapter" data-level="7.11" data-path="12-correlacao_linear.html"><a href="#amostragem-n%C3%A3o-probabil%C3%ADstica"><i class="fa fa-check"></i><b>7.11</b> Amostragem não probabilística</a>
+<ul>
+<li class="chapter" data-level="7.11.1" data-path="12-correlacao_linear.html"><a href="#amostragem-por-conveni%C3%AAncia"><i class="fa fa-check"></i><b>7.11.1</b> Amostragem por conveniência</a></li>
+<li class="chapter" data-level="7.11.2" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#amostragem-por-cotas"><i class="fa fa-check"></i><b>7.11.2</b> Amostragem por cotas</a></li>
+</ul></li>
+<li class="chapter" data-level="7.12" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#dimensionamento-de-amostras"><i class="fa fa-check"></i><b>7.12</b> Dimensionamento de amostras</a>
+<ul>
+<li class="chapter" data-level="7.12.1" data-path="introducao-ao-planejamento-de-pesquisas.html"><a href="introducao-ao-planejamento-de-pesquisas.html#erros"><i class="fa fa-check"></i><b>7.12.1</b> Erros</a></li>
+<li class="chapter" data-level="7.12.2" data-path="12-correlacao_linear.html"><a href="#determina%C3%A7%C3%A3o-do-tamanho-de-uma-amostra-para-estima%C3%A7%C3%A3o-da-m%C3%A9dia-populacional"><i class="fa fa-check"></i><b>7.12.2</b> Determinação do tamanho de uma amostra para estimação da média populacional</a></li>
+<li class="chapter" data-level="7.12.3" data-path="12-correlacao_linear.html"><a href="#determina%C3%A7%C3%A3o-do-tamanho-de-uma-amostra-para-estima%C3%A7%C3%A3o-da-propor%C3%A7%C3%A3o-populacional"><i class="fa fa-check"></i><b>7.12.3</b> Determinação do tamanho de uma amostra para estimação da proporção populacional</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html"><i class="fa fa-check"></i><b>8</b> Introdução às estatísticas epidemiológicas</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="12-correlacao_linear.html"><a href="#tipos-de-estudos-epidemiol%C3%B3gicos"><i class="fa fa-check"></i><b>8.1</b> Tipos de estudos epidemiológicos</a></li>
+<li class="chapter" data-level="8.2" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html#estudos-transversais"><i class="fa fa-check"></i><b>8.2</b> Estudos transversais</a></li>
+<li class="chapter" data-level="8.3" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html#estudos-longitudinais"><i class="fa fa-check"></i><b>8.3</b> Estudos longitudinais</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html#estudos-de-casos-e-controles"><i class="fa fa-check"></i><b>8.3.1</b> Estudos de casos e controles</a></li>
+<li class="chapter" data-level="8.3.2" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html#estudos-de-coorte"><i class="fa fa-check"></i><b>8.3.2</b> Estudos de coorte</a></li>
+<li class="chapter" data-level="8.3.3" data-path="12-correlacao_linear.html"><a href="#estudos-cl%C3%ADnicos-aleatorizados"><i class="fa fa-check"></i><b>8.3.3</b> Estudos clínicos aleatorizados</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html#terminologia"><i class="fa fa-check"></i><b>8.4</b> Terminologia</a></li>
+<li class="chapter" data-level="8.5" data-path="12-correlacao_linear.html"><a href="#medidas-de-risco-morte-associa%C3%A7%C3%A3o-e-correla%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>8.5</b> Medidas de risco, morte, associação e correlação</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="12-correlacao_linear.html"><a href="#incid%C3%AAncia"><i class="fa fa-check"></i><b>8.5.1</b> Incidência</a></li>
+<li class="chapter" data-level="8.5.2" data-path="12-correlacao_linear.html"><a href="#preval%C3%AAncia"><i class="fa fa-check"></i><b>8.5.2</b> Prevalência</a></li>
+<li class="chapter" data-level="8.5.3" data-path="12-correlacao_linear.html"><a href="#incid%C3%AAncia-cumulativa---ic-risco"><i class="fa fa-check"></i><b>8.5.3</b> Incidência cumulativa - IC (Risco)</a></li>
+<li class="chapter" data-level="8.5.4" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html#fatalidade-dos-casos-fc"><i class="fa fa-check"></i><b>8.5.4</b> Fatalidade dos Casos (FC)</a></li>
+<li class="chapter" data-level="8.5.5" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html#taxas-de-mortalidade-tm"><i class="fa fa-check"></i><b>8.5.5</b> Taxas de mortalidade (TM)</a></li>
+<li class="chapter" data-level="8.5.6" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html#sobrevida"><i class="fa fa-check"></i><b>8.5.6</b> Sobrevida</a></li>
+<li class="chapter" data-level="8.5.7" data-path="12-correlacao_linear.html"><a href="#taxas-mais-espec%C3%ADficas"><i class="fa fa-check"></i><b>8.5.7</b> Taxas mais específicas</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="12-correlacao_linear.html"><a href="#medidas-de-associa%C3%A7%C3%A3o-em-estudos-de-coorte"><i class="fa fa-check"></i><b>8.6</b> Medidas de associação em estudos de coorte</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="12-correlacao_linear.html"><a href="#incid%C3%AAncia-observada-de-nascimentos-com-baixo-peso-entre-m%C3%A3es-expostas-ao-risco-n%C3%A3o-fumantes-i_e"><i class="fa fa-check"></i><b>8.6.1</b> Incidência observada de nascimentos com baixo peso entre mães expostas ao risco (não fumantes): <span class="math inline">\(I_{e}\)</span></a></li>
+<li class="chapter" data-level="8.6.2" data-path="12-correlacao_linear.html"><a href="#incid%C3%AAncia-observada-de-nascimentos-com-baixo-peso-entre-m%C3%A3es-n%C3%A3o-expostas-ao-risco-n%C3%A3o-fumantes-i_0"><i class="fa fa-check"></i><b>8.6.2</b> Incidência observada de nascimentos com baixo peso entre mães não expostas ao risco (não fumantes): <span class="math inline">\(I_{0}\)</span></a></li>
+<li class="chapter" data-level="8.6.3" data-path="12-correlacao_linear.html"><a href="#preval%C3%AAncia-de-nascimentos-com-baixo-peso-na-popula%C3%A7%C3%A3o-estudada"><i class="fa fa-check"></i><b>8.6.3</b> Prevalência de nascimentos com baixo peso na população estudada</a></li>
+<li class="chapter" data-level="8.6.4" data-path="12-correlacao_linear.html"><a href="#diferen%C3%A7a-de-risco-risco-atribu%C3%ADvel---ra"><i class="fa fa-check"></i><b>8.6.4</b> Diferença de risco (Risco atribuível - RA)</a></li>
+<li class="chapter" data-level="8.6.5" data-path="12-correlacao_linear.html"><a href="#raz%C3%A3o-de-risco-risco-relativo---rr"><i class="fa fa-check"></i><b>8.6.5</b> Razão de risco (Risco relativo - RR)</a></li>
+<li class="chapter" data-level="8.6.6" data-path="12-correlacao_linear.html"><a href="#risco-atribu%C3%ADvel-proporcional-fra%C3%A7%C3%A3o-etiol%C3%B3gica---fe"><i class="fa fa-check"></i><b>8.6.6</b> Risco atribuível proporcional (Fração etiológica - FE)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="12-correlacao_linear.html"><a href="#odds-ratio-raz%C3%A3o-das-chances-em-studos-de-casos-e-controles"><i class="fa fa-check"></i><b>8.7</b> <em>Odds ratio</em> (Razão das chances) em studos de casos e controles</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html#chance-odds-de-observar-um-desfecho-entre-os-casos"><i class="fa fa-check"></i><b>8.7.1</b> Chance (<em>odds</em>) de observar um desfecho entre os casos:</a></li>
+<li class="chapter" data-level="8.7.2" data-path="introducao-as-estatisticas-epidemiologicas.html"><a href="introducao-as-estatisticas-epidemiologicas.html#chance-odds-de-observar-um-desfecho-entre-os-controles"><i class="fa fa-check"></i><b>8.7.2</b> Chance (<em>odds</em>) de observar um desfecho entre os controles:</a></li>
+<li class="chapter" data-level="8.7.3" data-path="12-correlacao_linear.html"><a href="#a-raz%C3%A3o-das-chances-entre-os-casos-e-controle-odds-ratio"><i class="fa fa-check"></i><b>8.7.3</b> A razão das chances entre os casos e controle (<em>odds ratio</em>):</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="12-correlacao_linear.html"><a href="#intervalos-de-confian%C3%A7a"><i class="fa fa-check"></i><b>8.8</b> Intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="12-correlacao_linear.html"><a href="#raz%C3%A3o-de-risco-risco-relativo---rr-1"><i class="fa fa-check"></i><b>8.8.1</b> Razão de risco (Risco relativo - RR)</a></li>
+<li class="chapter" data-level="8.8.2" data-path="12-correlacao_linear.html"><a href="#raz%C3%A3o-de-chances-odds-ratio---or"><i class="fa fa-check"></i><b>8.8.2</b> Razão de chances ( <em>odds ratio</em> - OR)</a></li>
+<li class="chapter" data-level="8.8.3" data-path="12-correlacao_linear.html"><a href="#diferen%C3%A7a-de-risco-risco-atribu%C3%ADvel---ra-1"><i class="fa fa-check"></i><b>8.8.3</b> Diferença de risco (Risco atribuível - RA)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="introducao-a-distribuicao-das-medias-e-diferencas-entre-medias-e-seus-intervalos-de-confianca.html"><a href="introducao-a-distribuicao-das-medias-e-diferencas-entre-medias-e-seus-intervalos-de-confianca.html"><i class="fa fa-check"></i><b>9</b> Introdução à distribuição das médias e diferenças entre médias e seus intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="12-correlacao_linear.html"><a href="#distribui%C3%A7%C3%B5es-amostrais"><i class="fa fa-check"></i><b>9.1</b> Distribuições amostrais</a></li>
+<li class="chapter" data-level="9.2" data-path="12-correlacao_linear.html"><a href="#intervalos-de-confian%C3%A7a-1"><i class="fa fa-check"></i><b>9.2</b> Intervalos de confiança</a></li>
+<li class="chapter" data-level="9.3" data-path="12-correlacao_linear.html"><a href="#distribui%C3%A7%C3%A3o-das-m%C3%A9dias-amostrais-e-seus-intervalos-de-confian%C3%A7a"><i class="fa fa-check"></i><b>9.3</b> Distribuição das médias amostrais e seus intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="12-correlacao_linear.html"><a href="#fator-de-corre%C3%A7%C3%A3o-para-popula%C3%A7%C3%B5es-finitas"><i class="fa fa-check"></i><b>9.3.1</b> Fator de correção para populações finitas</a></li>
+<li class="chapter" data-level="9.3.2" data-path="12-correlacao_linear.html"><a href="#intervalo-de-confian%C3%A7a-para-a-m%C3%A9dia-de-uma-popula%C3%A7%C3%A3o-normal"><i class="fa fa-check"></i><b>9.3.2</b> Intervalo de confiança para a média de uma população Normal</a></li>
+<li class="chapter" data-level="9.3.3" data-path="12-correlacao_linear.html"><a href="#intervalos-de-confian%C3%A7a-para-a-m%C3%A9dia-de-uma-popula%C3%A7%C3%A3o-normal-com-vari%C3%A2ncia-conhecida-figura-reffigfig28"><i class="fa fa-check"></i><b>9.3.3</b> Intervalos de confiança para a média de uma população Normal com variância conhecida (Figura @ref(fig:fig28))</a></li>
+<li class="chapter" data-level="9.3.4" data-path="12-correlacao_linear.html"><a href="#intervalos-de-confian%C3%A7a-para-a-m%C3%A9dia-de-uma-popula%C3%A7%C3%A3o-normal-de-vari%C3%A2ncia-desconhecida-mas-amostra-n%C3%A3o-t%C3%A3o-pequena-n-ge-30-figura-reffigfig55"><i class="fa fa-check"></i><b>9.3.4</b> Intervalos de confiança para a média de uma população Normal de variância desconhecida mas amostra não tão pequena: <span class="math inline">\(n \ge 30\)</span> (Figura @ref(fig:fig55))</a></li>
+<li class="chapter" data-level="9.3.5" data-path="12-correlacao_linear.html"><a href="#intervalos-de-confian%C3%A7a-para-a-m%C3%A9dia-de-uma-popula%C3%A7%C3%A3o-normal-com-vari%C3%A2ncia-desconhecida-e-amostra-de-qualquer-tamanho-figura-reffigfig58"><i class="fa fa-check"></i><b>9.3.5</b> Intervalos de confiança para a média de uma população Normal com variância desconhecida e amostra de qualquer tamanho (Figura @ref(fig:fig58))</a></li>
+<li class="chapter" data-level="9.3.6" data-path="introducao-a-distribuicao-das-medias-e-diferencas-entre-medias-e-seus-intervalos-de-confianca.html"><a href="introducao-a-distribuicao-das-medias-e-diferencas-entre-medias-e-seus-intervalos-de-confianca.html#fluxograma-auxiliar"><i class="fa fa-check"></i><b>9.3.6</b> Fluxograma auxiliar</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="12-correlacao_linear.html"><a href="#distribui%C3%A7%C3%A3o-das-diferen%C3%A7as-das-m%C3%A9dias-de-duas-popula%C3%A7%C3%B5es-normais-e-seus-intervalos-de-confian%C3%A7a"><i class="fa fa-check"></i><b>9.4</b> Distribuição das diferenças das médias de duas populações Normais e seus intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="12-correlacao_linear.html"><a href="#intervalos-de-confian%C3%A7a-para-a-diferen%C3%A7a-das-m%C3%A9dias-de-duas-popula%C3%A7%C3%B5es-nomrais-de-vari%C3%A2ncias-conhecidas-e-amostras-independentes-de-qualquer-tamanho"><i class="fa fa-check"></i><b>9.4.1</b> Intervalos de confiança para a diferença das médias de duas populações Nomrais de variâncias conhecidas e amostras independentes de qualquer tamanho</a></li>
+<li class="chapter" data-level="9.4.2" data-path="12-correlacao_linear.html"><a href="#intervalos-de-confian%C3%A7a-para-a-diferen%C3%A7a-das-m%C3%A9dias-de-duas-popula%C3%A7%C3%B5es-normais-de-vari%C3%A2ncias-desconhecidas-e-amostras-independentes-grandes"><i class="fa fa-check"></i><b>9.4.2</b> Intervalos de confiança para a diferença das médias de duas populações Normais de variâncias desconhecidas e amostras independentes grandes</a></li>
+<li class="chapter" data-level="9.4.3" data-path="12-correlacao_linear.html"><a href="#intervalos-de-confian%C3%A7a-para-a-diferen%C3%A7a-das-m%C3%A9dias-de-duas-popula%C3%A7%C3%B5es-normais-de-vari%C3%A2ncias-desconhecidas-mas-iguais"><i class="fa fa-check"></i><b>9.4.3</b> Intervalos de confiança para a diferença das médias de duas populações Normais de variâncias desconhecidas mas iguais</a></li>
+<li class="chapter" data-level="9.4.4" data-path="12-correlacao_linear.html"><a href="#intervalos-de-confian%C3%A7a-para-a-diferen%C3%A7a-das-m%C3%A9dias-de-duas-popula%C3%A7%C3%B5es-normais-de-vari%C3%A2ncias-desconhecidas-e-desiguais"><i class="fa fa-check"></i><b>9.4.4</b> Intervalos de confiança para a diferença das médias de duas populações Normais de variâncias desconhecidas e desiguais</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="12-correlacao_linear.html"><a href="#distribui%C3%A7%C3%A3o-das-diferen%C3%A7as-das-m%C3%A9dias-de-duas-popula%C3%A7%C3%B5es-normais-com-m%C3%A9dias-n%C3%A3o-independentes-e-seus-intervalos-de-confian%C3%A7a"><i class="fa fa-check"></i><b>9.5</b> Distribuição das diferenças das médias de duas populações Normais com médias não independentes e seus intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="introducao-a-distribuicao-das-medias-e-diferencas-entre-medias-e-seus-intervalos-de-confianca.html"><a href="introducao-a-distribuicao-das-medias-e-diferencas-entre-medias-e-seus-intervalos-de-confianca.html#fluxograma-auxiliar-1"><i class="fa fa-check"></i><b>9.5.1</b> Fluxograma auxiliar</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="introducao-a-distribuicao-das-proporcoes-e-seus-intervalos-de-confianca.html"><a href="introducao-a-distribuicao-das-proporcoes-e-seus-intervalos-de-confianca.html"><i class="fa fa-check"></i><b>10</b> Introdução à distribuição das proporções e seus intervalos de confiança</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="12-correlacao_linear.html"><a href="#conceito-elementar-de-uma-propor%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>10.1</b> Conceito elementar de uma proporção</a></li>
+<li class="chapter" data-level="10.2" data-path="12-correlacao_linear.html"><a href="#distribui%C3%A7%C3%A3o-das-propor%C3%A7%C3%B5es-amostrais"><i class="fa fa-check"></i><b>10.2</b> Distribuição das proporções amostrais</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="12-correlacao_linear.html"><a href="#simula%C3%A7%C3%B5es-ilustrativas-da-aproxima%C3%A7%C3%A3o-da-distribui%C3%A7%C3%A3o-das-propor%C3%A7%C3%B5es-amostrais-pela-distribui%C3%A7%C3%A3o-normal"><i class="fa fa-check"></i><b>10.2.1</b> Simulações ilustrativas da aproximação da distribuição das proporções amostrais pela distribuição Normal</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="12-correlacao_linear.html"><a href="#a-aleatoriedade-das-propor%C3%A7%C3%B5es-amostrais-e-o-tamanho-amostral"><i class="fa fa-check"></i><b>10.3</b> A aleatoriedade das proporções amostrais e o tamanho amostral</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="12-correlacao_linear.html"><a href="#simula%C3%A7%C3%B5es-ilustrativas-sobre-as-flutua%C3%A7%C3%B5es-das-propor%C3%A7%C3%B5es-amostrais-e-o-erro-amostral-fixado"><i class="fa fa-check"></i><b>10.3.1</b> Simulações ilustrativas sobre as flutuações das proporções amostrais e o erro amostral fixado</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="12-correlacao_linear.html"><a href="#intervalos-de-confian%C3%A7a-para-uma-propor%C3%A7%C3%A3o-pi-pela-aproxima%C3%A7%C3%A3o-da-binomial-pela-normal"><i class="fa fa-check"></i><b>10.4</b> Intervalos de confiança para uma proporção <span class="math inline">\(\Pi\)</span> pela aproximação da Binomial pela Normal</a></li>
+<li class="chapter" data-level="10.5" data-path="12-correlacao_linear.html"><a href="#intervalo-de-confian%C3%A7a-para-pi-diretamente-da-distribui%C3%A7%C3%A3o-binomial"><i class="fa fa-check"></i><b>10.5</b> Intervalo de confiança para <span class="math inline">\(\Pi\)</span> diretamente da Distribuição Binomial</a></li>
+<li class="chapter" data-level="10.6" data-path="12-correlacao_linear.html"><a href="#pobabilidades-associadas-%C3%A0-observa%C3%A7%C3%A3o-de-uma-propor%C3%A7%C3%A3o-amostral-hatp"><i class="fa fa-check"></i><b>10.6</b> Pobabilidades associadas à observação de uma proporção amostral <span class="math inline">\(\hat{p}\)</span></a></li>
+<li class="chapter" data-level="10.7" data-path="12-correlacao_linear.html"><a href="#intervalos-de-confian%C3%A7a-para-a-diferen%C3%A7a-entre-duas-propor%C3%A7%C3%B5es-pi_x-pi_ypela-aproxima%C3%A7%C3%A3o-da-binomial-pela-normal"><i class="fa fa-check"></i><b>10.7</b> Intervalos de confiança para a diferença entre duas proporções (<span class="math inline">\(\Pi_{X}-\Pi_{Y}\)</span>)pela aproximação da Binomial pela Normal</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="introducao-a-testes-de-hipoteses.html"><a href="introducao-a-testes-de-hipoteses.html"><i class="fa fa-check"></i><b>11</b> Introdução a testes de hipóteses</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="12-correlacao_linear.html"><a href="#filosofia-da-ci%C3%AAncia"><i class="fa fa-check"></i><b>11.1</b> Filosofia da ciência</a></li>
+<li class="chapter" data-level="11.2" data-path="12-correlacao_linear.html"><a href="#hist%C3%B3ria"><i class="fa fa-check"></i><b>11.2</b> História</a></li>
+<li class="chapter" data-level="11.3" data-path="introducao-a-testes-de-hipoteses.html"><a href="introducao-a-testes-de-hipoteses.html#conceitos"><i class="fa fa-check"></i><b>11.3</b> Conceitos</a></li>
+<li class="chapter" data-level="11.4" data-path="introducao-a-testes-de-hipoteses.html"><a href="introducao-a-testes-de-hipoteses.html#natureza-dos-erros"><i class="fa fa-check"></i><b>11.4</b> Natureza dos erros</a></li>
+<li class="chapter" data-level="11.5" data-path="12-correlacao_linear.html"><a href="#recomenda%C3%A7%C3%B5es-gerais"><i class="fa fa-check"></i><b>11.5</b> Recomendações gerais</a></li>
+<li class="chapter" data-level="11.6" data-path="introducao-a-testes-de-hipoteses.html"><a href="introducao-a-testes-de-hipoteses.html#efeito-do-limite-central"><i class="fa fa-check"></i><b>11.6</b> Efeito do limite central</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="introducao-a-testes-de-hipoteses.html"><a href="introducao-a-testes-de-hipoteses.html#erro-global"><i class="fa fa-check"></i><b>11.6.1</b> Erro global</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="12-correlacao_linear.html"><a href="#estruturas-das-hip%C3%B3teses"><i class="fa fa-check"></i><b>11.7</b> Estruturas das hipóteses</a>
+<ul>
+<li class="chapter" data-level="11.7.1" data-path="12-correlacao_linear.html"><a href="#interpreta%C3%A7%C3%A3o-gr%C3%A1fica-dos-n%C3%ADveis-de-signific%C3%A2nciaconfian%C3%A7a"><i class="fa fa-check"></i><b>11.7.1</b> Interpretação gráfica dos níveis de significância/confiança</a></li>
+<li class="chapter" data-level="11.7.2" data-path="12-correlacao_linear.html"><a href="#teste-de-hip%C3%B3teses-bilateral"><i class="fa fa-check"></i><b>11.7.2</b> Teste de hipóteses Bilateral</a></li>
+<li class="chapter" data-level="11.7.3" data-path="12-correlacao_linear.html"><a href="#teste-de-hip%C3%B3teses-unilateral-%C3%A0-esquerda"><i class="fa fa-check"></i><b>11.7.3</b> Teste de hipóteses Unilateral à esquerda</a></li>
+<li class="chapter" data-level="11.7.4" data-path="12-correlacao_linear.html"><a href="#teste-de-hip%C3%B3teses-unilateral-%C3%A0-direita"><i class="fa fa-check"></i><b>11.7.4</b> Teste de hipóteses Unilateral à direita</a></li>
+</ul></li>
+<li class="chapter" data-level="11.8" data-path="12-correlacao_linear.html"><a href="#teste-de-hip%C3%B3teses-para-a-m%C3%A9dia-mu-de-uma-popula%C3%A7%C3%A3o-normal"><i class="fa fa-check"></i><b>11.8</b> Teste de hipóteses para a média <span class="math inline">\(\mu\)</span> de uma população Normal</a>
+<ul>
+<li class="chapter" data-level="11.8.1" data-path="12-correlacao_linear.html"><a href="#cen%C3%A1rios-poss%C3%ADveis"><i class="fa fa-check"></i><b>11.8.1</b> Cenários possíveis</a></li>
+<li class="chapter" data-level="11.8.2" data-path="introducao-a-testes-de-hipoteses.html"><a href="introducao-a-testes-de-hipoteses.html#roteiro-geral"><i class="fa fa-check"></i><b>11.8.2</b> Roteiro geral</a></li>
+<li class="chapter" data-level="11.8.3" data-path="12-correlacao_linear.html"><a href="#probabilidade-dos-intervalos-de-confian%C3%A7a-para-os-testes-de-hip%C3%B3teses-com-o-uso-da-estat%C3%ADstica-z-z-sim-mathcaln01"><i class="fa fa-check"></i><b>11.8.3</b> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística Z (<span class="math inline">\(Z \sim \mathcal{N}(0,1)\)</span>):</a></li>
+<li class="chapter" data-level="11.8.4" data-path="12-correlacao_linear.html"><a href="#probabilidade-dos-intervalos-de-confian%C3%A7a-para-os-testes-de-hip%C3%B3teses-com-o-uso-da-estat%C3%ADstica-t-tsim-t_n-1"><i class="fa fa-check"></i><b>11.8.4</b> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística T (<span class="math inline">\(T\sim t_{(n-1)}\)</span>):</a></li>
+</ul></li>
+<li class="chapter" data-level="11.9" data-path="12-correlacao_linear.html"><a href="#teste-de-hip%C3%B3teses-para-a-raz%C3%A3o-de-duas-vari%C3%A2ncias-fracsigma_12sigma_22"><i class="fa fa-check"></i><b>11.9</b> Teste de hipóteses para a razão de duas variâncias (<span class="math inline">\(\frac{\sigma_{1}^{2}}{\sigma_{2}^{2}}\)</span>)</a></li>
+<li class="chapter" data-level="11.10" data-path="12-correlacao_linear.html"><a href="#teste-de-hip%C3%B3teses-para-as-m%C3%A9dias-mu_1mu_2-de-duas-popula%C3%A7%C3%B5es-normais-independentes"><i class="fa fa-check"></i><b>11.10</b> Teste de hipóteses para as médias (<span class="math inline">\(\mu_{1};\mu_{2}\)</span>) de duas populações Normais independentes</a>
+<ul>
+<li class="chapter" data-level="11.10.1" data-path="12-correlacao_linear.html"><a href="#as-estruturas-poss%C3%ADveis-dos-testes-de-hip%C3%B3teses-relacionados-%C3%A0s-suas-m%C3%A9dias-ser%C3%A3o"><i class="fa fa-check"></i><b>11.10.1</b> As estruturas possíveis dos testes de hipóteses relacionados às suas médias serão:</a></li>
+<li class="chapter" data-level="11.10.2" data-path="12-correlacao_linear.html"><a href="#testes-de-hip%C3%B3teses-para-as-m%C3%A9dias-de-duas-popula%C3%A7%C3%B5es-normais-com-vari%C3%A2ncias-conhecidas-ou-n%C3%A3o-conhecidas-mas-o-tamanho-das-amostras-%C3%A9-grande-nge30-s2approxsigma2"><i class="fa fa-check"></i><b>11.10.2</b> Testes de hipóteses para as médias de duas populações Normais com variâncias conhecidas (ou não conhecidas mas o tamanho das amostras é grande: <span class="math inline">\(n\ge30\)</span>: <span class="math inline">\(S^{2}\approx\sigma^{2}\)</span>)</a></li>
+<li class="chapter" data-level="11.10.3" data-path="12-correlacao_linear.html"><a href="#testes-de-hip%C3%B3teses-para-as-m%C3%A9dias-de-duas-popula%C3%A7%C3%B5es-normais-com-vari%C3%A2ncias-desconhecidas-mas-iguais-teste-t-homoced%C3%A1stico-sigma_12sigma_22"><i class="fa fa-check"></i><b>11.10.3</b> Testes de hipóteses para as médias de duas populações Normais com variâncias desconhecidas mas iguais: teste “t’’ homocedástico (<span class="math inline">\(\sigma_{1}^{2}=\sigma_{2}^{2}=?\)</span>)</a></li>
+<li class="chapter" data-level="11.10.4" data-path="12-correlacao_linear.html"><a href="#teste-de-hip%C3%B3teses-para-as-m%C3%A9dias-de-duas-popula%C3%A7%C3%B5es-normais-com-vari%C3%A2ncias-desconhecidas-e-desiguais-teste-t-heteroced%C3%A1stico-sigma_12-neq-sigma_22"><i class="fa fa-check"></i><b>11.10.4</b> Teste de hipóteses para as médias de duas populações Normais com variâncias desconhecidas e desiguais: teste “``t’’ heterocedástico (<span class="math inline">\(\sigma_{1}^{2} \neq \sigma_{2}^{2}=?\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="11.11" data-path="12-correlacao_linear.html"><a href="#teste-de-hip%C3%B3teses-para-uma-propor%C3%A7%C3%A3o-pi-de-uma-popula%C3%A7%C3%A3o-binomial"><i class="fa fa-check"></i><b>11.11</b> Teste de hipóteses para uma proporção <span class="math inline">\(\Pi\)</span> de uma população binomial</a>
+<ul>
+<li class="chapter" data-level="11.11.1" data-path="12-correlacao_linear.html"><a href="#estruturas-poss%C3%ADveis-para-as-hip%C3%B3teses"><i class="fa fa-check"></i><b>11.11.1</b> Estruturas possíveis para as hipóteses</a></li>
+<li class="chapter" data-level="11.11.2" data-path="12-correlacao_linear.html"><a href="#probabilidade-dos-intervalos-de-confian%C3%A7a-para-os-testes-de-hip%C3%B3teses-com-o-uso-da-estat%C3%ADstica-z-z-sim-mathcaln01-1"><i class="fa fa-check"></i><b>11.11.2</b> Probabilidade dos intervalos de confiança para os testes de hipóteses com o uso da estatística Z (<span class="math inline">\(Z \sim \mathcal{N}(0,1)\)</span>):</a></li>
+</ul></li>
+<li class="chapter" data-level="11.12" data-path="12-correlacao_linear.html"><a href="#testes-n%C3%A3o-param%C3%A9tricos"><i class="fa fa-check"></i><b>11.12</b> Testes não paramétricos</a>
+<ul>
+<li class="chapter" data-level="11.12.1" data-path="12-correlacao_linear.html"><a href="#teste-qui-quadrado-para-verifica%C3%A7%C3%A3o-da-independ%C3%AAncia-homogeneidade"><i class="fa fa-check"></i><b>11.12.1</b> Teste Qui-quadrado para verificação da independência (homogeneidade)</a></li>
+<li class="chapter" data-level="11.12.2" data-path="12-correlacao_linear.html"><a href="#corre%C3%A7%C3%A3o-de-continuidade-em-tabelas-2x2"><i class="fa fa-check"></i><b>11.12.2</b> Correção de continuidade em tabelas 2x2</a></li>
+<li class="chapter" data-level="11.12.3" data-path="12-correlacao_linear.html"><a href="#coeficiente-de-conting%C3%AAncia-de-pearson-modificado-c"><i class="fa fa-check"></i><b>11.12.3</b> Coeficiente de contingência de Pearson (modificado: <span class="math inline">\(C^{*}\)</span>)</a></li>
+<li class="chapter" data-level="11.12.4" data-path="12-correlacao_linear.html"><a href="#teste-qui-quadrado-para-verifica%C3%A7%C3%A3o-da-qualidade-do-ajuste-a-uma-distribui%C3%A7%C3%A3o-te%C3%B3rica-de-probabilidade"><i class="fa fa-check"></i><b>11.12.4</b> Teste Qui-quadrado para verificação da qualidade do ajuste a uma distribuição teórica de probabilidade</a></li>
+<li class="chapter" data-level="11.12.5" data-path="12-correlacao_linear.html"><a href="#teste-de-signific%C3%A2ncia-para-as-m%C3%A9dias-de-duas-popula%C3%A7%C3%B5es-dependentes"><i class="fa fa-check"></i><b>11.12.5</b> Teste de significância para as médias de duas populações dependentes</a></li>
+</ul></li>
+<li class="chapter" data-level="11.13" data-path="12-correlacao_linear.html"><a href="#fluxograma-auxiliar-para-escolha-da-estat%C3%ADstica-do-teste-de-hip%C3%B3teses"><i class="fa fa-check"></i><b>11.13</b> Fluxograma auxiliar para escolha da estatística do teste de hipóteses</a></li>
+<li class="chapter" data-level="11.14" data-path="introducao-a-testes-de-hipoteses.html"><a href="introducao-a-testes-de-hipoteses.html#tabelas-1"><i class="fa fa-check"></i><b>11.14</b> Tabelas</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html"><i class="fa fa-check"></i><b>12</b> Introdução às Medidas de Associação: Correlação Linear de Pearson</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="12-correlacao_linear.html"><a href="#etimologia-e-contexto-hist%C3%B3rico"><i class="fa fa-check"></i><b>12.1</b> Etimologia e contexto histórico</a></li>
+<li class="chapter" data-level="12.2" data-path="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#conceitos-correlatos"><i class="fa fa-check"></i><b>12.2</b> Conceitos Correlatos</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="12-correlacao_linear.html"><a href="#correla%C3%A7%C3%A3o-e-autocorrela%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>12.2.1</b> Correlação e autocorrelação</a></li>
+<li class="chapter" data-level="12.2.2" data-path="12-correlacao_linear.html"><a href="#diagrama-de-dispers%C3%A3o-scatterplot"><i class="fa fa-check"></i><b>12.2.2</b> Diagrama de dispersão ( <em>scatterplot</em> )</a></li>
+<li class="chapter" data-level="12.2.3" data-path="12-correlacao_linear.html"><a href="#correla%C3%A7%C3%A3o-versus-causa%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>12.2.3</b> Correlação <em>versus</em> causação</a></li>
+<li class="chapter" data-level="12.2.4" data-path="12-correlacao_linear.html"><a href="#correla%C3%A7%C3%A3o-linear-versus-regress%C3%A3o-linear"><i class="fa fa-check"></i><b>12.2.4</b> Correlação linear <em>versus</em> regressão linear</a></li>
+<li class="chapter" data-level="12.2.5" data-path="12-correlacao_linear.html"><a href="#associa%C3%A7%C3%B5es"><i class="fa fa-check"></i><b>12.2.5</b> Associações</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="12-correlacao_linear.html"><a href="#coeficiente-de-correla%C3%A7%C3%A3o-linear-de-pearson"><i class="fa fa-check"></i><b>12.3</b> Coeficiente de correlação linear de Pearson</a></li>
+<li class="chapter" data-level="12.4" data-path="12-correlacao_linear.html"><a href="#teste-de-hip%C3%B3teses-para-a-correla%C3%A7%C3%A3o-linear-na-popula%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>12.4</b> Teste de hipóteses para a correlação linear na população</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="12-correlacao_linear.html"><a href="#outros-testes-de-hip%C3%B3teses-sobre-a-correla%C3%A7%C3%A3o-linear-na-popula%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>12.4.1</b> Outros testes de hipóteses sobre a correlação linear na população</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="12-correlacao_linear.html"><a href="#introdu%C3%A7%C3%A3o-%C3%A0-correla%C3%A7%C3%A3o-linear-de-spearman"><i class="fa fa-check"></i><b>12.5</b> Introdução à Correlação Linear de Spearman</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="12-correlacao_linear.html"><a href="#defini%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>12.5.1</b> Definição</a></li>
+<li class="chapter" data-level="12.5.2" data-path="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#propriedades"><i class="fa fa-check"></i><b>12.5.2</b> Propriedades</a></li>
+<li class="chapter" data-level="12.5.3" data-path="12-correlacao_linear.html"><a href="#teste-de-hip%C3%B3teses"><i class="fa fa-check"></i><b>12.5.3</b> Teste de Hipóteses</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="introducao-a-regressao-linear.html"><a href="introducao-a-regressao-linear.html"><i class="fa fa-check"></i><b>13</b> Introdução à Regressão Linear</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="introducao-a-regressao-linear.html"><a href="introducao-a-regressao-linear.html#contexto"><i class="fa fa-check"></i><b>13.1</b> Contexto</a></li>
+<li class="chapter" data-level="13.2" data-path="introducao-a-regressao-linear.html"><a href="introducao-a-regressao-linear.html#conceitos-iniciais"><i class="fa fa-check"></i><b>13.2</b> Conceitos iniciais</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="12-correlacao_linear.html"><a href="#rela%C3%A7%C3%A3o-das-vari%C3%A1veis-estudadas-e-o-fen%C3%B4meno-estudado"><i class="fa fa-check"></i><b>13.2.1</b> Relação das variáveis estudadas e o fenômeno estudado:</a></li>
+<li class="chapter" data-level="13.2.2" data-path="12-correlacao_linear.html"><a href="#natureza-das-vari%C3%A1veis"><i class="fa fa-check"></i><b>13.2.2</b> Natureza das variáveis:</a></li>
+<li class="chapter" data-level="13.2.3" data-path="12-correlacao_linear.html"><a href="#modelos-estat%C3%ADsticos-e-de-machine-learning"><i class="fa fa-check"></i><b>13.2.3</b> Modelos Estatísticos e de Machine Learning</a></li>
+<li class="chapter" data-level="13.2.4" data-path="12-correlacao_linear.html"><a href="#modelos-estat%C3%ADsticos-cl%C3%A1ssicos"><i class="fa fa-check"></i><b>13.2.4</b> Modelos Estatísticos Clássicos</a></li>
+<li class="chapter" data-level="13.2.5" data-path="12-correlacao_linear.html"><a href="#modelos-de-regress%C3%A3o-linear"><i class="fa fa-check"></i><b>13.2.5</b> Modelos de Regressão Linear</a></li>
+<li class="chapter" data-level="13.2.6" data-path="12-correlacao_linear.html"><a href="#regress%C3%A3o-linear-simples-e-m%C3%BAltipla"><i class="fa fa-check"></i><b>13.2.6</b> Regressão Linear Simples e Múltipla</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="12-correlacao_linear.html"><a href="#regress%C3%A3o-linear-simples"><i class="fa fa-check"></i><b>13.3</b> Regressão Linear Simples</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="introducao-a-regressao-linear.html"><a href="introducao-a-regressao-linear.html#amostragem"><i class="fa fa-check"></i><b>13.3.1</b> Amostragem</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="12-correlacao_linear.html"><a href="#m%C3%A9todo-dos-m%C3%ADnimos-quadrados"><i class="fa fa-check"></i><b>13.4</b> Método dos Mínimos Quadrados</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="12-correlacao_linear.html"><a href="#dedu%C3%A7%C3%A3o-para-uma-regress%C3%A3o-linear-simples"><i class="fa fa-check"></i><b>13.4.1</b> Dedução para uma Regressão Linear Simples</a></li>
+<li class="chapter" data-level="13.4.2" data-path="12-correlacao_linear.html"><a href="#estat%C3%ADsticas-amostrais"><i class="fa fa-check"></i><b>13.4.2</b> Estatísticas amostrais:</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="introducao-a-regressao-linear.html"><a href="introducao-a-regressao-linear.html#o-teorema-de-gauss-markov"><i class="fa fa-check"></i><b>13.5</b> O Teorema de Gauss-Markov</a>
+<ul>
+<li class="chapter" data-level="13.5.1" data-path="introducao-a-regressao-linear.html"><a href="introducao-a-regressao-linear.html#pressupostos"><i class="fa fa-check"></i><b>13.5.1</b> Pressupostos</a></li>
+</ul></li>
+<li class="chapter" data-level="13.6" data-path="12-correlacao_linear.html"><a href="#modelo-de-regress%C3%A3o-linear-com-erros-normais"><i class="fa fa-check"></i><b>13.6</b> Modelo de Regressão Linear com Erros Normais</a>
+<ul>
+<li class="chapter" data-level="13.6.1" data-path="introducao-a-regressao-linear.html"><a href="introducao-a-regressao-linear.html#propriedades-dos-estimadores-sob-erro-normal"><i class="fa fa-check"></i><b>13.6.1</b> Propriedades dos Estimadores sob Erro Normal</a></li>
+<li class="chapter" data-level="13.6.2" data-path="12-correlacao_linear.html"><a href="#consequ%C3%AAncias-da-normalidade"><i class="fa fa-check"></i><b>13.6.2</b> Consequências da Normalidade</a></li>
+<li class="chapter" data-level="13.6.3" data-path="12-correlacao_linear.html"><a href="#express%C3%A3o-matricial-geral-de-modelos-de-regress%C3%A3o"><i class="fa fa-check"></i><b>13.6.3</b> Expressão Matricial Geral de Modelos de Regressão</a></li>
+</ul></li>
+<li class="chapter" data-level="13.7" data-path="12-correlacao_linear.html"><a href="#an%C3%A1lise-diagn%C3%B3stica-do-modelo-de-regress%C3%A3o-linear"><i class="fa fa-check"></i><b>13.7</b> Análise Diagnóstica do Modelo de Regressão Linear</a>
+<ul>
+<li class="chapter" data-level="13.7.1" data-path="12-correlacao_linear.html"><a href="#tipos-de-res%C3%ADduos"><i class="fa fa-check"></i><b>13.7.1</b> Tipos de Resíduos</a></li>
+<li class="chapter" data-level="13.7.2" data-path="12-correlacao_linear.html"><a href="#linearidade-na-rela%C3%A7%C3%A3o-entre-a-vari%C3%A1vel-preditora-x-e-a-vari%C3%A1vel-resposta-y"><i class="fa fa-check"></i><b>13.7.2</b> Linearidade na relação entre a variável preditora <span class="math inline">\(X\)</span> e a variável resposta <span class="math inline">\(Y\)</span>:</a></li>
+<li class="chapter" data-level="13.7.3" data-path="12-correlacao_linear.html"><a href="#homogeneidade-da-vari%C3%A2ncia-dos-res%C3%ADduos-varepsilon_i-homocedasticidade"><i class="fa fa-check"></i><b>13.7.3</b> Homogeneidade da variância dos resíduos <span class="math inline">\(\varepsilon_i\)</span> (homocedasticidade):</a></li>
+<li class="chapter" data-level="13.7.4" data-path="12-correlacao_linear.html"><a href="#independ%C3%AAncia"><i class="fa fa-check"></i><b>13.7.4</b> Independência</a></li>
+<li class="chapter" data-level="13.7.5" data-path="12-correlacao_linear.html"><a href="#normalidade-dos-res%C3%ADduos"><i class="fa fa-check"></i><b>13.7.5</b> Normalidade dos Resíduos</a></li>
+<li class="chapter" data-level="13.7.6" data-path="12-correlacao_linear.html"><a href="#observa%C3%A7%C3%B5es-inconsistentes"><i class="fa fa-check"></i><b>13.7.6</b> Observações Inconsistentes</a></li>
+<li class="chapter" data-level="13.7.7" data-path="12-correlacao_linear.html"><a href="#observa%C3%A7%C3%B5es-influentes"><i class="fa fa-check"></i><b>13.7.7</b> Observações Influentes</a></li>
+<li class="chapter" data-level="13.7.8" data-path="12-correlacao_linear.html"><a href="#multicolinearidade-fator-de-infla%C3%A7%C3%A3o-da-vari%C3%A2ncia-vif"><i class="fa fa-check"></i><b>13.7.8</b> Multicolinearidade: Fator de Inflação da Variância (VIF)</a></li>
+</ul></li>
+<li class="chapter" data-level="13.8" data-path="12-correlacao_linear.html"><a href="#m%C3%A9tricas-de-aferi%C3%A7%C3%A3o-da-qualidade-de-ajuste-de-uma-regress%C3%A3o-linear"><i class="fa fa-check"></i><b>13.8</b> Métricas de Aferição da Qualidade de Ajuste de uma Regressão Linear</a>
+<ul>
+<li class="chapter" data-level="13.8.1" data-path="12-correlacao_linear.html"><a href="#coeficiente-de-determina%C3%A7%C3%A3o-r2-da-regress%C3%A3o-linear"><i class="fa fa-check"></i><b>13.8.1</b> Coeficiente de determinação <span class="math inline">\(R^{2}\)</span> da Regressão Linear</a></li>
+<li class="chapter" data-level="13.8.2" data-path="introducao-a-regressao-linear.html"><a href="introducao-a-regressao-linear.html#aic-akaike-information-criterion-e-rmse-root-mean-squared-error"><i class="fa fa-check"></i><b>13.8.2</b> AIC (Akaike <em>Information Criterion</em>) e RMSE (<em>Root Mean Squared Error</em>)</a></li>
+</ul></li>
+<li class="chapter" data-level="13.9" data-path="12-correlacao_linear.html"><a href="#testes-de-hip%C3%B3teses-da-regress%C3%A3o-linear"><i class="fa fa-check"></i><b>13.9</b> Testes de Hipóteses da Regressão Linear</a>
+<ul>
+<li class="chapter" data-level="13.9.1" data-path="12-correlacao_linear.html"><a href="#an%C3%A1lise-de-vari%C3%A2ncia-da-regress%C3%A3o---anova-teste-f"><i class="fa fa-check"></i><b>13.9.1</b> Análise de Variância da Regressão - ANOVA (Teste F)</a></li>
+<li class="chapter" data-level="13.9.2" data-path="12-correlacao_linear.html"><a href="#extens%C3%A3o-da-anova-para-regress%C3%A3o-m%C3%BAltipla"><i class="fa fa-check"></i><b>13.9.2</b> Extensão da ANOVA para Regressão Múltipla</a></li>
+<li class="chapter" data-level="13.9.3" data-path="12-correlacao_linear.html"><a href="#testes-de-hip%C3%B3teses-para-os-par%C3%A2metros-do-modelo-de-regress%C3%A3o"><i class="fa fa-check"></i><b>13.9.3</b> Testes de Hipóteses para os Parâmetros do Modelo de Regressão</a></li>
+</ul></li>
+<li class="chapter" data-level="13.10" data-path="12-correlacao_linear.html"><a href="#intervalos-de-confian%C3%A7a-para-os-par%C3%A2metros-do-modelo-de-regress%C3%A3o-linear"><i class="fa fa-check"></i><b>13.10</b> Intervalos de Confiança para os Parâmetros do Modelo de Regressão Linear</a>
+<ul>
+<li class="chapter" data-level="13.10.1" data-path="introducao-a-regressao-linear.html"><a href="introducao-a-regressao-linear.html#coeficiente-linear-alpha-1"><i class="fa fa-check"></i><b>13.10.1</b> Coeficiente Linear (<span class="math inline">\(\alpha\)</span>)</a></li>
+<li class="chapter" data-level="13.10.2" data-path="introducao-a-regressao-linear.html"><a href="introducao-a-regressao-linear.html#regressor-beta_j"><i class="fa fa-check"></i><b>13.10.2</b> Regressor (<span class="math inline">\(\beta_j\)</span>)</a></li>
+<li class="chapter" data-level="13.10.3" data-path="12-correlacao_linear.html"><a href="#vari%C3%A2ncia-sigma2"><i class="fa fa-check"></i><b>13.10.3</b> Variância (<span class="math inline">\(\sigma^2\)</span>)</a></li>
+<li class="chapter" data-level="13.10.4" data-path="12-correlacao_linear.html"><a href="#intervalo-de-confian%C3%A7a-para-o-valor-esperado-de-uma-observa%C3%A7%C3%A3o-eymathbfx"><i class="fa fa-check"></i><b>13.10.4</b> Intervalo de Confiança para o Valor Esperado de uma Observação: <span class="math inline">\(E[Y|\mathbf{X}]\)</span></a></li>
+<li class="chapter" data-level="13.10.5" data-path="12-correlacao_linear.html"><a href="#intervalo-de-confian%C3%A7a-para-a-predi%C3%A7%C3%A3o-do-valor-de-um-dado-n%C3%A3o-observado"><i class="fa fa-check"></i><b>13.10.5</b> Intervalo de Confiança para a Predição do Valor de um Dado não Observado</a></li>
+</ul></li>
+<li class="chapter" data-level="13.11" data-path="introducao-a-regressao-linear.html"><a href="introducao-a-regressao-linear.html#roteiro-geral-1"><i class="fa fa-check"></i><b>13.11</b> Roteiro Geral</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="introducao-a-modelagem-dados.html"><a href="introducao-a-modelagem-dados.html"><i class="fa fa-check"></i><b>14</b> Introdução à Modelagem de Dados</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="12-correlacao_linear.html"><a href="#introdu%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>14.1</b> Introdução</a></li>
+<li class="chapter" data-level="14.2" data-path="introducao-a-modelagem-dados.html"><a href="introducao-a-modelagem-dados.html#tipos-de-aprendizado"><i class="fa fa-check"></i><b>14.2</b> Tipos de Aprendizado</a></li>
+<li class="chapter" data-level="14.3" data-path="12-correlacao_linear.html"><a href="#classifica%C3%A7%C3%A3o-e-regress%C3%A3o"><i class="fa fa-check"></i><b>14.3</b> Classificação e Regressão</a></li>
+<li class="chapter" data-level="14.4" data-path="introducao-a-modelagem-dados.html"><a href="introducao-a-modelagem-dados.html#dados"><i class="fa fa-check"></i><b>14.4</b> Dados</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="12-correlacao_linear.html"><a href="#importa%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>14.4.1</b> Importação</a></li>
+<li class="chapter" data-level="14.4.2" data-path="introducao-a-modelagem-dados.html"><a href="introducao-a-modelagem-dados.html#estrutura"><i class="fa fa-check"></i><b>14.4.2</b> Estrutura</a></li>
+<li class="chapter" data-level="14.4.3" data-path="12-correlacao_linear.html"><a href="#tipo-das-vari%C3%A1veis"><i class="fa fa-check"></i><b>14.4.3</b> Tipo das Variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="introducao-a-modelagem-dados.html"><a href="introducao-a-modelagem-dados.html#engenharia-de-features"><i class="fa fa-check"></i><b>14.5</b> Engenharia de <em>features</em></a>
+<ul>
+<li class="chapter" data-level="14.5.1" data-path="12-correlacao_linear.html"><a href="#depura%C3%A7%C3%A3o-de-dados-data-cleaning"><i class="fa fa-check"></i><b>14.5.1</b> Depuração de Dados (<em>Data Cleaning</em>)</a></li>
+<li class="chapter" data-level="14.5.2" data-path="12-correlacao_linear.html"><a href="#atribui%C3%A7%C3%A3o-de-valores-imputation"><i class="fa fa-check"></i><b>14.5.2</b> Atribuição de Valores (<em>Imputation</em>)</a></li>
+<li class="chapter" data-level="14.5.3" data-path="12-correlacao_linear.html"><a href="#recodifica%C3%A7%C3%A3o-de-vari%C3%A1veis-quantitativas"><i class="fa fa-check"></i><b>14.5.3</b> Recodificação de Variáveis Quantitativas</a></li>
+<li class="chapter" data-level="14.5.4" data-path="12-correlacao_linear.html"><a href="#codifica%C3%A7%C3%A3o-de-vari%C3%A1veis-qualitativas"><i class="fa fa-check"></i><b>14.5.4</b> Codificação de Variáveis Qualitativas</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="12-correlacao_linear.html"><a href="#reparti%C3%A7%C3%B5es-em-treino-e-valida%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>14.6</b> Repartições em Treino e Validação</a></li>
+<li class="chapter" data-level="14.7" data-path="12-correlacao_linear.html"><a href="#padroniza%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>14.7</b> Padronização</a></li>
+<li class="chapter" data-level="14.8" data-path="12-correlacao_linear.html"><a href="#an%C3%A1lise-explorat%C3%B3ria-1"><i class="fa fa-check"></i><b>14.8</b> Análise Exploratória</a>
+<ul>
+<li class="chapter" data-level="14.8.1" data-path="12-correlacao_linear.html"><a href="#gr%C3%A1ficos-explorat%C3%B3rios"><i class="fa fa-check"></i><b>14.8.1</b> Gráficos Exploratórios</a></li>
+</ul></li>
+<li class="chapter" data-level="14.9" data-path="12-correlacao_linear.html"><a href="#sele%C3%A7%C3%A3o-de-vari%C3%A1veis-regressoras"><i class="fa fa-check"></i><b>14.9</b> Seleção de Variáveis Regressoras</a>
+<ul>
+<li class="chapter" data-level="14.9.1" data-path="12-correlacao_linear.html"><a href="#todas-as-regress%C3%B5es-poss%C3%ADveis"><i class="fa fa-check"></i><b>14.9.1</b> Todas as Regressões Possíveis</a></li>
+<li class="chapter" data-level="14.9.2" data-path="12-correlacao_linear.html"><a href="#m%C3%A9todo-passo-atr%C3%A1s-backward"><i class="fa fa-check"></i><b>14.9.2</b> Método “Passo Atrás” (Backward)</a></li>
+<li class="chapter" data-level="14.9.3" data-path="12-correlacao_linear.html"><a href="#m%C3%A9todo-passo-a-frente-forward"><i class="fa fa-check"></i><b>14.9.3</b> Método “Passo a Frente” (Forward)</a></li>
+<li class="chapter" data-level="14.9.4" data-path="12-correlacao_linear.html"><a href="#m%C3%A9todo-passo-a-passo-stepwise"><i class="fa fa-check"></i><b>14.9.4</b> Método “Passo a Passo” (Stepwise)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="introducao-a-modelagem-de-processos-estocasticos.html"><a href="introducao-a-modelagem-de-processos-estocasticos.html"><i class="fa fa-check"></i><b>15</b> Introdução à modelagem de processos estocásticos</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="12-correlacao_linear.html"><a href="#modelos-determin%C3%ADsticos-e-estoc%C3%A1sticos"><i class="fa fa-check"></i><b>15.1</b> Modelos determinísticos e estocásticos</a></li>
+<li class="chapter" data-level="15.2" data-path="12-correlacao_linear.html"><a href="#dedu%C3%A7%C3%A3o-e-indu%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>15.2</b> Dedução e indução</a></li>
+<li class="chapter" data-level="15.3" data-path="12-correlacao_linear.html"><a href="#processos-estoc%C3%A1sticos-temporais-espaciais-e-espa%C3%A7otemporais"><i class="fa fa-check"></i><b>15.3</b> Processos estocásticos temporais, espaciais e espaçotemporais</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="12-correlacao_linear.html"><a href="#processos-estoc%C3%A1sticos-temporais"><i class="fa fa-check"></i><b>15.3.1</b> Processos Estocásticos Temporais</a></li>
+<li class="chapter" data-level="15.3.2" data-path="12-correlacao_linear.html"><a href="#processos-estoc%C3%A1sticos-espaciais"><i class="fa fa-check"></i><b>15.3.2</b> Processos Estocásticos Espaciais</a></li>
+<li class="chapter" data-level="15.3.3" data-path="12-correlacao_linear.html"><a href="#processos-estoc%C3%A1sticos-espa%C3%A7otemporais"><i class="fa fa-check"></i><b>15.3.3</b> Processos Estocásticos Espaçotemporais</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="introducao-a-modelagem-de-processos-estocasticos.html"><a href="introducao-a-modelagem-de-processos-estocasticos.html#processo-de-poisson"><i class="fa fa-check"></i><b>15.4</b> Processo de Poisson</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="introducao-a-modelagem-de-processos-estocasticos.html"><a href="introducao-a-modelagem-de-processos-estocasticos.html#natureza"><i class="fa fa-check"></i><b>15.4.1</b> Natureza</a></li>
+<li class="chapter" data-level="15.4.2" data-path="12-correlacao_linear.html"><a href="#processo-de-poisson-com-classifica%C3%A7%C3%A3o-de-eventos"><i class="fa fa-check"></i><b>15.4.2</b> Processo de Poisson com classificação de eventos</a></li>
+<li class="chapter" data-level="15.4.3" data-path="12-correlacao_linear.html"><a href="#processos-de-poisson-n%C3%A3o-homog%C3%AAneos"><i class="fa fa-check"></i><b>15.4.3</b> Processos de Poisson não homogêneos</a></li>
+<li class="chapter" data-level="15.4.4" data-path="introducao-a-modelagem-de-processos-estocasticos.html"><a href="introducao-a-modelagem-de-processos-estocasticos.html#tempo-de-espera-em-um-processo-de-poisson"><i class="fa fa-check"></i><b>15.4.4</b> Tempo de espera em um processo de Poisson</a></li>
+<li class="chapter" data-level="15.4.5" data-path="12-correlacao_linear.html"><a href="#distribui%C3%A7%C3%A3o-condicional-dos-tempos-de-chegada"><i class="fa fa-check"></i><b>15.4.5</b> Distribuição condicional dos tempos de chegada</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="12-correlacao_linear.html"><a href="#simula%C3%A7%C3%B5es-monte-carlo"><i class="fa fa-check"></i><b>15.5</b> Simulações Monte Carlo</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="12-correlacao_linear.html"><a href="#introdu%C3%A7%C3%A3o-1"><i class="fa fa-check"></i><b>15.5.1</b> Introdução</a></li>
+<li class="chapter" data-level="15.5.2" data-path="12-correlacao_linear.html"><a href="#fundamenta%C3%A7%C3%A3o"><i class="fa fa-check"></i><b>15.5.2</b> Fundamentação</a></li>
+<li class="chapter" data-level="15.5.3" data-path="12-correlacao_linear.html"><a href="#n%C3%BAmeros-aleat%C3%B3rios-e-pseudoaleat%C3%B3rios"><i class="fa fa-check"></i><b>15.5.3</b> Números Aleatórios e Pseudoaleatórios</a></li>
+<li class="chapter" data-level="15.5.4" data-path="12-correlacao_linear.html"><a href="#gera%C3%A7%C3%A3o-de-amostras-aleat%C3%B3rias-de-distribui%C3%A7%C3%B5es-de-probabilidade"><i class="fa fa-check"></i><b>15.5.4</b> Geração de amostras aleatórias de distribuições de probabilidade</a></li>
+<li class="chapter" data-level="15.5.5" data-path="introducao-a-modelagem-de-processos-estocasticos.html"><a href="introducao-a-modelagem-de-processos-estocasticos.html#exemplo-1-goodwin-e-wright-2009"><i class="fa fa-check"></i><b>15.5.5</b> Exemplo 1 (Goodwin e Wright, 2009)</a></li>
+<li class="chapter" data-level="15.5.6" data-path="introducao-a-modelagem-de-processos-estocasticos.html"><a href="introducao-a-modelagem-de-processos-estocasticos.html#exemplo-2-the-elite-pottery-company-goodwin-e-wright-2009"><i class="fa fa-check"></i><b>15.5.6</b> Exemplo 2: The Elite Pottery Company (Goodwin e Wright, 2009)</a></li>
+<li class="chapter" data-level="15.5.7" data-path="12-correlacao_linear.html"><a href="#exemplo-3-integra%C3%A7%C3%A3o-num%C3%A9rica-usando-o-m%C3%A9todo-de-monte-carlo"><i class="fa fa-check"></i><b>15.5.7</b> Exemplo 3: Integração Numérica Usando o Método de Monte Carlo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="numeros-indices.html"><a href="numeros-indices.html"><i class="fa fa-check"></i><b>16</b> Introdução a números índices</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="12-correlacao_linear.html"><a href="#defini%C3%A7%C3%A3o-1"><i class="fa fa-check"></i><b>16.1</b> Definição</a></li>
+<li class="chapter" data-level="16.2" data-path="12-correlacao_linear.html"><a href="#caracter%C3%ADsticas-principais"><i class="fa fa-check"></i><b>16.2</b> Características principais</a></li>
+<li class="chapter" data-level="16.3" data-path="12-correlacao_linear.html"><a href="#aplica%C3%A7%C3%B5es"><i class="fa fa-check"></i><b>16.3</b> Aplicações</a></li>
+<li class="chapter" data-level="16.4" data-path="12-correlacao_linear.html"><a href="#n%C3%BAmeros-%C3%ADndice-relativos-simples-apenas-um-produto-est%C3%A1-sendo-analisado."><i class="fa fa-check"></i><b>16.4</b> Números índice relativos simples: apenas um produto está sendo analisado.</a></li>
+<li class="chapter" data-level="16.5" data-path="12-correlacao_linear.html"><a href="#n%C3%BAmeros-%C3%ADndice-compostos-mais-de-um-produto-est%C3%A1-sendo-analisado-cesta-de-produtos."><i class="fa fa-check"></i><b>16.5</b> Números índice compostos: mais de um produto está sendo analisado (cesta de produtos).</a>
+<ul>
+<li class="chapter" data-level="16.5.1" data-path="12-correlacao_linear.html"><a href="#m%C3%A9todo-dos-agregados-simples"><i class="fa fa-check"></i><b>16.5.1</b> Método dos agregados simples</a></li>
+<li class="chapter" data-level="16.5.2" data-path="12-correlacao_linear.html"><a href="#m%C3%A9todo-dos-agregados-ponderados"><i class="fa fa-check"></i><b>16.5.2</b> Método dos agregados ponderados</a></li>
+<li class="chapter" data-level="16.5.3" data-path="12-correlacao_linear.html"><a href="#%C3%ADndice-de-fisher-m%C3%A9dia-geom%C3%A9trica"><i class="fa fa-check"></i><b>16.5.3</b> Índice de Fisher (Média geométrica)</a></li>
+</ul></li>
+<li class="chapter" data-level="16.6" data-path="numeros-indices.html"><a href="numeros-indices.html#exemplo-completo"><i class="fa fa-check"></i><b>16.6</b> Exemplo completo</a>
+<ul>
+<li class="chapter" data-level="16.6.1" data-path="12-correlacao_linear.html"><a href="#%C3%ADndices-simples-pre%C3%A7os-quantidades-e-valoresreceitas"><i class="fa fa-check"></i><b>16.6.1</b> Índices Simples (preços, quantidades e valores/receitas)</a></li>
+<li class="chapter" data-level="16.6.2" data-path="12-correlacao_linear.html"><a href="#%C3%ADndices-agregativos"><i class="fa fa-check"></i><b>16.6.2</b> Índices Agregativos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="orientacoes-gerais.html"><a href="orientacoes-gerais.html"><i class="fa fa-check"></i><b>17</b> Orientações Gerais</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="12-correlacao_linear.html"><a href="#informa%C3%A7%C3%B5es-administrativas"><i class="fa fa-check"></i><b>17.1</b> Informações administrativas</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="orientacoes-gerais.html"><a href="orientacoes-gerais.html#regimento-geral-da-uel"><i class="fa fa-check"></i><b>17.1.1</b> Regimento geral da UEL</a></li>
+<li class="chapter" data-level="17.1.2" data-path="orientacoes-gerais.html"><a href="orientacoes-gerais.html#amparos-e-apoios-na-uel"><i class="fa fa-check"></i><b>17.1.2</b> Amparos e apoios na UEL</a></li>
+<li class="chapter" data-level="17.1.3" data-path="12-correlacao_linear.html"><a href="#tutoriais-para-os-estudantes-da-gradua%C3%A7%C3%A3o-da-uel"><i class="fa fa-check"></i><b>17.1.3</b> Tutoriais para os estudantes da graduação da UEL</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="12-correlacao_linear.html"><a href="#programas-de-atividade-acad%C3%AAmica-para-o-primeiro-semestre-de-2026"><i class="fa fa-check"></i><b>17.2</b> Programas de atividade acadêmica para o primeiro semestre de 2026</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="12-correlacao_linear.html"><a href="#qu%C3%ADmica-2sta032---estat%C3%ADstica"><i class="fa fa-check"></i><b>17.2.1</b> Química: 2STA032 - Estatística</a></li>
+<li class="chapter" data-level="17.2.2" data-path="12-correlacao_linear.html"><a href="#farm%C3%A1cia-2sta010---elementos-de-bioestat%C3%ADstica"><i class="fa fa-check"></i><b>17.2.2</b> Farmácia: 2STA010 - Elementos de bioestatística</a></li>
+<li class="chapter" data-level="17.2.3" data-path="12-correlacao_linear.html"><a href="#economia-2sta007---estat%C3%ADstica-econ%C3%B4mica"><i class="fa fa-check"></i><b>17.2.3</b> Economia: 2STA007 - Estatística Econômica</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://fjrcosta.github.io/apostila/" target="blank">FJCosta Github</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><div class="line-block">UNIVERSIDADE ESTADUAL DE LONDRINA<br />
+CCE - Centro de Ciências Exatas<br />
+DSTA - Departamento de Estatística (sala 11)<br />
+Apostila com alguns tópicos de estatística, probabilidade e inferência<br />
+Prof. M.e Eng.<span class="math inline">\(^{o}\)</span> Felinto Junior Da Costa<br />
+contato (sugestões): <a href="mailto:fjcosta@uel.br" class="email">fjcosta@uel.br</a></div></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Capítulo 12</span> Introdução às Medidas de Associação: Correlação Linear de Pearson<a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#introducao-as-medidas-de-associacao-correlacao-linear-de-pearson" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<figure class="image">
+<img src="images12/teaser.jpg" alt="Figure" width="35%" height="auto" style="display: block; margin:auto">
+<figcaption style="font-size: 20px;">
+<blockquote>
+“In theory, theory and practice are the same. In practice, they are not […]” (Benjamin Brewster, 1882 - Albert Einstein, Richard Feynman, Yogi Berra, ?)
+</figcaption>
+</figure>
+</blockquote>
+<hr />
+<p><br></p>
+<blockquote>
+<p>O coeficiente de correlação linear de Pearson insere-se no contexto da <strong>análise bidimensional</strong> — etapa da análise exploratória de dados que sucede o estudo univariado das variáveis (medidas de posição, dispersão e quantis) e volta-se para o exame conjunto de duas variáveis quantitativas.</p>
+</blockquote>
+<p><br></p>
+<blockquote>
+<p>De forma análoga a como a média e o desvio padrão resumem, univariadamente, a posição e a dispersão de uma única variável, o coeficiente <span class="math inline">\(r\)</span> constitui uma <strong>estatística descritiva bivariada</strong>: resume em um único valor a existência, a direção e a intensidade da associação linear entre duas variáveis quantitativas.</p>
+</blockquote>
+<hr />
+<div id="etimologia-e-contexto-histórico" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Etimologia e contexto histórico<a href="#etimologia-e-contexto-hist%C3%B3rico" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><br></p>
+<blockquote>
+<p>O prefixo latino <em>co</em> remete a significados como <em>juntamente</em>, <em>mutuamente</em>, <em>colaboração</em>, <em>união</em> ou até <em>simultaneidade</em>.</p>
+</blockquote>
+<blockquote>
+<p>Correlação significa, portanto, uma relação mútua entre dois termos, uma correspondência.</p>
+</blockquote>
+<hr />
+<p>Em <a href="https://www.jstor.org/stable/114860">Correlations and their Measurement, chiefly from Anthropometric Data</a>, apresentado à Royal Society of London em dezembro de 1888, Francis Galton observou:</p>
+<p><br></p>
+<blockquote>
+<p>Co-relação (sic) ou correlação de estrutura é uma expressão muito usada em biologia, e principalmente naquele ramo que se refere à hereditariedade, e a ideia está ainda mais presente do que a expressão; mas eu não tenho conhecimento de nenhuma tentativa anterior de defini-la claramente, de traçar seu
+modo de ação em detalhes ou de mostrar <strong>como medir seu grau</strong> (tradução livre).</p>
+</blockquote>
+<hr />
+<p>Galton afirmou que as dimensões de dois órgãos são ditos correlacionadas quando a variação de um é acompanhada, na média, pela variação para mais ou menos no outro. Assim, o comprimento do braço
+é considerado correlacionado com o da perna, porque uma pessoa com um braço longo geralmente tem uma perna longa e vice-versa.</p>
+<p><br></p>
+<blockquote>
+<p>Se a correlação for próxima, então uma pessoa com um braço muito longo geralmente teria uma perna muito longa.</p>
+</blockquote>
+<p><br></p>
+<blockquote>
+<p>Se for moderadamente próxima, então o comprimento de sua perna seria geralmente apenas longo, não muito longo.</p>
+</blockquote>
+<p><br></p>
+<blockquote>
+<p>E se não houvesse correlação nenhuma, então o comprimento de sua perna seria, em média, mediano.</p>
+</blockquote>
+<hr />
+<figure class="image">
+<img src="images12/correlacao.png" alt="Figure" width="50%" height="auto" style="display: block; margin: auto;"><br>
+<figcaption style="font-size: 20px;">
+<blockquote>
+“Diagrama de dispersão padronizado entre estatura e cúbito segundo Galton (1888), com <span class="math inline">\(n = 348\)</span> homens adultos. Cada variável é expressa em desvios em relação
+à sua mediana <span class="math inline">\(M\)</span>, na unidade <span class="math inline">\(Q = \frac{1}{2}(Q_3 - Q_1)\)</span> (o <em>probable error</em> ). Os círculos indicam as posições medianas dos cúbitos para cada classe de estatura; as cruzes indicam as posições medianas das estaturas para cada classe de cúbito. A linha contínua representa a tendência conjunta dessas posições medianas, cuja inclinação expressa o coeficiente de correlação <span class="math inline">\(r = 0{,}8\)</span>. As linhas tracejadas, paralelas à linha central, delimitam o intervalo que contém metade das observações para cada valor fixado, sendo sua
+largura determinada por <span class="math inline">\(f = \sqrt{1 - r^2}\)</span>.”
+</figcaption>
+</figure>
+</blockquote>
+<hr />
+</div>
+<div id="conceitos-correlatos" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> Conceitos Correlatos<a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#conceitos-correlatos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><br></p>
+<div id="correlação-e-autocorrelação" class="section level3 hasAnchor" number="12.2.1">
+<h3><span class="header-section-number">12.2.1</span> Correlação e autocorrelação<a href="#correla%C3%A7%C3%A3o-e-autocorrela%C3%A7%C3%A3o" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br></p>
+<blockquote>
+<p><em>Correlação</em> faz referência à relação existente entre variáveis, digamos <em>X</em> e <em>Y</em>. Essa relação pode assumir diferentes padrões: linear ou não linear (quadrática, cúbica, exponencial, …).</p>
+</blockquote>
+<p><br></p>
+<blockquote>
+<p><em>Autocorrelação</em> refere-se à correlação dos valores de uma variável consigo mesma em diferentes defasagens temporais (<em>lags</em>), comumente chamada de série temporal, ou em diferentes defasagens espaciais, nas quais a defasagem é definida pela distância ou pela vizinhança entre unidades espaciais.</p>
+</blockquote>
+<hr />
+</div>
+<div id="diagrama-de-dispersão-scatterplot" class="section level3 hasAnchor" number="12.2.2">
+<h3><span class="header-section-number">12.2.2</span> Diagrama de dispersão ( <em>scatterplot</em> )<a href="#diagrama-de-dispers%C3%A3o-scatterplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br></p>
+<p>Introduzidos por John F. W. Herschel em <a href="https://adsabs.harvard.edu/full/1833MmRAS...5..171H">On the Investigation of the Orbits of revolving Double Stars; being a Supplement to a Paper entitled “Micrometrical Measures of 364 Double Stars”</a> (1833) e popularizados por Francis Galton em <a href="https://galton.org/essays/1880-1889/galton-1886-jaigi-regression-stature.pdf">Regression Towards Mediocrity in Hereditary Stature</a> (1886), os diagramas de dispersão ( <em>scatterplot</em> ) são representações gráficas dos valores de duas ou mais variáveis.</p>
+<p><br></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:herschel"></span>
+<img src="apostila_files/figure-html/herschel-1.png" alt="Ângulo de posição da estrela dupla γ Virginis em função do ano de observação, reproduzido de Herschel (1833). Os pontos sólidos representam as observações individuais; os círculos ao redor de cada ponto são proporcionais ao peso atribuído à observação. A curva em vermelho corresponde à interpolação gráfica traçada pelo próprio Herschel para determinar a órbita — método que, segundo Friendly \&amp; Denis (2005), constitui o primeiro uso documentado do diagrama de dispersão na história da estatística." width="768" />
+<p class="caption">
+Figure 12.1: Ângulo de posição da estrela dupla γ Virginis em função do ano de observação, reproduzido de Herschel (1833). Os pontos sólidos representam as observações individuais; os círculos ao redor de cada ponto são proporcionais ao peso atribuído à observação. A curva em vermelho corresponde à interpolação gráfica traçada pelo próprio Herschel para determinar a órbita — método que, segundo Friendly &amp; Denis (2005), constitui o primeiro uso documentado do diagrama de dispersão na história da estatística.
+</p>
+</div>
+<p>O gráfico de dispersão utiliza coordenadas cartesianas para exibir valores de um conjunto de dados. Os dados são exibidos como uma coleção de pontos, cada um com o valor de uma variável determinando a posição no eixo horizontal e o valor da outra variável determinando a posição no eixo vertical (em caso de duas variáveis).</p>
+<p><br></p>
+</div>
+<div id="correlação-versus-causação" class="section level3 hasAnchor" number="12.2.3">
+<h3><span class="header-section-number">12.2.3</span> Correlação <em>versus</em> causação<a href="#correla%C3%A7%C3%A3o-versus-causa%C3%A7%C3%A3o" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br></p>
+<blockquote>
+<p>Embora a análise de correlação trate de algum modo com o comportamento de uma variável em relação a outra(s), isso não implica necessariamente em causação; ie. essa medida estatística não implica no estabelecimento inequívoco de uma relação causal.</p>
+</blockquote>
+<p><br></p>
+<p>Tyler Vigen é autor, programador e consultor de gestão norte-americano. Seu projeto mais conhecido,
+<a href="https://tylervigen.com/">Spurious Correlations (Correlações Espúrias)</a>, publicado <em>on line</em> originalmente em maio de 2014 e atualizado em janeiro de 2024, exibe correlações aleatórias extraídas de dados triviais, apresentadas em gráficos de linhas que ilustram os perigos de correlacionar variáveis sem causalidade.</p>
+<p><br></p>
+<p>O projeto é construído sobre uma base de 25.237 variáveis, cruzadas sistematicamente para identificar pares com alta correlação estatística — processo conhecido como data dredging (garimpo de dados).</p>
+<p><br></p>
+<p>O resultado é uma coleção de associações numericamente expressivas como a que se segue</p>
+<p><br></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-218"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-218-1.png" alt="Gráfico de dispersão das variáveis A e B" width="480" />
+<p class="caption">
+Figure 12.2: Gráfico de dispersão das variáveis A e B
+</p>
+</div>
+<p><br></p>
+<p>porém desprovidas de qualquer nexo causal plausível.</p>
+<p><br></p>
+<table>
+<caption>
+Consumo per capita de margarina nos EUA e taxa de divórcios no
+Maine (2000–2009).
+</caption>
+<thead>
+<tr>
+<th style="text-align: left;">
+Variáveis
+</th>
+<th style="text-align: center;">
+2000
+</th>
+<th style="text-align: center;">
+2001
+</th>
+<th style="text-align: center;">
+2002
+</th>
+<th style="text-align: center;">
+2003
+</th>
+<th style="text-align: center;">
+2004
+</th>
+<th style="text-align: center;">
+2005
+</th>
+<th style="text-align: center;">
+2006
+</th>
+<th style="text-align: center;">
+2007
+</th>
+<th style="text-align: center;">
+2008
+</th>
+<th style="text-align: center;">
+2009
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">
+A: consumo anual per capita de margarina
+(lbs.)
+</td>
+<td style="text-align: center;">
+8,2
+</td>
+<td style="text-align: center;">
+7,0
+</td>
+<td style="text-align: center;">
+6,5
+</td>
+<td style="text-align: center;">
+5,3
+</td>
+<td style="text-align: center;">
+5,2
+</td>
+<td style="text-align: center;">
+4,0
+</td>
+<td style="text-align: center;">
+4,6
+</td>
+<td style="text-align: center;">
+4,5
+</td>
+<td style="text-align: center;">
+4,2
+</td>
+<td style="text-align: center;">
+3,7
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+B: taxa de divórcios no Maine ()
+</td>
+<td style="text-align: center;">
+5,0
+</td>
+<td style="text-align: center;">
+4,7
+</td>
+<td style="text-align: center;">
+4,6
+</td>
+<td style="text-align: center;">
+4,4
+</td>
+<td style="text-align: center;">
+4,3
+</td>
+<td style="text-align: center;">
+4,1
+</td>
+<td style="text-align: center;">
+4,2
+</td>
+<td style="text-align: center;">
+4,2
+</td>
+<td style="text-align: center;">
+4,2
+</td>
+<td style="text-align: center;">
+4,1
+</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<blockquote>
+<p>Para o estabelecimento de relações causais, é necessário recorrer a considerações teóricas <em>a priori</em> sobre os mecanismos que governam as variáveis estudadas, uma vez que a correlação, por si só, não é condição
+suficiente para a inferência causal.</p>
+</blockquote>
+<hr />
+</div>
+<div id="correlação-linear-versus-regressão-linear" class="section level3 hasAnchor" number="12.2.4">
+<h3><span class="header-section-number">12.2.4</span> Correlação linear <em>versus</em> regressão linear<a href="#correla%C3%A7%C3%A3o-linear-versus-regress%C3%A3o-linear" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br></p>
+<blockquote>
+<p>A análise de correlação tem como objetivo medir a força e a direção da
+associação linear entre duas variáveis, sem distinguir entre variável
+dependente e independente.</p>
+</blockquote>
+<p><br></p>
+<blockquote>
+<p>A análise de regressão linear, por sua vez, tem como objetivo primário
+expressar matematicamente a relação entre uma variável dependente e uma
+ou mais variáveis independentes por meio de uma função, de modo a
+possibilitar a obtenção de estimativas para valores não observados, a
+construção de intervalos de confiança para essas estimativas e o teste
+de hipóteses sobre os parâmetros do modelo.</p>
+</blockquote>
+</div>
+<div id="associações" class="section level3 hasAnchor" number="12.2.5">
+<h3><span class="header-section-number">12.2.5</span> Associações<a href="#associa%C3%A7%C3%B5es" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br></p>
+<blockquote>
+<p><strong>Associações Funcionais:</strong> relações determinísticas expressas por sentenças
+matemáticas, nas quais o valor de uma variável é inteiramente determinado
+pelo valor da outra. Exemplos: área do retângulo (<span class="math inline">\(A = a \cdot b\)</span>),
+densidade de massa (<span class="math inline">\(d_m = \frac{m}{V}\)</span>), perímetro de uma circunferência
+(<span class="math inline">\(C = 2\pi R\)</span>).</p>
+</blockquote>
+<p><br></p>
+<blockquote>
+<p><strong>Associações Estatísticas:</strong> relações não determinísticas estabelecidas entre
+duas ou mais variáveis cujos valores foram coletados em uma amostra, nas
+quais a associação é sujeita a variabilidade aleatória.</p>
+</blockquote>
+<p><br></p>
+<p>Essas relações podem ser aproximadas por diferentes formas funcionais:</p>
+<ul>
+<li>Lineares; ou</li>
+<li>Não lineares.</li>
+</ul>
+<p><br></p>
+<p>Os valores de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> podem estar <em>diretamente associados</em> (positiva), quando ambas as variáveis variam no mesmo sentido, ou <em>inversamente associados</em> (negativa), quando variam em sentidos opostos. O interesse particular desta seção recai sobre a <strong>quantificação do grau de associação linear</strong> entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>.</p>
+<p><br></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-220"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-220-1.png" alt="Número de anos de serviço pelo número de clientes dos agentes de uma companhia de seguros" width="672" />
+<p class="caption">
+Figure 12.3: Número de anos de serviço pelo número de clientes dos agentes de uma companhia de seguros
+</p>
+</div>
+<blockquote>
+<p>SIMULADOR 1: Considerem as simulações da dispersão de alguns valores de duas variáveis <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>. Vemos que em alguns casos nos parece ser razoável tentar exprimir qualquer tipo de relação entre os valores de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>; todavia, há situações onde claramente vemos alguma forma de relação.</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="coeficiente-de-correlação-linear-de-pearson" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> Coeficiente de correlação linear de Pearson<a href="#coeficiente-de-correla%C3%A7%C3%A3o-linear-de-pearson" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><br></p>
+<blockquote>
+<p>O coeficiente de correlação linear (ou coeficiente de correlação produto momento de <em>Pearson</em>) expressa a medida da intensidade da <strong>associação linear</strong> entre duas variáveis.</p>
+</blockquote>
+<p><br></p>
+<figure class="image">
+<img src="images12/ro_r.png" alt="Figure" width="100%" height="auto" style="display: block; margin: auto;">
+</figure>
+<figcaption style="font-size: 20px;">
+A notação adotada para o coeficiente de correlação linear de Pearson depende dos dados analisados: se são dados amostrais ou populacionais:
+- população: pela letra grega <span class="math inline">\(\rho\)</span> (“rô”)
+- amostra: pela letra latina <em>r</em>
+</figcaption>
+<p><br></p>
+<p>Trabalhando-se com dados de uma amostra, o estimador da correlação linear populacional <span class="math inline">\(\rho\)</span> é definido como a <strong>média dos produtos dos escores padronizados</strong> das duas variáveis:</p>
+<p><br></p>
+<p><span class="math display">\[
+r = \frac{1}{n}\sum_{i=1}^{n} \left(\frac{x_i - \bar{x}}{dp(X)}\right)\left(\frac{y_i - \bar{y}}{dp(Y)}\right)
+\]</span></p>
+<p><br></p>
+<p>em que:</p>
+<p><br></p>
+<ul>
+<li><span class="math inline">\(x_{i}\)</span>: é o iésimo valor observado da variável <em>X</em>;</li>
+<li><span class="math inline">\(y_{i}\)</span>: é o iésimo valor observado da variável <em>Y</em>;</li>
+<li><span class="math inline">\(\bar{x}\)</span> e <span class="math inline">\(\bar{y}\)</span> são os valores médios de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>, respectivamente.<br />
+</li>
+<li><span class="math inline">\(dp(X)\)</span> e <span class="math inline">\(dp(Y)\)</span> são os desvios padrão de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>, respectivamente; e,</li>
+<li><span class="math inline">\(n\)</span> é o número de pares de valores observados.</li>
+</ul>
+<p><br></p>
+<p>Para fins de cálculo, essa definição pode ser reescrita na forma por desvios:</p>
+<p><br></p>
+<p><span class="math display">\[r = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n}(x_i - \bar{x})^2 \cdot \sum_{i=1}^{n}(y_i - \bar{y})^2}},\]</span></p>
+<p><br></p>
+<p>e, equivalentemente, na forma por somas brutas:</p>
+<p><br></p>
+<p><span class="math display">\[
+r  =  \frac{\sum _{i=1}^{n}{x}_{i} \cdot {y}_{i} - \frac{\left(\sum _{i=1}^{n}{x}_{i}\right)\left(\sum _{i=1}^{n}{y}_{i}\right)}{n}}{\sqrt{\left[\sum _{i=1}^{n}{x}_{i}^{2}-\frac{{\left(\sum _{i=1}^{n}{x}_{i}\right)}^{2}}{n}\right]\cdot \left[\sum_{i=1}^{n}{y}_{i}^{2}-\frac{{\left(\sum _{i=1}^{n}{y}_{i}\right)}^{2}}{n}\right]}},
+\]</span></p>
+<p><br></p>
+<p>Ou ainda, simplificadamente, numa forma compacta:</p>
+<p><br></p>
+<p><span class="math display">\[
+r = \frac{{S}_{xy}}{\sqrt{{S}_{xx}\cdot {S}_{yy}}}
+\]</span></p>
+<p><br></p>
+<p>em que:</p>
+<p><span class="math display">\[
+S_{xy} = \sum _{i=1}^{n} x_{i}y_{i} - \frac{\sum _{i=1}^{n}x_{i}\cdot\sum _{i=1}^{n}y_{i}}{n},
+\]</span></p>
+<p><span class="math display">\[
+S_{xx} = \sum _{i=1}^{n} x_{i}^{2} - \frac{(\sum _{i=1}^{n} x_{i})^{2}}{n},
+\]</span></p>
+<p><span class="math display">\[
+{S}_{yy}=\sum _{i=1}^{n}y_{i}^{2} - \frac{(\sum _{i=1}^{n} y_{i})^{2}}{n}.
+\]</span></p>
+<hr />
+<p>Observações:</p>
+<p><br></p>
+<ul>
+<li><p><span class="math inline">\(r\)</span> é adimensional;</p></li>
+<li><p>a faixa de variação do coeficiente de correlação linear de Pearson é: <span class="math inline">\(-1 \le r \le 1\)</span>;</p></li>
+<li><p>a correlação linear observada entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> é simétrica; ou seja, é a mesma que se medida entre as variáveis <span class="math inline">\(Y\)</span> e <span class="math inline">\(X\)</span>;</p></li>
+<li><p>mede apenas a associação linear entre duas variáveis e, portanto, não tem sentido usá-lo na quantificação de relações que não sejam lineares;</p></li>
+<li><p>a possibilidade de uma <strong>correlação linear negativa</strong> virá do resultado do <em>numerador</em> (<span class="math inline">\(S_{xy}\)</span>), pois no denominador temos duas somas de quadrados;</p></li>
+<li><p>o coeficiente de correlação mede apenas a <strong>intensidade</strong> das relações lineares entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> e não estabelece <em>per si</em> nenhuma relação de causação.</p></li>
+</ul>
+<p><br></p>
+<p>Se <span class="math inline">\(r \approx 0\)</span>, não há evidência de relação linear entre as variáveis na amostra observada. Neste caso, variações em uma variável não estão linearmente associadas a variações sistemáticas na outra.</p>
+<p>Se <span class="math inline">\(r \neq 0\)</span>, há evidência de relação linear entre as variáveis, cuja direção e intensidade são determinadas pelo sinal e magnitude de <span class="math inline">\(r\)</span>:</p>
+<ul>
+<li>quando <span class="math inline">\(r &gt; 0\)</span>, a relação linear é <strong>positiva</strong>: incrementos em uma variável tendem a ser acompanhados por incrementos na outra, e decréscimos em uma variável tendem a ser acompanhados por decréscimos na outra;<br />
+</li>
+<li>quando <span class="math inline">\(r &lt; 0\)</span>, a relação linear é <strong>negativa</strong>: incrementos em uma variável tendem a ser acompanhados por decréscimos na outra, e vice-versa.</li>
+</ul>
+<hr />
+<p><br></p>
+<p>O cálculo do coeficiente da correlação linear assemelha-se a uma <em>análise de variância</em>.</p>
+<p><br></p>
+<figure class="image">
+<img src="images12/var_regressao.png" alt="Figure" width="85%" height="auto" style="display: block; margin: auto;">
+</figure>
+<p><br></p>
+<p>Vejamos:</p>
+<p><br></p>
+<p><span class="math display">\[
+y_i - \stackrel{-}{y} = (\hat{y_i} - \stackrel{-}{y})  + (y_i - \hat{y_i}).
+\]</span></p>
+<p><br></p>
+<p>Elevando-se ao quadrado ambos os termos, para todos os valores observados, teremos:</p>
+<p><br></p>
+<p><span class="math display">\[
+\sum _{i=1}^{n} ({y_{i}} - \stackrel{-}{y})^{2} =
+\sum _{i=1}^{n} (\hat{y_{i}} - \stackrel{-}{y})^{2}   +
+\sum _{i=1}^{n} (y_{i} - \hat{y_{i}})^{2}
+\]</span></p>
+<p><br></p>
+<blockquote>
+<p>A quantidade à esquerda mede a variação total dos <em>y</em> (<em>Soma de quadrados total</em>) e as quantidades à direita são a <em>Soma de quadrados da regressão</em> e a <em>Soma de quadrados dos resíduos</em>.</p>
+</blockquote>
+<p><br></p>
+<blockquote>
+<p>A definição abaixo exprime a <em>fração da variação total</em> dos <span class="math inline">\(y\)</span> que está sendo explicada por sua <em>regressão linear</em> com <span class="math inline">\(x\)</span>:</p>
+</blockquote>
+<p><br></p>
+<p><span class="math display">\[
+R^{2}=\frac{\sum _{i=1}^{n} (\hat{y_{i}} - \stackrel{-}{y})^{2}}{\sum _{i=1}^{n} ({y_{i}} - \stackrel{-}{y})^{2}}\\
+R^{2}=\frac{\text{variação explicada}}{\text{variação total}}
+\]</span>
+<br></p>
+<p>é conhecida como coeficiente de determinação (<span class="math inline">\(R^{2}\)</span>). Note que o coeficiente de determinação é o quadrado do coeficiente de correlação. Ele indica a proporção da variabilidade em Y que é explicada pela variação em X por meio da reta de regressão.</p>
+<hr />
+<p><br></p>
+<!-- > Exemplo 1: Um jornal deseja verificar a eficácia de seus anúncios na venda de carros usados e para isso realizou um levantamento de todos os seus anúncios e informações dos resultados obtidos pelas empresas que o contrataram e dele extraiu uma pequena amostra. A tabela a seguir mostra o número de anúncios e o correspondente número de veículos vendidos por 6 companhias que usaram apenas este jornal como veículo de propaganda. Existe alguma relação linear entre as variáveis? Construa o diagrama de dispersão e calcule o coeficiente de correlação linear.   -->
+<!-- <br> -->
+<!-- <center> -->
+<!-- <div class="small-equation80"> -->
+<!-- ```{r eval=knitr::is_html_output(), results = "asis", echo = FALSE, message = FALSE} -->
+<!-- tex2markdown <- function(texstring) { -->
+<!--   writeLines(text = texstring, -->
+<!--              con = myfile <- tempfile(fileext = ".tex")) -->
+<!--   texfile <- pandoc(input = myfile, format = "html") -->
+<!--   cat(readLines(texfile), sep = "\n") -->
+<!--   unlink(c(myfile, texfile)) -->
+<!-- } -->
+<!-- textable <- " -->
+<!-- \\begin{table}[h] -->
+<!-- \\centering -->
+<!-- \\caption*{Quadro de dados da quantidade de carros vendidos por 6 empresas distintas pela quantidade de anúncios feitos } -->
+<!-- \\begin{tabular}{|c|c|c|} -->
+<!-- \\hline  -->
+<!-- Companhia & Anúncios feitos (X) & Carros vendidos (Y) \\\\ -->
+<!-- \\hline  -->
+<!-- A & 74 & 139 \\\\ -->
+<!-- \\hline  -->
+<!-- B & 45 & 108 \\\\ -->
+<!-- \\hline  -->
+<!-- C & 48 & 98 \\\\ -->
+<!-- \\hline  -->
+<!-- D & 36 & 76 \\\\ -->
+<!-- \\hline  -->
+<!-- E & 27 & 62 \\\\ -->
+<!-- \\hline  -->
+<!-- F & 16 & 57 \\\\ -->
+<!-- \\hline  -->
+<!-- \\end{tabular}   -->
+<!-- \\end{table} -->
+<!-- " -->
+<!-- tex2markdown(textable) -->
+<!-- ``` -->
+<!-- </div> -->
+<!-- </center> -->
+<!-- <br> -->
+<!-- ```{r, echo=TRUE, fig.align='center', fig.width=7, fig.height=5, message=FALSE, warning=FALSE} -->
+<!-- # Dados -->
+<!-- dados <- data.frame( -->
+<!--   Anuncios = c(74, 45, 48, 36, 27, 16), -->
+<!--   Carros_vendidos = c(139, 108, 98, 76, 62, 57) -->
+<!-- ) -->
+<!-- # Gráfico -->
+<!-- ggplot(dados, aes(x = Anuncios, y = Carros_vendidos)) + -->
+<!--   geom_point(color = "blue", size = 3) + -->
+<!--   labs( -->
+<!--     title = "Gráfico de dispersão entre o número de anúncios veiculados\ne o número de veículos vendidos no mês", -->
+<!--     x = "Número de anúncios veiculados no mês", -->
+<!--     y = "Número de veículos vendidos no mês" -->
+<!--   ) + -->
+<!--   theme_minimal() + -->
+<!--   theme( -->
+<!--     plot.title = element_text(size = 10, hjust = 0.5), -->
+<!--     axis.title = element_text(size = 9) -->
+<!--   ) + -->
+<!--   scale_x_continuous(limits = c(10, 80)) + -->
+<!--   scale_y_continuous(limits = c(10, 145)) -->
+<!-- ``` -->
+<!-- <br> -->
+<!-- ```{r eval=knitr::is_html_output(), results = "asis", echo = FALSE, message = FALSE} -->
+<!-- tex2markdown <- function(texstring) { -->
+<!--   writeLines(text = texstring, -->
+<!--              con = myfile <- tempfile(fileext = ".tex")) -->
+<!--   texfile <- pandoc(input = myfile, format = "html") -->
+<!--   cat(readLines(texfile), sep = "\n") -->
+<!--   unlink(c(myfile, texfile)) -->
+<!-- } -->
+<!-- textable <- " -->
+<!-- \\begin{table}[h] -->
+<!-- \\caption*{Quadro para cálculo do coeficiente de correlação linear (\\$r\\$)} -->
+<!-- \\begin{tabular}{|c|c|c|c|c|c|} -->
+<!-- \\hline  -->
+<!-- Companhia & Anúncios (X) & Carros vendidos (Y) & $x_{i}*y_{i}$ & $x_{i}^2$ & $y_{i}^2$ \\\\ -->
+<!-- \\hline  -->
+<!-- A & 74 & 139 & 10286 & 5476 & 19321 \\\\  -->
+<!-- \\hline  -->
+<!-- B & 45 & 108 & 4860 & 2025 & 11664 \\\\  -->
+<!-- \\hline  -->
+<!-- C & 48 & 98 & 4704 & 2304 & 9604 \\\\  -->
+<!-- \\hline  -->
+<!-- D & 36 & 76 & 2736 & 1296 & 5776 \\\\  -->
+<!-- \\hline  -->
+<!-- E & 27 & 62 & 1674 & 729 & 3844 \\\\  -->
+<!-- \\hline  -->
+<!-- F & 16 & 57 & 912 & 256 & 3249 \\\\  -->
+<!-- \\hline  -->
+<!-- Totais & 246 & 540 & 25172 & 12086 & 53458 \\\\  -->
+<!-- \\hline  -->
+<!-- \\end{tabular} -->
+<!-- \\end{table} -->
+<!-- " -->
+<!-- tex2markdown(textable) -->
+<!-- ``` -->
+<!-- <br> -->
+<!-- Sendo $n= 6$ temos: -->
+<!-- $$ -->
+<!-- S_{xy} = \sum _{i=1}^{n} x_{i}y_{i} - \frac{\sum _{i=1}^{n}x_{i}\cdot\sum _{i=1}^{n}y_{i}}{n} = 25172 - \frac{246 \cdot 540}{6} = 3032\\ -->
+<!-- S_{xx} = \sum _{i=1}^{n} x_{i}^{2} - \frac{(\sum _{i=1}^{n} x_{i})^{2}}{n} = 12086 - \frac{246^2}{6} = 2000\\ -->
+<!-- {S}_{yy} = \sum _{i=1}^{n}y_{i}^{2} - \frac{(\sum _{i=1}^{n} y_{i})^{2}}{n}=   53458 - \frac{540^2}{6} = 4858 -->
+<!-- $$ -->
+<!-- <br> -->
+<!-- Portanto:  -->
+<!-- <br> -->
+<!-- $$ -->
+<!-- r = \frac{{s}_{xy}}{\sqrt{{s}_{xx}\cdot {s}_{yy}}} = \frac{3032}{\sqrt{2000 \cdot 4858}} = 0,9727 -->
+<!-- $$ -->
+<!-- --- -->
+<!-- ```{r, echo=TRUE, fig.align='center', fig.width=7, fig.height=5, message=FALSE, warning=FALSE} -->
+<!-- Anuncios = c(74, 45, 48, 36, 27, 16) -->
+<!-- Carros_vendidos = c(139, 108, 98, 76, 62, 57) -->
+<!-- cor(Anuncios, Carros_vendidos, method = "pearson") -->
+<!-- ``` -->
+<blockquote>
+<p>Exemplo 1: Uma companhia de seguros deseja verificar se existe relação linear entre o número de anos de serviço e o número de clientes de seus agentes. Para isso, foram coletados dados de 10 agentes, conforme a tabela a seguir. Existe alguma relação linear entre as variáveis? Construa o diagrama de dispersão e calcule o coeficiente de correlação linear pelas três formas equivalentes.</p>
+</blockquote>
+<p><br></p>
+<table>
+<caption>
+Número de anos de serviço (<span class="math inline"><em>X</em></span>) e número de clientes (<span class="math inline"><em>Y</em></span>) de agentes de uma companhia de
+seguros
+</caption>
+<thead>
+<tr>
+<th style="text-align: center;">
+Agente
+</th>
+<th style="text-align: center;">
+Anos de serviço (<span class="math inline"><em>X</em></span>)
+</th>
+<th style="text-align: center;">
+Número de clientes (<span class="math inline"><em>Y</em></span>)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">
+A
+</td>
+<td style="text-align: center;">
+2
+</td>
+<td style="text-align: center;">
+48
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+B
+</td>
+<td style="text-align: center;">
+3
+</td>
+<td style="text-align: center;">
+50
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+C
+</td>
+<td style="text-align: center;">
+4
+</td>
+<td style="text-align: center;">
+56
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+D
+</td>
+<td style="text-align: center;">
+5
+</td>
+<td style="text-align: center;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+E
+</td>
+<td style="text-align: center;">
+4
+</td>
+<td style="text-align: center;">
+43
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+F
+</td>
+<td style="text-align: center;">
+6
+</td>
+<td style="text-align: center;">
+60
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+G
+</td>
+<td style="text-align: center;">
+7
+</td>
+<td style="text-align: center;">
+62
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+H
+</td>
+<td style="text-align: center;">
+8
+</td>
+<td style="text-align: center;">
+58
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+I
+</td>
+<td style="text-align: center;">
+8
+</td>
+<td style="text-align: center;">
+64
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+J
+</td>
+<td style="text-align: center;">
+10
+</td>
+<td style="text-align: center;">
+72
+</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-222"></span>
+<img src="apostila_files/figure-html/unnamed-chunk-222-1.png" alt="Número de anos de serviço pelo número de clientes dos agentes de uma companhia de seguros" width="672" />
+<p class="caption">
+Figure 12.4: Número de anos de serviço pelo número de clientes dos agentes de uma companhia de seguros
+</p>
+</div>
+<p><br></p>
+<p><strong>Forma 1 — Escores padronizados</strong></p>
+<p><br></p>
+<p>Com <span class="math inline">\(\bar{x} = 5{,}7\)</span>, <span class="math inline">\(\bar{y} = 56{,}5\)</span>, <span class="math inline">\(dp(X) = 2{,}41\)</span> e <span class="math inline">\(dp(Y) = 8{,}11\)</span>:</p>
+<p><br></p>
+<table>
+<caption>
+Quadro para cálculo de <span class="math inline"><em>r</em></span> pela forma dos escores
+padronizados
+</caption>
+<thead>
+<tr>
+<th style="text-align: center;">
+Agente
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>i</em></sub></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>y</em><sub><em>i</em></sub></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><span class="math inline">\(x_i -
+\overline{x}\)</span></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><span class="math inline">\(y_i -
+\overline{y}\)</span></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>z</em><sub><em>x</em><sub><em>i</em></sub></sub></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>z</em><sub><em>y</em><sub><em>i</em></sub></sub></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>z</em><sub><em>x</em><sub><em>i</em></sub></sub> ⋅ <em>z</em><sub><em>y</em><sub><em>i</em></sub></sub></span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">
+A
+</td>
+<td style="text-align: center;">
+2
+</td>
+<td style="text-align: center;">
+48
+</td>
+<td style="text-align: center;">
+<span class="math inline">−3, 7</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">−8, 5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">−1, 54</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">−1, 05</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">1, 617</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+B
+</td>
+<td style="text-align: center;">
+3
+</td>
+<td style="text-align: center;">
+50
+</td>
+<td style="text-align: center;">
+<span class="math inline">−2, 7</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">−6, 5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">−1, 12</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">−0, 80</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">0, 897</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+C
+</td>
+<td style="text-align: center;">
+4
+</td>
+<td style="text-align: center;">
+56
+</td>
+<td style="text-align: center;">
+<span class="math inline">−1, 7</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">−0, 5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">−0, 71</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">−0, 06</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">0, 043</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+D
+</td>
+<td style="text-align: center;">
+5
+</td>
+<td style="text-align: center;">
+52
+</td>
+<td style="text-align: center;">
+<span class="math inline">−0, 7</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">−4, 5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">−0, 29</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">−0, 55</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">0, 161</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+E
+</td>
+<td style="text-align: center;">
+4
+</td>
+<td style="text-align: center;">
+43
+</td>
+<td style="text-align: center;">
+<span class="math inline">−1, 7</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">−13, 5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">−0, 71</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">−1, 66</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">1, 179</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+F
+</td>
+<td style="text-align: center;">
+6
+</td>
+<td style="text-align: center;">
+60
+</td>
+<td style="text-align: center;">
+<span class="math inline">0, 3</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">3, 5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">0, 12</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">0, 43</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">0, 052</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+G
+</td>
+<td style="text-align: center;">
+7
+</td>
+<td style="text-align: center;">
+62
+</td>
+<td style="text-align: center;">
+<span class="math inline">1, 3</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">5, 5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">0, 54</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">0, 68</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">0, 367</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+H
+</td>
+<td style="text-align: center;">
+8
+</td>
+<td style="text-align: center;">
+58
+</td>
+<td style="text-align: center;">
+<span class="math inline">2, 3</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">1, 5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">0, 95</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">0, 18</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">0, 171</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+I
+</td>
+<td style="text-align: center;">
+8
+</td>
+<td style="text-align: center;">
+64
+</td>
+<td style="text-align: center;">
+<span class="math inline">2, 3</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">7, 5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">0, 95</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">0, 92</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">0, 874</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+J
+</td>
+<td style="text-align: center;">
+10
+</td>
+<td style="text-align: center;">
+72
+</td>
+<td style="text-align: center;">
+<span class="math inline">4, 3</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">15, 5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">1, 78</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">1, 91</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">3, 408</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+Total
+</td>
+<td style="text-align: center;">
+57
+</td>
+<td style="text-align: center;">
+565
+</td>
+<td style="text-align: center;">
+<span class="math inline">0</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">0</span>
+</td>
+<td style="text-align: center;">
+</td>
+<td style="text-align: center;">
+</td>
+<td style="text-align: center;">
+<span class="math inline">8, 769</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>Sendo <span class="math inline">\(n = 10\)</span>:</p>
+<p><span class="math display">\[
+r = \frac{1}{n}\sum_{i=1}^{n} z_{x_i} \cdot z_{y_i} = \frac{8{,}769}{10} = 0{,}877
+\]</span></p>
+<p><br></p>
+<p><strong>Forma 2 — Desvios em relação à média</strong></p>
+<p><br></p>
+<table>
+<caption>
+Quadro para cálculo de <span class="math inline"><em>r</em></span> pela forma por desvios
+</caption>
+<thead>
+<tr>
+<th style="text-align: center;">
+Agente
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>i</em></sub></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>y</em><sub><em>i</em></sub></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><span class="math inline">\(x_i -
+\overline{x}\)</span></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><span class="math inline">\(y_i -
+\overline{y}\)</span></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><span class="math inline">\((x_i-\overline{x})(y_i-\overline{y})\)</span></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><span class="math inline">\((x_i-\overline{x})^2\)</span></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><span class="math inline">\((y_i-\overline{y})^2\)</span></span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">
+A
+</td>
+<td style="text-align: center;">
+2
+</td>
+<td style="text-align: center;">
+48
+</td>
+<td style="text-align: center;">
+<span class="math inline">−3, 7</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">−8, 5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">31, 45</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">13, 69</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">72, 25</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+B
+</td>
+<td style="text-align: center;">
+3
+</td>
+<td style="text-align: center;">
+50
+</td>
+<td style="text-align: center;">
+<span class="math inline">−2, 7</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">−6, 5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">17, 55</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">7, 29</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">42, 25</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+C
+</td>
+<td style="text-align: center;">
+4
+</td>
+<td style="text-align: center;">
+56
+</td>
+<td style="text-align: center;">
+<span class="math inline">−1, 7</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">−0, 5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">0, 85</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">2, 89</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">0, 25</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+D
+</td>
+<td style="text-align: center;">
+5
+</td>
+<td style="text-align: center;">
+52
+</td>
+<td style="text-align: center;">
+<span class="math inline">−0, 7</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">−4, 5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">3, 15</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">0, 49</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">20, 25</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+E
+</td>
+<td style="text-align: center;">
+4
+</td>
+<td style="text-align: center;">
+43
+</td>
+<td style="text-align: center;">
+<span class="math inline">−1, 7</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">−13, 5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">22, 95</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">2, 89</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">182, 25</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+F
+</td>
+<td style="text-align: center;">
+6
+</td>
+<td style="text-align: center;">
+60
+</td>
+<td style="text-align: center;">
+<span class="math inline">0, 3</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">3, 5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">1, 05</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">0, 09</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">12, 25</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+G
+</td>
+<td style="text-align: center;">
+7
+</td>
+<td style="text-align: center;">
+62
+</td>
+<td style="text-align: center;">
+<span class="math inline">1, 3</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">5, 5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">7, 15</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">1, 69</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">30, 25</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+H
+</td>
+<td style="text-align: center;">
+8
+</td>
+<td style="text-align: center;">
+58
+</td>
+<td style="text-align: center;">
+<span class="math inline">2, 3</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">1, 5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">3, 45</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">5, 29</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">2, 25</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+I
+</td>
+<td style="text-align: center;">
+8
+</td>
+<td style="text-align: center;">
+64
+</td>
+<td style="text-align: center;">
+<span class="math inline">2, 3</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">7, 5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">17, 25</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">5, 29</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">56, 25</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+J
+</td>
+<td style="text-align: center;">
+10
+</td>
+<td style="text-align: center;">
+72
+</td>
+<td style="text-align: center;">
+<span class="math inline">4, 3</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">15, 5</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">66, 65</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">18, 49</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">240, 25</span>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+Total
+</td>
+<td style="text-align: center;">
+57
+</td>
+<td style="text-align: center;">
+565
+</td>
+<td style="text-align: center;">
+<span class="math inline">0</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">0</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">171, 50</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">58, 10</span>
+</td>
+<td style="text-align: center;">
+<span class="math inline">658, 50</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>Portanto:</p>
+<p><span class="math display">\[
+r = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n}(x_i - \bar{x})^2 \cdot \sum_{i=1}^{n}(y_i - \bar{y})^2}} = \frac{171{,}50}{\sqrt{58{,}10 \cdot 658{,}50}} = \frac{171{,}50}{\sqrt{38{.}259{,}35}} = \frac{171{,}50}{195{,}60} = 0{,}877
+\]</span></p>
+<p><br></p>
+<p><strong>Forma 3 — Somas brutas</strong></p>
+<p><br></p>
+<table>
+<caption>
+Quadro para cálculo de <span class="math inline"><em>r</em></span> pela forma por somas
+brutas
+</caption>
+<thead>
+<tr>
+<th style="text-align: center;">
+Agente
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>i</em></sub></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>y</em><sub><em>i</em></sub></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>i</em></sub><em>y</em><sub><em>i</em></sub></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>x</em><sub><em>i</em></sub><sup>2</sup></span>
+</th>
+<th style="text-align: center;">
+<span class="math inline"><em>y</em><sub><em>i</em></sub><sup>2</sup></span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">
+A
+</td>
+<td style="text-align: center;">
+2
+</td>
+<td style="text-align: center;">
+48
+</td>
+<td style="text-align: center;">
+96
+</td>
+<td style="text-align: center;">
+4
+</td>
+<td style="text-align: center;">
+2304
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+B
+</td>
+<td style="text-align: center;">
+3
+</td>
+<td style="text-align: center;">
+50
+</td>
+<td style="text-align: center;">
+150
+</td>
+<td style="text-align: center;">
+9
+</td>
+<td style="text-align: center;">
+2500
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+C
+</td>
+<td style="text-align: center;">
+4
+</td>
+<td style="text-align: center;">
+56
+</td>
+<td style="text-align: center;">
+224
+</td>
+<td style="text-align: center;">
+16
+</td>
+<td style="text-align: center;">
+3136
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+D
+</td>
+<td style="text-align: center;">
+5
+</td>
+<td style="text-align: center;">
+52
+</td>
+<td style="text-align: center;">
+260
+</td>
+<td style="text-align: center;">
+25
+</td>
+<td style="text-align: center;">
+2704
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+E
+</td>
+<td style="text-align: center;">
+4
+</td>
+<td style="text-align: center;">
+43
+</td>
+<td style="text-align: center;">
+172
+</td>
+<td style="text-align: center;">
+16
+</td>
+<td style="text-align: center;">
+1849
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+F
+</td>
+<td style="text-align: center;">
+6
+</td>
+<td style="text-align: center;">
+60
+</td>
+<td style="text-align: center;">
+360
+</td>
+<td style="text-align: center;">
+36
+</td>
+<td style="text-align: center;">
+3600
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+G
+</td>
+<td style="text-align: center;">
+7
+</td>
+<td style="text-align: center;">
+62
+</td>
+<td style="text-align: center;">
+434
+</td>
+<td style="text-align: center;">
+49
+</td>
+<td style="text-align: center;">
+3844
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+H
+</td>
+<td style="text-align: center;">
+8
+</td>
+<td style="text-align: center;">
+58
+</td>
+<td style="text-align: center;">
+464
+</td>
+<td style="text-align: center;">
+64
+</td>
+<td style="text-align: center;">
+3364
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+I
+</td>
+<td style="text-align: center;">
+8
+</td>
+<td style="text-align: center;">
+64
+</td>
+<td style="text-align: center;">
+512
+</td>
+<td style="text-align: center;">
+64
+</td>
+<td style="text-align: center;">
+4096
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+J
+</td>
+<td style="text-align: center;">
+10
+</td>
+<td style="text-align: center;">
+72
+</td>
+<td style="text-align: center;">
+720
+</td>
+<td style="text-align: center;">
+100
+</td>
+<td style="text-align: center;">
+5184
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+Totais
+</td>
+<td style="text-align: center;">
+57
+</td>
+<td style="text-align: center;">
+565
+</td>
+<td style="text-align: center;">
+3392
+</td>
+<td style="text-align: center;">
+383
+</td>
+<td style="text-align: center;">
+32581
+</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>Sendo <span class="math inline">\(n = 10\)</span>:</p>
+<p><span class="math display">\[
+S_{xy} = \sum_{i=1}^{n} x_i y_i - \frac{\sum_{i=1}^{n} x_i \cdot \sum_{i=1}^{n} y_i}{n} = 3392 - \frac{57 \cdot 565}{10} = 3392 - 3220{,}5 = 171{,}5
+\]</span></p>
+<p><span class="math display">\[
+S_{xx} = \sum_{i=1}^{n} x_i^2 - \frac{\left(\sum_{i=1}^{n} x_i\right)^2}{n} = 383 - \frac{57^2}{10} = 383 - 324{,}9 = 58{,}1
+\]</span></p>
+<p><span class="math display">\[
+S_{yy} = \sum_{i=1}^{n} y_i^2 - \frac{\left(\sum_{i=1}^{n} y_i\right)^2}{n} = 32581 - \frac{565^2}{10} = 32581 - 31922{,}5 = 658{,}5
+\]</span></p>
+<p><br></p>
+<p>Portanto:</p>
+<p><span class="math display">\[
+r = \frac{S_{xy}}{\sqrt{S_{xx} \cdot S_{yy}}} = \frac{171{,}5}{\sqrt{58{,}1 \cdot 658{,}5}} = \frac{171{,}5}{\sqrt{38{.}259{,}85}} = \frac{171{,}5}{195{,}60} = 0{,}877
+\]</span></p>
+<hr />
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb238-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">10</span>)</span>
+<span id="cb238-2"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb238-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">48</span>,<span class="dv">50</span>,<span class="dv">56</span>,<span class="dv">52</span>,<span class="dv">43</span>,<span class="dv">60</span>,<span class="dv">62</span>,<span class="dv">58</span>,<span class="dv">64</span>,<span class="dv">72</span>)</span>
+<span id="cb238-3"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb238-3" tabindex="-1"></a><span class="fu">cor</span>(x, y, <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 0.8768</code></pre>
+<hr />
+</div>
+<div id="teste-de-hipóteses-para-a-correlação-linear-na-população" class="section level2 hasAnchor" number="12.4">
+<h2><span class="header-section-number">12.4</span> Teste de hipóteses para a correlação linear na população<a href="#teste-de-hip%C3%B3teses-para-a-correla%C3%A7%C3%A3o-linear-na-popula%C3%A7%C3%A3o" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>O coeficiente de correlação amostral <span class="math inline">\(r\)</span> é uma estimativa do coeficiente de correlação populacional <span class="math inline">\(\rho\)</span>.</p>
+<p><br></p>
+<p>Sendo <span class="math inline">\(r\)</span> é uma variável aleatória, ie, uma função de duas variáveis aleatórias, possui uma distribuição amostral. Assim, para se realizar qualquer inferência concernentes a <span class="math inline">\(\rho\)</span>, a partir de <span class="math inline">\(r\)</span>, precisamos ter conhecimento da distribuição amostral de <span class="math inline">\(r\)</span>.</p>
+<p><br></p>
+<p>Um inferência essencial é testar a existência de correlação entre as populações e, para tanto um teste de hipóteses com estrutura bilateral pode ser proposto:</p>
+<p><br></p>
+<p><span class="math display">\[
+\begin{cases}
+    H_{0}:\rho = 0 \hspace{0.1cm} \text{, ie. a correlação linear entre X e Y é nula} \\
+    H_{1}:\rho \ne 0 \hspace{0.1cm} \text{, ie. a correlação linear entre X e Y não é nula} \\
+\end{cases}
+\]</span></p>
+<p><br></p>
+<blockquote>
+<p>Lembrando a tradicional analogia de que um <em>teste de hipóteses</em> guarda uma certa semelhança a um julgamento: caso não haja indício forte o suficiente para comprovar a culpa do acusado ele é tecnicamente declarado <em>não culpado</em> (e não <em>inocente</em>).</p>
+</blockquote>
+<p><br>
+<br></p>
+<blockquote>
+<p>Seguindo esse raciocínio, o <em>indício ou evidência</em> que nos permitirá rejeitar a hipótese nula virá de uma <em>evidência amostral</em> e a <em>significância</em> dessa <em>evidência amostral</em> será calculada a partir da estatística (<span class="math inline">\({t}_{calc}\)</span>), que considera o o coeficiente de correlação amostral <span class="math inline">\(r\)</span> e o tamanho da amostra <span class="math inline">\(n\)</span>.</p>
+</blockquote>
+<p><br></p>
+<p><span class="math display">\[
+{t}_{calc}=\frac{r\cdot\sqrt{n-2}}{\sqrt{1-{r}^{2}}}\\
+T \sim t_{(n-2)}
+\]</span></p>
+<p><br></p>
+<p>Para que o teste de correlação de Pearson seja <strong>exato</strong>, a distribuição bivariada <span class="math inline">\((X,Y)\)</span> deve seguir uma distribuição normal bivariada. No entanto, o teste é razoavelmente robusto a violações deste pressuposto quando o tamanho amostral é grande (n&gt;30).</p>
+<p><br></p>
+<p>Para amostras pequenas ou quando há forte evidência de não-normalidade, alternativas não-paramétricas como o coeficiente de correlação de Spearman devem ser consideradas.</p>
+<p><br></p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb240-1" tabindex="-1"></a><span class="co"># Dados</span></span>
+<span id="cb240-2"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb240-2" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb240-3"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb240-3" tabindex="-1"></a>  <span class="at">Anuncios =</span> <span class="fu">c</span>(<span class="dv">74</span>, <span class="dv">45</span>, <span class="dv">48</span>, <span class="dv">36</span>, <span class="dv">27</span>, <span class="dv">16</span>),</span>
+<span id="cb240-4"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb240-4" tabindex="-1"></a>  <span class="at">Carros_vendidos =</span> <span class="fu">c</span>(<span class="dv">139</span>, <span class="dv">108</span>, <span class="dv">98</span>, <span class="dv">76</span>, <span class="dv">62</span>, <span class="dv">57</span>)</span>
+<span id="cb240-5"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb240-5" tabindex="-1"></a>)</span>
+<span id="cb240-6"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb240-6" tabindex="-1"></a></span>
+<span id="cb240-7"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb240-7" tabindex="-1"></a><span class="co"># Configurar layout para múltiplos gráficos</span></span>
+<span id="cb240-8"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb240-8" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb240-9"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb240-9" tabindex="-1"></a></span>
+<span id="cb240-10"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb240-10" tabindex="-1"></a><span class="co"># 1. Gráfico Q-Q para Anúncios</span></span>
+<span id="cb240-11"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb240-11" tabindex="-1"></a><span class="fu">qqnorm</span>(dados<span class="sc">$</span>Anuncios, <span class="at">main =</span> <span class="st">&quot;QQ plot Anuncios</span><span class="sc">\n</span><span class="st">com n=6, a interpretação é limitada,</span><span class="sc">\n</span><span class="st">mas os pontos devem aproximar-se</span><span class="sc">\n</span><span class="st">da linha teórica&quot;</span>, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex.main=</span><span class="fl">0.8</span>)</span>
+<span id="cb240-12"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb240-12" tabindex="-1"></a><span class="fu">qqline</span>(dados<span class="sc">$</span>Anuncios, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb240-13"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb240-13" tabindex="-1"></a></span>
+<span id="cb240-14"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb240-14" tabindex="-1"></a><span class="co"># 2. Gráfico Q-Q para Carros Vendidos</span></span>
+<span id="cb240-15"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb240-15" tabindex="-1"></a><span class="fu">qqnorm</span>(dados<span class="sc">$</span>Carros_vendidos, <span class="at">main =</span> <span class="st">&quot;QQ plot Carros vendidos</span><span class="sc">\n</span><span class="st">com n=6, a interpretação é limitada,</span><span class="sc">\n</span><span class="st">mas os pontos devem aproximar-se</span><span class="sc">\n</span><span class="st">da linha teórica&quot;</span>, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex.main=</span><span class="fl">0.8</span>)</span>
+<span id="cb240-16"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb240-16" tabindex="-1"></a><span class="fu">qqline</span>(dados<span class="sc">$</span>Carros_vendidos, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="apostila_files/figure-html/unnamed-chunk-227-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><br></p>
+<blockquote>
+<p>Rejeita-se a hipótese nula ($H_{0}:= 0 ) se o valor da estatística calculada <span class="math inline">\(t_{calc}\)</span> for tão extremo que se verifique:</p>
+</blockquote>
+<p><br></p>
+<p><span class="math display">\[
+t_{calc} \le {t}_{tab[\frac{\alpha }{2};\left(n-2\right)]}\\
+\text{ou}\\
+t_{calc} \ge {t}_{tab[1-\frac{\alpha }{2};\left(n-2\right)]}\\
+\]</span></p>
+<p><br></p>
+<p>ou, equivalentemente, <span class="math inline">\(|t_{calc}| \ge {t}_{tab\left[1-\frac{\alpha}{2};\left(n-2\right)\right]}\)</span>, em que <span class="math inline">\(t_{tab}\)</span> é o quantil associado na distribuição “t” de Student ao <em>nível de significância</em> pretendido (<span class="math inline">\(\alpha\)</span>) com <span class="math inline">\((n-2)\)</span> graus de liberdade.</p>
+<hr />
+<p>O teste de hipótese proposto é um <em>teste bilateral</em>; assim, o gráfico apropriado para se decidir pela rejeição ou não da hipótese nula assume a forma mostrada nessa simulação. (SIMULADOR 2 COM t)</p>
+<hr />
+<p>O número de graus de liberdade irá determinar qual curva da família dessa distribuição será utilizada, por essa razão, as tabelas apresentam-se individualizadas por nível de significância e graus de liberdade.</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-1" tabindex="-1"></a><span class="co"># Dados</span></span>
+<span id="cb241-2"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-2" tabindex="-1"></a>gl <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">30</span>, <span class="cn">Inf</span>)</span>
+<span id="cb241-3"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-3" tabindex="-1"></a>x  <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">500</span>)</span>
+<span id="cb241-4"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-4" tabindex="-1"></a>cores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#e41a1c&quot;</span>, <span class="st">&quot;#ff7f00&quot;</span>, <span class="st">&quot;#4daf4a&quot;</span>, <span class="st">&quot;#377eb8&quot;</span>, <span class="st">&quot;#984ea3&quot;</span>, <span class="st">&quot;#000000&quot;</span>)</span>
+<span id="cb241-5"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-5" tabindex="-1"></a></span>
+<span id="cb241-6"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-6" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">dnorm</span>(x), <span class="at">type =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb241-7"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-7" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.42</span>), <span class="at">xlab =</span> <span class="st">&quot;t&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>,</span>
+<span id="cb241-8"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-8" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Distribuição t de Student para diferentes graus de liberdade&quot;</span>)</span>
+<span id="cb241-9"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-9" tabindex="-1"></a></span>
+<span id="cb241-10"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-10" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(gl)) {</span>
+<span id="cb241-11"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-11" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.finite</span>(gl[i])) {</span>
+<span id="cb241-12"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-12" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">dt</span>(x, <span class="at">df =</span> gl[i])</span>
+<span id="cb241-13"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-13" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb241-14"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-14" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x)</span>
+<span id="cb241-15"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-15" tabindex="-1"></a>  }</span>
+<span id="cb241-16"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-16" tabindex="-1"></a>  <span class="fu">lines</span>(x, y, <span class="at">col =</span> cores[i], <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb241-17"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-17" tabindex="-1"></a>}</span>
+<span id="cb241-18"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-18" tabindex="-1"></a></span>
+<span id="cb241-19"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-19" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>,</span>
+<span id="cb241-20"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-20" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="fu">paste</span>(<span class="st">&quot;gl =&quot;</span>, gl[<span class="sc">-</span><span class="fu">length</span>(gl)]), <span class="st">&quot;Normal (gl = \u221e)&quot;</span>),</span>
+<span id="cb241-21"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-21" tabindex="-1"></a>       <span class="at">col    =</span> cores,</span>
+<span id="cb241-22"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-22" tabindex="-1"></a>       <span class="at">lwd    =</span> <span class="dv">2</span>,</span>
+<span id="cb241-23"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb241-23" tabindex="-1"></a>       <span class="at">bty    =</span> <span class="st">&quot;n&quot;</span>)</span></code></pre></div>
+<p><img src="apostila_files/figure-html/unnamed-chunk-228-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+<p>As curvas da família “t” possuem simetria em relação a um eixo vertical no valor de máxima densidade. O valor tabelado dessa estatística acha-se associado à área sob ela pois é uma função densidade de probabilidade: a totalidade da área sob essa curva é igual a 1 (probabilidade de 100%)</p>
+<p><br></p>
+<p>Assim, se consultarmos em uma tabela o valor “t” para um nível de significância <span class="math inline">\(\alpha\)</span> qualquer, correspodente assim a um nível de confiança de (<span class="math inline">\(1-\alpha\)</span>), qualquer veremos que ele será igual, <em>em módulo</em>, ao valor “t” no outro extremo dessa curva.</p>
+<p><br></p>
+<p>Por essa razão muitas tabelas apresentam valores dessa estatística sob os títulos de <em>monocaudal</em> ou <em>bicaudal</em> pois estão apresentando os valores para um determinado nível de significância (<span class="math inline">\(\alpha\)</span>): área sob a curva, situado apenas em um lado (ou <em>subdividido</em> nos dois ramos da curva nas tabelas chamadas “bilaterais”).</p>
+<hr />
+<div id="outros-testes-de-hipóteses-sobre-a-correlação-linear-na-população" class="section level3 hasAnchor" number="12.4.1">
+<h3><span class="header-section-number">12.4.1</span> Outros testes de hipóteses sobre a correlação linear na população<a href="#outros-testes-de-hip%C3%B3teses-sobre-a-correla%C3%A7%C3%A3o-linear-na-popula%C3%A7%C3%A3o" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br></p>
+<p>Para se testar a hipótese <span class="math inline">\(\rho=\rho_{0}\neq0\)</span></p>
+<p><br></p>
+<p><span class="math display">\[
+\begin{cases}
+    H_{0}:\rho = \rho_{0} \hspace{0.1cm} \text{, ie. a correlação linear entre X e Y é igual a }\rho_{0} \\
+    H_{1}:\rho \ne \rho_{0} \hspace{0.1cm} \text{, ie. a correlação linear entre X e Y é diferente de }\rho_{0} \\
+\end{cases}
+\]</span></p>
+<p><br></p>
+<p>utilizamos a estatística <span class="math inline">\(Z\)</span> (zeta) de Fisher. A transformação <span class="math inline">\(Z\)</span> proposta por Fisher produz uma estatística que possui distribuição aproximadamente Normal. Para essa situação a estatística a ser utilizada é dada por:</p>
+<p><br></p>
+<p><span class="math display">\[
+Z= \frac{1}{2}\ln\frac{(1+r)}{(1-r)}.
+\]</span></p>
+<p><br></p>
+<p>Essa estatística possui uma distribuição aproximadamente Normal, com média e desvio padrão:</p>
+<p><br></p>
+<p><span class="math display">\[
+\mu_{Z} =  \frac{1}{2}\ln\frac{(1+\rho_{0})}{(1-\rho_{0})}\\
+\text{e}\\
+\sigma_{Z} = \frac{1}{\sqrt{n-3}}
+\]</span></p>
+<p><br></p>
+<p>Transformando-se <span class="math inline">\(Z\)</span> em unidades padrão (pela subtração de <span class="math inline">\(\mu_{Z}\)</span> e divisão por <span class="math inline">\(\sigma_{Z}\)</span>), chega-se à estatística tabelada:</p>
+<p><br></p>
+<p><span class="math display">\[
+z = \frac{Z - \mu_{Z}}{\sigma_{Z}}
+\]</span></p>
+<p><br></p>
+<p>que, sob <span class="math inline">\(H_0: \rho = \rho_0\)</span>, segue aproximadamente uma distribuição Normal padrão <span class="math inline">\(N(0,1)\)</span>.</p>
+<hr />
+<p><br></p>
+<blockquote>
+<p>Exemplo 2: Faça o teste de hipóteses para a correlação linear <span class="math inline">\(\rho\)</span> a partir da correlação amostral <span class="math inline">\(r\)</span> calculada no exercício dos anúncios de veículos, sob um nível de significância (<span class="math inline">\(\alpha\)</span>) de 0,05.</p>
+</blockquote>
+<p><br></p>
+<p>No exercício referido obtivemos um valor para a correlação linear de Pearson de <span class="math inline">\(r=0,9727\)</span>. A partir desse valor podemos calcular o valor de nossa estatística <span class="math inline">\({t}_{calc}\)</span> para o teste:</p>
+<p><br></p>
+<p><span class="math display">\[
+{t}_{calc}=\frac{r\cdot\sqrt{n-2}}{\sqrt{1-{r}^{2}}} = 8,38
+\]</span>
+<br></p>
+<p>Rejeitaremos a hipótese nula (<span class="math inline">\(H_{0}\)</span>) se:</p>
+<p><br></p>
+<p><span class="math display">\[
+t_{calc} \le {t}_{tab[\frac{\alpha }{2};\left(n-2\right)]}\\
+\text{ou}\\
+t_{calc} \ge {t}_{tab[1-\frac{\alpha }{2};\left(n-2\right)]}
+\]</span>
+<br></p>
+<p>Da tabela extraímos o valor de nossa estatística de comparação a um nível de significância <span class="math inline">\(\alpha=5\%\)</span> e, para um tamanho amostral <span class="math inline">\(n=6\)</span>, temos como graus de liberdade <span class="math inline">\(n-2=4\)</span> (<span class="math inline">\(t_{tab}=2,776\)</span>).</p>
+<p><br></p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb242-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">4</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] -2.776</code></pre>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb244-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="dv">4</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 2.776</code></pre>
+<p><br></p>
+<p>Vê-se que o valor calculado da estatística “t” encontra-se além dos limites estabelecidos pela estatística de comparação (<span class="math inline">\(t_{tab}\)</span>) para um nível de significância de <span class="math inline">\(\alpha=5\%\)</span>. (SIMULADOR 2 COM t)</p>
+<p><br></p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb246-1" tabindex="-1"></a><span class="co"># Dados do Exemplo 1</span></span>
+<span id="cb246-2"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb246-2" tabindex="-1"></a>anuncios <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">74</span>, <span class="dv">45</span>, <span class="dv">48</span>, <span class="dv">36</span>, <span class="dv">27</span>, <span class="dv">16</span>)</span>
+<span id="cb246-3"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb246-3" tabindex="-1"></a>carros_vendidos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">139</span>, <span class="dv">108</span>, <span class="dv">98</span>, <span class="dv">76</span>, <span class="dv">62</span>, <span class="dv">57</span>)</span>
+<span id="cb246-4"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb246-4" tabindex="-1"></a><span class="co"># Teste usando função nativa do R (para comparação)</span></span>
+<span id="cb246-5"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb246-5" tabindex="-1"></a>teste <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(anuncios, carros_vendidos)</span>
+<span id="cb246-6"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb246-6" tabindex="-1"></a><span class="fu">print</span>(teste)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  anuncios and carros_vendidos
+## t = 8.4, df = 4, p-value = 0.001
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.7653 0.9971
+## sample estimates:
+##    cor 
+## 0.9727</code></pre>
+<p><br></p>
+</div>
+</div>
+<div id="introdução-à-correlação-linear-de-spearman" class="section level2 hasAnchor" number="12.5">
+<h2><span class="header-section-number">12.5</span> Introdução à Correlação Linear de Spearman<a href="#introdu%C3%A7%C3%A3o-%C3%A0-correla%C3%A7%C3%A3o-linear-de-spearman" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A correlação de Spearman é uma medida de associação não paramétrica que avalia a relação monotônica entre duas variáveis. Diferentemente da correlação de Pearson, que opera sobre os valores brutos e pressupõe linearidade e normalidade, a correlação de Spearman baseia-se nos <strong>postos</strong> (<em>ranks</em>) atribuídos às observações.</p>
+<hr />
+<div id="definição" class="section level3 hasAnchor" number="12.5.1">
+<h3><span class="header-section-number">12.5.1</span> Definição<a href="#defini%C3%A7%C3%A3o" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sejam <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> duas variáveis aleatórias com <span class="math inline">\(n\)</span> observações. Os postos de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> são definidos como <span class="math inline">\(R(X_i)\)</span> e <span class="math inline">\(R(Y_i)\)</span>, respectivamente. O coeficiente de correlação de Spearman é dado por:</p>
+<p><br></p>
+<p><span class="math display">\[
+r_s = 1 - \frac{6 \sum_{i=1}^{n} d_i^2}{n(n^2 - 1)}
+\]</span></p>
+<p><br></p>
+<p>em que <span class="math inline">\(d_i = R(X_i) - R(Y_i)\)</span> é a diferença entre os postos de cada par de observações. Esta fórmula é equivalente ao coeficiente de correlação de Pearson calculado sobre os postos:</p>
+<p><br></p>
+<p><span class="math display">\[
+r_s = \frac{\sum_{i=1}^{n}\left[R(X_i) - \overline{R(X)}\right]\left[R(Y_i) - \overline{R(Y)}\right]}{\sqrt{\sum_{i=1}^{n}\left[R(X_i) - \overline{R(X)}\right]^2 \sum_{i=1}^{n}\left[R(Y_i) - \overline{R(Y)}\right]^2}}
+\]</span></p>
+<p><br></p>
+<p>A equivalência entre as duas expressões é válida na ausência de empates (<em>ties</em>). Quando há empates, recomenda-se utilizar a segunda formulação, que produz resultados exatos.</p>
+<hr />
+</div>
+<div id="propriedades" class="section level3 hasAnchor" number="12.5.2">
+<h3><span class="header-section-number">12.5.2</span> Propriedades<a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#propriedades" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br></p>
+<p>O coeficiente de correlação de Spearman <span class="math inline">\(r_s\)</span> assume valores no intervalo <span class="math inline">\([-1, 1]\)</span>, sendo que:</p>
+<p><br></p>
+<ul>
+<li><span class="math inline">\(r_s = 1\)</span> indica relação monotônica crescente perfeita;</li>
+<li><span class="math inline">\(r_s = -1\)</span> indica relação monotônica decrescente perfeita;</li>
+<li><span class="math inline">\(r_s = 0\)</span> indica ausência de relação monotônica.</li>
+</ul>
+<p><br></p>
+<p>Como a correlação de Spearman opera sobre postos, ela é robusta à presença de <em>outliers</em> e não requer que as distribuições marginais sejam normais, tornando-a adequada a dados ordinais ou contínuos com distribuições assimétricas.</p>
+<hr />
+</div>
+<div id="teste-de-hipóteses" class="section level3 hasAnchor" number="12.5.3">
+<h3><span class="header-section-number">12.5.3</span> Teste de Hipóteses<a href="#teste-de-hip%C3%B3teses" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br></p>
+<p>O teste de significância para <span class="math inline">\(r_s\)</span> considera as hipóteses:</p>
+<p><span class="math display">\[
+\begin{cases}
+    H_{0}:\rho_s = 0 \hspace{0.1cm} \text{, ie. a correlação linear entre X e Y é nula} \\
+    H_{1}:\rho_s \ne 0 \hspace{0.1cm} \text{, ie. a correlação linear entre X e Y não é nula} \\
+\end{cases}
+\]</span></p>
+<p><br></p>
+<p>Para amostras de tamanho <span class="math inline">\(n &gt; 10\)</span>, a estatística de teste</p>
+<p><br></p>
+<p><span class="math display">\[
+t = r_s \sqrt{\frac{n - 2}{1 - r_s^2}}\\
+T \sim t_{(n-2)}
+\]</span></p>
+<p><br></p>
+<p>segue aproximadamente uma distribuição <span class="math inline">\(t\)</span> de Student com <span class="math inline">\(n - 2\)</span> graus de liberdade sob <span class="math inline">\(H_0\)</span></p>
+<hr />
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb248-1" tabindex="-1"></a><span class="co"># Dados</span></span>
+<span id="cb248-2"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb248-2" tabindex="-1"></a>anuncios <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">74</span>, <span class="dv">45</span>, <span class="dv">48</span>, <span class="dv">36</span>, <span class="dv">27</span>, <span class="dv">16</span>)</span>
+<span id="cb248-3"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb248-3" tabindex="-1"></a>carros_vendidos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">139</span>, <span class="dv">108</span>, <span class="dv">98</span>, <span class="dv">76</span>, <span class="dv">62</span>, <span class="dv">57</span>)</span>
+<span id="cb248-4"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb248-4" tabindex="-1"></a></span>
+<span id="cb248-5"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb248-5" tabindex="-1"></a><span class="co"># Teste usando função nativa do R (para comparação)</span></span>
+<span id="cb248-6"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb248-6" tabindex="-1"></a>teste <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(anuncios, carros_vendidos,  <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span>
+<span id="cb248-7"><a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#cb248-7" tabindex="-1"></a><span class="fu">print</span>(teste)</span></code></pre></div>
+<pre><code>## 
+##  Spearman&#39;s rank correlation rho
+## 
+## data:  anuncios and carros_vendidos
+## S = 2, p-value = 0.02
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##    rho 
+## 0.9429</code></pre>
+<hr />
+<div id="tabelas-2" class="section level4 hasAnchor" number="12.5.3.1">
+<h4><span class="header-section-number">12.5.3.1</span> Tabelas<a href="introducao-as-medidas-de-associacao-correlacao-linear-de-pearson.html#tabelas-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><br></p>
+<figure class="image">
+<img src="images12/tabt.jpg" alt="Figure" width="80%" height="auto" style="display: block; margin: auto;">
+</figure>
+<hr />
+<p><br></p>
+<figure class="image">
+<img src="images12/Guia_t.jpg" alt="Figure" width="80%" height="auto" style="display: block; margin: auto;">
+</figure>
+<hr />
+<figure class="image">
+<img src="images12/tab_correlacao.png" alt="Figure" width="80%" height="auto" style="display: block; margin: auto;">
+</figure>
+<hr />
+
+<style>
+.small-equation80 {
+  font-size: 80%; 
+}
+</style>
+<style>
+.small-equation70 {
+  font-size: 70%; 
+}
+</style>
+<style>
+.small-equation60 {
+  font-size: 60%; 
+}
+</style>
+<style>
+.small-equation40 {
+  font-size: 40%; 
+}
+</style>
+<style>
+blockquote {
+  background-color: #c0c0c0; /* Fundo cinza claro */
+  border-left: 4px solid #21130d; /* Barra lateral */
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px; /* Bordas arredondadas */
+  /* Remove o itálico padrão */
+  color: #21130d; /* Cor do texto */
+}
+</style>
+</div>
+</div>
+</div>
+</div>
+<script>
+$(document).ready(function() {
+  var $summary = $('.book-summary');
+  var $body = $('.book-body');
+  var $header = $('.book-header');
+  var isResizing = false;
+  var startX, startWidth;
+
+  // Adicionar handle de redimensionamento
+  $summary.append('<div class="resize-handle"></div>');
+  
+  var $handle = $('.resize-handle');
+
+  $handle.on('mousedown', function(e) {
+    isResizing = true;
+    startX = e.clientX;
+    startWidth = $summary.width();
+    
+    $('body').css('cursor', 'ew-resize');
+    e.preventDefault();
+  });
+
+  $(document).on('mousemove', function(e) {
+    if (!isResizing) return;
+    
+    var width = startWidth + (e.clientX - startX);
+    
+    // Limites de largura
+    if (width < 200) width = 200;
+    if (width > 600) width = 600;
+    
+    $summary.css('width', width + 'px');
+    
+    // Atualizar left do body e header se o TOC estiver visível
+    if ($('.book').hasClass('with-summary')) {
+      $body.css('left', width + 'px');
+      $header.css('left', width + 'px');
+    }
+  });
+
+  $(document).on('mouseup', function() {
+    if (isResizing) {
+      isResizing = false;
+      $('body').css('cursor', 'default');
+    }
+  });
+  
+  // Observar mudanças na classe 'with-summary'
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.attributeName === 'class') {
+        var hasSummary = $('.book').hasClass('with-summary');
+        if (!hasSummary) {
+          // TOC colapsado
+          $body.css('left', '0');
+          $header.css('left', '0');
+        } else {
+          // TOC expandido
+          var width = $summary.width();
+          $body.css('left', width + 'px');
+          $header.css('left', width + 'px');
+        }
+      }
+    });
+  });
+  
+  observer.observe($('.book')[0], {
+    attributes: true
+  });
+});
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introducao-a-testes-de-hipoteses.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introducao-a-regressao-linear.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/fjrcosta/apostila/edit/main/12-correlacao_linear.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["apostila.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "none",
+    "depth": 8
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

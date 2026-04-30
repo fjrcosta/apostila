@@ -232,7 +232,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5.4" data-path="04-probabilidade.html"><a href="#exemplo-cl%C3%A1ssico-de-eventos-dependentes"><i class="fa fa-check"></i><b>4.5.4</b> Exemplo clássico de eventos dependentes</a></li>
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#probabilidade-de-eventos-independentes-regra-da-cadeia"><i class="fa fa-check"></i><b>4.6</b> Probabilidade de eventos independentes (regra da cadeia)</a></li>
-<li class="chapter" data-level="4.7" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teorema-de-bayes"><i class="fa fa-check"></i><b>4.7</b> Teorema de Bayes</a></li>
+<li class="chapter" data-level="4.7" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teorema-regra-lei-de-bayes"><i class="fa fa-check"></i><b>4.7</b> Teorema (<em>regra</em>, <em>lei</em>) de Bayes</a></li>
 <li class="chapter" data-level="4.8" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teoremas-da-teoria-das-probabilidades"><i class="fa fa-check"></i><b>4.8</b> Teoremas da Teoria das probabilidades</a>
 <ul>
 <li class="chapter" data-level="4.8.1" data-path="introducao-ao-calculo-de-probabilidades.html"><a href="introducao-ao-calculo-de-probabilidades.html#teorema-01"><i class="fa fa-check"></i><b>4.8.1</b> Teorema 01</a></li>
@@ -1459,9 +1459,9 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb92-14"><a href="introducao-ao-calculo-de-probabilidades.html#cb92-14" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;A frequência observada da face&quot;</span>, face_escolhida, <span class="st">&quot;foi de&quot;</span>, frequencia, <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb92-15"><a href="introducao-ao-calculo-de-probabilidades.html#cb92-15" tabindex="-1"></a>}</span></code></pre></div>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb93-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 0 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 20 %</code></pre>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb95-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10000</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 16.54 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 16.65 %</code></pre>
 <p><br />
 </p>
 <p>Ao simular o lançamento de um dado, por exemplo, é possível observar como as frequências relativas de todas as faces começam a se aproximar das probabilidades teóricas (<span class="math inline">\(P(1)=P(2)=P(3)=P(4)=P(5)=P(6)=\frac{1}{6}\)</span>) à medida que aumentamos o número de repetições.</p>
@@ -2022,9 +2022,9 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <pre><code>##                      
 ##                           F     M
 ##   Computação           5022  9978
-##   Estatística         10031  4969
-##   Matemática aplicada  7470  7530
-##   Matemática pura     20069 34931</code></pre>
+##   Estatística         10074  4926
+##   Matemática aplicada  7514  7486
+##   Matemática pura     20018 34982</code></pre>
 <p><br />
 </p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb106-1" tabindex="-1"></a><span class="co"># Selecionar uma amostra de 200 com reposição (simular a tabela)</span></span>
@@ -2038,27 +2038,27 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb106-9"><a href="introducao-ao-calculo-de-probabilidades.html#cb106-9" tabindex="-1"></a>tab</span></code></pre></div>
 <pre><code>##                          
 ##                             M   F Total
-##   Matemática pura (M)      81  37   118
-##   Matemática aplicada (A)  12  16    28
-##   Estatística (E)           8  25    33
-##   Computação (C)           16   5    21
-##   Total                   117  83   200</code></pre>
+##   Matemática pura (M)      74  42   116
+##   Matemática aplicada (A)  19  11    30
+##   Estatística (E)           3  22    25
+##   Computação (C)           20   9    29
+##   Total                   116  84   200</code></pre>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb108-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb108-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb108-2" tabindex="-1"></a>pMasc<span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb108-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb108-3" tabindex="-1"></a>pMasc</span></code></pre></div>
-<pre><code>## [1] 0.585</code></pre>
+<pre><code>## [1] 0.58</code></pre>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb110-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; na amostra</span></span>
 <span id="cb110-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb110-2" tabindex="-1"></a>pMatAp <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span>)</span>
 <span id="cb110-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb110-3" tabindex="-1"></a>pMatAp</span></code></pre></div>
-<pre><code>## [1] 0.14</code></pre>
+<pre><code>## [1] 0.15</code></pre>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb112-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -E- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb112-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb112-2" tabindex="-1"></a>pMatAp_and_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">&amp;</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb112-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb112-3" tabindex="-1"></a>pMatAp_and_Masc</span></code></pre></div>
-<pre><code>## [1] 0.06</code></pre>
+<pre><code>## [1] 0.095</code></pre>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb114-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -OU- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb114-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb114-2" tabindex="-1"></a>pMatAp_or_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">|</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb114-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb114-3" tabindex="-1"></a>pMatAp_or_Masc</span></code></pre></div>
-<pre><code>## [1] 0.665</code></pre>
+<pre><code>## [1] 0.635</code></pre>
 <p><br />
 </p>
 <blockquote>
@@ -2940,8 +2940,8 @@ P(C_{1} \cap C_{2}) &amp; = 0,25 \times 0,40\\
 <p><br />
 </p>
 </div>
-<div id="teorema-de-bayes" class="section level2 hasAnchor" number="4.7">
-<h2><span class="header-section-number">4.7</span> Teorema de Bayes<a href="introducao-ao-calculo-de-probabilidades.html#teorema-de-bayes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="teorema-regra-lei-de-bayes" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Teorema (<em>regra</em>, <em>lei</em>) de Bayes<a href="introducao-ao-calculo-de-probabilidades.html#teorema-regra-lei-de-bayes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><br />
 </p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-100"></span>
@@ -2950,6 +2950,17 @@ P(C_{1} \cap C_{2}) &amp; = 0,25 \times 0,40\\
 Figure 4.19: Thomas Bayes (1702 - 1761)
 </p>
 </div>
+<blockquote>
+<p>O pastor presbiteriano e matemático inglês Thomas Bayes (1702 – 1761) foi o primeiro a fornecer uma equação que permitiria que novas evidências atualizassem a probabilidade de um evento a partir do conhecimento <em>a priori</em> (ou a crença inicial na ocorrência de um evento).</p>
+</blockquote>
+<blockquote>
+<p>Após sua morte, seus estudos foram encontrados e substancialmente editados por seu amigo Richard Price, sendo os resultados finalmente publicados em 1763 (<em>An Essay Towards Solving a Problem in the Doctrine of Chances</em>).</p>
+</blockquote>
+<blockquote>
+<p>Independentemente de Bayes, Pierre-Simon Laplace usou a probabilidade condicional para formular a relação entre uma probabilidade posterior atualizada e uma probabilidade a priori, dada a evidência. Ele reproduziu e estendeu os resultados de Bayes em 1774, aparentemente desconhecendo o trabalho de Bayes, e resumiu seus resultados em 1812 (<em>Théorie analytique des probabilités</em>).</p>
+</blockquote>
+<p><br />
+</p>
 <blockquote>
 <p>Admita o espaço amostral de um experimento baseado no sorteio aleatório de um estudante de uma escola, com dois possíveis resultados quanto ao sexo:</p>
 </blockquote>

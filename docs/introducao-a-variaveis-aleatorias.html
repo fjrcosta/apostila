@@ -683,64 +683,73 @@ contato (sugestões): <a href="mailto:fjcosta@uel.br" class="email">fjcosta@uel.
 </blockquote>
 <p><br />
 </p>
-<p>Essas quantidades de interesse, ou mais formalmente, essas funções de valor real definidas no espaço amostral (o conjunto de todos os possíveis resultados do experimento), são conhecidas como variáveis aleatórias.</p>
+<p>Essas quantidades de interesse são formalmente tratadas no contexto do espaço de probabilidade <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span>, composto por três elementos: o espaço amostral <span class="math inline">\(\Omega\)</span>, que contém todos os resultados
+possíveis do experimento; a <span class="math inline">\(\sigma\)</span>-álgebra <span class="math inline">\(\mathcal{F}\)</span>, que é a coleção de todos os subconjuntos de <span class="math inline">\(\Omega\)</span> aos quais é possível atribuir probabilidade — denominados eventos; e a medida de probabilidade <span class="math inline">\(P: \mathcal{F} \to [0,1]\)</span>, que associa a cada evento um valor em <span class="math inline">\([0,1]\)</span>.</p>
+<p>Funções de valor real definidas sobre esse espaço, que associam cada resultado <span class="math inline">\(\omega \in \Omega\)</span> a um número real, são conhecidas como variáveis aleatórias.</p>
 <p><br />
 </p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-104"></span>
-<img src="images5/v_aleatoria2.png" alt="Variável aleatória $X$" width="60%" />
+<img src="images5/funcao_probabilidade%202.jpg" alt="Espaço de probabilidade $(\Omega, \mathcal{F}, P)$" width="60%" />
 <p class="caption">
-Figure 5.1: Variável aleatória <span class="math inline">\(X\)</span>
+Figure 5.1: Espaço de probabilidade <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span>
 </p>
 </div>
 <p><br />
 </p>
-<p>Em outras palavras, uma função, geralmente representada por uma letra maiúscula (<span class="math inline">\(X\)</span>), que associa cada elemento <span class="math inline">\(\omega\)</span> pertencente ao espaço amostral <span class="math inline">\(\Omega\)</span> um número real é denominada, de forma mais precisa, como uma variável aleatória.</p>
+<p>De forma mais rigorosa, uma variável aleatória é uma função mensurável, geralmente representada por uma letra maiúscula (<span class="math inline">\(X\)</span>), definida sobre o espaço de probabilidade <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span>, que associa cada elemento <span class="math inline">\(\omega \in \Omega\)</span> a um número real.</p>
 <p><br />
 </p>
 <p><span class="math display">\[
-X (\Omega) \to \mathbb{R}_{X} \text{, estando } \mathbb{R}_{X}\subseteq \mathbb{R}
+X: (\Omega, \mathcal{F}) \to (\mathbb{R}, \mathcal{B}(\mathbb{R})),
+\quad \text{com } \mathbb{R}_{X} \subseteq \mathbb{R}
 \]</span></p>
 <p><br />
 </p>
-<p>O <em>domínio</em> dessa função (<span class="math inline">\(X\)</span>) é o conjunto de todos os possíveis valores numéricos de interesse do experimento aleatório e seu <em>contradomínio</em> está em <span class="math inline">\(\mathbb{R}\)</span>.</p>
+<p>O <em>domínio</em> dessa função é o espaço amostral <span class="math inline">\(\Omega\)</span>, e seu <em>contradomínio</em> está contido em <span class="math inline">\(\mathbb{R}\)</span>.</p>
 <p><br />
 </p>
 <blockquote>
 <p>Exemplo 1: considere o espaço amostral do experimento aleatório relacionado ao sexo do bebê em três gestações bem sucedidas:</p>
 </blockquote>
-<blockquote>
+<p><br />
+</p>
 <p><span class="math inline">\(\Omega=\{\omega_{1}:(FFF), \omega_{2}:(FFM),\omega_{3}:(FMF), \omega_{4}:(MFF),\\
 \omega_{5}:(FMM), \omega_{6}:(MFM), \omega_{7}:(MMF), \omega_{8}:(MMM)\}.\)</span></p>
-</blockquote>
-<blockquote>
-<p>Se estivermos interessados no número de nascimentos do sexo masculino, podemos definir a função <span class="math inline">\(X\)</span> para associar cada elemento <span class="math inline">\(\omega_{i}\)</span> em <span class="math inline">\(\Omega\)</span> a um valor <span class="math inline">\(x_{i} \in \mathbb{R}\)</span> que apresentará os seguintes resutados:</p>
-</blockquote>
-<blockquote>
+<p><br />
+</p>
+<p>Se estivermos interessados no número de nascimentos do sexo masculino, podemos definir a função <span class="math inline">\(X\)</span> para associar cada elemento <span class="math inline">\(\omega_{i}\)</span> em <span class="math inline">\(\Omega\)</span> a um valor <span class="math inline">\(x_{i} \in \mathbb{R}\)</span> que apresentará os
+seguintes resultados:</p>
+<p><br />
+</p>
 <p><span class="math inline">\(X(FFF)=0; X(FFM)=1; X(FMF)=1; X(MFF)=1;\\
-X(FMM)=2; X(MFM)=2; X(MMF)=2; X(MMM)=3\)</span>
-<span class="math inline">\(\mathcal{R}_{X}=\{x_{1}=0; x_{2}=1; x_{3}=2; x_{4}=3\}\subseteq \mathcal{R}\)</span></p>
-</blockquote>
+X(FMM)=2; X(MFM)=2; X(MMF)=2; X(MMM)=3\)</span></p>
+<p><br />
+</p>
+<p><span class="math inline">\(\mathbb{R}_{X}=\{x_{1}=0; x_{2}=1; x_{3}=2; x_{4}=3\}\subseteq \mathbb{R}\)</span></p>
 <p><br />
 </p>
 <blockquote>
 <p>Exemplo 2: considere o espaço amostral do experimento aleatório relacionado à sobrevivência de paciente ao final de 1 dia em uma UTI com quatro leitos:</p>
 </blockquote>
-<blockquote>
+<p><br />
+</p>
 <p><span class="math inline">\(\Omega=\{(0,0,0,0),(0,0,0,1),(0,0,1,0),(0,0,1,1),\\
 (0,1,0,0),(0,1,0,1),(0,1,1,0),(0,1,1,1),(1,0,0,0),\\
 (1,0,0,1),(1,0,1,0),(1,0,1,1),(1,1,0,0),(1,1,0,1),\\
 (1,1,1,0),(1,1,1,1)\}.\)</span></p>
-</blockquote>
-<blockquote>
-<p>Cada elemento do espaço amostral é uma sequência de quatro valores binários <span class="math inline">\((x_{1},x_{2},x_{3},x_{4})\)</span>, onde: <span class="math inline">\(x_{i}=0\)</span> indica que o paciente no leito <span class="math inline">\(i\)</span> sobreviveu e <span class="math inline">\(x_{i}=1\)</span> caso contrário.</p>
-</blockquote>
-<blockquote>
+<p><br />
+</p>
+<p>Cada elemento do espaço amostral é uma sequência de quatro valores binários <span class="math inline">\((b_{1},b_{2},b_{3},b_{4})\)</span>, onde: <span class="math inline">\(b_{i}=0\)</span> indica que o paciente no leito <span class="math inline">\(i\)</span> sobreviveu e <span class="math inline">\(b_{i}=1\)</span> caso contrário.</p>
+<p><br />
+</p>
 <p>Se estivermos interessados no número de falecimentos podemos definir a função <span class="math inline">\(X\)</span> para associar cada elemento <span class="math inline">\(\omega_{i}\)</span> em <span class="math inline">\(\Omega\)</span> a um valor <span class="math inline">\(x_{i} \in \mathbb{R}\)</span> que apresentará os seguintes resultados:</p>
-</blockquote>
-<blockquote>
-<p><span class="math inline">\(X(0000)=0; X(0001)=1; X(0010)=1; \dots ; X(1111)=4\)</span>
-<span class="math inline">\(\mathcal{R}_{X}=\{x_{1}=0; x_{2}=1; x_{3}=2; x_{4}=3; x_{5}=4\}\subseteq \mathcal{R}\)</span></p>
-</blockquote>
+<p><br />
+</p>
+<p><span class="math inline">\(X(0000)=0; X(0001)=1; X(0010)=1; \dots ; X(1111)=4\)</span></p>
+<p><br />
+</p>
+<p><span class="math inline">\(\mathbb{R}_{X}=\{x_{1}=0; x_{2}=1; x_{3}=2; x_{4}=3; x_{5}=4\}
+\subseteq \mathbb{R}\)</span></p>
 <p><br />
 </p>
 <div id="variaveis-aleatorias-discretas-continuas" class="section level2 hasAnchor" number="5.1">
@@ -756,7 +765,7 @@ X(FMM)=2; X(MFM)=2; X(MMF)=2; X(MMM)=3\)</span>
 <p><br />
 </p>
 <blockquote>
-<p>Os valores possíveis de uma variável aleatória contínua pertencem a um intervalo contínuo de números reais, como <span class="math inline">\([a,b]\)</span>, <span class="math inline">\([0,\infty)\)</span> ou <span class="math inline">\(-\infty, \infty)\)</span>. Exemplos incluem: o peso ou a altura de um grupo de pessoas; o tempo de vida de uma lâmpada; o tempo de reação a um estímulo; a concentração de álcool em um certo volume de sangue, a temperatura mínima no inverno Antártico.</p>
+<p>Os valores possíveis de uma variável aleatória contínua pertencem a um intervalo contínuo de números reais, como <span class="math inline">\([a,b]\)</span>, <span class="math inline">\([0,\infty)\)</span> ou <span class="math inline">\((-\infty, \infty)\)</span>. Exemplos incluem: o peso ou a altura de um grupo de pessoas; o tempo de vida de uma lâmpada; o tempo de reação a um estímulo; a concentração de álcool em um certo volume de sangue, a temperatura mínima no inverno Antártico.</p>
 </blockquote>
 <p><br />
 </p>

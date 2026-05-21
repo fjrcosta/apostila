@@ -263,6 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1.3" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#binomial"><i class="fa fa-check"></i><b>6.1.3</b> Binomial</a></li>
 <li class="chapter" data-level="6.1.4" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#poisson"><i class="fa fa-check"></i><b>6.1.4</b> Poisson</a></li>
 <li class="chapter" data-level="6.1.5" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html#multinomial"><i class="fa fa-check"></i><b>6.1.5</b> Multinomial</a></li>
+<li class="chapter" data-level="6.1.6" data-path="14-modelagem_dados.html"><a href="#hipergeom%C3%A9trica"><i class="fa fa-check"></i><b>6.1.6</b> Hipergeométrica</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="14-modelagem_dados.html"><a href="#modelos-t%C3%A9oricos-do-tempo-de-espera"><i class="fa fa-check"></i><b>6.2</b> Modelos téoricos do tempo de espera</a>
 <ul>
@@ -742,14 +743,14 @@ Tipos de Modelos quanto ao Aprendizados
 <p><br></p>
 <p>Após a importação, podemos verificar a quantidade de observações (dados) e de features (características) desse conjunto de dados.</p>
 <p><br></p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="introducao-a-modelagem-dados.html#cb355-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;========================================</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb355-2"><a href="introducao-a-modelagem-dados.html#cb355-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;RELATÓRIO DE VERIFICAÇÃO DA ESTRUTURA DO DATASET</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb355-3"><a href="introducao-a-modelagem-dados.html#cb355-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;========================================</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
-<span id="cb355-4"><a href="introducao-a-modelagem-dados.html#cb355-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;DIMENSÕES DO DATASET</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb355-5"><a href="introducao-a-modelagem-dados.html#cb355-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;--------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb355-6"><a href="introducao-a-modelagem-dados.html#cb355-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Número de observações (linhas):&quot;</span>, <span class="fu">nrow</span>(dados), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb355-7"><a href="introducao-a-modelagem-dados.html#cb355-7" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Número de variáveis (colunas):&quot;</span>, <span class="fu">ncol</span>(dados), <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
-<span id="cb355-8"><a href="introducao-a-modelagem-dados.html#cb355-8" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="introducao-a-modelagem-dados.html#cb360-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;========================================</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb360-2"><a href="introducao-a-modelagem-dados.html#cb360-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;RELATÓRIO DE VERIFICAÇÃO DA ESTRUTURA DO DATASET</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb360-3"><a href="introducao-a-modelagem-dados.html#cb360-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;========================================</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
+<span id="cb360-4"><a href="introducao-a-modelagem-dados.html#cb360-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;DIMENSÕES DO DATASET</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb360-5"><a href="introducao-a-modelagem-dados.html#cb360-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;--------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb360-6"><a href="introducao-a-modelagem-dados.html#cb360-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Número de observações (linhas):&quot;</span>, <span class="fu">nrow</span>(dados), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb360-7"><a href="introducao-a-modelagem-dados.html#cb360-7" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Número de variáveis (colunas):&quot;</span>, <span class="fu">ncol</span>(dados), <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
+<span id="cb360-8"><a href="introducao-a-modelagem-dados.html#cb360-8" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>-&gt; ========================================
 -&gt; RELATÓRIO DE VERIFICAÇÃO DA ESTRUTURA DO DATASET
 -&gt; ========================================
@@ -766,7 +767,7 @@ Tipos de Modelos quanto ao Aprendizados
 <p><br></p>
 <p>A função <code>str()</code> fornece uma visão compacta da organização interna do dataframe, incluindo o número de observações, o número de variáveis e a natureza de cada feature.</p>
 <p><br></p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="introducao-a-modelagem-dados.html#cb357-1" tabindex="-1"></a><span class="fu">str</span>(dados)</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="introducao-a-modelagem-dados.html#cb362-1" tabindex="-1"></a><span class="fu">str</span>(dados)</span></code></pre></div>
 <pre><code>-&gt; &#39;data.frame&#39;:    35389 obs. of  39 variables:
 -&gt;  $ X                 : int  0 1 2 3 4 5 6 7 8 9 ...
 -&gt;  $ id                : chr  &quot;95717-2087851113&quot; &quot;94564-18496265&quot; &quot;94564-18484475&quot; &quot;94564-18494835&quot; ...
@@ -853,40 +854,40 @@ Tipos de Modelos quanto ao Aprendizados
 <li>Presença de valores ausentes (<code>NA</code>) em variáveis essenciais para a análise:</li>
 </ul>
 <p><br></p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="introducao-a-modelagem-dados.html#cb359-1" tabindex="-1"></a><span class="co"># Armazenar número original de observações</span></span>
-<span id="cb359-2"><a href="introducao-a-modelagem-dados.html#cb359-2" tabindex="-1"></a>n_original <span class="ot">&lt;-</span> <span class="fu">nrow</span>(dados)</span>
-<span id="cb359-3"><a href="introducao-a-modelagem-dados.html#cb359-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;VALORES AUSENTES (NA)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb359-4"><a href="introducao-a-modelagem-dados.html#cb359-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;---------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb359-5"><a href="introducao-a-modelagem-dados.html#cb359-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Total de observações (linhas) sem valores no dataset:&quot;</span>, <span class="fu">sum</span>(<span class="fu">is.na</span>(dados)), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb359-6"><a href="introducao-a-modelagem-dados.html#cb359-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Número de variáveis (colunas) com observações (linhas) sem valores:&quot;</span>, <span class="fu">sum</span>(<span class="fu">colSums</span>(<span class="fu">is.na</span>(dados)) <span class="sc">&gt;</span> <span class="dv">0</span>), <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
-<span id="cb359-7"><a href="introducao-a-modelagem-dados.html#cb359-7" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Variáveis (colunas) com valores ausentes:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb359-8"><a href="introducao-a-modelagem-dados.html#cb359-8" tabindex="-1"></a>na_counts <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(dados))</span>
-<span id="cb359-9"><a href="introducao-a-modelagem-dados.html#cb359-9" tabindex="-1"></a>na_vars <span class="ot">&lt;-</span> na_counts[na_counts <span class="sc">&gt;</span> <span class="dv">0</span>]</span>
-<span id="cb359-10"><a href="introducao-a-modelagem-dados.html#cb359-10" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(na_vars) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb359-11"><a href="introducao-a-modelagem-dados.html#cb359-11" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(na_vars)) {</span>
-<span id="cb359-12"><a href="introducao-a-modelagem-dados.html#cb359-12" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;  -&quot;</span>, <span class="fu">names</span>(na_vars)[i], <span class="st">&quot;:&quot;</span>, na_vars[i], </span>
-<span id="cb359-13"><a href="introducao-a-modelagem-dados.html#cb359-13" tabindex="-1"></a>        <span class="st">&quot;(&quot;</span>, <span class="fu">round</span>(na_vars[i]<span class="sc">/</span><span class="fu">nrow</span>(dados)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb359-14"><a href="introducao-a-modelagem-dados.html#cb359-14" tabindex="-1"></a>  }</span>
-<span id="cb359-15"><a href="introducao-a-modelagem-dados.html#cb359-15" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb359-16"><a href="introducao-a-modelagem-dados.html#cb359-16" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;  Nenhuma variável apresenta valores ausentes.</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb359-17"><a href="introducao-a-modelagem-dados.html#cb359-17" tabindex="-1"></a>}</span>
-<span id="cb359-18"><a href="introducao-a-modelagem-dados.html#cb359-18" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb359-19"><a href="introducao-a-modelagem-dados.html#cb359-19" tabindex="-1"></a></span>
-<span id="cb359-20"><a href="introducao-a-modelagem-dados.html#cb359-20" tabindex="-1"></a><span class="co"># Remoção de observações com valores ausentes</span></span>
-<span id="cb359-21"><a href="introducao-a-modelagem-dados.html#cb359-21" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;REMOÇÃO DE OBSERVAÇÕES COM VALORES AUSENTES</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb359-22"><a href="introducao-a-modelagem-dados.html#cb359-22" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;--------------------------------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb359-23"><a href="introducao-a-modelagem-dados.html#cb359-23" tabindex="-1"></a></span>
-<span id="cb359-24"><a href="introducao-a-modelagem-dados.html#cb359-24" tabindex="-1"></a><span class="co"># Remover linhas com qualquer valor NA</span></span>
-<span id="cb359-25"><a href="introducao-a-modelagem-dados.html#cb359-25" tabindex="-1"></a>dados_clean <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(dados)</span>
-<span id="cb359-26"><a href="introducao-a-modelagem-dados.html#cb359-26" tabindex="-1"></a></span>
-<span id="cb359-27"><a href="introducao-a-modelagem-dados.html#cb359-27" tabindex="-1"></a><span class="co"># Relatório de remoção</span></span>
-<span id="cb359-28"><a href="introducao-a-modelagem-dados.html#cb359-28" tabindex="-1"></a>n_removidas <span class="ot">&lt;-</span> n_original <span class="sc">-</span> <span class="fu">nrow</span>(dados_clean)</span>
-<span id="cb359-29"><a href="introducao-a-modelagem-dados.html#cb359-29" tabindex="-1"></a>prop_removidas <span class="ot">&lt;-</span> (n_removidas <span class="sc">/</span> n_original) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb359-30"><a href="introducao-a-modelagem-dados.html#cb359-30" tabindex="-1"></a></span>
-<span id="cb359-31"><a href="introducao-a-modelagem-dados.html#cb359-31" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações originais:&quot;</span>, n_original, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb359-32"><a href="introducao-a-modelagem-dados.html#cb359-32" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações removidas:&quot;</span>, n_removidas, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb359-33"><a href="introducao-a-modelagem-dados.html#cb359-33" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações mantidas:&quot;</span>, <span class="fu">nrow</span>(dados_clean), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb359-34"><a href="introducao-a-modelagem-dados.html#cb359-34" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Proporção removida:&quot;</span>, <span class="fu">round</span>(prop_removidas, <span class="dv">2</span>), <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="introducao-a-modelagem-dados.html#cb364-1" tabindex="-1"></a><span class="co"># Armazenar número original de observações</span></span>
+<span id="cb364-2"><a href="introducao-a-modelagem-dados.html#cb364-2" tabindex="-1"></a>n_original <span class="ot">&lt;-</span> <span class="fu">nrow</span>(dados)</span>
+<span id="cb364-3"><a href="introducao-a-modelagem-dados.html#cb364-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;VALORES AUSENTES (NA)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb364-4"><a href="introducao-a-modelagem-dados.html#cb364-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;---------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb364-5"><a href="introducao-a-modelagem-dados.html#cb364-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Total de observações (linhas) sem valores no dataset:&quot;</span>, <span class="fu">sum</span>(<span class="fu">is.na</span>(dados)), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb364-6"><a href="introducao-a-modelagem-dados.html#cb364-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Número de variáveis (colunas) com observações (linhas) sem valores:&quot;</span>, <span class="fu">sum</span>(<span class="fu">colSums</span>(<span class="fu">is.na</span>(dados)) <span class="sc">&gt;</span> <span class="dv">0</span>), <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
+<span id="cb364-7"><a href="introducao-a-modelagem-dados.html#cb364-7" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Variáveis (colunas) com valores ausentes:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb364-8"><a href="introducao-a-modelagem-dados.html#cb364-8" tabindex="-1"></a>na_counts <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(dados))</span>
+<span id="cb364-9"><a href="introducao-a-modelagem-dados.html#cb364-9" tabindex="-1"></a>na_vars <span class="ot">&lt;-</span> na_counts[na_counts <span class="sc">&gt;</span> <span class="dv">0</span>]</span>
+<span id="cb364-10"><a href="introducao-a-modelagem-dados.html#cb364-10" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(na_vars) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb364-11"><a href="introducao-a-modelagem-dados.html#cb364-11" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(na_vars)) {</span>
+<span id="cb364-12"><a href="introducao-a-modelagem-dados.html#cb364-12" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;  -&quot;</span>, <span class="fu">names</span>(na_vars)[i], <span class="st">&quot;:&quot;</span>, na_vars[i], </span>
+<span id="cb364-13"><a href="introducao-a-modelagem-dados.html#cb364-13" tabindex="-1"></a>        <span class="st">&quot;(&quot;</span>, <span class="fu">round</span>(na_vars[i]<span class="sc">/</span><span class="fu">nrow</span>(dados)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>), <span class="st">&quot;%)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb364-14"><a href="introducao-a-modelagem-dados.html#cb364-14" tabindex="-1"></a>  }</span>
+<span id="cb364-15"><a href="introducao-a-modelagem-dados.html#cb364-15" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb364-16"><a href="introducao-a-modelagem-dados.html#cb364-16" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;  Nenhuma variável apresenta valores ausentes.</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb364-17"><a href="introducao-a-modelagem-dados.html#cb364-17" tabindex="-1"></a>}</span>
+<span id="cb364-18"><a href="introducao-a-modelagem-dados.html#cb364-18" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb364-19"><a href="introducao-a-modelagem-dados.html#cb364-19" tabindex="-1"></a></span>
+<span id="cb364-20"><a href="introducao-a-modelagem-dados.html#cb364-20" tabindex="-1"></a><span class="co"># Remoção de observações com valores ausentes</span></span>
+<span id="cb364-21"><a href="introducao-a-modelagem-dados.html#cb364-21" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;REMOÇÃO DE OBSERVAÇÕES COM VALORES AUSENTES</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb364-22"><a href="introducao-a-modelagem-dados.html#cb364-22" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;--------------------------------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb364-23"><a href="introducao-a-modelagem-dados.html#cb364-23" tabindex="-1"></a></span>
+<span id="cb364-24"><a href="introducao-a-modelagem-dados.html#cb364-24" tabindex="-1"></a><span class="co"># Remover linhas com qualquer valor NA</span></span>
+<span id="cb364-25"><a href="introducao-a-modelagem-dados.html#cb364-25" tabindex="-1"></a>dados_clean <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(dados)</span>
+<span id="cb364-26"><a href="introducao-a-modelagem-dados.html#cb364-26" tabindex="-1"></a></span>
+<span id="cb364-27"><a href="introducao-a-modelagem-dados.html#cb364-27" tabindex="-1"></a><span class="co"># Relatório de remoção</span></span>
+<span id="cb364-28"><a href="introducao-a-modelagem-dados.html#cb364-28" tabindex="-1"></a>n_removidas <span class="ot">&lt;-</span> n_original <span class="sc">-</span> <span class="fu">nrow</span>(dados_clean)</span>
+<span id="cb364-29"><a href="introducao-a-modelagem-dados.html#cb364-29" tabindex="-1"></a>prop_removidas <span class="ot">&lt;-</span> (n_removidas <span class="sc">/</span> n_original) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb364-30"><a href="introducao-a-modelagem-dados.html#cb364-30" tabindex="-1"></a></span>
+<span id="cb364-31"><a href="introducao-a-modelagem-dados.html#cb364-31" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações originais:&quot;</span>, n_original, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb364-32"><a href="introducao-a-modelagem-dados.html#cb364-32" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações removidas:&quot;</span>, n_removidas, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb364-33"><a href="introducao-a-modelagem-dados.html#cb364-33" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações mantidas:&quot;</span>, <span class="fu">nrow</span>(dados_clean), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb364-34"><a href="introducao-a-modelagem-dados.html#cb364-34" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Proporção removida:&quot;</span>, <span class="fu">round</span>(prop_removidas, <span class="dv">2</span>), <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>-&gt; VALORES AUSENTES (NA)
 -&gt; ---------------------
 -&gt; Total de observações (linhas) sem valores no dataset: 314 
@@ -905,52 +906,52 @@ Tipos de Modelos quanto ao Aprendizados
 <ul>
 <li>Inconsistências lógicas entre variáveis (por exemplo, <code>livingArea = 0</code> para imóveis residenciais)</li>
 </ul>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="introducao-a-modelagem-dados.html#cb361-1" tabindex="-1"></a><span class="co"># Armazenar número original de observações</span></span>
-<span id="cb361-2"><a href="introducao-a-modelagem-dados.html#cb361-2" tabindex="-1"></a>n_original <span class="ot">&lt;-</span> <span class="fu">nrow</span>(dados_clean)</span>
-<span id="cb361-3"><a href="introducao-a-modelagem-dados.html#cb361-3" tabindex="-1"></a></span>
-<span id="cb361-4"><a href="introducao-a-modelagem-dados.html#cb361-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;INCONSISTÊNCIAS DETECTADAS</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb361-5"><a href="introducao-a-modelagem-dados.html#cb361-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;--------------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb361-6"><a href="introducao-a-modelagem-dados.html#cb361-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Imóveis com área habitável igual a zero:&quot;</span>, </span>
-<span id="cb361-7"><a href="introducao-a-modelagem-dados.html#cb361-7" tabindex="-1"></a>    <span class="fu">sum</span>(dados_clean<span class="sc">$</span>livingArea <span class="sc">==</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb361-8"><a href="introducao-a-modelagem-dados.html#cb361-8" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Imóveis com ano de construção igual a zero:&quot;</span>, </span>
-<span id="cb361-9"><a href="introducao-a-modelagem-dados.html#cb361-9" tabindex="-1"></a>    <span class="fu">sum</span>(dados_clean<span class="sc">$</span>yearBuilt <span class="sc">==</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb361-10"><a href="introducao-a-modelagem-dados.html#cb361-10" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Imóveis com preço igual a zero:&quot;</span>, </span>
-<span id="cb361-11"><a href="introducao-a-modelagem-dados.html#cb361-11" tabindex="-1"></a>    <span class="fu">sum</span>(dados_clean<span class="sc">$</span>price <span class="sc">==</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb361-12"><a href="introducao-a-modelagem-dados.html#cb361-12" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Imóveis com número de quartos igual a zero (exceto lotes):&quot;</span>, </span>
-<span id="cb361-13"><a href="introducao-a-modelagem-dados.html#cb361-13" tabindex="-1"></a>    <span class="fu">sum</span>(dados_clean<span class="sc">$</span>bedrooms <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> dados_clean<span class="sc">$</span>homeType <span class="sc">!=</span> <span class="st">&quot;LOT&quot;</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
-<span id="cb361-14"><a href="introducao-a-modelagem-dados.html#cb361-14" tabindex="-1"></a></span>
-<span id="cb361-15"><a href="introducao-a-modelagem-dados.html#cb361-15" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;VALORES NEGATIVOS</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb361-16"><a href="introducao-a-modelagem-dados.html#cb361-16" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;-----------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb361-17"><a href="introducao-a-modelagem-dados.html#cb361-17" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Preços negativos:&quot;</span>, <span class="fu">sum</span>(dados_clean<span class="sc">$</span>price <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb361-18"><a href="introducao-a-modelagem-dados.html#cb361-18" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Áreas habitáveis negativas:&quot;</span>, <span class="fu">sum</span>(dados_clean<span class="sc">$</span>livingArea <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb361-19"><a href="introducao-a-modelagem-dados.html#cb361-19" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Número de quartos negativos:&quot;</span>, <span class="fu">sum</span>(dados_clean<span class="sc">$</span>bedrooms <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb361-20"><a href="introducao-a-modelagem-dados.html#cb361-20" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Número de banheiros negativos:&quot;</span>, <span class="fu">sum</span>(dados_clean<span class="sc">$</span>bathrooms <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
-<span id="cb361-21"><a href="introducao-a-modelagem-dados.html#cb361-21" tabindex="-1"></a></span>
-<span id="cb361-22"><a href="introducao-a-modelagem-dados.html#cb361-22" tabindex="-1"></a><span class="co"># Remoção de observações com inconsistências</span></span>
-<span id="cb361-23"><a href="introducao-a-modelagem-dados.html#cb361-23" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;REMOÇÃO DE OBSERVAÇÕES COM INCONSISTÊNCIAS</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb361-24"><a href="introducao-a-modelagem-dados.html#cb361-24" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;-------------------------------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb361-25"><a href="introducao-a-modelagem-dados.html#cb361-25" tabindex="-1"></a></span>
-<span id="cb361-26"><a href="introducao-a-modelagem-dados.html#cb361-26" tabindex="-1"></a><span class="co"># Criar filtros para remover inconsistências</span></span>
-<span id="cb361-27"><a href="introducao-a-modelagem-dados.html#cb361-27" tabindex="-1"></a>filtro <span class="ot">&lt;-</span> dados_clean<span class="sc">$</span>livingArea <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> </span>
-<span id="cb361-28"><a href="introducao-a-modelagem-dados.html#cb361-28" tabindex="-1"></a>          dados_clean<span class="sc">$</span>yearBuilt <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> </span>
-<span id="cb361-29"><a href="introducao-a-modelagem-dados.html#cb361-29" tabindex="-1"></a>          dados_clean<span class="sc">$</span>price <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> </span>
-<span id="cb361-30"><a href="introducao-a-modelagem-dados.html#cb361-30" tabindex="-1"></a>          <span class="sc">!</span>(dados_clean<span class="sc">$</span>bedrooms <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> dados_clean<span class="sc">$</span>homeType <span class="sc">!=</span> <span class="st">&quot;LOT&quot;</span>) <span class="sc">&amp;</span></span>
-<span id="cb361-31"><a href="introducao-a-modelagem-dados.html#cb361-31" tabindex="-1"></a>          dados_clean<span class="sc">$</span>price <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span></span>
-<span id="cb361-32"><a href="introducao-a-modelagem-dados.html#cb361-32" tabindex="-1"></a>          dados_clean<span class="sc">$</span>livingArea <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span></span>
-<span id="cb361-33"><a href="introducao-a-modelagem-dados.html#cb361-33" tabindex="-1"></a>          dados_clean<span class="sc">$</span>bedrooms <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span></span>
-<span id="cb361-34"><a href="introducao-a-modelagem-dados.html#cb361-34" tabindex="-1"></a>          dados_clean<span class="sc">$</span>bathrooms <span class="sc">&gt;=</span> <span class="dv">0</span></span>
-<span id="cb361-35"><a href="introducao-a-modelagem-dados.html#cb361-35" tabindex="-1"></a></span>
-<span id="cb361-36"><a href="introducao-a-modelagem-dados.html#cb361-36" tabindex="-1"></a><span class="co"># Aplicar filtro</span></span>
-<span id="cb361-37"><a href="introducao-a-modelagem-dados.html#cb361-37" tabindex="-1"></a>dados_clean <span class="ot">&lt;-</span> dados_clean[filtro, ]</span>
-<span id="cb361-38"><a href="introducao-a-modelagem-dados.html#cb361-38" tabindex="-1"></a></span>
-<span id="cb361-39"><a href="introducao-a-modelagem-dados.html#cb361-39" tabindex="-1"></a><span class="co"># Relatório de remoção</span></span>
-<span id="cb361-40"><a href="introducao-a-modelagem-dados.html#cb361-40" tabindex="-1"></a>n_removidas <span class="ot">&lt;-</span> n_original <span class="sc">-</span> <span class="fu">nrow</span>(dados_clean)</span>
-<span id="cb361-41"><a href="introducao-a-modelagem-dados.html#cb361-41" tabindex="-1"></a>prop_removidas <span class="ot">&lt;-</span> (n_removidas <span class="sc">/</span> n_original) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb361-42"><a href="introducao-a-modelagem-dados.html#cb361-42" tabindex="-1"></a></span>
-<span id="cb361-43"><a href="introducao-a-modelagem-dados.html#cb361-43" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações originais:&quot;</span>, n_original, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb361-44"><a href="introducao-a-modelagem-dados.html#cb361-44" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações removidas:&quot;</span>, n_removidas, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb361-45"><a href="introducao-a-modelagem-dados.html#cb361-45" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações mantidas:&quot;</span>, <span class="fu">nrow</span>(dados_clean), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb361-46"><a href="introducao-a-modelagem-dados.html#cb361-46" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Proporção removida:&quot;</span>, <span class="fu">round</span>(prop_removidas, <span class="dv">2</span>), <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="introducao-a-modelagem-dados.html#cb366-1" tabindex="-1"></a><span class="co"># Armazenar número original de observações</span></span>
+<span id="cb366-2"><a href="introducao-a-modelagem-dados.html#cb366-2" tabindex="-1"></a>n_original <span class="ot">&lt;-</span> <span class="fu">nrow</span>(dados_clean)</span>
+<span id="cb366-3"><a href="introducao-a-modelagem-dados.html#cb366-3" tabindex="-1"></a></span>
+<span id="cb366-4"><a href="introducao-a-modelagem-dados.html#cb366-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;INCONSISTÊNCIAS DETECTADAS</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb366-5"><a href="introducao-a-modelagem-dados.html#cb366-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;--------------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb366-6"><a href="introducao-a-modelagem-dados.html#cb366-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Imóveis com área habitável igual a zero:&quot;</span>, </span>
+<span id="cb366-7"><a href="introducao-a-modelagem-dados.html#cb366-7" tabindex="-1"></a>    <span class="fu">sum</span>(dados_clean<span class="sc">$</span>livingArea <span class="sc">==</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb366-8"><a href="introducao-a-modelagem-dados.html#cb366-8" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Imóveis com ano de construção igual a zero:&quot;</span>, </span>
+<span id="cb366-9"><a href="introducao-a-modelagem-dados.html#cb366-9" tabindex="-1"></a>    <span class="fu">sum</span>(dados_clean<span class="sc">$</span>yearBuilt <span class="sc">==</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb366-10"><a href="introducao-a-modelagem-dados.html#cb366-10" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Imóveis com preço igual a zero:&quot;</span>, </span>
+<span id="cb366-11"><a href="introducao-a-modelagem-dados.html#cb366-11" tabindex="-1"></a>    <span class="fu">sum</span>(dados_clean<span class="sc">$</span>price <span class="sc">==</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb366-12"><a href="introducao-a-modelagem-dados.html#cb366-12" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Imóveis com número de quartos igual a zero (exceto lotes):&quot;</span>, </span>
+<span id="cb366-13"><a href="introducao-a-modelagem-dados.html#cb366-13" tabindex="-1"></a>    <span class="fu">sum</span>(dados_clean<span class="sc">$</span>bedrooms <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> dados_clean<span class="sc">$</span>homeType <span class="sc">!=</span> <span class="st">&quot;LOT&quot;</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
+<span id="cb366-14"><a href="introducao-a-modelagem-dados.html#cb366-14" tabindex="-1"></a></span>
+<span id="cb366-15"><a href="introducao-a-modelagem-dados.html#cb366-15" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;VALORES NEGATIVOS</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb366-16"><a href="introducao-a-modelagem-dados.html#cb366-16" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;-----------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb366-17"><a href="introducao-a-modelagem-dados.html#cb366-17" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Preços negativos:&quot;</span>, <span class="fu">sum</span>(dados_clean<span class="sc">$</span>price <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb366-18"><a href="introducao-a-modelagem-dados.html#cb366-18" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Áreas habitáveis negativas:&quot;</span>, <span class="fu">sum</span>(dados_clean<span class="sc">$</span>livingArea <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb366-19"><a href="introducao-a-modelagem-dados.html#cb366-19" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Número de quartos negativos:&quot;</span>, <span class="fu">sum</span>(dados_clean<span class="sc">$</span>bedrooms <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb366-20"><a href="introducao-a-modelagem-dados.html#cb366-20" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Número de banheiros negativos:&quot;</span>, <span class="fu">sum</span>(dados_clean<span class="sc">$</span>bathrooms <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
+<span id="cb366-21"><a href="introducao-a-modelagem-dados.html#cb366-21" tabindex="-1"></a></span>
+<span id="cb366-22"><a href="introducao-a-modelagem-dados.html#cb366-22" tabindex="-1"></a><span class="co"># Remoção de observações com inconsistências</span></span>
+<span id="cb366-23"><a href="introducao-a-modelagem-dados.html#cb366-23" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;REMOÇÃO DE OBSERVAÇÕES COM INCONSISTÊNCIAS</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb366-24"><a href="introducao-a-modelagem-dados.html#cb366-24" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;-------------------------------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb366-25"><a href="introducao-a-modelagem-dados.html#cb366-25" tabindex="-1"></a></span>
+<span id="cb366-26"><a href="introducao-a-modelagem-dados.html#cb366-26" tabindex="-1"></a><span class="co"># Criar filtros para remover inconsistências</span></span>
+<span id="cb366-27"><a href="introducao-a-modelagem-dados.html#cb366-27" tabindex="-1"></a>filtro <span class="ot">&lt;-</span> dados_clean<span class="sc">$</span>livingArea <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> </span>
+<span id="cb366-28"><a href="introducao-a-modelagem-dados.html#cb366-28" tabindex="-1"></a>          dados_clean<span class="sc">$</span>yearBuilt <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> </span>
+<span id="cb366-29"><a href="introducao-a-modelagem-dados.html#cb366-29" tabindex="-1"></a>          dados_clean<span class="sc">$</span>price <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> </span>
+<span id="cb366-30"><a href="introducao-a-modelagem-dados.html#cb366-30" tabindex="-1"></a>          <span class="sc">!</span>(dados_clean<span class="sc">$</span>bedrooms <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> dados_clean<span class="sc">$</span>homeType <span class="sc">!=</span> <span class="st">&quot;LOT&quot;</span>) <span class="sc">&amp;</span></span>
+<span id="cb366-31"><a href="introducao-a-modelagem-dados.html#cb366-31" tabindex="-1"></a>          dados_clean<span class="sc">$</span>price <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span></span>
+<span id="cb366-32"><a href="introducao-a-modelagem-dados.html#cb366-32" tabindex="-1"></a>          dados_clean<span class="sc">$</span>livingArea <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span></span>
+<span id="cb366-33"><a href="introducao-a-modelagem-dados.html#cb366-33" tabindex="-1"></a>          dados_clean<span class="sc">$</span>bedrooms <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span></span>
+<span id="cb366-34"><a href="introducao-a-modelagem-dados.html#cb366-34" tabindex="-1"></a>          dados_clean<span class="sc">$</span>bathrooms <span class="sc">&gt;=</span> <span class="dv">0</span></span>
+<span id="cb366-35"><a href="introducao-a-modelagem-dados.html#cb366-35" tabindex="-1"></a></span>
+<span id="cb366-36"><a href="introducao-a-modelagem-dados.html#cb366-36" tabindex="-1"></a><span class="co"># Aplicar filtro</span></span>
+<span id="cb366-37"><a href="introducao-a-modelagem-dados.html#cb366-37" tabindex="-1"></a>dados_clean <span class="ot">&lt;-</span> dados_clean[filtro, ]</span>
+<span id="cb366-38"><a href="introducao-a-modelagem-dados.html#cb366-38" tabindex="-1"></a></span>
+<span id="cb366-39"><a href="introducao-a-modelagem-dados.html#cb366-39" tabindex="-1"></a><span class="co"># Relatório de remoção</span></span>
+<span id="cb366-40"><a href="introducao-a-modelagem-dados.html#cb366-40" tabindex="-1"></a>n_removidas <span class="ot">&lt;-</span> n_original <span class="sc">-</span> <span class="fu">nrow</span>(dados_clean)</span>
+<span id="cb366-41"><a href="introducao-a-modelagem-dados.html#cb366-41" tabindex="-1"></a>prop_removidas <span class="ot">&lt;-</span> (n_removidas <span class="sc">/</span> n_original) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb366-42"><a href="introducao-a-modelagem-dados.html#cb366-42" tabindex="-1"></a></span>
+<span id="cb366-43"><a href="introducao-a-modelagem-dados.html#cb366-43" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações originais:&quot;</span>, n_original, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb366-44"><a href="introducao-a-modelagem-dados.html#cb366-44" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações removidas:&quot;</span>, n_removidas, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb366-45"><a href="introducao-a-modelagem-dados.html#cb366-45" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações mantidas:&quot;</span>, <span class="fu">nrow</span>(dados_clean), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb366-46"><a href="introducao-a-modelagem-dados.html#cb366-46" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Proporção removida:&quot;</span>, <span class="fu">round</span>(prop_removidas, <span class="dv">2</span>), <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>-&gt; INCONSISTÊNCIAS DETECTADAS
 -&gt; --------------------------
 -&gt; Imóveis com área habitável igual a zero: 6726 
@@ -976,48 +977,48 @@ Tipos de Modelos quanto ao Aprendizados
 <li>Registros duplicados que distorcem as estatísticas descritivas:</li>
 </ul>
 <p><br></p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="introducao-a-modelagem-dados.html#cb363-1" tabindex="-1"></a><span class="co"># Armazenar número original de observações</span></span>
-<span id="cb363-2"><a href="introducao-a-modelagem-dados.html#cb363-2" tabindex="-1"></a>n_original <span class="ot">&lt;-</span> <span class="fu">nrow</span>(dados_clean)</span>
-<span id="cb363-3"><a href="introducao-a-modelagem-dados.html#cb363-3" tabindex="-1"></a></span>
-<span id="cb363-4"><a href="introducao-a-modelagem-dados.html#cb363-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;IDENTIFICADOR ÚNICO</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb363-5"><a href="introducao-a-modelagem-dados.html#cb363-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;-------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb363-6"><a href="introducao-a-modelagem-dados.html#cb363-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Número de IDs únicos:&quot;</span>, <span class="fu">length</span>(<span class="fu">unique</span>(dados_clean<span class="sc">$</span>id)), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb363-7"><a href="introducao-a-modelagem-dados.html#cb363-7" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Número total de observações:&quot;</span>, <span class="fu">nrow</span>(dados_clean), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb363-8"><a href="introducao-a-modelagem-dados.html#cb363-8" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;IDs duplicados:&quot;</span>, <span class="fu">sum</span>(<span class="fu">duplicated</span>(dados_clean<span class="sc">$</span>id)), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb363-9"><a href="introducao-a-modelagem-dados.html#cb363-9" tabindex="-1"></a></span>
-<span id="cb363-10"><a href="introducao-a-modelagem-dados.html#cb363-10" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">sum</span>(<span class="fu">duplicated</span>(dados_clean<span class="sc">$</span>id)) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb363-11"><a href="introducao-a-modelagem-dados.html#cb363-11" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">ALERTA: Existem IDs duplicados no dataset!</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb363-12"><a href="introducao-a-modelagem-dados.html#cb363-12" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;IDs que aparecem mais de uma vez:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb363-13"><a href="introducao-a-modelagem-dados.html#cb363-13" tabindex="-1"></a>  id_counts <span class="ot">&lt;-</span> <span class="fu">table</span>(dados_clean<span class="sc">$</span>id)</span>
-<span id="cb363-14"><a href="introducao-a-modelagem-dados.html#cb363-14" tabindex="-1"></a>  dup_ids <span class="ot">&lt;-</span> <span class="fu">names</span>(id_counts[id_counts <span class="sc">&gt;</span> <span class="dv">1</span>])</span>
-<span id="cb363-15"><a href="introducao-a-modelagem-dados.html#cb363-15" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">min</span>(<span class="dv">5</span>, <span class="fu">length</span>(dup_ids))) {</span>
-<span id="cb363-16"><a href="introducao-a-modelagem-dados.html#cb363-16" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;  - ID:&quot;</span>, dup_ids[i], <span class="st">&quot;aparece&quot;</span>, id_counts[dup_ids[i]], <span class="st">&quot;vezes</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb363-17"><a href="introducao-a-modelagem-dados.html#cb363-17" tabindex="-1"></a>  }</span>
-<span id="cb363-18"><a href="introducao-a-modelagem-dados.html#cb363-18" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">length</span>(dup_ids) <span class="sc">&gt;</span> <span class="dv">5</span>) {</span>
-<span id="cb363-19"><a href="introducao-a-modelagem-dados.html#cb363-19" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;  ... e mais&quot;</span>, <span class="fu">length</span>(dup_ids) <span class="sc">-</span> <span class="dv">5</span>, <span class="st">&quot;IDs duplicados</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb363-20"><a href="introducao-a-modelagem-dados.html#cb363-20" tabindex="-1"></a>  }</span>
-<span id="cb363-21"><a href="introducao-a-modelagem-dados.html#cb363-21" tabindex="-1"></a>}</span>
-<span id="cb363-22"><a href="introducao-a-modelagem-dados.html#cb363-22" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb363-23"><a href="introducao-a-modelagem-dados.html#cb363-23" tabindex="-1"></a></span>
-<span id="cb363-24"><a href="introducao-a-modelagem-dados.html#cb363-24" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;OBSERVAÇÕES DUPLICADAS (linhas inteiramente idênticas)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb363-25"><a href="introducao-a-modelagem-dados.html#cb363-25" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;------------------------------------------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb363-26"><a href="introducao-a-modelagem-dados.html#cb363-26" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Número de observações duplicadas:&quot;</span>, <span class="fu">sum</span>(<span class="fu">duplicated</span>(dados_clean)), <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
-<span id="cb363-27"><a href="introducao-a-modelagem-dados.html#cb363-27" tabindex="-1"></a></span>
-<span id="cb363-28"><a href="introducao-a-modelagem-dados.html#cb363-28" tabindex="-1"></a><span class="co"># Remoção de observações duplicadas</span></span>
-<span id="cb363-29"><a href="introducao-a-modelagem-dados.html#cb363-29" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;REMOÇÃO DE OBSERVAÇÕES DUPLICADAS</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb363-30"><a href="introducao-a-modelagem-dados.html#cb363-30" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;----------------------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb363-31"><a href="introducao-a-modelagem-dados.html#cb363-31" tabindex="-1"></a></span>
-<span id="cb363-32"><a href="introducao-a-modelagem-dados.html#cb363-32" tabindex="-1"></a><span class="co"># Remover duplicatas (mantém a primeira ocorrência)</span></span>
-<span id="cb363-33"><a href="introducao-a-modelagem-dados.html#cb363-33" tabindex="-1"></a>dados_clean <span class="ot">&lt;-</span> dados_clean[<span class="sc">!</span><span class="fu">duplicated</span>(dados_clean), ]</span>
-<span id="cb363-34"><a href="introducao-a-modelagem-dados.html#cb363-34" tabindex="-1"></a></span>
-<span id="cb363-35"><a href="introducao-a-modelagem-dados.html#cb363-35" tabindex="-1"></a><span class="co"># Relatório de remoção</span></span>
-<span id="cb363-36"><a href="introducao-a-modelagem-dados.html#cb363-36" tabindex="-1"></a>n_removidas <span class="ot">&lt;-</span> n_original <span class="sc">-</span> <span class="fu">nrow</span>(dados_clean)</span>
-<span id="cb363-37"><a href="introducao-a-modelagem-dados.html#cb363-37" tabindex="-1"></a>prop_removidas <span class="ot">&lt;-</span> (n_removidas <span class="sc">/</span> n_original) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb363-38"><a href="introducao-a-modelagem-dados.html#cb363-38" tabindex="-1"></a></span>
-<span id="cb363-39"><a href="introducao-a-modelagem-dados.html#cb363-39" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações originais:&quot;</span>, n_original, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb363-40"><a href="introducao-a-modelagem-dados.html#cb363-40" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações removidas:&quot;</span>, n_removidas, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb363-41"><a href="introducao-a-modelagem-dados.html#cb363-41" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações mantidas:&quot;</span>, <span class="fu">nrow</span>(dados_clean), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb363-42"><a href="introducao-a-modelagem-dados.html#cb363-42" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Proporção removida:&quot;</span>, <span class="fu">round</span>(prop_removidas, <span class="dv">2</span>), <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="introducao-a-modelagem-dados.html#cb368-1" tabindex="-1"></a><span class="co"># Armazenar número original de observações</span></span>
+<span id="cb368-2"><a href="introducao-a-modelagem-dados.html#cb368-2" tabindex="-1"></a>n_original <span class="ot">&lt;-</span> <span class="fu">nrow</span>(dados_clean)</span>
+<span id="cb368-3"><a href="introducao-a-modelagem-dados.html#cb368-3" tabindex="-1"></a></span>
+<span id="cb368-4"><a href="introducao-a-modelagem-dados.html#cb368-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;IDENTIFICADOR ÚNICO</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb368-5"><a href="introducao-a-modelagem-dados.html#cb368-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;-------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb368-6"><a href="introducao-a-modelagem-dados.html#cb368-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Número de IDs únicos:&quot;</span>, <span class="fu">length</span>(<span class="fu">unique</span>(dados_clean<span class="sc">$</span>id)), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb368-7"><a href="introducao-a-modelagem-dados.html#cb368-7" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Número total de observações:&quot;</span>, <span class="fu">nrow</span>(dados_clean), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb368-8"><a href="introducao-a-modelagem-dados.html#cb368-8" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;IDs duplicados:&quot;</span>, <span class="fu">sum</span>(<span class="fu">duplicated</span>(dados_clean<span class="sc">$</span>id)), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb368-9"><a href="introducao-a-modelagem-dados.html#cb368-9" tabindex="-1"></a></span>
+<span id="cb368-10"><a href="introducao-a-modelagem-dados.html#cb368-10" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">sum</span>(<span class="fu">duplicated</span>(dados_clean<span class="sc">$</span>id)) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb368-11"><a href="introducao-a-modelagem-dados.html#cb368-11" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">ALERTA: Existem IDs duplicados no dataset!</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb368-12"><a href="introducao-a-modelagem-dados.html#cb368-12" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;IDs que aparecem mais de uma vez:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb368-13"><a href="introducao-a-modelagem-dados.html#cb368-13" tabindex="-1"></a>  id_counts <span class="ot">&lt;-</span> <span class="fu">table</span>(dados_clean<span class="sc">$</span>id)</span>
+<span id="cb368-14"><a href="introducao-a-modelagem-dados.html#cb368-14" tabindex="-1"></a>  dup_ids <span class="ot">&lt;-</span> <span class="fu">names</span>(id_counts[id_counts <span class="sc">&gt;</span> <span class="dv">1</span>])</span>
+<span id="cb368-15"><a href="introducao-a-modelagem-dados.html#cb368-15" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">min</span>(<span class="dv">5</span>, <span class="fu">length</span>(dup_ids))) {</span>
+<span id="cb368-16"><a href="introducao-a-modelagem-dados.html#cb368-16" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;  - ID:&quot;</span>, dup_ids[i], <span class="st">&quot;aparece&quot;</span>, id_counts[dup_ids[i]], <span class="st">&quot;vezes</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb368-17"><a href="introducao-a-modelagem-dados.html#cb368-17" tabindex="-1"></a>  }</span>
+<span id="cb368-18"><a href="introducao-a-modelagem-dados.html#cb368-18" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">length</span>(dup_ids) <span class="sc">&gt;</span> <span class="dv">5</span>) {</span>
+<span id="cb368-19"><a href="introducao-a-modelagem-dados.html#cb368-19" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;  ... e mais&quot;</span>, <span class="fu">length</span>(dup_ids) <span class="sc">-</span> <span class="dv">5</span>, <span class="st">&quot;IDs duplicados</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb368-20"><a href="introducao-a-modelagem-dados.html#cb368-20" tabindex="-1"></a>  }</span>
+<span id="cb368-21"><a href="introducao-a-modelagem-dados.html#cb368-21" tabindex="-1"></a>}</span>
+<span id="cb368-22"><a href="introducao-a-modelagem-dados.html#cb368-22" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb368-23"><a href="introducao-a-modelagem-dados.html#cb368-23" tabindex="-1"></a></span>
+<span id="cb368-24"><a href="introducao-a-modelagem-dados.html#cb368-24" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;OBSERVAÇÕES DUPLICADAS (linhas inteiramente idênticas)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb368-25"><a href="introducao-a-modelagem-dados.html#cb368-25" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;------------------------------------------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb368-26"><a href="introducao-a-modelagem-dados.html#cb368-26" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Número de observações duplicadas:&quot;</span>, <span class="fu">sum</span>(<span class="fu">duplicated</span>(dados_clean)), <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
+<span id="cb368-27"><a href="introducao-a-modelagem-dados.html#cb368-27" tabindex="-1"></a></span>
+<span id="cb368-28"><a href="introducao-a-modelagem-dados.html#cb368-28" tabindex="-1"></a><span class="co"># Remoção de observações duplicadas</span></span>
+<span id="cb368-29"><a href="introducao-a-modelagem-dados.html#cb368-29" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;REMOÇÃO DE OBSERVAÇÕES DUPLICADAS</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb368-30"><a href="introducao-a-modelagem-dados.html#cb368-30" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;----------------------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb368-31"><a href="introducao-a-modelagem-dados.html#cb368-31" tabindex="-1"></a></span>
+<span id="cb368-32"><a href="introducao-a-modelagem-dados.html#cb368-32" tabindex="-1"></a><span class="co"># Remover duplicatas (mantém a primeira ocorrência)</span></span>
+<span id="cb368-33"><a href="introducao-a-modelagem-dados.html#cb368-33" tabindex="-1"></a>dados_clean <span class="ot">&lt;-</span> dados_clean[<span class="sc">!</span><span class="fu">duplicated</span>(dados_clean), ]</span>
+<span id="cb368-34"><a href="introducao-a-modelagem-dados.html#cb368-34" tabindex="-1"></a></span>
+<span id="cb368-35"><a href="introducao-a-modelagem-dados.html#cb368-35" tabindex="-1"></a><span class="co"># Relatório de remoção</span></span>
+<span id="cb368-36"><a href="introducao-a-modelagem-dados.html#cb368-36" tabindex="-1"></a>n_removidas <span class="ot">&lt;-</span> n_original <span class="sc">-</span> <span class="fu">nrow</span>(dados_clean)</span>
+<span id="cb368-37"><a href="introducao-a-modelagem-dados.html#cb368-37" tabindex="-1"></a>prop_removidas <span class="ot">&lt;-</span> (n_removidas <span class="sc">/</span> n_original) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb368-38"><a href="introducao-a-modelagem-dados.html#cb368-38" tabindex="-1"></a></span>
+<span id="cb368-39"><a href="introducao-a-modelagem-dados.html#cb368-39" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações originais:&quot;</span>, n_original, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb368-40"><a href="introducao-a-modelagem-dados.html#cb368-40" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações removidas:&quot;</span>, n_removidas, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb368-41"><a href="introducao-a-modelagem-dados.html#cb368-41" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações mantidas:&quot;</span>, <span class="fu">nrow</span>(dados_clean), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb368-42"><a href="introducao-a-modelagem-dados.html#cb368-42" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Proporção removida:&quot;</span>, <span class="fu">round</span>(prop_removidas, <span class="dv">2</span>), <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>-&gt; IDENTIFICADOR ÚNICO
 -&gt; -------------------
 -&gt; Número de IDs únicos: 23318 
@@ -1048,49 +1049,49 @@ Tipos de Modelos quanto ao Aprendizados
 <li>Valores atípicos extremos que não representam a população de interesse</li>
 </ul>
 <p><br></p>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="introducao-a-modelagem-dados.html#cb365-1" tabindex="-1"></a><span class="co"># Armazenar número original de observações</span></span>
-<span id="cb365-2"><a href="introducao-a-modelagem-dados.html#cb365-2" tabindex="-1"></a>n_original <span class="ot">&lt;-</span> <span class="fu">nrow</span>(dados_clean)</span>
-<span id="cb365-3"><a href="introducao-a-modelagem-dados.html#cb365-3" tabindex="-1"></a></span>
-<span id="cb365-4"><a href="introducao-a-modelagem-dados.html#cb365-4" tabindex="-1"></a><span class="co"># Definir variáveis contínuas para análise de outliers</span></span>
-<span id="cb365-5"><a href="introducao-a-modelagem-dados.html#cb365-5" tabindex="-1"></a>vars_continuas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;price&quot;</span>, <span class="st">&quot;pricePerSquareFoot&quot;</span>, <span class="st">&quot;livingArea&quot;</span>, </span>
-<span id="cb365-6"><a href="introducao-a-modelagem-dados.html#cb365-6" tabindex="-1"></a>                    <span class="st">&quot;buildingArea&quot;</span>, <span class="st">&quot;bedrooms&quot;</span>, <span class="st">&quot;bathrooms&quot;</span>)</span>
-<span id="cb365-7"><a href="introducao-a-modelagem-dados.html#cb365-7" tabindex="-1"></a></span>
-<span id="cb365-8"><a href="introducao-a-modelagem-dados.html#cb365-8" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;REMOÇÃO DE VALORES ATÍPICOS EXTREMOS</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb365-9"><a href="introducao-a-modelagem-dados.html#cb365-9" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;====================================</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
-<span id="cb365-10"><a href="introducao-a-modelagem-dados.html#cb365-10" tabindex="-1"></a></span>
-<span id="cb365-11"><a href="introducao-a-modelagem-dados.html#cb365-11" tabindex="-1"></a><span class="co"># Calcular quantis para cada variável</span></span>
-<span id="cb365-12"><a href="introducao-a-modelagem-dados.html#cb365-12" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Limites dos quantis (0.01 e 0.99) por variável:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb365-13"><a href="introducao-a-modelagem-dados.html#cb365-13" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;------------------------------------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb365-14"><a href="introducao-a-modelagem-dados.html#cb365-14" tabindex="-1"></a></span>
-<span id="cb365-15"><a href="introducao-a-modelagem-dados.html#cb365-15" tabindex="-1"></a><span class="cf">for</span>(var <span class="cf">in</span> vars_continuas) {</span>
-<span id="cb365-16"><a href="introducao-a-modelagem-dados.html#cb365-16" tabindex="-1"></a>  q01 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(dados_clean[[var]], <span class="fl">0.01</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb365-17"><a href="introducao-a-modelagem-dados.html#cb365-17" tabindex="-1"></a>  q99 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(dados_clean[[var]], <span class="fl">0.99</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb365-18"><a href="introducao-a-modelagem-dados.html#cb365-18" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;%-20s: Q0.01 = %10.2f | Q0.99 = %10.2f</span><span class="sc">\n</span><span class="st">&quot;</span>, var, q01, q99))</span>
-<span id="cb365-19"><a href="introducao-a-modelagem-dados.html#cb365-19" tabindex="-1"></a>}</span>
-<span id="cb365-20"><a href="introducao-a-modelagem-dados.html#cb365-20" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb365-21"><a href="introducao-a-modelagem-dados.html#cb365-21" tabindex="-1"></a></span>
-<span id="cb365-22"><a href="introducao-a-modelagem-dados.html#cb365-22" tabindex="-1"></a><span class="co"># Criar filtro para manter observações dentro dos limites</span></span>
-<span id="cb365-23"><a href="introducao-a-modelagem-dados.html#cb365-23" tabindex="-1"></a>filtro <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">TRUE</span>, <span class="fu">nrow</span>(dados_clean))</span>
-<span id="cb365-24"><a href="introducao-a-modelagem-dados.html#cb365-24" tabindex="-1"></a></span>
-<span id="cb365-25"><a href="introducao-a-modelagem-dados.html#cb365-25" tabindex="-1"></a><span class="cf">for</span>(var <span class="cf">in</span> vars_continuas) {</span>
-<span id="cb365-26"><a href="introducao-a-modelagem-dados.html#cb365-26" tabindex="-1"></a>  q01 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(dados_clean[[var]], <span class="fl">0.01</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb365-27"><a href="introducao-a-modelagem-dados.html#cb365-27" tabindex="-1"></a>  q99 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(dados_clean[[var]], <span class="fl">0.99</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb365-28"><a href="introducao-a-modelagem-dados.html#cb365-28" tabindex="-1"></a>  filtro <span class="ot">&lt;-</span> filtro <span class="sc">&amp;</span> (dados_clean[[var]] <span class="sc">&gt;=</span> q01 <span class="sc">&amp;</span> dados_clean[[var]] <span class="sc">&lt;=</span> q99 <span class="sc">|</span> <span class="fu">is.na</span>(dados_clean[[var]]))</span>
-<span id="cb365-29"><a href="introducao-a-modelagem-dados.html#cb365-29" tabindex="-1"></a>}</span>
-<span id="cb365-30"><a href="introducao-a-modelagem-dados.html#cb365-30" tabindex="-1"></a></span>
-<span id="cb365-31"><a href="introducao-a-modelagem-dados.html#cb365-31" tabindex="-1"></a><span class="co"># Aplicar filtro</span></span>
-<span id="cb365-32"><a href="introducao-a-modelagem-dados.html#cb365-32" tabindex="-1"></a>dados_clean <span class="ot">&lt;-</span> dados_clean[filtro, ]</span>
-<span id="cb365-33"><a href="introducao-a-modelagem-dados.html#cb365-33" tabindex="-1"></a></span>
-<span id="cb365-34"><a href="introducao-a-modelagem-dados.html#cb365-34" tabindex="-1"></a><span class="co"># Relatório de remoção</span></span>
-<span id="cb365-35"><a href="introducao-a-modelagem-dados.html#cb365-35" tabindex="-1"></a>n_removidas <span class="ot">&lt;-</span> n_original <span class="sc">-</span> <span class="fu">nrow</span>(dados_clean)</span>
-<span id="cb365-36"><a href="introducao-a-modelagem-dados.html#cb365-36" tabindex="-1"></a>prop_removidas <span class="ot">&lt;-</span> (n_removidas <span class="sc">/</span> n_original) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb365-37"><a href="introducao-a-modelagem-dados.html#cb365-37" tabindex="-1"></a></span>
-<span id="cb365-38"><a href="introducao-a-modelagem-dados.html#cb365-38" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;RESUMO DA REMOÇÃO</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb365-39"><a href="introducao-a-modelagem-dados.html#cb365-39" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;-----------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb365-40"><a href="introducao-a-modelagem-dados.html#cb365-40" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações originais:&quot;</span>, n_original, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb365-41"><a href="introducao-a-modelagem-dados.html#cb365-41" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações removidas:&quot;</span>, n_removidas, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb365-42"><a href="introducao-a-modelagem-dados.html#cb365-42" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações mantidas:&quot;</span>, <span class="fu">nrow</span>(dados_clean), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb365-43"><a href="introducao-a-modelagem-dados.html#cb365-43" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Proporção removida:&quot;</span>, <span class="fu">round</span>(prop_removidas, <span class="dv">2</span>), <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="introducao-a-modelagem-dados.html#cb370-1" tabindex="-1"></a><span class="co"># Armazenar número original de observações</span></span>
+<span id="cb370-2"><a href="introducao-a-modelagem-dados.html#cb370-2" tabindex="-1"></a>n_original <span class="ot">&lt;-</span> <span class="fu">nrow</span>(dados_clean)</span>
+<span id="cb370-3"><a href="introducao-a-modelagem-dados.html#cb370-3" tabindex="-1"></a></span>
+<span id="cb370-4"><a href="introducao-a-modelagem-dados.html#cb370-4" tabindex="-1"></a><span class="co"># Definir variáveis contínuas para análise de outliers</span></span>
+<span id="cb370-5"><a href="introducao-a-modelagem-dados.html#cb370-5" tabindex="-1"></a>vars_continuas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;price&quot;</span>, <span class="st">&quot;pricePerSquareFoot&quot;</span>, <span class="st">&quot;livingArea&quot;</span>, </span>
+<span id="cb370-6"><a href="introducao-a-modelagem-dados.html#cb370-6" tabindex="-1"></a>                    <span class="st">&quot;buildingArea&quot;</span>, <span class="st">&quot;bedrooms&quot;</span>, <span class="st">&quot;bathrooms&quot;</span>)</span>
+<span id="cb370-7"><a href="introducao-a-modelagem-dados.html#cb370-7" tabindex="-1"></a></span>
+<span id="cb370-8"><a href="introducao-a-modelagem-dados.html#cb370-8" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;REMOÇÃO DE VALORES ATÍPICOS EXTREMOS</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb370-9"><a href="introducao-a-modelagem-dados.html#cb370-9" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;====================================</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
+<span id="cb370-10"><a href="introducao-a-modelagem-dados.html#cb370-10" tabindex="-1"></a></span>
+<span id="cb370-11"><a href="introducao-a-modelagem-dados.html#cb370-11" tabindex="-1"></a><span class="co"># Calcular quantis para cada variável</span></span>
+<span id="cb370-12"><a href="introducao-a-modelagem-dados.html#cb370-12" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Limites dos quantis (0.01 e 0.99) por variável:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb370-13"><a href="introducao-a-modelagem-dados.html#cb370-13" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;------------------------------------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb370-14"><a href="introducao-a-modelagem-dados.html#cb370-14" tabindex="-1"></a></span>
+<span id="cb370-15"><a href="introducao-a-modelagem-dados.html#cb370-15" tabindex="-1"></a><span class="cf">for</span>(var <span class="cf">in</span> vars_continuas) {</span>
+<span id="cb370-16"><a href="introducao-a-modelagem-dados.html#cb370-16" tabindex="-1"></a>  q01 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(dados_clean[[var]], <span class="fl">0.01</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb370-17"><a href="introducao-a-modelagem-dados.html#cb370-17" tabindex="-1"></a>  q99 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(dados_clean[[var]], <span class="fl">0.99</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb370-18"><a href="introducao-a-modelagem-dados.html#cb370-18" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">&quot;%-20s: Q0.01 = %10.2f | Q0.99 = %10.2f</span><span class="sc">\n</span><span class="st">&quot;</span>, var, q01, q99))</span>
+<span id="cb370-19"><a href="introducao-a-modelagem-dados.html#cb370-19" tabindex="-1"></a>}</span>
+<span id="cb370-20"><a href="introducao-a-modelagem-dados.html#cb370-20" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb370-21"><a href="introducao-a-modelagem-dados.html#cb370-21" tabindex="-1"></a></span>
+<span id="cb370-22"><a href="introducao-a-modelagem-dados.html#cb370-22" tabindex="-1"></a><span class="co"># Criar filtro para manter observações dentro dos limites</span></span>
+<span id="cb370-23"><a href="introducao-a-modelagem-dados.html#cb370-23" tabindex="-1"></a>filtro <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">TRUE</span>, <span class="fu">nrow</span>(dados_clean))</span>
+<span id="cb370-24"><a href="introducao-a-modelagem-dados.html#cb370-24" tabindex="-1"></a></span>
+<span id="cb370-25"><a href="introducao-a-modelagem-dados.html#cb370-25" tabindex="-1"></a><span class="cf">for</span>(var <span class="cf">in</span> vars_continuas) {</span>
+<span id="cb370-26"><a href="introducao-a-modelagem-dados.html#cb370-26" tabindex="-1"></a>  q01 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(dados_clean[[var]], <span class="fl">0.01</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb370-27"><a href="introducao-a-modelagem-dados.html#cb370-27" tabindex="-1"></a>  q99 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(dados_clean[[var]], <span class="fl">0.99</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb370-28"><a href="introducao-a-modelagem-dados.html#cb370-28" tabindex="-1"></a>  filtro <span class="ot">&lt;-</span> filtro <span class="sc">&amp;</span> (dados_clean[[var]] <span class="sc">&gt;=</span> q01 <span class="sc">&amp;</span> dados_clean[[var]] <span class="sc">&lt;=</span> q99 <span class="sc">|</span> <span class="fu">is.na</span>(dados_clean[[var]]))</span>
+<span id="cb370-29"><a href="introducao-a-modelagem-dados.html#cb370-29" tabindex="-1"></a>}</span>
+<span id="cb370-30"><a href="introducao-a-modelagem-dados.html#cb370-30" tabindex="-1"></a></span>
+<span id="cb370-31"><a href="introducao-a-modelagem-dados.html#cb370-31" tabindex="-1"></a><span class="co"># Aplicar filtro</span></span>
+<span id="cb370-32"><a href="introducao-a-modelagem-dados.html#cb370-32" tabindex="-1"></a>dados_clean <span class="ot">&lt;-</span> dados_clean[filtro, ]</span>
+<span id="cb370-33"><a href="introducao-a-modelagem-dados.html#cb370-33" tabindex="-1"></a></span>
+<span id="cb370-34"><a href="introducao-a-modelagem-dados.html#cb370-34" tabindex="-1"></a><span class="co"># Relatório de remoção</span></span>
+<span id="cb370-35"><a href="introducao-a-modelagem-dados.html#cb370-35" tabindex="-1"></a>n_removidas <span class="ot">&lt;-</span> n_original <span class="sc">-</span> <span class="fu">nrow</span>(dados_clean)</span>
+<span id="cb370-36"><a href="introducao-a-modelagem-dados.html#cb370-36" tabindex="-1"></a>prop_removidas <span class="ot">&lt;-</span> (n_removidas <span class="sc">/</span> n_original) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb370-37"><a href="introducao-a-modelagem-dados.html#cb370-37" tabindex="-1"></a></span>
+<span id="cb370-38"><a href="introducao-a-modelagem-dados.html#cb370-38" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;RESUMO DA REMOÇÃO</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb370-39"><a href="introducao-a-modelagem-dados.html#cb370-39" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;-----------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb370-40"><a href="introducao-a-modelagem-dados.html#cb370-40" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações originais:&quot;</span>, n_original, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb370-41"><a href="introducao-a-modelagem-dados.html#cb370-41" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações removidas:&quot;</span>, n_removidas, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb370-42"><a href="introducao-a-modelagem-dados.html#cb370-42" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações mantidas:&quot;</span>, <span class="fu">nrow</span>(dados_clean), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb370-43"><a href="introducao-a-modelagem-dados.html#cb370-43" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Proporção removida:&quot;</span>, <span class="fu">round</span>(prop_removidas, <span class="dv">2</span>), <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>-&gt; REMOÇÃO DE VALORES ATÍPICOS EXTREMOS
 -&gt; ====================================
 -&gt; 
@@ -1112,28 +1113,28 @@ Tipos de Modelos quanto ao Aprendizados
 <p><br></p>
 <p>Comparando-se o dataset original e o processado:</p>
 <p><br></p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="introducao-a-modelagem-dados.html#cb367-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;RESUMO GERAL: ANTES E DEPOIS DA LIMPEZA</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb367-2"><a href="introducao-a-modelagem-dados.html#cb367-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;========================================</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
-<span id="cb367-3"><a href="introducao-a-modelagem-dados.html#cb367-3" tabindex="-1"></a></span>
-<span id="cb367-4"><a href="introducao-a-modelagem-dados.html#cb367-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;DIMENSÕES DO DATASET</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb367-5"><a href="introducao-a-modelagem-dados.html#cb367-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;--------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb367-6"><a href="introducao-a-modelagem-dados.html#cb367-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Antes da limpeza:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb367-7"><a href="introducao-a-modelagem-dados.html#cb367-7" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  Observações:&quot;</span>, <span class="fu">nrow</span>(dados), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb367-8"><a href="introducao-a-modelagem-dados.html#cb367-8" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  Variáveis:&quot;</span>, <span class="fu">ncol</span>(dados), <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
-<span id="cb367-9"><a href="introducao-a-modelagem-dados.html#cb367-9" tabindex="-1"></a></span>
-<span id="cb367-10"><a href="introducao-a-modelagem-dados.html#cb367-10" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Depois da limpeza:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb367-11"><a href="introducao-a-modelagem-dados.html#cb367-11" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  Observações:&quot;</span>, <span class="fu">nrow</span>(dados_clean), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb367-12"><a href="introducao-a-modelagem-dados.html#cb367-12" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  Variáveis:&quot;</span>, <span class="fu">ncol</span>(dados_clean), <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
-<span id="cb367-13"><a href="introducao-a-modelagem-dados.html#cb367-13" tabindex="-1"></a></span>
-<span id="cb367-14"><a href="introducao-a-modelagem-dados.html#cb367-14" tabindex="-1"></a><span class="co"># Cálculo das remoções totais</span></span>
-<span id="cb367-15"><a href="introducao-a-modelagem-dados.html#cb367-15" tabindex="-1"></a>n_removidas_total <span class="ot">&lt;-</span> <span class="fu">nrow</span>(dados) <span class="sc">-</span> <span class="fu">nrow</span>(dados_clean)</span>
-<span id="cb367-16"><a href="introducao-a-modelagem-dados.html#cb367-16" tabindex="-1"></a>prop_removidas_total <span class="ot">&lt;-</span> (n_removidas_total <span class="sc">/</span> <span class="fu">nrow</span>(dados)) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb367-17"><a href="introducao-a-modelagem-dados.html#cb367-17" tabindex="-1"></a></span>
-<span id="cb367-18"><a href="introducao-a-modelagem-dados.html#cb367-18" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;TOTAL DE OBSERVAÇÕES REMOVIDAS</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb367-19"><a href="introducao-a-modelagem-dados.html#cb367-19" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;-------------------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb367-20"><a href="introducao-a-modelagem-dados.html#cb367-20" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações removidas:&quot;</span>, n_removidas_total, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb367-21"><a href="introducao-a-modelagem-dados.html#cb367-21" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Proporção removida:&quot;</span>, <span class="fu">round</span>(prop_removidas_total, <span class="dv">2</span>), <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb367-22"><a href="introducao-a-modelagem-dados.html#cb367-22" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Taxa de retenção:&quot;</span>, <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">-</span> prop_removidas_total, <span class="dv">2</span>), <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="introducao-a-modelagem-dados.html#cb372-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;RESUMO GERAL: ANTES E DEPOIS DA LIMPEZA</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb372-2"><a href="introducao-a-modelagem-dados.html#cb372-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;========================================</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
+<span id="cb372-3"><a href="introducao-a-modelagem-dados.html#cb372-3" tabindex="-1"></a></span>
+<span id="cb372-4"><a href="introducao-a-modelagem-dados.html#cb372-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;DIMENSÕES DO DATASET</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb372-5"><a href="introducao-a-modelagem-dados.html#cb372-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;--------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb372-6"><a href="introducao-a-modelagem-dados.html#cb372-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Antes da limpeza:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb372-7"><a href="introducao-a-modelagem-dados.html#cb372-7" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  Observações:&quot;</span>, <span class="fu">nrow</span>(dados), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb372-8"><a href="introducao-a-modelagem-dados.html#cb372-8" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  Variáveis:&quot;</span>, <span class="fu">ncol</span>(dados), <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
+<span id="cb372-9"><a href="introducao-a-modelagem-dados.html#cb372-9" tabindex="-1"></a></span>
+<span id="cb372-10"><a href="introducao-a-modelagem-dados.html#cb372-10" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Depois da limpeza:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb372-11"><a href="introducao-a-modelagem-dados.html#cb372-11" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  Observações:&quot;</span>, <span class="fu">nrow</span>(dados_clean), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb372-12"><a href="introducao-a-modelagem-dados.html#cb372-12" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;  Variáveis:&quot;</span>, <span class="fu">ncol</span>(dados_clean), <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
+<span id="cb372-13"><a href="introducao-a-modelagem-dados.html#cb372-13" tabindex="-1"></a></span>
+<span id="cb372-14"><a href="introducao-a-modelagem-dados.html#cb372-14" tabindex="-1"></a><span class="co"># Cálculo das remoções totais</span></span>
+<span id="cb372-15"><a href="introducao-a-modelagem-dados.html#cb372-15" tabindex="-1"></a>n_removidas_total <span class="ot">&lt;-</span> <span class="fu">nrow</span>(dados) <span class="sc">-</span> <span class="fu">nrow</span>(dados_clean)</span>
+<span id="cb372-16"><a href="introducao-a-modelagem-dados.html#cb372-16" tabindex="-1"></a>prop_removidas_total <span class="ot">&lt;-</span> (n_removidas_total <span class="sc">/</span> <span class="fu">nrow</span>(dados)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb372-17"><a href="introducao-a-modelagem-dados.html#cb372-17" tabindex="-1"></a></span>
+<span id="cb372-18"><a href="introducao-a-modelagem-dados.html#cb372-18" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;TOTAL DE OBSERVAÇÕES REMOVIDAS</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb372-19"><a href="introducao-a-modelagem-dados.html#cb372-19" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;-------------------------------</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb372-20"><a href="introducao-a-modelagem-dados.html#cb372-20" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Observações removidas:&quot;</span>, n_removidas_total, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb372-21"><a href="introducao-a-modelagem-dados.html#cb372-21" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Proporção removida:&quot;</span>, <span class="fu">round</span>(prop_removidas_total, <span class="dv">2</span>), <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb372-22"><a href="introducao-a-modelagem-dados.html#cb372-22" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Taxa de retenção:&quot;</span>, <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">-</span> prop_removidas_total, <span class="dv">2</span>), <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>-&gt; RESUMO GERAL: ANTES E DEPOIS DA LIMPEZA
 -&gt; ========================================
 -&gt; 
@@ -1185,16 +1186,16 @@ Tipos de Modelos quanto ao Aprendizados
 <p>Nesse dataset há uma variável chamada <code>time</code> que se refere a um momento no tempo no formato Unix em milissegundos (Unix epoch time ou POSIX time).
 Esse momento representa o número de milissegundos transcorridos desde 1º de janeiro de 1970 às 00:00:00 UTC (conhecida como ``época Unix’’), amplamente utilizado em sistemas computacionais para armazenar datas e horários de forma numérica. Essa <em>feature</em> representa o momento em que o imóvel foi listado para venda (listing date)</p>
 <p><br></p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="introducao-a-modelagem-dados.html#cb369-1" tabindex="-1"></a><span class="co"># Converter timestamp Unix (em milissegundos) para data no formato dd/mm/aaaa</span></span>
-<span id="cb369-2"><a href="introducao-a-modelagem-dados.html#cb369-2" tabindex="-1"></a></span>
-<span id="cb369-3"><a href="introducao-a-modelagem-dados.html#cb369-3" tabindex="-1"></a><span class="co"># Dividir por 1000 para converter milissegundos para segundos</span></span>
-<span id="cb369-4"><a href="introducao-a-modelagem-dados.html#cb369-4" tabindex="-1"></a>dados_clean<span class="sc">$</span>time_date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">as.POSIXct</span>(dados_clean<span class="sc">$</span>time<span class="sc">/</span><span class="dv">1000</span>, <span class="at">origin=</span><span class="st">&quot;1970-01-01&quot;</span>))</span>
-<span id="cb369-5"><a href="introducao-a-modelagem-dados.html#cb369-5" tabindex="-1"></a></span>
-<span id="cb369-6"><a href="introducao-a-modelagem-dados.html#cb369-6" tabindex="-1"></a><span class="co"># Formatar como dd/mm/aaaa</span></span>
-<span id="cb369-7"><a href="introducao-a-modelagem-dados.html#cb369-7" tabindex="-1"></a>dados_clean<span class="sc">$</span>time_formatted <span class="ot">&lt;-</span> <span class="fu">format</span>(dados_clean<span class="sc">$</span>time_date, <span class="st">&quot;%d/%m/%Y&quot;</span>)</span>
-<span id="cb369-8"><a href="introducao-a-modelagem-dados.html#cb369-8" tabindex="-1"></a></span>
-<span id="cb369-9"><a href="introducao-a-modelagem-dados.html#cb369-9" tabindex="-1"></a><span class="co"># Verificar resultado</span></span>
-<span id="cb369-10"><a href="introducao-a-modelagem-dados.html#cb369-10" tabindex="-1"></a><span class="fu">head</span>(dados_clean[, <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;time_formatted&quot;</span>, <span class="st">&quot;datePostedString&quot;</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="introducao-a-modelagem-dados.html#cb374-1" tabindex="-1"></a><span class="co"># Converter timestamp Unix (em milissegundos) para data no formato dd/mm/aaaa</span></span>
+<span id="cb374-2"><a href="introducao-a-modelagem-dados.html#cb374-2" tabindex="-1"></a></span>
+<span id="cb374-3"><a href="introducao-a-modelagem-dados.html#cb374-3" tabindex="-1"></a><span class="co"># Dividir por 1000 para converter milissegundos para segundos</span></span>
+<span id="cb374-4"><a href="introducao-a-modelagem-dados.html#cb374-4" tabindex="-1"></a>dados_clean<span class="sc">$</span>time_date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">as.POSIXct</span>(dados_clean<span class="sc">$</span>time<span class="sc">/</span><span class="dv">1000</span>, <span class="at">origin=</span><span class="st">&quot;1970-01-01&quot;</span>))</span>
+<span id="cb374-5"><a href="introducao-a-modelagem-dados.html#cb374-5" tabindex="-1"></a></span>
+<span id="cb374-6"><a href="introducao-a-modelagem-dados.html#cb374-6" tabindex="-1"></a><span class="co"># Formatar como dd/mm/aaaa</span></span>
+<span id="cb374-7"><a href="introducao-a-modelagem-dados.html#cb374-7" tabindex="-1"></a>dados_clean<span class="sc">$</span>time_formatted <span class="ot">&lt;-</span> <span class="fu">format</span>(dados_clean<span class="sc">$</span>time_date, <span class="st">&quot;%d/%m/%Y&quot;</span>)</span>
+<span id="cb374-8"><a href="introducao-a-modelagem-dados.html#cb374-8" tabindex="-1"></a></span>
+<span id="cb374-9"><a href="introducao-a-modelagem-dados.html#cb374-9" tabindex="-1"></a><span class="co"># Verificar resultado</span></span>
+<span id="cb374-10"><a href="introducao-a-modelagem-dados.html#cb374-10" tabindex="-1"></a><span class="fu">head</span>(dados_clean[, <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;time_formatted&quot;</span>, <span class="st">&quot;datePostedString&quot;</span>)])</span></code></pre></div>
 <pre><code>-&gt;        time time_formatted datePostedString
 -&gt; 2 1.626e+12     12/07/2021       2021-07-12
 -&gt; 3 1.626e+12     08/07/2021       2021-07-08
@@ -1227,28 +1228,28 @@ Esse momento representa o número de milissegundos transcorridos desde 1º de ja
 <p><br></p>
 <p>Vejamos as frequências de cada rótulo</p>
 <p><br></p>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="introducao-a-modelagem-dados.html#cb371-1" tabindex="-1"></a><span class="fu">table</span>(dados_clean<span class="sc">$</span>event)</span></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="introducao-a-modelagem-dados.html#cb376-1" tabindex="-1"></a><span class="fu">table</span>(dados_clean<span class="sc">$</span>event)</span></code></pre></div>
 <pre><code>-&gt; 
 -&gt; Listed for sale Listing removed    Price change            Sold 
 -&gt;           19130            1849            3531             995</code></pre>
 <p><br></p>
 <p>Codificamos os rótulos</p>
 <p><br></p>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="introducao-a-modelagem-dados.html#cb373-1" tabindex="-1"></a>dados_clean<span class="sc">$</span>event_factor <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dados_clean<span class="sc">$</span>event)</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="introducao-a-modelagem-dados.html#cb378-1" tabindex="-1"></a>dados_clean<span class="sc">$</span>event_factor <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dados_clean<span class="sc">$</span>event)</span></code></pre></div>
 <p><br></p>
 <p>E observamos um ordenamento artificial</p>
 <p><br></p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="introducao-a-modelagem-dados.html#cb374-1" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">rotulo =</span> <span class="fu">levels</span>(dados_clean<span class="sc">$</span>event_factor),</span>
-<span id="cb374-2"><a href="introducao-a-modelagem-dados.html#cb374-2" tabindex="-1"></a>           <span class="at">numero =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nlevels</span>(dados_clean<span class="sc">$</span>event_factor))</span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="introducao-a-modelagem-dados.html#cb379-1" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">rotulo =</span> <span class="fu">levels</span>(dados_clean<span class="sc">$</span>event_factor),</span>
+<span id="cb379-2"><a href="introducao-a-modelagem-dados.html#cb379-2" tabindex="-1"></a>           <span class="at">numero =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nlevels</span>(dados_clean<span class="sc">$</span>event_factor))</span></code></pre></div>
 <pre><code>-&gt;            rotulo numero
 -&gt; 1 Listed for sale      1
 -&gt; 2 Listing removed      2
 -&gt; 3    Price change      3
 -&gt; 4            Sold      4</code></pre>
 <p><br></p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="introducao-a-modelagem-dados.html#cb376-1" tabindex="-1"></a>dados_clean<span class="sc">$</span>event_factor<span class="ot">=</span><span class="cn">NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="introducao-a-modelagem-dados.html#cb381-1" tabindex="-1"></a>dados_clean<span class="sc">$</span>event_factor<span class="ot">=</span><span class="cn">NULL</span></span></code></pre></div>
 <p><br></p>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="introducao-a-modelagem-dados.html#cb377-1" tabindex="-1"></a><span class="fu">table</span>(dados_clean<span class="sc">$</span>levels, dados_clean<span class="sc">$</span>homeType)</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="introducao-a-modelagem-dados.html#cb382-1" tabindex="-1"></a><span class="fu">table</span>(dados_clean<span class="sc">$</span>levels, dados_clean<span class="sc">$</span>homeType)</span></code></pre></div>
 <pre><code>-&gt;                                      
 -&gt;                                       APARTMENT CONDO  LOT MULTI_FAMILY
 -&gt;   0                                           1   946   88          386
@@ -1371,7 +1372,7 @@ Esse momento representa o número de milissegundos transcorridos desde 1º de ja
 <p><br></p>
 <p>Vejamos as frequências de cada rótulo</p>
 <p><br></p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="introducao-a-modelagem-dados.html#cb379-1" tabindex="-1"></a><span class="fu">table</span>(dados_clean<span class="sc">$</span>event)</span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="introducao-a-modelagem-dados.html#cb384-1" tabindex="-1"></a><span class="fu">table</span>(dados_clean<span class="sc">$</span>event)</span></code></pre></div>
 <pre><code>-&gt; 
 -&gt; Listed for sale Listing removed    Price change            Sold 
 -&gt;           19130            1849            3531             995</code></pre>
@@ -1385,18 +1386,18 @@ Esse momento representa o número de milissegundos transcorridos desde 1º de ja
 <p><br></p>
 <p>estamos diante de uma observação do nivel de referência <code>Listed for sale</code>.</p>
 <p><br></p>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="introducao-a-modelagem-dados.html#cb381-1" tabindex="-1"></a><span class="fu">library</span>(fastDummies)</span>
-<span id="cb381-2"><a href="introducao-a-modelagem-dados.html#cb381-2" tabindex="-1"></a></span>
-<span id="cb381-3"><a href="introducao-a-modelagem-dados.html#cb381-3" tabindex="-1"></a>dados_clean<span class="ot">=</span><span class="fu">dummy_cols</span>(</span>
-<span id="cb381-4"><a href="introducao-a-modelagem-dados.html#cb381-4" tabindex="-1"></a>  dados_clean,</span>
-<span id="cb381-5"><a href="introducao-a-modelagem-dados.html#cb381-5" tabindex="-1"></a>  <span class="at">select_columns =</span> <span class="st">&quot;event&quot;</span>,</span>
-<span id="cb381-6"><a href="introducao-a-modelagem-dados.html#cb381-6" tabindex="-1"></a>  <span class="at">remove_first_dummy =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb381-7"><a href="introducao-a-modelagem-dados.html#cb381-7" tabindex="-1"></a>  <span class="at">remove_selected_columns =</span> <span class="cn">TRUE</span></span>
-<span id="cb381-8"><a href="introducao-a-modelagem-dados.html#cb381-8" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="introducao-a-modelagem-dados.html#cb386-1" tabindex="-1"></a><span class="fu">library</span>(fastDummies)</span>
+<span id="cb386-2"><a href="introducao-a-modelagem-dados.html#cb386-2" tabindex="-1"></a></span>
+<span id="cb386-3"><a href="introducao-a-modelagem-dados.html#cb386-3" tabindex="-1"></a>dados_clean<span class="ot">=</span><span class="fu">dummy_cols</span>(</span>
+<span id="cb386-4"><a href="introducao-a-modelagem-dados.html#cb386-4" tabindex="-1"></a>  dados_clean,</span>
+<span id="cb386-5"><a href="introducao-a-modelagem-dados.html#cb386-5" tabindex="-1"></a>  <span class="at">select_columns =</span> <span class="st">&quot;event&quot;</span>,</span>
+<span id="cb386-6"><a href="introducao-a-modelagem-dados.html#cb386-6" tabindex="-1"></a>  <span class="at">remove_first_dummy =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb386-7"><a href="introducao-a-modelagem-dados.html#cb386-7" tabindex="-1"></a>  <span class="at">remove_selected_columns =</span> <span class="cn">TRUE</span></span>
+<span id="cb386-8"><a href="introducao-a-modelagem-dados.html#cb386-8" tabindex="-1"></a>)</span></code></pre></div>
 <p><br></p>
 <p>Vejamos como ficou o dataset</p>
 <p><br></p>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="introducao-a-modelagem-dados.html#cb382-1" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">colnames</span>(dados_clean))</span></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="introducao-a-modelagem-dados.html#cb387-1" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">colnames</span>(dados_clean))</span></code></pre></div>
 <pre><code>-&gt;  [1] &quot;bathrooms&quot;             &quot;bedrooms&quot;              &quot;buildingArea&quot;         
 -&gt;  [4] &quot;city&quot;                  &quot;cityId&quot;                &quot;country&quot;              
 -&gt;  [7] &quot;county&quot;                &quot;countyId&quot;              &quot;currency&quot;             
@@ -1454,48 +1455,48 @@ Esse momento representa o número de milissegundos transcorridos desde 1º de ja
 <p><br></p>
 <p>A estratificação por múltiplas variáveis é adequada quando há interdependências relevantes entre as variáveis ou quando múltiplos fatores determinam padrões importantes nos dados.</p>
 <p><br></p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="introducao-a-modelagem-dados.html#cb384-1" tabindex="-1"></a><span class="co"># Definir proporção treino/validação</span></span>
-<span id="cb384-2"><a href="introducao-a-modelagem-dados.html#cb384-2" tabindex="-1"></a>prop_treino <span class="ot">&lt;-</span> <span class="fl">0.8</span></span>
-<span id="cb384-3"><a href="introducao-a-modelagem-dados.html#cb384-3" tabindex="-1"></a></span>
-<span id="cb384-4"><a href="introducao-a-modelagem-dados.html#cb384-4" tabindex="-1"></a><span class="co"># Repartição ALEATÓRIA</span></span>
-<span id="cb384-5"><a href="introducao-a-modelagem-dados.html#cb384-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb384-6"><a href="introducao-a-modelagem-dados.html#cb384-6" tabindex="-1"></a>indice_aleatorio <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dados_clean), </span>
-<span id="cb384-7"><a href="introducao-a-modelagem-dados.html#cb384-7" tabindex="-1"></a>                            <span class="at">size =</span> <span class="fu">nrow</span>(dados_clean) <span class="sc">*</span> prop_treino)</span>
-<span id="cb384-8"><a href="introducao-a-modelagem-dados.html#cb384-8" tabindex="-1"></a>treino_aleatorio <span class="ot">&lt;-</span> dados_clean[indice_aleatorio, ]</span>
-<span id="cb384-9"><a href="introducao-a-modelagem-dados.html#cb384-9" tabindex="-1"></a>validacao_aleatorio <span class="ot">&lt;-</span> dados_clean[<span class="sc">-</span>indice_aleatorio, ]</span>
-<span id="cb384-10"><a href="introducao-a-modelagem-dados.html#cb384-10" tabindex="-1"></a></span>
-<span id="cb384-11"><a href="introducao-a-modelagem-dados.html#cb384-11" tabindex="-1"></a><span class="co"># Repartição ESTRATIFICADA por UMA VARIÁVEL (event_factor)</span></span>
-<span id="cb384-12"><a href="introducao-a-modelagem-dados.html#cb384-12" tabindex="-1"></a><span class="co"># Verificar se dados_clean tem dados suficientes e se event_factor existe</span></span>
-<span id="cb384-13"><a href="introducao-a-modelagem-dados.html#cb384-13" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">nrow</span>(dados_clean) <span class="sc">&gt;=</span> <span class="dv">2</span> <span class="sc">&amp;&amp;</span> <span class="st">&quot;event_factor&quot;</span> <span class="sc">%in%</span> <span class="fu">names</span>(dados_clean)) {</span>
-<span id="cb384-14"><a href="introducao-a-modelagem-dados.html#cb384-14" tabindex="-1"></a>  <span class="fu">library</span>(caret)</span>
-<span id="cb384-15"><a href="introducao-a-modelagem-dados.html#cb384-15" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb384-16"><a href="introducao-a-modelagem-dados.html#cb384-16" tabindex="-1"></a>  indice_estratificado <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(dados_clean<span class="sc">$</span>event_factor,</span>
-<span id="cb384-17"><a href="introducao-a-modelagem-dados.html#cb384-17" tabindex="-1"></a>                                              <span class="at">p =</span> prop_treino,</span>
-<span id="cb384-18"><a href="introducao-a-modelagem-dados.html#cb384-18" tabindex="-1"></a>                                              <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb384-19"><a href="introducao-a-modelagem-dados.html#cb384-19" tabindex="-1"></a>  treino_estratificado <span class="ot">&lt;-</span> dados_clean[indice_estratificado, ]</span>
-<span id="cb384-20"><a href="introducao-a-modelagem-dados.html#cb384-20" tabindex="-1"></a>  validacao_estratificado <span class="ot">&lt;-</span> dados_clean[<span class="sc">-</span>indice_estratificado, ]</span>
-<span id="cb384-21"><a href="introducao-a-modelagem-dados.html#cb384-21" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb384-22"><a href="introducao-a-modelagem-dados.html#cb384-22" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;Dados insuficientes ou variável event_factor não encontrada&quot;</span>)</span>
-<span id="cb384-23"><a href="introducao-a-modelagem-dados.html#cb384-23" tabindex="-1"></a>}</span>
-<span id="cb384-24"><a href="introducao-a-modelagem-dados.html#cb384-24" tabindex="-1"></a></span>
-<span id="cb384-25"><a href="introducao-a-modelagem-dados.html#cb384-25" tabindex="-1"></a><span class="co"># Repartição ESTRATIFICADA por MÚLTIPLAS VARIÁVEIS</span></span>
-<span id="cb384-26"><a href="introducao-a-modelagem-dados.html#cb384-26" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">nrow</span>(dados_clean) <span class="sc">&gt;=</span> <span class="dv">2</span> <span class="sc">&amp;&amp;</span> <span class="fu">all</span>(<span class="fu">c</span>(<span class="st">&quot;event_factor&quot;</span>, <span class="st">&quot;outra_variavel&quot;</span>) <span class="sc">%in%</span> <span class="fu">names</span>(dados_clean))) {</span>
-<span id="cb384-27"><a href="introducao-a-modelagem-dados.html#cb384-27" tabindex="-1"></a>  <span class="fu">library</span>(sampling)</span>
-<span id="cb384-28"><a href="introducao-a-modelagem-dados.html#cb384-28" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb384-29"><a href="introducao-a-modelagem-dados.html#cb384-29" tabindex="-1"></a>  dados_clean<span class="sc">$</span>estrato <span class="ot">&lt;-</span> <span class="fu">paste</span>(dados_clean<span class="sc">$</span>event_factor, </span>
-<span id="cb384-30"><a href="introducao-a-modelagem-dados.html#cb384-30" tabindex="-1"></a>                                dados_clean<span class="sc">$</span>outra_variavel, </span>
-<span id="cb384-31"><a href="introducao-a-modelagem-dados.html#cb384-31" tabindex="-1"></a>                                <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>)</span>
-<span id="cb384-32"><a href="introducao-a-modelagem-dados.html#cb384-32" tabindex="-1"></a>  tamanho_treino <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">nrow</span>(dados_clean) <span class="sc">*</span> prop_treino)</span>
-<span id="cb384-33"><a href="introducao-a-modelagem-dados.html#cb384-33" tabindex="-1"></a>  indice_multi <span class="ot">&lt;-</span> <span class="fu">strata</span>(dados_clean, </span>
-<span id="cb384-34"><a href="introducao-a-modelagem-dados.html#cb384-34" tabindex="-1"></a>                         <span class="at">stratanames =</span> <span class="st">&quot;estrato&quot;</span>,</span>
-<span id="cb384-35"><a href="introducao-a-modelagem-dados.html#cb384-35" tabindex="-1"></a>                         <span class="at">size =</span> <span class="fu">proportional</span>(dados_clean<span class="sc">$</span>estrato, tamanho_treino),</span>
-<span id="cb384-36"><a href="introducao-a-modelagem-dados.html#cb384-36" tabindex="-1"></a>                         <span class="at">method =</span> <span class="st">&quot;srswor&quot;</span>)<span class="sc">$</span>ID_unit</span>
-<span id="cb384-37"><a href="introducao-a-modelagem-dados.html#cb384-37" tabindex="-1"></a>  treino_multi <span class="ot">&lt;-</span> dados_clean[indice_multi, ]</span>
-<span id="cb384-38"><a href="introducao-a-modelagem-dados.html#cb384-38" tabindex="-1"></a>  validacao_multi <span class="ot">&lt;-</span> dados_clean[<span class="sc">-</span>indice_multi, ]</span>
-<span id="cb384-39"><a href="introducao-a-modelagem-dados.html#cb384-39" tabindex="-1"></a>  dados_clean<span class="sc">$</span>estrato <span class="ot">&lt;-</span> <span class="cn">NULL</span>  <span class="co"># Remover coluna auxiliar</span></span>
-<span id="cb384-40"><a href="introducao-a-modelagem-dados.html#cb384-40" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb384-41"><a href="introducao-a-modelagem-dados.html#cb384-41" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;Dados insuficientes ou variáveis necessárias não encontradas&quot;</span>)</span>
-<span id="cb384-42"><a href="introducao-a-modelagem-dados.html#cb384-42" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="introducao-a-modelagem-dados.html#cb389-1" tabindex="-1"></a><span class="co"># Definir proporção treino/validação</span></span>
+<span id="cb389-2"><a href="introducao-a-modelagem-dados.html#cb389-2" tabindex="-1"></a>prop_treino <span class="ot">&lt;-</span> <span class="fl">0.8</span></span>
+<span id="cb389-3"><a href="introducao-a-modelagem-dados.html#cb389-3" tabindex="-1"></a></span>
+<span id="cb389-4"><a href="introducao-a-modelagem-dados.html#cb389-4" tabindex="-1"></a><span class="co"># Repartição ALEATÓRIA</span></span>
+<span id="cb389-5"><a href="introducao-a-modelagem-dados.html#cb389-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb389-6"><a href="introducao-a-modelagem-dados.html#cb389-6" tabindex="-1"></a>indice_aleatorio <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dados_clean), </span>
+<span id="cb389-7"><a href="introducao-a-modelagem-dados.html#cb389-7" tabindex="-1"></a>                            <span class="at">size =</span> <span class="fu">nrow</span>(dados_clean) <span class="sc">*</span> prop_treino)</span>
+<span id="cb389-8"><a href="introducao-a-modelagem-dados.html#cb389-8" tabindex="-1"></a>treino_aleatorio <span class="ot">&lt;-</span> dados_clean[indice_aleatorio, ]</span>
+<span id="cb389-9"><a href="introducao-a-modelagem-dados.html#cb389-9" tabindex="-1"></a>validacao_aleatorio <span class="ot">&lt;-</span> dados_clean[<span class="sc">-</span>indice_aleatorio, ]</span>
+<span id="cb389-10"><a href="introducao-a-modelagem-dados.html#cb389-10" tabindex="-1"></a></span>
+<span id="cb389-11"><a href="introducao-a-modelagem-dados.html#cb389-11" tabindex="-1"></a><span class="co"># Repartição ESTRATIFICADA por UMA VARIÁVEL (event_factor)</span></span>
+<span id="cb389-12"><a href="introducao-a-modelagem-dados.html#cb389-12" tabindex="-1"></a><span class="co"># Verificar se dados_clean tem dados suficientes e se event_factor existe</span></span>
+<span id="cb389-13"><a href="introducao-a-modelagem-dados.html#cb389-13" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">nrow</span>(dados_clean) <span class="sc">&gt;=</span> <span class="dv">2</span> <span class="sc">&amp;&amp;</span> <span class="st">&quot;event_factor&quot;</span> <span class="sc">%in%</span> <span class="fu">names</span>(dados_clean)) {</span>
+<span id="cb389-14"><a href="introducao-a-modelagem-dados.html#cb389-14" tabindex="-1"></a>  <span class="fu">library</span>(caret)</span>
+<span id="cb389-15"><a href="introducao-a-modelagem-dados.html#cb389-15" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb389-16"><a href="introducao-a-modelagem-dados.html#cb389-16" tabindex="-1"></a>  indice_estratificado <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(dados_clean<span class="sc">$</span>event_factor,</span>
+<span id="cb389-17"><a href="introducao-a-modelagem-dados.html#cb389-17" tabindex="-1"></a>                                              <span class="at">p =</span> prop_treino,</span>
+<span id="cb389-18"><a href="introducao-a-modelagem-dados.html#cb389-18" tabindex="-1"></a>                                              <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb389-19"><a href="introducao-a-modelagem-dados.html#cb389-19" tabindex="-1"></a>  treino_estratificado <span class="ot">&lt;-</span> dados_clean[indice_estratificado, ]</span>
+<span id="cb389-20"><a href="introducao-a-modelagem-dados.html#cb389-20" tabindex="-1"></a>  validacao_estratificado <span class="ot">&lt;-</span> dados_clean[<span class="sc">-</span>indice_estratificado, ]</span>
+<span id="cb389-21"><a href="introducao-a-modelagem-dados.html#cb389-21" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb389-22"><a href="introducao-a-modelagem-dados.html#cb389-22" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;Dados insuficientes ou variável event_factor não encontrada&quot;</span>)</span>
+<span id="cb389-23"><a href="introducao-a-modelagem-dados.html#cb389-23" tabindex="-1"></a>}</span>
+<span id="cb389-24"><a href="introducao-a-modelagem-dados.html#cb389-24" tabindex="-1"></a></span>
+<span id="cb389-25"><a href="introducao-a-modelagem-dados.html#cb389-25" tabindex="-1"></a><span class="co"># Repartição ESTRATIFICADA por MÚLTIPLAS VARIÁVEIS</span></span>
+<span id="cb389-26"><a href="introducao-a-modelagem-dados.html#cb389-26" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">nrow</span>(dados_clean) <span class="sc">&gt;=</span> <span class="dv">2</span> <span class="sc">&amp;&amp;</span> <span class="fu">all</span>(<span class="fu">c</span>(<span class="st">&quot;event_factor&quot;</span>, <span class="st">&quot;outra_variavel&quot;</span>) <span class="sc">%in%</span> <span class="fu">names</span>(dados_clean))) {</span>
+<span id="cb389-27"><a href="introducao-a-modelagem-dados.html#cb389-27" tabindex="-1"></a>  <span class="fu">library</span>(sampling)</span>
+<span id="cb389-28"><a href="introducao-a-modelagem-dados.html#cb389-28" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb389-29"><a href="introducao-a-modelagem-dados.html#cb389-29" tabindex="-1"></a>  dados_clean<span class="sc">$</span>estrato <span class="ot">&lt;-</span> <span class="fu">paste</span>(dados_clean<span class="sc">$</span>event_factor, </span>
+<span id="cb389-30"><a href="introducao-a-modelagem-dados.html#cb389-30" tabindex="-1"></a>                                dados_clean<span class="sc">$</span>outra_variavel, </span>
+<span id="cb389-31"><a href="introducao-a-modelagem-dados.html#cb389-31" tabindex="-1"></a>                                <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>)</span>
+<span id="cb389-32"><a href="introducao-a-modelagem-dados.html#cb389-32" tabindex="-1"></a>  tamanho_treino <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">nrow</span>(dados_clean) <span class="sc">*</span> prop_treino)</span>
+<span id="cb389-33"><a href="introducao-a-modelagem-dados.html#cb389-33" tabindex="-1"></a>  indice_multi <span class="ot">&lt;-</span> <span class="fu">strata</span>(dados_clean, </span>
+<span id="cb389-34"><a href="introducao-a-modelagem-dados.html#cb389-34" tabindex="-1"></a>                         <span class="at">stratanames =</span> <span class="st">&quot;estrato&quot;</span>,</span>
+<span id="cb389-35"><a href="introducao-a-modelagem-dados.html#cb389-35" tabindex="-1"></a>                         <span class="at">size =</span> <span class="fu">proportional</span>(dados_clean<span class="sc">$</span>estrato, tamanho_treino),</span>
+<span id="cb389-36"><a href="introducao-a-modelagem-dados.html#cb389-36" tabindex="-1"></a>                         <span class="at">method =</span> <span class="st">&quot;srswor&quot;</span>)<span class="sc">$</span>ID_unit</span>
+<span id="cb389-37"><a href="introducao-a-modelagem-dados.html#cb389-37" tabindex="-1"></a>  treino_multi <span class="ot">&lt;-</span> dados_clean[indice_multi, ]</span>
+<span id="cb389-38"><a href="introducao-a-modelagem-dados.html#cb389-38" tabindex="-1"></a>  validacao_multi <span class="ot">&lt;-</span> dados_clean[<span class="sc">-</span>indice_multi, ]</span>
+<span id="cb389-39"><a href="introducao-a-modelagem-dados.html#cb389-39" tabindex="-1"></a>  dados_clean<span class="sc">$</span>estrato <span class="ot">&lt;-</span> <span class="cn">NULL</span>  <span class="co"># Remover coluna auxiliar</span></span>
+<span id="cb389-40"><a href="introducao-a-modelagem-dados.html#cb389-40" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb389-41"><a href="introducao-a-modelagem-dados.html#cb389-41" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">&quot;Dados insuficientes ou variáveis necessárias não encontradas&quot;</span>)</span>
+<span id="cb389-42"><a href="introducao-a-modelagem-dados.html#cb389-42" tabindex="-1"></a>}</span></code></pre></div>
 <hr />
 </div>
 <div id="padronização" class="section level2 hasAnchor" number="14.7">
@@ -1507,7 +1508,7 @@ Esse momento representa o número de milissegundos transcorridos desde 1º de ja
 <h2><span class="header-section-number">14.8</span> Análise Exploratória<a href="#an%C3%A1lise-explorat%C3%B3ria-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><br></p>
 <p>A análise exploratória de dados ( <em>EDA: Exploratory Data Analisys</em> , originalmente desenvolvida pelo matemático e estatístico norte-americano John Tukey na década de 1970) é usada para se investigar conjuntos de dados e resumir suas principais características, muitas vezes usando métodos de visualização de dados por gráficos e apresentação de tabelas.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-334"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-335"></span>
 <img src="images14/tukey.jpeg" alt="John Tukey (1915-2000)" width="50%" />
 <p class="caption">
 Figure 14.1: John Tukey (1915-2000)
@@ -1622,16 +1623,16 @@ bestGLM
 </ul>
 <p><strong>Obs:</strong> Quanto aos graus de liberdade, sempre utilizar <span class="math inline">\(gl = n-p\)</span>, sendo <span class="math inline">\(p\)</span> o número de parâmetros envolvidos no modelo que está sendo testado. Sempre observar o valor de <span class="math inline">\(p\)</span> utilizado na estimativa da variância residual.</p>
 <p><strong>Seleção de variáveis no R:</strong></p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="introducao-a-modelagem-dados.html#cb385-1" tabindex="-1"></a><span class="fu">require</span>(Rcmdr)</span>
-<span id="cb385-2"><a href="introducao-a-modelagem-dados.html#cb385-2" tabindex="-1"></a></span>
-<span id="cb385-3"><a href="introducao-a-modelagem-dados.html#cb385-3" tabindex="-1"></a><span class="co"># Método backward</span></span>
-<span id="cb385-4"><a href="introducao-a-modelagem-dados.html#cb385-4" tabindex="-1"></a><span class="fu">stepwise</span>(modelo, <span class="at">direction =</span> <span class="st">&quot;backward&quot;</span>, <span class="at">criterion =</span> <span class="st">&quot;AIC&quot;</span>)</span>
-<span id="cb385-5"><a href="introducao-a-modelagem-dados.html#cb385-5" tabindex="-1"></a></span>
-<span id="cb385-6"><a href="introducao-a-modelagem-dados.html#cb385-6" tabindex="-1"></a><span class="co"># Método forward</span></span>
-<span id="cb385-7"><a href="introducao-a-modelagem-dados.html#cb385-7" tabindex="-1"></a><span class="fu">stepwise</span>(modelo, <span class="at">direction =</span> <span class="st">&quot;forward&quot;</span>, <span class="at">criterion =</span> <span class="st">&quot;AIC&quot;</span>)</span>
-<span id="cb385-8"><a href="introducao-a-modelagem-dados.html#cb385-8" tabindex="-1"></a></span>
-<span id="cb385-9"><a href="introducao-a-modelagem-dados.html#cb385-9" tabindex="-1"></a><span class="co"># Método stepwise</span></span>
-<span id="cb385-10"><a href="introducao-a-modelagem-dados.html#cb385-10" tabindex="-1"></a><span class="fu">stepwise</span>(modelo, <span class="at">direction =</span> <span class="st">&quot;both&quot;</span>, <span class="at">criterion =</span> <span class="st">&quot;AIC&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="introducao-a-modelagem-dados.html#cb390-1" tabindex="-1"></a><span class="fu">require</span>(Rcmdr)</span>
+<span id="cb390-2"><a href="introducao-a-modelagem-dados.html#cb390-2" tabindex="-1"></a></span>
+<span id="cb390-3"><a href="introducao-a-modelagem-dados.html#cb390-3" tabindex="-1"></a><span class="co"># Método backward</span></span>
+<span id="cb390-4"><a href="introducao-a-modelagem-dados.html#cb390-4" tabindex="-1"></a><span class="fu">stepwise</span>(modelo, <span class="at">direction =</span> <span class="st">&quot;backward&quot;</span>, <span class="at">criterion =</span> <span class="st">&quot;AIC&quot;</span>)</span>
+<span id="cb390-5"><a href="introducao-a-modelagem-dados.html#cb390-5" tabindex="-1"></a></span>
+<span id="cb390-6"><a href="introducao-a-modelagem-dados.html#cb390-6" tabindex="-1"></a><span class="co"># Método forward</span></span>
+<span id="cb390-7"><a href="introducao-a-modelagem-dados.html#cb390-7" tabindex="-1"></a><span class="fu">stepwise</span>(modelo, <span class="at">direction =</span> <span class="st">&quot;forward&quot;</span>, <span class="at">criterion =</span> <span class="st">&quot;AIC&quot;</span>)</span>
+<span id="cb390-8"><a href="introducao-a-modelagem-dados.html#cb390-8" tabindex="-1"></a></span>
+<span id="cb390-9"><a href="introducao-a-modelagem-dados.html#cb390-9" tabindex="-1"></a><span class="co"># Método stepwise</span></span>
+<span id="cb390-10"><a href="introducao-a-modelagem-dados.html#cb390-10" tabindex="-1"></a><span class="fu">stepwise</span>(modelo, <span class="at">direction =</span> <span class="st">&quot;both&quot;</span>, <span class="at">criterion =</span> <span class="st">&quot;AIC&quot;</span>)</span></code></pre></div>
 <p>O modelo de regressão linear múltiplo considerando duas categorias para variável fictícia:</p>
 <p><span class="math display">\[Y = \beta_0 + \beta_1 x + \beta_2 z + \beta_3 xz + e\]</span></p>
 <p>onde:</p>
@@ -1655,8 +1656,8 @@ bestGLM
 </ul>
 <p>Estimar o vetor dos parâmetros temos: <span class="math inline">\(\hat{\boldsymbol{\beta}} = (X&#39;X)^{-1}X&#39;Y\)</span>.</p>
 <p><strong>Estimação de parâmetros com variável qualitativa no R:</strong></p>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="introducao-a-modelagem-dados.html#cb386-1" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> Z <span class="sc">+</span> X1 <span class="sc">%in%</span> Z)</span>
-<span id="cb386-2"><a href="introducao-a-modelagem-dados.html#cb386-2" tabindex="-1"></a>modelo</span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="introducao-a-modelagem-dados.html#cb391-1" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> Z <span class="sc">+</span> X1 <span class="sc">%in%</span> Z)</span>
+<span id="cb391-2"><a href="introducao-a-modelagem-dados.html#cb391-2" tabindex="-1"></a>modelo</span></code></pre></div>
 <div id="teste-de-coincidência-das-retas" class="section level4 hasAnchor" number="14.9.4.1">
 <h4><span class="header-section-number">14.9.4.1</span> Teste de Coincidência das Retas<a href="#teste-de-coincid%C3%AAncia-das-retas" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>O teste para verificar se um único modelo se ajusta para ambas as categorias é realizado nas seguintes hipóteses:</p>
@@ -1668,7 +1669,7 @@ bestGLM
 <p><span class="math display">\[F(Z,XZ|X) = \frac{(SQReg(X,Z,XZ) - SQReg(X))/2}{QMRes(X,Z,XZ)}\]</span></p>
 <p>e tem distribuição <span class="math inline">\(F(r, glres)\)</span>, logo rejeita-se <span class="math inline">\(H_0\)</span> em favor <span class="math inline">\(H_1\)</span> se F-parcial <span class="math inline">\(&gt; F(r, glres; \alpha)\)</span>.</p>
 <p><strong>Teste de coincidência das retas no R:</strong></p>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="introducao-a-modelagem-dados.html#cb387-1" tabindex="-1"></a><span class="fu">anova</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="introducao-a-modelagem-dados.html#cb392-1" tabindex="-1"></a><span class="fu">anova</span>(modelo)</span></code></pre></div>
 </div>
 <div id="teste-de-paralelismo-das-retas" class="section level4 hasAnchor" number="14.9.4.2">
 <h4><span class="header-section-number">14.9.4.2</span> Teste de Paralelismo das Retas<a href="introducao-a-modelagem-dados.html#teste-de-paralelismo-das-retas" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -1681,7 +1682,7 @@ bestGLM
 <p><span class="math display">\[T_{\beta_3} = \frac{\hat{\beta}_3}{\sqrt{QMRes \cdot C_{33}}}\]</span></p>
 <p>que sob a hipótese nula, tem distribuição <span class="math inline">\(t\)</span> de Student com <span class="math inline">\((n-p-1)\)</span> graus de liberdade e para um teste de nível <span class="math inline">\(\alpha\)</span>, rejeitamos <span class="math inline">\(H_0\)</span> se <span class="math inline">\(|T_{\beta_3}| &gt; t_{\alpha/2;(glres)}\)</span>.</p>
 <p><strong>Teste de paralelismo das retas no R:</strong></p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="introducao-a-modelagem-dados.html#cb388-1" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="introducao-a-modelagem-dados.html#cb393-1" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
 </div>
 <div id="teste-da-igualdade-dos-interceptos" class="section level4 hasAnchor" number="14.9.4.3">
 <h4><span class="header-section-number">14.9.4.3</span> Teste da Igualdade dos Interceptos<a href="introducao-a-modelagem-dados.html#teste-da-igualdade-dos-interceptos" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -1694,16 +1695,16 @@ bestGLM
 <p><span class="math display">\[T_{\beta_2} = \frac{\hat{\beta}_2}{\sqrt{QMRes \cdot C_{22}}}\]</span></p>
 <p>que sob a hipótese nula, tem distribuição <span class="math inline">\(t\)</span> de Student com <span class="math inline">\((n-p-1)\)</span> graus de liberdade, e para um teste de nível <span class="math inline">\(\alpha\)</span>, rejeitamos <span class="math inline">\(H_0\)</span> se <span class="math inline">\(|T_{\beta_2}| &gt; t_{\alpha/2;(glres)}\)</span>.</p>
 <p><strong>Teste da igualdade dos interceptos no R:</strong></p>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="introducao-a-modelagem-dados.html#cb389-1" tabindex="-1"></a><span class="fu">anova</span>(modelo)</span>
-<span id="cb389-2"><a href="introducao-a-modelagem-dados.html#cb389-2" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="introducao-a-modelagem-dados.html#cb394-1" tabindex="-1"></a><span class="fu">anova</span>(modelo)</span>
+<span id="cb394-2"><a href="introducao-a-modelagem-dados.html#cb394-2" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
 
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="introducao-a-modelagem-dados.html#cb390-1" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
-<span id="cb390-2"><a href="introducao-a-modelagem-dados.html#cb390-2" tabindex="-1"></a><span class="co">#use_condaenv(&quot;r-python&quot;)</span></span>
-<span id="cb390-3"><a href="introducao-a-modelagem-dados.html#cb390-3" tabindex="-1"></a><span class="co">#use_python(&#39;/opt/homebrew/Caskroom/miniconda/base/envs/r-python/python3.9&#39;)</span></span>
-<span id="cb390-4"><a href="introducao-a-modelagem-dados.html#cb390-4" tabindex="-1"></a></span>
-<span id="cb390-5"><a href="introducao-a-modelagem-dados.html#cb390-5" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
-<span id="cb390-6"><a href="introducao-a-modelagem-dados.html#cb390-6" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">RETICULATE_CONDA =</span> <span class="st">&quot;/opt/homebrew/Caskroom/miniconda/base/bin/conda&quot;</span>)</span>
-<span id="cb390-7"><a href="introducao-a-modelagem-dados.html#cb390-7" tabindex="-1"></a><span class="fu">use_condaenv</span>(<span class="st">&quot;r-python&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="introducao-a-modelagem-dados.html#cb395-1" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb395-2"><a href="introducao-a-modelagem-dados.html#cb395-2" tabindex="-1"></a><span class="co">#use_condaenv(&quot;r-python&quot;)</span></span>
+<span id="cb395-3"><a href="introducao-a-modelagem-dados.html#cb395-3" tabindex="-1"></a><span class="co">#use_python(&#39;/opt/homebrew/Caskroom/miniconda/base/envs/r-python/python3.9&#39;)</span></span>
+<span id="cb395-4"><a href="introducao-a-modelagem-dados.html#cb395-4" tabindex="-1"></a></span>
+<span id="cb395-5"><a href="introducao-a-modelagem-dados.html#cb395-5" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb395-6"><a href="introducao-a-modelagem-dados.html#cb395-6" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">RETICULATE_CONDA =</span> <span class="st">&quot;/opt/homebrew/Caskroom/miniconda/base/bin/conda&quot;</span>)</span>
+<span id="cb395-7"><a href="introducao-a-modelagem-dados.html#cb395-7" tabindex="-1"></a><span class="fu">use_condaenv</span>(<span class="st">&quot;r-python&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 </div>

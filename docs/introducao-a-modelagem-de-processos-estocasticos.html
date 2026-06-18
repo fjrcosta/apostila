@@ -1483,9 +1483,9 @@ suavização.</p>
 <pre><code>-&gt; ℹ Fetching id = 433 [id=433] | 2016-01-01 -&gt; 2019-01-01</code></pre>
 <pre><code>-&gt; ℹ Fetching id = 433 [id=433] | 2019-01-01 -&gt; 2022-01-01</code></pre>
 <pre><code>-&gt; ℹ Fetching id = 433 [id=433] | 2022-01-01 -&gt; 2025-01-01</code></pre>
-<pre><code>-&gt; ℹ Fetching id = 433 [id=433] | 2025-01-01 -&gt; 2026-06-11</code></pre>
-<pre><code>-&gt; ✔ got data with 376 rows and 4 columns</code></pre>
-<pre><code>-&gt; ✔ Finished fetching data. Total rows: 376</code></pre>
+<pre><code>-&gt; ℹ Fetching id = 433 [id=433] | 2025-01-01 -&gt; 2026-06-18</code></pre>
+<pre><code>-&gt; ✔ got data with 377 rows and 4 columns</code></pre>
+<pre><code>-&gt; ✔ Finished fetching data. Total rows: 377</code></pre>
 <div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="introducao-a-modelagem-de-processos-estocasticos.html#cb463-1" tabindex="-1"></a><span class="co"># Converter para objeto ts</span></span>
 <span id="cb463-2"><a href="introducao-a-modelagem-de-processos-estocasticos.html#cb463-2" tabindex="-1"></a><span class="co"># frequency = 12: dados mensais</span></span>
 <span id="cb463-3"><a href="introducao-a-modelagem-de-processos-estocasticos.html#cb463-3" tabindex="-1"></a><span class="co"># start: ano e mês de início</span></span>
@@ -1526,7 +1526,7 @@ suavização.</p>
 -&gt; 2023  0.53  0.84  0.71  0.61  0.23 -0.08  0.12  0.23  0.26  0.24  0.28  0.56
 -&gt; 2024  0.42  0.83  0.16  0.38  0.46  0.21  0.38 -0.02  0.44  0.56  0.39  0.52
 -&gt; 2025  0.16  1.31  0.56  0.43  0.26  0.24  0.26 -0.11  0.48  0.09  0.18  0.33
--&gt; 2026  0.33  0.70  0.88  0.67</code></pre>
+-&gt; 2026  0.33  0.70  0.88  0.67  0.58</code></pre>
 <p><br />
 </p>
 <div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="introducao-a-modelagem-de-processos-estocasticos.html#cb465-1" tabindex="-1"></a><span class="co"># Visualização da série original</span></span>
@@ -1633,7 +1633,7 @@ sistematicamente defasadas. Essa limitação motiva o método apresentado na se�
 <span id="cb467-4"><a href="introducao-a-modelagem-de-processos-estocasticos.html#cb467-4" tabindex="-1"></a></span>
 <span id="cb467-5"><a href="introducao-a-modelagem-de-processos-estocasticos.html#cb467-5" tabindex="-1"></a><span class="co"># alpha estimado</span></span>
 <span id="cb467-6"><a href="introducao-a-modelagem-de-processos-estocasticos.html#cb467-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Parâmetro alpha estimado:&quot;</span>, <span class="fu">round</span>(ses_ipca<span class="sc">$</span>alpha, <span class="dv">4</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
-<pre><code>-&gt; Parâmetro alpha estimado: 0.6913</code></pre>
+<pre><code>-&gt; Parâmetro alpha estimado: 0.6912</code></pre>
 <p><br />
 </p>
 <p>O valor estimado <span class="math inline">\(\hat{\alpha} = 0,6913\)</span> indica que aproximadamente <span class="math inline">\(69\%\)</span> do peso da previsão recai sobre a observação mais recente e apenas <span class="math inline">\(31\%\)</span> sobre toda a história anterior.</p>
@@ -3342,7 +3342,7 @@ a - 1 = 594\,156\,893 - 1 = 594\,156\,892
 </p>
 <div class="sourceCode" id="cb511"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb511-1"><a href="introducao-a-modelagem-de-processos-estocasticos.html#cb511-1" tabindex="-1"></a></span>
 <span id="cb511-2"><a href="introducao-a-modelagem-de-processos-estocasticos.html#cb511-2" tabindex="-1"></a><span class="co"># Definição dos parâmetros em acordo com Knuth</span></span>
-<span id="cb511-3"><a href="introducao-a-modelagem-de-processos-estocasticos.html#cb511-3" tabindex="-1"></a>m: <span class="bu">int</span> <span class="op">=</span> <span class="dv">2_147_483_648</span>  <span class="co"># Define o módulo (2^31), garantindo um grande período de números únicos</span></span>
+<span id="cb511-3"><a href="introducao-a-modelagem-de-processos-estocasticos.html#cb511-3" tabindex="-1"></a>m: <span class="bu">int</span> <span class="op">=</span> <span class="dv">2_147_483_648</span>  <span class="co"># Define o módulo (2^29), garantindo o período máximo de números únicos</span></span>
 <span id="cb511-4"><a href="introducao-a-modelagem-de-processos-estocasticos.html#cb511-4" tabindex="-1"></a>a: <span class="bu">int</span> <span class="op">=</span> <span class="dv">594_156_893</span>    <span class="co"># Define o multiplicador, cuidadosamente escolhido para evitar ciclos curtos</span></span>
 <span id="cb511-5"><a href="introducao-a-modelagem-de-processos-estocasticos.html#cb511-5" tabindex="-1"></a>c: <span class="bu">int</span> <span class="op">=</span> <span class="dv">0</span>              <span class="co"># Incremento igual a zero, caracterizando um gerador multiplicativo</span></span>
 <span id="cb511-6"><a href="introducao-a-modelagem-de-processos-estocasticos.html#cb511-6" tabindex="-1"></a>seed: <span class="bu">int</span> <span class="op">=</span> <span class="dv">1</span>   <span class="co"># Define o número inicial</span></span>

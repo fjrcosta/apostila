@@ -1483,7 +1483,7 @@ suavização.</p>
 <pre><code>-&gt; ℹ Fetching id = 433 [id=433] | 2016-01-01 -&gt; 2019-01-01</code></pre>
 <pre><code>-&gt; ℹ Fetching id = 433 [id=433] | 2019-01-01 -&gt; 2022-01-01</code></pre>
 <pre><code>-&gt; ℹ Fetching id = 433 [id=433] | 2022-01-01 -&gt; 2025-01-01</code></pre>
-<pre><code>-&gt; ℹ Fetching id = 433 [id=433] | 2025-01-01 -&gt; 2026-06-18</code></pre>
+<pre><code>-&gt; ℹ Fetching id = 433 [id=433] | 2025-01-01 -&gt; 2026-06-25</code></pre>
 <pre><code>-&gt; ✔ got data with 377 rows and 4 columns</code></pre>
 <pre><code>-&gt; ✔ Finished fetching data. Total rows: 377</code></pre>
 <div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="introducao-a-modelagem-de-processos-estocasticos.html#cb463-1" tabindex="-1"></a><span class="co"># Converter para objeto ts</span></span>
@@ -2029,7 +2029,7 @@ Figure 15.17: Taxa de crescimento anual do PIB real — Brasil (1951–2011)
 <h3><span class="header-section-number">15.7.1</span> Definição formal do processo de Poisson<a href="#defini%C3%A7%C3%A3o-formal-do-processo-de-poisson" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><br />
 </p>
-<p>Um <em>processo de contagem</em> <span class="math inline">\(\{N_t : t \geq 0\}\)</span> é dito ser um <strong>Processo de Poisson</strong> com taxa <span class="math inline">\(\lambda &gt; 0\)</span> se satisfaz as seguintes condições:</p>
+<p>Um <em>processo de contagem</em> <span class="math inline">\(\{N(t) : t \geq 0\}\)</span> é dito ser um <strong>Processo de Poisson</strong> com taxa <span class="math inline">\(\lambda &gt; 0\)</span> se satisfaz as seguintes condições:</p>
 <p><br />
 </p>
 <ol style="list-style-type: decimal">
@@ -2040,7 +2040,7 @@ Figure 15.17: Taxa de crescimento anual do PIB real — Brasil (1951–2011)
 <p><br />
 </p>
 <p><span class="math display">\[
-P(N(t + s) - N(s) = k) = \frac{e^{-\lambda t}\cdot(\lambda t)^k}{k!}
+P(N(t + s) - N(s) = k) = \frac{e^{-\lambda t}\cdot(\lambda t)^k}{k!}, \text{ }k=0,1,2 \dots
 \]</span><br />
 </p>
 <p>Em particular, para um intervalo iniciado em <span class="math inline">\(s = 0\)</span>:</p>
@@ -2056,12 +2056,12 @@ P(N(t) = n) = \frac{e^{-\lambda t}(\lambda t)^n}{n!}
 <p><br />
 </p>
 <blockquote>
-<p><strong>Definição 1.</strong> Um <em>processo de contagem</em> é um processo estocástico <span class="math inline">\(\{N_t : t \in [0, \infty)\}\)</span> em que <span class="math inline">\(N_t\)</span> representa o número de eventos ocorridos no intervalo <span class="math inline">\([0, t]\)</span>. O processo deve satisfazer:</p>
+<p><strong>Definição 1.</strong> Um <em>processo de contagem</em> é um processo estocástico <span class="math inline">\(\{N(t) : t \in [0, \infty)\}\)</span> em que <span class="math inline">\(N(t)\)</span> representa o número de eventos ocorridos no intervalo <span class="math inline">\([0, t]\)</span>. O processo deve satisfazer:</p>
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(N_0 = 0\)</span> — no instante inicial, a contagem é zero;</li>
-<li><span class="math inline">\(N_t \in \{0, 1, 2, \ldots\}\)</span> — os valores são contagens inteiras não negativas;</li>
-<li>se <span class="math inline">\(s &lt; t\)</span>, então <span class="math inline">\(N_s \leq N_t\)</span> — a função de contagem é não decrescente;</li>
-<li>para <span class="math inline">\(s &lt; t\)</span>, a diferença <span class="math inline">\(N_t - N_s\)</span> representa o número de eventos ocorridos no intervalo <span class="math inline">\((s, t]\)</span>.</li>
+<li><span class="math inline">\(N(0) = 0\)</span> — no instante inicial, a contagem é zero;</li>
+<li><span class="math inline">\(N(t) \in \{0, 1, 2, \ldots\}\)</span> — os valores são contagens inteiras não negativas;</li>
+<li>se <span class="math inline">\(s &lt; t\)</span>, então <span class="math inline">\(N(s) \leq N(t)\)</span> — a função de contagem é não decrescente;</li>
+<li>para <span class="math inline">\(s &lt; t\)</span>, a diferença <span class="math inline">\(N(t) - N(s)\)</span> representa o número de eventos ocorridos no intervalo <span class="math inline">\((s, t]\)</span>.</li>
 </ol>
 </blockquote>
 <p><br />

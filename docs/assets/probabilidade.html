@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumo: Introdução ao Cálculo de Probabilidades</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #f8f9fa;
+            --accent-color: #2980b9;
+            --text-color: #333;
+            --sidebar-width: 260px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            background-color: #fff;
+        }
+
+        /* Sidebar */
+        nav {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background-color: var(--secondary-color);
+            border-right: 1px solid #e1e4e8;
+            position: fixed;
+            padding: 2rem 1rem;
+            overflow-y: auto;
+        }
+
+        nav h2 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li { margin-bottom: 0.7rem; }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #555;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover { color: var(--accent-color); }
+
+        /* Conteúdo */
+        main {
+            margin-left: var(--sidebar-width);
+            padding: 3rem 5rem;
+            max-width: 850px;
+        }
+
+        article {
+            font-family: 'Georgia', serif;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        h1 { font-size: 2.2rem; color: var(--primary-color); }
+        h2 { 
+            color: var(--primary-color); 
+            border-left: 5px solid var(--accent-color); 
+            padding-left: 1rem; 
+            margin-top: 2.5rem;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        h3 { color: var(--accent-color); margin-top: 1.5rem; }
+
+        .formula {
+            background: #f4f4f4;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 1rem 0;
+            display: block;
+        }
+
+        blockquote {
+            border-left: 4px solid #ccc;
+            margin: 1.5rem 0;
+            padding-left: 1rem;
+            font-style: italic;
+            color: #555;
+        }
+
+        .highlight { font-weight: bold; color: #c0392b; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th { background-color: var(--secondary-color); }
+
+        @media (max-width: 768px) {
+            nav { display: none; }
+            main { margin-left: 0; padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <h2>Tópicos</h2>
+    <ul>
+        <li><a href="#intro">1. Definições Iniciais</a></li>
+        <li><a href="#historia">2. Evolução Histórica</a></li>
+        <li><a href="#conceitos">3. Conceitos Essenciais</a></li>
+        <li><a href="#espaco">4. Espaço Amostral</a></li>
+        <li><a href="#eventos">5. Tipos de Eventos</a></li>
+        <li><a href="#abordagens">6. Clássica vs Frequentista</a></li>
+        <li><a href="#axiomatica">7. Abordagem Axiomática</a></li>
+        <li><a href="#uniao">8. União de Eventos</a></li>
+        <li><a href="#condicionada">9. Prob. Condicionada</a></li>
+        <li><a href="#bayes">10. Teorema de Bayes</a></li>
+    </ul>
+</nav>
+
+<main>
+    <header>
+        <h1>Introdução ao Cálculo de Probabilidades</h1>
+        <p class="meta">Fundamentos teóricos, históricos e matemáticos</p>
+    </header>
+
+    <article>
+        <section id="intro">
+            <h2>1. Definições Iniciais</h2>
+            <p>A probabilidade busca quantificar a incerteza. Embora definições simples tendam a ser tautológicas (usando "possibilidade" para definir "probabilidade"), partimos de dois pilares:</p>
+            <ul>
+                <li>Refere-se a <strong>experimentos aleatórios</strong> (resultado incerto).</li>
+                <li>É uma <strong>quantidade</strong> mensurável.</li>
+            </ul>
+        </section>
+
+        <section id="historia">
+            <h2>2. Evolução Histórica</h2>
+            <p>O campo surgiu no século XVII com os jogos de azar. O <strong>Cavaleiro de Méré</strong> estimulou debates entre <strong>Pascal e Fermat</strong> sobre a divisão de apostas.</p>
+            <ul>
+                <li><strong>Jacob Bernoulli (1713):</strong> Introduziu a Lei dos Grandes Números em <i>Ars Conjectandi</i>.</li>
+                <li><strong>Abraham de Moivre:</strong> Estudou distribuições e a esperança matemática.</li>
+                <li><strong>Pierre-Simon Laplace:</strong> Sistematizou a teoria e expandiu o uso da Regra de Bayes.</li>
+                <li><strong>Andrey Kolmogorov (1930):</strong> Criou a formalização axiomática moderna.</li>
+            </ul>
+        </section>
+
+        <section id="conceitos">
+            <h2>3. Conceitos Essenciais</h2>
+            <p>Diferenciamos experimentos <strong>determinísticos</strong> (resultados certos, como reações químicas) de <strong>aleatórios</strong> (resultados variam sob as mesmas condições, como lançar um dado).</p>
+        </section>
+
+        <section id="espaco">
+            <h2>4. Espaço Amostral (Ω)</h2>
+            <p>É o conjunto de todos os resultados possíveis. Deve ser:</p>
+            <ul>
+                <li><strong>Mutuamente Exclusivo:</strong> Apenas um elemento ocorre por vez.</li>
+                <li><strong>Exaustivo:</strong> Pelo menos um dos resultados deve ocorrer.</li>
+            </ul>
+            <p>Pode ser <strong>Discreto</strong> (finito ou contável) ou <strong>Contínuo</strong> (intervalos de valores reais).</p>
+        </section>
+
+        <section id="eventos">
+            <h2>5. Tipos de Eventos</h2>
+            <p>Um evento é um subconjunto do espaço amostral.</p>
+            <ul>
+                <li><strong>Simples:</strong> Um único elemento.</li>
+                <li><strong>Certo:</strong> Igual ao espaço amostral (P=1).</li>
+                <li><strong>Impossível:</strong> Conjunto vazio (P=0).</li>
+                <li><strong>Mutuamente Exclusivos:</strong> Não podem ocorrer simultaneamente (A ∩ B = ∅).</li>
+                <li><strong>Independentes:</strong> A ocorrência de um não afeta a do outro.</li>
+            </ul>
+        </section>
+
+        <section id="abordagens">
+            <h2>6. Clássica vs Frequentista</h2>
+            <h3>Abordagem Clássica (A Priori)</h3>
+            <p>Baseada na razão entre sucessos e resultados possíveis em espaços equiprováveis:</p>
+            <div class="formula">P(E) = n(E) / N</div>
+
+            <h3>Abordagem Frequentista (A Posteriori)</h3>
+            <p>A probabilidade é o limite da frequência relativa conforme o número de ensaios (n) tende ao infinito:</p>
+            <div class="formula">P(E) = lim (n → ∞) [ F(E) / n ]</div>
+        </section>
+
+        <section id="axiomatica">
+            <h2>7. Abordagem Axiomática (Kolmogorov)</h2>
+            <p>Uma função de probabilidade deve satisfazer três axiomas:</p>
+            <ol>
+                <li><strong>Intervalo:</strong> 0 ≤ P(E) ≤ 1.</li>
+                <li><strong>Certeza:</strong> P(Ω) = 1.</li>
+                <li><strong>Aditividade:</strong> Para eventos disjuntos, P(A ∪ B) = P(A) + P(B).</li>
+            </ol>
+        </section>
+
+        <section id="uniao">
+            <h2>8. Regra da União</h2>
+            <p>Para dois eventos quaisquer A e B:</p>
+            <div class="formula">P(A ∪ B) = P(A) + P(B) - P(A ∩ B)</div>
+        </section>
+
+        <section id="condicionada">
+            <h2>9. Probabilidade Condicionada</h2>
+            <p>Probabilidade de A dado que B já ocorreu (restrição do espaço amostral):</p>
+            <div class="formula">P(A|B) = P(A ∩ B) / P(B)</div>
+            <p>Se <strong>P(A|B) = P(A)</strong>, os eventos são independentes.</p>
+        </section>
+
+        <section id="bayes">
+            <h2>10. Teorema de Bayes</h2>
+            <p>Relaciona probabilidades inversamente condicionadas, essencial para inferência estatística:</p>
+            <div class="formula">P(Ei | B) = [ P(Ei) * P(B | Ei) ] / Σ [ P(Ej) * P(B | Ej) ]</div>
+            <p>Permite atualizar a probabilidade <i>a priori</i> com base em novas evidências (probabilidade <i>a posteriori</i>).</p>
+        </section>
+    </article>
+</main>
+
+</body>
+</html>

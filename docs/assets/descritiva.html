@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #f8f9fa;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --sidebar-width: 280px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            background-color: #fff;
+        }
+
+        nav {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background-color: var(--secondary-color);
+            border-right: 1px solid #e1e4e8;
+            position: fixed;
+            padding: 2rem 1rem;
+            overflow-y: auto;
+        }
+
+        nav h2 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #555;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        main {
+            margin-left: var(--sidebar-width);
+            padding: 3rem 5rem;
+            max-width: 900px;
+        }
+
+        header {
+            margin-bottom: 4rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .meta {
+            font-style: italic;
+            color: #777;
+        }
+
+        article {
+            font-family: 'Georgia', serif; 
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 3rem;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 1rem;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        h3 {
+            color: #444;
+            margin-top: 2rem;
+        }
+
+        ul {
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight {
+            background-color: #fcf8e3;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+        }
+
+        blockquote {
+            border-left: 4px solid #ccc;
+            margin: 1.5rem 0;
+            padding-left: 1rem;
+            font-style: italic;
+            color: #555;
+        }
+
+        .formula-container {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            margin: 20px 0;
+            border: 1px solid #eee;
+        }
+
+        footer {
+            margin-top: 5rem;
+            font-size: 0.8rem;
+            color: #aaa;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            nav { display: none; }
+            main { margin-left: 0; padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <h2>Tópicos</h2>
+    <ul>
+        <li><a href="#eda">I. Análise Exploratória</a></li>
+        <li><a href="#central">II. Tendência Central</a></li>
+        <li><a href="#dispersao">III. Dispersão e Padronização</a></li>
+        <li><a href="#separatrizes">IV. Separatrizes</a></li>
+        <li><a href="#forma">V. Medidas de Forma</a></li>
+        <li><a href="#tabular">VI. Apresentação Tabular</a></li>
+        <li><a href="#grafica">VII. Apresentação Gráfica</a></li>
+    </ul>
+</nav>
+
+<main>
+
+
+    <article>
+        <section id="eda">
+            <h2>I. Introdução à Análise Exploratória de Dados (EDA)</h2>
+            <p>Desenvolvida por <strong>John Tukey</strong>, a EDA investiga conjuntos de dados para resumir suas características fundamentais.</p>
+            <ul>
+                <li><strong>Pré-processamento:</strong> Realização da limpeza de dados para correção de erros não amostrais (leituras absurdas ou omissões).</li>
+                <li><strong>Dados Brutos:</strong> Dados na forma original de coleta.</li>
+                <li><strong>Rol:</strong> Conjunto de dados brutos ordenados de modo crescente ou decrescente.</li>
+            </ul>
+        </section>
+
+        <section id="central">
+            <h2>II. Resumos Numéricos: Medidas de Tendência Central</h2>
+            <p>Estimadores usados para aproximar parâmetros populacionais. Uma medida é <span class="highlight">resistente</span> quando pouco afetada por valores discrepantes.</p>
+            <ul>
+                <li><strong>Média ($\bar{x}$):</strong> Soma das observações dividida por $n$. A soma dos desvios em torno da média é sempre nula.</li>
+                <li><strong>Mediana ($Md$):</strong> Valor que divide o conjunto ordenado em 50% superiores e 50% inferiores. É uma medida resistente.</li>
+                <li><strong>Moda ($Mo$):</strong> Valor de maior frequência na amostra.</li>
+            </ul>
+        </section>
+
+        <section id="dispersao">
+            <h2>III. Resumos Numéricos: Medidas de Dispersão e Padronização</h2>
+            <div class="formula-container">
+                Variância Amostral: $$s^2 = \frac{\sum (X_i - \bar{x})^2}{n-1}$$
+                Coeficiente de Variação: $$CV = \frac{s}{\bar{x}} \times 100\%$$
+            </div>
+            <ul>
+                <li><strong>Desvio Padrão ($s$):</strong> Raiz quadrada da variância; mantém a mesma unidade da variável original.</li>
+                <li><strong>Padronização (Z-score):</strong> Indica quantos desvios padrões um valor está distante da média: $Z = \frac{x - \bar{x}}{s}$.</li>
+            </ul>
+        </section>
+
+        <section id="separatrizes">
+            <h2>IV. Resumos Numéricos: Medidas de Subdivisão (Separatrizes)</h2>
+            <p>Delimitam proporções específicas de observações em um conjunto ordenado:</p>
+            <ul>
+                <li><strong>Quartis:</strong> Dividem os dados em 4 partes (25%, 50%, 75%).</li>
+                <li><strong>Percentis:</strong> Dividem os dados em 100 partes.</li>
+            </ul>
+        </section>
+
+        <section id="forma">
+            <h2>V. Medidas de Forma</h2>
+            <p>Avaliam a geometria da distribuição em relação à Normalidade.</p>
+            <ul>
+                <li><strong>Assimetria:</strong> Simétrica ($\bar{x} = Md = Mo$), Assimétrica Positiva ($\bar{x} > Md > Mo$) ou Negativa ($\bar{x} < Md < Mo$).</li>
+                <li><strong>Curtose:</strong> Mede a agudeza do pico. Mesocúrtica (Normal), Platicúrtica (achatada) ou Leptocúrtica (aguda).</li>
+            </ul>
+        </section>
+
+        <section id="tabular">
+            <h2>VI. Apresentação Tabular de Dados</h2>
+            <p>Organização em tabelas (dados numéricos sem bordas laterais) ou Tabelas de Contingência (entrada dupla para variáveis qualitativas).</p>
+            <blockquote>
+                As distribuições de frequências agrupam grandes volumes de dados em classes ($k$), comumente calculadas pela Regra de Sturges.
+            </blockquote>
+        </section>
+
+        <section id="grafica">
+            <h2>VII. Apresentação Gráfica de Dados</h2>
+            
+            <ul>
+                <li><strong>Histograma:</strong> Colunas unidas representando a densidade de frequências de variáveis quantitativas.</li>
+                <li><strong>Box-Plot:</strong> Representação visual que destaca a mediana, quartis e identifica <span class="highlight">outliers</span> (discrepantes).</li>
+                <li><strong>Ramos e Folhas:</strong> Técnica híbrida que mantém os valores numéricos originais.</li>
+            </ul>
+        </section>
+    </article>
+
+</main>
+
+</body>
+</html>

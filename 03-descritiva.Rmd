@@ -54,9 +54,7 @@ Neste capítulo apresentaremos as etapas iniciais da exploração de um conjunto
 
 \
 
-<iframe src="assets\descritiva.html" width="100%" height="500px" style="border:none;"></iframe>
-
-
+<iframe src="assets/descritiva.html" width="100%" height="500px" style="border:none;"></iframe>
 
 \
 
@@ -94,13 +92,13 @@ Habitualmente uma _EDA_ envolve:
   - tabulares e 
   - gráficos.
 
-## Dados brutos e pr-e-processamentos elementares
+## Dados brutos e pré-processamentos elementares
 
 
 Consideremos os dados obtidos da medição das alturas em metros de 60 estudantes de uma determinada classe de um certo curso aqui na UEL: 
 
 
-```{r}
+```{r, echo=FALSE}
 alturas=c(1.63,1.67,1.47,1.64,1.66,1.73,2.00,1.62,1.65,1.56,1.65,1.85,1.73,
           1.78,1.82,1.68,1.67,1.83,1.72,1.71,1.73,1.67,1.66,1.95,1.76,1.73,
           1.77,1.68,1.65,1.64,1.66,1.68,1.61,1.73,1.72,1.83,1.69,1.84,1.66,
@@ -111,7 +109,12 @@ alturas
 
 \
 
-_Garbage in_, _garbage out_. Não são raras as vezes nas quais o relatório com os dados coletados em uma pesquisa apresentam uma série de erros. Não estamos a nos refeir aqui aos **erros amostrais** mas sim aos erros experimentais (não amostrais), aqueles decorrentes de dados coletados incorretamente, tais como aqueles resultantes de omissões na transcrição das informações, da leitura de instrumentos descalibrados ou de informações simplesmente não coletadas.
+>_Garbage in_, _garbage out_. 
+
+
+\
+
+Não são raras as vezes nas quais o relatório com os dados coletados em uma pesquisa apresentam uma série de erros. Não estamos a nos refeir aqui aos **erros amostrais** mas sim aos erros experimentais (não amostrais), aqueles decorrentes de dados coletados incorretamente, tais como aqueles resultantes de omissões na transcrição das informações, da leitura de instrumentos descalibrados ou de informações simplesmente não coletadas.
 
 \
 
@@ -131,7 +134,8 @@ Assim, o _dataset_ será composto pelos dados abaixo:
 \
 
 
-```{r}
+```{r, echo=FALSE}
+
 alturas=c(1.63,1.67,1.47,1.64,1.66,1.73,2.00,1.62,1.65,1.56,1.65,1.85,1.73,
           1.78,1.82,1.68,1.67,1.83,1.72,1.71,1.73,1.67,1.66,1.95,1.76,1.73,
           1.77,1.68,1.65,1.64,1.66,1.68,1.61,1.73,1.72,1.83,1.69,1.84,1.66,
@@ -156,12 +160,12 @@ Esse modo de apresentação é chamado de dados _brutos_.
 
 \
 
-Com um pequeno refinamento, como pela simples ordenação desses dados (são medidas numéricas contínuas), algumas informações começam a se destacar:
+Com um pequeno refinamento, como pela simples *ordenação* desses dados (são medidas numéricas contínuas), algumas informações começam a se destacar:
 
 \
 
 
-```{r}
+```{r, echo=FALSE}
 sort(alturas)
 ```
 \
@@ -195,13 +199,17 @@ As mais conhecidas _sínteses numéricas_ podem ser agrupadas conforme o aspecto
 \
 
 
-- tendência central (posição): média (simples ou aritmética, geométrica, harmônica, anarmônica, quadrática, biquadrática), moda e mediana;
-- dispersão (variabilidade): absolutas (amplitude total, variância e desvio padrão) ou relativas (coeficiente de variação, unidades padronizadas); e,
-- subdivisão (separatrizes, quantis): mediana (50\%), quartis (25\%, 50\%, 75\%), decis (10\%, ....90\%) e percentis (1\%....99\%).
+- **tendência central (posição)**: média (simples ou aritmética, geométrica, harmônica, anarmônica, quadrática, biquadrática), moda e mediana;
+- **dispersão (variabilidade)**: 
+  - absolutas (amplitude total, variância e desvio padrão)
+  - relativas (coeficiente de variação, unidades padronizadas); e,
+- **subdivisão (separatrizes, quantis)**: mediana (50\%), quartis (25\%, 50\%, 75\%), decis (10\%, ....90\%) e percentis (1\%....99\%).
 
 \
 
-Uma  medida de posição ou dispersão é dita **resistente** quando forem pouco afetadas pela alteração de uma pequena porção dos dados. A mediana é uma medida resistente, já a média e a variância não são.
+Uma  medida de posição ou dispersão é dita **resistente** quando forem **pouco afetadas** pela alteração de uma pequena porção dos dados. 
+
+A mediana é uma medida resistente, já a média e a variância não são.
 
 
 ### Estimadores
@@ -265,7 +273,7 @@ Algumas propriedades da média aritmética:
 
 \
 
-```{r,  out.width='80%', fig.align='center', fig.cap="Mudanças na média pela adição (subtração) de uma constante $k=0.05$"}
+```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Mudanças na média pela adição (subtração) de uma constante $k=0.05$"}
 
 alturas_ad=alturas+0.05
 
@@ -295,7 +303,8 @@ text(mean(alturas_ad)-0.2, 1, "Média=1,74 m", col = "red", srt=90)
 \
 
 
-```{r,  out.width='80%', fig.align='center', fig.cap="Mudanças na média pela multiplicação (divisão) de uma constante $k=1.2$"}
+```{r, echo=FALSE,  out.width='80%', fig.align='center', fig.cap="Mudanças na média pela multiplicação (divisão) de uma constante $k=1.2$"}
+
 alturas_mult=alturas*1.2
 
 par(mfrow=c(1,2))
@@ -332,9 +341,9 @@ Usando os dados das medidas das alturas dos 60 estudantes  teremos o seguinte va
 
 \
 
-```{r}
+```{r, echo=FALSE}
 
-round(mean(alturas),2)
+print(paste("A média dos 60 estudantes é:", round(mean(alturas), 4)))
 
 ```
 
@@ -346,15 +355,14 @@ Moda é o valor que ocorre com maior frequência na amostra. Uma amostra pode se
 
 \
 
-
-- unimodal; 
-- bimodal;
-- plurimodal; ou, 
-- amodal.
+- *a*modal;
+- *uni*modal; 
+- *bi*modal; ou,
+- *pluri*modal. 
 
 \
 
-```{r, align='center', fig.cap="Bimodal: 1,66 m e 1,73 m"}
+```{r,echo=FALSE,align='center', fig.cap="Bimodal: 1,66 m e 1,73 m"}
 
 tab_alturas=table(alturas)
 
@@ -395,27 +403,26 @@ Modes(alturas)
 
 \
 
-O conhecimento de uma medida de tendência central nos provê uma informação útil mas incompleta. As medidas de dispersão nos ajudam a ter uma perspectiva melhor dos dados.
+O conhecimento de uma medida de tendência central nos provê uma informação útil mas incompleta. 
+
+\
+
+As medidas de dispersão nos ajudam a ter uma perspectiva melhor dos dados e podem ser de dois diferetes tipos quanto à dimensão na qual são expressas (unidade):
+
+\
+
+- **medidas absolutas** são aquelas que carregam a unidade de medida da variável do fenômeno estudado ($m;kg;\frac{R\$}{mês};\dots$):   
+  - amplitude total dos dados; e,
+  - desvio padrão.  
+  
+- **medidas relativas** são **adimensionais**, isto é, não carregam a unidade de medida da variável do fenômeno estudado. Assim podem ser usadas para se comparar a variabilidade de dois ou mais conjuntos de dados, mesmo quando as variáveis se refiram a diferentes fenômenos ou que sejam expressas, originalmente, em diferentes unidades.
+  - coeficiente de variação; e,
+  - unidades padronizadas.
 
 
 \
 
-- amplitude total dos dados;
-- desvio padrão (variância): é considerada a mais útil das medidas de dispersão;  
-- coeficiente de variação; e,
-- unidades padronizadas.
 
-\
-
-Diferentes tipos quanto à dimensão (unidade):
-
-\
-
-- **medidas absolutas** são aquelas expressas na mesma unidade de medida da variável do fenômeno estudado ($m;kg;\frac{R\$}{mês};\dots$);  
-- **medidas relativas** são adimiensionais e assim podem ser usadas para se comparar a variabilidade de dois ou mais conjuntos de dados, mesmo quando as variáveis se refiram a diferentes fenômenos ou que sejam expressas, originalmente, em diferentes unidades.
-
-
-\
 
 #### Amplitude total dos dados
 
@@ -432,7 +439,7 @@ $$
 \
 
 
-#### Variância (e desvio padrão)
+#### Variância/desvio padrão
 
 \
 
@@ -497,7 +504,7 @@ Pode-se demonstrar que em razão dessa restrição a melhor estimativa para a va
 
 
 
-```{r}
+```{r, echo=FALSE}
 
 IC.Na = function (N, n, mu, sigma) {
   dados=data.frame()
@@ -538,7 +545,7 @@ abline(v=mean(dados$sd_vies), col='red', lwd=2, lty=2)
 \
 
 
-```{r ,  out.width='100%', fig.align='center', fig.cap="Flutuação dos valores do desvio padrão obtidos pelo estimador não viesado (em azul) e pelo estimador viesado (em vermelho) para diversas amostras extraídas de uma mesma população distribuição $\\sim N (\\mu; \\sigma)$ (em verde o desvio padrão populacional, em azul a média dos desvios padrão amostrais correta e em vermelho a estimada de modo viesado)", warning = FALSE, echo=TRUE}
+```{r , echo=FALSE, out.width='80%', fig.align='center', fig.cap="Flutuação dos valores do desvio padrão obtidos pelo estimador não viesado (em azul) e pelo estimador viesado (em vermelho) para diversas amostras extraídas de uma mesma população distribuição $\\sim N (\\mu; \\sigma)$ (em verde o desvio padrão populacional, em azul a média dos desvios padrão amostrais correta e em vermelho a estimada de modo viesado)", warning = FALSE, echo=TRUE}
 
 IC.Na(N=100, n=15, mu=170, sigma=7)
 
@@ -602,12 +609,12 @@ Usando os dados das medidas das alturas dos 60 estudantes  teremos o seguinte va
 \
 
 
-```{r}
+```{r, echo=FALSE}
 # Variância
-var(alturas)
+print(paste("A variância das medidas das alturas dos 60 estudantes é:", round(var(alturas), 4)))
 
 # Desvio padrão
-sd(alturas) 
+print(paste("O desvio padrão das medidas das alturas dos 60 estudantes é:", round(sd(alturas), 4)))
 
 ```
 
@@ -617,28 +624,33 @@ Propriedades da variância:
 
 \
 
-- somando-se (ou subtraindo-se) cada um dos elementos do conjunto de dados por uma constante arbitrária, a variância (e o desvio padrão) não se altera; e,
-- multiplicando-se (ou dividindo-se) cada um dos elementos do conjunto de dados por uma constante arbitrária, a variância ficará multiplicada (ou dividida) pelo quadrado dessa constante. O desvio padrão fica multiplicado (ou dividido) por essa constante  
+- **somando-se (ou subtraindo-se)** cada um dos elementos do conjunto de dados por uma constante arbitrária, **a variância não se altera**; e,
+- **multiplicando-se (ou dividindo-se)** cada um dos elementos do conjunto de dados por uma constante arbitrária, **a variância ficará multiplicada (ou dividida) pelo quadrado dessa constante**. 
+- **multiplicando-se (ou dividindo-se)** cada um dos elementos do conjunto de dados por uma constante arbitrária, **o desvio padrão** fica **multiplicado (ou dividido) por essa constante**  
+
 
 \
 
 
 
-```{r}
+```{r, echo=FALSE}
 # Adicionando-se uma constante k=0.05
 alturas_ad=alturas+0.05
-
-# Variância não se altera
-var_ad= var(alturas_ad)
-var_ad
-
-# Multiplicando-se uma constante k=1.2
+# Multiplicando-se por uma constante k=1.2
 alturas_mult=alturas*1.2
+# Dividindo-se por uma constante k=1.2
+alturas_div=alturas/1.2
 
-# Variância fica multiplicada (dividida) pelo quadrado dessa constante)
-var(alturas_mult)
 
-all.equal(var(alturas_mult), var(alturas)*(1.2^2)) 
+print(paste("A variância das medidas das alturas dos 60 estudantes adicionada de 0.05 (k) é:", round(var(alturas_ad), 4), ", igual à variância sem a adição:" , round(var(alturas),4)))
+
+print(paste("A variância das medidas das alturas dos 60 estudantes multiplicadas por k=1,20 é:", round(var(alturas_mult), 4), ", igual à variância original multiplicada pelo quadrado dessa constante (k):" , round((var(alturas)*(1.2^2)),4)))
+
+print(paste("A variância das medidas das alturas dos 60 estudantes dividida por k=1,20 é:", round(var(alturas_div), 4), ", igual à variância original dividida pelo quadrado dessa constante (k):" , round((var(alturas)/(1.2^2)),4)))
+
+
+
+#all.equal(var(alturas_mult), var(alturas)*(1.2^2)) 
 
 ```
 
@@ -648,12 +660,12 @@ all.equal(var(alturas_mult), var(alturas)*(1.2^2))
 
 \
 
-O coeficiente de variação (uma medida adimensional) é dado pela razão do desvio padrão pela média:
+O coeficiente de variação (uma medida **adimensional**) é dado pela razão do desvio padrão pela média:
 
 \
 
 $$
-CV(\%)= 100\cdot(\frac{s}{\stackrel{-}{x}})
+CV(\%)= 100\cdot(\frac{S}{\stackrel{-}{x}})
 $$
 
 \
@@ -925,7 +937,6 @@ print(quantile(x, probs = c(0.25, 0.50, 0.75), type = 8))
 
 \
 
-
 $$
 L_{p}=p\times n\\
 L_{p}=p \times (n+1)\\
@@ -947,13 +958,24 @@ Os quartis estimados a partir das posições virtuais determinadas por essas reg
 
 \
 
-Assim, para a determinação das **posições virtuais** dos 3 quartis pela **primeira regra** o valor de _p_ seria:
+Doravante, iremos adotar para a determinação da **posição virtual** de qualquer quantil de ordem **p** a primeira delas:
+
+\
+
+$$
+L_{p}=p\times n\\
+$$
+
+\
+
+
+Assim, para a determinação das **posições virtuais** dos 3 quartis os valores de _p_ seriam:
 
 \
 
 
 - para o _primeiro quartil_ ($L_{q_{0,25}}=0,25 \times (n)$; 
-- para o _segundo quartil_ ($L_{q_{0,50}}=0,50 \times (n)$; ou,  
+- para o _segundo quartil_ ($L_{q_{0,50}}=0,50 \times (n)$; e,  
 - para o _terceiro quartil_ ($L_{q_{0,75}}=0,75 \times (n)$. 
 
 
@@ -968,15 +990,21 @@ Novamente podemos nos deparar com **duas situações possíveis** para o valor c
 
 >se o valor calculado da **posição virtual** $L_{p}$ for **inteiro**, a estimativa do quantil de ordem $p$ será determinada pela média entre os valores dos dados que estão nas **posições** imediatamente anterior e imediatamente posterior à posição $L_{p}$:
 
+\
+
 $$
 Q_p=\frac{x_{L_{p}} + x_{(L_{p+1})}}{2}
 $$
 
 
 
-
 >se valor calculado da **posição virtual**  $L_{p}$ for um **fracionário**, a estimativa do quantil de ordem $p$ será o elemento localizado na posição inteira imediatamente superior a $L_p$.  
 
+\
+
+$$
+Q_p=x_{(\text{int. imed. sup. à posição } L_{p})}
+$$
 
 
 \
@@ -1033,7 +1061,7 @@ L_{Q_{3}} & =p \times (n) \\
 
 \
 
-E as aproximações dos quartis serão:
+E as estimativas dos quartis serão:
 
 \
 
@@ -1134,7 +1162,7 @@ Em Python, a definição $\hat{Q}_8(p)$ corresponde ao argumento method='median_
 
 
 
-| Proposição da posição virtual | Se \(L_p\) é inteiro | Se \(L_p\) é fracionário | Correspondência no R |
+| Proposição para determinação da posição virtual | Se \(L_p\) é inteiro | Se \(L_p\) é fracionário | Correspondência no R |
 |:--|:--|:--|:--|:--|
 | \(L_p = pn\) | \(Q(p)=\dfrac{x_{(L_p)}+x_{(L_p+1)}}{2}\) | \(Q(p)=x_{(\lceil L_p\rceil)}\) | `type = 2` |
 | \(L_p = p(n+1)\) | \(Q(p)=x_{(L_p)}\) | \(Q(p)=x_{(k)}+\delta\bigl(x_{(k+1)}-x_{(k)}\bigr)\), com \(L_p=k+\delta\)| `type = 6` |
@@ -1144,8 +1172,8 @@ Em Python, a definição $\hat{Q}_8(p)$ corresponde ao argumento method='median_
 \
 
 em que $k$ é a parte inteira de \(L_p\) e $\delta$ a parte fracionária de \(L_p\) ($0<\delta<1$): \(L_p=k+\delta\). 
-\
 
+\
 
 
 ## Padronizacao de dados (_z-scores_)
@@ -1188,9 +1216,11 @@ Assim, se $k=2$ **ao menos** 75\% das observações devem estar entre a média e
 \
 
 
-```{r}
+```{r, echo=FALSE}
+
 med=round(mean(alturas),2)
 desv= round(sd(alturas),2)
+
 ```
 
 \
@@ -1199,7 +1229,7 @@ No exemplo das alturas dos estudantes temos a média de `r med` m e um desvio pa
 
 \
 
-```{r}
+```{r, echo=FALSE}
 sort(alturas)
 # Duas observações menores que 1,47m e trẽs maiores que 1,91m.
 # Assim, 54 observações dentro do intervalo, equivalendo a 91,66% do total.
@@ -1207,7 +1237,7 @@ sort(alturas)
 
 \
 
-## Medidas de forma (assimetria \& curtose)
+## Medidas de forma: assimetria \& curtose
 
 \
 
@@ -1220,25 +1250,34 @@ Ao observarmos que a cauda se mostra mais alongada para a direita (indicativo da
 \
 
 
-```{r,  out.width='80%', fig.align='center', fig.cap="Diferentes formas na distribuição dos dados"}
+```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Diferentes formas na distribuição dos dados"}
 
 a=rbeta(10000,5,2)
 c=rbeta(10000,5,5)
 b=rbeta(10000,2,5)
 
-par(mfrow=c(1,3))
+par(mfrow = c(1, 3))
+
 hist(a, 
-     xlab="Valores",col = 'lightblue',
-     ylab="Frequência",
-     main="Assimetria à esq.")
+     xlim = c(0, 1.5),
+     xlab = "Valores",
+     col = "lightblue",
+     ylab = "Frequência",
+     main = "Assimetria à esq.")
+
 hist(c, 
-     xlab="Valores",col = 'lightblue',
-     ylab="Frequência",
-     main="Relativa simetria")
+     xlim = c(0, 1.5),
+     xlab = "Valores",
+     col = "lightblue",
+     ylab = "Frequência",
+     main = "Relativa simetria")
+
 hist(b, 
-     xlab="Valores",col = 'lightblue',
-     ylab="Frequência",
-     main="Assimetria à dir.")
+     xlim = c(0, 1.5),
+     xlab = "Valores",
+     col = "lightblue",
+     ylab = "Frequência",
+     main = "Assimetria à dir.")
 
 
 ```
@@ -1277,12 +1316,12 @@ Uma das medidas do coeficiente de assimetria é através do _primeiro ou segundo
 \
 
 
-- Primeiro coeficiente de assimetria de Pearson: $AS= \frac{ \stackrel{-}{x} - M_{o} }{ s }$
-- Segundo coeficiente de assimetria de Pearson: $AS = \frac{ 3 ( \stackrel{-}{x} - Q_{2}) } { s  }$
+- **Primeiro coeficiente** de assimetria de Pearson: $AS= \frac{ \stackrel{-}{x} - M_{o} }{ s }$
+- **Segundo coeficiente** de assimetria de Pearson: $AS = \frac{ 3 ( \stackrel{-}{x} - Q_{2}) } { s  }$
 
 \
 
-Onde:
+em que:
 
 \
 
@@ -1293,7 +1332,7 @@ Onde:
 
 \
 
-A _assimetria_ é classificada do modo seguinte:
+A _assimetria_ é classificada do seguinte em razão do valor calculado:
 
 \
 
@@ -1337,7 +1376,7 @@ O _coeficiente de curtose_ é classificado do modo seguinte:
 
 
 
-## Diferentes posições da média, moda e mediana (2$^{o}$ quartil)
+### Diferentes posições da média, moda e mediana (2$^{o}$ quartil) em razão da forma da distribuição
 
 \
 
@@ -1352,14 +1391,14 @@ Essas três medidas podem se apresentar com valores em posições alternadas qua
 \
 
 
-```{r, include=FALSE}
+```{r, echo=FALSE, include=FALSE}
 pos=as.vector(barplot(tab_alturas))
 
 ```
 
 \
 
-```{r,  out.width='80%', fig.align='center', fig.cap="Valores observados das alturas dos estudantes e as posições da média, moda e mediana"}
+```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Valores observados das alturas dos estudantes e as posições da média, moda e mediana"}
 barplot(tab_alturas,
         main="Valores observados da alturas dos estudantes",
         xlab="Altura (cm)",
@@ -1382,11 +1421,10 @@ text(c(16.3-0.5, 23.5-0.5), 5, c("Moda=1,66","Moda=1,73"), col = "darkgray", srt
 
 | | Média | Mediana | Moda |
 |---|---|---|---|
-| **Definição** | $\bar{x} = \dfrac{\sum x}{n}$ | Valor do meio | Valor mais freqüente |
 | **Existência** | Sempre existe | Sempre existe | Pode não existir, pode haver mais de uma |
 | **Leva em conta todos os valores** | Sim | Não | Não |
 | **Afetada por valores discrepantes** | Sim | Não | Não |
-| **Vantagens** | Usada em muitos métodos estatísticos | Menos sensível a valores discrepantes | Apropriada para dados qualitativos |
+| **Vantagens** | Usada em muitos métodos estatísticos | **Menos sensível a valores discrepantes** | Apropriada para dados qualitativos |
 
 : Quadro comparativo entre as medidas de tendência central (posição)
 
@@ -1402,7 +1440,7 @@ As sínteses numéricas expostas condensam ao máximo a informação trazida pel
 \
 
 - posição: média, moda, mediana;
-- dispersão: amplitude total dos dados, variância (esvio padrão), coeficiente de variação;
+- dispersão: amplitude total dos dados, variância/desvio padrão, coeficiente de variação;
 - separatrizes (repartição): como por exemplo os quartis ($Q_{1}$; $Q_{2}$/mediana e $Q_{3}$). 
 
 \
@@ -1416,7 +1454,7 @@ Ao se lidar com grandes conjuntos de dados a visualização da informação cont
 \
 
 
-```{r}
+```{r, echo=FALSE}
 sort(alturas)
 ```
 
@@ -1426,30 +1464,41 @@ Um dos modos de se lidar com isso é condensando a informação dos dados brutos
 
 \
 
-Uma tabela é uma forma não discursiva de apresentar informações nas quais o dado numérico se destaca como informação central. Uma tabela se diferencia de um quadro por este ter todos os seus campos delimitados por linhas e conter apenas informações de natureza qualitativa. 
+Uma tabela é uma **forma não textual** (não textual/discursiva/) de apresentar informações nas quais o dado numérico se destaca como informação central. 
 
 \
 
-Uma tabela deve conter algumas **informações essenciais**, fora daquela estritamente relacionada aos dados, para que a compreensão do leitor acerca dos dados expostos seja a mais imediata possível:   
+Uma **tabela** se diferencia de um **quadro** por este ter todos os seus campos delimitados por linhas e conter apenas informações de natureza qualitativa. 
 
 \
 
-
-- título que explique o que a tabela contém, local, data;
-- cabeçalho nas colunas e linhas com a explicação, ainda que resumis, a que se referem as quantidades expostas no corpo;
-- corpo formado pelos dados referentes às variáveis; 
-- fonte dos dados;
-- uniformidade no número de casas decimais apresentadas no corpo; 
-- todas as casas devem apresentar valores ou símbolos que expliquem a ausência da informação (NI, NE, ou 0-zero).
+A explicação detalhada da análise realizada é assunto para ser exposto no corpo principal do texto ou em apêndices. 
 
 \
 
 
-Trabalhos de natureza acadêmica ou científica deveriam obrigatoriamente seguir, quando publicados no Brasil, a norma vigente publicada pela ABNT: Associação Brasileira de Normas Técnicas e algumas punlicações do IBGE: Instituto Brasileiro de Geografia e Estatística (como em [link](https://biblioteca.ibge.gov.br/visualizacao/livros/liv23907.pdf)).
+Uma tabela serve para apresentar de modo sintético esses resultados assim, possui algums **elementos obrigatórios** (fora o próprio corpo tabular) para que a compreensão do leitor não se desvie muito para o texto:   
 
 \
 
-Observa-se frequentemente, todavia, que  as publicações seguem normas particulares das instituições de ensino (para trabalhos de conclusão de curso, monografias, dissertações e teses) ou das editoras (artigos), muitas vezes mescladas com recomendações da ABNT.  Na Universidade Estadual de Londrina o portal da biblioteca possui uma ligação para a seção "Normas para trabalhos" ([link](https://sites.uel.br/bibliotecas/)).
+
+- **título**;
+- **cabeçalho explicativo nas colunas e linhas**;
+- **fonte dos dados**.
+
+\
+
+Os dados mostrados no corpo da tabela devem  apresentar uniformidade no número de casas decimais e, para situações adversas, símbolos que expliquem a ausência da informação: NI (não informado), NE (não existente), ou 0 (zero).
+
+
+\
+
+
+Trabalhos de natureza acadêmica ou científica _deveriam_ obrigatoriamente seguir, quando publicados no Brasil, a norma vigente publicada pela ABNT: Associação Brasileira de Normas Técnicas e algumas punlicações do IBGE: Instituto Brasileiro de Geografia e Estatística (como em [link](https://biblioteca.ibge.gov.br/visualizacao/livros/liv23907.pdf)).
+
+\
+
+**Observa-se frequentemente**, todavia, que  as publicações seguem normas particulares das instituições de ensino (para trabalhos de conclusão de curso, monografias, dissertações e teses) ou das editoras (artigos), muitas vezes mescladas com recomendações da ABNT.  Na Universidade Estadual de Londrina o portal da biblioteca possui uma ligação para a seção "Normas para trabalhos" ([link](https://sites.uel.br/bibliotecas/)).
 
 
 
@@ -2003,7 +2052,7 @@ A literatura propõe vários modos para se determinar o número _k_ de classes:
 |----------------------------|--------------------------|-------------------------|
 |                            | n $\leq$ 25              | k=5                     |
 | Raiz quadrada              | 25  $\leq$ n $\leq$ 220  | k=$\sqrt{n}$            |
-| Potência de 2              | 25  $\leq$ n $\leq$ 220  | $2^{k} > n$             |
+| Herbert **Sturges** Discretizada | 25  $\leq$ n $\leq$ 220  | $2^{k} > n$             |
 | Herbert **Sturges**        | 135 $\leq$ 572237        | k=1+3,22.log(n)$^{(1)}$ |
 | Giuseppe **Milone**        | 20 $\leq 36315$          | k=-1+2.ln(n) $^{(2)}$   |
 
@@ -2252,7 +2301,7 @@ Essas informações servem para tornar a visualização mais imediata e muitas d
 - Classe _i_: é a simples identificação de cada classe;
 - Amplitude ($\Delta_{i}$) da classe $i$: a diferença entre o valor do limite superior e o do inferior de cada classe; 
 - Intervalo de valores da classe  $i$  (onde seu limite inferior **está contido** e o limite superior **não está contido**); 
-- Valor médio ($\stackrel{-}{x}_{i}$) de cada classe $i$: o valor de seu **limite inferior** mais a metade da amplitude da classe;
+- Valor médio de cada classe $i$: $\bar{x_{i}}=(\frac{l_{sup_i}+l_{inf_i}}{2})$;
 - Frequência absoluta ($f_{i}$) da classe  $i$: o número de observações **contidas** no intervalo da classe considerada; 
 - Frequência relativa ($fr_{i}= \frac{f_{i}}{n}$) da classe $i$  (ou frequência relativa percentual, se assim apresentada):  o quociente do número de observações $n_{i}$ contidas no intervalo da classe $f_{i}$,  pelo número total de observações ($n$);
 - Frequência acumulada ($F_{i}$) da classe $i$  (ou frequência acumulada percentual, se assim apresentada): o número de observações com medidas contidas na classe $i$ e nas anteriores a ela; 
@@ -2301,9 +2350,76 @@ Essas informações servem para tornar a visualização mais imediata e muitas d
 \
 
 
+```{r, echo=FALSE, message=FALSE,out.width='80%', fig.align='center', fig.cap="Polígono de densidades relativas"}
+
+# Construindo uma abela à mão no R 
+library(gt)
+fi <- c(3, 2, 10, 19, 16, 6, 2, 2)
+n  <- sum(fi)
+Fi <- cumsum(fi)
+
+# Passo 1
+df <- data.frame(
+  i = as.character(1:8)
+)
+# Passo 2
+df$classe <- c("[1.410 ; 1.485)", "[1.485 ; 1.560)", "[1.560 ; 1.635)",
+               "[1.635 ; 1.710)", "[1.710 ; 1.785)", "[1.785 ; 1.860)",
+               "[1.860 ; 1.935)", "[1.935 ; 2.010]")
+# Passo 3
+df$bar_x <- c(1.4475, 1.5225, 1.5975, 1.6725, 1.7475, 1.8225, 1.8975, 1.9725)
+# Passo 4
+df$fi <- fi
+# Passo 5
+df$fri <- round(fi / n, 3)
+# Passo 6
+df$Fi <- Fi
+# Passo 7
+df$Fri <- round(Fi / n, 3)
+# Passo 8
+df$bar_x_fi <- df$bar_x * df$fi
+# Passo 9
+df$bar_x2_fi <- (df$bar_x)^2 * df$fi
+# Passo 10
+df$quad_bar_x_fi <- (df$bar_x*df$fi)^2
+# Passo final: linha de totais
+tot <- data.frame(
+  i              = "Total",
+  classe         = "-",
+  bar_x          = "-",
+  fi             = sum(df$fi),
+  fri            = round(sum(df$fri), 3),
+  Fi             = "-",
+  Fri            = "-",
+  bar_x_fi       = sum(df$bar_x_fi),
+  bar_x2_fi      = sum(df$bar_x2_fi),
+  quad_bar_x_fi  = sum(df$quad_bar_x_fi)
+)
+df <- rbind(df, tot)
+# Arrumando os nomes das colunas
+gt(df) |>
+  cols_label(
+    i             = "i",
+    classe        = "Classe",
+    bar_x         = md('$\\bar{x}$'),
+    fi            = md('$f_{i}$'),
+    fri           = md('$f_{ri}$'),
+    Fi            = md('$F_{i}$'),
+    Fri           = md('$F_{ri}$'),
+    bar_x_fi      = md('$\\bar{x}_i \\cdot f_i$'),
+    bar_x2_fi     = md('$\\bar{x}_i^2 \\cdot f_i$'),
+    quad_bar_x_fi = md('$(\\bar{x}_i \\cdot f_i)^2$')
+  )
+
+```
+
+
+\
+
+
 ```{r, echo=FALSE}
 # -------------------------------------------------------
-# Função: tabela_freq()
+# Função: tabela_freq() com resultados tendo n. de casas da variável + 1
 # Parâmetros:
 #   x       : vetor numérico de dados brutos
 #   k       : número de classes
@@ -2314,6 +2430,9 @@ Essas informações servem para tornar a visualização mais imediata e muitas d
 
 tabela_freq <- function(x, k, delta, lim_inf, format = "console") {
   n <- length(x)
+  casas_x <- max(nchar(sub("^[0-9]*\\.?", "", as.character(x[grepl("\\.", as.character(x))]))))
+  casas_x <- ifelse(length(casas_x) == 0 || is.infinite(casas_x), 0, casas_x)
+  casas_fri <- casas_x + 1
   casas <- nchar(sub("^[0-9]*\\.?", "", as.character(delta)))
   casas <- ifelse(grepl("\\.", as.character(delta)), casas, 0)
   limites_inf <- lim_inf + (0:(k - 1)) * delta
@@ -2332,7 +2451,7 @@ tabela_freq <- function(x, k, delta, lim_inf, format = "console") {
   Fri <- cumsum(fri)
   di  <- fi  / delta
   dri <- fri / delta
-  fri_arred <- round(fri * 100, 4)
+  fri_arred <- round(fri * 100, 6)
   diff_fri  <- 100 - sum(fri_arred)
   if (diff_fri != 0) {
     idx <- which.max(fri_arred)
@@ -2342,20 +2461,20 @@ tabela_freq <- function(x, k, delta, lim_inf, format = "console") {
   Fri_pct_arred[k] <- 100
   classe_label <- paste0(
     "[", format(limites_inf, nsmall = 2), " ; ",
-         format(limites_sup, nsmall = 2), ")"
+    format(limites_sup, nsmall = 2), ")"
   )
   classe_label[k] <- sub("\\)$", "]", classe_label[k])
   tab <- data.frame(
     Classe = classe_label,
     PM     = pm,
     fi     = fi,
-    fri    = round(fri, casas),
+    fri    = round(fri, casas_fri),   # <-- casas_fri
     Fi     = Fi,
-    Fri    = round(Fri, casas),
+    Fri    = round(Fri, casas_fri),   # <-- casas_fri
     fi_pct = fri_arred,
     Fi_pct = Fri_pct_arred,
     di     = round(di, casas),
-    dri    = round(dri, casas)
+    dri    = round(dri, casas_fri)    # <-- casas_fri
   )
   names(tab) <- c(
     "Classe", "PM",
@@ -2366,7 +2485,7 @@ tabela_freq <- function(x, k, delta, lim_inf, format = "console") {
   )
   totais <- c(
     "Total", "",
-    sum(fi), round(sum(fri), casas),
+    sum(fi), round(sum(fri), casas_fri),
     "", "",
     sum(fri_arred), "",
     "", ""
@@ -2375,10 +2494,10 @@ tabela_freq <- function(x, k, delta, lim_inf, format = "console") {
   tab_total <- as.data.frame(tab_total, stringsAsFactors = FALSE)
   names(tab_total) <- names(tab)
   rownames(tab_total) <- c(as.character(1:k), "Total")
-
+  
   if (format == "html") {
     if (knitr::is_latex_output()) {
-       knitr::kable(tab_total, format = "latex", align = "c",
+      knitr::kable(tab_total, format = "latex", align = "c",
                    booktabs = TRUE,
                    row.names = TRUE,
                    col.names = c("$i$", "Classe", "$\\bar{x}_i$", "$f_i$", "$f_{ri}$",
@@ -2415,16 +2534,6 @@ tabela_freq <- function(x, k, delta, lim_inf, format = "console") {
 
 
 
-```{r}
-# -------------------------------------------------------
-# Aplicação aos 60 valores de alturas
-# -------------------------------------------------------
-
-tabela_freq(alturas, k = 8, delta = 0.075, lim_inf = 1.41, format = "html")
-
-```
-
-
 
 \
 
@@ -2434,10 +2543,23 @@ A partir das densidades relativas podemos traçar um gráfico com essa poligonal
 \
 
 
+```{r, echo=FALSE}
+# -------------------------------------------------------
+# Aplicação aos 60 valores de alturas
+# -------------------------------------------------------
+
+tabela_freq(alturas, k = 8, delta = 0.075, lim_inf = 1.41, format = "html")
+
+```
+
+\
+
+
+
 ```{r, echo=FALSE, message=FALSE,out.width='80%', fig.align='center', fig.cap="Polígono de densidades relativas"}
 
 
-
+#Função para construir uma tabela customizada 
 
 tabela_freq_obj <- tabela_freq(x, k = 8, delta = 0.075, lim_inf = 1.41)
 
@@ -2524,10 +2646,12 @@ legend("topright",
 
 ```
 
+
 \
 
 
-### Média
+
+### Média para dados tabelados
 
 \
 
@@ -2546,21 +2670,21 @@ Sejam $n_{1}, n_{2}, ..., n_{n}$ as frequências apresentadas para cada interval
 \
 
 $$
-\stackrel{-}{x}=\frac{\sum _{i=1}^{k}{f}_{i}\cdot{\stackrel{-}{x}}_{i}}{n}
+\stackrel{-}{x}_{tab}=\frac{\sum _{i=1}^{k}{f}_{i}\cdot{\stackrel{-}{x}}_{i}}{n}
 $$
 \
 
 
 onde:
 
-- $\stackrel{-}{x}_{i}$: o valor médio do intervalo da classe $i$; 
+- $\bar{x_{i}}=(\frac{l_{sup_i}+l_{inf_i}}{2})$: o valor médio do intervalo da classe $i$; 
 - $f_{i}$: a frequência absoluta da classe $i$; 
 - $k$ é o número de classes da tabela de distribuição de frequências;
 - $n$ é o número de dados da tabela (eventualmente, os dados podem se referir a toda a população sob estudo) .
 
 
 
-### Moda
+### Moda para dados tabelados
 
 \
 
@@ -2568,11 +2692,20 @@ Moda para dados apresentados na forma de uma distribuição de frequências:
 
 
 $$
-Mo = l_{inf} + (\frac{\Delta_{1}}{\Delta_{1} + \Delta_{2}}) \times \Delta_{i}
+MO_{tab} = l_{inf} + (\frac{\Delta_{1}}{\Delta_{1} + \Delta_{2}}) \times \Delta_{i}
 $$    
 \
 
-Primeiramente identificamos a(s) classe(s) modal(is): a(s) classe(s) com maior(es) frequência(s) absoluta $f_{i}$. Os demais elementos da expressão são: 
+Primeiramente identificamos a(s) classe(s) modal(is).
+
+\
+
+>**A(s) classe(s) modal é(são) aquela(s) com maior(es) frequência(s) absoluta(s) $f_{i}$**. 
+
+\
+
+Os demais elementos da expressão são: 
+
 \
 
 
@@ -2583,7 +2716,7 @@ Primeiramente identificamos a(s) classe(s) modal(is): a(s) classe(s) com maior(e
 
 \
 
-### Mediana ($=Q_{2}=D_{5}=P_{50}$)
+### Mediana para dados tabelados
 
 \
 
@@ -2594,25 +2727,29 @@ Mediana para dados apresentados na forma de uma **distribuição de frequências
     
 
 $$
-Md = l_{inf} + \left[ \frac{\frac{\sum_{i}^{k} f_{i}}{2} - F_{(md-1)}}{f_{md}} \right] \times \Delta_{i}
+MD_{tab} = l_{inf} + \left[ \frac{\frac{\sum_{i}^{k} f_{i}}{2} - F_{(md-1)}}{f_{md}} \right] \times \Delta_{md}
 $$ 
 
 
 \
 
-Primeiramente identificamos a **classe mediana**: a classe que contem o elemento de posição $\frac{n}{2}$ (basta observar a coluna da frequência absoluta acumulada: $F_{i}$, percorrendo-a até a classe $i$ que tenha valor $>\frac{n}{2}$. Os demais elementos da expressão da mediana são:   
+Primeiramente identificamos a **classe mediana**.
 
 \
 
-- $l_{inf}$: limite inferior da **classe mediana**;  
-- $F_{{(md-1)}}$: é a frequência absoluta acumulada até a **classe anterior à classe mediana**;  
+>**A classe mediana ($k_{md}$)é a classe que contém o elemento de posição $\frac{n}{2}$ (basta observar a coluna da frequência absoluta acumulada: $F_{i}$, percorrendo-a até a classe $i$ que tenha valor $>\frac{n}{2}$. Os demais elementos da expressão da mediana são:**   
+
+\
+
+- $l_{inf_{md}}$: limite inferior da **classe mediana**;  
+- $F_{{({md-1})}}$: é a frequência absoluta acumulada até a **classe anterior à classe mediana**;  
 - $f_{md}$: é a frequência absoluta da **classe mediana**; e,  
-- $\Delta_{i}$: é o intervalo da **classe mediana**.
+- $\Delta_{md}$: é o intervalo da **classe mediana**.
 
 \
 
 
-### Variância
+### Variância e desvio padrão para dados tabelados
 
 \
 
@@ -2621,7 +2758,7 @@ Variância para dados agrupados:
 \
 
 $$
-S^{2}= \frac{1}{n-1} \times \left[  \sum _{i=1}^{k}{(\stackrel{-}{x}}_{i})^{2} \cdot {f}_{i} - \frac{{\left(\sum _{i=1}^{k}{\stackrel{-}{x}}_{i} \cdot {f}_{i}\right)}^{2}  }{n}\right]
+S^{2}_{tab}= \frac{1}{n-1} \times \left[  \sum _{i=1}^{k}{(\stackrel{-}{x}}_{i})^{2} \cdot {f}_{i} - \frac{{\left(\sum _{i=1}^{k}{\stackrel{-}{x}}_{i} \cdot {f}_{i}\right)}^{2}  }{n}\right]
 $$
 
 
@@ -2629,13 +2766,39 @@ $$
 
 em que: 
 
-- $\stackrel{-}{x}_{i}$: o valor médio do intervalo de cada classe $i$ ($lim_{sup_i}-lim_{inf_i}$); 
+- $\bar{x_{i}}=(\frac{l_{sup_i}+l_{inf_i}}{2})$: o valor médio do intervalo da classe $i$; 
 - $f_{i}$: a frequência absoluta de cada classe $i$; 
 - $k$ é o número de classes da tabela de distribuição de frequências;
-- $n$ é o número de dados da tabela (eventualmente, os dados podem se referir a toda a população sob estudo) .
+- $n$ é o número de dados da tabela (eventualmente, os dados podem se referir a toda a população sob estudo).
 
 
 \
+
+ 
+O desvio padrão para dados tabelados segue sendo a raiz quadrada da variância
+ 
+\
+
+
+$$
+S_{tab}=\sqrt{S^{2}_{tab}}
+$$
+
+\
+
+
+### Coeficiente de variação para dados tabelados.
+
+\
+
+O coeficiente de variação (uma medida adimensional) é dado pela razão do desvio padrão dos dados tabelados  pela média dos mesmos:
+
+\
+
+$$
+CV(\%)_{tab}= 100\cdot(\frac{S_{tab}}{\stackrel{-}{x}_{tab}})
+$$
+
 
 ### Quartis
 
@@ -2678,7 +2841,7 @@ em que:
 
 \
 
-## Apresentacao descritiva de dados na forma grafica
+## Apresentacao descritiva de dados na forma gráfica
 
 
 \
@@ -2708,7 +2871,7 @@ A partir das tabelas mostradas na seção 3.5.1.1 Dados qualitativos em entrada 
 \
 
 
-```{r,  out.width='80%', align='center',  fig.cap="Gráfico de barras dos dados observados no terminal de desembarque internacional do aeroporto"}
+```{r, echo=FALSE, out.width='80%', align='center',  fig.cap="Gráfico de barras dos dados observados no terminal de desembarque internacional do aeroporto"}
 
 desembarque=c('AM','AM','A','A','A','AM','EU','EU','EU','EU','AM','AS','AS','AS','OC','AS','EU','AM')
 tab_desembarque=table(desembarque)
@@ -2730,7 +2893,7 @@ barplot(tab_desembarque,
 \
 
 
-```{r, align='center', fig.cap="Gráfico de barras da estrutura domiciliar dos Estados Unidos"}
+```{r, echo=FALSE,  align='center', fig.cap="Gráfico de barras da estrutura domiciliar dos Estados Unidos"}
 
 library(ggplot2)
 dados=data.frame(tipo=c("Casal com filhos",
@@ -2773,7 +2936,7 @@ Em um _Gráfico de setores_ a representação das quantidades está associada a 
 
 
 
-```{r,  out.width='80%',align='center', fig.cap="Gráfico de setores dos desembarques observados no terminal de desembarque internacional do aeroporto"}
+```{r, echo=FALSE,   out.width='80%',align='center', fig.cap="Gráfico de setores dos desembarques observados no terminal de desembarque internacional do aeroporto"}
 
 library(scales)
 library(ggplot2)
@@ -2820,7 +2983,7 @@ ggplot(desembarques_classes, aes(x="", y=value, fill=group)) +
 
 
 
-```{r, align='center', fig.cap="Gráfico de setores da estrutura domiciliar dos Estados Unidos"}
+```{r, echo=FALSE,  align='center', fig.cap="Gráfico de setores da estrutura domiciliar dos Estados Unidos"}
 
 library(ggplot2)
 library(scales)
@@ -2859,7 +3022,7 @@ pie +
 
 \
 
-```{r, align='center', fig.cap="Gráfico de barras da estrutura familiar em relação à inclinação partidária nos Estados Unidos"}
+```{r, echo=FALSE,  align='center', fig.cap="Gráfico de barras da estrutura familiar em relação à inclinação partidária nos Estados Unidos"}
 
 library(ggplot2)             # Carrega a biblioteca ggplot2
 
@@ -2892,7 +3055,7 @@ ggplot(dados, aes(x = Categoria, y = Contagem, fill = Partido)) +
 \
 
 
-```{r, align='center', fig.cap="Gráfico de barras da exposição ao fator de risco e o efeito"}
+```{r, echo=FALSE,  align='center', fig.cap="Gráfico de barras da exposição ao fator de risco e o efeito"}
 
 library(ggplot2)             # Carrega a biblioteca ggplot2
 
@@ -2971,7 +3134,7 @@ Um _Gráfico de dispersão unidimensional (stripchart)_ expressa visualmente dua
  
 \
  
-```{r,  out.width='80%', fig.align='center' , fig.cap="Gráfico de dispersão unidimensional (stripchart)"}
+```{r, echo=FALSE,   out.width='80%', fig.align='center' , fig.cap="Gráfico de dispersão unidimensional (stripchart)"}
 
 stripchart(alturas, method = "stack", offset=1,
            pch=20, at=0.5,
@@ -2992,7 +3155,7 @@ Se modificarmos o diagrama de ramos e folhas dos comprimentos e quantidades obse
 
 \
 
-```{r, align='center', fig.cap="Gráfico de barras dos dados brutos: uma barra para cada observação e sua altura expressando o número de observações com esse valor"}
+```{r, echo=FALSE,  align='center', fig.cap="Gráfico de barras dos dados brutos: uma barra para cada observação e sua altura expressando o número de observações com esse valor"}
 
 tab_alturas=table(alturas)
 
@@ -3025,7 +3188,7 @@ Para as classes estabelecias na seção anterior o histograma das alturas dos es
 \
 
 
-```{r,  out.width='80%', fig.align='center', fig.cap="Histograma das alturas dos estudantes com as posições da média, moda e mediana"}
+```{r, echo=FALSE,   out.width='80%', fig.align='center', fig.cap="Histograma das alturas dos estudantes com as posições da média, moda e mediana"}
 
 h1=hist(alturas, breaks=seq(1.41 , 2.01 , 0.1),  include.lowest = TRUE, right = FALSE, main= "Histograma das alturas dos estudantes", col="blue", 
 xlab="Classes de alturas (m)", ylab="Frequência absoluta observada (un)" , cex=0.7, ylim=c(0,30))
@@ -3067,7 +3230,7 @@ Num _histograma de densidade_, a altura de cada retângulo representa uma _densi
 \
 
 
-```{r,output.width='80%',  align='center', fig.cap="A linha vermelha é uma aproximação da Função de Densidade da frequência relativa de observação (a linha preta é a curva da função densidade de uma distribuição Normal com média e variâncias dadas pelos dados"}
+```{r, echo=FALSE, output.width='80%',  align='center', fig.cap="A linha vermelha é uma aproximação da Função de Densidade da frequência relativa de observação (a linha preta é a curva da função densidade de uma distribuição Normal com média e variâncias dadas pelos dados"}
 
 
 h2=hist(alturas,breaks=seq(1.41 , 2.01 , 0.10),  include.lowest = TRUE, right = FALSE, main= "Histograma das densidades das alturas dos estudantes", col="blue", 
@@ -3132,7 +3295,7 @@ Em um _Gráfico de setores_ a representação das quantidades está associada a 
 \
 
 
-```{r, output.width='80%', align='center', fig.cap="Gráfico de setores das alturas dos estudantes"}
+```{r, echo=FALSE,  output.width='80%', align='center', fig.cap="Gráfico de setores das alturas dos estudantes"}
 
 library(scales)
 library(ggplot2)
@@ -3206,7 +3369,7 @@ Roteiro para o _Box-Plot_ cf. John Tukey ( _Exploratory Data Analysis_, 1977)
 
 \
 
-- ordenar os valores (menor para o maior);
+- ordenar os valores (do menor para o maior);
 - determinar os quartis;
 - calcular o intervalo (distância interquartílica);
 - calcular os limites superior e inferior;
@@ -3219,7 +3382,7 @@ Roteiro para o _Box-Plot_ cf. John Tukey ( _Exploratory Data Analysis_, 1977)
 
 \
 
-```{r,  output.width='80%',  fig.align='center', fig.cap="Box-plot de um rol de valores com Distribuição Normal (média 20 e variãncia 5"}
+```{r, echo=FALSE,   output.width='80%', fig.width=9, fig.height=7, fig.align='center', fig.cap="Box-plot do conjunto de dados das alturas"}
 
 min=min(alturas)
 q1=1.635
@@ -3233,43 +3396,48 @@ li=q1-1.5*iq
 head(sort(alturas,TRUE)) #2.00 1.95 >>1.93<< 1.86 1.85 1.84
 tail(sort(alturas,TRUE)) # 1.56 1.55 1.54 1.47 1.44 >>1.41<<
 
+boxplot(alturas,
+        main = "Boxplot do conjunto de dados de alturas",
+        ylim = c(1.2, 2.1))
+
+# ── Lado ESQUERDO ─────────────────────────────────────────────────────────────
+
+lines(y = c(q2, q2),  x = c(0.55, 1), col = "blue")
+text(x = 0.55, y = q2 + 0.04, "Seg. quartil-Q2\nmediana (1,675 m)", col = "blue", adj = 0)
+
+# Superior: três rótulos escalonados para cima
+lines(y = c(1.93, 1.93), x = c(0.55, 1), col = "blue")
+text(x = 0.55, y = 1.93 + 0.02, "Final da hasta superior (1,93 m)",  col = "blue", adj = 0)
 
 
-boxplot(alturas, 
-        main="Boxplot do conjunto de dados de alturas",
-        ylim=c(1.2, 2.1))
+points(y = 1.93, x = 1, col = "green", cex = 1.1, lwd = 3)
+text(x = 0.65, y = 1.93 - 0.02, "Últ. obs. dentro do LS (1,93 m)", col = "darkgreen", adj = 0)
 
-lines( y=c(1.47, 1.47), x=c(0.6,1), col="blue") 
-text(x=0.60, y=1.47-0.05, "Delimitador inferior do bigode=1,47", col = "blue", srt=0)
+# Inferior: três rótulos escalonados para baixo
+lines(y = c(1.47, 1.47), x = c(0.55, 1), col = "blue")
+text(x = 0.55, y = 1.47 - 0.02, "Final da haste inferior (1,47 m)",  col = "blue", adj = 0)
 
-lines( y=c(1.93,1.93), x=c(0.6,1), col="blue") 
-text(x=0.60, y=1.93+0.05, "Delimitador superior do bigode=1,93", col = "blue", srt=0)
+points(y = 1.47, x = 1, col = "green", cex = 1.1, lwd = 3)
+text(x = 0.65, y = 1.47 + 0.02, "Últ. obs. dentro do LI (1,47 m)", col = "darkgreen", adj = 0)
 
-lines(y=c(med, med),  x=c(1,1.4), col="blue") 
-text(x=1.4 , y= med+0.05 , "Média=1,6907", col = "blue", srt=0)
+# ── Lado DIREITO ──────────────────────────────────────────────────────────────
+lines(y = c(ls, ls), x = c(0.9, 1.45), col = "red", lty = 2)
+text(x = 1.1, y = ls  + 0.02, "Lim. superior-LS (1,935 m)", col = "red",  adj = 0)
 
-lines(y=c(q1, q1), x=c(1, 1.4), col="blue") 
-text(x=1.4, y=q1 -0.05, "Primeiro quartil: Q1=1,635", col = "blue", srt=0)
+lines(y = c(li, li), x = c(0.9, 1.45), col = "red", lty = 2)
+text(x = 1.1, y = li  - 0.02, "Lim. inferior-LI (1,455 m)", col = "red",  adj = 0)
 
-lines(y=c(q2, q2),  x=c(0.6,1), col="blue") 
-text(x=0.60 , y= q2 - 0.05, "Mediana: Q2=1,675", col = "blue", srt=0)
+lines(y = c(q1, q1),  x = c(1.0, 1.45), col = "blue")
+text(x = 1.45, y = q1 - 0.02, "Prim. quartil-Q1 (1,635 m)",    col = "blue", adj = 1)
 
-lines(y=c(q3, q3), x=c(1, 1.4), col="blue") 
-text(x= 1.4 , y=q3 + 0.05, "Terceiro quartil: Q3=1,755", col = "blue", srt=0)
+lines(y = c(med, med), x = c(1.0, 1.45), col = "blue")
+text(x = 1.45, y = med + 0.02, "Média (1,6907 m)", col = "blue", adj = 1)
 
-lines(y=c(li,li) , x=c(1.01,1.4) , col="red", lty=2) 
-text(x=1.2, y=q1-1.5*iq-0.05 , "Limite inferior teórico: LI=1,455) ", col = "red", srt=0)
+lines(y = c(q3, q3),  x = c(1.0, 1.45), col = "blue")
+text(x = 1.45, y = q3 + 0.02, "Terc. quartil-Q3 (1,755 m)",    col = "blue", adj = 1)
 
-lines(y=c(ls,ls) , x=c(1.01,1.4) , col="red", lty=2) 
-text(x=1.2, y=q3+1.5*iq +0.05 , "Limite superior teórico: LS=1,935", col = "red", srt=0)
-
-points (y=1.47, x=1 , col="green", cex=1, lwd=5) 
-text(x=1, y=1.47-0.05 , "Última observação dentro do LI: h=1,47 ", col = "green", srt=0)
-
-points (y=1.93, x=1 , col="green", cex=1, lwd=5) 
-text(x=1, y=1.93+0.05 , "Última observação dentro do LS: h=1,93 ", col = "green", srt=0)
-
-
+text(x=1, y=2.05, "Outliers", col = "orange", adj = 0)
+text(x=1, y=1.38, "Outliers", col = "orange", adj = 0)
 
 ```
 

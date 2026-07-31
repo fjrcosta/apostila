@@ -44,7 +44,8 @@ library(formatR)
 # Introdução a testes de hipóteses{#introducao-a-testes-de-hipoteses}
 
 
-## Filosofia da ciência
+
+## Filosofia da ciencia (teoria do conhecimento, epistemologia)
 
 
 
@@ -332,8 +333,9 @@ IC.Na = function (N, n, mu, sigma, conf, er) {
        bty="l",
        xlab="Vida útil em horas", 
        ylab="Amostras extraídas", 
-       main=paste0("Flutuação dos valores médios obtidos em ", N," amostras de tamanho ",n,"\n(nível de confiança: ",conf,"; erro: ", er,")") , 
-       sub=paste0("Os valores da vida útil seguem uma distribuição ~ N  (\u03bc:",mu," ; \u03c3:", sigma,")"))
+       main=paste0("Valores médios obtidos de ", N,"\namostras de tamanho ",n,"\n(nível de confiança: ",conf,"; erro: ", er,")") , 
+       sub=paste0("Os valores da vida útil seguem uma distribuição ~ N  (\u03bc:",mu," ; \u03c3:", sigma,")")
+       )
   abline(v=mu, col='blue', lwd=2, lty=2)
   abline(v=mu-er, col='red', lwd=2, lty=2)
   abline(v=mu+er, col='red', lwd=2, lty=2)
@@ -367,14 +369,13 @@ return(dados)
 \
 
 
-```{r ,  out.width='100%', fig.align='center', fig.cap="Flutuação dos valores médios para diversas amostras extraídas de uma mesma população distribuição $\\sim N (\\mu; \\sigma)$", warning = FALSE, echo=FALSE}
+```{r ,  out.width='90%', fig.align='center', fig.cap="Flutuação dos valores médios para diversas amostras extraídas de uma mesma população distribuição $\\sim N(\\mu; \\sigma)$", warning = FALSE, echo=TRUE, results='hide'}
 N=100
 n=140
 mu=1600
 sigma=120
 conf=0.95
 er=20
-
 IC.Na(N, n, mu, sigma, conf, er)
 
 ```
@@ -797,7 +798,7 @@ em que $\mu_{0}$ é o valor inferido ao parâmetro $\mu$ que se deseja testar.
 \
 
 
-```{r fig70,  out.width='100%', fig.align='center', fig.cap="Regiões críticas, aquém e além das quais, a probabilidade associada aos valores amostrais observados é inferior a $\\frac{\\alpha}{2}$, estabelecendo assim um intervalo com nível de confiança igual a $(1-\\alpha)$", warning = FALSE}
+```{r fig70,   out.width='80%', fig.align='center', fig.cap="Regiões críticas, aquém e além das quais, a probabilidade associada aos valores amostrais observados é inferior a $\\frac{\\alpha}{2}$, estabelecendo assim um intervalo com nível de confiança igual a $(1-\\alpha)$", echo=FALSE, warning = FALSE}
 
 
 alfa=0.05
@@ -883,7 +884,7 @@ em que $\mu_{0}$ é o valor inferido ao parâmetro $\mu$ que se deseja.
 \
 
 
-```{r fig71,  out.width='100%', fig.align='center', fig.cap="Região crítica aquém da qual a probabilidade associada aos valores amostrais observados é inferior a $\\alpha$, estabelecendo assim um intervalo com nível de confiança igual a $(1-\\alpha)$", warning = FALSE}
+```{r fig71,   out.width='80%', fig.align='center', fig.cap="Região crítica aquém da qual a probabilidade associada aos valores amostrais observados é inferior a $\\alpha$, estabelecendo assim um intervalo com nível de confiança igual a $(1-\\alpha)$",echo=FALSE,  warning = FALSE}
 
 
 alfa=0.05
@@ -963,7 +964,7 @@ em que $\mu_{0}$ é o valor inferido ao parâmetro $\mu$ que se deseja testar .
 \
 
 
-```{r fig72,  out.width='100%', fig.align='center', fig.cap="Região crítica além da qual a probabilidade associada aos valores amostrais observados é inferior a $\\alpha$, estabelecendo assim um intervalo com nível de confiança igual a $(1-\\alpha)$", warning = FALSE}
+```{r fig72,   out.width='80%', fig.align='center', fig.cap="Região crítica além da qual a probabilidade associada aos valores amostrais observados é inferior a $\\alpha$, estabelecendo assim um intervalo com nível de confiança igual a $(1-\\alpha)$", echo=FALSE, warning = FALSE}
 
 
 alfa=0.95
@@ -1092,7 +1093,7 @@ em que:
 
 \
 
-```{r, warning = FALSE}
+```{r,echo=FALSE,  warning = FALSE}
 
 # Definição do eixo x
 x <- seq(-4, 4, length.out = 100)
@@ -1285,7 +1286,7 @@ Da tabela da distribuição Normal reduzida obtemos o valor crítico bicaudal: $
 
 
 
-```{r fig73,  out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral (tipo: diferente de) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $z_{crit} =\\pm 1,96$. O valor calculado da estatística ($z_{calc}=-2,50$) situa-se na faixa de significância do teste, possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE }
+```{r fig73, echo=FALSE,   out.width='80%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral (tipo: diferente de) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $z_{crit} =\\pm 1,96$. O valor calculado da estatística ($z_{calc}=-2,50$) situa-se na faixa de significância do teste, possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE }
 
 
 alfa=0.05
@@ -1384,7 +1385,7 @@ Da tabela da distribuição Normal reduzida obtemos o valor crítico monocaudal:
 
 
 
-```{r fig74,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $z_{crit} = -1,64$. O valor calculado da estatística ($z_{calc}=-2,50$) situa-se na faixa de significância do teste, possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig74,echo=FALSE,    out.width='80%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $z_{crit} = -1,64$. O valor calculado da estatística ($z_{calc}=-2,50$) situa-se na faixa de significância do teste, possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 
@@ -1470,7 +1471,7 @@ Da tabela da distribuição Normal reduzida obtemos o valor crítico monocaudal:
 
 
 
-```{r fig75,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $z_{crit} = 1,64$. O valor calculado da estatística ($z_{calc}=-2,50$) situa-se na faixa de não significância do teste, não possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig75,echo=FALSE,    out.width='80%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $z_{crit} = 1,64$. O valor calculado da estatística ($z_{calc}=-2,50$) situa-se na faixa de não significância do teste, não possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 alfa=0.95
@@ -1580,7 +1581,7 @@ Da tabela ``t'' de Student obtemos o valor crítico bicaudal: $|{t}_{tab\left(\f
 
 \
 
-```{r fig76, out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $t_{crit} =\\pm 2,306$. O valor calculado da estatística ($t_{calc}=-2,02$) situa-se na faixa de significância do teste, possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig76,echo=FALSE,   out.width='80%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $t_{crit} =\\pm 2,306$. O valor calculado da estatística ($t_{calc}=-2,02$) situa-se na faixa de significância do teste, possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 alfa=0.05
@@ -1648,7 +1649,7 @@ Conclusão: Os resultados obtidos na análise estatística realizada não nos pe
 \
 
 
-```{r}
+```{r, echo=FALSE}
 # Dados do problema
 n=9
 media_amostral=4
@@ -1708,7 +1709,7 @@ Da tabela ``t'' de Student obtemos o valor crítico monocaudal: $|{t}_{tab_(\alp
 
 
 
-```{r fig77, out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $t_{crit} = -1,86$. O valor calculado da estatística ($t_{calc}=-2,02$) situa-se na faixa de significância do teste possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig77,echo=FALSE,   out.width='80%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $t_{crit} = -1,86$. O valor calculado da estatística ($t_{calc}=-2,02$) situa-se na faixa de significância do teste possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 
@@ -1764,7 +1765,7 @@ Caso estabelecêssemos um nível de confiança $(1-\alpha) \ge 0,9611277$ (ou ti
 
 
 
-```{r}
+```{r, echo=FALSE  }
 # Dados do problema
 n=9
 media_amostral=4
@@ -1818,7 +1819,7 @@ Da tabela ``t'' de Student obtemos o valor crítico monocaudal: $|{t}_{tab_(\alp
 
 
 
-```{r fig78, out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral  realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $t_{crit} = 1,86$. O valor calculado da estatística ($t_{calc}=-2,02$) situa-se na faixa de não significância do teste, não possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig78, echo=FALSE,  out.width='80%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral  realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $t_{crit} = 1,86$. O valor calculado da estatística ($t_{calc}=-2,02$) situa-se na faixa de não significância do teste, não possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 
@@ -1873,7 +1874,7 @@ Caso estabelecêssemos um nível de confiança $(1-\alpha) \ge 0,9611277$ (ou ti
 
 
 
-```{r}
+```{r ,echo=FALSE }
 # Dados do problema
 n=9
 media_amostral=4
@@ -1984,7 +1985,7 @@ Considera eo exemplo:
 Regiões de rejeição da hipótese nula (Figura \@ref(fig:fig86)):
  
  
-```{r fig86,  out.width='100%', fig.align='center', fig.cap='Regiões de rejeição da hipótese nula para o teste bilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $f_{crit1}$ e $f_{crit2}$ para o nível de significância pretendido ($\\alpha$ dividido em ambas as caudas) e ($df_{1}; df_{2}$) graus de liberdade. A curva não é simétrica e assim, os valores críticos são diferentes', warning = FALSE}
+```{r fig86,  echo=FALSE,  out.width='80%', fig.align='center', fig.cap='Regiões de rejeição da hipótese nula para o teste bilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $f_{crit1}$ e $f_{crit2}$ para o nível de significância pretendido ($\\alpha$ dividido em ambas as caudas) e ($df_{1}; df_{2}$) graus de liberdade. A curva não é simétrica e assim, os valores críticos são diferentes', warning = FALSE}
 
 
 # Parâmetros
@@ -2110,7 +2111,7 @@ Região de rejeição da hipótese nula (Figura \@ref(fig:fig87)):
  
 \
  
-```{r fig87,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $f_{crit}$ para o nível de significância pretendido ($\\alpha$ em uma cauda)  e ($df_{1}; df_{2}$) graus de liberdade.", warning = FALSE}
+```{r fig87,echo=FALSE,    out.width='80%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $f_{crit}$ para o nível de significância pretendido ($\\alpha$ em uma cauda)  e ($df_{1}; df_{2}$) graus de liberdade.", warning = FALSE}
 
 # Parâmetros
 prob_desejada1 = 0.95
@@ -2185,7 +2186,7 @@ print(plot)
 
 
 
-```{r fig82, echo=FALSE, out.width='100%', fig.align='center', fig.cap='Visão esquemática das amostras de duas populações'}
+```{r fig82, echo=FALSE, echo=FALSE,  out.width='100%', fig.align='center', fig.cap='Visão esquemática das amostras de duas populações'}
 
 knitr::include_graphics("images11/ilustração_01.png")
 
@@ -2537,7 +2538,7 @@ não se rejeita a hipótese nula sob o nível de signficância estabelecido. Da 
 
 
 
-```{r fig83,  out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $z_{crit} =\\pm 2,57$. O valor calculado da estatística ($z_{calc}=0,987$) não nos possibilita a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig83, echo=FALSE,   out.width='80%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $z_{crit} =\\pm 2,57$. O valor calculado da estatística ($z_{calc}=0,987$) não nos possibilita a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 alfa=0.01
@@ -2626,7 +2627,7 @@ Da tabela da distribuição Normal padronizada obtemos o valor crítico monocaud
 
 
 
-```{r fig84,  out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste unilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valor crítico da estatística do teste: $z_{crit}=-2,33$. O valor calculado da estatística ($z_{calc}=0,98773$) não nos possibilita a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig84, echo=FALSE,   out.width='80%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste unilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valor crítico da estatística do teste: $z_{crit}=-2,33$. O valor calculado da estatística ($z_{calc}=0,98773$) não nos possibilita a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 
@@ -2712,7 +2713,7 @@ Da tabela da distribuição Normal padronizada obtemos o valor crítico monocaud
 
 
 
-```{r fig85,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $z_{crit} = 2,33$. O valor calculado da estatística ($z_{calc}=0,98773$) não nos possibilita a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig85,echo=FALSE,    out.width='80%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $z_{crit} = 2,33$. O valor calculado da estatística ($z_{calc}=0,98773$) não nos possibilita a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 alfa=0.99
@@ -2960,7 +2961,7 @@ $$
 
 
  
-```{r , out.width='100%', fig.align='center', fig.cap="O valor calculado da estatística de teste ($F_{calc}=2,56$) situa-se na região não significante do teste, não permitindo a rejeição da hipótese nula de que as variâncias são iguais sob o nível de confiança estabelecido.", warning = FALSE}
+```{r ,echo=FALSE,   out.width='80%', fig.align='center', fig.cap="O valor calculado da estatística de teste ($F_{calc}=2,56$) situa-se na região não significante do teste, não permitindo a rejeição da hipótese nula de que as variâncias são iguais sob o nível de confiança estabelecido.", warning = FALSE}
 
 
 prob_desejada1=0.95
@@ -3014,7 +3015,7 @@ O valor calculado da estatística de teste ($F_{calc}=2,56$) situa-se na região
 \
 
 
-```{r fig88, echo=FALSE, out.width='100%', fig.align='center', fig.cap='O valor calculado da estatística de teste ($F_{calc}=2,56$) situa-se na região não significante do teste, não permitindo a rejeição da hipótese nula de que as variâncias são iguais sob o nível de confiança estabelecido.'}
+```{r fig88, echo=FALSE,  out.width='80%', fig.align='center', fig.cap='O valor calculado da estatística de teste ($F_{calc}=2,56$) situa-se na região não significante do teste, não permitindo a rejeição da hipótese nula de que as variâncias são iguais sob o nível de confiança estabelecido.'}
 
 knitr::include_graphics("images11/f_test_3.png")
 
@@ -3104,7 +3105,7 @@ $$
 \
 
 
-```{r fig89, out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $t_{crit} =\\pm 2,101$. O valor calculado da estatística ($t_{calc}=-1,9892$) situa-se na faixa de não significância do teste, impossibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig89,echo=FALSE,   out.width='80%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $t_{crit} =\\pm 2,101$. O valor calculado da estatística ($t_{calc}=-1,9892$) situa-se na faixa de não significância do teste, impossibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 alfa=0.05
@@ -3414,7 +3415,7 @@ $$
 
 
 
-```{r ,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste uniletaral à direita : a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $F_{crit}$ para o nível de significância pretendido ($\\alpha$ em uma cauda)  e ($df_{1}; df_{2}$) graus de liberdade.", warning = FALSE}
+```{r , echo=FALSE,   out.width='80%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste uniletaral à direita : a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $F_{crit}$ para o nível de significância pretendido ($\\alpha$ em uma cauda)  e ($df_{1}; df_{2}$) graus de liberdade.", warning = FALSE}
 
 
 
@@ -3468,7 +3469,7 @@ f_test_4=ggplot(data.frame(x = c(0, 25)), aes(x)) +
 
 \
 
-```{r fig90, echo=FALSE, out.width='100%', fig.align='center', fig.cap='O valor calculado da estatística de teste ($F_{calc}=3,18$) situa-se na região significante do teste, permitindo a rejeição da hipótese nula de que as variâncias sejam iguais sob o nível de confiança estabelecido.'}
+```{r fig90, echo=FALSE,  out.width='80%', fig.align='center', fig.cap='O valor calculado da estatística de teste ($F_{calc}=3,18$) situa-se na região significante do teste, permitindo a rejeição da hipótese nula de que as variâncias sejam iguais sob o nível de confiança estabelecido.'}
 
 knitr::include_graphics("images11/f_test_4.png")
 
@@ -3541,7 +3542,7 @@ $$
 
 
 
-```{r fig91, out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $t_{crit} =\\pm 2,26$. O valor calculado da estatística ($t_{calc}=-1,599$) não se situa na faixa de significância do teste, não nos permitindo a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig91,echo=FALSE,   out.width='80%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $t_{crit} =\\pm 2,26$. O valor calculado da estatística ($t_{calc}=-1,599$) não se situa na faixa de significância do teste, não nos permitindo a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 alfa=0.05
@@ -3623,9 +3624,8 @@ A aproximação de uma população sob distribuição Binomial pela distribuiç�
 
 \
 
-- tamanho de amostra deve ser de ao menos 30 ($n \ge 30$);  
-- o número de ``sucessos'' deve ser de ao menos 5: ($n \cdot \Pi_{0} \ge 5$); e,  
-- o número de ``fracassos'' deve ser de ao menos 5: ($n \cdot (1-\Pi_{0}) \ge 5$).
+- tamanho da amostra $n \ge 30$;  
+- probabilidade de sucesso ou fracasso não extremas: $n \cdot \Pi_{0} \ge 5$) e $n \cdot (1-\Pi_{0}) \ge 5$.
 
 \
 
@@ -3802,7 +3802,7 @@ Da tabela da distribuição Normal padronizada obtemos o valor crítico bicaudal
 \
 
 
-```{r fig92,  out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $z_{crit} =\\pm 2,17$. O valor calculado da estatística ($z_{calc}=-4,082$) situa-se na faixa de significância do teste, possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig92, echo=FALSE,   out.width='80%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste bilateral realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valores críticos da estatística do teste: $z_{crit} =\\pm 2,17$. O valor calculado da estatística ($z_{calc}=-4,082$) situa-se na faixa de significância do teste, possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 alfa=0.03
@@ -3892,7 +3892,7 @@ Da tabela obtemos o valor crítico monocaudal: $Z_{tab\left(\alpha\right)}=-1,88
 \
 
 
-```{r fig93,  out.width='100%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste unilateral à esquerda realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valor crítico da estatística do teste: $z_{crit} = -1,88$. O valor calculado da estatística ($z_{calc}=-4,082$) situa-se na faixa de significância do teste, o que nos permite a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig93,echo=FALSE,    out.width='80%', fig.align='center', fig.cap="Regiões de rejeição da hipótese nula para o teste unilateral à esquerda realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelos valor crítico da estatística do teste: $z_{crit} = -1,88$. O valor calculado da estatística ($z_{calc}=-4,082$) situa-se na faixa de significância do teste, o que nos permite a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 
@@ -3977,7 +3977,7 @@ Da tabela obtemos o valor crítico monocaudal: $Z_{tab\left(\alpha\right)}=1,88$
 
 
 
-```{r fig94,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral à direita realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $z_{crit} = 1,88$. O valor calculado da estatística ($z_{calc}=-4,082$) situa-se na faixa de não significância do teste, não possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig94, echo=FALSE,   out.width='80%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral à direita realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $z_{crit} = 1,88$. O valor calculado da estatística ($z_{calc}=-4,082$) situa-se na faixa de não significância do teste, não possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 alfa=0.97
@@ -4104,10 +4104,11 @@ Diferenças entre o teste Qui-quadrado de homogeneidade e de independência:
 
 
  
-Esse tipo de investigação equivale à realização de Teste de Hipóteses onde a hipótese nula que pressupõe que exista homogeneidade (independência) na distribuição das contagens observadas em cada uma das categorias da variável nas populações amostradas (ou níveis da outra variável, no teste Qui-quadrado de Independência) será confrontada com a hipótese alternativa, de que não são homogêneas (dependência) e as flutuações não são podem ser atribuídas ao acaso.  
+Esse tipo de investigação equivale à realização de Teste de Hipóteses onde a hipótese nula que pressupõe que exista homogeneidade (independência) na distribuição das contagens observadas em cada uma das categorias da variável nas populações amostradas (ou níveis da outra variável, no teste Qui-quadrado de Independência) será confrontada com a hipótese alternativa, de que não são homogêneas (dependência) e as flutuações não podem ser atribuídas ao acaso.  
 
 
 \
+
 Desse modo o foco será buscar evidência estatística robusta o suficiente que confirmem que as frequências observadas entre as diferentes populações (ou níveis da outra variável, no teste Qui-quadrado de Independência) podem ser consideradas homogêneas (independentes) sob um dado nível de significância $\alpha$.
 
 \
@@ -4160,7 +4161,7 @@ textable <- "
 \\caption*{Tabela ($r \\times s$) de frequências observadas}
 \\begin{tabular}{|c|c|c|c|c|c|}
 \\hline 
-\\shortstack{Populações (ou uma segunda variável categórica) \\\\ Variável categórica}  & $B_{1}$  & $B_{2}$   & ... & $B{s}$ & Total \\\\ 
+\\shortstack{Populações (ou uma segunda variável categórica) \\\\ Variável categórica}  & $B_{1}$  & $B_{2}$   & ... & $B_{s}$ & Total \\\\ 
 \\hline 
 	$A_{1}$   & $n_{(1,1)}$ & $n_{(1,2)}$ & ... & $n_{(1,s)}$ & $n_{(1,.)}$ \\\\
 	$A_{2}$   & $n_{(2,1)}$ & $n_{(2,2)}$ & ... & $n_{(2,s)}$ & $n_{(2,.)}$ \\\\
@@ -4192,9 +4193,9 @@ tex2markdown(textable)
 - $i$ indexa a *i-ésima* linha da tabela;  
 - $j$ indexa a *j-ésima* coluna da tabela;  
 - $n_{i,j}$ indica o elemento localizado na casela situada na *i-ésima* linha e *j-ésima* coluna;  
-- $n_{(1,.)}$ indica o último elemento da primeira linha;  
-- $n_{(.,1)}$ indica o último elemento da primeira coluna;e,    
-- $n_{(.,.)}$ indica o último elemento simultaneamente das linhas e colunas da tabela.
+- $n_{(1,.)}$ indica o total (soma) da primeira linha;  
+- $n_{(.,1)}$ indica o totla (soma) da primeira coluna; e,    
+- $n_{(.,.)}$ indica o total geral (soma) de todas as linhas e colunas da tabela.
 
 \
 
@@ -4242,7 +4243,7 @@ Em que:
 
 \
 
-Para a aplicação do teste $\chi{2}$ exige-se que:
+Para a aplicação do teste $\chi^{2}$ exige-se que:
 
 \
 
@@ -4253,7 +4254,7 @@ Para a aplicação do teste $\chi{2}$ exige-se que:
 
 \
 
-A estatística ($X$) do Teste Qui-quadrado de homogeneidade (independência) baseia-se na diferença (dsitância) entre as contagens observados e as contagens esperadas sob a suposição de homogeneidade (independência) pode ser definida da seguinte maneira:
+A estatística ($X$) do Teste Qui-quadrado de homogeneidade (independência) baseia-se na diferença (distância) entre as contagens observados e as contagens esperadas sob a suposição de homogeneidade (independência) pode ser definida da seguinte maneira:
 
 \
 
@@ -4317,7 +4318,7 @@ A região de não rejeição da hipótese nula pode ser vista na Figura \@ref(fi
 \
 
 
-```{r fig95, out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste uniletaral à direita (tipo: menor que): a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $x_{crit}$ para o nível de significância pretendido ($\\alpha$ em uma cauda) e ($df$) graus de liberdade.", warning = FALSE}
+```{r fig95, echo=FALSE,   out.width='80%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral à direita (tipo: maior que): a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $x_{crit}$ para o nível de significância pretendido ($\\alpha$ em uma cauda) e ($df$) graus de liberdade.", warning = FALSE}
   
 prob_desejada=0.95
 r=4
@@ -4359,7 +4360,7 @@ ggplot(data.frame(x = c(0, 30)), aes(x)) +
 
 
 
-> Exemplo: verifique a independência (homogeneidade) nas contagens da intenção de voto de quatro candidatos distintos em amostras de três diferentes bairros, partindo das informações consolidadas na tabela abaixo.
+> Exemplo: verifique a independência (homogeneidade) entre a intenção de voto em quatro candidatos distintos e o bairro de residência dos eleitores, considerando moradores de três diferentes bairros, a partir das informações consolidadas na tabela a seguir.
 
 
 \
@@ -4412,7 +4413,6 @@ textable <- "
 \\begin{tabular}{|c|c|c|c|c|}
 \\hline 
 \\multirow{2}{*}{Candidato}   & \\multicolumn{3}{c|}{Bairros} & \\multirow{2}{*}{Total} \\\\ 
-\\cline{2-4}
        & ``A'' & ``B'' & ``C'' &  \\\\
 \\hline       
   Candidato ``A''  & 70 & 44 & 86 & 200 \\\\
@@ -4443,8 +4443,8 @@ estrutura das hipóteses para o teste a um nível de significância: 0,05
 
 $$
 \begin{cases}
-H_{0}: \text{as contagens são homogêneas} \\
-H_{1}: \text{as contagens não são homogêneas}
+H_{0}: \text{as variáveis são independentes (a flutuação nas contagens é aleatória} \\
+H_{1}: \text{as variáveis não são independentes (há alguma associação)}
 \end{cases}
 $$
 \
@@ -4477,7 +4477,7 @@ $$
 $$
 \
 
-As frequências esperadas em cada casela ($i,j$) serão calculadas pela fórmula acima seguir e estão apresentadas na tabela a segui, em conjunto com as frequências observadas. 
+As frequências esperadas em cada casela ($i,j$) serão calculadas pela fórmula acima e estão apresentadas na tabela a seguir, em conjunto com as frequências observadas. 
 
 
 \
@@ -4531,7 +4531,6 @@ textable <- "
 \\begin{tabular}{|c|c|c|c|c|}
 \\hline 
 \\multirow{2}{*}{Candidato}   & \\multicolumn{3}{c|}{Bairros} & \\multirow{2}{*}{Total} \\\\ 
-\\cline{2-4}
          & ``A'' & ``B'' & ``C'' &  \\\\
 \\hline       
   Candidato ``A''  & 70 \\textbf{(60)}& 44 \\textbf{(40)} & 86 \\textbf{(100)} & 200 \\\\
@@ -4562,7 +4561,7 @@ Cálculo da estatística do teste:
 \
 
 $$
-X=\sum_{i=1}^4\sum_{j=1}^3 \frac{(O_{(i,j)} - E_{(i,j)})^2}{E_{(i,j)}} = 37,88
+X=\sum_{i=1}^4\sum_{j=1}^3 \frac{(O_{(i,j)} - E_{(i,j)})^2}{E_{(i,j)}} = 37,87
 $$
 
 \
@@ -4575,7 +4574,7 @@ Da tabela $\chi^{2}$ para o total de graus de liberdade $((r-1)\times(s-1))=(4-1
 
 
 
-```{r fig96,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste uniletaral à direita (tipo: menor que): a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $x_{crit}=12,60$ para o nível de significância pretendido ($\\alpha=0,05$ em uma cauda)  e ($df=6$) graus de liberdade.", warning = FALSE}
+```{r fig96, echo=FALSE,   out.width='80%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral à direita (tipo: maior que): a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $x_{crit}=12,60$ para o nível de significância pretendido ($\\alpha=0,05$ em uma cauda)  e ($df=6$) graus de liberdade.", warning = FALSE}
 
 
 
@@ -4624,14 +4623,13 @@ ggplot(data.frame(x = c(0, 50)), aes(x)) +
 \
 
 
->Conclusão: face aos dados trazidos à análise rejeitamos a proposição de que a preferência por um determinado candidato não esteja de algum modo associada ao bairro pesquisado sob um nível de significância de 5\% (a probabilidade de cometimento de um erro tipo I. Há alguma relação entre a  preferência por um ou outro candidato e os bairros (Figura \@ref(fig:fig96)).
- .
+>Conclusão: face aos dados trazidos à análise rejeitamos a proposição de que a preferência por um determinado candidato não esteja de algum modo associada ao bairro pesquisado sob um nível de significância de 5\% (a probabilidade de cometimento de um erro tipo I). Há alguma associação entre a  preferência por um ou outro candidato e os bairros (Figura \@ref(fig:fig96)).
+ 
 
 \
 
 
-> Exemplo: Incidência de baixo peso ao nascer em recém-nascidos de Pelotas (RS) segundo o hábito tabágico da mãe durante a gravidez (1982)
-
+> Exemplo: verifique, por meio do teste Qui-quadrado, se há associação entre o hábito tabágico da mãe durante a gravidez e a incidência de baixo peso ao nascer, a partir dos dados de recém-nascidos de Pelotas (RS), 1982.
 
 
 \
@@ -4641,8 +4639,7 @@ ggplot(data.frame(x = c(0, 50)), aes(x)) +
 
 \begin{table}
 \centering
-\caption{Incidência de baixo peso ao nascer em recém-nascidos de Pelotas, RS,
-segundo o hábito tabágico da mãe durante a gravidez (1982)}
+\caption{Incidência de baixo peso ao nascer em recém-nascidos de Pelotas (RS), segundo o hábito tabágico da mãe durante a gravidez (1982)}
 \begin{tabular}{c|c|c|c}
 \hline
 \multirow{2}{*}{Classificação da mãe} & \multicolumn{2}{c|}{Baixo peso ao nascer} & \multirow{2}{*}{Total}  \\ 
@@ -4653,7 +4650,7 @@ Fumante & 275 (a) & 2.144 (b) & 2.419 (a+b)   \\
 \hline 
 Não fumante & 311 (c) & 4.496 (d) & 4.807 (c+d)  \\
 \hline 
-Total & 586 (a+c) & 6.640 (b+d)  & 7.226 (N=a+b+c+d)  \\
+Total & 586 (a+c) & 6.640 (b+d)  & 7.226   (a+b+c+d)  \\
 \hline 
 \end{tabular}
 \label{tab33}
@@ -4677,8 +4674,7 @@ textable <- "
 
 \\begin{table}
 \\centering
-\\caption{Incidência de baixo peso ao nascer em recém-nascidos de Pelotas, RS,
-segundo o hábito tabágico da mãe durante a gravidez (1982)}
+\\caption{Incidência de baixo peso ao nascer em recém-nascidos de Pelotas (RS), segundo o hábito tabágico da mãe durante a gravidez (1982)}
 \\begin{tabular}{c|c|c|c}
 \\hline
 \\multirow{2}{*}{Classificação da mãe} & \\multicolumn{2}{c|}{Baixo peso ao nascer} & \\multirow{2}{*}{Total}  \\\\ 
@@ -4689,7 +4685,7 @@ Fumante & 275 (a) & 2.144 (b) & 2.419 (a+b)   \\\\
 \\hline 
 Não fumante & 311 (c) & 4.496 (d) & 4.807 (c+d)  \\\\
 \\hline 
-Total & 586 (a+c) & 6.640 (b+d) & 7.226(N=a+b+c+d)  \\\\
+Total & 586 (a+c) & 6.640 (b+d) & 7.226 (a+b+c+d)  \\\\
 \\hline 
 \\end{tabular}
 \\label{tab33}
@@ -4708,12 +4704,14 @@ estrutura das hipóteses para o teste a um nível de significância: 0,05
 
 \
 
+
 $$
 \begin{cases}
-H_{0}: \text{há independêndia entre o hábito/peso} \\
-H_{1}: \text{não há}
+H_{0}: \text{as variáveis são independentes (a flutuação nas contagens é aleatória e não existe associação entre o hábito de fumar e o peso do recém-nascido)} \\
+H_{1}: \text{as variáveis não são independentes (há alguma associação entre o hábito de fumar e o peso do recém-nascido)}
 \end{cases}
 $$
+
 
 \
 
@@ -4749,7 +4747,7 @@ $$
 $$
 E_{(1,1)} = \frac{2419 \times 586}{7226}= 196\\
 E_{(1,2)} = \frac{2419 \times 6640}{7226}=2223 \\
-E_{(1,2)} = \frac{4807 \times 586}{7226}= 390\\
+E_{(2,1)} = \frac{4807 \times 586}{7226}= 390\\
 E_{(2,2)} = \frac{4807 \times 6640}{7226}=4417 \\
 $$
 
@@ -4774,9 +4772,9 @@ As frequências esperadas em cada casela ($i,j$) serão calculadas pela fórmula
 & \cline{2-3}
               Sim & Não        \\ 
 \hline              
-Fumante & 275 (196) & 2.144 (2223) & 2.419    \\
+Fumante & 275 \textbf{(196)} & 2.144 \textbf{(2223)} & 2.419    \\
 \hline 
-Não fumante & 311 (390) & 4.496 (4417) & 4.807   \\
+Não fumante & 311 \textbf{(390)} & 4.496 \textbf{(4417)} & 4.807   \\
 \hline 
 Total & 586 & 6.640 & 7.226  \\
 \hline 
@@ -4802,17 +4800,16 @@ textable <- "
 
 \\begin{table}
 \\centering
-\\caption{Incidência de baixo peso ao nascer em recém-nascidos de Pelotas, RS,
-segundo o hábito tabágico da mãe durante a gravidez (1982)}
+\\caption{Frequências observadas (esperadas)}
 \\begin{tabular}{c|c|c|c}
 \\hline
 \\multirow{2}{*}{Classificação da mãe} & \\multicolumn{2}{c|}{Baixo peso ao nascer} & \\multirow{2}{*}{Total}  \\\\ 
 & \\cline{2-3}
               Sim & Não         \\\\ 
 \\hline              
-Fumante & 275  (196) & 2.144 (2223) & 2.419 (e)   \\\\
+Fumante & 275 \\textbf{(196)} & 2.144 \\textbf{(2223)} & 2.419    \\\\
 \\hline 
-Não fumante & 311 (390) & 4.496 (4417) & 4.807 (f)  \\\\
+Não fumante & 311 \\textbf{(390)} & 4.496 \\textbf{(4417)} & 4.807   \\\\
 \\hline 
 Total & 586 & 6.640 & 7.226  \\\\
 \\hline 
@@ -4846,7 +4843,7 @@ $$
 
 
 
-```{r ,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste uniletaral à direita (tipo: menor que): a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $x_{crit}=3,84$ para o nível de significância pretendido ($\\alpha=0,05$ em uma cauda)  e ($df=1$) grau de liberdade.", warning = FALSE}
+```{r , echo=FALSE,   out.width='80%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste uniletaral à direita (tipo: maior que): a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $x_{crit}=3,84$ para o nível de significância pretendido ($\\alpha=0,05$ em uma cauda)  e ($df=1$) grau de liberdade.", warning = FALSE}
 
 library(ggplot2)
 prob_desejada <- 0.95
@@ -4912,7 +4909,7 @@ ggplot(data.frame(x = c(0, 55)), aes(x)) +
 \
 
 
-Em tabelas de dimensão 2x2, especialmente quando as amostras não forem muito grandes, recomenda-se aplicar a chamada correção de continuidade de Yates, que consiste em reduzir 0,5 unidade nas diferenças absolutas entre as frequências observadas e esperadas: 
+Em tabelas de dimensão 2x2, *especialmente quando as amostras não forem muito grandes*, recomenda-se aplicar a chamada correção de continuidade de Yates, que consiste em reduzir 0,5 unidade nas diferenças absolutas entre as frequências observadas e esperadas: 
 
 \
 $$
@@ -5140,7 +5137,7 @@ P(X_{calc}  \le  \chi^{2}_{tab \left(\alpha ;(k-1) \right)}) & =(1-\alpha)
 
 
 
-```{r fig97,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste uniletaral à direita (tipo: menor que): a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $x_{crit}$ para o nível de significância pretendido ($\\alpha$ em uma cauda)  e ($df$) graus de liberdade.", warning = FALSE}
+```{r fig97,echo=FALSE,    out.width='80%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste uniletaral à direita (tipo: menor que): a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $x_{crit}$ para o nível de significância pretendido ($\\alpha$ em uma cauda)  e ($df$) graus de liberdade.", warning = FALSE}
 
 
 
@@ -5482,7 +5479,7 @@ $$
 
 
 
-```{r fig98,  out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste uniletaral à direita (tipo: menor que): a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $x_{crit}=11,64$ para o nível de significância pretendido ($\\alpha$ em uma cauda)  e ($df$) graus de liberdade.", warning = FALSE}
+```{r fig98,echo=FALSE,    out.width='80%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste uniletaral à direita (tipo: menor que): a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $x_{crit}=11,64$ para o nível de significância pretendido ($\\alpha$ em uma cauda)  e ($df$) graus de liberdade.", warning = FALSE}
 
 prob_desejada=0.96
 df=5
@@ -5841,7 +5838,7 @@ em que:
 
 
 
-```{r fig99, out.width='100%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral à direita (tipo: maior que) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $t_{crit} = 1,53$. O valor calculado da estatística ($t_{calc}=5,97$) situa-se na faixa de significância do teste, não possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
+```{r fig99, echo=FALSE,  out.width='80%', fig.align='center', fig.cap="Região de rejeição da hipótese nula para o teste unilateral à direita (tipo: maior que) realizado: a região de não rejeição da hipótese nula (região de não significância do teste) está delimitada pelo valor crítico da estatística do teste: $t_{crit} = 1,53$. O valor calculado da estatística ($t_{calc}=5,97$) situa-se na faixa de significância do teste, não possibilitando a rejeição da hipótese nula sob aquele nível de confiança", warning = FALSE}
 
 
 
@@ -5949,7 +5946,7 @@ knitr::include_graphics("images11/F_2.5.png")
 
 
 
-```{r , echo=FALSE, out.width='100%', fig.align='center', fig.cap='Tabela da distribuição Qui-quadrado'}
+```{r , echo=FALSE, out.width='80%', fig.align='center', fig.cap='Tabela da distribuição Qui-quadrado'}
 
 
 knitr::include_graphics("images11/Tabela_QuiQuadrado.png")

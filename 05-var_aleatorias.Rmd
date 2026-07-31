@@ -46,66 +46,87 @@ Ao realizar um experimento aleatório frequentemente estamos interessados mais e
 
 \
 
-Essas quantidades de interesse, ou mais formalmente, essas funções de valor real definidas no espaço amostral (o conjunto de todos os possíveis resultados do experimento), são conhecidas como variáveis aleatórias.
+Essas quantidades de interesse são formalmente tratadas no contexto do espaço de probabilidade $(\Omega, \mathcal{F}, P)$, composto por três elementos: o espaço amostral $\Omega$, que contém todos os resultados 
+possíveis do experimento; a $\sigma$-álgebra $\mathcal{F}$, que é a coleção de todos os subconjuntos de $\Omega$ aos quais é *possível* atribuir probabilidade — denominados eventos; e a medida de probabilidade $P: \mathcal{F} \to [0,1]$, que associa a cada *evento* um valor em $[0,1]$. 
+
+Funções de valor real definidas sobre esse espaço, que associam cada resultado $\omega \in \Omega$ a um número real, são conhecidas como variáveis aleatórias.
 
 \
 
-```{r, echo=FALSE, out.width='60%', fig.align='center', fig.cap="Variável aleatória $X$"}
+```{r, echo=FALSE, out.width='60%', fig.align='center', fig.cap="Espaço de probabilidade $(\\Omega, \\mathcal{F}, P)$"}
 
-knitr::include_graphics("images5/v_aleatoria2.png")
+knitr::include_graphics("images5/funcao_probabilidade 2.jpg")
 
 ```
 
 
 \
 
+De forma mais rigorosa, uma variável aleatória é uma função mensurável, geralmente representada por uma letra maiúscula ($X$), definida sobre o espaço de probabilidade $(\Omega, \mathcal{F}, P)$, que associa cada elemento $\omega \in \Omega$ a um número real. 
 
-
-Em outras palavras, uma função, geralmente representada por uma letra maiúscula ($X$), que associa cada elemento $\omega$ pertencente ao espaço amostral $\Omega$ um número real é denominada, de forma mais precisa, como uma variável aleatória.
 
 \
 
-
 $$
-X (\Omega) \to \mathbb{R}_{X} \text{, estando } \mathbb{R}_{X}\subseteq \mathbb{R}
+X: (\Omega, \mathcal{F}) \to (\mathbb{R}, \mathcal{B}(\mathbb{R})), 
+\quad \text{com } \mathbb{R}_{X} \subseteq \mathbb{R}
 $$
 
 \
 
+O *domínio* dessa função é o espaço amostral $\Omega$, e seu *contradomínio* está contido em $\mathbb{R}$. 
 
-
-O *domínio* dessa função ($X$) é o conjunto de todos os possíveis valores numéricos de interesse do experimento aleatório e seu *contradomínio* está em $\mathbb{R}$. 
 
 \
 
 >Exemplo 1: considere o espaço amostral do experimento aleatório relacionado ao sexo do bebê em três gestações bem sucedidas:
 
->$\Omega=\{\omega_{1}:(FFF), \omega_{2}:(FFM),\omega_{3}:(FMF), \omega_{4}:(MFF),\\
+\
+
+$\Omega=\{\omega_{1}:(FFF), \omega_{2}:(FFM),\omega_{3}:(FMF), \omega_{4}:(MFF),\\
 \omega_{5}:(FMM), \omega_{6}:(MFM), \omega_{7}:(MMF), \omega_{8}:(MMM)\}.$
 
->Se estivermos interessados no número de nascimentos do sexo masculino, podemos definir a função $X$ para associar cada elemento $\omega_{i}$ em $\Omega$ a um valor $x_{i} \in \mathbb{R}$ que apresentará os seguintes resutados:
+\
 
->$X(FFF)=0; X(FFM)=1; X(FMF)=1; X(MFF)=1;\\
+Se estivermos interessados no número de nascimentos do sexo masculino, podemos definir a função $X$ para associar cada elemento $\omega_{i}$ em $\Omega$ a um valor $x_{i} \in \mathbb{R}$ que apresentará os 
+seguintes resultados:
+
+\
+
+$X(FFF)=0; X(FFM)=1; X(FMF)=1; X(MFF)=1;\\
 X(FMM)=2; X(MFM)=2; X(MMF)=2; X(MMM)=3$
-$\mathcal{R}_{X}=\{x_{1}=0; x_{2}=1; x_{3}=2; x_{4}=3\}\subseteq \mathcal{R}$
+
+\
+
+$\mathbb{R}_{X}=\{x_{1}=0; x_{2}=1; x_{3}=2; x_{4}=3\}\subseteq \mathbb{R}$
 
 \
 
 >Exemplo 2: considere o espaço amostral do experimento aleatório relacionado à sobrevivência de paciente ao final de 1 dia em uma UTI com quatro leitos:
 
->$\Omega=\{(0,0,0,0),(0,0,0,1),(0,0,1,0),(0,0,1,1),\\
+\
+
+$\Omega=\{(0,0,0,0),(0,0,0,1),(0,0,1,0),(0,0,1,1),\\
 (0,1,0,0),(0,1,0,1),(0,1,1,0),(0,1,1,1),(1,0,0,0),\\
 (1,0,0,1),(1,0,1,0),(1,0,1,1),(1,1,0,0),(1,1,0,1),\\
-(1,1,1,0),(1,1,1,1)\}.$ 
+(1,1,1,0),(1,1,1,1)\}.$
 
+\
 
->Cada elemento do espaço amostral é uma sequência de quatro valores binários $(x_{1},x_{2},x_{3},x_{4})$, onde: $x_{i}=0$ indica que o paciente no leito $i$ sobreviveu e $x_{i}=1$ caso contrário.
+Cada elemento do espaço amostral é uma sequência de quatro valores binários $(b_{1},b_{2},b_{3},b_{4})$, onde: $b_{i}=0$ indica que o paciente no leito $i$ sobreviveu e $b_{i}=1$ caso contrário.
 
+\
 
->Se estivermos interessados no número de falecimentos podemos definir a função $X$ para associar cada elemento $\omega_{i}$ em $\Omega$ a um valor $x_{i} \in \mathbb{R}$ que apresentará os seguintes resultados:
+Se estivermos interessados no número de falecimentos podemos definir a função $X$ para associar cada elemento $\omega_{i}$ em $\Omega$ a um valor $x_{i} \in \mathbb{R}$ que apresentará os seguintes resultados:
 
->$X(0000)=0; X(0001)=1; X(0010)=1; \dots ; X(1111)=4$
-$\mathcal{R}_{X}=\{x_{1}=0; x_{2}=1; x_{3}=2; x_{4}=3; x_{5}=4\}\subseteq \mathcal{R}$
+\
+
+$X(0000)=0; X(0001)=1; X(0010)=1; \dots ; X(1111)=4$
+
+\
+
+$\mathbb{R}_{X}=\{x_{1}=0; x_{2}=1; x_{3}=2; x_{4}=3; x_{5}=4\}
+\subseteq \mathbb{R}$
 
 \
 
@@ -122,7 +143,7 @@ A depender do experimento aleatório podemos propor variáveis aleatórias **dis
 
 \
 
->Os valores possíveis de uma variável aleatória contínua pertencem a um intervalo contínuo de números reais, como $[a,b]$, $[0,\infty)$ ou $-\infty, \infty)$. Exemplos incluem: o peso ou a altura de um grupo de pessoas; o tempo de vida de uma lâmpada; o tempo de reação a um estímulo; a concentração de álcool em um certo volume de sangue, a temperatura mínima no inverno Antártico.
+>Os valores possíveis de uma variável aleatória contínua pertencem a um intervalo contínuo de números reais, como $[a,b]$, $[0,\infty)$ ou $(-\infty, \infty)$. Exemplos incluem: o peso ou a altura de um grupo de pessoas; o tempo de vida de uma lâmpada; o tempo de reação a um estímulo; a concentração de álcool em um certo volume de sangue, a temperatura mínima no inverno Antártico.
 
 \
 

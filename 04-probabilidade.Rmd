@@ -25,8 +25,14 @@ colFmt <- function(x,color) {
 
 \
 
+Este documento apresenta uma síntese acadêmica e formal sobre a evolução histórica, os fundamentos epistemológicos e o aparato matemático do cálculo de probabilidades, abrangendo desde as discussões seiscentistas de Pascal e Fermat até a consolidação axiomática de Kolmogorov no século XX.
+Neste capítulo, estabeleceremos alguns conceitos básicos relacionados ao cálculo de probabilidades
+
 \
-\
+
+
+<iframe src="assets/probabilidade.html" width="100%" height="500px" style="border:none;"></iframe>
+
 \
 
 
@@ -369,12 +375,11 @@ Podemos ter variados tipos de _eventos de interesse_ como:
 
 \
 
-1. _simples_ ou _compostos_;
+1. _simples/elementares_ ou _compostos_;
 2. _certos_ ou _impossíveis_;
-3. _dependentes_ ou _independentes_ ;
-4. _mutuamente exclusivos_ ;
-5. _complementares_;
-
+3. _mutuamente exclusivos_ ;
+4. _complementares_;
+5. _dependentes_ ou _independentes_.
 
 \
 
@@ -521,11 +526,11 @@ knitr::include_graphics("images4/venn.jpg")
 
 \
 
-#### Eventos simples e eventos compostos
+#### Eventos simples (elementares) e eventos compostos
 
 
 
-O evento de interesse ($E(2)$) definido no experimento aleatório anterior (obter o número _2_) é formado por apenas um elemento do espaço amostral. Eventos formados por apenas um elemento do espaço amostral são denominados de _evento simples_.
+O evento de interesse ($E(2)$) definido no experimento aleatório anterior (obter o número _2_) é formado por apenas um elemento do espaço amostral. Eventos formados por apenas um elemento do espaço amostral são denominados de _evento simples/elementares_.
 
 \
 $$
@@ -605,24 +610,6 @@ Eventos assim definidos são chamados de eventos impossíveis.
 
 \
 
-
-#### Eventos independentes
-
-\
-
-
-Dois eventos são considerados _independentes_ quando a probabilidade de ocorrência de um evento de interesse em um determinado experimento aleatório não é influenciada pelo _resultado prévio_ de outro evento.
-
-\
-
->Em outras palavras, a ocorrência de um evento não altera a probabilidade do outro. Caso contrário, esses eventos são classificados como dependentes ou condicionados.
-
-\
-
-Este conceito será explorado em maior detalhe em seções posteriores.
-
-\
-
 #### Eventos mutuamente exclusivos
 
 \
@@ -679,6 +666,23 @@ Se a probabilidade de sucesso de que ele ocorra for $P(E)=p$ e a de que ele não
 \
 
 
+#### Eventos independentes
+
+\
+
+
+Dois eventos são considerados _independentes_ quando a probabilidade de ocorrência de um evento de interesse em um determinado experimento aleatório não é influenciada pelo _resultado prévio_ de outro evento.
+
+\
+
+>Em outras palavras, a ocorrência de um evento não altera a probabilidade do outro. Caso contrário, esses eventos são classificados como dependentes ou condicionados.
+
+\
+
+Este conceito será explorado em maior detalhe em seções posteriores.
+
+
+\
 
 ### Probabilidade
 
@@ -1062,21 +1066,18 @@ Esta abordagem é baseada em um conjunto de axiomas matemáticos que definem as 
 
  \
 
-Admita $P$ uma função que opera sobre o espaço $\Omega$; isto é, uma função que associa uma quantidade $P(\Omega)$ a cada elemento $\omega$ $\in$ $\Omega$.
+Admita $P$ uma função definida sobre a $\sigma$-álgebra $\mathcal{F}$ de subconjuntos 
+de $\Omega$; isto é, uma função que associa a cada evento $E \in \mathcal{F}$ um número 
+real $P(E) \in [0, 1]$.
 
 \
 
-```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Representação gráfica da função $P(\\Omega)$"}
+```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Representação gráfica da função de probabilidade $P : \\mathcal{F} \\to [0, 1]$"}
 
 knitr::include_graphics("images4/funcao_probabilidade.jpg")
 
 ```
 
-
-\
-
-
-Essa função $P$ será uma **função de probabilidade** se, e somente se, satisfizer a **três axiomas**  (postulados: conceitos iniciais necessários à construção ou aceitação de uma teoria) estabelecidos por Andrey Kolmogorov (1933).
 
 \
 
@@ -1088,7 +1089,28 @@ knitr::include_graphics("images4/kolmogorov.jpeg")
 
 \
 
+Formalmente, $\mathcal{F}$ (também chamado de $\sigma$-álgebra sobre $\Omega$, corpo de Borel ou $\sigma$-campo) é uma coleção de subconjuntos de $\Omega$ que satisfaz três propriedades:
 
+\
+
+1. $\Omega \in \mathcal{F}$
+
+2. Se $E \in \mathcal{F}$, então $E^c \in \mathcal{F}$ (fechada para complementação)
+
+3. Se $E_1, E_2, E_3, \ldots \in \mathcal{F}$, então $\bigcup_{n=1}^{\infty} E_n \in \mathcal{F}$ (fechada para uniões enumeráveis)
+
+\
+
+A tripla $(\Omega, \mathcal{F}, P)$ é denominada **espaço de probabilidade**, onde 
+$\Omega$ é o espaço amostral, $\mathcal{F}$ é a $\sigma$-álgebra dos eventos sobre 
+$\Omega$, e $P : \mathcal{F} \to [0, 1]$ é a medida de probabilidade.
+
+\
+
+
+Essa função $P$ será uma **função de probabilidade** se, e somente se, satisfizer a **três axiomas**  (postulados: conceitos iniciais necessários à construção ou aceitação de uma teoria) estabelecidos por Andrey Kolmogorov (1933).
+
+\
 
 Kolmogoroff afirmou que uma _Teoria das probabilidades_ poderia ser desenvolvida a partir de _axiomas_, da
 mesma forma que a geometria e a álgebra, e a considerou como caso especial da _Teoria da medida e integração_ desenvolvida por Lebesgue, Borel e Fréchet. Ele estabeleceu como postulados as propriedades comuns das noções de probabilidade clássica e frequentista que, desta forma, viraram casos particulares da definição axiomática.
@@ -1098,76 +1120,202 @@ mesma forma que a geometria e a álgebra, e a considerou como caso especial da _
 
 
 
-##### Postulado do intervalo 
+<!-- ##### Postulado da não negatividade  -->
 
 
-A probabilidade de qualquer $E$ **é um número real entre 0 e 1** (pode-se entender isso como uma convenção, onde então se estabelece a medida da probabilidade é um número positivo e que qualquer evento pode ter probabilidade de, no máximo, 1). Esse postulado está plenamente de acordo com a interpretação frequentista de probabilidade. 
+<!-- A probabilidade de qualquer $E$ **é um número real entre 0 e 1** (pode-se entender isso como uma convenção, onde então se estabelece a medida da probabilidade é um número positivo e que qualquer evento pode ter probabilidade de, no máximo, 1). Esse postulado está plenamente de acordo com a interpretação frequentista de probabilidade.  -->
+
+<!-- \ -->
+
+
+<!-- $$ -->
+<!-- P(E) \ge 0 \text{ (não negatividade e,)}\\ -->
+<!-- \text{mais especificamente, }\\ -->
+<!-- 0 \le P(\omega_{i}) \le 1 \hspace{0.5cm} \text{para todo} \hspace{0.5cm} \omega_{i}\in\Omega  -->
+<!-- $$ -->
+
+<!-- \ -->
+
+<!-- ##### Postulado da certeza (normalização, unidade) -->
+
+
+
+<!-- O segundo postulado refere-se à probabilidade do **evento certo** ser igua a 1. No que diz respeito à interpretação frequentista, uma probabilidade de 1 implica que o evento em questão ocorrerá 100\% do tempo ou, em outras palavras, **que é certo que ele ocorra** (como, p. exemplo, um experimento aleatório de se lançar dois dados e somar o valor de suas faces o evento certo poderia ser definido como observar uym valor menor que 13 ou maior que 2)   -->
+
+<!-- \ -->
+
+<!-- $$ -->
+<!-- P(\Omega) = 1  -->
+<!-- $$ -->
+
+<!-- \ -->
+
+
+<!-- ##### Postulado da aditividade para eventos mutuamente exclusivos (aditividade) -->
+
+
+
+
+<!-- $$ -->
+<!-- P\left(\bigcup _{n=1}^{\infty }{\omega}_{n}\right)=\sum _{n=1}^{\infty }P\left({\omega}_{n}\right) -->
+<!-- $$ -->
+
+<!-- \ -->
+
+<!-- para qualquer sequência de eventos **mutuamente exclusivos** $\{\omega_{1}, \omega_{2}, \omega_{3}, ..., \omega_{n}, ...\}$ (isto é, tal que $\omega_{i} \cap \omega_{j} \varnothing$ se $i \neq j$) -->
+
+<!-- \ -->
+
+
+<!-- Tomando o terceiro postulado no caso mais simples, isto é, para **dois** eventos mutuamente exclusivos $\omega_{1}$ e $\omega_{2}$, pode ser facilmente visto que é satisfeito pela interpretação frequentista. -->
+
+
+<!-- \ -->
+
+<!-- Se um evento ocorrer, digamos, 28\% das vezes, outro evento ocorrerá 39\%, **e os dois eventos não podem ocorrer ao mesmo tempo (ou seja, são mutuamente exclusivos)**,  então um **ou outro** evento} ocorrerão em 28 + 39 = 67\% das vezes. Assim, o terceiro postulado é satisfeito, e o mesmo tipo de argumento se aplica quando há mais de dois eventos mutuamente exclusivos. -->
+
+
+
+<!-- \ -->
+
+
+##### Postulado I — Não negatividade
 
 \
 
+Seja $\Omega$ um espaço amostral e $\mathcal{F}$ uma coleção de subconjuntos
+de $\Omega$. Para todo evento $E \in \mathcal{F}$,
+
+\
 
 $$
-P(E) \ge 0 \text{ (não negatividade e,)}\\
-\text{mais especificamente, }\\
-0 \hspace{0.5cm} \le P(E) \hspace{0.5cm} \le 1
+P(E) \geq 0.
 $$
 
 \
 
-##### Postulado da certeza (normalização)
-
-
-
-O segundo postulado refere-se à probabilidade do **evento certo** ser igua a 1. No que diz respeito à interpretação frequentista, uma probabilidade de 1 implica que o evento em questão ocorrerá 100\% do tempo ou, em outras palavras, **que é certo que ele ocorra** (como, p. exemplo, um experimento aleatório de se lançar dois dados e somar o valor de suas faces o evento certo poderia ser definido como observar uym valor menor que 13 ou maior que 2)  
+Em espaços amostrais discretos e finitos, $\Omega = \{\omega_1, \omega_2, \ldots, \omega_k\}$,
+essa condição implica, em particular, que
 
 \
 
 $$
-P(\Omega) = 1 
+0 \leq P(\omega_i) \leq 1, \quad \forall\, \omega_i \in \Omega,
 $$
 
 \
 
 
-##### Postulado da aditividade para eventos mutuamente exclusivos (aditividade)
+##### Postulado II — Normalização (unidade)
 
+\
 
+A probabilidade do espaço amostral completo é igual a 1:
 
+\
 
 $$
-P\left(\bigcup _{n=1}^{\infty }{\omega}_{n}\right)=\sum _{n=1}^{\infty }P\left({\omega}_{n}\right)
+P(\Omega) = 1.
 $$
 
 \
 
-para qualquer sequência de eventos **mutuamente exclusivos** $\{\omega_{1}, \omega_{2}, \omega_{3}, ..., \omega_{n}, ...\}$ (isto é, tal que $\omega_{i} \cap \omega_{j} \varnothing$ se $i \neq j$)
+$\Omega$ é denominado **evento certo**, pois representa a ocorrência de algum
+resultado do experimento aleatório. A condição $P(\Omega) = 1$ estabelece a
+escala da medida de probabilidade e é compatível com a interpretação
+frequentista, segundo a qual a frequência relativa de $\Omega$ converge a 1
+quando o número de realizações tende ao infinito.
 
 \
 
+##### Postulado III — $\sigma$-aditividade (aditividade enumerável)
 
-Tomando o terceiro postulado no caso mais simples, isto é, para **dois** eventos mutuamente exclusivos $\omega_{1}$ e $\omega_{2}$, pode ser facilmente visto que é satisfeito pela interpretação frequentista.
+\
+
+Seja $\{E_n\}_{n=1}^{\infty}$ uma sequência de eventos **mutuamente exclusivos**
+(dois a dois disjuntos), isto é,
+
+\
+
+$$
+E_i \cap E_j = \varnothing, \quad \forall\, i \neq j.
+$$
+
+\
+
+Então,
+
+\
+
+$$
+P\!\left(\bigcup_{n=1}^{\infty} E_n\right) = \sum_{n=1}^{\infty} P(E_n).
+$$
+
+\
+
+**Caso particular — aditividade finita.** Para dois eventos mutuamente
+exclusivos $E_1, E_2 \in \mathcal{F}$ com $E_1 \cap E_2 = \varnothing$,
+o Postulado III implica imediatamente que
+
+\
+
+$$
+P(E_1 \cup E_2) = P(E_1) + P(E_2).
+$$
 
 
 \
 
-Se um evento ocorrer, digamos, 28\% das vezes, outro evento ocorrerá 39\%, **e os dois eventos não podem ocorrer ao mesmo tempo (ou seja, são mutuamente exclusivos)**,  então um **ou outro** evento} ocorrerão em 28 + 39 = 67\% das vezes. Assim, o terceiro postulado é satisfeito, e o mesmo tipo de argumento se aplica quando há mais de dois eventos mutuamente exclusivos.
+Por extensão, para uma coleção finita $\{E_1, E_2, \ldots, E_m\}$ de eventos
+dois a dois disjuntos,
 
+\
+
+$$
+P\!\left(\bigcup_{n=1}^{m} E_n\right) = \sum_{n=1}^{m} P(E_n).
+$$
+
+\
+
+**Compatibilidade com a interpretação frequentista.** Sejam $E_1$ e $E_2$
+dois eventos mutuamente exclusivos com frequências relativas de longo prazo
+$f_1$ e $f_2$, respectivamente. Como $E_1 \cap E_2 = \varnothing$, em nenhuma
+realização do experimento ambos os eventos ocorrem simultaneamente, de modo
+que a frequência relativa de $E_1 \cup E_2$ é $f_1 + f_2$. Isso é consistente
+com a igualdade $P(E_1 \cup E_2) = P(E_1) + P(E_2)$.
+
+\
+
+> **Observação.** Os três postulados acima constituem os **Axiomas de
+> Kolmogorov** (1933), que fundamentam a teoria moderna da probabilidade.
+> A tripla $(\Omega, \mathcal{F}, P)$, onde $\mathcal{F}$ é uma
+> $\sigma$-álgebra sobre $\Omega$ e $P : \mathcal{F} \to [0,1]$ satisfaz
+> os três postulados, é denominada **espaço de probabilidade**.
 
 \
 
 **Recapitulando**
 
-\
+1. Foi definido o conceito de **experimento aleatório** como aquele cujos
+resultados não podem ser determinados com certeza antes de sua realização;
 
-1- foi definido o conceito de **experimento aleatório** como sendo aquele cujos resultados não podem ser determinados com certeza antes de sua realização;  
-2- foi definido o conceito de **espaço amostral** de um experimento aleatório como sendo o conjunto de **todos os possíveis resultados** que ele pode apresentar;  
-3- foi definido que um **evento de interesse** é um subconjunto do espaço amostral no qual estamos particularmente interessados;  
-4- foi definida uma **função** que tem como domínio o espaço amostral e associa uma quantidade (entre **0**  e **1**) a **cada elemento** do espaço amostral; e, por fim,  
-5- estabelecemos que **se** essa função atende a **três postulados** então ela será uma **medida da probabilidade** de ocorrẽncia de cada evento do espaço amostral em questão.
+2. Foi definido o conceito de **espaço amostral** de um experimento aleatório
+como o conjunto de **todos os possíveis resultados** que ele pode apresentar;
 
-\
+3. Foi definido que um **evento** é qualquer subconjunto do espaço amostral;
 
-Assim, quando uma função $P$ associa uma quantidade $P(\Omega)$ a um evento $\omega$ e $P(\Omega)$ atende aos três axiomas anteriormente estabelecidos, diz-se que que ela é a **função de probabilidade** de $\Omega$.
+4. Foi definida uma **função** com domínio na $\sigma$-álgebra $\mathcal{F}$
+sobre $\Omega$, que associa a cada evento $E \in \mathcal{F}$ um número real; e,
+por fim,
+
+5. Foi estabelecido que **se** essa função satisfaz os **três axiomas de
+Kolmogorov**, então ela constitui uma **medida de probabilidade** sobre
+$(\Omega, \mathcal{F})$.
+
+Formalmente, quando uma função $P : \mathcal{F} \to [0,1]$ satisfaz os três
+axiomas anteriormente estabelecidos, a tripla $(\Omega, \mathcal{F}, P)$ é
+denominada **espaço de probabilidade**, e $P$ é chamada de **medida de
+probabilidade** — ou **função de probabilidade** — sobre $\Omega$.
 
 \
 
@@ -1499,81 +1647,68 @@ P(E_{A} \cup E_{C}) & = P(E_{A}) + P(E_{C}) - P(E_{A} \cap E_{C}) \\
 
 \
 
-
 ## Probabilidade de eventos condicionados
 
-\
-
-Admita dois eventos definidos sobre o exprimento aleatório de se sortear uma carta de um baralho: 
-
-\
-
-- \( A: \{A, 2,3,4,5,6,7,8,9,10,J,Q,K\}_{vermelho}\): cartas vermelhas (ouro e copas), e
-- \( B: \{A, J, Q, K\}_{qualquer}\): cartas com figuras.
+Admita dois eventos definidos sobre o experimento aleatório de se sortear uma carta de um baralho:
 
 \
 
 
-
-Se nosso interesse é agora determinar a probabilidade de um evento definido como uma  **vermelha e de figura ao mesmo tempo** ou seja, uma carta que está simultaneamente nos conjuntos \( A \) e \( B \), estamos então interessados na probabilidade da **interseção** (conectivo $\cap$) desses dois eventos: \( P(A \cap B) \). Esse evento (interseção) acaba impondo restrições no espaço amostral inicial (todas as 52 cartas do baralho)
-
-\
-
-- Olhando-se por um prisma, podemos considerar que o espaço amostral agora é reduzido para \( A \): apenas as 26 cartas vermelhas: copas e ouro e, **dentro desse novo espaço amostral**, estamos interessados nos elementos \( B \): apenas as 4 cartas de figura: A, J, Q ou K.
-
+- $A$: cartas vermelhas (ouro e copas) — $\{A, 2,3,4,5,6,7,8,9,10,J,Q,K\}_{vermelho}$,
+  totalizando 26 cartas; e
+- $B$: cartas com figuras (em qualquer naipe) — $\{A, J, Q, K\}_{qualquer\ naipe}$,
+  totalizando 16 cartas.
 
 \
 
-A probabilidade do um evento \( B \) condicionada à ocorrência prévia do evento \( A \), pode ser entendida como a fração de \( B \) dentro de \( A \), ou seja:
+
+Se nosso interesse é determinar a probabilidade de um evento definido como uma carta **vermelha e de figura ao mesmo tempo**, ou seja, uma carta que pertence simultaneamente aos conjuntos $A$ e $B$, estamos interessados na probabilidade
+da **interseção** (conectivo $\cap$) desses dois eventos: $P(A \cap B)$. Esse evento impõe restrições no espaço amostral inicial (todas as 52 cartas do baralho).
+
+\
+
+- **Primeiro prisma:** o espaço amostral é reduzido para $A$ — apenas as 26 cartas vermelhas — e, **dentro desse novo espaço amostral**, buscamos os elementos de $B$: as cartas de figura vermelhas.
 
 \
 
 $$
-P(\text{foi sorteada uma carta vermelha, sortear-se uma figura})=\\
-\frac{  \text{resultados favoráveis (número de cartas de figuras e vermelhas)}}{\text{resultados possíveis (número de cartas vermelhas)}}=\\
-\frac{8}{26}=0,3076\\
-$$ 
-<!-- P(\text{foi sorteada uma carta vermelha, sortear-se uma figura})= \frac{P(B \cap A)}{P(A)}\\ -->
-<!-- P(\text{foi sorteada uma carta vermelha, sortear-se uma figura}) \times P(A)= P(B \cap A) \\ -->
-<!-- P(\text{foi sorteada uma carta de figura, sortear-se uma carta vermelha})= \frac{P(A \cap B)}{P(B)}\\ -->
-<!-- P(\text{foi sorteada uma carta de figura, sortear-se uma carta vermelha})  \times P(B)= P(A \cap B)\\ -->
+P(B|A) = \frac{\text{cartas de figura e vermelhas}}{\text{cartas vermelhas}}
+= \frac{8}{26} \approx 0{,}3077
+$$
 
 \
 
-
-- Alternativamente, se olharmos por outro prisma, podemos considerar que o espaço amostral agora é reduzido para \( B \): apenas as 16 cartas de figuras e, **dentro desse novo espaço amostral**, estamos interessados nos elementos \( A \): apenas as 8 cartas vermelhas.
-
+- **Segundo prisma:** o espaço amostral é reduzido para $B$ — apenas as 16 cartas de figura — e, **dentro desse novo espaço amostral**, buscamos os elementos de $A$: as cartas vermelhas com figura. 
 
 \
+
 
 $$
-P(\text{foi sorteada uma carta de figura, sortear-se uma carta vermelha})=\\
-\frac{  \text{resultados favoráveis (número de cartas vermelhas e com figuras)}}{\text{resultados possíveis (número de cartas de figuras )}}=\\
-\frac{8}{16}=0,50\\
-$$ 
+P(A|B) = \frac{\text{cartas vermelhas e de figura}}{\text{cartas de figura}}
+= \frac{8}{16} = 0{,}50
+$$
 
+\
+
+Dois eventos quaisquer $A$ e $B$ definidos sobre um experimento aleatório são ditos **condicionados** quando a ocorrência prévia de um deles impõe **uma restrição** no espaço amostral do segundo, podendo ou não alterar sua probabilidade original. A ocorrência de $B$ pode ser entendida alternativamente como uma informação adicional disponível *a priori*, que reduz a incerteza inicial sobre os possíveis resultados do experimento.
 
 \
 
 
->Dois eventos quaisquer $A$ e $B$ definidos sobre um experimento aleatório são ditos **condicionados** quando a ocorrência prévia de um deles impõe **uma restrição** no espaço amostral do segundo, alterando sua probabilidade original do outro. *Ocorrência* pode ser entendido alternativamente como uma informação adicional trazida *a priori* ao experimento, e que alterará a incerteza inicial que pairava sobre os possíveis resultados.
-
-
-\
-
-
-A **probabilidade** de um evento qualquer $A$ **condicionada** a um segundo evento $B$ é representada como $P(A|B)$.
+A **probabilidade** de um evento $A$ **condicionada** a um evento $B$ é representada por $P(A|B)$, onde $B$ é o **evento condicionante** e $A$ é o **evento condicionado**.
 
 \
 
 
-A _barra_ vertical pode ser "lida" adotando-se termos correlatos que facilitam o entendimento da relação existente, tais como :
+A barra vertical pode ser lida por meio de expressões equivalentes que facilitam a compreensão da relação entre os dois eventos:
+
 
 \
 
 - probabilidade de $A$ **posto que** ocorreu $B$;
 - probabilidade de $A$ **admitindo-se** que ocorreu $B$;
-- probabilidade de $A$ **considerando-se** que ocorreu $B$,
+- probabilidade de $A$ **considerando-se** que ocorreu $B$;
+- probabilidade de $A$ **dado que** ocorreu $B$.
 
 \
 
@@ -2010,27 +2145,46 @@ Portanto, **dois eventos são denominados independentes se, e somente se**:
 $$
 P (A \cap B)= P(A) \times P(B)
 $$
-
-
-\
-
->**Independência e correlação**: se duas variáveis aleatórias são **independentes** não há associação de natureza alguma entre elas, **inclusive a linear**, um caso particular de correlação. Todavia uma **correlação linear nula** não implica em **independência** posto existirem várias outras formas outras de relacionamento (quadrática, cúbica, \dots).
-
 \
 
 
 
-```{r  echo=FALSE, out.width='50%', fig.align='center', fig.cap="Independência implica em ausência de qualquer tipo de associação (a recíproca não se aplica"}
+### Demonstração de Independência entre Eventos
 
-knitr::include_graphics("images4/indepn_correlacao.jpg")
+Para demonstrar que dois eventos $A$ e $B$ são independentes, é suficiente verificar a igualdade:
 
-```
+$$
+P(A \cap B) \stackrel{?}{=} P(A) \cdot P(B)
+$$
+
+O procedimento consiste em calcular cada lado de forma independente: obtém-se $P(A \cap B)$ diretamente a partir do espaço amostral ou dos dados do problema,e calcula-se $P(A) \cdot P(B)$ a partir das probabilidades marginais de cada
+evento. Ao final, comparam-se os dois valores — se a igualdade se confirma,os eventos são independentes; caso contrário, são dependentes.
+
+
+
+### Reciprocidade da Independência
+
+A independência é uma relação **recíproca**: se $A$ independe de $B$, então $B$ independe de $A$. A demonstração é direta. Assumindo: $P(A \cap B) = P(A) \cdot P(B)$ e $P(A) > 0$:
+
+$$
+P(B|A) = \frac{P(A \cap B)}{P(A)} = \frac{P(A) \cdot P(B)}{P(A)} = P(B)
+$$
+
+A simetria decorre da comutatividade da interseção ($A \cap B = B \cap A$): a condição $P(A \cap B) = P(A) \cdot P(B)$ é simétrica em $A$ e $B$, de modo que vale para o par $(A, B)$ se e somente se vale para o par $(B, A)$.
+
+Observação Importante: Independência **não deve ser confundida** com eventos **mutuamente exclusivos** (disjuntos). Se $A \cap B = \emptyset$ e ambos têm probabilidade positiva, então: 
+
+$$
+P(A \cap B) = 0 \neq P(A) \cdot P(B)
+$$
+
+Logo, eventos disjuntos com probabilidade positiva são necessariamente **dependentes**.
+
 
 \
 
 
-
-### Demonstração clássica de independência  
+### Exemplo clássico de eventos independentes  
 
 
 
@@ -2149,7 +2303,7 @@ knitr::include_graphics("images4/com_rep.jpg")
 ```
 
 
-### Demonstração clássica de dependência 
+### Exemplo clássico de eventos dependentes 
 
 
 
@@ -2471,7 +2625,7 @@ P(C_{1} \cap C_{2}) & = 0,25 \times 0,40\\
 
 
 
-## Teorema de Bayes
+## Teorema (*regra*, *lei*) de Bayes
 
 \
 
@@ -2480,6 +2634,14 @@ P(C_{1} \cap C_{2}) & = 0,25 \times 0,40\\
 knitr::include_graphics("images4/thomas_bayes.jpg")
 ```
 
+
+> O pastor presbiteriano e matemático inglês Thomas Bayes (1702 – 1761) foi o primeiro a fornecer uma equação que permitiria que novas evidências atualizassem a probabilidade de um evento a partir do conhecimento *a priori* (ou a crença inicial na ocorrência de um evento).
+
+> Após sua morte, seus estudos foram encontrados e substancialmente editados por seu amigo Richard Price, sendo os resultados finalmente publicados em 1763 (*An Essay Towards Solving a Problem in the Doctrine of Chances*).
+
+> Independentemente de Bayes, Pierre-Simon Laplace usou a probabilidade condicional para formular a relação entre uma probabilidade posterior atualizada e uma probabilidade a priori, dada a evidência. Ele reproduziu e estendeu os resultados de Bayes em 1774, aparentemente desconhecendo o trabalho de Bayes, e resumiu seus resultados em 1812 (*Théorie analytique des probabilités*).
+
+\
 
 > Admita o espaço amostral de um experimento baseado no sorteio aleatório de um estudante de uma escola, com dois possíveis resultados quanto ao sexo:
 

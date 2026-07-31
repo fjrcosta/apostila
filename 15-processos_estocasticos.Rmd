@@ -30,255 +30,1429 @@ use_condaenv("r-python")
 
 ```
 
-
-# Introdução à modelagem de processos estocásticos{#introducao-a-modelagem-de-processos-estocasticos}
-
-\
+# Introdução à modelagem de processos estocásticos {#introducao-a-modelagem-de-processos-estocasticos}
 
 \
 
+A palavra *estocástico* deriva do grego *stokhastikós* (στοχαστικός), que significa *capaz de adivinhar* ou *hábil em conjecturar*, derivado de *stókhos* (στόχος), *alvo* ou *objetivo*. A palavra chegou ao vocabulário científico moderno via latim acadêmico renascentista, como transliteração do grego.
 
+\
 
-A expressão **processo estocástico** pode ser interpretada de duas formas diferentes, todavia interligadas, dependendo do contexto.
+Assim, a expressão *processo estocástico* pode ser interpretada de duas formas complementares, dependendo do contexto.
+
+\
+
+Como *fenômeno real* que ocorre no mundo físico ou social --- o tempo de chegada de clientes em um banco, as variações no preço de uma ação ou a propagação de uma epidemia. Esses fenômenos apresentam variabilidade inerente e são influenciados por fatores que não podem ser totalmente controlados ou previstos.
+
+\
+
+Como um *modelo matemático*: uma abstração que permite descrever e analisar o fenômeno aleatório, substituindo a complexidade do mundo real por uma estrutura probabilística tratável. As seções seguintes apresentam essa distinção com mais precisão.
+
+\
+
+## Modelos determinísticos e estocásticos {#modelos-deterministicos-e-estocasticos}
+
+\
+
+Os *modelos estocásticos* contrastam com os *modelos determinísticos*. Enquanto os *modelos determinísticos* são definidos por equações que descrevem exatamente como o sistema evolui ao longo do tempo, os *modelos estocásticos* envolvem algum grau de aleatoriedade. Assim, um *mesmo processo estocástico* pode produzir resultados variados a cada
+observação --- cada resultado específico é chamado de *realização do processo*. Modelos determinísticos são geralmente mais fáceis de analisar, mas os estocásticos costumam ser mais realistas.
+
+\
+
+Essa distinção tem raízes metodológicas precisas. 
 
 \
 
 
->Como **fenômeno real** que ocorre no mundo físico ou social como o tempo de chegada de clientes em um banco, as variações no preço de uma ação ou a propagação de uma epidemia. Esses fenômenos apresentam variabilidade inerente e são influenciados por fatores que não podem ser totalmente controlados ou previstos.
+Uma dicotomia relativamente recente --- introduzida em [*Monte Carlo Methods* (Hammersley e Handscomb, 1964)](https://link.springer.com/book/10.1007/978-94-009-5819-7) --- contrasta o *matemático teórico* com o *matemático experimental*, de forma análoga à distinção usual entre físicos teóricos e experimentais. 
 
 \
 
->Como um **modelo** (abstração do fenômeno): usado para descrever, aproximar e analisar esse fenômeno aleatório. Um **processo de Poisson** pode ser utilizado para modelar a chegada de clientes em um restaurante. Nesse caso, ele é definido como uma **família de variáveis aleatórias indexadas por um conjunto de parâmetros** (tempo, no exemplo). 
-
-
-## Modelos determinísticos e estocásticos
+A diferença essencial é que os *teóricos deduzem conclusões a partir de postulados*, enquanto os *experimentalistas inferem conclusões com base em observações* --- trata-se da diferença entre *dedução* e *indução*. Essa dicotomia
+independe de os objetivos serem puros ou aplicados, e não pressupõe recursos computacionais sofisticados: certos experimentos matemáticos complexos exigem computadores, outros requerem apenas papel e lápis.
 
 \
 
->Os **modelos estocásticos** contrastam com os **modelos determinísticos**. Enquanto os modelos determinísticos são definidos por **equações** que descrevem **exatamente** como o sistema evolui ao longo do tempo, os modelos estocásticos envolvem pelo menos algum **grau de aleatoriedade**. Assim, diferentes execuções de um processo estocástico produzem resultados variados, conhecidos como **realizações do processo**.
+Em modelagem estocástica, as duas abordagens são complementares: o teórico estabelece as propriedades formais do modelo; o experimentalista estima seus parâmetros a partir de dados observados. Os três exemplos a seguir ilustram essa complementaridade.
 
 \
 
->**Modelos determinísticos** são geralmente **mais fáceis** de analisar, mas os estocásticos costumam ser **mais realistas**. Por exemplo, ao modelar a sobrevivência de uma espécie rara, um modelo determinístico prevê extinção ou sobrevivência **com certeza**. Já um modelo estocástico atribui uma **probabilidade de extinção**, permitindo estudar como diferentes estratégias de manejo influenciam esse resultado.
-
-
-
-
-## Dedução e indução
-
+Considere três fenômenos econômicos de natureza distinta.
 
 \
 
->Uma dicotomia **relativamente** recente (Hammersly e Handscom em Monte Carlo Methods, 1964) contrasta o **matemático teórico** com o **matemático experimental** (semelhantes às usadas comumente para **físicos teóricos e experimentais**)
+> O *nível do PIB* de um país apresenta uma trajetória de longo prazo 
+> identificável, mas sujeita a perturbações imprevisíveis. Um modelo
+> determinístico descreveria essa trajetória de forma exata: dado o
+> estado atual da economia, o valor futuro seria calculado com precisão.
+> Um modelo estocástico reconhece, porém, que choques externos ---
+> variações nos preços internacionais de commodities, mudanças abruptas
+> na política monetária, crises financeiras, guerras --- introduzem
+> incerteza que nenhum componente sistemático captura integralmente.
+> Formalmente:
+>
+> $$
+> \text{PIB}(t) \;=\;
+> \underbrace{\text{PIB}_0 + g \cdot t}_{\text{componente determinístico}}
+> \;+\;
+> \underbrace{\varepsilon(t)}_{\text{choque aleatório}}
+> $$
+>
+> em que $\varepsilon(t) \sim \mathcal{N}(0,\,\sigma^2)$ representa as
+> inovações não antecipadas. A largura do intervalo de confiança de
+> qualquer previsão cresce com o horizonte temporal --- quanto mais
+> distante o período previsto, maior a incerteza acumulada ---,
+> consequência direta da variância do componente estocástico.
 
 \
 
->Elas são independentes do fato de os objetivos serem **puros ou aplicados**. Não pressupõem que o **teórico** esteja sentado em uma sala vazia diante de uma folha de papel em branco, enquanto o **experimentalista** manipule equipamentos caros em um laboratório. 
+> A *ocorrência de eventos discretos e relativamente raros* --- como a
+> chegada de ordens de compra em um mercado financeiro, a decretação de
+> moratória por um país soberano ou a inadimplência em uma carteira de
+> crédito --- é naturalmente capturada por um *processo de Poisson*
+> $\{N(t) : t \geq 0\}$, em que $N(t)$ conta o número de eventos
+> ocorridos até o instante $t$ a uma taxa média constante $\lambda > 0$.
+> A propriedade central do processo --- incrementos independentes e
+> estacionários --- implica que o número de eventos em qualquer intervalo
+> depende apenas de sua duração, não de quando ele começa.
 
 \
 
->Embora certos experimentos matemáticos complexos exijam **computadores eletrônicos**, outros requerem **apenas papel e lápis**. 
+> A *evolução do preço de uma ação* é frequentemente modelada como um
+> *passeio aleatório*: o preço no instante seguinte é o preço atual
+> acrescido de uma variação imprevisível:
+>
+> $$
+> P(t) = P(t-1) + \varepsilon(t), \qquad \varepsilon(t) \sim
+> \mathcal{N}(0,\,\sigma^2)
+> $$
+>
+> A hipótese subjacente --- conhecida como *hipótese dos mercados
+> eficientes* apresentada em [*Efficient Capital Markets: A Review of Theory and Empirical Work* (Fama, 1970)](https://www.jstor.org/stable/2325486) --- é a de que toda
+> informação disponível já está refletida no preço corrente, de modo que
+> apenas novas informações, por definição imprevisíveis, podem alterá-lo.
 
-\
-
->A diferença essencial é que os **teóricos deduzem conclusões a partir de postulados**, enquanto os **experimentalistas inferem conclusões com base em observações**. Trata-se da diferença entre **dedução** e **indução**.
-
+Essa característica --- o estado futuro depender apenas do estado presente, e não de toda a trajetória anterior --- é conhecida como *propriedade markoviana*, e será ilustrada mais adiante por meio de exemplos.
 
 
 ## Processos estocásticos temporais, espaciais e espaçotemporais
 
+\
+
+Como um modelo, um *processo estocástico* é uma família de variáveis
+aleatórias $\{X_\theta\}$, indexada por um parâmetro $\theta$ pertencente
+a algum conjunto de índices $\Theta$. A natureza desse conjunto determina
+se o processo é *temporal*, *espacial* ou *espaçotemporal*.
 
 \
 
->Como um modelo, um **processo estocástico** é uma família de **variáveis aleatórias \(\{X_\theta\}\)**, indexada por um parâmetro \(\theta\), onde \(\theta\) pertence a algum conjunto de índices \(\Theta\) e a **natureza** do processo estocástico pode ser **temporal**, **espacial** ou **espaçotemporal**.
+### Processos estocásticos temporais
 
 \
 
-
-
-### Processos Estocásticos Temporais
-
-\
-
-Em um processo estocástico temporal o parâmetro de índice (\(\Theta\)) representa o **tempo**: $\{X_t : t \in T \}$. 
+Em um processo estocástico temporal, o conjunto de índices $\Theta$
+representa o *tempo*, e o processo é escrito como $\{X_t : t \in T\}$.
 
 \
 
-Se \(\Theta\) for um conjunto de **números inteiros**, representando pontos específicos no tempo como no $1^{o}s$ ou no $3^{o}s$, teremos um **processo estocástico em tempo discreto** e a notação mais utilizada é:  
+Se $T$ for um conjunto de *números inteiros não negativos* ---
+representando períodos específicos como o $1^{\circ}$ trimestre ou o
+$3^{\circ}$ mês de uma série econômica --- teremos um *processo
+estocástico em tempo discreto*:
 
-\[
+$$
 \{X_t : t \in \mathbb{Z}_{+}\}
-\]
+$$
+
+O PIB trimestral do Brasil, a taxa Selic mensal e o índice de preços ao
+consumidor são exemplos de séries observadas em tempo discreto.
+
+\
+
+Se $T$ for a *reta real* ou algum intervalo dela --- representando
+qualquer instante em um fluxo contínuo, como o preço de uma ação
+registrado a cada milissegundo em uma bolsa de valores --- teremos um
+*processo estocástico em tempo contínuo*:
+
+$$
+\{X_t : t \in [0, \infty)\}
+$$
+
+\
+
+### Processos estocásticos espaciais
+
+\
+
+Em um *processo estocástico espacial*, o conjunto de índices $\Theta$
+não representa o tempo, mas sim *localizações no espaço*, descritas por
+um vetor de coordenadas. Esse tipo de processo é representado por:
+
+$$
+\{X_{\mathbf{s}} : \mathbf{s} \in D\}
+$$
+
+em que:
+
+- $X_{\mathbf{s}}$: variável aleatória associada ao ponto espacial
+  $\mathbf{s}$.
+- $\mathbf{s}$: vetor de coordenadas espaciais --- por exemplo,
+  $(u, v)$ no plano ou $(u, v, z)$ no espaço tridimensional.
+- $D$: domínio espacial, subconjunto de $\mathbb{R}^2$ (no plano) ou
+  $\mathbb{R}^3$ (no espaço tridimensional).
+
+\
+
+Se $D$ for *discreto* --- representando localizações específicas, como
+os municípios de uma região metropolitana em um estudo de valor do solo
+--- teremos:
+
+$$
+\{X_{\mathbf{s}} : \mathbf{s} \in \mathbb{Z}^2\}
+$$
+
+\
+
+Se $D$ for *contínuo* --- representando qualquer ponto de uma região,
+como o preço do metro quadrado em qualquer localização de uma cidade ---
+teremos:
+
+$$
+\{X_{\mathbf{s}} : \mathbf{s} \in \mathbb{R}^2\}
+$$
+
+\
+
+### Processos estocásticos espaçotemporais
+
+\
+
+Em alguns casos, o fenômeno evolui *no tempo e no espaço
+simultaneamente*. Esses são chamados de *processos espaçotemporais* e
+são representados por:
+
+$$
+\{X_{t,\mathbf{s}} : t \in T,\, \mathbf{s} \in D\}
+$$
+
+em que:
+
+- $X_{t,\mathbf{s}}$: variável aleatória associada ao instante $t$ na
+  posição espacial $\mathbf{s}$.
+- $t$: índice temporal.
+- $\mathbf{s}$: índice espacial (vetor de coordenadas).
+- $T$: intervalo de tempo de interesse.
+- $D$: região espacial de interesse.
+
+\
+
+O domínio temporal $T$ e o domínio espacial $D$ podem ser,
+independentemente, discretos ou contínuos. Um exemplo econômico
+direto é o valor do solo urbano em uma região metropolitana ao longo
+do tempo: para cada município $\mathbf{s}$ e cada ano $t$, observa-se
+uma realização $X_{t,\mathbf{s}}$ do processo --- configuração
+típica de estudos de valorização imobiliária e uso do solo.
+
+
+## Passeio aleatório {#passeio-aleatorio}
+
+\
+Os conceitos, exemplos e implementações relacionados a séries temporais
+derivam principalmente de duas fontes: o projeto de pesquisa em ensino
+*Aplicações de Processos Estocásticos na Economia*, do Prof. Dr. José
+Carlos de Camargo Lourenço, e o tutorial
+[*A Little Book of R for Time Series*](https://a-little-book-of-r-for-time-series.readthedocs.io/en/latest/)
+(Avril Coghlan).
+
+
+\
+
+O *passeio aleatório* (*random walk*) é o processo estocástico discreto mais simples com dependência temporal e o ponto de partida natural para a compreensão da propriedade markoviana em contextos econômicos.
+
+\
+
+### Propriedade markoviana {#markov}
+
+\
+
+Um processo estocástico $\{X_t : t \in \mathbb{Z}_+\}$ satisfaz a *propriedade markoviana* se, para todo $t$ e todo estado futuro $x$:
+\
+
+
+$$
+P(X_{t+1} = x \mid X_t, X_{t-1}, \ldots, X_0) = P(X_{t+1} = x \mid X_t)
+$$
+
+
+\
+
+Equivale e dizer, em palavras, que toda a informação relevante sobre o futuro do processo está contida em seu estado presente. A trajetória anterior é irrelevante, dado o valor atual. Em Economia, essa propriedade tem uma interpretação
+direta --- a *hipótese dos mercados eficientes* antes citada, a qual afirma que o preço corrente de um ativo já incorpora toda a informação disponível, de modo que conhecer preços anteriores não oferece vantagem preditiva além do que o preço de hoje já revela.
+
+\
+
+### Definição formal
+
+\
+
+Seja $P(t)$ o preço de um ativo financeiro no período $t$. O modelo de
+passeio aleatório sem deriva (*driftless random walk*) é definido por:
+
+\
+
+$$
+P(t) = P(t-1) + \varepsilon(t), \qquad
+\varepsilon(t) \overset{iid}{\sim} \mathcal{N}(0,\, \sigma^2)
+$$
+\
+
+em que $\varepsilon(t)$ representa a inovação --- a parcela do preço não antecipada pelo mercado. O processo satisfaz a propriedade markoviana por construção: dado $P(t-1)$, o valor $P(t)$ independe de $P(t-2), P(t-3), \ldots$ Três propriedades decorrem diretamente da definição:
+
+\
+
+$$
+E[P(t)] = P(0) \qquad \text{(sem tendência)}
+$$
+
+\
+
+$$
+\text{Var}[P(t)] = t \cdot \sigma^2 \qquad
+\text{(variância cresce com } t\text{)}
+$$
+
+\
+
+$$
+\text{Cov}[P(s), P(t)] = \min(s,t) \cdot \sigma^2 \qquad
+\text{(observações próximas são correlacionadas)}
+$$
+
+\
+
+A segunda propriedade tem consequência direta para a previsão: quanto mais distante o horizonte, maior a incerteza acumulada --- o intervalo de confiança se alarga proporcionalmente a $\sqrt{t}$.
+
+\
+
+### Passeio aleatório como série temporal {#random_walk_ts}
+
+\
+
+O passeio aleatório é o exemplo mais simples de *série temporal* não estacionária --- uma sequência de observações ordenadas no tempo cujas propriedades estatísticas variam com $t$. Em R, dados com estrutura temporal são armazenados como objetos da classe `ts` (*time-series*), criados pela função `ts()`, que associa os valores ao tempo e permite que as funções de análise reconheçam automaticamente a estrutura temporal da série.
+
+\
+
+### Não estacionaridade e diagnóstico {#nao_estacionariedade}
+
+\
+
+Um passeio aleatório é uma série *não estacionária*: sua variância cresce indefinidamente com $t$, violando a condição de variância constante exigida pela estacionaridade fraca. Em termos técnicos, *diz-se que a série possui uma raiz unitária*.
+
+\
+
+O diagnóstico de não estacionaridade pode ser feito de duas formas complementares. A primeira é visual, por meio da *função de autocorrelação* (ACF), que mede a correlação entre $P(t)$ e $P(t-h)$ para diferentes defasagens $h$:
+
+\
+
+>Em uma *série não estacionária*, as autocorrelações decaem lentamente e permanecem elevadas por muitas defasagens --- indicando que observações distantes no tempo ainda são fortemente correlacionadas. 
+
+\
+
+>Em uma *série estacionária*, as autocorrelações decaem rapidamente para zero.
+
+\
+
+A segunda forma é o *teste Augmented Dickey-Fuller* (ADF), que testa formalmente a presença de raiz unitária:
+
+\
+
+$$
+H_0: \text{a série possui raiz unitária (não estacionária)}
+$$
+$$
+H_1: \text{a série é estacionária}
+$$
+\
+
+A regra de decisão usual é rejeitar $H_0$ quando o $p$-valor for inferior a $0,05$. A primeira diferença do processo resolve a não estacionaridade:
+
+\
+
+$$
+\Delta P(t) = P(t) - P(t-1) = \varepsilon(t) \overset{iid}{\sim}
+\mathcal{N}(0,\, \sigma^2)
+$$
+
+\
+
+Em linguagem econômica, enquanto o *nível* do preço é não estacionário, a *variação* do preço é estacionária --- resultado consistente com a hipótese de mercados eficientes.
+
+\
+
+### Implementação em R (dados sintéticos)
+
+\
+
+```{r }
+
+library(tseries)
+
+set.seed(42)   # semente para reprodutibilidade dos resultados
+n       <- 250  # número de dias de negociação (~1 ano útil em bolsa)
+sigma   <- 1.5  # volatilidade diária em % — valor típico de ação de média liquidez
+P0      <- 100  # preço inicial em R$ — valor de referência arbitrário
+
+# epsilon: vetor de 250 choques aleatórios --- um por dia de negociação cada epsilon(t) ~ N(0, sigma²) é a realização da inovação não antecipada definida formalmente como varepsilon(t) no modelo do PIB --- aqui aplicada à variação diária do preço de uma única ação
+epsilon <- rnorm(n, mean = 0, sd = sigma)
+
+
+# Duas séries temporais distintas:
+# P:       nível do preço --- passeio aleatório, série não estacionária 
+#          c(P0, P0 + cumsum(epsilon)): concatena o preço inicial P0 com
+#          os preços subsequentes, cada P(t) = P0 + soma acumulada dos
+#          choques até t, resultando em n+1 valores (dias 0 a n)
+P       <- ts(c(P0, P0 + cumsum(epsilon)), start = 1, frequency = 1)
+
+# delta_P: variação diária --- primeira diferença de P, série estacionária
+delta_P <- ts(diff(P), start = 2, frequency = 1)
+
+```
+
+\
+
+| Gráfico | Série | Tipo | Diagnóstico esperado | Propriedade markoviana |
+|---|---|---|---|---|
+| 1.º | `P` | Nível do preço | Variância crescente --- não estacionária | Não satisfaz --- $P(t)$ carrega memória de todos os choques passados |
+| 2.º | `delta_P` | Variação diária | Oscilação em torno de zero --- estacionária | Satisfaz --- $\varepsilon(t)$ independe dos valores anteriores |
+| 3.º | ACF de `P` | Autocorrelação do nível | Decaimento lento --- raiz unitária | Não satisfaz --- autocorrelações persistentes confirmam dependência temporal |
+| 4.º | ACF de `delta_P` | Autocorrelação da variação | Decaimento abrupto --- ruído branco | Satisfaz --- ausência de autocorrelação confirma independência |
+
+\
+
+
+```{r , fig.cap="Random walk do preço da ação ao longo de 250 dias"}
+
+# Nível do preço: random walk gerado pela soma acumulada dos choques epsilon(t)
+plot.ts(P,
+        col  = "steelblue", lwd = 1.5,
+        xlab = "Dia de negociação",
+        ylab = "Preço (R$)")
+abline(h = P0, lty = 2, col = "gray50")
+
+```
+
+\
+
+Esse gráfico mostra o comportamento típico do *random walk*: a série vaga sem tendência definida, mas com variância crescente ao longo dos 250 dias de negociação. Diferentemente de uma *série estacionária*, o preço não tende a retornar a um nível médio --- cada choque
+$\varepsilon(t)$ se acumula permanentemente, afastando a série de seu valor inicial $P_0$.
+
+\
+
+```{r , fig.cap="Primeira diferença do preço da ação: variação diária ao longo de 250 dias de negociação"}
+
+# Variação diária: primeira diferença do passeio aleatório --- série estacionária
+plot.ts(delta_P,
+        col  = "firebrick", lwd = 1.5,
+        xlab = "Dia de negociação",
+        ylab = expression(Delta * P(t)))
+abline(h = 0, lty = 2, col = "gray50")
+
+
+```
+
+\
+
+Esse segundo gráfico mostra a variação diária $\Delta P(t) = P(t) - P(t-1)$ --- a primeira diferença do *random walk*. Diferentemente do anterior, a série oscila em torno de zero com amplitude aproximadamente constante ao longo do tempo, característica de uma *série estacionária*. 
+
+\
+
+```{r , fig.cap="ACF do nível do preço da ação: decaimento lento indicativo de não estacionaridade"}
+
+# ACF do nível: autocorrelações decaem lentamente --- indicativo de não estacionaridade
+acf(P,
+    lag.max = 30,
+    col     = "steelblue")
+    
+    
+```    
+
+\
+
+A ACF do nível do preço $P(t)$ decai lentamente, com autocorrelações elevadas por muitas defasagens --- indicando que observações distantes no tempo ainda são *fortemente correlacionadas* entre si. 
+
+\
+
+Esse padrão reflete a acumulação permanente dos choques $\varepsilon(t)$: como cada inovação se incorpora definitivamente ao nível da série, o valor atual *carrega memória* de todos os choques passados. 
+
+\
+
+É o diagnóstico visual característico de uma *série não estacionária com raiz unitária*.
+
+\
+
+```{r , fig.cap="ACF da variação diária Delta P(t): decaimento abrupto característico de série estacionária"}
+
+# ACF da variação: autocorrelações caem rapidamente para zero --- ruído branco
+acf(delta_P,
+    lag.max = 30,
+    col     = "firebrick")
+
+```
+
+\
+
+A ACF da variação diária $\Delta P(t)$ cai abruptamente para zero após a defasagem zero --- as autocorrelações nas defasagens seguintes são estatisticamente nulas, dentro das bandas de confiança tracejadas. 
+
+\
+
+Esse padrão é característico de *ruído branco*: as inovações $\varepsilon(t)$ são *independentes entre si*, sem qualquer estrutura de dependência temporal remanescente. 
+
+\
+
+Contrastando com a ACF do nível do preço $P(t)$, os dois gráficos sintetizam o diagnóstico visual completo --- diferenciar a série remove a raiz unitária e restaura a estacionaridade.
+
+\
+
+
+```{r}
+# Teste ADF — confirma formalmente o diagnóstico visual das ACFs
+# H0: a série possui raiz unitária (não estacionária)
+# H1: a série é estacionária
+# Regra de decisão: rejeitar H0 se p-valor < 0,05
+
+# Esperado para P:       p-valor > 0,05 --- não rejeita H0 --- raiz unitária confirmada
+# Esperado para delta_P: p-valor < 0,05 --- rejeita H0 --- estacionaridade confirmada
+cat("--- Teste ADF: nível do preço ---\n")
+print(adf.test(P, alternative = "stationary"))
+cat("\n--- Teste ADF: variação do preço ---\n")
+print(adf.test(delta_P, alternative = "stationary"))
+
+```
+
+
+## Decomposição de séries temporais {#decomposicao-de-series-temporais}
+
+\
+
+Uma série temporal econômica *raramente* é composta por um único padrão.
+Na maior parte dos casos, o que se observa é a *sobreposição de
+diferentes componentes* que evoluem em escalas de tempo distintas ---
+*tendência de longo prazo*, *padrões sazonais* recorrentes e *variações aleatórias residuais*.
+
+\
+
+Separar esses componentes permite três objetivos distintos:
+
+- compreender a estrutura da série e o papel de cada componente
+  em sua variação total;
+- construir previsões que incorporem *tendência* e *sazonalidade*,
+  como nos métodos de suavização exponencial e Holt-Winters;
+- modelar o componente irregular --- removidos os determinísticos ---
+  por métodos probabilísticos específicos, passo natural seguinte
+  na análise de séries temporais econômicas.
+
+
+\
+
+### Decomposição clássica {#decomposicao-classica}
+
+\
+
+A *decomposição clássica* assume que a série pode ser expressa como combinação de três componentes mensuráveis: *tendência*, *sazonalidade* e *irregularidade*. Dependendo da natureza da série, a combinação desses componentes pode ser aditiva ou multiplicativa. O *modelo aditivo* assume que os componentes se somam:
+
+\
+
+$$
+Y(t) = T(t) + S(t) + I(t)
+$$
+
+\
+
+O *modelo multiplicativo* assume que os componentes se multiplicam:
+
+\
+
+$$
+Y(t) = T(t) \cdot S(t) \cdot I(t)
+$$
+
+\
+
+em que:
+
+\
+
+- $T(t)$: componente de *tendência* --- direção de longo prazo da série.
+- $S(t)$: componente *sazonal* --- padrão regular que se repete a cada
+  ciclo fixo de $m$ períodos.
+- $I(t)$: componente *irregular* --- variações aleatórias residuais não
+  explicadas pelos demais componentes (ruído).
+
+\
+
+A *escolha entre* os dois modelos é guiada pela *inspeção visual* da série: 
+
+- se a *amplitude das flutuações sazonais cresce* proporcionalmente ao nível da série, o *modelo multiplicativo* é o mais adequado; 
+- se a *amplitude permanece aproximadamente constante*, o *modelo aditivo* é preferível. 
+
+\
+
+Uma estratégia comum é aplicar a transformação logarítmica à série original, o que converte um modelo multiplicativo em aditivo:
+
+\
+
+
+$$
+\log Y(t) = \log T(t) + \log S(t) + \log I(t)
+$$
+
+\
+
+#### Implementação em R (dados reais) {#impl-queensland}
+
+\
+
+Os dados utilizados correspondem às vendas mensais (AUD) de uma loja de souvenirs em uma cidade litorânea de Queensland, Austrália apresentados em *[Forecasting: Methods and Applications, Makridakis, Wheelwright e Hyndman (1998)](https://robjhyndman.com/forecasting/).
+
+\
+
+A série cobre o período de janeiro de 1987 a dezembro de 1993, totalizando 84 observações mensais, e apresenta tanto *tendência crescente* quanto *sazonalidade anual* pronunciada --- características típicas de séries econômicas de varejo.
+
+\
+
+```{r}
+# Leitura dos dados diretamente do repositório de Hyndman
+# scan() importa os valores em coluna única para um vetor numérico
+souvenir <- scan("http://robjhyndman.com/tsdldata/data/fancy.dat",
+                 quiet = TRUE)
+
+# Conversão para objeto de série temporal
+# frequency = 12: dados mensais (12 observações por ciclo anual)
+# start = c(1987, 1): início em janeiro de 1987
+souvenir_ts <- ts(souvenir, frequency = 12, start = c(1987, 1))
+souvenir_ts
+
+```
+
+\
+
+```{r decomp-plot-original, fig.cap="Vendas mensais de souvenirs em Queensland (1987--1993)"}
+# Gráfico da série original
+# A inspeção visual é o primeiro passo antes de qualquer modelagem
+plot.ts(souvenir_ts,
+        col  = "steelblue", lwd = 1.5,
+        xlab = "Ano",
+        ylab = "Vendas (AUD)")
+```
+
+\
+
+O gráfico revela duas características imediatas: *tendência crescente ao longo do período* e *picos anuais* recorrentes em dezembro, associados à *sazonalidade* turística. 
+
+\
+
+Mais importante, a *amplitude dos picos cresce* ao longo do tempo --- as flutuações de 1993 são muito maiores do que as de 1987. 
+
+
+\
+
+Esse *padrão indica* que o *modelo multiplicativo* é o mais adequado, ou equivalentemente, que a transformação logarítmica deve ser aplicada *antes* da decomposição aditiva.
+
+\
+
+```{r decomp-log, fig.cap="Série de vendas após transformação logarítmica"}
+# Transformação logarítmica: converte modelo multiplicativo em aditivo
+# log(Y) = log(T) + log(S) + log(I)
+# após a transformação, a amplitude sazonal deve ser aproximadamente constante
+log_ts <- log(souvenir_ts)
+
+plot.ts(log_ts,
+        col  = "steelblue", lwd = 1.5,
+        xlab = "Ano",
+        ylab = "log(Vendas)")
+```
+
+\
+
+Após a *transformação logarítmica*, a amplitude das flutuações sazonais torna-se aproximadamente *constante* ao longo do tempo --- confirmando que o modelo aditivo é agora apropriado para a série *transformada*.
+
+\
+
+```{r decomp-classical, fig.cap="Decomposição clássica aditiva da série log-transformada"}
+# decompose() implementa a decomposição clássica em três etapas:
+# 1. estima T(t) por média móvel centralizada de ordem m=12
+# 2. estima S(t) como média dos desvios sazonais em cada mês
+# 3. obtém I(t) = log_ts - T(t) - S(t) como resíduo
+decomp <- decompose(log_ts)
+
+# O objeto decomp contém:
+# decomp$trend:    componente de tendência estimada
+# decomp$seasonal: índices sazonais (repetidos para cada ano)
+# decomp$random:   componente irregular residual
+# decomp$figure:   índices sazonais para cada mês (Jan a Dez)
+plot(decomp,
+     col = "steelblue")
+```
+
+\
+
+O gráfico de decomposição apresenta quatro painéis sobrepostos: a *série original* (topo), a *tendência estimada*, o *componente sazonal* e o *componente irregular* (ruído base). 
+
+A *tendência* revela crescimento contínuo das vendas ao longo do período. O *componente sazonal* confirma o padrão anual com pico em dezembro e vale em janeiro e fevereiro --- reflexo direto da sazonalidade turística. 
+
+O *componente irregular* (ruído), de amplitude relativamente pequena, sugere que tendência e sazonalidade explicam a *maior parte da variabilidade* da série. 
+
+
+\
+
+```{r decomp-indices}
+# Índices sazonais mensais (na escala log)
+# valores positivos: meses acima da média anual
+# valores negativos: meses abaixo da média anual
+meses <- c("Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
+           "Jul", "Ago", "Set", "Out", "Nov", "Dez")
+
+data.frame(Mês    = meses,
+           Índice = round(decomp$figure, 4))
+```
+
+\
+
+Os *índices sazonais quantificam o desvio* de cada mês em relação à média anual.
+
+\
+
+Dezembro apresenta o maior índice positivo --- vendas sistematicamente acima da média ---  enquanto janeiro e fevereiro apresentam os maiores índices negativos. 
+
+\
+
+Em termos econômicos, esses índices são instrumentos diretos de planejamento: um varejista pode antecipar a demanda de cada mês com base no nível atual da tendência *corrigido* pelo índice sazonal correspondente.
+
+\
+
+```{r decomp-dessaz, fig.cap="Série dessazonalizada: tendência e componente irregular"}
+# Ajuste sazonal: remoção do componente sazonal da série original
+# série dessazonalizada = log_ts - S(t)
+# contém apenas tendência e componente irregular
+log_dessaz <- log_ts - decomp$seasonal
+
+plot.ts(log_dessaz,
+        col  = "darkgreen", lwd = 1.5,
+        xlab = "Ano",
+        ylab = "log(Vendas) dessazonalizado")
+```
+
+\
+
+A série *dessazonalizada* remove o padrão repetitivo anual, expondo com mais clareza a trajetória de longo prazo das vendas. 
+
+\
+
+A *tendência* crescente torna-se visualmente mais nítida, e as flutuações remanescentes correspondem ao *componente irregular ou ruído* --- variações não explicadas nem pela *tendência* nem pela *sazonalidade*.
 
 
 \
 
 
-Se \(\Theta\) for a **reta real** (ou algum intervalo da reta real) como um intervalo contínuo de tempo como em $0.1s$ ou em  $3s$, teremos um **processo estocástico em tempo contínuo** e a notação mais utilizada é:  
-
-\[
-\{X_t : t \in [0, \infty] \}
-\]  
+### Média móvel simples de ordem n (MMS-n) --- suavização da tendência {#media-movel-simples}
 
 \
 
-### Processos Estocásticos Espaciais
+A *decomposição clássica* estima a *tendência* por meio de uma *média móvel centralizada* --- calculada internamente pela função `decompose()`, ela pondera igualmente os $m/2$ períodos anteriores e posteriores a cada instante $t$, produzindo uma estimativa suavizada da tendência no centro da janela. 
 
 \
 
-Em um **processo espacial**, o conjunto de índices \(\Theta\) não representa mais o tempo, mas sim **localizações no espaço** e passa a ser representado por um vetor, descrevendo posições em um espaço de uma ou mais dimensões. Esse tipo de processo é frequentemente representado por:
-
-\[
-\{X_{\mathbf{s}} : \mathbf{s} \in D \}
-\]
-
-em que: 
-
-- \( X_{s} \): Variável aleatória associada ao ponto espacial representado por \(s\).  
-- \(s\): Vetor de coordenadas espaciais, por exemplo, \((u, v)\) no caso de um plano ou  \((u, v, z)\) no espaço.  
-- \( D \): Domínio espacial, que pode ser um subconjunto de \(\mathbb{R}^2\) (no plano) ou \(\mathbb{R}^3\) (no espaço tridimensional).
+Por essa razão, a *média móvel centralizada* perde os primeiros e os últimos $m/2$ pontos da série --- os valores marcados como `NA` no objeto `decomp$trend`.
 
 \
 
-Se o domínio espacial \( D \) for **discreto**, representando pontos específicos no espaço (ex.: coordenadas de uma grade regular em um mapa), teremos:  
+A *média móvel simples (MMS-n)* de ordem $n$ opera de forma diferente: considera apenas os $n$ períodos mais recentes, sem olhar para o futuro, calculando para cada instante $t$ a média aritmética desses períodos:
 
 \
 
-\[
-\{X_{\mathbf{s}} : \mathbf{s} \in \mathbb{Z}^2 \}
-\]
+$$
+\text{MMS}_n(t) = \frac{1}{n} \sum_{i=0}^{n-1} X(t-i)
+$$
 
 \
 
-Se o domínio espacial \( D \) for **contínuo**, representando qualquer ponto em uma região do espaço (ex.: temperatura em qualquer ponto de uma superfície contínua), teremos:  
+Por ser assimétrica --- voltada exclusivamente para o *passado* --- é adequada para suavizar a série em tempo real, quando observações futuras ainda não estão disponíveis. 
 
 \
 
-\[
-\{X_{\mathbf{s}} : \mathbf{s} \in \mathbb{R}^2 \}
-\]
+A escolha de $n$ envolve uma troca: valores pequenos reagem rapidamente às mudanças mas retêm mais ruído; valores grandes suavizam mais mas introduzem defasagem e perdem os primeiros $n-1$ pontos da série.
 
 \
 
-### Processos Estocásticos Espaçotemporais
+#### Implementação em R (dados reais) {#impl-ipca-mms}
 
 \
 
-
-Em alguns casos, podemos ter processos que evoluem **no tempo e no espaço simultaneamente**. Estes são chamados de **processos espaço-temporais**, frequentemente representados por::
-
-\[
-\{X_{t, \mathbf{s}} : t \in T, \mathbf{s} \in D \}
-\]
-
-em que: 
-
-- \( X_{t, \mathbf{s}} \): Variável aleatória associada ao instante \( t \) na posição espacial \( \mathbf{s} \).  
-- \( t \): Índice temporal.  
-- \( \mathbf{s} \): Índice espacial (vetor de coordenadas no espaço).  
-- \( T \): Intervalo de tempo de interesse.  
-- \( D \): Região espacial de interesse.
+O Índice Nacional de Preços ao Consumidor Amplo (IPCA) é o indicador oficial de inflação do Brasil, calculado mensalmente pelo IBGE e utilizado pelo Banco Central como referência para a condução da política monetária. 
 
 \
 
-O **domínio espacial** (\( D \)) pode ser **discreto** (ex.: pontos específicos em uma grade regular, \( \mathbb{Z}^2 \)) ou **contínuo** (ex.: qualquer ponto em uma superfície, \( \mathbb{R}^2 \)). 
-
-Da mesma forma, o **domínio temporal** (\( T \)) pode ser **discreto** (ex.: momentos específicos, \( \mathbb{Z} \)) ou **contínuo** (ex.: qualquer instante ao longo de um intervalo, \( \mathbb{R} \)).
-
-\
-
-
-
-## Processo de Poisson
- 
-
-
-### Natureza
+A série histórica está disponível no Sistema Gerenciador de
+Séries Temporais (SGS) do Banco Central, acessível diretamente pelo R
+via pacote `GetBCBData` --- código **433**.
 
 \
 
-
-> Alguns experimentos aleatórios envolvem, essencialmente, contagens observadas em um certo intervalo de tempo como, por exemplo:  
-
-
->1- clientes que entram num supermercado por dia, 
-2- chamadas que uma central telefônica recebe por hora,  
-3. pacotes que passam por um roteador por minuto,  
-4. chamadas ao SIATE por semana,  
-5. trens que chegam a uma estação a cada 12 horas.  
-Ao se aumentar o intervalo, aumenta-se a probabilidade de se observar uma certa contagem.
+Para os fins desta seção, utilizaremos a série a partir de janeiro de
+1995 --- após a implantação do Plano Real --- evitando o período de
+hiperinflação anterior, cujas magnitudes distorceriam as análises de
+suavização.
 
 \
 
+```{r mm-dados}
+#install.packages("GetBCBData")
+library(GetBCBData)
+library(TTR)
 
->Definição 1: um **processo de contagem** é um **processo estocástico temporal** representado por:
-\[
-\{N_t : t \in [0, \infty) \}
-\]
-em que: \( N_t \) representa o **número de eventos ocorridos no intervalo [0, t]**. 
+# Código 433: IPCA variação mensal (%)
+# Fonte: SGS/Banco Central do Brasil
+ipca_raw <- gbcbd_get_series(
+  id         = 433,
+  first.date = "1995-01-01",
+  use.memoise = FALSE
+)
+
+# Converter para objeto ts
+# frequency = 12: dados mensais
+# start: ano e mês de início
+ipca_ts <- ts(ipca_raw$value,
+              start     = c(1995, 1),
+              frequency = 12)
+
+ipca_ts
+```
+
+\
+
+```{r mm-plot-original, fig.cap="Variação mensal do IPCA — janeiro de 1995 a dezembro de 2023"}
+# Visualização da série original
+plot.ts(ipca_ts,
+        col  = "steelblue", lwd = 1,
+        xlab = "Ano",
+        ylab = "Variação mensal (%)")
+abline(h = 0, lty = 2, col = "gray50")
+```
+
+\
+
+A série do IPCA pós-Real oscila em torno de valores positivos baixos, com episódios de inflação mais elevada associados a choques específicos--- desvalorização cambial de 1999, crise energética de 2001, eleições de 2002, choque de *commodities* de 2015--2016 e pressões inflacionárias de 2021--2022. 
+
+\
+
+Diferentemente do *random walk* --- como o nível do preço da ação $P(t)$ simulado na seção anterior, cuja variância cresce indefinidamente com o tempo --- a série do IPCA não acumula os choques permanentemente: ela tende a retornar a um nível médio, comportamento mais próximo de uma *série estacionária*.
 
 \
 
 
-Esse processo deve satisfazer as seguintes propriedades:  
+```{r mm-sma, fig.cap="IPCA mensal com médias móveis de ordem 3 e 12"}
+# MMS de ordem 3: suavização leve --- ainda sensível a flutuações mensais
+ipca_sma3  <- SMA(ipca_ts, n = 3)
+
+# MMS de ordem 12: equivale à média dos últimos 12 meses
+# remove a sazonalidade anual e destaca a tendência de médio prazo
+ipca_sma12 <- SMA(ipca_ts, n = 12)
+
+plot.ts(ipca_ts,
+        col  = "gray70", lwd = 1,
+        xlab = "Ano",
+        ylab = "Variação mensal (%)",
+        ylim = range(ipca_ts, na.rm = TRUE))
+lines(ipca_sma3,  col = "firebrick",  lwd = 1.5)
+lines(ipca_sma12, col = "steelblue",  lwd = 2)
+abline(h = 0, lty = 2, col = "gray50")
+legend("topright",
+       legend = c("IPCA original", "MMS-3", "MMS-12"),
+       col    = c("gray70", "firebrick", "steelblue"),
+       lwd    = c(1, 1.5, 2), bty = "n")
+```
 
 \
 
-1. \( N_0 = 0 \) (no exato momento do início do processo a contagem é zero)  
-2. \( N_t \in \{0, 1, 2, \ldots \} \) ($ie$, são contagens)  
-3. Se \( s < t \), então \( N_s \leq N_t \) (a contagem no intervalo [0,s] não é superior à contagem no intervalo [0,t], para $s < t$)  
-4. Para \( s < t \), a diferença \( N_t - N_s \) representa o número de eventos ocorridos no intervalo \( (s, t] \)  
-5. \( N_t \) é uma função não descrescente
+A *MMS-3* acompanha de perto a série original, removendo apenas as flutuações mais ruidosas.
 
 \
 
->Definição 2: um **processo de contagem** tem **incrementos independentes** se o **número de eventos que ocorrem em intervalos de tempo disjuntos são independentes**. Para \( 0 \leq t_1 < t_2 < \ldots < t_n \), temos que as variáveis aleatórias:
-\[
-N(t_2) - N(t_1), N(t_3) - N(t_2), \ldots, N(t_n) - N(t_{n-1})
-\]
-são **variáveis independentes**.
+A *MMS-12* --- equivalente à média dos últimos doze meses --- revela com clareza os ciclos de médio prazo da inflação brasileira: o processo de desinflação dos anos 1990, os episódios de aceleração inflacionária e os períodos de convergência à meta. 
 
 \
 
->Definição 3: um **processo de contagem** tem **incrementos estacionários** se a **distribuição de probabilidade do número de eventos que ocorrem em qualquer intervalo** é a mesma e **depende apenas da duração do intervalo** (a probabilidade de chegar um cliente entre 9 e 10 h é a mesma de chegar um cliente entre 15 e 16 h: \(P(N([9,10])=P(N([15,16])\)): **falta de memória**  
+Em termos econômicos, a *MMS-12* é análoga ao conceito de *inflação acumulada em 12 meses*, amplamente utilizado pelo Banco Central e pela imprensa especializada.
+
+\
+
+### Suavização exponencial simples (SES) --- previsão de curto prazo {#suavizacao-exponencial-simples}
+
+\
+
+A *média móvel simples (MMS)* atribui peso igual a todos os $n$ períodos da janela e peso zero a todos os períodos anteriores.
+
+\
+
+A *suavização exponencial simples (SES)* generaliza esse esquema atribuindo pesos decrescentes geometricamente a todas as observações passadas:
 
 \
 
 
-```{r , echo=FALSE, out.width='60%', fig.align='center', fig.cap=""}
+$$
+\hat{X}(t+1) = \alpha \cdot X(t) + (1-\alpha) \cdot \hat{X}(t)
+$$
 
-knitr::include_graphics("images15/poissonProcess.jpg")
+\
 
+expandindo recursivamente:
+\
+
+$$
+\hat{X}(t+1) = \alpha \sum_{k=0}^{\infty} (1-\alpha)^k X(t-k),
+\qquad 0 < \alpha < 1
+$$
+
+\
+
+O parâmetro $\alpha$ controla a memória do modelo: valores próximos de 1 dão peso quase exclusivo à observação mais recente; valores próximos de 0 distribuem o peso de forma mais uniforme pelo passado. Em política monetária, um banco central que reage fortemente à inflação corrente opera com $\alpha$ elevado; um que suaviza sua resposta ao longo do tempo opera com $\alpha$ baixo.
+
+\
+
+A SES é adequada para séries sem tendência e sem sazonalidade --- como o IPCA pós-Real, que oscila em torno de uma média aproximadamente estável. Quando a série apresenta os dois padrões simultaneamente, a SES os ignora, produzindo previsões
+sistematicamente defasadas. Essa limitação motiva o método apresentado na seção seguinte.
+
+\
+
+#### Implementação em R (dados reais) {#impl-ipca-ses}
+
+\
+
+A função `HoltWinters()` com `beta = FALSE` e `gamma = FALSE` reduz o método ao caso mais simples --- apenas o parâmetro $\alpha$ é estimado, por mínimos quadrados, minimizando o erro quadrático médio entre os valores observados e os valores suavizados. 
+
+\
+
+O resultado de $\alpha$ estimado pelo R indica qual peso o próprio modelo, ajustado aos dados, atribui à observação mais recente em relação à história acumulada.
+
+\
+
+```{r mm-ses, fig.cap="Suavização exponencial simples do IPCA mensal"}
+# HoltWinters com beta=FALSE e gamma=FALSE: suavização exponencial simples
+# o parâmetro alpha é estimado automaticamente por mínimos quadrados
+ses_ipca <- HoltWinters(ipca_ts, beta = FALSE, gamma = FALSE)
+
+# alpha estimado
+cat("Parâmetro alpha estimado:", round(ses_ipca$alpha, 4), "\n")
+
+```
+\
+
+O valor estimado $\hat{\alpha} = 0,6913$ indica que aproximadamente $69\%$ do peso da previsão recai sobre a observação mais recente e apenas $31\%$ sobre toda a história anterior.
+
+\
+
+Um $\alpha$ elevado --- típico de séries com muita variabilidade --- reflete que o modelo *descarta* rapidamente a história passada e se concentra nos valores
+*recentes*, comportamento adequado para uma série como o IPCA, sujeita a choques de *curta duração*.
+
+\
+
+
+
+```{r mm-ses-2, fig.cap="Suavização exponencial simples do IPCA mensal"}
+
+# Gráfico: série original e valores suavizados
+plot(ses_ipca,
+     main = NULL,
+     xlab = "Ano",
+     ylab = "Variação mensal (%)")
+legend("topright",
+       legend = c("IPCA original", "SES"),
+       col    = c("black", "red"),
+       lwd    = c(1, 1.5), bty = "n")
+```
+
+\
+
+O gráfico apresenta a série original do IPCA (preto) e os valores
+suavizados pela *SES* (vermelho). 
+
+\
+
+A linha suavizada acompanha as flutuações da série original com uma defasagem característica --- consequência direta do mecanismo de atualização: a previsão para $t+1$ é formada antes que a observação $t+1$ seja conhecida. 
+
+\
+
+Nos episódios de aceleração inflacionária, a linha suavizada reage com
+atraso, refletindo que o modelo ainda carrega o peso das observações
+anteriores de inflação mais baixa. 
+
+\
+
+
+Nos episódios de queda, o mesmo comportamento ocorre em sentido inverso.
+
+
+
+## Holt-Winters e previsão {#holt-winters}
+
+\
+
+A *SES* é adequada para séries *sem tendência* e *sem sazonalidade* ---
+como o IPCA pós-Real, que oscila em torno de uma média aproximadamente estável. 
+
+\
+
+Quando a série apresenta os dois padrões simultaneamente, a *SES* os ignora, produzindo previsões sistematicamente defasadas. 
+
+\
+
+O método de **Holt-Winters** resolve essa limitação incorporando três equações de atualização simultâneas --- uma para o nível, uma para a tendência e uma para a sazonalidade --- permitindo previsões em séries que apresentam os dois padrões
+simultaneamente.
+
+\
+
+### Modelo aditivo e multiplicativo {#hw-modelos}
+
+\
+
+O método de Holt-Winters apresenta duas variações, análogas às da decomposição clássica:
+
+- *Modelo aditivo*: adequado quando as variações sazonais são aproximadamente constantes ao longo do tempo. 
+- *Modelo multiplicativo*: adequado quando as variações sazonais crescem proporcionalmente ao nível da série.
+
+\
+
+As três equações de atualização do *modelo aditivo* são:
+
+\
+
+$$
+\begin{aligned}
+L(t) &= \alpha\,[Y(t) - S(t-m)] + (1-\alpha)\,[L(t-1) + B(t-1)] \\[6pt]
+B(t) &= \beta\,[L(t) - L(t-1)] + (1-\beta)\,B(t-1) \\[6pt]
+S(t) &= \gamma\,[Y(t) - L(t)] + (1-\gamma)\,S(t-m)
+\end{aligned}
+$$
+
+\
+
+em que $m$ é o número de períodos por ciclo sazonal ($m = 12$ para dados mensais), $L(t)$ é o nível estimado, $B(t)$ é a tendência estimada e $S(t)$ é o índice sazonal estimado. A previsão para $h$ períodos à frente é:
+
+\
+
+$$
+\hat{Y}(t+h) = L(t) + h \cdot B(t) + S(t - m + h_m)
+$$
+
+\
+
+em que $h_m = h \bmod m$. Os três parâmetros de suavização têm
+interpretações econômicas diretas:
+
+\
+
+- $\alpha$: peso do nível corrente --- um $\alpha$ elevado significa
+  que o modelo reage rapidamente a mudanças no nível da série.
+- $\beta$: peso da tendência corrente --- um $\beta$ elevado significa
+  que o modelo ajusta rapidamente a inclinação da trajetória.
+- $\gamma$: peso do padrão sazonal corrente --- um $\gamma$ elevado
+  significa que os índices sazonais são recalibrados a cada ciclo.
+
+\
+
+### Implementação em R --- vendas de souvenirs (Queensland) {#hw-souvenirs}
+
+\
+
+Retomamos os dados de vendas de souvenirs em Queensland. Como a amplitude das flutuações sazonais cresce com o nível da série, o modelo multiplicativo é o mais adequado.
+
+\
+
+```{r hw-ajuste}
+# Ajuste do modelo Holt-Winters multiplicativo
+# seasonal = "multiplicative": variações sazonais proporcionais ao nível
+hw_mult <- HoltWinters(souvenir_ts, seasonal = "multiplicative")
+
+# Parâmetros estimados automaticamente por mínimos quadrados
+cat("alpha (nível):       ", round(hw_mult$alpha, 4), "\n")
+cat("beta  (tendência):   ", round(hw_mult$beta,  4), "\n")
+cat("gamma (sazonalidade):", round(hw_mult$gamma, 4), "\n")
+```
+
+\
+
+```{r hw-plot, fig.cap="Holt-Winters multiplicativo --- ajuste e previsão para 1994"}
+# Previsão para os próximos 12 meses (horizonte h = 12)
+prev_hw <- predict(hw_mult, n.ahead = 12)
+
+# Gráfico: série original, valores ajustados e previsão
+plot(hw_mult, prev_hw,
+     xlab = "Ano",
+     ylab = "Vendas (AUD)")
+```
+
+\
+
+O gráfico apresenta a série original (preto), os valores ajustados pelo modelo (vermelho sólido) e a previsão para os 12 meses seguintes (vermelho tracejado). 
+
+\
+
+O modelo captura com precisão tanto a tendência crescente quanto o padrão sazonal anual. 
+
+\
+
+A previsão para 1994 projeta continuidade do crescimento com pico em dezembro, consistente com o padrão histórico.
+
+\
+
+### Avaliação do modelo {#hw-avaliacao}
+
+\
+
+Após o ajuste, os resíduos do modelo devem ser examinados.
+
+\
+
+Um bom ajuste produz resíduos que se comportam como *ruído branco* ---
+média zero, variância constante e ausência de autocorrelação. 
+
+\
+
+A presença de *padrões* nos resíduos indica que o modelo *não capturou toda a estrutura da série*.
+
+\
+
+```{r hw-residuos, fig.cap="Resíduos do modelo Holt-Winters multiplicativo"}
+# Resíduos: diferença entre valores observados e ajustados
+residuos_hw <- residuals(hw_mult)
+
+plot(residuos_hw,
+     type = "l", col = "steelblue", lwd = 1,
+     xlab = "Ano",
+     ylab = "Resíduo")
+abline(h = 0, lty = 2, col = "gray50")
+```
+
+\
+
+```{r hw-acf, fig.cap="ACF dos resíduos do modelo Holt-Winters"}
+# ACF dos resíduos: decaimento abrupto indica ausência de autocorrelação
+acf(residuos_hw,
+    lag.max = 24,
+    col     = "steelblue",
+    main    = NULL)
+```
+
+\
+
+O teste de Ljung-Box avalia formalmente se os resíduos apresentam *autocorrelação remanescente*.
+
+\
+
+```{r hw-ljung}
+# Teste de Ljung-Box
+# H0: resíduos são ruído branco (sem autocorrelação)
+# H1: resíduos apresentam autocorrelação
+# Regra: não rejeitar H0 se p-valor > 0,05
+box_test <- Box.test(residuos_hw, lag = 12, type = "Ljung-Box")
+print(box_test)
 ```
 
 
 \
 
+Um $p$-valor superior a $0,05$ indica que *não há evidência de autocorrelação* --- os resíduos se comportam como ruído branco, confirmando o bom ajuste do modelo.
 
-```{r , echo = FALSE, message = FALSE, out.width='70%', fig.align='center', fig.cap="O processo de Poisson: (1) tem contagem zero em t=0; (2) se s<t então  N(s)<N(t); (4) N(t) é não descrescente e (4) os incrementos são independentes  "}
+\
 
-# Configurações iniciais
-set.seed(42)  # Garante reprodutibilidade
+As métricas de acurácia quantificam o desempenho preditivo do modelo.
 
-# Definindo os tempos de chegada
-arrival_times <- c(1, 2.5, 3 , 5.5, 7)  # Momentos de chegada dos eventos
-n_events <- length(arrival_times)  # Número de chegadas
+\
 
-# Criando a contagem cumulativa
-time <- seq(0, max(arrival_times) + 1, by = 0.1)  # Eixo temporal
-N_t <- sapply(time, function(t) sum(arrival_times <= t))  # Número de eventos acumulados
+```{r hw-acuracia}
+# Métricas de acurácia da previsão
+# accuracy() requer objeto da classe forecast --- converter via forecast()
+# MAE:  Mean Absolute Error --- erro médio absoluto
+# RMSE: Root Mean Squared Error --- penaliza erros grandes
+# MAPE: Mean Absolute Percentage Error --- erro percentual médio absoluto
+library(forecast)
+accuracy(forecast(hw_mult))
+```
 
-# Plot do Processo de Contagem (removendo rótulos padrão do eixo x)
+
+\
+
+O MAPE --- erro percentual médio absoluto --- é a medida mais intuitiva para séries econômicas: indica, em média, em quantos por cento o modelo erra em relação ao valor observado.
+
+\
+
+## Implementação em R (dados reais) {#dados-brasileiros}
+
+\
+
+A Penn World Table (PWT) é uma base de dados internacional que reúne séries de PIB, estoques de capital e trabalho para um amplo conjunto de países, medidos a preços constantes e corrigidos pela paridade do poder de compra (PPC). 
+
+\
+
+A versão 8.0, disponível no pacote `pwt8` do R, cobre o período de 1950 a 2011 e é amplamente utilizada em pesquisas sobre crescimento econômico e produtividade entre países.
+
+\
+
+```{r pwt-dados}
+# install.packages("pwt8")
+library(pwt8)
+
+# Carregar os dados da Penn World Table 8.0
+data("pwt8.0")
+
+# Selecionar variáveis de interesse para o Brasil:
+# rgdpna: PIB real a preços constantes (milhões de USD, PPC 2005)
+# avh:    média anual de horas trabalhadas por trabalhador
+# xr:     taxa de câmbio (moeda local por USD)
+brasil <- subset(pwt8.0,
+                 country == "Brazil",
+                 select  = c(year, rgdpna, avh, xr))
+
+# Produtividade do trabalho: PIB real por hora trabalhada
+brasil$prod <- brasil$rgdpna / brasil$avh
+```
+
+\
+
+```{r pwt-summary}
+# Resumo estatístico das variáveis selecionadas
+summary(brasil[, c("rgdpna", "avh", "xr", "prod")])
+```
+
+\
+
+O resumo estatístico revela a amplitude do período analisado: o PIB real varia de aproximadamente USD 87 bilhões em 1950 a USD 1,75 trilhão em 2011, refletindo mais de seis décadas de crescimento econômico. 
+
+\
+
+A média de horas trabalhadas exibe trajetória decrescente ao longo do período --- tendência comum a economias em desenvolvimento que ampliam sua base de serviços e regulamentação trabalhista.
+
+\
+
+```{r pwt-hist, fig.cap="Distribuição da produtividade do trabalho --- Brasil (1950--2011)"}
+# Histograma da produtividade do trabalho
+# distribuição assimétrica esperada: concentração em valores baixos
+# (período pré-milagre) com cauda direita (crescimento recente)
+hist(brasil$prod,
+     breaks = 12,
+     col    = "lightblue",
+     border = "white",
+     main   = NULL,
+     xlab   = "PIB real por hora trabalhada (USD PPC 2005)",
+     ylab   = "Frequência")
+```
+
+\
+
+O histograma revela distribuição assimétrica à direita: a maior parte das observações concentra-se em valores baixos de produtividade --- correspondentes ao período anterior ao milagre econômico --- com uma cauda direita que reflete o crescimento das últimas décadas da série. 
+
+\
+
+```{r pwt-ts, fig.cap="PIB real e produtividade do trabalho --- Brasil (1950--2011)"}
+# Converter para objetos de série temporal
+# frequency = 1: dados anuais
+# start = 1950: primeiro ano da série
+pib_ts  <- ts(brasil$rgdpna, start = 1950, frequency = 1)
+prod_ts <- ts(brasil$prod,   start = 1950, frequency = 1)
+
+par(mfrow = c(1, 2), mar = c(4, 4, 3, 1))
+
+plot(pib_ts,
+     col  = "steelblue", lwd = 2,
+     main = NULL,
+     xlab = "Ano",
+     ylab = "PIB real (milhões USD PPC 2005)")
+
+plot(prod_ts,
+     col  = "darkgreen", lwd = 2,
+     main = NULL,
+     xlab = "Ano",
+     ylab = "PIB por hora trabalhada")
+
+par(mfrow = c(1, 1))
+```
+
+\
+
+As duas séries exibem tendência crescente ao longo do período, interrompida por episódios recessivos claramente identificáveis: a crise da dívida de 1981--1983, a recessão de 1990 e a estagnação relativa dos anos 1980 --- a *década perdida*. 
+
+
+\
+
+A aceleração do crescimento a partir dos anos 2000 é visível em ambas as séries.
+
+\
+
+```{r pwt-crescimento, fig.cap="Taxa de crescimento anual do PIB real --- Brasil (1951--2011)"}
+# Taxa de crescimento aproximada: primeira diferença do log-PIB
+# Δ log PIB(t) ≈ variação percentual para valores pequenos
+# multiplicado por 100 para expressar em pontos percentuais
+taxa_cresc <- diff(log(pib_ts)) * 100
+
+plot(taxa_cresc,
+     type = "b", col = "firebrick", lwd = 1.5,
+     pch  = 16, cex = 0.7,
+     xlab = "Ano",
+     ylab = "Variação % aproximada")
+abline(h = 0,                lty = 2, col = "gray50")
+abline(h = mean(taxa_cresc), lty = 3, col = "steelblue")
+legend("topright",
+       legend = c("Taxa de crescimento", "Média histórica"),
+       col    = c("firebrick", "steelblue"),
+       lty    = c(1, 3), lwd = 2, bty = "n")
+
+cat("Média histórica:", round(mean(taxa_cresc), 2), "% ao ano\n")
+cat("Desvio-padrão:  ", round(sd(taxa_cresc),   2), "% ao ano\n")
+cat("Mínimo:", round(min(taxa_cresc), 2), "%",
+    "(", brasil$year[which.min(taxa_cresc) + 1], ")\n")
+cat("Máximo:", round(max(taxa_cresc), 2), "%",
+    "(", brasil$year[which.max(taxa_cresc) + 1], ")\n")
+```
+
+\
+
+A taxa de crescimento oscila em torno de uma média histórica de aproximadamente 4% ao ano, com pico durante o *milagre econômico* (1968--1973) e valores negativos nos episódios recessivos. 
+
+\
+
+Essa série --- a primeira diferença do log-PIB --- apresenta comportamento estacionário, confirmando que o nível do PIB é integrado de ordem 1, conforme discutido na seção do passeio aleatório.
+
+
+## Processo de Poisson {#processo-poisson}
+
+
+Alguns experimentos aleatórios envolvem, essencialmente, *contagens* de eventos observadas em um intervalo de tempo — como, por exemplo, o número de clientes que entram em um supermercado por dia. 
+
+\
+
+O Processo de Poisson é um modelo estocástico fundamental para descrever esse tipo de fenômeno: trata-se de um processo de tempo contínuo e espaço de estados discreto, no qual eventos aleatórios ocorrem de forma independente e imprevisível, porém a uma taxa média constante. 
+
+\
+
+Tal modelo permite caracterizar dois aspectos complementares de um mesmo fenômeno: (a) a distribuição do número de ocorrências em um intervalo de tempo fixado e (b) a distribuição dos tempos entre ocorrências consecutivas. 
+
+\
+
+Por sua flexibilidade e fundamentação teórica, o Processo de Poisson encontra aplicação em uma ampla variedade de contextos: 
+
+\
+
+- *Sistemas de filas:* chegada de clientes a bancos, caixas eletrônicos e centrais de atendimento.
+- *Telecomunicações:* chegada de chamadas, pacotes de dados e detecção de sinais.
+- *Engenharia de confiabilidade:* modelagem de falhas de componentes sob taxa de falha constante.
+- *Finanças:* chegada de ordens de negociação e modelagem de eventos extremos em mercados financeiros.
+- *Ciências naturais:* decaimento radioativo, emissão de fótons e ocorrência de terremotos.
+
+\
+
+
+### Definição formal do processo de Poisson
+
+\
+
+Um *processo de contagem* $\{N(t) : t \geq 0\}$ é dito ser um **Processo de Poisson** com taxa $\lambda > 0$ se satisfaz as seguintes condições:
+
+\
+
+1. $N(0) = 0$;
+2. o processo tem *incrementos independentes e estacionários*;
+3. o número de eventos ($k$) em qualquer intervalo de comprimento $t$ segue distribuição de Poisson com média $\lambda t$, isto é, para $s, t \geq 0$:
+
+\
+
+$$
+P(N(t + s) - N(s) = k) = \frac{e^{-\lambda t}\cdot(\lambda t)^k}{k!}, \text{ }k=0,1,2 \dots
+$$
+\
+
+Em particular, para um intervalo iniciado em $s = 0$:
+
+\
+
+$$
+P(N(t) = n) = \frac{e^{-\lambda t}(\lambda t)^n}{n!}
+$$
+
+\
+
+#### Processos de contagem: propriedades fundamentais
+
+\
+
+> **Definição 1.** Um *processo de contagem* é um processo estocástico $\{N(t) : t \in [0, \infty)\}$ em que $N(t)$ representa o número de eventos ocorridos no intervalo $[0, t]$. O processo deve satisfazer:
+>
+> 1. $N(0) = 0$ — no instante inicial, a contagem é zero;
+> 2. $N(t) \in \{0, 1, 2, \ldots\}$ — os valores são contagens inteiras não negativas;
+> 3. se $s < t$, então $N(s) \leq N(t)$ — a função de contagem é não decrescente;
+> 4. para $s < t$, a diferença $N(t) - N(s)$ representa o número de eventos ocorridos no intervalo $(s, t]$.
+
+\
+
+```{r echo=FALSE, out.width='60%', fig.align='center'}
+par(mar = c(3, 1, 3, 1), bg = "white")
+plot(NULL,
+     xlim = c(-0.1, 1.1), ylim = c(-0.2, 1.1),
+     xaxt = "n", yaxt = "n", xlab = "", ylab = "",
+     bty  = "n")
+arrows(x0 = 0, y0 = 0.3, x1 = 1.05, y1 = 0.3,
+       length = 0.10, lwd = 1.5, code = 2)
+segments(x0 = c(0, 0.35, 0.75), y0 = 0.27,
+         x1 = c(0, 0.35, 0.75), y1 = 0.33, lwd = 1.5)
+text(x = c(0, 0.35, 0.75), y = 0.22,
+     labels = c("0", "s", "t"),
+     font = c(1, 3, 3), cex = 1.1)
+arrows(x0 = 0,    y0 = 0.55,
+       x1 = 0.35, y1 = 0.55,
+       length = 0.08, lwd = 1, code = 3)
+arrows(x0 = 0,    y0 = 0.82,
+       x1 = 0.75, y1 = 0.82,
+       length = 0.08, lwd = 1, code = 3)
+text(x = 0.375, y = 1,
+     labels = "N(t) = 4",
+     font = 2, cex = 1.0)
+text(x = 0.26, y = 0.90,
+     labels = "durante o intervalo 't'\ncontamos 4 ocorrências",
+     cex = 0.82, adj = 0)
+text(x = 0.175, y = 0.75,
+     labels = "N(s) = 1",
+     font = 2, cex = 1.0)
+text(x = 0.05, y = 0.65,
+     labels = "durante o intervalo 's'\ncontamos 1 ocorrência",
+     cex = 0.82, adj = 0)
+```
+
+\
+
+> **Definição 2.** Um processo de contagem tem *incrementos independentes* se o número de eventos em intervalos disjuntos são variáveis aleatórias independentes. Formalmente, para $0 \leq t_1 < t_2 < \cdots < t_n$, as variáveis
+>
+> $$N(t_2) - N(t_1),\; N(t_3) - N(t_2),\; \ldots,\; N(t_n) - N(t_{n-1})$$
+>
+> são mutuamente independentes.
+
+\
+
+> **Definição 3.** Um processo de contagem tem *incrementos estacionários* se a distribuição do número de eventos em qualquer intervalo depende apenas da duração do intervalo, e não de sua posição no tempo. Por exemplo, a probabilidade de ocorrer um evento entre 9h e 10h é a mesma que entre 15h e 16h: $P(N([9, 10])) = P(N([15, 16]))$.
+
+\
+
+```{r echo=FALSE, message=FALSE, out.width='70%', fig.align='center', fig.cap="O processo de Poisson: (1) tem contagem zero em $t=0$; (2) se $s < t$ então $N(s) \\leq N(t)$; (3) $N(t)$ é não decrescente; (4) os incrementos são independentes."}
+set.seed(42)
+arrival_times <- c(1, 2.5, 3, 5.5, 7)
+n_events      <- length(arrival_times)
+time          <- seq(0, max(arrival_times) + 1, by = 0.1)
+N_t           <- sapply(time, function(t) sum(arrival_times <= t))
+
 plot(time, N_t, type = "s", lwd = 2, col = "black",
      xlab = "", ylab = "N(t)", xaxt = "n",
      main = "Processo de Contagem de Eventos",
      ylim = c(0, max(N_t) + 1), xlim = c(0, max(time)))
-
-# Adicionando pontos de chegada
-points(arrival_times, 1:n_events, pch = 19, col = "black")  # Pontos cheios (chegadas)
-points(arrival_times, 0:(n_events - 1), pch = 21, col = "black", bg = "white")  # Pontos vazios (antes da chegada)
-
-# Adicionando linhas horizontais entre chegadas
+points(arrival_times, 1:n_events,     pch = 19, col = "black")
+points(arrival_times, 0:(n_events-1), pch = 21, col = "black", bg = "white")
 for (i in 1:n_events) {
   if (i == 1) {
     segments(0, 0, arrival_times[i], 0, lwd = 2)
@@ -286,104 +1460,336 @@ for (i in 1:n_events) {
     segments(arrival_times[i-1], i-1, arrival_times[i], i-1, lwd = 2)
   }
 }
-
-# Adicionando rótulos personalizados no eixo x
-axis(1, at = arrival_times, labels = paste0("E", 1:n_events), col.axis = "blue", cex.axis = 0.9)
-
-
-
-# Adicionando legenda
-legend("topleft", legend = c("Evento Chegada", "Antes da Chegada"), 
-       pch = c(19, 21), col = "black", pt.bg = c("black", "white"), bty = "n")
-
-# Linha
+axis(1, at = arrival_times,
+     labels = paste0("E", 1:n_events),
+     col.axis = "blue", cex.axis = 0.9)
+legend("topleft",
+       legend = c("Evento chegada", "Antes da chegada"),
+       pch    = c(19, 21),
+       col    = "black",
+       pt.bg  = c("black", "white"),
+       bty    = "n")
 par(xpd = TRUE)
-inicio=0; fim=2; altura=-1.8; 
-segments(inicio, altura, fim, altura, lwd = 1, col = "black")  
-texto_legenda <- "intervalo 's'"
-text((inicio + fim) / 2, altura + 0.3, texto_legenda, col = "black", cex = 1.2, font = 2)
-inicio=0; fim=6; altura=-2.2; 
-segments(inicio, altura, fim, altura, lwd = 1, col = "black")  
-texto_legenda <- "intervalo 't'"
-text((inicio + fim) / 2, altura + 0.3, texto_legenda, col = "black", cex = 1.2, font = 2)
-
-
+segments(0, -1.8, 2,   -1.8, lwd = 1)
+text(1,   -1.5, "intervalo 's'", cex = 1.2, font = 2)
+segments(0, -2.2, 6,   -2.2, lwd = 1)
+text(3,   -1.9, "intervalo 't'", cex = 1.2, font = 2)
 ```
 
+\
+
+
+#### Formulação infinitesimal equivalente
+
+\
+
+Uma formulação alternativa e equivalente define o Processo de Poisson por meio de probabilidades infinitesimais. Para um incremento de tempo $h$ suficientemente pequeno:
+
+\
+
+$$
+P(N(t+h) - N(t) = 1) = \lambda h + o(h)
+$$
+
+\
+
+$$
+P(N(t+h) - N(t) \geq 2) = o(h)
+$$
+
+\
+
+em que $o(h)$ denota um termo que tende a zero mais rapidamente que $h$, isto é,
+$\lim_{h \to 0} o(h)/h = 0$. A primeira condição estabelece que a probabilidade de
+exatamente um evento em um intervalo muito curto é aproximadamente proporcional à
+sua duração; a segunda estabelece que a probabilidade de dois ou mais eventos
+simultâneos é desprezível.
+
+\
+
+### Propriedades do Processo de Poisson
+
+\
+
+#### 1. Intervalos entre chegadas, falta de memória e conexões com outras distribuições
+
+\
+
+Até aqui o processo de Poisson foi descrito pela perspectiva das *contagens*: quantos
+eventos ocorrem em um intervalo de tempo. Há, porém, uma perspectiva complementar
+igualmente útil: a dos *tempos de espera* entre eventos consecutivos.
+
+\
+
+Seja $T_1$ o tempo até o primeiro evento, $T_2$ o tempo entre o primeiro e o segundo
+evento, e assim por diante. Esses intervalos são denominados *tempos entre eventos*
+(*interarrival times*). Uma propriedade fundamental do processo de Poisson é que esses
+intervalos seguem distribuição **exponencial** com parâmetro $\lambda$:
+
+\
+
+$$
+T_i \sim \text{Exponencial}(\lambda), \quad i = 1, 2, \ldots
+$$
+
+\
+
+A intuição é direta: como o processo tem incrementos independentes e estacionários, o
+tempo de espera pelo próximo evento não depende de quando foi o último — o processo não tem "memória" do passado. A distribuição exponencial é precisamente a única distribuição contínua com essa propriedade, denominada *falta de memória*:
+
+\
+
+$$
+\Pr(T > s + t \mid T > s) = \Pr(T > t)
+$$
+
+\
+
+Suponha $\lambda = 2$ eventos por minuto. A probabilidade de esperar mais de 1 minuto
+pelo próximo evento é $\Pr(T > 1) = e^{-2} \approx 0,135$. Se já se passaram 3
+minutos sem nenhum evento, essa probabilidade permanece $e^{-2} \approx 0,135$ — o
+tempo já decorrido não altera a distribuição do tempo restante.
+
+\
+
+Estendendo o raciocínio: o tempo até o $n$-ésimo evento, $S_n = T_1 + T_2 + \cdots +
+T_n$, é a soma de $n$ variáveis exponenciais independentes com mesmo parâmetro
+$\lambda$, seguindo distribuição *Gamma*:
+
+\
+
+$$
+S_n \sim \text{Gamma}(n, \lambda)
+$$
+
+\
+
+Cada $T_i$ representa uma "etapa" de espera, e $S_n$ acumula $n$ dessas etapas. A
+distribuição Gamma com parâmetro de forma inteiro $n$ é também denominada distribuição
+de *Erlang*, amplamente utilizada em modelos de filas para representar o tempo total de atendimento de $n$ clientes consecutivos.
+
+\
+
+O diagrama a seguir resume as conexões entre o processo de Poisson e as distribuições
+relacionadas:
+
+\
+
+```{r poissonConnections, echo=FALSE, out.width='75%', fig.align='center', fig.cap="Conexões entre o processo de Poisson e as distribuições exponencial, Gamma e Erlang."}
+par(mar = c(1, 1, 1, 1), bg = "white")
+plot(NULL, xlim = c(0, 10), ylim = c(0, 6),
+     xaxt = "n", yaxt = "n", xlab = "", ylab = "", bty = "n")
+
+rect(0.2, 4.2, 3.8, 5.8, col = "gray92", border = "black")
+rect(3.8, 2.2, 6.8, 3.8, col = "gray92", border = "black")
+rect(6.8, 4.2, 9.8, 5.8, col = "gray92", border = "black")
+rect(3.8, 0.0, 6.8, 1.8, col = "gray92", border = "black")
+
+text(2.0, 5.2, "Processo de Poisson", font = 2, cex = 0.85)
+text(2.0, 4.7, expression(N(t) %~% Poisson(lambda*t)), cex = 0.80)
+
+text(5.3, 3.2, "Tempo entre eventos", font = 2, cex = 0.85)
+text(5.3, 2.7, expression(T[i] %~% Exp(lambda)), cex = 0.80)
+
+text(8.3, 5.2, "Tempo até n-ésimo evento", font = 2, cex = 0.85)
+text(8.3, 4.7, expression(S[n] %~% Gamma(n, lambda)), cex = 0.80)
+
+text(5.3, 1.3, "Erlang (n inteiro)", font = 2, cex = 0.85)
+text(5.3, 0.8, expression(S[n] %~% Erlang(n, lambda)), cex = 0.80)
+
+arrows(3.8, 5.0, 3.8, 3.8, length = 0.10, lwd = 1.2, code = 2)
+arrows(6.8, 3.0, 6.8, 5.0, length = 0.10, lwd = 1.2, code = 2)
+arrows(5.3, 2.2, 5.3, 1.8, length = 0.10, lwd = 1.2, code = 2)
+
+text(3.2, 4.4, expression(T[i]==frac(1,lambda)), cex = 0.78)
+text(7.5, 4.1, expression(S[n]==sum(T[i])), cex = 0.78)
+text(5.9, 2.0, "n inteiro", cex = 0.75)
+```
+
+\
+
+#### 2. Incrementos estacionários e independentes
+
+\
+
+1. O número de eventos no intervalo $[t_1, t_2]$ depende apenas de $t_2 - t_1$.
+2. Eventos em intervalos disjuntos são estatisticamente independentes.
+
+\
+
+#### 3. Aditividade
+
+\
+
+Se $N_1(t)$ e $N_2(t)$ são processos de Poisson independentes com taxas $\lambda_1$ e
+$\lambda_2$, respectivamente, então o processo combinado
+
+\
+
+$$
+N(t) = N_1(t) + N_2(t)
+$$
+
+\
+
+é também um processo de Poisson com taxa $\lambda = \lambda_1 + \lambda_2$. Por exemplo,se clientes de dois perfis distintos chegam a uma loja seguindo processos de Poisson independentes com taxas 3 e 5 clientes por hora, o fluxo total de chegadas segue um processo de Poisson com taxa 8 clientes por hora.
+
+\
+
+#### 4. Decomposição (*thinning*)
+
+\
+Dado um processo de Poisson com taxa $\lambda$, se cada evento é retido
+independentemente com probabilidade $p$ e descartado com probabilidade $1 - p$, o
+processo resultante é também um processo de Poisson com taxa
+
+\
+$$
+\lambda' = p\lambda
+$$
+
+\
+
+Por exemplo, se pedidos chegam a uma plataforma com taxa $\lambda = 10$ pedidos por
+minuto e cada pedido é concluído com probabilidade $p = 0,6$, o processo de pedidos
+concluídos é um processo de Poisson com taxa $\lambda' = 6$ pedidos por minuto.
+
+\
+
+#### 5. Classificação de eventos
+
+\
+
+Seja $\{N(t),\, t \geq 0\}$ um processo de Poisson com taxa $\lambda$. Admita que cada
+evento possa ser classificado em dois tipos:
+
+- **Tipo I** com probabilidade $p$;
+- **Tipo II** com probabilidade $1 - p$,
+
+\
+
+de forma independente entre si e da ocorrência dos demais eventos. Sejam $N_1(t)$ e
+$N_2(t)$ o número de eventos do Tipo I e do Tipo II no intervalo $[0, t]$,
+respectivamente, com $N(t) = N_1(t) + N_2(t)$. Demonstra-se (Ross, *Introduction to
+Probability Models*, cap. 5) que:
+
+\
+
+> 1. $\{N_1(t)\}$ e $\{N_2(t)\}$ são processos de Poisson com taxas $\lambda_1 = \lambda p$
+>    e $\lambda_2 = \lambda(1-p)$, respectivamente.
+> 2. Os dois processos são **independentes** entre si.
+
+\
+
+Em notação distribucional:
+
+\
+
+$$
+N_1(t) \sim \text{Poisson}(\lambda p t), \qquad N_2(t) \sim \text{Poisson}(\lambda(1-p)t)
+$$
+
+\
+
+De modo geral, se cada evento pode ser classificado em $n$ tipos com probabilidades
+$p_1, p_2, \ldots, p_n$ (com $\sum_{i=1}^n p_i = 1$), então os subprocessos
+$N_1(t), N_2(t), \ldots, N_n(t)$ são **independentes** entre si e satisfazem:
+
+\
+
+$$
+N_i(t) \sim \text{Poisson}(p_i \lambda t), \quad i = 1, 2, \ldots, n
+$$
+
+\
+
+Esse resultado — a partição de um processo de Poisson em subprocessos independentes —
+tem aplicações diretas em filas com múltiplos perfis de clientes e em sistemas de
+telecomunicações com pacotes de diferentes tipos.
+
+\
+
+### Tipos de processo de Poisson
+
+\
+
+#### Processo de Poisson homogêneo
+
+\
+
+É o processo descrito nas seções anteriores: a taxa $\lambda$ é *constante* ao longo do tempo. A probabilidade de $k$ eventos em um intervalo de comprimento $h$ é
 
 \
 
 
+$$
+P(N(t+s) - N(s) = k) = \frac{e^{-\lambda t}\cdot(\lambda h)^k }{k!}
+$$
+\
 
-Um **processo de contagem** \(\{N_t : t \geq 0 \}\) é dito ser um **processo de Poisson** com taxa \(\lambda > 0\) se:
+
+É o modelo adequado quando não há razão para supor* que a intensidade de ocorrência dos eventos varie com o tempo.
 
 \
 
-1. \( N(0) = 0 \).  
-2. o processo tem **incrementos independentes e estacionários**.  
-3. o número de eventos em qualquer intervalo de comprimento \( t \) tem distribuição de **Poisson** com média \( \lambda t \).  
-
-\
-
-Ou seja, para \( s, t \geq 0 \)
-
-\
-
-\[
-P(N(t + s) - N(s) = n) = \frac{e^{-\lambda t} (\lambda t)^n}{n!}
-\]
-
-\
-
-em que \(P(N(t + s) - N(s) = n)\) é a probabilidade de serem observados $n$ eventos no intervalo de tempo $(t+s)-t=t$. Desse modo, para um intervalo de tempo $t$, a probabilidade de serem observados $n$ eventos é 
-
-\
-
-\[
-P(N(t) = n) = \frac{e^{-\lambda t} (\lambda t)^n}{n!}
-\]
-
-
-\
-
->Exemplo 1: Fregueses chegam a uma certa loja de acordo com um **processo de Poisson** com taxa \( \lambda = 4 \) fregueses por hora. Admita que a loja abra às **9h** e que que os fregueses **não** deixam a loja. Quais são as probabilidades de que:
-1. um freguês chegue até às 9:30h  
+>Exemplo 1: Fregueses chegam a uma certa loja de acordo com um *processo de Poisson* com taxa $\lambda = 4$ fregueses por hora. Admita que a loja abra às *9h* e que os fregueses *não* deixam a loja. Quais são as probabilidades de que:
+1. exatamente um freguês chegue até às 9:30h e  
 2. um total de 5 fregueses estejam na loja até às 11:30h?
 
 \
 
-A loja abre às 9 h então até as 9 h 30 min o primeiro intervalo de tempo será \( t_1 = 0.5 \) horas e até as 11 h 30 min o segundo intervalode tempo será   \( t_2 = 2.5 \). A taxa média de chegadas por hora é \( \lambda = 4 \).
+A loja abre às 9 h, então até as 9 h 30 min o primeiro intervalo de tempo será $t_1 = 0.5$ horas e até as 11 h 30 min o segundo intervalo de tempo será $t_2 = 2.5$. A taxa média de chegadas por hora é $\lambda = 4$.
 
 \
 
-O que se pede é a $P[N(t_1)=1,N(t_2)=5]$.
+O que se pede é a $P[N(t_1)=1, N(t_2)=5]$.
 
 \
 
-Essa probabilidade é a mesma que $P[N(t_1)=1 \cap N(t_2-t_1)=4]$ e, sendo os intervalos de tempo disjuntos, as probabilidades $P[N(t_1)=1]$ e $P[N(t_2 - t_1)=4]$ são independentes e podemos escrever:
+Essa probabilidade é a mesma que $P[N(t_1)=1 \cap N(t_2-t_1)=4]$, pois como já ocorreu 1 evento no intervalo $[0, t_1]$, restam 4 eventos a ocorrer no intervalo $(t_1, t_2]$, de duração $t_2 - t_1 = 2$ horas. Sendo os intervalos de tempo disjuntos, a independência dos incrementos permite escrever:
 
 \
 
 
 \begin{align}
-P[N(t_1)=1 \cap N(t_2-t_1)=4] & = P[N(t_1)=1] \times P[N(t_2-t_1)=4] \\
-& = \frac{\varepsilon^{-\lambda t_1} (\lambda t_1)^{n_1}}{n_1!} \times \frac{\varepsilon^{-\lambda (t_2-t_1)}[\lambda (t_2-t_1)]^{n_2}}{n_2!}\\
-& = \frac{\varepsilon^{-(4\times 0.5)} (4 \times 0.5)^{1}}{1!} \times \frac{\varepsilon^{-(4 \times 2)} (4 \times 2)^{4}}{4!}\\
-& = 2\varepsilon^{-2} \times 170.67\varepsilon^{-8}\\
-& = 0.2707 \times 0.0573 \approx 0.0155 
+P[N(t_1)=1 \cap N(t_2-t_1)=4] & = P[N(t_1)=1] \cdot P[N(t_2-t_1)=4] \\
+& = \frac{e^{-\lambda t_1} (\lambda t_1)^{n_1}}{n_1!} \cdot \frac{e^{-\lambda (t_2-t_1)}[\lambda (t_2-t_1)]^{n_2}}{n_2!}\\
+& = \frac{e^{-(4\cdot 0.5)} (4 \cdot 0.5)^{1}}{1!} \cdot \frac{e^{-(4 \cdot 2)} (4 \cdot 2)^{4}}{4!}\\
+& = 2e^{-2} \cdot 170.67\,e^{-8}\\
+& = 341.33\,e^{-10}\\
+& = 0.2707 \cdot 0.0573 \approx 0.0155 
 \end{align}
 
 \
 
 
-Um valor bastante baixo posto a taxa média $\lambda$ de 4 clientes por hora indicar que se esperam 2 em meia hora (apenas 1 chegou) e 8 em duas horas (apenas 4 chegaram). Ambos os eventos: chegar 1 pessoa em meia hora e 4 pessoas em duas horas são raros.  
+Um valor bastante baixo, posto que a taxa média $\lambda$ de 4 clientes por hora indica que se esperam 2 chegadas em meia hora (apenas 1 chegou) e 8 chegadas nas duas horas seguintes (apenas 4 chegaram), totalizando 5 fregueses na loja até às 11:30h. Ambos os eventos — chegar exatamente 1 pessoa até às 9:30h e exatamente 4 pessoas nas duas horas seguintes — são raros.
+
+
 \
 
->Exemplo 2: Suponha que pacotes **SMTP** chegam a um servidor de e-mails de acordo com um **processo de Poisson** com frequência \( \lambda = 2 \) pacotes por segundo. Seja \( N(t) \) o número de mensagens que chegam até o tempo \( t \). Quais são as probabilidades de que:
-1. \( P(N(1) = 2) \): 2 pacotes em um intervalo de 1 segundo  
-2. \( P(N(1) = 2 \cap N(3) = 6) \): 2 pacotes em um intervalo de 1 segundo e 6 pacotes em um intervalo de 3 segundos
-3. \( P(N(1) = 2  | N(3) = 6) \)
-4. \( P(N(3) = 6  | N(1) = 2) \)
+
+```{r poissonEx1verif, echo=FALSE, results='hide'}
+# Exemplo 1 — verificação numérica
+lambda <- 4
+t1 <- 0.5
+t2 <- 2.5
+p_ex1 <- dpois(1, lambda = lambda * t1) * dpois(4, lambda = lambda * (t2 - t1))
+p_ex1
+```
+
+O valor calculado via `dpois()` é:  $P[N(t_1)=1, N(t_2)=5] \approx `r round(p_ex1,4)`$.
+
+
+
+\
+
+
+>Exemplo 2: Suponha que pacotes *SMTP* chegam a um servidor de e-mails de acordo com um *processo de Poisson* com taxa $\lambda = 2$ pacotes por segundo. Seja $N(t)$ o número de mensagens que chegam até o tempo $t$. Quais são as probabilidades de que:
+1. $P(N(1) = 2)$: 2 pacotes em um intervalo de 1 segundo  
+2. $P(N(1) = 2 \cap N(3) = 6)$: 2 pacotes em um intervalo de 1 segundo e 6 pacotes em um intervalo de 3 segundos
+3. $P(N(1) = 2  | N(3) = 6)$
+4. $P(N(3) = 6  | N(1) = 2)$
 
 
 \
@@ -393,185 +1799,560 @@ A primeira probabilidade é imediata:
 \
 
 \begin{align}
-P(N(1) = 2) & = \frac{e^{-2 \times 1} (2 \times 1)^2}{2!}\\
+P(N(1) = 2) & = \frac{e^{-2 \cdot 1} (2 \cdot 1)^2}{2!}\\
 & = \frac{e^{-2} \cdot 4}{2} \\
 & = 2 e^{-2} \approx 0.27
 \end{align}
 
 \
 
-A segunda,recorrendo à mesma definição do exemplo anterior, será dada por: 
+A segunda, recorrendo ao mesmo argumento do Exemplo 1 — a independência dos incrementos em intervalos disjuntos —, será dada por: 
 
 \
 
 
 \begin{align}
-P[N(1)=2 \cap N(3)=6] & = P[N(1)=2] \times P[N(2)=4] \\
-& = \frac{\varepsilon^{-(2\times 1)} (2 \times 1)^{2}}{2!} \times \frac{\varepsilon^{-(2 \times 2)} (2 \times 2 )^{4}}{4!}\\
-& = 0.2707 \times 0.1952 \approx 0.052  
+P[N(1)=2 \cap N(3)=6] & = P[N(1)=2] \cdot P[N(3)-N(1)=4] \\
+& = P[N(1)=2] \cdot P[N(2)=4] \\
+& = \frac{e^{-(2\cdot 1)} (2 \cdot 1)^{2}}{2!} \cdot \frac{e^{-(2 \cdot 2)} (2 \cdot 2 )^{4}}{4!}\\
+& = 0.2707 \cdot 0.1952 \approx 0.052  
 \end{align}
+
+em que $N(3)-N(1)$ representa os eventos ocorridos no intervalo $(1,3]$, de duração 2 segundos.
 
 \
 
-A terceira, recorrendo à probabilidade de dois eventos condicionado $P(A|B)=\frac{P(A\cap B)}{P(B)}$, será dada por: 
+A terceira, recorrendo à definição de probabilidade condicional $P(A|B)=\frac{P(A\cap B)}{P(B)}$, será dada por: 
 
 \
 
 \begin{align}
 P(N(1) = 2  | N(3) = 6)  & = \frac{P(N(1) = 2 \cap N(3) = 6)}{P(N(3) = 6)}\\
-& = \frac{0.052}{P(N(3) = 6)}\\
-& = \frac{0.052}{0.1606} \approx 0.32 \\
+& = \frac{0.052}{P(N(3) = 6)}
 \end{align}
-
 
 \
 
-A quarta podemos entender que a probabilidade de N(3)=6 dado N(1) = 2, ilustrada a seguir:
+em que 
+
+$$P(N(3) = 6) = \frac{e^{-(2\cdot 3)}\cdot(2\cdot 3)^6}{6!} = \frac{e^{-6} \cdot 6^6}{720} \approx 0.1606$$
+
+\
+
+portanto
+
+$$
+P(N(1) = 2  | N(3) = 6) = \frac{0.052}{0.1606} \approx 0.32
+$$
+
+\
+
+A quarta: calcular $P(N(3) = 6  | N(1) = 2)$ equivale a calcular a probabilidade de que ocorram 4 eventos no intervalo $(1, 3]$, de duração 2 segundos, *i.e.*, $P(N(3)-N(1)=4) = P(N(2)=4)$, pois os incrementos são independentes em um processo de Poisson. Ilustração:
 
 \
 
 
 ```{r , echo=FALSE, out.width='60%', fig.align='center', fig.cap=""}
-
-knitr::include_graphics("images15/poissonProcess2.jpg")
+par(mar = c(3, 1, 4, 1), bg = "white")
+plot(NULL,
+     xlim = c(-0.05, 1.1), ylim = c(-0.1, 1.1),
+     xaxt = "n", yaxt = "n", xlab = "", ylab = "",
+     bty  = "n")
+# Linha temporal
+arrows(x0 = 0, y0 = 0.2, x1 = 1.05, y1 = 0.2,
+       length = 0.08, lwd = 1.5, code = 2)
+# Posições: 0, 1 e 3 mapeados para [0, 0.33, 1.0]
+x0 <- 0
+x1 <- 0.33
+x3 <- 1.0
+# Marcas verticais
+segments(x0 = c(x0, x1, x3), y0 = 0.17,
+         x1 = c(x0, x1, x3), y1 = 0.23, lwd = 1.5)
+# Rótulos do eixo
+text(x = c(x0, x1, x3), y = 0.10,
+     labels = c("0", "1", "3"), cex = 1.1)
+# Rótulo do eixo t
+text(x = 1.08, y = 0.20, labels = "t", font = 3, cex = 1.1)
+# Seta N(1) = 2 (de 0 até 1)
+arrows(x0 = x0, y0 = 0.58,
+       x1 = x1, y1 = 0.58,
+       length = 0.07, lwd = 1, code = 2)
+text(x = (x0 + x1) / 2, y = 0.68,
+     labels = "N(1) = 2", font = 2, cex = 0.95)
+# Seta N(3) = 6 (de 0 até 3)
+arrows(x0 = x0, y0 = 0.88,
+       x1 = x3, y1 = 0.88,
+       length = 0.07, lwd = 1, code = 2)
+text(x = (x0 + x3) / 2, y = 0.98,
+     labels = "N(3) = 6", font = 2, cex = 0.95)
 
 ```
 
 \
 
-Portanto, calcular \( P(N(3) = 6  | N(1) = 2) \) equivale a calcular a probabilidade de \( P(N(2)=4)\) (os incrementos são independentes em um processo de Poisson), dada por $\frac{\varepsilon^{-(2\times 2)} (2 \times 2)^{4}}{4!} \approx 0.19$ .
+$$
+P(N(3) = 6  | N(1) = 2) = P(N(2)=4) = \frac{e^{-(2\cdot 2)}\cdot(2 \cdot 2)^{4}}{4!} \approx 0.19
+$$
 
 \
 
-### Processo de Poisson com classificação de eventos
-\
-
-Seja \( \{N(t), t \geq 0\} \) um **processo de Poisson** com taxa \( \lambda \), que descreve o número de eventos ocorridos em um intervalo de tempo \([0, t]\). Admita que cada evento nesse processo possa ser **classificado em dois tipos distintos (Tipo I e Tipo II)**:  
-
-\
-
-- Cada evento tem **probabilidade \( p \)** de ser classificado como **Tipo I**.  
-- Cada evento tem **probabilidade \( 1-p \)** de ser classificado como **Tipo II**.  
-
-\
-
-Se a classificação de cada evento é **independente das demais classificações e da ocorrência dos eventos**, demonstra-se (Sheldon Ross, in Introduction to Probability Models, $6^{a}$ ed., Cap. 5) que 
-
-\
-
-- \( \{N_1(t), t \geq 0\} \): Número de eventos do **Tipo I** no intervalo \([0, t]\).  
-- \( \{N_2(t), t \geq 0\} \): Número de eventos do **Tipo II** no intervalo \([0, t]\),  
+```{r poissonEx2verif, echo=FALSE, results='hide'}
+# Exemplo 2 — verificação numérica
+lambda <- 2
+p2_item1 <- dpois(2, lambda = lambda * 1)
+p2_item1
+p2_item2 <- dpois(2, lambda = lambda * 1) * dpois(4, lambda = lambda * 2)
+p2_item2
+p2_n3_6  <- dpois(6, lambda = lambda * 3)
+p2_item3 <- p2_item2 / p2_n3_6
+p2_item3
+p2_item4 <- dpois(4, lambda = lambda * 2)
+p2_item4
+```
 
 \
 
-e \( N(t) = N_1(t) + N_2(t) \).
-
-\
-
->Os processos \( \{N_1(t), t \geq 0\} \) e \( \{N_2(t), t \geq 0\} \) têm as seguintes propriedades:  
-1. Ambos são **processos de Poisson** com taxas:  
-- \( \lambda_1 = \lambda p \) para eventos do **Tipo I**.  
-- \( \lambda_2 = \lambda (1-p) \) para eventos do **Tipo II**.  
-2. Os dois processos são **independentes**.
-
-\
-
-\[
-N_1(t) \sim \text{Poisson}(\lambda p), \quad N_2(t) \sim \text{Poisson}(\lambda (1-p))
-\]
-
-\
- 
- 
-De modo **geral**, considere um **processo de Poisson** com **taxa \( \lambda \)**. Cada evento pode ser classificado em **n tipos diferentes** com probabilidades:
-
-\
-
-\[
-p_1, p_2, \ldots, p_n, \quad p_1 + p_2 + \cdots + p_n = 1
-\]
-
-\
-
-Seja \( N_i(t) \) o número de eventos do tipo \( i \) até o tempo \( t \).Cada subprocesso segue uma **distribuição de Poisson** com taxa:
-
-\
-
-\[
-N_i(t) \sim \text{Poisson}(p_i \lambda t)
-\]
-
-\
-
-Os subprocessos \( N_1(t), N_2(t), \ldots, N_n(t) \) são **independentes** entre si. 
-
-\
-
-A ocorrência de um evento de um tipo **não afeta** a probabilidade de ocorrência de eventos de outro tipo.
-
-
-\
-
-Cada tipo de evento mantém suas próprias propriedades estatísticas e comportamentos, preservando a estrutura probabilística do processo original.
+Os valores calculados via `dpois()` são:  $P(N(1) = 2) \approx `r round(p2_item1,4)`$, $P(N(1) = 2 \cap N(3) = 6) \approx `r round(p2_item2,4)`$, $P(N(1) = 2  | N(3) = 6) \approx `r round(p2_item3,4)`$ e $P(N(3) = 6  | N(1) = 2) \approx `r round(p2_item4,4)`$.
 
 
 \
 
 
-A proposição afirma que podemos **decompor um processo de Poisson subprocessos independentes**, onde cada subprocesso segue uma distribuição de Poisson ajustada pela probabilidade de classificação de cada evento. 
+
+>Exemplo 3: Pedidos chegam ao sistema de uma plataforma de *e-commerce* de acordo com um *processo de Poisson* com taxa $\lambda = 3$ pedidos por minuto. Seja $N(t)$ o número de pedidos recebidos até o instante $t$. Quais são as probabilidades de que:
+1. $P(N(1) = 3)$: exatamente 3 pedidos em 1 minuto  
+2. $P(N(1) = 3 \cap N(4) = 10)$: 3 pedidos no primeiro minuto e 10 pedidos nos primeiros 4 minutos  
+3. $P(N(1) = 3 \mid N(4) = 10)$  
+4. $P(N(4) = 10 \mid N(1) = 3)$
 
 \
 
-Esse resultado é frequentemente utilizado em aplicações práticas, como:  filas com diferentes tipos de clientes e sistemas de telecomunicações com pacotes de dados de diferentes tipos.
-
-
-
-\
-
->Exemplo 3: Clientes entram em uma loja de acordo com um processo de Poisson com taxa λ = 10 por hora. De forma independente, cada cliente compra alguma coisa com probabilidade 0.3 ou sai da loja sem comprar nada com probabilidade 0.7. Calcule a probabilidade de que durante a primeira hora 9 pessoas entrem
-na loja e, dentre essas 9 pessoas, 3 comprem alguma coisa e 6 não.
-
-\
-
-Considerando que \(N_0(t)\)  e \(N_1(t)\) são processos de Poisson independentes com taxas \((1 − p)\lambda\) e \(p \lambda\), em que \(N_0(t)\) o número de clientes que não compram nada até o tempo \(t\) e  \(N_1(t)\) o número de clientes que compram até o tempo \(t\), a probabilidade pedida é
-
-\
-
-\[ P(N_0(t=1)=6, N_1(t=1)=3)\]
-
-\
-
-em que \(N_0(t=1) \sim Poisson(\lambda_0=7)\) e \(N_1(t=1) \sim Poisson(\lambda_1=3)\).
+A primeira probabilidade é imediata:
 
 \
 
 \begin{align}
-P(N_0(t=1)=6 \land N_1(t=1)=3) & = P(N_0(t=1)=6) \times P(N_1(t=1)=3)\\
-& = \frac{e^{-\lambda_0 t} (\lambda_0 t)^n_0}{n_0!} \times  \frac{e^{-\lambda_1 t} (\lambda_1 t)^n_1}{n_1!} \\
-& = \frac{e^{-7 \times 1}\dot(7 \times 1)^6}{6!} \times \frac{e^{-3 \times 1}\dot(3 \times 1)^3}{3!}  \\
-& \approx 0.1251 \times 0.2666 \\
-& \approx 0.0333
+P(N(1) = 3) &= \frac{e^{-3 \cdot 1}(3 \cdot 1)^3}{3!}\\
+&= \frac{e^{-3} \cdot 27}{6}\\
+&= 4,5\,e^{-3} \approx 0,2240
 \end{align}
 
 \
 
-### Processos de Poisson não homogêneos
+A segunda, pela *independência dos incrementos* em *intervalos disjuntos*:
 
 \
+
+\begin{align}
+P[N(1)=3 \cap N(4)=10] &= P[N(1)=3] \cdot P[N(4)-N(1)=7]\\
+&= P[N(1)=3] \cdot P[N(3)=7]\\
+&= \frac{e^{-(3\cdot 1)}(3\cdot 1)^{3}}{3!} \cdot \frac{e^{-(3\cdot 3)}(3\cdot 3)^{7}}{7!}\\
+&= 0,2240 \cdot 0,1171 \approx 0,0262
+\end{align}
+
+\
+
+em que $N(4)-N(1)$ representa os pedidos recebidos no intervalo $(1,4]$, de duração 3 minutos.
+
+\
+
+A terceira, pela definição de *probabilidade condicional* $P(A \mid B) = \frac{P(A \cap B)}{P(B)}$:
+
+\
+
+\begin{align}
+P(N(1) = 3 \mid N(4) = 10) &= \frac{P(N(1)=3 \cap N(4)=10)}{P(N(4)=10)}
+\end{align}
+
+\
+
+em que
+
+$$
+P(N(4) = 10) = \frac{e^{-(3\cdot 4)}\cdot(3\cdot 4)^{10}}{10!} = \frac{e^{-12}\cdot 12^{10}}{3628800} \approx 0,1048
+$$
+
+\
+
+portanto
+
+$$
+P(N(1) = 3 \mid N(4) = 10) = \frac{0,0262}{0,1048} \approx 0,25
+$$
+
+\
+
+A quarta: calcular $P(N(4) = 10 \mid N(1) = 3)$ equivale a calcular a probabilidade de que ocorram 7 pedidos no intervalo $(1,4]$, de duração 3 minutos, *i.e.*, $P(N(4)-N(1)=7) = P(N(3)=7)$, pois os incrementos são independentes em um processo de Poisson. Ilustração:
+
+\
+
+
+```{r poissonProcess3plot, echo=FALSE, out.width='50%', fig.align='center', fig.cap="Ilustração do item 4 do Exemplo 3: N(1)=3 e N(4)=10"}
+par(mar = c(3, 1, 4, 1), bg = "white")
+plot(NULL,
+     xlim = c(-0.05, 1.1), ylim = c(-0.1, 1.1),
+     xaxt = "n", yaxt = "n", xlab = "", ylab = "",
+     bty  = "n")
+arrows(x0 = 0, y0 = 0.2, x1 = 1.05, y1 = 0.2,
+       length = 0.08, lwd = 1.5, code = 2)
+x0 <- 0
+x1 <- 0.25
+x4 <- 1.0
+segments(x0 = c(x0, x1, x4), y0 = 0.17,
+         x1 = c(x0, x1, x4), y1 = 0.23, lwd = 1.5)
+text(x = c(x0, x1, x4), y = 0.10,
+     labels = c("0", "1", "4"), cex = 1.1)
+text(x = 1.08, y = 0.20, labels = "t", font = 3, cex = 1.1)
+arrows(x0 = x0, y0 = 0.58, x1 = x1, y1 = 0.58,
+       length = 0.07, lwd = 1, code = 2)
+text(x = (x0 + x1) / 2, y = 0.68,
+     labels = "N(1) = 3", font = 2, cex = 0.95)
+arrows(x0 = x0, y0 = 0.88, x1 = x4, y1 = 0.88,
+       length = 0.07, lwd = 1, code = 2)
+text(x = (x0 + x4) / 2, y = 0.98,
+     labels = "N(4) = 10", font = 2, cex = 0.95)
+```
+
+\
+
+$$
+P(N(4) = 10 \mid N(1) = 3) = P(N(3)=7) = \frac{e^{-(3\cdot 3)}\cdot(3\cdot 3)^{7}}{7!} \approx 0,1171
+$$
+
+\
+
+```{r poissonEx3verif, echo=FALSE, results='hide'}
+#Exemplo 3, verificação numérica
+lambda <- 3
+p1 <- dpois(3, lambda = lambda * 1);p1
+p2 <- dpois(3, lambda = lambda * 1) * dpois(7, lambda = lambda * 3); p2
+p_n4_10 <- dpois(10, lambda = lambda * 4); p_n4_10 
+p3 <- p2 / p_n4_10;p3
+p4 <- dpois(7, lambda = lambda * 3);p4
+```
+\
+
+
+Os valores calculados via `dpois()` são: $P(N(1)=3) \approx `r round(p1,4)`$, $P(N(1)=3 \cap N(4)=10) \approx `r round(p2,4)`$, $P(N(1)=3 \mid N(4)=10) \approx `r round(p3,4)`$ e $P(N(4)=10 \mid N(1)=3) \approx `r round(p4,4)`$.
+
+\
+
+
+>Exemplo 4: Clientes entram em uma loja de acordo com um processo de Poisson com taxa $\lambda = 10$ por hora. De forma independente, cada cliente é *classificado* em dois tipos: *compra alguma coisa* com probabilidade $p = 0,3$ ou *sai da loja sem comprar nada* com probabilidade $1-p = 0,7$. Calcule a probabilidade de que durante a primeira hora 9 pessoas entrem na loja e, dentre essas 9 pessoas, 3 comprem alguma coisa e 6 não.
+
+\
+
+Como a classificação de cada cliente é independente dos demais e da ocorrência dos eventos, pelo resultado de decomposição do processo de Poisson, $N_0(t)$ e $N_1(t)$ são processos de Poisson independentes, em que $N_0(t)$ representa o número de clientes que não compram nada até o tempo $t$ e $N_1(t)$ o número de clientes que compram até o tempo $t$, com taxas respectivas $\lambda_0 = (1-p)\lambda = 0,7 \cdot 10 = 7$ e $\lambda_1 = p\lambda = 0,3 \cdot 10 = 3$. Como $N(t) = N_0(t) + N_1(t)$, a condição de 9 clientes no total com 6 não-compradores e 3 compradores é equivalente a $N_0(1)=6$ e $N_1(1)=3$. A probabilidade pedida é portanto:
+
+\
+
+$$
+P(N_0(1)=6 \cap N_1(1)=3)
+$$
+
+\
+
+em que $N_0(1) \sim \text{Poisson}(\lambda_0=7)$ e $N_1(1) \sim \text{Poisson}(\lambda_1=3)$.
+
+\
+
+\begin{align}
+P(N_0(1)=6 \cap N_1(1)=3) &= P(N_0(1)=6) \cdot P(N_1(1)=3)\\
+&= \frac{e^{-7}\cdot 7^6}{6!} \cdot \frac{e^{-3}\cdot 3^3}{3!}\\
+&\approx 0,1490 \cdot 0,2240\\
+&\approx 0,0334
+\end{align}
+
+\
+
+Dois aspectos merecem atenção. Primeiro, a fatoração da probabilidade conjunta em produto de probabilidades marginais é válida precisamente pela independência dos subprocessos $N_0(t)$ e $N_1(t)$, garantida pelo resultado de decomposição. Segundo, o total de 9 clientes não precisa ser imposto separadamente: ele está implícito na condição $N_0(1)=6$ e $N_1(1)=3$, pois $N(1) = N_0(1) + N_1(1) = 9$.
+
+\
+
+```{r poissonEx4verif, echo=FALSE, results='hide'}
+# Exemplo 4 — verificação numérica
+lambda <- 10
+p <- 0.3
+lambda1 <- p * lambda
+lambda0 <- (1 - p) * lambda
+p_ex5 <- dpois(6, lambda = lambda0) * dpois(3, lambda = lambda1)
+p_ex5
+```
+
+\
+
+O valor calculado via `dpois()` é: $P(N_0(1)=6 \cap N_1(1)=3) \approx `r round(p_ex5, 4)`$.
+
+
+\
+
+
+
+#### Processo de Poisson não-homogêneo
+
+\
+
+Quando a taxa de ocorrência varia com o tempo, escreve-se $\lambda(t)$ e o processo é denominado *não-homogêneo*. O número esperado de eventos até o instante $t$ é dado pela função de intensidade acumulada:
+
+\
+
+$$
+\Lambda(t) = \int_0^t \lambda(s)\, ds
+$$
+
+\
+
+e a probabilidade de $k$ eventos até o instante $t$ é
+
+\
+
+$$
+P(N(t) = k) = \frac{(\Lambda(t))^k\, e^{-\Lambda(t)}}{k!}
+$$
+\
+
+Alguns exemplos de funções de intensidade $\lambda(t)$ e suas respectivas funções acumuladas $\Lambda(t)$ são:
+
+\
+
+- *Linear*: $\lambda(t) = a + bt$, com $a, b > 0$, modela uma taxa crescente no tempo, como o aumento gradual de acessos a um sistema ao longo do dia:
+
+$$
+\Lambda(t) = at + \frac{bt^2}{2}
+$$
+
+- *Periódica*: $\lambda(t) = a + b\sin\left(\frac{2\pi t}{T}\right)$, com $a > b > 0$, modela oscilações regulares, como o fluxo de clientes em um supermercado com picos no almoço e no fim da tarde:
+
+$$
+\Lambda(t) = at - \frac{bT}{2\pi}\cos\left(\frac{2\pi t}{T}\right) + \frac{bT}{2\pi}
+$$
+
+- *Por partes*: $\lambda(t) = \lambda_i$ para $t \in [t_{i-1}, t_i)$, modela situações em que a taxa é constante dentro de cada período mas difere entre períodos, como chamadas a uma central de atendimento em horário comercial e fora dele:
+
+$$
+\Lambda(t) = \sum_{i} \lambda_i \cdot (t_i - t_{i-1})
+$$
+
+
+\
+
+>Exemplo 5: O fluxo de clientes em um supermercado ao longo de um dia de funcionamento (8h às 20h, ou seja, $t \in [0, 12]$ horas) é modelado por um processo de Poisson não-homogêneo com função de intensidade:
+\
+
+$$
+\lambda(t) = 20 + 10\sin\left(\frac{\pi t}{6}\right)
+$$
+
+\
+
+em que $t$ é medido em horas a partir da abertura e $\lambda(t)$ em clientes por hora. Calcule:
+
+\
+
+1. $\Lambda(t)$: o número esperado de clientes até o instante $t$  
+2. $\Lambda(12)$: o número esperado de clientes ao longo de todo o dia  
+3. $P(N(4) \leq 100)$: a probabilidade de até 100 clientes nas primeiras 4 horas  
+4. $P(100 \leq N(4) \leq 120)$: a probabilidade de entre 100 e 120 clientes nas primeiras 4 horas
+
+\
+
+A função $\lambda(t) = 20 + 10\sin\left(\frac{\pi t}{6}\right)$ é adequada ao contexto porque: a taxa mínima é $\lambda = 10$ clientes/hora (quando $\sin = -1$,
+*i.e.*, $t = 9$ h, às 17h); a taxa máxima é $\lambda = 30$ clientes/hora (quando $\sin = 1$, *i.e.*, $t = 3$ h, ao meio-dia); e a taxa média é $\lambda = 20$ clientes/hora.
+
+\
+
+*Item 1:* integrando $\lambda(t)$:
+
+\
+
+\begin{align}
+\Lambda(t) &= \int_0^t \left[20 + 10\sin\left(\frac{\pi s}{6}\right)\right] ds\\
+&= \left[20s - \frac{60}{\pi}\cos\left(\frac{\pi s}{6}\right)\right]_0^t\\
+&= 20t - \frac{60}{\pi}\cos\left(\frac{\pi t}{6}\right) + \frac{60}{\pi}\\
+&= 20t + \frac{60}{\pi}\left[1 - \cos\left(\frac{\pi t}{6}\right)\right]
+\end{align}
+
+\
+
+*Item 2:* substituindo $t = 12$:
+
+\
+
+\begin{align}
+\Lambda(12) &= 20 \cdot 12 + \frac{60}{\pi}\left[1 - \cos(\pi)\right]\\
+&= 240 + \frac{60}{\pi}\left[1 - (-1)\right]\\
+&= 240 + \frac{120}{\pi}\\
+&\approx 240 + 38,20 \approx 278,20
+\end{align}
+
+\
+
+*Item 3:* calculando $P(N(4) \leq 100)$, com $\Lambda(4) \approx 108,6479$:
+
+\
+
+$$
+P(N(4) \leq 100) = \sum_{k=0}^{100} \frac{(108,6479)^{k}\, e^{-108,6479}}{k!} \approx  0,2190035
+$$
+
+\
+
+*Item 4:* calculando $P(100 \leq N(4) \leq 120)$:
+
+\
+
+$$
+P(100 \leq N(4) \leq 120) = P(N(4) \leq 120) - P(N(4) \leq 99)\\
+\sum_{k=0}^{120} \frac{(108,6479)^{k}\, e^{-108,6479}}{k!} - \sum_{k=0}^{99} \frac{(108,6479)^{k}\, e^{-108,6479}}{k!} \approx 0.6803769
+$$
+
+\
+
+```{r poissonEx5NHPPverif, echo=FALSE, results='hide'}
+# Exemplo 5 — verificação numérica
+Lambda_12 <- 20 * 12 + (60 / pi) * (1 - cos(pi))
+Lambda_4  <- 20 * 4  + (60 / pi) * (1 - cos(2 * pi / 3))
+Lambda_12
+Lambda_4
+p_item3 <- ppois(100, lambda = Lambda_4)
+p_item4 <- ppois(120, lambda = Lambda_4) - ppois(99, lambda = Lambda_4)
+p_item3
+p_item4
+```
+
+\
+
+Os valores calculados via `ppois()` são: $\Lambda(12) \approx `r round(Lambda_12, 2)`$, $\Lambda(4) \approx `r round(Lambda_4, 2)`$, $P(N(4) \leq 100) \approx `r round(p_item3, 4)`$ e $P(100 \leq N(4) \leq 120) \approx `r round(p_item4, 4)`$.
+
+\
+
+
+#### Processo de Poisson composto
+
+\
+
+No *processo de Poisson composto*, cada evento contribui com uma quantidade aleatória $Y_i$, e o processo acumulado é
+
+\
+
+$$
+X(t) = \sum_{i=1}^{N(t)} Y_i
+$$
+
+\
+
+em que $N(t)$ é um processo de Poisson e $Y_i$ são variáveis aleatórias independentes e identicamente distribuídas. Esse modelo é amplamente utilizado em seguros e finanças: $N(t)$ representa o número de sinistros ocorridos até o instante $t$ e $Y_i$ representa o valor de cada sinistro.
+
+
+
+\
+
+>Exemplo 6: Sinistros chegam a uma seguradora de acordo com um processo de Poisson
+com taxa $\lambda = 5$ sinistros por dia. O valor de cada sinistro, em milhares de reais, é uma variável aleatória independente com distribuição exponencial de média $\mu = 10$, isto é, $Y_i \sim \text{Exponencial}(1/10)$. Seja $X(t) = \sum_{i=1}^{N(t)} Y_i$ o valor acumulado de sinistros até o instante $t$. Calcule:
+1. $E[X(t)]$: o valor esperado acumulado até o instante $t$
+2. $\text{Var}[X(t)]$: a variância do valor acumulado até o instante $t$
+3. $E[X(7)]$: o valor esperado acumulado ao longo de uma semana
+4. $\text{Var}[X(7)]$: a variância do valor acumulado ao longo de uma semana
+
+\
+
+Para o processo de Poisson composto, as expressões gerais são:
+
+\
+
+$$
+E[X(t)] = \lambda t \cdot E[Y_i]
+$$
+
+\
+
+$$
+\text{Var}[X(t)] = \lambda t \cdot E[Y_i^2]
+$$
+
+\
+
+em que, para $Y_i \sim \text{Exponencial}(1/10)$: $E[Y_i] = 10$ e $E[Y_i^2] = \text{Var}[Y_i] + (E[Y_i])^2 = 100 + 100 = 200$.
+
+\
+
+*Item 1:*
+
+\
+
+$$
+E[X(t)] = 5t \cdot 10 = 50t
+$$
+
+\
+
+*Item 2:*
+
+\
+
+$$
+\text{Var}[X(t)] = 5t \cdot 200 = 1000t
+$$
+
+\
+
+*Item 3:* substituindo $t = 7$:
+
+\
+
+$$
+E[X(7)] = 50 \cdot 7 = 350 \text{ mil reais}
+$$
+
+\
+
+*Item 4:* substituindo $t = 7$:
+
+\
+
+$$
+\text{Var}[X(7)] = 1000 \cdot 7 = 7000 \text{ (mil reais)}^2
+$$
+
+\
+
+portanto o desvio padrão é $\sqrt{7000} \approx 83,67$ mil reais.
+
+\
+
+```{r poissonEx6verif, echo=FALSE, results='hide'}
+lambda <- 5
+mu_Y   <- 10
+E_Y2   <- 200
+t      <- 7
+E_Xt   <- lambda * t * mu_Y
+Var_Xt <- lambda * t * E_Y2
+dp_Xt  <- sqrt(Var_Xt)
+```
+
+\
+
+Os valores calculados são: $E[X(7)] = `r E_Xt`$ mil reais, $\text{Var}[X(7)] = `r Var_Xt`$ (mil reais)$^2$ e desvio padrão $= `r round(dp_Xt, 2)`$ mil reais.
+
+
+\
+
+
+
 
 ### Tempo de espera em um processo de Poisson
 
 \
 
-Seja \(\{N_t : t \geq 0 \}\) um **processo de Poisson** com taxa \(\lambda\): 
+Seja \(\{N_t : t \geq 0 \}\) um *processo de Poisson* com taxa \(\lambda\): 
 
-- denota-se por $T_{n}$ o tempo entre a $(n − 1)$ e a $n-ésima$ ocorrência de eventos, sendo $T_{1}$ o tempo até a primeira
+- denota-se por $T_{n}$ o tempo entre a $(n − 1)$ e a $n$-ésima ocorrência de eventos, sendo $T_{1}$ o tempo até a primeira
 ocorrência
-- a sequência $T_{n}, n=1,2,...$ é a chamada sequência de tempos entre ocorrências (ou entre chagadas)
+- a sequência $T_{n}, n=1,2,...$ é a chamada sequência de tempos entre ocorrências (ou entre chegadas)
 
 \
 
->Proposição: $T_{1},T_{2},...$ são variáveis aleatórias com distribuição exponencial de parâmetro $\frac{1}{\lambda}$. 
+>Proposição: $T_{1},T_{2},...$ são variáveis aleatórias IID com distribuição exponencial de parâmetro $\lambda$. 
 
 \
 
@@ -599,7 +2380,7 @@ from scipy.stats import expon
 
 ```{python, include=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
 
-#A função **`generate_poisson_events`** simula um **Processo de Poisson**, gerando um número aleatório de eventos com taxa média `rate` em um intervalo de duração `time_duration`, retornando o número total de eventos, os tempos ordenados de ocorrência e os intervalos entre eventos consecutivos.
+#A função *`generate_poisson_events`* simula um *Processo de Poisson*, gerando um número aleatório de eventos com taxa média `rate` em um intervalo de duração `time_duration`, retornando o número total de eventos, os tempos ordenados de ocorrência e os intervalos entre eventos consecutivos.
 
 def generate_poisson_events(rate, time_duration):
     num_events = np.random.poisson(rate * time_duration)
@@ -613,7 +2394,7 @@ def generate_poisson_events(rate, time_duration):
 
 ```{python, include=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
 
-# A função **`plot_non_sequential_poisson`** visualiza um **Processo de Poisson**, exibindo em dois gráficos o tempo cumulativo dos eventos (em uma curva de passos) e o histograma dos intervalos entre eventos, destacando a distribuição exponencial dos tempos de espera, com taxa média `rate` e duração total `time_duration`.
+# A função *`plot_non_sequential_poisson`* visualiza um *Processo de Poisson*, exibindo em dois gráficos o tempo cumulativo dos eventos (em uma curva de passos) e o histograma dos intervalos entre eventos, destacando a distribuição exponencial dos tempos de espera, com taxa média `rate` e duração total `time_duration`.
 
 def plot_non_sequential_poisson(num_events, event_times, inter_arrival_times, rate, time_duration):
     fig, axs = plt.subplots(1, 2, figsize=(14, 5))  
@@ -623,7 +2404,7 @@ def plot_non_sequential_poisson(num_events, event_times, inter_arrival_times, ra
     axs[0].step(event_times, np.arange(1, num_events + 1), where='post', color='blue')
     axs[0].set_xlabel('Tempo (s)')
     axs[0].set_ylabel('Número de Eventos')
-    axs[0].set_title(f'Evolução Incremental dos Eventos no Tempo\nN(t) é não descrescente\nTotal: {num_events} eventos\n', fontsize=12)
+    axs[0].set_title(f'Evolução Incremental dos Eventos no Tempo\nN(t) é crescente\nTotal: {num_events} eventos\n', fontsize=12)
     axs[0].grid(True)
 
     # Gráfico 2: Histograma dos Tempos de Espera
@@ -660,7 +2441,7 @@ def plot_non_sequential_poisson(num_events, event_times, inter_arrival_times, ra
 
 ```{python, include=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
 
-# A função **`plot_sequential_poisson`** visualiza múltiplos **Processos de Poisson** com diferentes taxas `rate`, exibindo em dois gráficos a evolução cumulativa dos eventos no tempo e os histogramas dos intervalos entre eventos, destacando a distribuição exponencial dos tempos de espera para cada taxa ao longo de uma duração definida `time_duration`.
+# A função *`plot_sequential_poisson`* visualiza múltiplos *Processos de Poisson* com diferentes taxas `rate`, exibindo em dois gráficos a evolução cumulativa dos eventos no tempo e os histogramas dos intervalos entre eventos, destacando a distribuição exponencial dos tempos de espera para cada taxa ao longo de uma duração definida `time_duration`.
 
 
 def plot_sequential_poisson(num_events_list, event_times_list, inter_arrival_times_list, rate, time_duration):
@@ -670,7 +2451,7 @@ def plot_sequential_poisson(num_events_list, event_times_list, inter_arrival_tim
     # Gráfico 1: Tempo dos Eventos
     axs[0].set_xlabel('Tempo (s)')
     axs[0].set_ylabel('Número de Eventos')
-    axs[0].set_title(f'Evolução Incremental dos Eventos no Tempo \nN(t) é não decrescente', fontsize=12)
+    axs[0].set_title(f'Evolução Incremental dos Eventos no Tempo \nN(t) é crescente', fontsize=12)
     axs[0].grid(True)
 
     # Gráfico 2: Histograma dos Tempos de Espera
@@ -718,7 +2499,7 @@ def plot_sequential_poisson(num_events_list, event_times_list, inter_arrival_tim
 
 ```{python, include=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
 
-# A função **`poisson_simulation`** simula um ou vários **Processos de Poisson**, dependendo se `rate` é um valor único (int) ou uma lista de taxas, gerando tempos de ocorrência e intervalos entre eventos; além disso, visualiza os resultados por meio de gráficos que exibem a evolução temporal dos eventos e a distribuição dos tempos de espera ao longo de um intervalo definido por `time_duration`.
+# A função *`poisson_simulation`* simula um ou vários *Processos de Poisson*, dependendo se `rate` é um valor único (int) ou uma lista de taxas, gerando tempos de ocorrência e intervalos entre eventos; além disso, visualiza os resultados por meio de gráficos que exibem a evolução temporal dos eventos e a distribuição dos tempos de espera ao longo de um intervalo definido por `time_duration`.
 
 def poisson_simulation(rate, time_duration, show_visualization=True):
     if isinstance(rate, int):
@@ -756,7 +2537,7 @@ def poisson_simulation(rate, time_duration, show_visualization=True):
 \
 
 
-Nas simulações a seguir confirma-se empiricamente que a evolução incremental da contagem de eventos ao longo do tempo (a variável aleatória \(N(t)\)) é crescente e a distribuição dos tempos de espera (a variável aleatória \(T(n)\) entre eventos segue um modelo exponencial com parametro 1/λ (código adaptado de [link](https://medium.com/@abhash-rai/poisson-process-simulation-and-analysis-in-python-e62f69d1fdd0)).
+Nas simulações a seguir confirma-se empiricamente que a evolução incremental da contagem de eventos ao longo do tempo (a variável aleatória \(N(t)\)) é crescente e a distribuição dos tempos de espera (a variável aleatória \(T_n\)) entre eventos segue um modelo exponencial com parâmetro $\lambda$ (código adaptado de [link](https://medium.com/@abhash-rai/poisson-process-simulation-and-analysis-in-python-e62f69d1fdd0)).
 
 \
 
@@ -770,11 +2551,11 @@ plt.close('all')
 ```
 
 
->Exemplo 3: Em um sistema de atendimento telefônico, as chamadas chegam de acordo com um processo de Poisson com taxa média de chegada de λ=3 chamadas por minuto. Responda:  
+>Exemplo 7: Em um sistema de atendimento telefônico, as chamadas chegam de acordo com um processo de Poisson com taxa média de chegada de λ=3 chamadas por minuto. Responda:  
 1) Qual é a probabilidade de que ocorram exatamente 2 chamadas em um intervalo de 1 minuto?  
 2) Qual a probabilidade do tempo entre chamadas ser menor que 20 segundos?  
-3) Sabendo que o sistema comporta **sem interrupção** o atendimento de até 6 chamadas por minuto, qual é a probabilidade do sistema apresentar falhas?  
-4) Sabendo que o sistema comporta **sem interrupção** o atendimento com um intervalo mínimo de 15 segundos entre elas, qual é a probabilidade do sistema apresentar falhas?
+3) Sabendo que o sistema comporta *sem interrupção* o atendimento de até 6 chamadas por minuto, qual é a probabilidade do sistema apresentar falhas?  
+4) Sabendo que o sistema comporta *sem interrupção* o atendimento com um intervalo mínimo de 15 segundos entre elas, qual é a probabilidade do sistema apresentar falhas?
 
 \
 
@@ -804,22 +2585,22 @@ P(T \leq 1/3) \approx 1 - 0.3679 = 0.6321
 
 \
 
-3) Sabendo que o sistema comporta **sem interrupção** o atendimento de até **6 chamadas por minuto**, a interrupção ocorrerá  quando há **mais de 6 chamadas** no intervalo de 1 minuto, e a probabilidade disso ocorrer é
+3) Sabendo que o sistema comporta *sem interrupção* o atendimento de até *6 chamadas por minuto*, a interrupção ocorrerá  quando há *mais de 6 chamadas* no intervalo de 1 minuto, e a probabilidade disso ocorrer é
 
 \
 
 
 \[
-P(N(1) > 6) = 1 - P(N \leq 6)\\
+P(N(1) > 6) = 1 - P(N(1) \leq 6)\\
 P(N(1) > 6 ) = 1- \sum_{k=0}^{6} \frac{3^k e^{-3}}{k!}\\
-P(N(1) > 6 \approx 1- 0.967\\
-P(N(1) > 6) \approx 0.033\\
+P(N(1) > 6 ) \approx 1- 0.967\\
+P(N(1) > 6 ) \approx 0.033\\
 \]
 
 
 \
 
-4) Sabendo que o sistema comporta **sem interrupção** o atendimento com um **intervalo mínimo de 15 segundos entre chamadas consecutivas**, a interrupção ocorrerá quando o sistema receber cahamadas com um intervalo menor que 15 s e essa probabilidade será
+4) Sabendo que o sistema comporta *sem interrupção* o atendimento com um *intervalo mínimo de 15 segundos entre chamadas consecutivas*, a interrupção ocorrerá quando o sistema receber chamadas com um intervalo menor que 15 s e essa probabilidade será
 
 \
 
@@ -835,8 +2616,31 @@ P(T \leq 0.25) \approx 0.5276
 
 
 Esses resultados ilustram que:  
-- É **improvável** que o sistema falhe devido a mais de 6 chamadas em 1 minuto.  
-- Há uma **alta probabilidade de falha** devido a **intervalos muito curtos entre chamadas consecutivas**.
+- É *improvável* que o sistema falhe devido a mais de 6 chamadas em 1 minuto.  
+- Há uma *alta probabilidade de falha* devido a *intervalos muito curtos entre chamadas consecutivas*.
+
+
+```{r poissonEx7verif, echo=FALSE, results='hide'}
+lambda <- 3
+
+# item 1
+p_item1 <- dpois(2, lambda = lambda * 1)
+
+# item 2
+p_item2 <- pexp(1/3, rate = lambda)
+
+# item 3
+p_item3 <- 1 - ppois(6, lambda = lambda * 1)
+
+# item 4
+p_item4 <- pexp(0.25, rate = lambda)
+```
+
+\
+
+Os valores calculados são: $P(N(1)=2) \approx `r round(p_item1, 4)`$, $P(T \leq 1/3) \approx `r round(p_item2, 4)`$, $P(N(1) > 6) \approx `r round(p_item3, 4)`$ e
+$P(T \leq 0,25) \approx `r round(p_item4, 4)`$.
+
 
 \
 
@@ -848,7 +2652,7 @@ Considere \( N(t), t \geq 0 \) com taxa \( \lambda \). Sabendo-se *a priori* que
 
 \
 
-Ou seja, desejamos estimar a probabilidade do evento ter ocorrido em intervalo de tempo \(s\) dado que ocorreu um evento no intervalo \(t\), sendo \(s \leq t\)   
+Ou seja, desejamos calcular a probabilidade do evento ter ocorrido em intervalo de tempo \(s\) dado que ocorreu um evento no intervalo \(t\), sendo \(s \leq t\)   
 
 \
 
@@ -870,24 +2674,33 @@ P(T_1 < s \mid N(t) = 1) = \frac{s}{t}, \, s \leq t.
 
 \
 
+\
 
->Exemplo 4: Em um sistema de atendimento telefônico, as chamadas chegam de acordo com um processo de Poisson com taxa média de chegada de λ=3 chamadas por minuto. Dado que ocorreram 2 chamadas em 1 minuto, qual é a probabilidade de que o tempo de espera para a primeira chamada seja inferior a 20 segundos?
+>Exemplo 8: Em um sistema de atendimento telefônico, as chamadas chegam de acordo com um processo de Poisson com taxa média de chegada de λ=3 chamadas por minuto. Dado que ocorreu 1 chamada em 1 minuto, qual é a probabilidade de que o tempo de espera para a primeira chamada seja inferior a 20 segundos?
 
 \
 
 
-A probabilidade de que o tempo de espera para a primeira chamada seja inferior a \(s=\frac{1}{3} min\) dado que ocorreram 2 chamadas em \(t=1min\) segue uma distribuição uniforme
+A probabilidade de que o tempo de espera para a primeira chamada seja inferior a \(s=\frac{1}{3} min\) dado que ocorreu 1 chamada em \(t=1min\) segue uma distribuição uniforme
 
 \
-\[
+$$
 P(T_1 < s \mid N(t) = 1) = \frac{s}{t}, \, s \leq t.\\
 P(T_1 < \frac{1}{3} \mid N(t=1) = 1) = \frac{\frac{1}{3}}{1}\\
-P(T_1 < \frac{1}{3} \mid N(t=1) = 1) \approx 0.0333
-\]
+P(T_1 < \frac{1}{3} \mid N(t=1) = 1) \approx 0.333
+$$
 
 \
 
-Dado que ocorreram 2 chamadas em 1 minuto, a probabilidade de que a primeira chamada ocorra nos primeiros 20 segundos é de 1/3 (aproximadamente 33,33%).
+```{r poissonEx8verif, echo=FALSE, results='hide'}
+s <- 1/3
+t <- 1
+p_item8 <- s / t
+```
+
+\
+
+O valor calculado é: $P\left(T_1 < \frac{1}{3} \mid N(1) = 1\right) = `r round(p_item8, 4)`$.
 
 \
 
@@ -899,18 +2712,18 @@ Dado que ocorreram 2 chamadas em 1 minuto, a probabilidade de que a primeira cha
 
 \
 
->O Método de Monte Carlo, desenvolvido na década de 1940 por Stanislaw Ulam durante seu trabalho no Los Alamos National Laboratory, surgiu como uma ferramenta para **simular processos probabilísticos** (uma ideia semelhante já havia sido utilizada por Enrico Fermi no estudo da difusão de nêutrons, mas nunca foi publicada). John von Neumann aprimorou o método, implementando-o no ENIAC, o primeiro computador programável da história. 
+>O Método de Monte Carlo, desenvolvido na década de 1940 por Stanislaw Ulam durante seu trabalho no Los Alamos National Laboratory, surgiu como uma ferramenta para *simular processos probabilísticos* (uma ideia semelhante já havia sido utilizada por Enrico Fermi no estudo da difusão de nêutrons, mas nunca foi publicada). John von Neumann aprimorou o método, implementando-o no ENIAC, o primeiro computador programável da história. 
 
 
 \
 
 
->É uma técnica matemática computacional amplamente utilizada para modelar e analisar **sistemas complexos**, frequentemente caracterizados por elevadas variabilidade e incerteza, nos quais os cálculos analíticos diretos seriam inviáveis devido ao grande número de variáveis ou à complexidade matemática envolvida.
+>É uma técnica matemática computacional amplamente utilizada para modelar e analisar *sistemas complexos*, frequentemente caracterizados por elevadas variabilidade e incerteza, nos quais os cálculos analíticos diretos seriam inviáveis devido ao grande número de variáveis ou à complexidade matemática envolvida.
 
 
 \
 
->Baseiam-se na amostragem (ou geração) de **valores aleatórios** (estritamente falando, pseudoaleatórios), obtidos por algoritmos determinísticos - dentro de intervalos plausíveis para variáveis de entrada ie., suas **distribuições de probabilidade** específicas. 
+>Baseiam-se na amostragem (ou geração) de *valores aleatórios* (estritamente falando, pseudoaleatórios), obtidos por algoritmos determinísticos - dentro de intervalos plausíveis para variáveis de entrada ie., suas *distribuições de probabilidade* específicas. 
 
 \
 
@@ -923,7 +2736,7 @@ Dado que ocorreram 2 chamadas em 1 minuto, a probabilidade de que a primeira cha
 
 \
 
->Cada simulação realizada gera um resultado e, ao serem repetidas um grande número de  vezes, esses resultados agregados permitem a **aproximação** dos parâmetros da distribuição de probabilidade do fenômeno.
+>Cada simulação realizada gera um resultado e, ao serem repetidas um grande número de  vezes, esses resultados agregados permitem a *aproximação* dos parâmetros da distribuição de probabilidade do fenômeno.
 
 \
 
@@ -936,7 +2749,7 @@ Dado que ocorreram 2 chamadas em 1 minuto, a probabilidade de que a primeira cha
 \
 
 
-> A **CDF** desempenha um papel importante nas Simulações Monte Carlo. A função de distribuição cumulativa (CDF) dá a probabilidade de que a variável aleatória seja **menor ou igual a um valor específico**.
+> A *CDF* desempenha um papel importante nas Simulações Monte Carlo. A função de distribuição cumulativa (CDF) dá a probabilidade de que a variável aleatória seja *menor ou igual a um valor específico*.
 
 
 ### Fundamentação
@@ -988,7 +2801,7 @@ em que:
 
 \
 
->Os números pseudoaleatórios são gerados por **algoritmos determinísticos** que produzem sequências que se assemelham à aleatoriedade. **Um** dos métodos mais comuns é o **Gerador Linear Congruente (Linear Congruential Generator – LCG)**, cuja fórmula matemática é dada por:  
+>Os números pseudoaleatórios são gerados por *algoritmos determinísticos* que produzem sequências que se assemelham à aleatoriedade. *Um* dos métodos mais comuns é o *Gerador Linear Congruente (Linear Congruential Generator – LCG)*, cuja fórmula matemática é dada por:  
 
 \
 
@@ -1010,7 +2823,7 @@ em que:
 
 \
 
-O **módulo** (\(m\)) é o valor pelo qual a expressão \((a X_i + c)\) é dividida, e o **resto dessa divisão** é o próximo número gerado na sequência. Considere como exemplo o LCG com parâmetros \(a=9\), \(c=1\), \(m=17\) e semente \(X_0=7\).  O primeiro número aleatório (\(X_0=7\)) será 
+O *módulo* (\(m\)) é o valor pelo qual a expressão \((a X_i + c)\) é dividida, e o *resto dessa divisão* é o próximo número gerado na sequência. Considere como exemplo o LCG com parâmetros \(a=9\), \(c=1\), \(m=17\) e semente \(X_0=7\).  O primeiro número aleatório (\(X_0=7\)) será 
 
 \
 
@@ -1053,11 +2866,11 @@ U_0 & = 0,76471\\
 \
 
 
->Essa normalização é essencial para aplicações que requerem números pseudoaleatórios no intervalo \([0, 1)\) como as **CDF**.
+>Essa normalização é essencial para aplicações que requerem números pseudoaleatórios no intervalo \([0, 1)\) como as *CDF*.
 
 \
 
->O método LCG é **determinístico**, ou seja, dada uma mesma semente inicial (\(X_0\)), ele produzirá sempre a mesma sequência. Isso pode ser problemático em contextos onde a **imprevisibilidade** é desejada.
+>O método LCG é *determinístico*, ou seja, dada uma mesma semente inicial (\(X_0\)), ele produzirá sempre a mesma sequência. Isso pode ser problemático em contextos onde a *imprevisibilidade* é desejada.
 
 \
 
@@ -1235,17 +3048,17 @@ plt.show()
 \
 
 
->De acordo com **Donald Knuth** (*The Art Of Computer Programming*), um gerador pseudoaleatório linear produz uma sequência **aperiódica** se as seguintes condições forem satisfeitas:
+>De acordo com *Donald Knuth* (*The Art Of Computer Programming*), um gerador pseudoaleatório linear produz um *período máximo* se as seguintes condições forem satisfeitas:
 
 \
 
->1. Se \(p\) é um número primo que divide \(m\), então \(p\) deve dividir \(c\).  
+>1. Se \(p\) é um número primo que divide \(m\), então \(p\) deve dividir \(a - 1\).  
 2. Se \(m\) é múltiplo de 4, então \(a-1\) também deve ser múltiplo de 4.  
-3. O único número inteiro que divide exatamente \(a\) e \(m\) deve ser 1 (ou seja, \(a\) e \(m\) devem ser coprimos).  
+3. O único número inteiro que divide exatamente \(a\) e \(m\) deve ser 1 (ou seja, \(a\) e \(m\) devem ser coprimos).
 
 \
 
-Essas condições garantem um **período máximo** e uma **boa distribuição** dos números gerados.
+Essas condições garantem um *período máximo* e uma *boa distribuição* dos números gerados.
 
 \
 
@@ -1272,16 +3085,14 @@ $$
 \gcd(594\,156\,893, 2^{31}) = 1
 $$
 
-isso confirma que $a$ e $m$ são coprimos, atendendo à terceira condição.
-
-Portanto, os parâmetros escolhidos atendem às condições de Knuth, garantindo que o gerador linear congruencial produzirá uma sequência aperiódica.
+isso confirma que $a$ e $m$ são coprimos, atendendo à terceira condição. Portanto, os parâmetros escolhidos atendem às condições de Knuth, garantindo que o gerador linear congruencial produzirá uma sequência aperiódica.
 
 \
 
 ```{python, include=TRUE, echo=TRUE, message=FALSE, warning=FALSE, fig.width=14, fig.height=5, fig.show='last'}
 
 # Definição dos parâmetros em acordo com Knuth
-m: int = 2_147_483_648  # Define o módulo (2^31), garantindo um grande período de números únicos
+m: int = 2_147_483_648  # Define o módulo (2^29), garantindo o período máximo de números únicos
 a: int = 594_156_893    # Define o multiplicador, cuidadosamente escolhido para evitar ciclos curtos
 c: int = 0              # Incremento igual a zero, caracterizando um gerador multiplicativo
 seed: int = 1   # Define o número inicial
@@ -1295,7 +3106,7 @@ lcg_samples_norm = lcg_normalized(n_samples, m, a, c, seed)
 
 \
 
-A escolha desses parãmetros resulta em valores em um ciclo de repetibilidade muito menos previsível conforme os gráficos a seguir mostram: 
+A escolha desses parâmetros resulta em valores em um ciclo de repetibilidade muito menos previsível conforme os gráficos a seguir mostram: 
 
 
 \
@@ -1314,14 +3125,14 @@ fig, axes = plt.subplots(1, 2, figsize=(14, 5))
 
 # Gráfico 1: Dispersão para observar padrão periódico
 axes[0].scatter(indices, lcg_samples_norm, s=50, alpha=0.7, color='blue')  # Corrigido: índices no eixo X
-axes[0].set_title('Distribuição de Números Pseudoaleatórios \n(Ciclo Repetitivo)')
+axes[0].set_title('Distribuição de Números Pseudoaleatórios \n(Parâmetros de Knuth)')
 axes[0].set_xlabel('Índice da Sequência')
 axes[0].set_ylabel('Números gerados (0 a 1)')
 axes[0].grid(True)
 
 # Gráfico 2: Barras para visualizar periodicidade
 axes[1].bar(indices, lcg_samples_norm, color='gray', edgecolor='black')
-axes[1].set_title('Gráfico de Barras \n(Ciclo Evidenciado)')
+axes[1].set_title('Gráfico de Barras \n(Baixa Periodicidade)')
 axes[1].set_xlabel('Índice da Sequência')
 axes[1].set_ylabel('Números gerados (0 a 1)')
 axes[1].grid(True)
@@ -1339,7 +3150,11 @@ Números aleatórios numa faixa específica [a,b]
 
 \
 
-Para gerar números aleatórios em uma faixa diferente de 0 e 1 usando um gerador linear congruente, você deve ajustar os parâmetros de normalização. Especificamente, para obter números em um intervalo $[a, b]$, você deve multiplicar o número gerado (que está inicialmente entre 0 e 1) pela amplitude do intervalo $b - a$ e, em seguida, somar o valor mínimo do intervalo a.
+Para gerar números aleatórios em uma faixa diferente de 0 e 1 usando um gerador linear congruente, você deve ajustar os parâmetros de normalização.
+
+\
+
+Especificamente, para obter números em um intervalo $[a, b]$, você deve multiplicar o número gerado (que está inicialmente entre 0 e 1) pela amplitude do intervalo $b - a$ e, em seguida, somar o valor mínimo do intervalo a.
 
 \
 
@@ -1395,14 +3210,12 @@ plt.show()
 \
 
 
-
-
 ### Geração de amostras aleatórias de distribuições de probabilidade 
 
 \
 
 
->Os números pseudoaleatórios gerados pelo **LCG** (\(U_{i})\) seguem uma **distribuição uniforme** no intervalo \([0,1]\). No entanto, muitos problemas exigem amostras de distribuições diferentes, como a **Normal**, **Exponencial** ou **Poisson**. 
+>Os números pseudoaleatórios gerados pelo *LCG* (\(U_{i})\) seguem uma *distribuição uniforme* no intervalo \([0,1]\). No entanto, muitos problemas exigem amostras de distribuições diferentes, como a *Normal*, *Exponencial* ou *Poisson*. 
 
 \
 
@@ -1412,7 +3225,7 @@ plt.show()
 
 \
 
->A geração de números aleatórios de uma distribuição de probabilidade qualquer pode ser feita por meio da **inversa de sua função de distribuição acumulada (CDF)**. 
+>A geração de números aleatórios de uma distribuição de probabilidade qualquer pode ser feita por meio da *inversa de sua função de distribuição acumulada (CDF)*. 
 
 \
 
@@ -1435,7 +3248,7 @@ em que:
 
 \
 
->Exemplo1: variável aleatória \(X\) que siga uma distribuição uniforme com parâmetros \(a,b\). Sua **CDF** é
+>Exemplo 1: variável aleatória \(X\) que siga uma distribuição uniforme com parâmetros \(a,b\). Sua *CDF* é
 
 \[
 F(x)=\frac{x-a}{b-a}
@@ -1443,13 +3256,13 @@ F(x)=\frac{x-a}{b-a}
 
 \
 
-Invertendo-se a **CDF** tem-se
+Invertendo-se a *CDF* tem-se
 
 \
 
-\[
-x=F^{-1}(p) = a + p.(b-1)
-\]
+$$
+x=F^{-1}(p) = a + p\cdot(b-a)
+$$
 
 \ 
 
@@ -1471,7 +3284,7 @@ Se admitirmos valores \(a=2,b=3\), um valor aleatório \(x\) da variável aleat�
 \
 
 
->Exemplo 2: variável aleatória \(X\) que siga a distribuição exponencial com parâmetro \(\lambda\). Sua **CDF** é
+>Exemplo 2: variável aleatória \(X\) que siga a distribuição exponencial com parâmetro \(\lambda\). Sua *CDF* é
 
 \
 
@@ -1481,7 +3294,7 @@ F(x) = 1 - e^{-\lambda x}
 
 \
 
-Invertendo-se a **CDF** tem-se
+Invertendo-se a *CDF* tem-se
 
 \
 
@@ -1507,7 +3320,7 @@ Se admitirmos um valor de \(\lambda=3\), um valor aleatório \(x\) da variável 
 
 \
 
->Exemplo 3: variável aleatória \(X\) que siga uma distribuição Normal com parâmetros \(\mu, \sigma\). Sua **CDF** é
+>Exemplo 3: variável aleatória \(X\) que siga uma distribuição Normal com parâmetros \(\mu, \sigma\). Sua *CDF* é
 
 
 \
@@ -1518,7 +3331,7 @@ F(x) = \frac{1}{\sqrt{2 \pi \sigma^2}} \int_{-\infty}^{x} e^{-\frac{(t - \mu)^2}
 
 \
 
-Essa função **não possui uma inversa fechada** em termos de **funções elementares**. Portanto, sua inversa é frequentemente **aproximada numericamente** ou expressa em termos da **função de erro inversa (\(\operatorname{erf}^{-1}\))**.
+Essa função *não possui uma inversa fechada* em termos de *funções elementares*. Portanto, sua inversa é frequentemente *aproximada numericamente* ou expressa em termos da *função de erro inversa (\(\operatorname{erf}^{-1}\))*.
 
 \
 
@@ -1534,24 +3347,25 @@ Método da Aceitação-Rejeição: usado para gerar amostras de uma distribuiç�
 \
 
 
-Método de Newton-Raphson: método numérico iterativo usado para para encontrar aproximações da inversa da CDF resolvendo a equação \(F(X)=U\).
+Método de Newton-Raphson: método numérico iterativo usado para encontrar aproximações da inversa da CDF resolvendo a equação \(F(X)=U\).
 
 \
 
 
 
 
-### Exemplo 1 (Goodwin e Wright, 2009)
+### Exemplo 1: simulação Monte Carlo de *Decision Analysis for Management Judgment*, ([Goodwin, Wright e Phillips,2004](https://archive.org/details/decisionanalysis0000good))
+
 
 \
 
-Neste exemplo, analisamos as entradas (*cash inflows*) e saídas (*cash outflows*) de caixa de um sistema para se estimar **Lucro = Cash inflows - Cash outflows**.
+Neste exemplo, analisamos as entradas (*cash inflows*) e saídas (*cash outflows*) de caixa de um sistema para se estimar *Lucro = Cash inflows - Cash outflows*.
 
 \
 
 Entradas de Caixa (*Cash Inflows*)
 
-| **Cash inflows ($)** | **Probabilidade** | **CDF** |
+| *Cash inflows ($)* | *Probabilidade* | *CDF* |
 |----------------------|-------------------|---------|
 | 50,000               | 0.30              | 0.3     |
 | 60,000               | 0.40              | 0.7     |
@@ -1565,7 +3379,7 @@ Entradas de Caixa (*Cash Inflows*)
 
 Saídas de Caixa (*Cash Outflows*)
 
-| **Cash outflows ($)** | **Probability (%)** | **CDF** |
+| *Cash outflows ($)* | *Probability (%)* | *CDF* |
 |-----------------------|---------------------|---------|
 | 50,000                | 0.45                | 0.45    |
 | 70,000                | 0.55                | 1.00    |
@@ -1575,7 +3389,7 @@ Saídas de Caixa (*Cash Outflows*)
 
 \
 
-Admitindo-se que aos valores *cash inflow* sejam uma variável aleatória \(X\) com função distribuição de probabilidade:
+Admitindo-se que os valores *cash inflow* sejam uma variável aleatória \(X\) com função distribuição de probabilidade:
 
 \[
 P(X = x) =
@@ -1588,7 +3402,7 @@ P(X = x) =
 \]
 
 
-e que que os valores *cash outflow* sejam uma variável aleatória \(Y\) com função distribuição de probabilidade:
+e que os valores *cash outflow* sejam uma variável aleatória \(Y\) com função distribuição de probabilidade:
 
 
 \[
@@ -1606,22 +3420,22 @@ números aleatórios \(U,V\) podem ser gerados e mapeados para valores de *cash 
 \
 
 
-**Etapas da simulação**
+*Etapas da simulação*
 
-Passo 1: Gerar valores aleatórios uniformes \( U \)** no intervalo \([0,1]\) para representar *Cash Inflows* e \( V \)** no intervalo \([0,1]\) *Cash Outflows*.  
+Passo 1: Gerar valores aleatórios uniformes \( U \)* no intervalo \([0,1]\) para representar *Cash Inflows* e \( V \)* no intervalo \([0,1]\) *Cash Outflows*.  
 
 Passo 2: Mapeamento para *Cash Inflows*
 
 Para cada número aleatório \( U \):  
 - Se \( 0 \leq U < 0.30 \) → *Cash Inflow* = 50,000  
 - Se \( 0.30 \leq U < 0.70 \) → *Cash Inflow* = 60,000  
-- Se \( 0.70 \leq U \leq 0.99 \) → *Cash Inflow* = 70,000
+- Se \( 0.70 \leq U \leq 1.00 \) → *Cash Inflow* = 70,000
 
 Passo 3: Mapeamento para *Cash Outflows*  
 
 Para cada número aleatório \( V \):  
 - Se \( 0 \leq V < 0.45 \) → *Cash Outflow* = 50,000  
-- Se \( 0.45 \leq V \leq 0.99 \) → *Cash Outflow* = 70,000
+- Se \( 0.45 \leq V \leq 1.00 \) → *Cash Outflow* = 70,000
 
 Passo 4: Cálculo do Lucro
 
@@ -1715,10 +3529,18 @@ ggplot(profit_table, aes(x = as.numeric(as.character(simulated_profit)), y = Pro
 
 \
 
+### Exemplo 2: The Elite Pottery Company de *Decision Analysis for Management Judgment* ([Goodwin, Wright e Phillips,2004](https://archive.org/details/decisionanalysis0000good))
 
-### Exemplo 2: The Elite Pottery Company (Goodwin e Wright, 2009)
 
-Neste exemplo, analisamos os custos (*Variable Costs*), vendas (*Sales*) e custos fixos (*Fixed Costs*) de um sistema para estimar: **$Lucro = (Sales - Variable \, Costs) \times Sales - Fixed \, Costs$**
+Neste exemplo, analisamos os custos (*Variable Costs*), vendas (*Sales*) e custos fixos (*Fixed Costs*) de um sistema para estimar o lucro (*Profit*):
+
+$$
+\text{Profit} = (\text{Unitary Price - Variable Costs}) \times \text{Sales - Fixed Costs}
+$$
+
+\
+
+O preço unitário (*unitary price*) do produto é fixado em **$25 por unidade** e tratado como parâmetro determinístico do modelo. As demais variáveis — *Variable Costs*, *Sales (units)* e *Fixed Costs* — são tratadas como variáveis aleatórias, com distribuições de probabilidade definidas a seguir.
 
 
 \
@@ -1726,7 +3548,7 @@ Neste exemplo, analisamos os custos (*Variable Costs*), vendas (*Sales*) e custo
 
 Custos Variáveis (*Variable Costs*)
 
-| **Variable Costs ($)** | **Probabilidade** | **CDF** |
+| *Variable Costs ($)* | *Probabilidade* | *CDF* |
 |------------------------|-------------------|---------|
 | 13                     | 0.30              | 0.30    |
 | 8                      | 0.40              | 0.70    |
@@ -1740,7 +3562,7 @@ Custos Variáveis (*Variable Costs*)
 
 Vendas (*Sales*)
 
-| **Sales**         | **Probabilidade** | **CDF** |
+| *Sales*         | *Probabilidade* | *CDF* |
 |-------------------|-------------------|---------|
 | 22,000            | 0.30              | 0.30    |
 | 10,000            | 0.40              | 0.70    |
@@ -1755,7 +3577,7 @@ Vendas (*Sales*)
 
 Custos Fixos (*Fixed Costs*)
 
-| **Fixed Costs ($)** | **Probabilidade** | **CDF** |
+| *Fixed Costs ($)* | *Probabilidade* | *CDF* |
 |----------------------|-------------------|---------|
 | 175,000            | 0.30              | 0.30    |
 | 100,000            | 0.40              | 0.70    |
@@ -1768,7 +3590,7 @@ Custos Fixos (*Fixed Costs*)
 \
 
 
-Admitindo-se que os valores **Variable Costs** sejam uma variável aleatória \(X\) com função distribuição de probabilidade:
+Admitindo-se que os valores *Variable Costs* sejam uma variável aleatória \(X\) com função distribuição de probabilidade:
 
 \[
 P(X = x) =
@@ -1780,7 +3602,7 @@ P(X = x) =
 \end{cases}
 \]
 
-E que os valores **Sales** sejam uma variável aleatória \(Y\) com função distribuição de probabilidade:
+E que os valores *Sales* sejam uma variável aleatória \(Y\) com função distribuição de probabilidade:
 
 \[
 P(Y = y) =
@@ -1792,7 +3614,7 @@ P(Y = y) =
 \end{cases}
 \]
 
-E que os valores **Fixed Costs** sejam uma variável aleatória \(Z\) com função distribuição de probabilidade:
+E que os valores *Fixed Costs* sejam uma variável aleatória \(Z\) com função distribuição de probabilidade:
 
 \[
 P(Z = z) =
@@ -1804,7 +3626,7 @@ P(Z = z) =
 \end{cases}
 \]
 
-Números aleatórios \(U, V, W\) podem ser gerados e mapeados para valores de **Variable Costs**, **Sales** e **Fixed Costs** a partir dessas distribuições, e o lucro calculado para cada conjunto de valores.
+Números aleatórios \(U, V, W\) podem ser gerados e mapeados para valores de *Variable Costs*, *Sales* e *Fixed Costs* a partir dessas distribuições, e o lucro calculado para cada conjunto de valores.
 
 \
 
@@ -1822,28 +3644,29 @@ Passo 2: Mapeamento para *Variable Costs*
 Para cada número aleatório \( U \):  
 - Se \( 0 \leq U < 0.30 \) → *Variable Cost* = 13  
 - Se \( 0.30 \leq U < 0.70 \) → *Variable Cost* = 8  
-- Se \( 0.70 \leq U \leq 0.99 \) → *Variable Cost* = 18  
+- Se \( 0.70 \leq U \leq 1.00 \) → *Variable Cost* = 18  
 
 Passo 3: Mapeamento para *Sales*  
 
 Para cada número aleatório \( V \):  
 - Se \( 0 \leq V < 0.30 \) → *Sales* = 22,000  
 - Se \( 0.30 \leq V < 0.70 \) → *Sales* = 10,000  
-- Se \( 0.70 \leq V \leq 0.99 \) → *Sales* = 30,000  
+- Se \( 0.70 \leq V \leq 1.00 \) → *Sales* = 30,000  
 
 Passo 4: Mapeamento para *Fixed Costs*  
 Para cada número aleatório \( W \):  
 - Se \( 0 \leq W < 0.30 \) → *Fixed Costs* = 175,000  
 - Se \( 0.30 \leq W < 0.70 \) → *Fixed Costs* = 100,000  
-- Se \( 0.70 \leq W \leq 0.99 \) → *Fixed Costs* = 300,000  
+- Se \( 0.70 \leq W \leq 1.00 \) → *Fixed Costs* = 300,000  
 
 Passo 5: Cálculo do Lucro  
 
 Para cada conjunto de valores simulados:  
 
-\[
-\text{Lucro} = \text{(Sales - Variable Cost)} \times \text{Sales - Fixed Cost}
-\]
+$$
+\text{Profit} = \text{(Unitary Price - Variable Cost)} \times \text{Sales - Fixed Cost}\\
+\text{Lucro} = (25 - \text{Custo Variável}) \times \text{Vendas} - \text{Custo Fixo}
+$$
 
 
 
@@ -1903,10 +3726,6 @@ ggplot(profit_table, aes(x = as.numeric(as.character(profit)), y = Probability))
     y = "Probabilidade"
   ) +
   theme_minimal()
-
-
-
-
 ```
 
 \
@@ -1915,23 +3734,23 @@ ggplot(profit_table, aes(x = as.numeric(as.character(profit)), y = Probability))
 
 \
 
-A integração numérica pelo **Método de Monte Carlo** é uma técnica amplamente utilizada para aproximar valores de integrais definidas, especialmente quando as funções envolvidas são complexas ou não possuem primitivas analíticas. A ideia central do método é substituir o problema do cálculo integral por um **problema de probabilidade**.
+A integração numérica pelo *Método de Monte Carlo* é uma técnica amplamente utilizada para aproximar valores de integrais definidas, especialmente quando as funções envolvidas são complexas ou não possuem primitivas analíticas. A ideia central do método é substituir o problema do cálculo integral por um *problema de probabilidade*.
 
 \
 
 Etapas
 
 Etapa 1: Pontos aleatórios são gerados uniformemente dentro de um retângulo que cobre a região de integração.  
-Etapa 2: Cada ponto é testado para verificar se está **abaixo** ou **acima** da curva definida pela função \( f(x) \).  
-Etapa 3: A razão entre os pontos que caem **abaixo da curva** e o número total de pontos é usada para estimar a área sob a curva, que corresponde ao valor da integral.  
+Etapa 2: Cada ponto é testado para verificar se está *abaixo* ou *acima* da curva definida pela função \( f(x) \).  
+Etapa 3: A razão entre os pontos que caem *abaixo da curva* e o número total de pontos é usada para estimar a área sob a curva, que corresponde ao valor da integral.  
 
 \
 
 A estimativa da integral é calculada por meio da seguinte fórmula:
 
-\[
-I \approx \frac{\text{Pontos Abaixo da Curva}}{\text{Total de Pontos}} \times (b - a) \times f_{max}
-\]
+$$
+I \approx \frac{\text{Pontos Abaixo da Curva}}{\text{Total de Pontos}} \cdot (b - a) \cdot f_{max}
+$$
 
 \
 
@@ -2030,7 +3849,7 @@ O valor exato da integral de \( f(x) = \sin(x) \) no intervalo \([0, \pi]\) é:
 I = 2
 \]
 
-Esse resultado analítico servirá como referência para compararmos com os valores obtidos numericamente pelo método de **Monte Carlo**.
+Esse resultado analítico servirá como referência para compararmos com os valores obtidos numericamente pelo método de *Monte Carlo*.
 
 
 

@@ -779,7 +779,7 @@ Especificamente para estudos epidemiológicos, admita que as variáveis envolvid
 \caption{Casos classificados em relação ao desfecho a partir da exposição ao fator de risco}
 \begin{tabular}{c|c|c|c}
 \hline
-\multirow{2}{*}{Fator de risco} & \multicolumn{2}{c|}{Desfecho observado (doença)} & Total \\ 
+\multirow{2}{*}{Fator estudado} & \multicolumn{2}{c|}{Desfecho observado} & Total \\ 
  & \cline{2-3}   
               Presente  & Ausente       \\ 
 \hline              
@@ -814,7 +814,7 @@ textable <- "
 \\caption{Casos classificados em relação ao desfecho a partir da exposição ao fator de risco}
 \\begin{tabular}{c|c|c|c}
 \\hline
-\\multirow{2}{*}{Fator de risco} & \\multicolumn{2}{c|}{Desfecho observado (doença)} & Total \\\\
+\\multirow{2}{*}{Fator estudado} & \\multicolumn{2}{c|}{Desfecho observado } & Total \\\\
 & \\cline{2-3}   
                 Presente  & Ausente     \\\\
 \\hline              
@@ -851,7 +851,7 @@ tex2markdown(textable)
 segundo o hábito tabágico da mãe durante a gravidez (1982)}
 \begin{tabular}{c|c|c|c}
 \hline
-\multirow{2}{*}{Classificação da mãe} & \multicolumn{2}{c|}{Baixo peso ao nascer} & \multirow{2}{*}{Total}  \\ 
+\multirow{2}{*}{Fator estudado: hábito da mãe} & \multicolumn{2}{c|}{Desfecho observado: baixo peso ao nascer} & \multirow{2}{*}{Total}  \\ 
 & \cline{2-3}
               Sim & Não        \\ 
 \hline              
@@ -887,7 +887,7 @@ textable <- "
 segundo o hábito tabágico da mãe durante a gravidez (1982)}
 \\begin{tabular}{c|c|c|c}
 \\hline
-\\multirow{2}{*}{Classificação da mãe} & \\multicolumn{2}{c|}{Baixo peso ao nascer} & \\multirow{2}{*}{Total}  \\\\ 
+\\multirow{2}{*}{Fator estudado: hábito da mãe} & \\multicolumn{2}{c|}{Desfecho observado: baixo peso ao nascer} & \\multirow{2}{*}{Total}  \\\\ 
 & \\cline{2-3}
               Sim & Não         \\\\ 
 \\hline              
@@ -913,11 +913,13 @@ tex2markdown(textable)
 
 
 $$
-I_{e}=\frac{(a)}{(e)} \times 100  = \frac{275}{2.419} \times 100 = 11,37 \%
+I_{e}=\frac{\text{expostos com desfecho}}{\text{total de expostos}}\\
+I_{e}=\frac{(a)}{(e)} \times 100  \\
+I_{e}= \frac{275}{2.419} \times 100 = 11,37 \%
 $$
 \
 
->Interpretação: 11,37\% das crianças analisadas e que têm mães tabagistas nasceram com baixo peso.
+>Interpretação: 11,37\% das crianças de mães tabagistas no estudo nasceram com baixo peso.
 
 \
 
@@ -928,12 +930,15 @@ $$
 
 
 $$
-I_{0}: \frac{(c)}{(f)} \times 100 = \frac{311}{4.807} \times 100 = 6,47 \%
+I_{0}=\frac{\text{não expostos com desfecho}}{\text{total de não expostos}}\\
+I_{0}= \frac{(c)}{(f)} \times 100 \\
+I_{0}= \frac{311}{4.807} \times 100 = 6,47 \%
 $$
 
 \
 
->Interpretação: 6.47\% das crianças analisadas e que têm mães não tabagistas nasceram com baixo peso.
+>Interpretação: 6.47\% das crianças de mães não tabagistas no estudo nasceram com baixo peso.
+
 \
 
 ### Prevalência de nascimentos com baixo peso na população estudada
@@ -942,12 +947,15 @@ $$
 
 
 $$
-\frac{(a) + (c)}{(e) + (f)} \times 100 = \frac{586}{7.226} \times 100 =  8,11\%
+P= \frac{\text{total com desfecho}}{\text{total geral}}\\
+P= \frac{(a) + (c)}{(e) + (f)} \times 100 \\
+P= \frac{586}{7.226} \times 100 =  8,11\%
 $$
 
 \
 
->Interpretação: 8,11\% das crianças avaliadas nasceram com baixo peso.
+>Interpretação: 8,11\% das crianças no estudo nascera com baixo peso.
+
 \
 
 ### Diferença de risco (Risco atribuível - RA)
@@ -966,16 +974,15 @@ Analisando-se as incidências na Tabela  vemos que a diferença de risco de nasc
 \
 
 
-\begin{align*}
-RA & =\frac{(a)}{(e)} - \frac{(c)}{(f)}  \\
-   & = \frac{275}{2.419} - \frac{311}{4.807} \\ 
-   & = 0,11368334 - 0,064697316 \\
-   & = 4,9 \%
-\end{align*}
+$$
+RA=I_{e} - I_{0}  \\
+RA= 0,11368334 - 0,064697316=0,049 \\
+RA= 4,9 \%
+$$
 
 \
 
->Interpretação: 4,9\% do risco de nascer com baixo peso pode ser atribuído ao fato de terem mães tabagistas.
+>Interpretação: 4,9\% do risco de uma criança nascer com baixo peso pode ser atribuído ao fato de terem mães tabagistas.
 
 \
 
@@ -990,8 +997,8 @@ A razão de risco (também chamada de risco relativo) é o quociente entre as  t
 \
 
 
-- razão de risco maior que 1: **fator de risco**;  
-- razão de risco menor que 1: **fator protetor**.  
+- razão de risco maior que 1: diz-se então que o fator estudado é um **fator de risco** em relação ao desfecho observado;  
+- razão de risco menor que 1: diz-se então que o fator estudado é um **fator protetor** em relação ao desfecho observado.  
  
 \
 
@@ -1000,16 +1007,15 @@ Analisando-se as incidências na Tabela vemos que a razão de risco de nasciment
 
 \
 
-\begin{align*}
-RR  & =  \frac{\frac{(a)}{(e)}}{\frac{(c)}{(f)}}  \\
-& = \frac{\frac{275}{2.419}}{\frac{311}{4.807}} \\ 
-& = \frac{0,11368334}{0,064697316} \\
-& = 1,76 
-\end{align*}
+$$
+RR =  \frac{I_{e}}{I_{0}}  \\
+RR = \frac{0,11368334}{0,064697316} \\
+RR = 1,76 
+$$
 
 \
 
->Interpretação: As crianças de mães tabagistas têm aproximadamente 1,76 vezes mais risco de nascer com baixo peso em comparação com as de mães não tabagistas. 
+>Interpretação: O fator estudado (hábito das mães) é um fator de risco para o desfecho observado (nascimento com com baixo peso). As crianças de mães tabagistas têm aproximadamente 1,76 vezes mais risco de nascer com baixo peso em comparação com as de mães não tabagistas. 
 
 \
 
@@ -1039,7 +1045,7 @@ Observe como calcular o Risco atribuível proporcional (Fração etiológica - F
 \	
 
 $$
-FE = \frac{I_{e}-I_{o}}{I_{e}} \times 100
+FE = \frac{I_{e}-I_{0}}{I_{e}} \times 100
 $$
 
 \
@@ -1047,7 +1053,7 @@ $$
 
 
 - $I_{e}$: é a incidência da doença no grupo exposto;  
-- $I_{o}$: é a incidência da doença no grupo não exposto. 
+- $I_{0}$: é a incidência da doença no grupo não exposto. 
 
 \
 
@@ -1057,12 +1063,11 @@ Analisando-se as incidências na Tabela vemos que o risco atribuível proporcion
 
 \	
 
-\begin{align*}
-FE = & \frac{\left(\frac{(a)}{(e)} - \frac{(c)}{(f)}\right)}{\frac{(a)}{(e)}}  \\
-   = & \frac{\left(\frac{275}{2.419} - \frac{311}{4.807}\right)}{\frac{275}{2.419}} \\ 
-   = &  \frac{\left(0,11368334 - 0,064697316\right)}{0,11368334} \\
-   = & 43,09 \%
-\end{align*}
+$$
+FE = \frac{I_{e}-I_{0}}{I_{e}} \times 100\\
+FE=  \frac{\left(0,11368334 - 0,064697316\right)}{0,11368334}=0,4309 \\
+FE= 43,09 \%
+$$
 
 \	
 
@@ -1071,7 +1076,7 @@ FE = & \frac{\left(\frac{(a)}{(e)} - \frac{(c)}{(f)}\right)}{\frac{(a)}{(e)}}  \
 \
 
 
-## _Odds ratio_ (Razão das chances) em studos de casos e controles
+## _Odds ratio_ (Razão das chances) em estudos de casos e controles
 
 \
 

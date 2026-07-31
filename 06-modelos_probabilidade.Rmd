@@ -893,9 +893,186 @@ probabilidade = dmultinom(x=c(7,2,3), prob = c(0.4,0.35,0.25))
 print(probabilidade)
 
 ```
+
+
 \
 
 
+### Hipergeométrica
+
+\
+
+A distribuição hipergeométrica é uma distribuição de probabilidade discreta que modela o número de sucessos em uma amostra de tamanho $n$ extraída **sem reposição** de uma população finita de tamanho $N$, da qual $K$ elementos são classificados como sucesso. A ausência de reposição implica que as extrações são **dependentes** entre si, o que a distingue fundamentalmente da distribuição binomial.
+
+\
+
+Admita que $X$ seja uma variável aleatória com distribuição hipergeométrica: $X \sim hgeo(N, K, n)$, que envolve um processo aleatório de amostragem sem reposição de uma população finita sob as seguintes condicionantes:
+
+\
+
+- $N$ é o tamanho conhecido da população;
+- $K$ é o número de elementos da população classificados como sucesso, com $0 \leq K \leq N$;
+- $n$ é o tamanho da amostra extraída sem reposição, tal que: $0 \leq n \leq N$;
+- $k$ é o número de sucessos observados na amostra de $n$ elementos extraídos de $N$, assumindo valores inteiros em:
+        $\max(0,\, n-(N-K)) \leq k \leq \min(n,\, K)$.
+\
+
+O limite inferior do suporte de $k$ na distribuição hipergeométrica reflete uma restrição combinatória imposta pela composição da população. 
+
+\
+
+Suponha um experimento aleatório tal que $N=20$ elementos no total, $K=8$ classificados como *sucesso* (portanto há $N-K=12$ classificados como *fracasso*). Uma amostra de tamanho $n=13$ *não pode conter menos* do que $1$ *sucesso*.
+
+\
+
+Isso ocorre porque, mesmo que se extraíssem todos os $12$ fracassos disponíveis, ainda restariam $13-12=1$ posição na amostra a ser preenchida, *necessariamente* por um elemento de sucesso. 
+
+\
+
+De forma geral, o limite inferior é dado por $\max(0,\; n-(N-K))$, que neste caso resulta em $\max(0,\; 13-12)=1$, indicando que observar zero sucessos em uma amostra de tamanho $13$ retirada dessa população é um evento combinatoriamente impossível.
+
+\
+
+
+
+A função de distribuição de probabilidades é dada por:
+
+\
+
+$$
+\begin{aligned}
+f(X = k) = P(X = k) &= \frac{\binom{K}{k}\binom{N-K}{n-k}}{\binom{N}{n}} \\[10pt]
+&= \frac{\dfrac{K!}{k!(K-k)!} \cdot \dfrac{(N-K)!}{(n-k)!(N-K-n+k)!}}{\dfrac{N!}{n!(N-n)!}}
+\end{aligned}
+$$
+
+
+\
+
+A esperança e a variância de uma variável aleatória discreta com Distribuição Hipergeométrica são dadas por:
+
+\
+
+- Esperança: $E(X) = n \cdot \dfrac{K}{N}$;
+- Variância: $Var(X) = n \cdot \dfrac{K}{N} \cdot \dfrac{N-K}{N} \cdot \dfrac{N-n}{N-1}$.
+
+\
+
+O fator $\dfrac{N-n}{N-1}$ é denominado **fator de correção para população finita** e reflete a dependência entre as extrações. À medida que $N \to \infty$, esse fator tende a 1 e a distribuição hipergeométrica converge para a binomial.
+
+\
+
+> Exemplo: Uma urna contém $N = 20$ bolas, das quais $K = 8$ são vermelhas e $12$ são de outra cor. Retiram-se $n = 5$ bolas sem reposição. Calcule (a) a probabilidade de que exatamente $k = 3$ bolas retiradas sejam vermelhas; (b) a distribuição de probabilidades associadas a essa extração de $n$ elementos, (c)  e esperança e a variância.
+
+\
+
+Uma variável aleatória $X$ pode ser definida para modelar essa situação tal que $X \sim hgeo(N=20,\, K=8,\, n=5)$.
+
+\
+
+(a) a probabilidade $P(X=3)$ será:
+
+\
+
+$$
+\begin{aligned}
+P(X = k) &= \frac{\binom{K}{k}\binom{N-K}{n-k}}{\binom{N}{n}} \\[10pt]
+P(X = 3) &= \frac{\binom{8}{3}\binom{12}{5-3}}{\binom{20}{5}} \\[10pt]
+&= \frac{\binom{8}{3}\binom{12}{2}}{\binom{20}{5}} \\[10pt]
+&= \frac{\dfrac{8!}{3!\,5!} \cdot \dfrac{12!}{2!\,10!}}{\dfrac{20!}{5!\,15!}} \\[10pt]
+&= \frac{56 \cdot 66}{15504} \\[10pt]
+&\approx 0{,}2384
+\end{aligned}
+$$
+
+\
+
+
+(b) a distribuição de probabilidades será: 
+
+\
+
+O suporte de $X$ é $\max(0, n-(N-K)) \leq k \leq \min(n, K)$, ou seja:
+
+\
+
+$$
+\max(0, 5-12) \leq k \leq \min(5, 8) \implies 0 \leq k \leq 5
+$$
+
+\
+
+$$
+\begin{aligned}
+P(X = 0) &= \frac{\binom{8}{0}\binom{12}{5}}{\binom{20}{5}} = \frac{1 \cdot 792}{15504} \approx 0{,}0511 \\[10pt]
+P(X = 1) &= \frac{\binom{8}{1}\binom{12}{4}}{\binom{20}{5}} = \frac{8 \cdot 495}{15504} \approx 0{,}2554 \\[10pt]
+P(X = 2) &= \frac{\binom{8}{2}\binom{12}{3}}{\binom{20}{5}} = \frac{28 \cdot 220}{15504} \approx 0{,}3973 \\[10pt]
+P(X = 3) &= \frac{\binom{8}{3}\binom{12}{2}}{\binom{20}{5}} = \frac{56 \cdot 66}{15504} \approx 0{,}2384 \\[10pt]
+P(X = 4) &= \frac{\binom{8}{4}\binom{12}{1}}{\binom{20}{5}} = \frac{70 \cdot 12}{15504} \approx 0{,}0541 \\[10pt]
+P(X = 5) &= \frac{\binom{8}{5}\binom{12}{0}}{\binom{20}{5}} = \frac{56 \cdot 1}{15504} \approx 0{,}0036
+\end{aligned}
+$$
+
+\
+
+(c) a esperança e variância serão:
+
+\
+
+
+
+$$
+\begin{aligned}
+E(X) &= n \cdot \frac{K}{N} = 5 \cdot \frac{8}{20} = 5 \cdot 0{,}4 = 2{,}0 \\[10pt]
+Var(X) &= n \cdot \frac{K}{N} \cdot \frac{N-K}{N} \cdot \frac{N-n}{N-1} \\[10pt]
+&= 5 \cdot \frac{8}{20} \cdot \frac{12}{20} \cdot \frac{15}{19} \\[10pt]
+&= 5 \cdot 0{,}4 \cdot 0{,}6 \cdot 0{,}7895 \\[10pt]
+&\approx 0{,}9474
+\end{aligned}
+$$
+
+
+\
+
+```{r}
+# Parâmetros da distribuição hipergeométrica
+N <- 20   # tamanho da população
+K <- 8    # número de sucessos na população
+n <- 5    # tamanho da amostra
+k <- 3    # número de sucessos desejados na amostra
+
+# Probabilidade utilizando a função 'dhyper'
+# dhyper(x, m, n, k): x = sucessos desejados; m = sucessos na população;
+#                     n = fracassos na população; k = tamanho da amostra
+probabilidade <- dhyper(x = k, m = K, n = N - K, k = n)
+print(probabilidade)
+
+# Suporte de X
+k_vals <- max(0, n - (N - K)):min(n, K)
+
+# Distribuição de probabilidades
+probs <- dhyper(x = k_vals, m = K, n = N - K, k = n)
+
+# Tabela
+tabela <- data.frame(k = k_vals, probabilidade = round(probs, 4))
+print(tabela)
+
+# Gráfico
+barplot(
+  height = probs,
+  names.arg = k_vals,
+  xlab = "k (número de sucessos)",
+  ylab = "P(X = k)",
+  main = "Distribuição Hipergeométrica (N=20, K=8, n=5)",
+  col = "steelblue",
+  border = "white",
+  ylim = c(0, max(probs) * 1.2)
+)
+```
+
+
+
+\
 
 
 ## Modelos téoricos do tempo de espera

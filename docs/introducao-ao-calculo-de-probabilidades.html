@@ -141,7 +141,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Índice</a></li>
 
 <li class="divider"></li>
-<li><a href="index.html#section" id="toc-section"></a></li>
 <li class="chapter" data-level="1" data-path="introducao-historica-daquilo-que-veio-a-se-chamar-estatistica.html"><a href="introducao-historica-daquilo-que-veio-a-se-chamar-estatistica.html"><i class="fa fa-check"></i><b>1</b> Introdução histórica daquilo que veio a se chamar estatística</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="04-probabilidade.html"><a href="#diferentes-usos-relacionados-ao-termo-primeiros-levantamentos-estudos-e-publica%C3%A7%C3%B5es-o-passado-distante"><i class="fa fa-check"></i><b>1.1</b> Diferentes usos relacionados ao termo, primeiros levantamentos, estudos e publicações (o passado distante)</a></li>
@@ -1476,9 +1475,9 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb51-14"><a href="introducao-ao-calculo-de-probabilidades.html#cb51-14" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;A frequência observada da face&quot;</span>, face_escolhida, <span class="st">&quot;foi de&quot;</span>, frequencia, <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb51-15"><a href="introducao-ao-calculo-de-probabilidades.html#cb51-15" tabindex="-1"></a>}</span></code></pre></div>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb52-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 0 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 20 %</code></pre>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb54-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10000</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 16.61 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 16.21 %</code></pre>
 <p><br />
 </p>
 <p>Ao simular o lançamento de um dado, por exemplo, é possível observar como as frequências relativas de todas as faces começam a se aproximar das probabilidades teóricas (<span class="math inline">\(P(1)=P(2)=P(3)=P(4)=P(5)=P(6)=\frac{1}{6}\)</span>) à medida que aumentamos o número de repetições.</p>
@@ -2038,10 +2037,10 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb63-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb63-3" tabindex="-1"></a><span class="fu">table</span>(popSim<span class="sc">$</span>Curso, popSim<span class="sc">$</span>Sexo)</span></code></pre></div>
 <pre><code>##                      
 ##                           F     M
-##   Computação           5027  9973
-##   Estatística          9953  5047
-##   Matemática aplicada  7612  7388
-##   Matemática pura     20239 34761</code></pre>
+##   Computação           4909 10091
+##   Estatística          9928  5072
+##   Matemática aplicada  7532  7468
+##   Matemática pura     20000 35000</code></pre>
 <p><br />
 </p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb65-1" tabindex="-1"></a><span class="co"># Selecionar uma amostra de 200 com reposição (simular a tabela)</span></span>
@@ -2055,19 +2054,19 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb65-9"><a href="introducao-ao-calculo-de-probabilidades.html#cb65-9" tabindex="-1"></a>tab</span></code></pre></div>
 <pre><code>##                          
 ##                             M   F Total
-##   Matemática pura (M)      60  42   102
-##   Matemática aplicada (A)  22  15    37
-##   Estatística (E)          13  17    30
-##   Computação (C)           27   4    31
-##   Total                   122  78   200</code></pre>
+##   Matemática pura (M)      60  41   101
+##   Matemática aplicada (A)  22  21    43
+##   Estatística (E)           7  19    26
+##   Computação (C)           22   8    30
+##   Total                   111  89   200</code></pre>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb67-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-2" tabindex="-1"></a>pMasc<span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb67-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-3" tabindex="-1"></a>pMasc</span></code></pre></div>
-<pre><code>## [1] 0.61</code></pre>
+<pre><code>## [1] 0.555</code></pre>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; na amostra</span></span>
 <span id="cb69-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-2" tabindex="-1"></a>pMatAp <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span>)</span>
 <span id="cb69-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-3" tabindex="-1"></a>pMatAp</span></code></pre></div>
-<pre><code>## [1] 0.185</code></pre>
+<pre><code>## [1] 0.215</code></pre>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -E- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb71-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-2" tabindex="-1"></a>pMatAp_and_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">&amp;</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb71-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-3" tabindex="-1"></a>pMatAp_and_Masc</span></code></pre></div>
@@ -2075,7 +2074,7 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -OU- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb73-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-2" tabindex="-1"></a>pMatAp_or_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">|</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb73-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-3" tabindex="-1"></a>pMatAp_or_Masc</span></code></pre></div>
-<pre><code>## [1] 0.685</code></pre>
+<pre><code>## [1] 0.66</code></pre>
 <p><br />
 </p>
 <blockquote>
@@ -3782,7 +3781,7 @@ gitbook.start({
     "link": null,
     "text": null
   },
-  "download": ["apostila.pdf"],
+  "download": ["apostila.pdf", "apostila.html"],
   "search": {
     "engine": "fuse",
     "options": null

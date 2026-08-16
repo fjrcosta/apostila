@@ -13,7 +13,8 @@ bookdown::gitbook:
     edit: https://github.com/fjrcosta/apostila/edit/main/%s
     #edit: https://github.com/USERNAME/REPO/edit/BRANCH/%s
     #download: ["pdf", "epub"]
-    download: ["pdf"]
+    #download: ["pdf"]
+    download: ["pdf", "html"]
   includes:
     after_body: resize-toc.html
 bookdown::pdf_book:
@@ -25,9 +26,10 @@ bookdown::pdf_book:
   includes:
     in_header: preamble.tex
 # bookdown::epub_book: default
-# bookdown::html_document2:
-#   css: style.css
-#   encoding: UTF-8
-#   toc: true
-#   toc_depth: 8
-#   number_sections: true
+bookdown::html_document2:                       
+  self_contained: true                           
+  css: style.css
+  encoding: UTF-8
+  toc: true
+  toc_depth: 6
+  number_sections: true

@@ -1238,16 +1238,21 @@ Figure 4.8: Representação gráfico do espaço amostral do experimento aleatór
 <h4><span class="header-section-number">4.2.3.3</span> Eventos certos e eventos impossíveis<a href="#eventos-certos-e-eventos-imposs%C3%ADveis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><br />
 </p>
-<p>Um evento de interesse <span class="math inline">\(G\)</span>, definido sobre o espaço amostral <span class="math inline">\(\Omega\)</span>, em que <span class="math inline">\(G = \Omega\)</span>, expressa que qualquer elemento de <span class="math inline">\(\Omega\)</span> satisfaz o evento <span class="math inline">\(G\)</span>, ou seja, qualquer um dos possíveis resultados do experimento aleatório corresponde ao evento.</p>
+<p>Um evento de interesse <span class="math inline">\(G\)</span>, definido sobre o espaço amostral <span class="math inline">\(\Omega\)</span>, em que <span class="math inline">\(G = \Omega\)</span>, expressa que qualquer elemento de <span class="math inline">\(\Omega\)</span> satisfaz o evento <span class="math inline">\(G\)</span>, ou seja, qualquer um dos possíveis resultados do experimento aleatório corresponde ao evento. Um evento de interesse assim definido ocorrerá com certeza, razão pela qual tais eventos são denominados eventos certos.</p>
 <p><br />
 </p>
-<p>Um evento de interesse assim definido ocorrerá com certeza, razão pela qual tais eventos são denominados eventos certos.</p>
+<p>Considere o espaço amostral dos resultados do experimento aleatório que consista em se lançar um dado honesto e dois outros eventos:</p>
+<p><span class="math display">\[
+\Omega=\{1,2,3,4,5,6\}\\
+A=\{1,2,3\}\\
+B=\{4,5,6\}\\
+\]</span></p>
 <p><br />
 </p>
-<p>Por outro lado, se definirmos um evento de interesse <span class="math inline">\(I\)</span> que não contém resultados pertencentes a <span class="math inline">\(\Omega\)</span> — o espaço amostral, ou seja, todos os resultados possíveis — como, por exemplo, obter o número 7 no lançamento de um dado de seis faces, esse evento será impossível de ocorrer.</p>
+<p>Se nosso evento de interesse for <span class="math inline">\(G\{A \cap B\}\)</span>, então <span class="math inline">\(G=\Omega\)</span> e, <span class="math inline">\(P(G)=P(\Omega)=1\)</span>.</p>
 <p><br />
 </p>
-<p>Eventos assim definidos são chamados de eventos impossíveis.</p>
+<p>Por outro lado, se nosso evento de interesse <span class="math inline">\(I\)</span> for assim definido <span class="math inline">\(I=\{A \cap B\}\)</span>, então <span class="math inline">\(I=\varnothing\)</span> e, <span class="math inline">\(P(I)=0\)</span>. Eventos assim definidos são chamados de eventos impossíveis.</p>
 <p><br />
 </p>
 </div>
@@ -1475,9 +1480,9 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb51-14"><a href="introducao-ao-calculo-de-probabilidades.html#cb51-14" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;A frequência observada da face&quot;</span>, face_escolhida, <span class="st">&quot;foi de&quot;</span>, frequencia, <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb51-15"><a href="introducao-ao-calculo-de-probabilidades.html#cb51-15" tabindex="-1"></a>}</span></code></pre></div>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb52-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 10 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 30 %</code></pre>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb54-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10000</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 17.29 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 16.11 %</code></pre>
 <p><br />
 </p>
 <p>Ao simular o lançamento de um dado, por exemplo, é possível observar como as frequências relativas de todas as faces começam a se aproximar das probabilidades teóricas (<span class="math inline">\(P(1)=P(2)=P(3)=P(4)=P(5)=P(6)=\frac{1}{6}\)</span>) à medida que aumentamos o número de repetições.</p>
@@ -2037,10 +2042,10 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb63-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb63-3" tabindex="-1"></a><span class="fu">table</span>(popSim<span class="sc">$</span>Curso, popSim<span class="sc">$</span>Sexo)</span></code></pre></div>
 <pre><code>##                      
 ##                           F     M
-##   Computação           4959 10041
-##   Estatística          9986  5014
-##   Matemática aplicada  7586  7414
-##   Matemática pura     20060 34940</code></pre>
+##   Computação           4899 10101
+##   Estatística         10054  4946
+##   Matemática aplicada  7571  7429
+##   Matemática pura     19861 35139</code></pre>
 <p><br />
 </p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb65-1" tabindex="-1"></a><span class="co"># Selecionar uma amostra de 200 com reposição (simular a tabela)</span></span>
@@ -2054,27 +2059,27 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb65-9"><a href="introducao-ao-calculo-de-probabilidades.html#cb65-9" tabindex="-1"></a>tab</span></code></pre></div>
 <pre><code>##                          
 ##                             M   F Total
-##   Matemática pura (M)      64  32    96
-##   Matemática aplicada (A)  18  18    36
-##   Estatística (E)          10  26    36
-##   Computação (C)           20  12    32
-##   Total                   112  88   200</code></pre>
+##   Matemática pura (M)      67  38   105
+##   Matemática aplicada (A)  14  18    32
+##   Estatística (E)          12  13    25
+##   Computação (C)           29   9    38
+##   Total                   122  78   200</code></pre>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb67-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-2" tabindex="-1"></a>pMasc<span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb67-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-3" tabindex="-1"></a>pMasc</span></code></pre></div>
-<pre><code>## [1] 0.56</code></pre>
+<pre><code>## [1] 0.61</code></pre>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; na amostra</span></span>
 <span id="cb69-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-2" tabindex="-1"></a>pMatAp <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span>)</span>
 <span id="cb69-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-3" tabindex="-1"></a>pMatAp</span></code></pre></div>
-<pre><code>## [1] 0.18</code></pre>
+<pre><code>## [1] 0.16</code></pre>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -E- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb71-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-2" tabindex="-1"></a>pMatAp_and_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">&amp;</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb71-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-3" tabindex="-1"></a>pMatAp_and_Masc</span></code></pre></div>
-<pre><code>## [1] 0.09</code></pre>
+<pre><code>## [1] 0.07</code></pre>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -OU- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb73-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-2" tabindex="-1"></a>pMatAp_or_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">|</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb73-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-3" tabindex="-1"></a>pMatAp_or_Masc</span></code></pre></div>
-<pre><code>## [1] 0.65</code></pre>
+<pre><code>## [1] 0.7</code></pre>
 <p><br />
 </p>
 <blockquote>

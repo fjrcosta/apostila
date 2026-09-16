@@ -1054,44 +1054,216 @@ Figure 4.1: Astralagus (um dos ossos que compõem o calcanhar, usado no Egito an
 <p>As probabilidades de ocorrência de cada um os elementos desse espaço amostral são diferentes e, por essa razão é dito que o <em>espaço amostral</em> desse <em>experimento aleatório</em> tem elementos <em>não equiprováveis</em>.</p>
 <p><br />
 </p>
+<!-- ### Evento -->
+<!-- \ -->
+<!-- A expressão _evento_ refere-se, no contexto do cálculo de probabilidades, à ocorrência de um desfecho desejado de um experimento aleatório, sendo definido como um _subconjunto finito_ do espaço amostral desse experimento aleatório composto por _um ou mais_ de seus elementos. -->
+<!-- \ -->
+<!-- Usualmente eventos são representados por letras maiúsculas do alfabeto latino ($E$), podendo ser acompanhados por índices para diferenciação entre variados eventos num mesmo experimento aleatório ($E_1, \dots, E_n$) ou até descritos com uma nota explicativa ($E(par)$). -->
+<!-- \ -->
+<!-- Considere por execmplo o experimento aleatório que consiste em lançar um dado uma única vez. Um possível evento de interesse pode ser: E(obtenção do número 2) ($E(2)$) e, nesse contexto pode ser a obtenção do número 2 como resultado. -->
+<!-- \ -->
+<!-- Podemos ter variados tipos de _eventos de interesse_ como: -->
+<!-- \ -->
+<!-- 1. _simples/elementares_ ou _compostos_; -->
+<!-- 2. _certos_ ou _impossíveis_; -->
+<!-- 3. _mutuamente exclusivos_ ; -->
+<!-- 4. _complementares_; -->
+<!-- 5. _dependentes_ ou _independentes_. -->
+<!-- \ -->
+<!-- ####  Diagramas de Venn para representar o espaço amostral e eventos de interesse -->
+<!-- \ -->
+<!-- Em muitos dos problemas de probabilidade, o _evento de interesse_ pode se definido como _associações_ de _dois_ ou _mais_ eventos formados, por sua vez, por um ou mais elementos do espaço amostral do experimento aleatório.  Uniões, interseções e complementos são algumas dessas associações que, doravante, serão muito utilizados. -->
+<!-- \ -->
+<!-- Por essa razão, a representação do espaço amostral e esses eventos por meio de Diagramas de Venn pode ajudar a compreensão de um problema de cálculo  probabilidade. -->
+<!-- \ -->
+<!-- ```{r, echo=FALSE, out.width='30%', fig.align='center', fig.cap="John Venn, 1834–1923"} -->
+<!-- knitr::include_graphics("images4/venn2.jpeg") -->
+<!-- ``` -->
+<!-- \ -->
+<!-- ##### União  $A \cup B$ -->
+<!-- Sejam $A$ e $B$ dois _eventos de interesse_ definidos sobre o _espaço amostral_ $\Omega=\{1,2,3,4,5,6\}$ (lançamento de um dado) tais que $A=\{1,2,3\}$ e $B=\{2,4,6\}$. -->
+<!-- \ -->
+<!-- Um _evento de interesse_ $E$ expresso como a  _união_ desses dois outros, representado por $E=(A \cup B)$, será o subconjunto do espaço amostral $\Omega$ que contém os elementos que pertençam **a $A$, ou a $B$ ou a ambos**. -->
+<!-- \ -->
+<!-- Desse modo, $E=A \cup B=\{1,2,3,4,6\}$ e o Diagrama de Venn correspondente será: -->
+<!-- \ -->
+<!-- ```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="União: $A \\cup B$"} -->
+<!-- knitr::include_graphics("images4/A_UN_B.jpg") -->
+<!-- ``` -->
+<!-- \ -->
+<!-- Na realização desse _experimento aleatório_ (lançar um dado)  o _evento de ineteresse_ $E$ ocorrerá quando qualquer um dos resultados for um elemento pertencente a $A$, ou a $B$ ou a _ambos_. -->
+<!-- \ -->
+<!-- ##### Interseção  $A \cap B$ -->
+<!-- Um _evento de interresse_ $E$ definido como a _interseção_ dos eventos $A$ e $B$ anteriormente definodos, representado por $E=(A \cap B)$, será o subconjunto do espaço amostral $\Omega$ que contém todos os elementos que pertençam **a ambos os eventos A e B simultaneamente**. -->
+<!-- \ -->
+<!-- Desse modo, $E=(A \cap B) =\{2\}$ e o Diagrama de Venn correspondente será: -->
+<!-- \ -->
+<!-- ```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Interseção: $A \\cap B$"} -->
+<!-- knitr::include_graphics("images4/A_INTER_B.jpg") -->
+<!-- ``` -->
+<!-- \ -->
+<!-- Na realização desse _experimento aleatório_ (lançar um dado)  o _evento de interesse_ $E$ ocorrerá apenas quando o resultado for um elemento simultaneamente pertencente a $A$ e $B$ . -->
+<!-- \ -->
+<!-- Quando o evento de interesse é definido pela interseção de dois outros, todavia esssa interseção é vazia, representa-se $E$ como -->
+<!-- \ -->
+<!-- $$ -->
+<!-- E(A \cap B) = \varnothing -->
+<!-- $$ -->
+<!-- \ -->
+<!-- ##### Complemmento  $A^{c}$ -->
+<!-- Um _evento de intersse_ pode também ser definido como o _complemento_ de outros como, por exemplo, de $A$, sendo representado representado por $E=(A^{c})$ (ou $E=(\stackrel{-}{A})$). -->
+<!-- \ -->
+<!-- Desse modo, $E=(A^{c}) =\{4,5,6\}$ e o Diagrama de Venn correspondente será: -->
+<!-- \ -->
+<!-- ```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Complementar  $A^{c}$"} -->
+<!-- knitr::include_graphics("images4/COMP_A.jpg") -->
+<!-- ``` -->
+<!-- \ -->
+<!-- De modo análogo, para $E=(B^{c})=\{1,3,5\}$ e o Diagrama de Venn correspondente será : -->
+<!-- \ -->
+<!-- ```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Complementar de B"} -->
+<!-- knitr::include_graphics("images4/COMP_B.jpg") -->
+<!-- ``` -->
+<!-- \ -->
+<!-- ```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Diagramas de Venn"} -->
+<!-- knitr::include_graphics("images4/venn.jpg") -->
+<!-- ``` -->
+<!-- \ -->
+<!-- #### Eventos simples (ou elementares) e eventos compostos -->
+<!-- \ -->
+<!-- Considere o espaço amostral dos resultados do _experimento aleatório_ que consista em se lançar um dado honesto: -->
+<!-- $$ -->
+<!-- \Omega=\{1,2,3,4,5,6\}\\ -->
+<!-- $$ -->
+<!-- \ -->
+<!-- O _evento de interesse_ $E_1$ definido sobre o _experimento aleatório_ anterior como sendo obter o número _2_ é formado por apenas um elemento de $\Omega$. Eventos formados por apenas um elemento do espaço amostral são denominados de _eventos simples ou elementares_. -->
+<!-- \ -->
+<!-- $$ -->
+<!-- \Omega = \{1; 2; 3; 4; 5; 6\}\\ -->
+<!-- E_1 = \{2\} -->
+<!-- $$ -->
+<!-- \ -->
+<!-- Admita agora (sobre o mesmo _experimento aleatório_) um outro _evento de interesse_ $E_2$ definido como obter-se um número _par_. Um _evento de interesse_ assim definido é um _evento composto_ uma vez que é formado por mais de um elemento de $\Omega$: -->
+<!-- \ -->
+<!-- $$ -->
+<!-- \Omega = \{1; 2; 3; 4; 5; 6\}\\ -->
+<!-- E_2 = \{2; 4; 6\} -->
+<!-- $$ -->
+<!-- \ -->
+<!-- Outro exemplo, a partir de um  _experimento aleatório_ definido como se lançar uma moeda _duas_ vezes, apresneta como _espaço amostral_ um conjunto composto por _quatro_ elementos: -->
+<!-- \ -->
+<!-- $$ -->
+<!-- \Omega = \{(\text{Cara}, \text{Coroa}),(\text{Coroa}, \text{Cara}),(\text{Cara}, \text{Cara}), (\text{Coroa}, \text{Coroa})\} -->
+<!-- $$ -->
+<!-- \ -->
+<!-- Se definirmos $E_3$ como  _evento de interesse_ nesse experimento aleatório, como sendo obter-se _duas caras_, o evento $E_3$ será um _evento simples_ pois é formado por apenas _um_ elemento desse espaço amostral: $E_3=\{(\text{Cara}, \text{Cara})\}$.  -->
+<!-- \ -->
+<!-- Se, por outro lado, definimos como _evento de interesse_ $E_4=\{(Cara, Coroa)  \text{ ou } (Coroa, Cara)\}$, o evento $E_4$ será um _evento composto_ pois é formado por _dois_ elementos do espaço amostral: $E_4=\{(Cara,Coroa) , (Coroa,Cara)\}$. -->
+<!-- \ -->
+<!-- Se codificarmos _Cara=1_ e _Coroa=0_, podemos representar num plano $XY$ o espaço amostral $\Omega$ desse experimento aleatório e o _evento de sucesso_  $E_{1}$ -->
+<!-- \ -->
+<!-- ```{r, echo=FALSE, out.width='50%', fig.align='center', fig.cap="Representação gráfico do espaço amostral do experimento aleatório e do evento de interesse definido"} -->
+<!-- knitr::include_graphics("images4/evento_grafico.jpg") -->
+<!-- ``` -->
+<!-- \ -->
+<!-- #### Eventos certos e eventos impossíveis -->
+<!-- \ -->
+<!-- Considere o espaço amostral dos resultados do experimento aleatório que consista em se lançar um dado honesto e dois outros eventos: -->
+<!-- $$ -->
+<!-- \Omega=\{1,2,3,4,5,6\}\\ -->
+<!-- E_5=\{1,2,3\}\\ -->
+<!-- E_6=\{4,5,6\}\\ -->
+<!-- $$ -->
+<!-- \ -->
+<!-- Se nosso evento de interesse for $E_7=\{E_5 \cap E_6\}$, então $E_7=\Omega$. Um evento de interesse qualquer $G$, definido sobre o espaço amostral $\Omega$, tal que $G = \Omega$ é denominado um _evento certo_.  -->
+<!-- \ -->
+<!-- Por outro lado, se nosso evento de interesse $E_8$ for assim definido $E_8=\{E_5 \cap E_6\}$, então $E_8=\varnothing$ . Um evento de interesse qualquer $G$, definido sobre o espaço amostral $\Omega$, tal que $G =\varnothing$ é denominado um _evento impossível_.  -->
+<!-- \ -->
+<!-- #### Eventos mutuamente exclusivos -->
+<!-- \ -->
+<!-- No espaço amostral do _experimento aleatório_ do lançamento de um dado $\Omega=\{1,2,3,4,5,6\}$, se definirmos os seguintes eventos:  -->
+<!-- \ -->
+<!-- $$ -->
+<!-- E_5=\{1,2,3\}\\ -->
+<!-- E_6=\{4,5,6\}\\ -->
+<!-- $$ -->
+<!-- \ -->
+<!-- e definirmos $E_9$ como nosso _evento de interesse_, tal que $E_9=A \cap B$, um evento assim definido teria sua interseção vazia -->
+<!-- \ -->
+<!-- $$ -->
+<!-- E_9=(E_5 \cap E_6) = \varnothing -->
+<!-- $$ -->
+<!-- \ -->
+<!-- #### Eventos complementares -->
+<!-- \ -->
+<!-- Considere novamente o espaço amostral do _experimento aleatório_ de se lançar um dado uma vez:  -->
+<!-- \ -->
+<!-- $$ -->
+<!-- \Omega=\{1,2,3,4,5,6\}\\ -->
+<!-- $$  -->
+<!-- \ -->
+<!-- Um evento qualquer $E_10$ definido como o complementar de outro evento $E_5$ será: -->
+<!-- $$ -->
+<!-- E_5=\{1,2,3\}\\ -->
+<!-- E_{10}=E_5^{c}\\ -->
+<!-- E_{10}=\{4,5,6\}\\ -->
+<!-- $$ -->
+<!-- #### Eventos independentes -->
+<!-- \ -->
+<!-- Dois eventos são considerados _independentes_ quando a probabilidade de ocorrência de um evento de interesse em um determinado experimento aleatório não é influenciada pelo _resultado prévio_ de outro evento. -->
+<!-- \ -->
+<!-- >Em outras palavras, a ocorrência de um evento não altera a probabilidade do outro. Caso contrário, esses eventos são classificados como dependentes ou condicionados. -->
+<!-- \ -->
+<!-- Este conceito será explorado em maior detalhe em seções posteriores. -->
+<!-- \ -->
 </div>
 </div>
 <div id="evento" class="section level3 hasAnchor" number="4.2.3">
 <h3><span class="header-section-number">4.2.3</span> Evento<a href="introducao-ao-calculo-de-probabilidades.html#evento" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><br />
 </p>
-<p>Define-se como <em>evento de interesse</em> um <em>subconjunto finito</em> do espaço amostral, composto por <em>um ou mais</em> de seus elementos que <em>satisfazem</em> o enunciado estabelecido no experimento aleatório proposto.</p>
+<p>No cálculo de probabilidades, um <strong>evento</strong> é um subconjunto do espaço amostral de um experimento aleatório. Dizemos que um evento ocorreu quando o resultado observado pertence ao subconjunto que o representa.</p>
 <p><br />
 </p>
-<p>A expressão <em>evento de interesse</em> (também chamado de <em>sucesso</em>) refere-se, no contexto do cálculo de probabilidades, à ocorrência de um resultado <em>desejado</em> durante a realização de um experimento aleatório.</p>
+<p>Usualmente, os eventos são representados por letras maiúsculas do alfabeto latino, como <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> e <span class="math inline">\(C\)</span>. Também podem ser acompanhados por índices, como <span class="math inline">\(E_1,\ldots,E_n\)</span>, ou por uma descrição explicativa.</p>
 <p><br />
 </p>
-<p>Frequentemente, eventos de interesse são representados por letras maiúsculas do alfabeto romano e podem ser acompanhados de uma notação explicativa, como <span class="math inline">\(E(\dots)\)</span>.</p>
-<p><br />
-</p>
-<p>Por exemplo, considere um experimento aleatório que consiste em lançar um dado uma única vez. Um possível evento de interesse pode ser: E(obtenção do número 2) (<span class="math inline">\(E(2)\)</span>) e, nesse contexto pode ser a obtenção do número 2 como resultado.</p>
-<p><br />
-</p>
-<p>Podemos ter variados tipos de <em>eventos de interesse</em> como:</p>
+<p>Podemos ter variados tipos de eventos:</p>
 <p><br />
 </p>
 <ol style="list-style-type: decimal">
-<li><em>simples/elementares</em> ou <em>compostos</em>;</li>
-<li><em>certos</em> ou <em>impossíveis</em>;</li>
-<li><em>mutuamente exclusivos</em> ;</li>
-<li><em>complementares</em>;</li>
-<li><em>dependentes</em> ou <em>independentes</em>.</li>
+<li>eventos simples ou elementares e eventos compostos;</li>
+<li>união, interseção e complemento de eventos;</li>
+<li>eventos certos e impossíveis;</li>
+<li>eventos mutuamente exclusivos e complementares.</li>
+<li>dependentes ou independentes.</li>
 </ol>
 <p><br />
 </p>
-<div id="diagramas-de-venn-para-representar-o-espaço-amostral-e-eventos-de-interesse" class="section level4 hasAnchor" number="4.2.3.1">
-<h4><span class="header-section-number">4.2.3.1</span> Diagramas de Venn para representar o espaço amostral e eventos de interesse<a href="#diagramas-de-venn-para-representar-o-espa%C3%A7o-amostral-e-eventos-de-interesse" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Ao longo desta seção será considerado um único experimento aleatório: o lançamento de um dado honesto de seis faces. Seu espaço amostral é</p>
 <p><br />
 </p>
-<p>Em muitos dos problemas de probabilidade, o <em>evento de interesse</em> pode se definido como <em>associações</em> de <em>dois</em> ou <em>mais</em> eventos formados, por sua vez, por um ou mais elementos do espaço amostral do experimento aleatório. Uniões, interseções e complementos são algumas dessas associações que, doravante, serão muito utilizados.</p>
+<p><span class="math display">\[
+\Omega=\{1,2,3,4,5,6\}.
+\]</span></p>
 <p><br />
 </p>
-<p>Por essa razão, a representação do espaço amostral e esses eventos por meio de Diagramas de Venn pode ajudar a compreensão de um problema de cálculo probabilidade.</p>
+<p>Sobre esse espaço amostral, definimos os seguintes eventos:</p>
+<p><span class="math display">\[
+\begin{aligned}
+A&amp;=\{2\}, &amp;&amp;\text{obter o número 2};\\
+B&amp;=\{2,4,6\}, &amp;&amp;\text{obter um número par};\\
+C&amp;=\{1,3,5\}, &amp;&amp;\text{obter um número ímpar};\\
+D&amp;=\{1,2,3\}, &amp;&amp;\text{obter um número menor ou igual a 3}.
+\end{aligned}
+\]</span></p>
+<p><br />
+</p>
+<div id="representação-por-diagramas-de-venn" class="section level4 hasAnchor" number="4.2.3.1">
+<h4><span class="header-section-number">4.2.3.1</span> Representação por Diagramas de Venn<a href="#representa%C3%A7%C3%A3o-por-diagramas-de-venn" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><br />
+</p>
+<p>Em muitos problemas de probabilidade, um evento de interesse pode ser formado pela associação de dois ou mais eventos. A união, a interseção e o complemento são algumas dessas associações.</p>
 <p><br />
 </p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-73"></span>
@@ -1102,220 +1274,233 @@ Figure 4.2: John Venn, 1834–1923
 </div>
 <p><br />
 </p>
-<div id="união-a-cup-b" class="section level5 hasAnchor" number="4.2.3.1.1">
-<h5><span class="header-section-number">4.2.3.1.1</span> União <span class="math inline">\(A \cup B\)</span><a href="#uni%C3%A3o-a-cup-b" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p>Sejam <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> dois <em>eventos de interesse</em> definidos sobre o <em>espaço amostral</em> <span class="math inline">\(\Omega=\{1,2,3,4,5,6\}\)</span> (lançamento de um dado) tais que <span class="math inline">\(A=\{1,2,3\}\)</span> e <span class="math inline">\(B=\{2,4,6\}\)</span>.</p>
+<p>Os Diagramas de Venn auxiliam na representação do espaço amostral e dos eventos definidos sobre ele. Nesta representação, o retângulo corresponde ao espaço amostral <span class="math inline">\(\Omega\)</span>, enquanto as regiões delimitadas em seu interior correspondem aos eventos de interesse. Os elementos do espaço amostral são posicionados nas regiões às quais pertencem.</p>
 <p><br />
 </p>
-<p>Um <em>evento de interesse</em> <span class="math inline">\(E\)</span> expresso como a <em>união</em> desses dois outros, representado por <span class="math inline">\(E=(A \cup B)\)</span>, será o subconjunto do espaço amostral <span class="math inline">\(\Omega\)</span> que contém os elementos que pertençam <strong>a <span class="math inline">\(A\)</span>, ou a <span class="math inline">\(B\)</span> ou a ambos</strong>.</p>
+</div>
+<div id="eventos-simples-ou-elementares-e-eventos-compostos" class="section level4 hasAnchor" number="4.2.3.2">
+<h4><span class="header-section-number">4.2.3.2</span> Eventos simples ou elementares e eventos compostos<a href="introducao-ao-calculo-de-probabilidades.html#eventos-simples-ou-elementares-e-eventos-compostos" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><br />
 </p>
-<p>Desse modo, <span class="math inline">\(E=A \cup B=\{1,2,3,4,6\}\)</span> e o Diagrama de Venn correspondente será:</p>
+<p>O evento <span class="math inline">\(A\)</span>, definido como a obtenção do número 2, contém apenas um elemento do espaço amostral:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+A=\{2\}.
+\]</span><br />
+</p>
+<p>Um evento formado por apenas um elemento de <span class="math inline">\(\Omega\)</span> é denominado <strong>evento simples</strong> ou <strong>evento elementar</strong>.</p>
+<p><br />
+</p>
+<p>Por outro lado, o evento <span class="math inline">\(B\)</span>, definido como a obtenção de um número par, contém três elementos:</p>
+<p><span class="math display">\[
+B=\{2,4,6\}.
+\]</span></p>
+<p><br />
+</p>
+<p>Um evento formado por mais de um elemento do espaço amostral é denominado <strong>evento composto</strong>.</p>
 <p><br />
 </p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-74"></span>
-<img src="images4/A_UN_B.jpg" alt="União: $A \cup B$" width="80%" />
+<img src="images4/evento_simples_composto.png" alt="Evento simples $A$ e evento composto $B$" width="80%" />
 <p class="caption">
-Figure 4.3: União: <span class="math inline">\(A \cup B\)</span>
+Figure 4.3: Evento simples <span class="math inline">\(A\)</span> e evento composto <span class="math inline">\(B\)</span>
 </p>
 </div>
 <p><br />
 </p>
-<p>Na realização desse <em>experimento aleatório</em> (lançar um dado) o <em>evento de ineteresse</em> <span class="math inline">\(E\)</span> ocorrerá quando qualquer um dos resultados for um elemento pertencente a <span class="math inline">\(A\)</span>, ou a <span class="math inline">\(B\)</span> ou a <em>ambos</em>.</p>
+</div>
+<div id="união-de-eventos-bcup-d" class="section level4 hasAnchor" number="4.2.3.3">
+<h4><span class="header-section-number">4.2.3.3</span> União de eventos: <span class="math inline">\(B\cup D\)</span><a href="#uni%C3%A3o-de-eventos-bcup-d" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><br />
 </p>
-</div>
-<div id="interseção-a-cap-b" class="section level5 hasAnchor" number="4.2.3.1.2">
-<h5><span class="header-section-number">4.2.3.1.2</span> Interseção <span class="math inline">\(A \cap B\)</span><a href="#interse%C3%A7%C3%A3o-a-cap-b" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p>Um <em>evento de interresse</em> <span class="math inline">\(E\)</span> definido como a <em>interseção</em> dos eventos <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> anteriormente definodos, representado por <span class="math inline">\(E=(A \cap B)\)</span>, será o subconjunto do espaço amostral <span class="math inline">\(\Omega\)</span> que contém todos os elementos que pertençam <strong>a ambos os eventos A e B simultaneamente</strong>.<br />
+<p>A <strong>união</strong> de dois eventos contém os resultados que pertencem a um dos eventos ou a ambos. Para</p>
+<p><br />
 </p>
-<p>Desse modo, <span class="math inline">\(E=(A \cap B) =\{2\}\)</span> e o Diagrama de Venn correspondente será:</p>
+<p><span class="math display">\[
+B=\{2,4,6\}
+\]</span></p>
+<p><br />
+</p>
+<p>e</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+D=\{1,2,3\},
+\]</span></p>
+<p><br />
+</p>
+<p>temos</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+B\cup D=\{1,2,3,4,6\}.
+\]</span></p>
+<p><br />
+</p>
+<p>Portanto, <span class="math inline">\(B\cup D\)</span> ocorre quando o resultado é par, menor ou igual a 3, ou satisfaz simultaneamente as duas condições.</p>
 <p><br />
 </p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-75"></span>
-<img src="images4/A_INTER_B.jpg" alt="Interseção: $A \cap B$" width="80%" />
+<img src="images4/uniao_B_D.png" alt="União dos eventos $B$ e $D$" width="80%" />
 <p class="caption">
-Figure 4.4: Interseção: <span class="math inline">\(A \cap B\)</span>
+Figure 4.4: União dos eventos <span class="math inline">\(B\)</span> e <span class="math inline">\(D\)</span>
 </p>
 </div>
 <p><br />
 </p>
-<p>Na realização desse <em>experimento aleatório</em> (lançar um dado) o <em>evento de interesse</em> <span class="math inline">\(E\)</span> ocorrerá apenas quando o resultado for um elemento simultaneamente pertencente a <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> .</p>
+</div>
+<div id="interseção-de-eventos-bcap-d" class="section level4 hasAnchor" number="4.2.3.4">
+<h4><span class="header-section-number">4.2.3.4</span> Interseção de eventos: <span class="math inline">\(B\cap D\)</span><a href="#interse%C3%A7%C3%A3o-de-eventos-bcap-d" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><br />
 </p>
-<p>Quando o evento de interesse é definido pela interseção de dois outros, todavia esssa interseção é vazia, representa-se <span class="math inline">\(E\)</span> como</p>
-<p><br />
-</p>
+<p>A <strong>interseção</strong> de dois eventos contém somente os resultados que pertencem simultaneamente aos dois eventos. No exemplo,</p>
 <p><span class="math display">\[
-E(A \cap B) = \varnothing
+B\cap D=\{2\}.
 \]</span></p>
 <p><br />
 </p>
-</div>
-<div id="complemmento-ac" class="section level5 hasAnchor" number="4.2.3.1.3">
-<h5><span class="header-section-number">4.2.3.1.3</span> Complemmento <span class="math inline">\(A^{c}\)</span><a href="introducao-ao-calculo-de-probabilidades.html#complemmento-ac" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p>Um <em>evento de intersse</em> pode também ser definido como o <em>complemento</em> de outros como, por exemplo, de <span class="math inline">\(A\)</span>, sendo representado representado por <span class="math inline">\(E=(A^{c})\)</span> (ou <span class="math inline">\(E=(\stackrel{-}{A})\)</span>).</p>
-<p><br />
-</p>
-<p>Desse modo, <span class="math inline">\(E=(A^{c}) =\{4,5,6\}\)</span> e o Diagrama de Venn correspondente será:</p>
+<p>Assim, o evento <span class="math inline">\(B\cap D\)</span> ocorre apenas quando o resultado do lançamento é o número 2.</p>
 <p><br />
 </p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-76"></span>
-<img src="images4/COMP_A.jpg" alt="Complementar  $A^{c}$" width="80%" />
+<img src="images4/intersecao_B_D.png" alt="Interseção dos eventos $B$ e $D$" width="80%" />
 <p class="caption">
-Figure 4.5: Complementar <span class="math inline">\(A^{c}\)</span>
+Figure 4.5: Interseção dos eventos <span class="math inline">\(B\)</span> e <span class="math inline">\(D\)</span>
 </p>
 </div>
 <p><br />
 </p>
-<p>De modo análogo, para <span class="math inline">\(E=(B^{c})=\{1,3,5\}\)</span> e o Diagrama de Venn correspondente será :</p>
+</div>
+<div id="eventos-mutuamente-exclusivos" class="section level4 hasAnchor" number="4.2.3.5">
+<h4><span class="header-section-number">4.2.3.5</span> Eventos mutuamente exclusivos<a href="introducao-ao-calculo-de-probabilidades.html#eventos-mutuamente-exclusivos" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><br />
+</p>
+<p>Dois eventos são <strong>mutuamente exclusivos</strong> quando não podem ocorrer simultaneamente. Nesse caso, sua interseção é vazia.</p>
+<p><br />
+</p>
+<p>Os eventos</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+B=\{2,4,6\}
+\]</span></p>
+<p><br />
+</p>
+<p>e</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+C=\{1,3,5\}
+\]</span></p>
+<p><br />
+</p>
+<p>são mutuamente exclusivos, pois nenhum resultado pode ser simultaneamente par e ímpar:</p>
 <p><br />
 </p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-77"></span>
-<img src="images4/COMP_B.jpg" alt="Complementar de B" width="80%" />
+<img src="images4/eventos_mutuamente_exclusivos.png" alt="Eventos mutuamente exclusivos" width="80%" />
 <p class="caption">
-Figure 4.6: Complementar de B
+Figure 4.6: Eventos mutuamente exclusivos
 </p>
 </div>
+<p><br />
+</p>
+</div>
+<div id="eventos-complementares" class="section level4 hasAnchor" number="4.2.3.6">
+<h4><span class="header-section-number">4.2.3.6</span> Eventos complementares<a href="introducao-ao-calculo-de-probabilidades.html#eventos-complementares" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><br />
+</p>
+<p>O <strong>complemento</strong> de um evento <span class="math inline">\(B\)</span>, representado por <span class="math inline">\(B^c\)</span>, contém todos os elementos de <span class="math inline">\(\Omega\)</span> que não pertencem a <span class="math inline">\(B\)</span>.</p>
+<p><br />
+</p>
+<p>Como</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+B=\{2,4,6\},
+\]</span></p>
+<p><br />
+</p>
+<p>temos</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+B^c=\{1,3,5\}=C.
+\]</span></p>
+<p><br />
+</p>
+<p>Os eventos <span class="math inline">\(B\)</span> e <span class="math inline">\(C\)</span> são complementares porque</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+B\cap C=\varnothing
+\]</span></p>
+<p><br />
+</p>
+<p>e</p>
+<p><span class="math display">\[
+B\cup C=\Omega.
+\]</span></p>
 <p><br />
 </p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-78"></span>
-<img src="images4/venn.jpg" alt="Diagramas de Venn" width="80%" />
+<img src="images4/eventos_complementares.png" alt="O evento $C$ é o complemento de $B$" width="80%" />
 <p class="caption">
-Figure 4.7: Diagramas de Venn
+Figure 4.7: O evento <span class="math inline">\(C\)</span> é o complemento de <span class="math inline">\(B\)</span>
 </p>
 </div>
 <p><br />
 </p>
 </div>
-</div>
-<div id="eventos-simples-ou-elementares-e-eventos-compostos" class="section level4 hasAnchor" number="4.2.3.2">
-<h4><span class="header-section-number">4.2.3.2</span> Eventos simples (ou elementares) e eventos compostos<a href="introducao-ao-calculo-de-probabilidades.html#eventos-simples-ou-elementares-e-eventos-compostos" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="evento-certo-e-evento-impossível" class="section level4 hasAnchor" number="4.2.3.7">
+<h4><span class="header-section-number">4.2.3.7</span> Evento certo e evento impossível<a href="#evento-certo-e-evento-imposs%C3%ADvel" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><br />
 </p>
-<p>Considere o espaço amostral dos resultados do <em>experimento aleatório</em> que consista em se lançar um dado honesto:</p>
-<p><span class="math display">\[
-\Omega=\{1,2,3,4,5,6\}\\
-\]</span><br />
-</p>
-<p>O <em>evento de interesse</em> <span class="math inline">\(E_1\)</span> definido sobre o <em>experimento aleatório</em> anterior como sendo obter o número <em>2</em> é formado por apenas um elemento de <span class="math inline">\(\Omega\)</span>. Eventos formados por apenas um elemento do espaço amostral são denominados de <em>eventos simples ou elementares</em>.</p>
+<p>Um evento igual ao espaço amostral é denominado <strong>evento certo</strong>. Como todo número obtido no lançamento é par ou ímpar,</p>
 <p><br />
 </p>
 <p><span class="math display">\[
-\Omega = \{1; 2; 3; 4; 5; 6\}\\
-E_1 = \{2\}
+G=B\cup C=\Omega.
 \]</span></p>
 <p><br />
 </p>
-<p>Admita agora (sobre o mesmo <em>experimento aleatório</em>) um outro <em>evento de interesse</em> <span class="math inline">\(E_2\)</span> definido como obter-se um número <em>par</em>. Um <em>evento de interesse</em> assim definido é um <em>evento composto</em> uma vez que é formado por mais de um elemento de <span class="math inline">\(\Omega\)</span>:</p>
+<p>Por outro lado, um evento igual ao conjunto vazio é denominado <strong>evento impossível</strong>. Como nenhum resultado é simultaneamente par e ímpar,</p>
 <p><br />
 </p>
 <p><span class="math display">\[
-\Omega = \{1; 2; 3; 4; 5; 6\}\\
-E_2 = \{2; 4; 6\}
+H=B\cap C=\varnothing.
 \]</span></p>
-<p><br />
-</p>
-<p>Outro exemplo, a partir de um <em>experimento aleatório</em> definido como se lançar uma moeda <em>duas</em> vezes, apresneta como <em>espaço amostral</em> um conjunto composto por <em>quatro</em> elementos:</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-\Omega = \{(\text{Cara}, \text{Coroa}),(\text{Coroa}, \text{Cara}),(\text{Cara}, \text{Cara}), (\text{Coroa}, \text{Coroa})\}
-\]</span></p>
-<p><br />
-</p>
-<p>Se definirmos <span class="math inline">\(E_3\)</span> como <em>evento de interesse</em> nesse experimento aleatório, como sendo obter-se <em>duas caras</em>, o evento <span class="math inline">\(E_3\)</span> será um <em>evento simples</em> pois é formado por apenas <em>um</em> elemento desse espaço amostral: <span class="math inline">\(E_3=\{(\text{Cara}, \text{Cara})\}\)</span>.</p>
-<p><br />
-</p>
-<p>Se, por outro lado, definimos como <em>evento de interesse</em> <span class="math inline">\(E_4=\{(Cara, Coroa)  \text{ ou } (Coroa, Cara)\}\)</span>, o evento <span class="math inline">\(E_4\)</span> será um <em>evento composto</em> pois é formado por <em>dois</em> elementos do espaço amostral: <span class="math inline">\(E_4=\{(Cara,Coroa) , (Coroa,Cara)\}\)</span>.</p>
-<p><br />
-</p>
-<p>Se codificarmos <em>Cara=1</em> e <em>Coroa=0</em>, podemos representar num plano <span class="math inline">\(XY\)</span> o espaço amostral <span class="math inline">\(\Omega\)</span> desse experimento aleatório e o <em>evento de sucesso</em> <span class="math inline">\(E_{1}\)</span></p>
 <p><br />
 </p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-79"></span>
-<img src="images4/evento_grafico.jpg" alt="Representação gráfico do espaço amostral do experimento aleatório e do evento de interesse definido" width="50%" />
+<img src="images4/evento_certo_impossivel.png" alt="Evento certo e evento impossível" width="80%" />
 <p class="caption">
-Figure 4.8: Representação gráfico do espaço amostral do experimento aleatório e do evento de interesse definido
+Figure 4.8: Evento certo e evento impossível
 </p>
 </div>
 <p><br />
 </p>
 </div>
-<div id="eventos-certos-e-eventos-impossíveis" class="section level4 hasAnchor" number="4.2.3.3">
-<h4><span class="header-section-number">4.2.3.3</span> Eventos certos e eventos impossíveis<a href="#eventos-certos-e-eventos-imposs%C3%ADveis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="eventos-dependentes-e-independentes" class="section level4 hasAnchor" number="4.2.3.8">
+<h4><span class="header-section-number">4.2.3.8</span> Eventos dependentes e independentes<a href="introducao-ao-calculo-de-probabilidades.html#eventos-dependentes-e-independentes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><br />
 </p>
-<p>Considere o espaço amostral dos resultados do experimento aleatório que consista em se lançar um dado honesto e dois outros eventos:</p>
+<p>Dois eventos são <strong>independentes</strong> quando a ocorrência de um deles não altera a probabilidade de ocorrência do outro. Caso a ocorrência de um evento altere a probabilidade do outro, eles são denominados <strong>dependentes</strong>. Esses conceitos serão explorados em maior detalhe nas seções posteriores.</p>
+<p><br />
+</p>
 <p><span class="math display">\[
-\Omega=\{1,2,3,4,5,6\}\\
-E_5=\{1,2,3\}\\
-E_6=\{4,5,6\}\\
+\boxed{
+\begin{aligned}
+A&amp;=\{2\} &amp;&amp;\text{evento simples};\\
+B&amp;=\{2,4,6\} &amp;&amp;\text{evento composto};\\
+B\cup D&amp;=\{1,2,3,4,6\} &amp;&amp;\text{união};\\
+B\cap D&amp;=\{2\} &amp;&amp;\text{interseção};\\
+B\cap C&amp;=\varnothing &amp;&amp;\text{evento impossível};\\
+B\cup C&amp;=\Omega &amp;&amp;\text{evento certo};\\
+C&amp;=B^c &amp;&amp;\text{evento complementar de }B.
+\end{aligned}}
 \]</span></p>
-<p><br />
-</p>
-<p>Se nosso evento de interesse for <span class="math inline">\(E_7=\{E_5 \cap E_6\}\)</span>, então <span class="math inline">\(E_7=\Omega\)</span>. Um evento de interesse qualquer <span class="math inline">\(G\)</span>, definido sobre o espaço amostral <span class="math inline">\(\Omega\)</span>, tal que <span class="math inline">\(G = \Omega\)</span> é denominado um <em>evento certo</em>.</p>
-<p><br />
-</p>
-<p>Por outro lado, se nosso evento de interesse <span class="math inline">\(E_8\)</span> for assim definido <span class="math inline">\(E_8=\{E_5 \cap E_6\}\)</span>, então <span class="math inline">\(E_8=\varnothing\)</span> . Um evento de interesse qualquer <span class="math inline">\(G\)</span>, definido sobre o espaço amostral <span class="math inline">\(\Omega\)</span>, tal que <span class="math inline">\(G =\varnothing\)</span> é denominado um <em>evento impossível</em>.</p>
-<p><br />
-</p>
-</div>
-<div id="eventos-mutuamente-exclusivos" class="section level4 hasAnchor" number="4.2.3.4">
-<h4><span class="header-section-number">4.2.3.4</span> Eventos mutuamente exclusivos<a href="introducao-ao-calculo-de-probabilidades.html#eventos-mutuamente-exclusivos" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><br />
-</p>
-<p>No espaço amostral do <em>experimento aleatório</em> do lançamento de um dado <span class="math inline">\(\Omega=\{1,2,3,4,5,6\}\)</span>, se definirmos os seguintes eventos:</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-E_5=\{1,2,3\}\\
-E_6=\{4,5,6\}\\
-\]</span><br />
-</p>
-<p>e definirmos <span class="math inline">\(E_9\)</span> como nosso <em>evento de interesse</em>, tal que <span class="math inline">\(E_9=A \cap B\)</span>, um evento assim definido teria sua interseção vazia</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-E_9=(E_5 \cap E_6) = \varnothing
-\]</span></p>
-<p><br />
-</p>
-</div>
-<div id="eventos-complementares" class="section level4 hasAnchor" number="4.2.3.5">
-<h4><span class="header-section-number">4.2.3.5</span> Eventos complementares<a href="introducao-ao-calculo-de-probabilidades.html#eventos-complementares" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><br />
-</p>
-<p>Considere novamente o espaço amostral do <em>experimento aleatório</em> de se lançar um dado uma vez:</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-\Omega=\{1,2,3,4,5,6\}\\
-\]</span></p>
-<p><br />
-</p>
-<p>Um evento qualquer <span class="math inline">\(E_10\)</span> definido como o complementar de outro evento <span class="math inline">\(E_5\)</span> será:</p>
-<p><span class="math display">\[
-E_5=\{1,2,3\}\\
-E_{10}=E_5^{c}\\
-E_{10}=\{4,5,6\}\\
-\]</span></p>
-</div>
-<div id="eventos-independentes" class="section level4 hasAnchor" number="4.2.3.6">
-<h4><span class="header-section-number">4.2.3.6</span> Eventos independentes<a href="introducao-ao-calculo-de-probabilidades.html#eventos-independentes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><br />
-</p>
-<p>Dois eventos são considerados <em>independentes</em> quando a probabilidade de ocorrência de um evento de interesse em um determinado experimento aleatório não é influenciada pelo <em>resultado prévio</em> de outro evento.</p>
-<p><br />
-</p>
-<blockquote>
-<p>Em outras palavras, a ocorrência de um evento não altera a probabilidade do outro. Caso contrário, esses eventos são classificados como dependentes ou condicionados.</p>
-</blockquote>
-<p><br />
-</p>
-<p>Este conceito será explorado em maior detalhe em seções posteriores.</p>
-<p><br />
-</p>
 </div>
 </div>
 <div id="probabilidade" class="section level3 hasAnchor" number="4.2.4">
@@ -1485,9 +1670,9 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb51-14"><a href="introducao-ao-calculo-de-probabilidades.html#cb51-14" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;A frequência observada da face&quot;</span>, face_escolhida, <span class="st">&quot;foi de&quot;</span>, frequencia, <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb51-15"><a href="introducao-ao-calculo-de-probabilidades.html#cb51-15" tabindex="-1"></a>}</span></code></pre></div>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb52-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 10 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 0 %</code></pre>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb54-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10000</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 16.56 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 16.3 %</code></pre>
 <p><br />
 </p>
 <p>Ao simular o lançamento de um dado, por exemplo, é possível observar como as frequências relativas de todas as faces começam a se aproximar das probabilidades teóricas (<span class="math inline">\(P(1)=P(2)=P(3)=P(4)=P(5)=P(6)=\frac{1}{6}\)</span>) à medida que aumentamos o número de repetições.</p>
@@ -2047,10 +2232,10 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb63-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb63-3" tabindex="-1"></a><span class="fu">table</span>(popSim<span class="sc">$</span>Curso, popSim<span class="sc">$</span>Sexo)</span></code></pre></div>
 <pre><code>##                      
 ##                           F     M
-##   Computação           4925 10075
-##   Estatística         10000  5000
-##   Matemática aplicada  7457  7543
-##   Matemática pura     20103 34897</code></pre>
+##   Computação           4972 10028
+##   Estatística         10081  4919
+##   Matemática aplicada  7485  7515
+##   Matemática pura     20054 34946</code></pre>
 <p><br />
 </p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb65-1" tabindex="-1"></a><span class="co"># Selecionar uma amostra de 200 com reposição (simular a tabela)</span></span>
@@ -2064,27 +2249,27 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb65-9"><a href="introducao-ao-calculo-de-probabilidades.html#cb65-9" tabindex="-1"></a>tab</span></code></pre></div>
 <pre><code>##                          
 ##                             M   F Total
-##   Matemática pura (M)      72  47   119
-##   Matemática aplicada (A)  10  17    27
-##   Estatística (E)          15  20    35
-##   Computação (C)           13   6    19
-##   Total                   110  90   200</code></pre>
+##   Matemática pura (M)      80  39   119
+##   Matemática aplicada (A)  13  10    23
+##   Estatística (E)           7  20    27
+##   Computação (C)           21  10    31
+##   Total                   121  79   200</code></pre>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb67-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-2" tabindex="-1"></a>pMasc<span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb67-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-3" tabindex="-1"></a>pMasc</span></code></pre></div>
-<pre><code>## [1] 0.55</code></pre>
+<pre><code>## [1] 0.605</code></pre>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; na amostra</span></span>
 <span id="cb69-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-2" tabindex="-1"></a>pMatAp <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span>)</span>
 <span id="cb69-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-3" tabindex="-1"></a>pMatAp</span></code></pre></div>
-<pre><code>## [1] 0.135</code></pre>
+<pre><code>## [1] 0.115</code></pre>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -E- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb71-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-2" tabindex="-1"></a>pMatAp_and_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">&amp;</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb71-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-3" tabindex="-1"></a>pMatAp_and_Masc</span></code></pre></div>
-<pre><code>## [1] 0.05</code></pre>
+<pre><code>## [1] 0.065</code></pre>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -OU- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb73-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-2" tabindex="-1"></a>pMatAp_or_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">|</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb73-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-3" tabindex="-1"></a>pMatAp_or_Masc</span></code></pre></div>
-<pre><code>## [1] 0.635</code></pre>
+<pre><code>## [1] 0.655</code></pre>
 <p><br />
 </p>
 <blockquote>

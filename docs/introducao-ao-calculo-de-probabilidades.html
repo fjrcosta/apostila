@@ -1671,9 +1671,9 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb51-14"><a href="introducao-ao-calculo-de-probabilidades.html#cb51-14" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;A frequência observada da face&quot;</span>, face_escolhida, <span class="st">&quot;foi de&quot;</span>, frequencia, <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb51-15"><a href="introducao-ao-calculo-de-probabilidades.html#cb51-15" tabindex="-1"></a>}</span></code></pre></div>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb52-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 30 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 10 %</code></pre>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb54-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10000</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 16.92 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 16.73 %</code></pre>
 <p><br />
 </p>
 <p>Ao simular o lançamento de um dado, por exemplo, é possível observar como as frequências relativas de todas as faces começam a se aproximar das probabilidades teóricas (<span class="math inline">\(P(1)=P(2)=P(3)=P(4)=P(5)=P(6)=\frac{1}{6}\)</span>) à medida que aumentamos o número de repetições.</p>
@@ -2257,10 +2257,10 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb63-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb63-3" tabindex="-1"></a><span class="fu">table</span>(popSim<span class="sc">$</span>Curso, popSim<span class="sc">$</span>Sexo)</span></code></pre></div>
 <pre><code>##                      
 ##                           F     M
-##   Computação           5085  9915
-##   Estatística          9975  5025
-##   Matemática aplicada  7402  7598
-##   Matemática pura     20112 34888</code></pre>
+##   Computação           4958 10042
+##   Estatística         10064  4936
+##   Matemática aplicada  7377  7623
+##   Matemática pura     20133 34867</code></pre>
 <p><br />
 </p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb65-1" tabindex="-1"></a><span class="co"># Selecionar uma amostra de 200 com reposição (simular a tabela)</span></span>
@@ -2274,27 +2274,27 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb65-9"><a href="introducao-ao-calculo-de-probabilidades.html#cb65-9" tabindex="-1"></a>tab</span></code></pre></div>
 <pre><code>##                          
 ##                             M   F Total
-##   Matemática pura (M)      73  37   110
-##   Matemática aplicada (A)  11  14    25
-##   Estatística (E)          12  25    37
-##   Computação (C)           17  11    28
-##   Total                   113  87   200</code></pre>
+##   Matemática pura (M)      70  40   110
+##   Matemática aplicada (A)  12  14    26
+##   Estatística (E)          14  20    34
+##   Computação (C)           19  11    30
+##   Total                   115  85   200</code></pre>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb67-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-2" tabindex="-1"></a>pMasc<span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb67-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-3" tabindex="-1"></a>pMasc</span></code></pre></div>
-<pre><code>## [1] 0.565</code></pre>
+<pre><code>## [1] 0.575</code></pre>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; na amostra</span></span>
 <span id="cb69-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-2" tabindex="-1"></a>pMatAp <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span>)</span>
 <span id="cb69-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-3" tabindex="-1"></a>pMatAp</span></code></pre></div>
-<pre><code>## [1] 0.125</code></pre>
+<pre><code>## [1] 0.13</code></pre>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -E- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb71-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-2" tabindex="-1"></a>pMatAp_and_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">&amp;</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb71-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-3" tabindex="-1"></a>pMatAp_and_Masc</span></code></pre></div>
-<pre><code>## [1] 0.055</code></pre>
+<pre><code>## [1] 0.06</code></pre>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -OU- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb73-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-2" tabindex="-1"></a>pMatAp_or_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">|</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb73-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-3" tabindex="-1"></a>pMatAp_or_Masc</span></code></pre></div>
-<pre><code>## [1] 0.635</code></pre>
+<pre><code>## [1] 0.645</code></pre>
 <p><br />
 </p>
 <blockquote>
@@ -2626,8 +2626,7 @@ P(M|F) &amp; = \frac{P(M \cap F)}{P(F)} \\
 <p>1- Qual a probabilidade de que goste de tênis (<span class="math inline">\(P(T)\)</span>)?<br />
 2- Qual probabilidade de que não goste de tênis (<span class="math inline">\(P(T^{c})\)</span>)?<br />
 3- Qual a probabilidade de que seja do sexo feminino <strong>ou</strong> goste de tênis: (<span class="math inline">\(P(F \cup T)\)</span>)?<br />
-4- Sabendo-se que foi sorteada uma aluna, qual a probabilidade de que goste de tênis (<span class="math inline">\(P(T|F))\)</span>?<br />
-5- Verifique se os eventos <strong><span class="math inline">\(T\)</span>: “gostar de tênis”</strong> e <strong><span class="math inline">\(F\)</span>:“ser do sexo feminino”</strong> são condicionados ou independentes (<span class="math inline">\(P(T \cap F) \stackrel{?}{=} P(T) \times P(F)\)</span>))</p>
+4- Sabendo-se que foi sorteada uma aluna, qual a probabilidade de que goste de tênis (<span class="math inline">\(P(T|F))\)</span>?</p>
 <p><br />
 </p>
 <table>
@@ -2799,30 +2798,136 @@ P (A \cap B)= P(A) \times P(B)
 </p>
 <div id="demonstração-de-independência-entre-eventos" class="section level3 hasAnchor" number="4.5.1">
 <h3><span class="header-section-number">4.5.1</span> Demonstração de Independência entre Eventos<a href="#demonstra%C3%A7%C3%A3o-de-independ%C3%AAncia-entre-eventos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Para demonstrar que dois eventos <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> são independentes, é suficiente verificar a igualdade:</p>
+<p><br />
+</p>
+<p>Para demonstrar que dois eventos <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> são independentes, basta verificar a igualdade</p>
+<p><br />
+</p>
 <p><span class="math display">\[
-P(A \cap B) \stackrel{?}{=} P(A) \cdot P(B)
+P(A \cap B) \overset{?}{=} P(A) \cdot P(B).
+\]</span><br />
+</p>
+<p>O procedimento consiste em calcular cada lado separadamente: obtém-se <span class="math inline">\(P(A \cap B)\)</span> diretamente a partir do espaço amostral ou dos dados do problema, e calcula-se <span class="math inline">\(P(A) \cdot P(B)\)</span> a partir das probabilidades marginais de cada evento. Ao final, comparam-se os dois valores, de preferência na forma de frações exatas, para evitar erros de arredondamento. Se a igualdade se confirma, os eventos são independentes; caso contrário, são dependentes.</p>
+<p><br />
+</p>
+<p><strong>Observação:</strong> esse procedimento se aplica quando as probabilidades são conhecidas (modelo teórico ou espaço amostral definido). Quando elas são estimadas a partir de frequências observadas em uma amostra, a verificação da independência requer um teste de hipótese, como o teste qui-quadrado de independência.</p>
+<p><br />
+</p>
+<p>No exemplo das cartas, o evento <span class="math inline">\(A \cap B\)</span> corresponde às cartas vermelhas com figuras (<span class="math inline">\(A\)</span>, <span class="math inline">\(J\)</span>, <span class="math inline">\(Q\)</span> e <span class="math inline">\(K\)</span> de ouros e de copas), totalizando 8 cartas. Assim,</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(A \cap B) = \frac{8}{52} = \frac{2}{13}
 \]</span></p>
-<p>O procedimento consiste em calcular cada lado de forma independente: obtém-se <span class="math inline">\(P(A \cap B)\)</span> diretamente a partir do espaço amostral ou dos dados do problema,e calcula-se <span class="math inline">\(P(A) \cdot P(B)\)</span> a partir das probabilidades marginais de cada
-evento. Ao final, comparam-se os dois valores — se a igualdade se confirma,os eventos são independentes; caso contrário, são dependentes.</p>
+<p><br />
+</p>
+<p>e</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(A) \cdot P(B) = \frac{26}{52} \cdot \frac{16}{52} = \frac{1}{2} \cdot \frac{4}{13} = \frac{2}{13}.
+\]</span></p>
+<p><br />
+</p>
+<p>Como <span class="math inline">\(P(A \cap B) = P(A) \cdot P(B)\)</span>, os eventos <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> são <strong>independentes</strong>: saber que a carta sorteada é vermelha não altera a probabilidade de ela ser uma figura.</p>
+<p><br />
+</p>
+<p>No exemplo dos dias de sol, considere o sorteio ao acaso de um dos 10 dias observados e os eventos “ir à praia” e “fez sol”. Houve ida à praia em 6 dias (2, 4, 5, 6, 9 e 10), sol em 6 dias (2, 4, 6, 7, 9 e 10) e ida à praia com sol em 5 dias (2, 4, 6, 9 e 10). Assim,</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(\text{ir à praia} \cap \text{fez sol}) = \frac{5}{10} = 0,5
+\]</span></p>
+<p><br />
+</p>
+<p>e</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(\text{praia}) \cdot P(\text{sol}) = \frac{6}{10} \cdot \frac{6}{10} = 0,36.
+\]</span></p>
+<p><br />
+</p>
+<p>Como <span class="math inline">\(0,5 \neq 0,36\)</span>, os eventos são <strong>dependentes</strong>: a ocorrência de sol está associada à ida à praia.</p>
+<p><br />
+</p>
+<p>No exemplo da telefonia, sejam <span class="math inline">\(F\)</span> o evento “a pessoa possui telefone fixo” e <span class="math inline">\(M\)</span> o evento “a pessoa possui telefone móvel”. Então,</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(F \cap M) = \frac{3.000}{15.000} = \frac{1}{5} = 0,2
+\]</span></p>
+<p><br />
+</p>
+<p>e</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(F) \cdot P(M) = \frac{10.000}{15.000} \cdot \frac{8.000}{15.000} = \frac{2}{3} \cdot \frac{8}{15} = \frac{16}{45} \approx 0,356.
+\]</span></p>
+<p><br />
+</p>
+<p>Como <span class="math inline">\(0,2 \neq \frac{16}{45}\)</span>, os eventos <span class="math inline">\(F\)</span> e <span class="math inline">\(M\)</span> são <strong>dependentes</strong>.</p>
+<p><br />
+</p>
+<p>No exemplo dos alunos e da preferência por tênis, considere os eventos <span class="math inline">\(T\)</span> (gostar de tênis) e <span class="math inline">\(M\)</span> (sexo masculino). Então,</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(T \cap M) = \frac{400}{700} = \frac{4}{7} = \frac{28}{49} \approx 0,571
+\]</span></p>
+<p><br />
+</p>
+<p>e</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(T) \cdot P(M) = \frac{600}{700} \cdot \frac{450}{700} = \frac{6}{7} \cdot \frac{9}{14} = \frac{27}{49} \approx 0,551.
+\]</span></p>
+<p><br />
+</p>
+<p>Como <span class="math inline">\(\frac{28}{49} \neq \frac{27}{49}\)</span>, os eventos <span class="math inline">\(T\)</span> e <span class="math inline">\(M\)</span> são <strong>dependentes</strong>. Verificar apenas esse par basta: se <span class="math inline">\(T\)</span> e <span class="math inline">\(M\)</span> fossem independentes, os pares formados com seus complementares (<span class="math inline">\(T\)</span> e <span class="math inline">\(F\)</span>, <span class="math inline">\(NT\)</span> e <span class="math inline">\(M\)</span>, <span class="math inline">\(NT\)</span> e <span class="math inline">\(F\)</span>) também seriam. Logo, todos esses pares são dependentes.</p>
+<p><br />
+</p>
 </div>
 <div id="reciprocidade-da-independência" class="section level3 hasAnchor" number="4.5.2">
 <h3><span class="header-section-number">4.5.2</span> Reciprocidade da Independência<a href="#reciprocidade-da-independ%C3%AAncia" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A independência é uma relação <strong>recíproca</strong>: se <span class="math inline">\(A\)</span> independe de <span class="math inline">\(B\)</span>, então <span class="math inline">\(B\)</span> independe de <span class="math inline">\(A\)</span>. A demonstração é direta. Assumindo: <span class="math inline">\(P(A \cap B) = P(A) \cdot P(B)\)</span> e <span class="math inline">\(P(A) &gt; 0\)</span>:</p>
+<p><br />
+</p>
+<p>A independência é uma relação <strong>recíproca</strong>: se <span class="math inline">\(A\)</span> independe de <span class="math inline">\(B\)</span>, então <span class="math inline">\(B\)</span> independe de <span class="math inline">\(A\)</span>. Suponha <span class="math inline">\(P(A) &gt; 0\)</span>, <span class="math inline">\(P(B) &gt; 0\)</span> e <span class="math inline">\(P(A \mid B) = P(A)\)</span>. Então</p>
+<p><br />
+</p>
 <p><span class="math display">\[
-P(B|A) = \frac{P(A \cap B)}{P(A)} = \frac{P(A) \cdot P(B)}{P(A)} = P(B)
+P(A \cap B) = P(A \mid B) \cdot P(B) = P(A) \cdot P(B),
 \]</span></p>
+<p><br />
+</p>
+<p>e, portanto,</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(B \mid A) = \frac{P(A \cap B)}{P(A)} = \frac{P(A) \cdot P(B)}{P(A)} = P(B).
+\]</span></p>
+<p><br />
+</p>
 <p>A simetria decorre da comutatividade da interseção (<span class="math inline">\(A \cap B = B \cap A\)</span>): a condição <span class="math inline">\(P(A \cap B) = P(A) \cdot P(B)\)</span> é simétrica em <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span>, de modo que vale para o par <span class="math inline">\((A, B)\)</span> se e somente se vale para o par <span class="math inline">\((B, A)\)</span>.</p>
-<p>Observação Importante: Independência <strong>não deve ser confundida</strong> com eventos <strong>mutuamente exclusivos</strong> (disjuntos). Se <span class="math inline">\(A \cap B = \emptyset\)</span> e ambos têm probabilidade positiva, então:</p>
+<p><br />
+</p>
+<p><strong>Observação importante:</strong> independência <strong>não deve ser confundida</strong> com eventos <strong>mutuamente exclusivos</strong> (disjuntos). Se <span class="math inline">\(A \cap B = \emptyset\)</span>, com <span class="math inline">\(P(A) &gt; 0\)</span> e <span class="math inline">\(P(B) &gt; 0\)</span>, então</p>
+<p><br />
+</p>
 <p><span class="math display">\[
-P(A \cap B) = 0 \neq P(A) \cdot P(B)
-\]</span></p>
+P(A \cap B) = 0 &lt; P(A) \cdot P(B).
+\]</span><br />
+</p>
 <p>Logo, eventos disjuntos com probabilidade positiva são necessariamente <strong>dependentes</strong>.</p>
 <p><br />
 </p>
 </div>
 <div id="exemplo-clássico-de-eventos-independentes" class="section level3 hasAnchor" number="4.5.3">
 <h3><span class="header-section-number">4.5.3</span> Exemplo clássico de eventos independentes<a href="#exemplo-cl%C3%A1ssico-de-eventos-independentes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><br />
+</p>
 <p>Uma bolsa contém 5 bolas <font color='red'>vermelhas</font> e 5 <font color='blue'>azuis</font>. Nós removemos uma bola aleatória da bolsa, registramos sua cor <strong>e a colocamos de volta na sacola</strong>. Em seguida, removemos outra bola aleatória da bolsa e registramos sua cor.</p>
 <p><br />
 </p>

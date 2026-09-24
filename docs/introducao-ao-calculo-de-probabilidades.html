@@ -1671,9 +1671,9 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb51-14"><a href="introducao-ao-calculo-de-probabilidades.html#cb51-14" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;A frequência observada da face&quot;</span>, face_escolhida, <span class="st">&quot;foi de&quot;</span>, frequencia, <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb51-15"><a href="introducao-ao-calculo-de-probabilidades.html#cb51-15" tabindex="-1"></a>}</span></code></pre></div>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb52-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 10 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 20 %</code></pre>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb54-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10000</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 16.73 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 16.26 %</code></pre>
 <p><br />
 </p>
 <p>Ao simular o lançamento de um dado, por exemplo, é possível observar como as frequências relativas de todas as faces começam a se aproximar das probabilidades teóricas (<span class="math inline">\(P(1)=P(2)=P(3)=P(4)=P(5)=P(6)=\frac{1}{6}\)</span>) à medida que aumentamos o número de repetições.</p>
@@ -2257,10 +2257,10 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb63-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb63-3" tabindex="-1"></a><span class="fu">table</span>(popSim<span class="sc">$</span>Curso, popSim<span class="sc">$</span>Sexo)</span></code></pre></div>
 <pre><code>##                      
 ##                           F     M
-##   Computação           4958 10042
-##   Estatística         10064  4936
-##   Matemática aplicada  7377  7623
-##   Matemática pura     20133 34867</code></pre>
+##   Computação           5072  9928
+##   Estatística          9929  5071
+##   Matemática aplicada  7467  7533
+##   Matemática pura     19901 35099</code></pre>
 <p><br />
 </p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb65-1" tabindex="-1"></a><span class="co"># Selecionar uma amostra de 200 com reposição (simular a tabela)</span></span>
@@ -2274,27 +2274,27 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb65-9"><a href="introducao-ao-calculo-de-probabilidades.html#cb65-9" tabindex="-1"></a>tab</span></code></pre></div>
 <pre><code>##                          
 ##                             M   F Total
-##   Matemática pura (M)      70  40   110
-##   Matemática aplicada (A)  12  14    26
-##   Estatística (E)          14  20    34
-##   Computação (C)           19  11    30
-##   Total                   115  85   200</code></pre>
+##   Matemática pura (M)      90  34   124
+##   Matemática aplicada (A)   7  15    22
+##   Estatística (E)           7  11    18
+##   Computação (C)           24  12    36
+##   Total                   128  72   200</code></pre>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb67-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-2" tabindex="-1"></a>pMasc<span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb67-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-3" tabindex="-1"></a>pMasc</span></code></pre></div>
-<pre><code>## [1] 0.575</code></pre>
+<pre><code>## [1] 0.64</code></pre>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; na amostra</span></span>
 <span id="cb69-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-2" tabindex="-1"></a>pMatAp <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span>)</span>
 <span id="cb69-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-3" tabindex="-1"></a>pMatAp</span></code></pre></div>
-<pre><code>## [1] 0.13</code></pre>
+<pre><code>## [1] 0.11</code></pre>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -E- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb71-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-2" tabindex="-1"></a>pMatAp_and_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">&amp;</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb71-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-3" tabindex="-1"></a>pMatAp_and_Masc</span></code></pre></div>
-<pre><code>## [1] 0.06</code></pre>
+<pre><code>## [1] 0.035</code></pre>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -OU- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb73-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-2" tabindex="-1"></a>pMatAp_or_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">|</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb73-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-3" tabindex="-1"></a>pMatAp_or_Masc</span></code></pre></div>
-<pre><code>## [1] 0.645</code></pre>
+<pre><code>## [1] 0.715</code></pre>
 <p><br />
 </p>
 <blockquote>
@@ -2675,19 +2675,30 @@ P(M|F) &amp; = \frac{P(M \cap F)}{P(F)} \\
 <p><br />
 </p>
 <blockquote>
-<p>Exemplo: Imagine que um jogador está treinando cobranças de pênaltis. Historicamente a probabilidade de acertar uma cobrança, supondo que acertou a anterior é de 60%. Mas, se ele tiver errado a anterior a probabilidade de acertar cai para 30%. Construa a distribuição de probabilidades do número de acertos em 3 tentativas de cobrança.</p>
+<p>Exemplo: Imagine que um jogador está treinando cobranças de pênaltis. Historicamente, a probabilidade de acertar a primeira cobrança é de 50%; todavia, as cobranças seguintes tem probabilidades diferentes: (a) supondo que ele acertou a cobrança anterior, a probabilidade de acertar novamente sobe para 60%. Mas, se ele tiver errado a anterior a probabilidade de acertar a seguinte cai para 30%. Construa a distribuição de probabilidades do número de acertos em 3 tentativas de cobrança.</p>
 </blockquote>
 <p><br />
 </p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-97"></span>
-<img src="images4/arv_bin_2.png" alt="Diagrama em árvore das três repetições dependentes de um pênalti" width="40%" />
+<img src="images4/arv_bin_2.png" alt="Diagrama em árvore das três cobranças de um pênalti com probabilidades condicionadas." width="40%" />
 <p class="caption">
-Figure 4.18: Diagrama em árvore das três repetições dependentes de um pênalti
+Figure 4.18: Diagrama em árvore das três cobranças de um pênalti com probabilidades condicionadas.
 </p>
 </div>
 <p><br />
 </p>
-<p>A seguir vemos a cadeia de eventos necessária para que cada contagem de gols se verifique:</p>
+<p>A partir do enunciado, podemos enunciar as probabilidades condicionadas de cada uma das cobranças do seguinte modo:</p>
+<p><br />
+</p>
+<p><span class="math display">\[\begin{align*}
+P(A_{1}) &amp; = 0,50 \\
+P(E_{1}) &amp; = 0,50 \\
+P(A_{i+1}|A_{i}) &amp; =0,60 \text{ logo, pelo complementar, } P(E_{i+1}|A_{i})=0,40\\
+P(A_{i+1}|E_{i}) &amp; =0,30 \text{ logo, pelo complementar } P(E_{i+1}|E_{i})=0,70\\
+\end{align*}\]</span></p>
+<p><br />
+</p>
+<p>A seguir vemos a <em>cadeia de eventos</em> necessária para que cada contagem de gols se verifique. Para que o resultado seja de nenhum (zero) gol ou três (3) gols, há apenas uma sucessão de resultados que conduzem a esses desfechos. Todavia, para um (1) ou dois (2) gols há mais de uma sucessão de resultados que igualmente conduzem ao mesmo desfecho:</p>
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
@@ -2698,7 +2709,7 @@ Figure 4.18: Diagrama em árvore das três repetições dependentes de um pênal
 \end{align*}\]</span></p>
 <p><br />
 </p>
-<p>A probabilidade associada a cada contagem de gols será:</p>
+<p>A probabilidade associada a cada desfecho (contagem final) de gols será:</p>
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
@@ -2709,20 +2720,10 @@ P(\text{3 GOLS}) &amp; = P[A_{1} \cap A_{2}  \cap  A_{3}] \\
 \end{align*}\]</span></p>
 <p><br />
 </p>
-<p>A partir do enunciado, podemos deduzir as probabilidades de cada um dos eventos:</p>
-<p><br />
-</p>
-<p><span class="math display">\[\begin{align*}
-P(A_{1}) &amp; = 0,50 \\
-P(E_{1}) &amp; = 0,50\\
-P(A_{i+1}|A_{i}) &amp; =0,60 \text{ logo, pelo complementar, } P(E_{i+1}|A_{i})=0,40\\
-P(A_{i+1}|E_{i}) &amp; =0,30 \text{ logo, pelo complementar } P(E_{i+1}|E_{i})=0,70\\
-\end{align*}\]</span></p>
-<p><br />
-</p>
 <p><span class="math display">\[\begin{align*}
 P(\text{0 GOL}) &amp; = P[E_{1} \cap E_{2} \cap E_{3}] \\
 P(\text{0 GOL}) &amp; = P[E_{1}] \times P[E_{2}|E_{1}] \times P[E_{3}|E_{2}] \\
+&amp; \text{Como: } P(E_{i+1}|E_{i}) = 0,70 \text{ , temos} \\
 P(\text{0 GOL}) &amp; = 0,50 \times 0,70  \times 0,70 \\
 P(\text{0 GOL}) &amp; = 0,245
 \end{align*}\]</span></p>
@@ -2731,6 +2732,7 @@ P(\text{0 GOL}) &amp; = 0,245
 <p><span class="math display">\[\begin{align*}
 P(\text{3 GOLS}) &amp; = P[A_{1} \cap A_{2} \cap A_{3}] \\
 P(\text{3 GOLS}) &amp; = P[A_{1}] \times P[A_{2}|A_{1}] \times P[A_{3}|A_{2}] \\
+&amp; \text{Como: } P(A_{i+1}|A_{i}) = 0,60 \text{ , temos} \\
 P(\text{3 GOLS}) &amp; = 0,50 \times 0,60  \times 0,60 \\
 P(\text{3 GOLS}) &amp; = 0,18
 \end{align*}\]</span></p>
@@ -2741,6 +2743,9 @@ P(\text{1 GOL}) &amp; = P\{ [A_{1} \cap E_{2} \cap E_{3}]\} + P\{ [E_{1} \cap A_
 P(\text{1 GOL}) &amp; = P[A_{1}] \times P[E_{2}|A_{1}] \times P[E_{3}|E_{2}] +\\
 &amp; P[E_{1}] \times P[A_{2}|E_{1}] \times P[E_{3}|A_{2}] +\\
 &amp; P[E_{1}] \times P[E_{2}|E_{1}] \times P[A_{3}|E_{2}]\\
+&amp; \text{Como: } P(E_{i+1}|A_{i}) = 0,40 \text{ e:} \\
+&amp; P(E_{i+1}|E_{i}) = 0,70 \text{ e: }\\
+&amp; P(A_{i+1}|E_{i}) = 0,30 \text{ , temos}\\
 P(\text{1 GOL}) &amp; = 0,50 \times 0,40 \times  0,70 +\\
 &amp; 0,50 \times 0,30 \times 0,40 +\\
 &amp; 0,50 \times 0,70 \times 0,30 \\
@@ -2748,16 +2753,31 @@ P(\text{1 GOL}) &amp; =0,305
 \end{align*}\]</span></p>
 <p><br />
 </p>
+<blockquote>
+<p>Somamos as probabilidades <span class="math inline">\(P\{ [A_{1} \cap E_{2} \cap E_{3}]\} + P\{ [E_{1} \cap A_{2} \cap E_{3}]\} + P\{[E_{1} \cap E_{2} \cap A_{3}]\}\)</span> posto <span class="math inline">\([A_{1} \cap E_{2} \cap E_{3}]\)</span>, <span class="math inline">\([E_{1} \cap A_{2} \cap E_{3}]\)</span> e <span class="math inline">\([E_{1} \cap E_{2} \cap A_{3}]\)</span>
+serem três eventos disjuntos.</p>
+</blockquote>
+<p><br />
+</p>
 <p><span class="math display">\[\begin{align*}
 P(\text{2 GOLS}) &amp; = P\{ [A_{1} \cap A_{2} \cap E_{3}]\} + P\{ [E_{1} \cap A_{2} \cap A_{3}]\} + P\{[A_{1} \cap E_{2} \cap A_{3}]\}\\
 P(\text{2 GOLS}) &amp; = P[A_{1}] \times P[A_{2}|A_{1}] \times P[E_{3}|A_{2}] +\\
 &amp; P[E_{1}] \times P[A_{2}|E_{1}] \times P[A_{3}|A_{2}] +\\
 &amp; P[A_{1}] \times P[E_{2}|A_{1}] \times P[A_{3}|E_{2}]\\
+&amp; \text{Como: } P(E_{i+1}|A_{i}) = 0,40 \text{ e:} \\
+&amp; P(E_{i+1}|E_{i}) = 0,70 \text{ e: }\\
+&amp; P(A_{i+1}|E_{i}) = 0,30 \text{ , temos}\\
 P(\text{2 GOLS}) &amp; = 0,50 \times 0,60 \times  0,40 +\\
 &amp; 0,50 \times 0,30 \times 0,60 +\\
 &amp; 0,50 \times 0,40 \times 0,30 \\
 P(\text{2 GOLS}) &amp; =0,27
 \end{align*}\]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Somamos as probabilidades <span class="math inline">\(P\{ [A_{1} \cap A_{2} \cap E_{3}]\} + P\{ [E_{1} \cap A_{2} \cap A_{3}]\} + P\{[A_{1} \cap E_{2} \cap A_{3}]\}\)</span> posto <span class="math inline">\([A_{1} \cap A_{2} \cap E_{3}]\)</span>, <span class="math inline">\([E_{1} \cap A_{2} \cap A_{3}]\)</span> e <span class="math inline">\([A_{1} \cap E_{2} \cap A_{3}]\)</span>
+serem três eventos disjuntos.</p>
+</blockquote>
 <p><br />
 </p>
 </div>

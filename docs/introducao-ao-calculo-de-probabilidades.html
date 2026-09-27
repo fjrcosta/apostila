@@ -1671,9 +1671,9 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb51-14"><a href="introducao-ao-calculo-de-probabilidades.html#cb51-14" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;A frequência observada da face&quot;</span>, face_escolhida, <span class="st">&quot;foi de&quot;</span>, frequencia, <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb51-15"><a href="introducao-ao-calculo-de-probabilidades.html#cb51-15" tabindex="-1"></a>}</span></code></pre></div>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb52-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 20 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 0 %</code></pre>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb54-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10000</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 16.26 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 16.76 %</code></pre>
 <p><br />
 </p>
 <p>Ao simular o lançamento de um dado, por exemplo, é possível observar como as frequências relativas de todas as faces começam a se aproximar das probabilidades teóricas (<span class="math inline">\(P(1)=P(2)=P(3)=P(4)=P(5)=P(6)=\frac{1}{6}\)</span>) à medida que aumentamos o número de repetições.</p>
@@ -2257,10 +2257,10 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb63-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb63-3" tabindex="-1"></a><span class="fu">table</span>(popSim<span class="sc">$</span>Curso, popSim<span class="sc">$</span>Sexo)</span></code></pre></div>
 <pre><code>##                      
 ##                           F     M
-##   Computação           5072  9928
-##   Estatística          9929  5071
-##   Matemática aplicada  7467  7533
-##   Matemática pura     19901 35099</code></pre>
+##   Computação           5056  9944
+##   Estatística         10127  4873
+##   Matemática aplicada  7355  7645
+##   Matemática pura     20194 34806</code></pre>
 <p><br />
 </p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb65-1" tabindex="-1"></a><span class="co"># Selecionar uma amostra de 200 com reposição (simular a tabela)</span></span>
@@ -2274,27 +2274,27 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb65-9"><a href="introducao-ao-calculo-de-probabilidades.html#cb65-9" tabindex="-1"></a>tab</span></code></pre></div>
 <pre><code>##                          
 ##                             M   F Total
-##   Matemática pura (M)      90  34   124
-##   Matemática aplicada (A)   7  15    22
-##   Estatística (E)           7  11    18
-##   Computação (C)           24  12    36
-##   Total                   128  72   200</code></pre>
+##   Matemática pura (M)      60  38    98
+##   Matemática aplicada (A)  22  13    35
+##   Estatística (E)          14  14    28
+##   Computação (C)           24  15    39
+##   Total                   120  80   200</code></pre>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb67-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-2" tabindex="-1"></a>pMasc<span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb67-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-3" tabindex="-1"></a>pMasc</span></code></pre></div>
-<pre><code>## [1] 0.64</code></pre>
+<pre><code>## [1] 0.6</code></pre>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; na amostra</span></span>
 <span id="cb69-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-2" tabindex="-1"></a>pMatAp <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span>)</span>
 <span id="cb69-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-3" tabindex="-1"></a>pMatAp</span></code></pre></div>
-<pre><code>## [1] 0.11</code></pre>
+<pre><code>## [1] 0.175</code></pre>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -E- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb71-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-2" tabindex="-1"></a>pMatAp_and_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">&amp;</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb71-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-3" tabindex="-1"></a>pMatAp_and_Masc</span></code></pre></div>
-<pre><code>## [1] 0.035</code></pre>
+<pre><code>## [1] 0.11</code></pre>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -OU- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb73-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-2" tabindex="-1"></a>pMatAp_or_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">|</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb73-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-3" tabindex="-1"></a>pMatAp_or_Masc</span></code></pre></div>
-<pre><code>## [1] 0.715</code></pre>
+<pre><code>## [1] 0.665</code></pre>
 <p><br />
 </p>
 <blockquote>
@@ -3323,8 +3323,27 @@ Figure 4.21: Thomas Bayes (1702 - 1761)
 <p><br />
 </p>
 <blockquote>
-<p>Admita o espaço amostral de um experimento baseado no sorteio aleatório de um estudante de uma escola, com dois possíveis resultados quanto ao sexo:</p>
+<p>Exemplo introdutório. Considere um experimento aleatório que consiste em se sortear aleatoriamente um estudante de uma escola e admita serem conhecidas as probabilidades dos seguintes eventos:</p>
 </blockquote>
+<p><br />
+</p>
+<ul>
+<li>``M’’: ser do sexo masculino: <span class="math inline">\(P(M)=0,65\)</span>;</li>
+<li>``F’’: ser do sexo feminino: <span class="math inline">\(P(F)=0,35\)</span>.</li>
+<li>``C’’: possuir um carro:
+<ul>
+<li><span class="math inline">\(P(C|M)=0,30\)</span></li>
+<li><span class="math inline">\(P(C|F)=0,18\)</span>.</li>
+</ul></li>
+</ul>
+<p><br />
+</p>
+<blockquote>
+<p>Sorteado aleatoriamente um estudante da escola verificou-se possuir um carro. Qual a probabilidade de que seja do sexo feminino (<span class="math inline">\(P(F|C)\)</span>)?</p>
+</blockquote>
+<p><br />
+</p>
+<p>O espaço amostral desse experimento pode ser graficamente representado do seguinte modo:</p>
 <p><br />
 </p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig600"></span>
@@ -3335,9 +3354,7 @@ Figure 4.22: Espaço amostral
 </div>
 <p><br />
 </p>
-<blockquote>
-<p>Considere agora um evento definido nesse espaço amostral como sendo ``ter um carro’’:</p>
-</blockquote>
+<p>Podemos representar a parte dos estudantes do sexo masculino e feminino que possuem carro:</p>
 <p><br />
 </p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig601"></span>
@@ -3361,7 +3378,21 @@ Figure 4.24: Espaço amostral
 </div>
 <p><br />
 </p>
-<p>Pela <strong>regra da probabilidade condicionada</strong> temos que</p>
+<p>Vemos que <span class="math inline">\(C\)</span> (“ter carro”) é dado pela seguinte união:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+C = (M \cap C) \cup (F \cap C).
+\]</span><br />
+</p>
+<p>A probabilidade de <span class="math inline">\(C\)</span>, sendo disjuntos <span class="math inline">\((M \cap C)\)</span> e <span class="math inline">\((F \cap C)\)</span> será:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(C)=P(M \cap C) + P(F \cap C).
+\]</span><br />
+</p>
+<p>Pelas expressões das probabilidades condicionadas temos:</p>
 <p><br />
 </p>
 <p><span class="math display">\[
@@ -3378,7 +3409,7 @@ P(C \cap M) = P(C|M)  P(M)
 \]</span></p>
 <p><br />
 </p>
-<p>A probabilidade de se ter um carro é dada pela regra da união de eventos que, nesse caso são disjuntos e assim:</p>
+<p>Assim, probabilidade de <span class="math inline">\(C\)</span> será:</p>
 <p><br />
 </p>
 <p><span class="math display">\[
@@ -3388,7 +3419,7 @@ P(C) =  P(C|M)  P(M) + P(C|F)  P(F)
 <p><br />
 </p>
 <blockquote>
-<p>Sorteado aleatoriamente um estudante da escola verificou-se possuir um carro. Qual a probabilidade de que seja do sexo feminino (<span class="math inline">\(P(F|C)\)</span>)?</p>
+<p>Voltando á pergunta: sorteado aleatoriamente um estudante da escola verificou-se possuir um carro. Qual a probabilidade de que seja do sexo feminino: <span class="math inline">\(P(F|C)\)</span>=?</p>
 </blockquote>
 <p><br />
 </p>
@@ -3414,26 +3445,12 @@ P(C \cap F) &amp; =P(F \cap C)\\
 P(C|F).P(F) &amp; = P(F|C).P(C)\\
 P(F|C)  &amp; = \frac{P(C|F)P(F)}{P(C)}
 \end{align*}\]</span></p>
-<p>uma <strong>relação</strong> entre duas probabilidades inversamente condicionadas conhecida como <strong>Teorema de Bayes</strong>.</p>
 <p><br />
 </p>
-<blockquote>
-<p>Adimita então serem dados:</p>
-</blockquote>
+<p>uma <strong>relação</strong> entre duas probabilidades <em>inversamente condicionadas</em> conhecida como <strong>Teorema de Bayes</strong>.</p>
 <p><br />
 </p>
-<ul>
-<li>``M’’: ser do sexo masculino: <span class="math inline">\(P(M)=0,65\)</span>;</li>
-<li>``F’’: ser do sexo feminino: <span class="math inline">\(P(F)=0,35\)</span>.</li>
-<li>``C’’: possuir um carro:
-<ul>
-<li><span class="math inline">\(P(C|M)=0,30\)</span></li>
-<li><span class="math inline">\(P(C|F)=0,18\)</span>.</li>
-</ul></li>
-</ul>
-<p><br />
-</p>
-<p>A probabilidade de se ter carro (<span class="math inline">\(P(C)\)</span>) resulta de união de dois únicos e possíveis eventos condicionados ao sexo e disjuntos. Assim:</p>
+<p>A probabilidade de se ter carro <span class="math inline">\(P(C)\)</span> resulta de união de dois únicos e possíveis eventos condicionados ao sexo e disjuntos. Assim:</p>
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}

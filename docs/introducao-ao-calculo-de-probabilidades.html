@@ -1671,9 +1671,9 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb51-14"><a href="introducao-ao-calculo-de-probabilidades.html#cb51-14" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;A frequência observada da face&quot;</span>, face_escolhida, <span class="st">&quot;foi de&quot;</span>, frequencia, <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb51-15"><a href="introducao-ao-calculo-de-probabilidades.html#cb51-15" tabindex="-1"></a>}</span></code></pre></div>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb52-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 0 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 20 %</code></pre>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb54-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10000</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 16.76 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 16.56 %</code></pre>
 <p><br />
 </p>
 <p>Ao simular o lançamento de um dado, por exemplo, é possível observar como as frequências relativas de todas as faces começam a se aproximar das probabilidades teóricas (<span class="math inline">\(P(1)=P(2)=P(3)=P(4)=P(5)=P(6)=\frac{1}{6}\)</span>) à medida que aumentamos o número de repetições.</p>
@@ -2257,10 +2257,10 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb63-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb63-3" tabindex="-1"></a><span class="fu">table</span>(popSim<span class="sc">$</span>Curso, popSim<span class="sc">$</span>Sexo)</span></code></pre></div>
 <pre><code>##                      
 ##                           F     M
-##   Computação           5056  9944
-##   Estatística         10127  4873
-##   Matemática aplicada  7355  7645
-##   Matemática pura     20194 34806</code></pre>
+##   Computação           5097  9903
+##   Estatística          9997  5003
+##   Matemática aplicada  7476  7524
+##   Matemática pura     20024 34976</code></pre>
 <p><br />
 </p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb65-1" tabindex="-1"></a><span class="co"># Selecionar uma amostra de 200 com reposição (simular a tabela)</span></span>
@@ -2274,27 +2274,27 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb65-9"><a href="introducao-ao-calculo-de-probabilidades.html#cb65-9" tabindex="-1"></a>tab</span></code></pre></div>
 <pre><code>##                          
 ##                             M   F Total
-##   Matemática pura (M)      60  38    98
-##   Matemática aplicada (A)  22  13    35
-##   Estatística (E)          14  14    28
-##   Computação (C)           24  15    39
-##   Total                   120  80   200</code></pre>
+##   Matemática pura (M)      80  41   121
+##   Matemática aplicada (A)   6  12    18
+##   Estatística (E)           7  24    31
+##   Computação (C)           21   9    30
+##   Total                   114  86   200</code></pre>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb67-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-2" tabindex="-1"></a>pMasc<span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb67-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-3" tabindex="-1"></a>pMasc</span></code></pre></div>
-<pre><code>## [1] 0.6</code></pre>
+<pre><code>## [1] 0.57</code></pre>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; na amostra</span></span>
 <span id="cb69-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-2" tabindex="-1"></a>pMatAp <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span>)</span>
 <span id="cb69-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-3" tabindex="-1"></a>pMatAp</span></code></pre></div>
-<pre><code>## [1] 0.175</code></pre>
+<pre><code>## [1] 0.09</code></pre>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -E- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb71-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-2" tabindex="-1"></a>pMatAp_and_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">&amp;</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb71-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-3" tabindex="-1"></a>pMatAp_and_Masc</span></code></pre></div>
-<pre><code>## [1] 0.11</code></pre>
+<pre><code>## [1] 0.03</code></pre>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -OU- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb73-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-2" tabindex="-1"></a>pMatAp_or_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">|</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb73-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-3" tabindex="-1"></a>pMatAp_or_Masc</span></code></pre></div>
-<pre><code>## [1] 0.665</code></pre>
+<pre><code>## [1] 0.63</code></pre>
 <p><br />
 </p>
 <blockquote>
@@ -3522,7 +3522,7 @@ Figure 4.28: Interseções das partições do espaço amostral com o evento B
 <p><br />
 </p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig10"></span>
-<img src="images4/bayes_5.jpg" alt="Interseções das n partições do espaço amostral com o evento B" width="80%" />
+<img src="images4/bayes_5a.jpg" alt="Interseções das n partições do espaço amostral com o evento B" width="80%" />
 <p class="caption">
 Figure 4.29: Interseções das n partições do espaço amostral com o evento B
 </p>
@@ -3530,55 +3530,65 @@ Figure 4.29: Interseções das n partições do espaço amostral com o evento B
 <p><br />
 </p>
 <p>Na representação esquemática da Figura <a href="introducao-ao-calculo-de-probabilidades.html#fig:fig10">4.29</a> podemos identificar:</p>
-<p>1- <span class="math inline">\(E_{1}\)</span>, <span class="math inline">\(E_{2}\)</span>, , <span class="math inline">\(E_{i}\)</span>, , <span class="math inline">\(E_{n}\)</span> constituem-se em partições do espaço amostral <span class="math inline">\(\Omega\)</span>;<br />
+<p><br />
+</p>
+<p>1- <span class="math inline">\(E_{1}\)</span>, <span class="math inline">\(E_{2}\)</span>, , <span class="math inline">\(E_{k}\)</span>, , <span class="math inline">\(E_{n}\)</span>, com <span class="math inline">\(k \in i=\{1, \dots, n\}\)</span>, constituem-se em partições do espaço amostral <span class="math inline">\(\Omega\)</span>;<br />
 2- Todas as partições são mutuamente exclusivas: <span class="math inline">\(E_{i} \cap E_{j} = \varnothing\)</span>,<span class="math inline">\(\forall\)</span> <span class="math inline">\(i \neq j\)</span> (a interseção de quaisquer partições é vazia);<br />
-3- Sendo vazias as interseções entre quaisquer partições, o espaço amostral <span class="math inline">\(\Omega\)</span> será a simples união de todas elas: <span class="math inline">\(\Omega = E_{1} \cup E_{2} \cup E_{3} \cup E_{4}\cup \dots \cup E_{i} \dots \cup E_{n}\)</span>; e,<br />
-4- <strong>B</strong> é um evento qualquer definido sobre as partições de <span class="math inline">\(\Omega\)</span></p>
+3- Sendo vazias as interseções entre quaisquer partições, o espaço amostral <span class="math inline">\(\Omega\)</span> será a simples união de todas elas: <span class="math inline">\(\Omega = E_{1} \cup E_{2} \cup E_{3} \cup E_{4}\cup \dots \cup E_{k}\cup \dots \cup E_{n}\)</span>; e,<br />
+4- Seja <strong>B</strong> um evento qualquer definido sobre as partições de <span class="math inline">\(\Omega\)</span></p>
 <p><br />
 </p>
-<p>São conhecidas as probabilidades de ocorrência de cada um dos elementos do espaço amostral <span class="math inline">\(\Omega\)</span>:</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-P(E_{1}); P(E_{2}); P(E_{3}); \dots;P(E_{i}); \dots; P(E_{n})
-\]</span></p>
-<p><br />
-</p>
-<p>e também as probabilidades do evento <span class="math inline">\(B\)</span> condicionadas a cada elemento do espaço amostral:</p>
+<p>São conhecidas as probabilidades de ocorrência de cada uma das partições do espaço amostral <span class="math inline">\(\Omega\)</span>:</p>
 <p><br />
 </p>
 <p><span class="math display">\[
-P(B|E_{1}); P(B|E_{2});\dots;P(B|E_{i});\dots; P(B|E_{n})
+P(E_{1})\\
+P(E_{2})\\
+P(E_{3})\\
+\dots\\
+P(E_{k})\\
+\dots\\
+P(E_{n})
 \]</span></p>
 <p><br />
 </p>
-<p>A <em>probabilidade de ocorrência do evento B</em> é dada pela soma das probabilidades de cada uma de suas interseções com os elementos do espaço amostral <span class="math inline">\(\Omega\)</span>, uma vez que essas interseções são disjuntas entre si:</p>
+<p>e também as probabilidades condicionadas do evento <span class="math inline">\(B\)</span> condicionadas a cada partição do espaço amostral <span class="math inline">\(\Omega\)</span>:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+P(B|E_{1})\\
+P(B|E_{2})\\
+\dots\\
+P(B|E_{k})\\
+\dots\\
+P(B|E_{n})
+\]</span></p>
+<p><br />
+</p>
+<p>Sendo <span class="math inline">\(B=  (E_{1} \cap B) \cup (E_{2} \cap B) \cup  \dots  \cup (E_{k} \cap B) \cup \dots  (E_{n} \cap B)\)</span>, a <em>probabilidade de sua ocorrência</em> sera dada pela soma das probabilidades de cada uma de suas interseções com os elementos do espaço amostral <span class="math inline">\(\Omega\)</span>, uma vez que essas interseções são disjuntas entre si (<span class="math inline">\(E_{i} \cap E_{j} = \varnothing\)</span>,<span class="math inline">\(\forall\)</span> <span class="math inline">\(i \neq j\)</span>):</p>
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-P(B) &amp; = P(E_{1} \cap B) \cup P(E_{2} \cap B) \cup  \dots  P(E_{i} \cap B) \cup \dots  P(E_{n} \cap B) \\
+P(B) &amp; = P(E_{1} \cap B) \cup P(E_{2} \cap B) \cup  \dots  P(E_{k} \cap B) \cup \dots  P(E_{n} \cap B) \\
 P(B) &amp; = \sum _{i=1}^{n}P\left({E}_{i}\cap B\right)
 \end{align*}\]</span></p>
 <p><br />
 </p>
-<p>Pela <em>Regra do produto de eventos condicionados</em>, a <em>probabilidade de ocorrência do evento B</em> <strong>posto</strong> ter ocorrido um evento <span class="math inline">\(E_{i}\)</span> é:</p>
+<p>Pela <em>Regra do produto de eventos condicionados</em>, a <em>probabilidade de ocorrência do evento B</em> <strong>posto</strong> ter ocorrido um evento <span class="math inline">\(E_{k}\)</span> é:</p>
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-P(B|E_{i}) &amp; = \frac{P(E_{i}\cap B)}{P(E_{i})} \\
-P(E_{i}\cap B) &amp; = P(E_{i}) \times P(B|E_{i})
+P(B|E_{k}) &amp; = \frac{P(E_{k}\cap B)}{P(E_{k})} \\
+P(E_{k}\cap B) &amp; = P(E_{k}) \times P(B|E_{k})
 \end{align*}\]</span></p>
 <p><br />
 </p>
-<p>com <span class="math inline">\(P(E) &gt; 0\)</span></p>
-<p><br />
-</p>
-<p>Aplicando-se na expressão anteriormente desenvolvida da <em>probabilidade de ocorrência do evento B</em> teremos:</p>
+<p>com <span class="math inline">\(P(E_{k}) &gt; 0\)</span>. Aplicando-se na expressão anteriormente desenvolvida da <em>probabilidade de ocorrência do evento B</em> teremos:</p>
 <p><br />
 <span class="math display">\[\begin{align*}
-P(B) &amp; = P(E_{1} \cap B) \cup  P(E_{2} \cap B) \cup \dots \cup P(E_{i} \cap B) \cup \dots  \cup P(E_{n} \cap B) \\
+P(B) &amp; = P(E_{1} \cap B) \cup  P(E_{2} \cap B) \cup \dots \cup P(E_{k} \cap B) \cup \dots  \cup P(E_{n} \cap B) \\
 P(B) &amp; = P(E_{1}) \times P(B|E_{1}) + P(E_{2}) \times P(B|E_{2}) + \\
-    &amp; \dots +P(E_{i}) \times P(B|E_{i}) + \\
+    &amp; \dots +P(E_{k}) \times P(B|E_{k}) + \\
     &amp; \dots  + P(E_{n}) \times P(B|E_{n})
 \end{align*}\]</span></p>
 <p><br />
@@ -3591,13 +3601,16 @@ P(B) = \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\cdot P\left(B|{E}_{i}\right)\r
 \]</span></p>
 <p><br />
 </p>
-<p>Pela <strong>Regra do produto de eventos condicionados</strong> a probabilidade de ocorrência de um evento <span class="math inline">\(E_{i}\)</span> posto ter ocorrido o evento <span class="math inline">\(B\)</span> é:</p>
+<p>para <span class="math inline">\(i=\{1,\dots, n\}\)</span>.</p>
+<p><br />
+</p>
+<p>Pela <strong>Regra do produto de eventos condicionados</strong> a probabilidade de ocorrência de <span class="math inline">\(E_{k}\)</span> posto ter ocorrido o evento <span class="math inline">\(B\)</span> é:</p>
 <p><br />
 </p>
 <p><span class="math display">\[\begin{align*}
-P(E_{i}|B) &amp; = \frac{P(E_{i} \cap B)}{P(B)} \\
-P(E_{i} \cap B) &amp; = P(B) \times P(E_{k}|B) \\
-P(B) &amp; = \frac{P(E_{i}\cap B)}{P(E_{k}|B)}
+P(E_{k}|B) &amp; = \frac{P(E_{k} \cap B)}{P(B)} \\
+P(E_{k} \cap B) &amp; = P(B) \times P(E_{k}|B) \\
+P(B) &amp; = \frac{P(E_{k}\cap B)}{P(E_{k}|B)}
 \end{align*}\]</span></p>
 <p><br />
 </p>
@@ -3608,7 +3621,7 @@ P(B) &amp; = \frac{P(E_{i}\cap B)}{P(E_{k}|B)}
 <p><br />
 </p>
 <p><span class="math display">\[
-P(B) = \frac{P(E_{i}\cap B)}{P(E_{i}|B)}
+P(B) = \frac{P(E_{k}\cap B)}{P(E_{k}|B)}
 \]</span></p>
 <p><br />
 </p>
@@ -3624,15 +3637,15 @@ P(B) = \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\cdot P\left(B|{E}_{i}\right)\r
 <p><br />
 </p>
 <p><span class="math display">\[
-\frac{P(E_{i}\cap B)}{P(E_{i}|B)}=\sum _{i=1}^{n}\left[P\left({E}_{i}\right)\cdot P\left(B|{E}_{i}\right)\right]
+\frac{P(E_{k}\cap B)}{P(E_{k}|B)}=\sum _{i=1}^{n}\left[P\left({E}_{i}\right)\cdot P\left(B|{E}_{i}\right)\right]
 \]</span></p>
 <p><br />
 </p>
-<p>Rearranjando-se em termos da expressão anterior para exprimir a probabilidade de ocorrência de um evento <span class="math inline">\(E_{i}\)</span> posto ter ocorrido o evento <span class="math inline">\(B\)</span> chegamos a:</p>
+<p>Rearranjando-se em termos da expressão anterior para exprimir a probabilidade de ocorrência de <span class="math inline">\(E_{k}\)</span> posto ter ocorrido o evento <span class="math inline">\(B\)</span> chegamos a:</p>
 <p><br />
 </p>
 <p><span class="math display">\[
-P(E_{i}|B) = \frac{P(E_{i}\cap B)}{\sum _{i=1}^{n}\left[P\left({E}_{i}\right)\cdot P\left(B|{E}_{i}\right)\right]}
+P(E_{k}|B) = \frac{P(E_{k}\cap B)}{\sum _{i=1}^{n}\left[P\left({E}_{i}\right)\cdot P\left(B|{E}_{i}\right)\right]}
 \]</span></p>
 <p><br />
 </p>
@@ -3640,7 +3653,7 @@ P(E_{i}|B) = \frac{P(E_{i}\cap B)}{\sum _{i=1}^{n}\left[P\left({E}_{i}\right)\cd
 <p><br />
 </p>
 <p><span class="math display">\[
-P(E_{i} \cap B) = P(B) \times P(E_{i}|B)
+P(E_{k} \cap B) = P(B) \times P(E_{k}|B)
 \]</span></p>
 <p><br />
 </p>
@@ -3648,12 +3661,14 @@ P(E_{i} \cap B) = P(B) \times P(E_{i}|B)
 <p><br />
 </p>
 <p><span class="math display">\[
-P(E_{i}|B) = \frac{ P(E_{i}) \times P(B|E{i})   }{  \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]  }
+P(E_{k}|B) = \frac{ P(E_{k}) \times P(B|E{k})   }{  \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]  }
 \]</span></p>
+<p><br />
+</p>
 <p>uma forma mais geral do <strong>Teorema de Bayes</strong>.</p>
 <p><br />
 </p>
-<p>O Teorema de Bayes é também chamado de Teorema da probabilidade a <em>posteriori</em> ao permitir que se calcule <span class="math inline">\(P(E_{i}|B)\)</span> em termos da ocorrência <span class="math inline">\(P(B|E_{i})\)</span></p>
+<p>O Teorema de Bayes é também chamado de Teorema da probabilidade a <em>posteriori</em> ao permitir que se calcule <span class="math inline">\(P(E_{k}|B)\)</span> sabendo-se <em>a priori</em> todas as <span class="math inline">\(P(B|E_{i})\)</span> e <span class="math inline">\(P(E_{i})\)</span>, com <span class="math inline">\(k \in={1, \dots, n}\)</span></p>
 <p><br />
 </p>
 <p>É, de certo modo, uma conjugação do <em>teorema na probabilidade total</em> e da <em>regra do produto</em> de probabilidades.</p>
@@ -3667,7 +3682,7 @@ P(B)=  \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\
 \]</span></p>
 <p><br />
 </p>
-<p>é a denominada <strong>probabilidade marginal</strong> de ocorrência do evento <span class="math inline">\(B\)</span> no espaço amostral <span class="math inline">\(\Omega\)</span> composto por <span class="math inline">\(n\)</span> elementos (partições).</p>
+<p>é a denominada <strong>probabilidade marginal</strong> de ocorrência do evento <span class="math inline">\(B\)</span> no espaço amostral <span class="math inline">\(\Omega\)</span> composto por <span class="math inline">\(n\)</span> partições.</p>
 <p><br />
 </p>
 <p>Na expressão do Teorema de Bayes:</p>

@@ -58,7 +58,7 @@ Todavia ela nos introduz **dois conceitos** que iremos usar como ponto de partid
 
 \
 
-1. probabilidade refere-se a _experimentos de resultado incerto (aleatórios)_;
+1. probabilidade refere-se a _experimentos com desfecho incerto_;
 2. que probabilidade é uma _quantidade_.
 
 
@@ -67,7 +67,10 @@ Todavia ela nos introduz **dois conceitos** que iremos usar como ponto de partid
 
 \
 
-Os estudos de probabilidade surgiram no século XVII, motivados por questões práticas relacionadas a jogos de azar e decisões econômicas.
+Os primeiros estudos de probabilidade surgiram no século XVII, frequentemente motivados por questões práticas relacionadas a jogos de azar e decisões econômicas.
+
+\
+
 
 Uma das situações que estimulou essas discussões foi o problema apresentado pelo **Cavaleiro de Méré** (Chevalier de Méré), que envolvia jogos de azar com dados. Ele levantou duas questões principais sobre a probabilidade de certos resultados ao lançar dados, que acabaram influenciando o desenvolvimento da teoria probabilística.
 
@@ -189,7 +192,7 @@ Essas condições indicam que os elementos de $\Omega$ são _mutuamente exclusiv
 
 \
 
-#### Espaços aleatórios discretos
+#### Espaços amostrais discretos
 
 
 \
@@ -348,58 +351,415 @@ As probabilidades de ocorrência de cada um os elementos desse espaço amostral 
 
 
 
+<!-- ### Evento -->
+
+<!-- \ -->
+
+<!-- A expressão _evento_ refere-se, no contexto do cálculo de probabilidades, à ocorrência de um desfecho desejado de um experimento aleatório, sendo definido como um _subconjunto finito_ do espaço amostral desse experimento aleatório composto por _um ou mais_ de seus elementos. -->
+
+<!-- \ -->
+
+<!-- Usualmente eventos são representados por letras maiúsculas do alfabeto latino ($E$), podendo ser acompanhados por índices para diferenciação entre variados eventos num mesmo experimento aleatório ($E_1, \dots, E_n$) ou até descritos com uma nota explicativa ($E(par)$). -->
+
+
+<!-- \ -->
+
+<!-- Considere por execmplo o experimento aleatório que consiste em lançar um dado uma única vez. Um possível evento de interesse pode ser: E(obtenção do número 2) ($E(2)$) e, nesse contexto pode ser a obtenção do número 2 como resultado. -->
+
+<!-- \ -->
+
+
+<!-- Podemos ter variados tipos de _eventos de interesse_ como: -->
+
+<!-- \ -->
+
+<!-- 1. _simples/elementares_ ou _compostos_; -->
+<!-- 2. _certos_ ou _impossíveis_; -->
+<!-- 3. _mutuamente exclusivos_ ; -->
+<!-- 4. _complementares_; -->
+<!-- 5. _dependentes_ ou _independentes_. -->
+
+<!-- \ -->
+
+
+
+<!-- ####  Diagramas de Venn para representar o espaço amostral e eventos de interesse -->
+
+
+<!-- \ -->
+
+<!-- Em muitos dos problemas de probabilidade, o _evento de interesse_ pode se definido como _associações_ de _dois_ ou _mais_ eventos formados, por sua vez, por um ou mais elementos do espaço amostral do experimento aleatório.  Uniões, interseções e complementos são algumas dessas associações que, doravante, serão muito utilizados. -->
+
+
+<!-- \ -->
+
+<!-- Por essa razão, a representação do espaço amostral e esses eventos por meio de Diagramas de Venn pode ajudar a compreensão de um problema de cálculo  probabilidade. -->
+
+
+
+<!-- \ -->
+
+
+<!-- ```{r, echo=FALSE, out.width='30%', fig.align='center', fig.cap="John Venn, 1834–1923"} -->
+
+<!-- knitr::include_graphics("images4/venn2.jpeg") -->
+
+<!-- ``` -->
+
+
+
+<!-- \ -->
+
+
+
+
+<!-- ##### União  $A \cup B$ -->
+
+
+
+<!-- Sejam $A$ e $B$ dois _eventos de interesse_ definidos sobre o _espaço amostral_ $\Omega=\{1,2,3,4,5,6\}$ (lançamento de um dado) tais que $A=\{1,2,3\}$ e $B=\{2,4,6\}$. -->
+
+<!-- \ -->
+
+<!-- Um _evento de interesse_ $E$ expresso como a  _união_ desses dois outros, representado por $E=(A \cup B)$, será o subconjunto do espaço amostral $\Omega$ que contém os elementos que pertençam **a $A$, ou a $B$ ou a ambos**. -->
+
+<!-- \ -->
+
+<!-- Desse modo, $E=A \cup B=\{1,2,3,4,6\}$ e o Diagrama de Venn correspondente será: -->
+
+<!-- \ -->
+
+<!-- ```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="União: $A \\cup B$"} -->
+
+<!-- knitr::include_graphics("images4/A_UN_B.jpg") -->
+
+<!-- ``` -->
+<!-- \ -->
+
+
+<!-- Na realização desse _experimento aleatório_ (lançar um dado)  o _evento de ineteresse_ $E$ ocorrerá quando qualquer um dos resultados for um elemento pertencente a $A$, ou a $B$ ou a _ambos_. -->
+
+
+<!-- \ -->
+
+
+
+<!-- ##### Interseção  $A \cap B$ -->
+
+
+<!-- Um _evento de interresse_ $E$ definido como a _interseção_ dos eventos $A$ e $B$ anteriormente definodos, representado por $E=(A \cap B)$, será o subconjunto do espaço amostral $\Omega$ que contém todos os elementos que pertençam **a ambos os eventos A e B simultaneamente**. -->
+<!-- \ -->
+
+<!-- Desse modo, $E=(A \cap B) =\{2\}$ e o Diagrama de Venn correspondente será: -->
+
+<!-- \ -->
+
+<!-- ```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Interseção: $A \\cap B$"} -->
+
+<!-- knitr::include_graphics("images4/A_INTER_B.jpg") -->
+
+<!-- ``` -->
+
+<!-- \ -->
+
+<!-- Na realização desse _experimento aleatório_ (lançar um dado)  o _evento de interesse_ $E$ ocorrerá apenas quando o resultado for um elemento simultaneamente pertencente a $A$ e $B$ . -->
+
+<!-- \ -->
+
+<!-- Quando o evento de interesse é definido pela interseção de dois outros, todavia esssa interseção é vazia, representa-se $E$ como -->
+
+<!-- \ -->
+
+
+
+<!-- $$ -->
+<!-- E(A \cap B) = \varnothing -->
+<!-- $$ -->
+
+<!-- \ -->
+
+
+<!-- ##### Complemmento  $A^{c}$ -->
+
+
+
+<!-- Um _evento de intersse_ pode também ser definido como o _complemento_ de outros como, por exemplo, de $A$, sendo representado representado por $E=(A^{c})$ (ou $E=(\stackrel{-}{A})$). -->
+
+<!-- \ -->
+
+<!-- Desse modo, $E=(A^{c}) =\{4,5,6\}$ e o Diagrama de Venn correspondente será: -->
+
+
+<!-- \ -->
+
+
+<!-- ```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Complementar  $A^{c}$"} -->
+
+<!-- knitr::include_graphics("images4/COMP_A.jpg") -->
+
+<!-- ``` -->
+
+<!-- \ -->
+
+<!-- De modo análogo, para $E=(B^{c})=\{1,3,5\}$ e o Diagrama de Venn correspondente será : -->
+
+<!-- \ -->
+
+<!-- ```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Complementar de B"} -->
+
+<!-- knitr::include_graphics("images4/COMP_B.jpg") -->
+
+<!-- ``` -->
+
+<!-- \ -->
+
+
+<!-- ```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Diagramas de Venn"} -->
+
+<!-- knitr::include_graphics("images4/venn.jpg") -->
+
+<!-- ``` -->
+
+
+
+<!-- \ -->
+
+<!-- #### Eventos simples (ou elementares) e eventos compostos -->
+
+
+<!-- \ -->
+
+<!-- Considere o espaço amostral dos resultados do _experimento aleatório_ que consista em se lançar um dado honesto: -->
+
+
+<!-- $$ -->
+<!-- \Omega=\{1,2,3,4,5,6\}\\ -->
+<!-- $$ -->
+<!-- \ -->
+
+
+<!-- O _evento de interesse_ $E_1$ definido sobre o _experimento aleatório_ anterior como sendo obter o número _2_ é formado por apenas um elemento de $\Omega$. Eventos formados por apenas um elemento do espaço amostral são denominados de _eventos simples ou elementares_. -->
+
+<!-- \ -->
+
+<!-- $$ -->
+<!-- \Omega = \{1; 2; 3; 4; 5; 6\}\\ -->
+<!-- E_1 = \{2\} -->
+<!-- $$ -->
+
+<!-- \ -->
+
+
+
+<!-- Admita agora (sobre o mesmo _experimento aleatório_) um outro _evento de interesse_ $E_2$ definido como obter-se um número _par_. Um _evento de interesse_ assim definido é um _evento composto_ uma vez que é formado por mais de um elemento de $\Omega$: -->
+
+<!-- \ -->
+
+
+<!-- $$ -->
+<!-- \Omega = \{1; 2; 3; 4; 5; 6\}\\ -->
+<!-- E_2 = \{2; 4; 6\} -->
+<!-- $$ -->
+
+<!-- \ -->
+
+<!-- Outro exemplo, a partir de um  _experimento aleatório_ definido como se lançar uma moeda _duas_ vezes, apresneta como _espaço amostral_ um conjunto composto por _quatro_ elementos: -->
+
+<!-- \ -->
+
+
+<!-- $$ -->
+<!-- \Omega = \{(\text{Cara}, \text{Coroa}),(\text{Coroa}, \text{Cara}),(\text{Cara}, \text{Cara}), (\text{Coroa}, \text{Coroa})\} -->
+<!-- $$ -->
+
+
+
+<!-- \ -->
+
+
+<!-- Se definirmos $E_3$ como  _evento de interesse_ nesse experimento aleatório, como sendo obter-se _duas caras_, o evento $E_3$ será um _evento simples_ pois é formado por apenas _um_ elemento desse espaço amostral: $E_3=\{(\text{Cara}, \text{Cara})\}$.  -->
+
+<!-- \ -->
+
+<!-- Se, por outro lado, definimos como _evento de interesse_ $E_4=\{(Cara, Coroa)  \text{ ou } (Coroa, Cara)\}$, o evento $E_4$ será um _evento composto_ pois é formado por _dois_ elementos do espaço amostral: $E_4=\{(Cara,Coroa) , (Coroa,Cara)\}$. -->
+
+<!-- \ -->
+
+<!-- Se codificarmos _Cara=1_ e _Coroa=0_, podemos representar num plano $XY$ o espaço amostral $\Omega$ desse experimento aleatório e o _evento de sucesso_  $E_{1}$ -->
+
+
+<!-- \ -->
+
+<!-- ```{r, echo=FALSE, out.width='50%', fig.align='center', fig.cap="Representação gráfico do espaço amostral do experimento aleatório e do evento de interesse definido"} -->
+
+<!-- knitr::include_graphics("images4/evento_grafico.jpg") -->
+
+<!-- ``` -->
+
+<!-- \ -->
+
+
+<!-- #### Eventos certos e eventos impossíveis -->
+
+<!-- \ -->
+
+<!-- Considere o espaço amostral dos resultados do experimento aleatório que consista em se lançar um dado honesto e dois outros eventos: -->
+
+
+<!-- $$ -->
+<!-- \Omega=\{1,2,3,4,5,6\}\\ -->
+<!-- E_5=\{1,2,3\}\\ -->
+<!-- E_6=\{4,5,6\}\\ -->
+<!-- $$ -->
+
+<!-- \ -->
+
+<!-- Se nosso evento de interesse for $E_7=\{E_5 \cap E_6\}$, então $E_7=\Omega$. Um evento de interesse qualquer $G$, definido sobre o espaço amostral $\Omega$, tal que $G = \Omega$ é denominado um _evento certo_.  -->
+
+
+<!-- \ -->
+
+<!-- Por outro lado, se nosso evento de interesse $E_8$ for assim definido $E_8=\{E_5 \cap E_6\}$, então $E_8=\varnothing$ . Um evento de interesse qualquer $G$, definido sobre o espaço amostral $\Omega$, tal que $G =\varnothing$ é denominado um _evento impossível_.  -->
+
+
+<!-- \ -->
+
+<!-- #### Eventos mutuamente exclusivos -->
+
+<!-- \ -->
+
+<!-- No espaço amostral do _experimento aleatório_ do lançamento de um dado $\Omega=\{1,2,3,4,5,6\}$, se definirmos os seguintes eventos:  -->
+
+<!-- \ -->
+
+
+<!-- $$ -->
+<!-- E_5=\{1,2,3\}\\ -->
+<!-- E_6=\{4,5,6\}\\ -->
+<!-- $$ -->
+<!-- \ -->
+
+<!-- e definirmos $E_9$ como nosso _evento de interesse_, tal que $E_9=A \cap B$, um evento assim definido teria sua interseção vazia -->
+
+
+<!-- \ -->
+
+<!-- $$ -->
+<!-- E_9=(E_5 \cap E_6) = \varnothing -->
+<!-- $$ -->
+
+
+<!-- \ -->
+
+<!-- #### Eventos complementares -->
+
+<!-- \ -->
+
+<!-- Considere novamente o espaço amostral do _experimento aleatório_ de se lançar um dado uma vez:  -->
+
+<!-- \ -->
+
+<!-- $$ -->
+<!-- \Omega=\{1,2,3,4,5,6\}\\ -->
+<!-- $$  -->
+
+<!-- \ -->
+
+<!-- Um evento qualquer $E_10$ definido como o complementar de outro evento $E_5$ será: -->
+
+
+<!-- $$ -->
+<!-- E_5=\{1,2,3\}\\ -->
+<!-- E_{10}=E_5^{c}\\ -->
+<!-- E_{10}=\{4,5,6\}\\ -->
+<!-- $$ -->
+
+
+<!-- #### Eventos independentes -->
+
+<!-- \ -->
+
+
+<!-- Dois eventos são considerados _independentes_ quando a probabilidade de ocorrência de um evento de interesse em um determinado experimento aleatório não é influenciada pelo _resultado prévio_ de outro evento. -->
+
+<!-- \ -->
+
+<!-- >Em outras palavras, a ocorrência de um evento não altera a probabilidade do outro. Caso contrário, esses eventos são classificados como dependentes ou condicionados. -->
+
+<!-- \ -->
+
+<!-- Este conceito será explorado em maior detalhe em seções posteriores. -->
+
+
+<!-- \ -->
+
+
+
+
+
+
+
 ### Evento
 
 \
 
-
-Define-se como _evento de interesse_ um _subconjunto finito_ do espaço amostral, composto por _um ou mais_ de seus elementos que _satisfazem_ o enunciado estabelecido no experimento aleatório proposto.
-
-\
-
-A expressão _evento de interesse_ (também chamado de _sucesso_) refere-se, no contexto do cálculo de probabilidades, à ocorrência de um resultado _desejado_ durante a realização de um experimento aleatório.
+No cálculo de probabilidades, um **evento** é um subconjunto do espaço amostral de um experimento aleatório. Dizemos que um evento ocorreu quando o resultado observado pertence ao subconjunto que o representa.
 
 \
 
-Frequentemente, eventos de interesse são representados por letras maiúsculas do alfabeto romano e podem ser acompanhados de uma notação explicativa, como $E(\dots)$.
-
-
-\
-
-Por exemplo, considere um experimento aleatório que consiste em lançar um dado uma única vez. Um possível evento de interesse pode ser: E(obtenção do número 2) ($E(2)$) e, nesse contexto pode ser a obtenção do número 2 como resultado.
+Usualmente, os eventos são representados por letras maiúsculas do alfabeto latino, como $A$, $B$ e $C$. Também podem ser acompanhados por índices, como $E_1,\ldots,E_n$, ou por uma descrição explicativa.
 
 \
 
-
-Podemos ter variados tipos de _eventos de interesse_ como:
+Podemos ter variados tipos de eventos:
 
 \
 
-1. _simples/elementares_ ou _compostos_;
-2. _certos_ ou _impossíveis_;
-3. _mutuamente exclusivos_ ;
-4. _complementares_;
-5. _dependentes_ ou _independentes_.
+  1. eventos simples ou elementares e eventos compostos;
+  2. união, interseção e complemento de eventos;
+  3. eventos certos e impossíveis;
+  4. eventos mutuamente exclusivos e complementares.
+  5. dependentes ou independentes.
+
+\
+
+Ao longo desta seção será considerado um único experimento aleatório: o lançamento de um dado honesto de seis faces. Seu espaço amostral é
 
 \
 
 
+$$
+\Omega=\{1,2,3,4,5,6\}.
+$$
 
-####  Diagramas de Venn para representar o espaço amostral e eventos de interesse
+\
+
+Sobre esse espaço amostral, definimos os seguintes eventos:
+
+$$
+\begin{aligned}
+A&=\{2\}, &&\text{obter o número 2};\\
+B&=\{2,4,6\}, &&\text{obter um número par};\\
+C&=\{1,3,5\}, &&\text{obter um número ímpar};\\
+D&=\{1,2,3\}, &&\text{obter um número menor ou igual a 3}.
+\end{aligned}
+$$
+
+\
+
+
+
+
+#### Representação por Diagramas de Venn
 
 
 \
 
-Em muitos dos problemas de probabilidade, o _evento de interesse_ pode se definido como _associações_ de _dois_ ou _mais_ eventos formados, por sua vez, por um ou mais elementos do espaço amostral do experimento aleatório.  Uniões, interseções e complementos são algumas dessas associações que, doravante, serão muito utilizados.
 
-
-\
-
-Por essa razão, a representação do espaço amostral e esses eventos por meio de Diagramas de Venn pode ajudar a compreensão de um problema de cálculo  probabilidade.
-
-
+Em muitos problemas de probabilidade, um evento de interesse pode ser formado pela associação de dois ou mais eventos. A união, a interseção e o complemento são algumas dessas associações.
 
 \
+
 
 
 ```{r, echo=FALSE, out.width='30%', fig.align='center', fig.cap="John Venn, 1834–1923"}
@@ -408,205 +768,123 @@ knitr::include_graphics("images4/venn2.jpeg")
 
 ```
 
+\
 
+
+Os Diagramas de Venn auxiliam na representação do espaço amostral e dos eventos definidos sobre ele. Nesta representação, o retângulo corresponde ao espaço amostral $\Omega$, enquanto as regiões delimitadas em seu interior correspondem aos eventos de interesse. Os elementos do espaço amostral são posicionados nas regiões às quais pertencem.
+
+\
+
+#### Eventos simples ou elementares e eventos compostos
+
+\
+
+O evento $A$, definido como a obtenção do número 2, contém apenas um elemento do espaço amostral:
+
+\
+
+$$
+A=\{2\}.
+$$
+\
+
+
+Um evento formado por apenas um elemento de $\Omega$ é denominado **evento simples** ou **evento elementar**.
+
+\
+
+Por outro lado, o evento $B$, definido como a obtenção de um número par, contém três elementos:
+
+$$
+B=\{2,4,6\}.
+$$
+
+\
+
+Um evento formado por mais de um elemento do espaço amostral é denominado **evento composto**.
 
 \
 
 
+```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Evento simples $A$ e evento composto $B$"}
 
-
-##### União  $A \cup B$
-
-
-
-Sejam $A$ e $B$ dois _eventos de interesse_ definidos sobre o _espaço amostral_ $\Omega=\{1,2,3,4,5,6\}$ (lançamento de um dado) tais que $A=\{1,2,3\}$ e $B=\{2,4,6\}$.
-
-\
-
-Um _evento de interesse_ $E$ expresso como a  _união_ desses dois outros, representado por $E=(A \cup B)$, será o subconjunto do espaço amostral $\Omega$ que contém os elementos que pertençam **a $A$, ou a $B$ ou a ambos**.
-
-\
-
-Desse modo, $E=A \cup B=\{1,2,3,4,6\}$ e o Diagrama de Venn correspondente será:
-
-\
-
-```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="União: $A \\cup B$"}
-
-knitr::include_graphics("images4/A_UN_B.jpg")
-
-```
-\
-
-
-Na realização desse _experimento aleatório_ (lançar um dado)  o _evento de ineteresse_ $E$ ocorrerá quando qualquer um dos resultados for um elemento pertencente a $A$, ou a $B$ ou a _ambos_.
-
-
-\
-
-
-
-##### Interseção  $A \cap B$
-
-
-Um _evento de interresse_ $E$ definido como a _interseção_ dos eventos $A$ e $B$ anteriormente definodos, representado por $E=(A \cap B)$, será o subconjunto do espaço amostral $\Omega$ que contém todos os elementos que pertençam **a ambos os eventos A e B simultaneamente**.
-\
-
-Desse modo, $E=(A \cap B) =\{2\}$ e o Diagrama de Venn correspondente será:
-
-\
-
-```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Interseção: $A \\cap B$"}
-
-knitr::include_graphics("images4/A_INTER_B.jpg")
+knitr::include_graphics("images4/evento_simples_composto.png")
 
 ```
 
 \
 
-Na realização desse _experimento aleatório_ (lançar um dado)  o _evento de interesse_ $E$ ocorrerá apenas quando o resultado for um elemento simultaneamente pertencente a $A$ e $B$ .
+#### União de eventos: $B\cup D$
 
 \
 
-Quando o evento de interesse é definido pela interseção de dois outros, todavia esssa interseção é vazia, representa-se $E$ como
+A **união** de dois eventos contém os resultados que pertencem a um dos eventos ou a ambos. Para
 
 \
-
-
 
 $$
-E(A \cap B) = \varnothing
+B=\{2,4,6\}
 $$
 
 \
 
-
-##### Complemmento  $A^{c}$
-
-
-
-Um _evento de intersse_ pode também ser definido como o _complemento_ de outros como, por exemplo, de $A$, sendo representado representado por $E=(A^{c})$ (ou $E=(\stackrel{-}{A})$).
+e
 
 \
 
-Desse modo, $E=(A^{c}) =\{4,5,6\}$ e o Diagrama de Venn correspondente será:
+$$
+D=\{1,2,3\},
+$$
 
+\
+
+temos
+
+\
+
+$$
+B\cup D=\{1,2,3,4,6\}.
+$$
+
+\
+
+Portanto, $B\cup D$ ocorre quando o resultado é par, menor ou igual a 3, ou satisfaz simultaneamente as duas condições.
 
 \
 
 
-```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Complementar  $A^{c}$"}
+```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="União dos eventos $B$ e $D$"}
 
-knitr::include_graphics("images4/COMP_A.jpg")
+knitr::include_graphics("images4/uniao_B_D.png")
 
 ```
 
 \
 
-De modo análogo, para $E=(B^{c})=\{1,3,5\}$ e o Diagrama de Venn correspondente será :
+#### Interseção de eventos: $B\cap D$
 
 \
 
-```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Complementar de B"}
+A **interseção** de dois eventos contém somente os resultados que pertencem simultaneamente aos dois eventos. No exemplo,
 
-knitr::include_graphics("images4/COMP_B.jpg")
+$$
+B\cap D=\{2\}.
+$$
+
+\
+
+Assim, o evento $B\cap D$ ocorre apenas quando o resultado do lançamento é o número 2.
+
+\
+
+
+
+```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Interseção dos eventos $B$ e $D$"}
+
+knitr::include_graphics("images4/intersecao_B_D.png")
 
 ```
 
-\
-
-
-```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Diagramas de Venn"}
-
-knitr::include_graphics("images4/venn.jpg")
-
-```
-
-
-
-\
-
-#### Eventos simples (elementares) e eventos compostos
-
-
-
-O evento de interesse ($E(2)$) definido no experimento aleatório anterior (obter o número _2_) é formado por apenas um elemento do espaço amostral. Eventos formados por apenas um elemento do espaço amostral são denominados de _evento simples/elementares_.
-
-\
-$$
-\Omega = \{1; 2; 3; 4; 5; 6\}\\
-E(2) = \{2\}
-$$
-
-\
-
-
-
-Admita agora o mesmo _experimento aleatório_ todavia definindo como _evento de interesse_ (Eobter-se um número _par_. Um _evento de interesse_ assim definido é um evento composto uma vez que é formado por mais de um elemento do espaço amostral:
-
-\
-
-
-$$
-\Omega = \{1; 2; 3; 4; 5; 6\}\\
-E(par) = \{2; 4; 6\}
-$$
-
-\
-
-Outro exemplo, a partir de um  _experimento aleatótrio_ que consiste em se lançar uma moeda _duas_ vezes, cujo _espaço amostral_ é representado por um conjunto composto por _quatro_ elementos
-
-\
-
-
-$$
-\Omega = \{(\text{Cara}, \text{Coroa}),(\text{Coroa}, \text{Cara}),(\text{Cara}, \text{Cara}), (\text{Coroa}, \text{Coroa})\}
-$$
-
-
-
-\
-
-
-Se definirmos como  _evento de interesse_ na realização desse experimento aleatório obter-se $E=\{(Cara, Cara)\}$, o evento $E$ será um _evento simples_ pois é formado por apenas _um_ elemento do espaço amostral.
-
-\
-
-Se, por outro lado, definimos como _sucesso_ obter-se $E_{1}=\{(Cara, Coroa)  \text{ ou } (Coroa, Cara)\}$, o evento $E_{1}$ será um _evento composto_ pois é formado por _dois_ elementos do espaço amostral.
-
-\
-
-Se codificarmos _Cara=1_ e _Coroa=0_, podemos representar num plano $XY$ o espaço amostral $\Omega$ desse experimento aleatório e o _evento de sucesso_  $E_{1}$
-
-
-\
-
-```{r, echo=FALSE, out.width='50%', fig.align='center', fig.cap="Representação gráfico do espaço amostral do experimento aleatório e do evento de interesse definido"}
-
-knitr::include_graphics("images4/evento_grafico.jpg")
-
-```
-
-\
-
-
-#### Eventos certos e eventos impossíveis
-
-\
-
-Um evento de interesse $G$, definido sobre o espaço amostral $\Omega$, em que $G = \Omega$, expressa que qualquer elemento de $\Omega$ satisfaz o evento $G$, ou seja, qualquer um dos possíveis resultados do experimento aleatório corresponde ao evento.
-
-\
-
-Um evento de interesse assim definido ocorrerá com certeza, razão pela qual tais eventos são denominados eventos certos.
-
-\
-
-Por outro lado, se definirmos um evento de interesse $I$ que não contém resultados pertencentes a $\Omega$ — o espaço amostral, ou seja, todos os resultados possíveis — como, por exemplo, obter o número 7 no lançamento de um dado de seis faces, esse evento será impossível de ocorrer.
-
-\
-
-Eventos assim definidos são chamados de eventos impossíveis.
 
 \
 
@@ -614,75 +892,163 @@ Eventos assim definidos são chamados de eventos impossíveis.
 
 \
 
+Dois eventos são **mutuamente exclusivos** quando não podem ocorrer simultaneamente. Nesse caso, sua interseção é vazia.
 
-Dois eventos que _nunca_ poderão ocorrer simultaneamente são ditos _mutuamente exclusivos_. No experimento do lançamento da moeda por uma vez, nunca observaremos, simultaneamente, dois eventos como $E=\{(Cara)\}$ **e**  $F=\{(Coroa)\}$.
 \
 
-Um evento assim definido teria sua interseção vazia
-
+Os eventos
 
 \
 
 $$
-G=(E \cap F) = \varnothing
+B=\{2,4,6\}
 $$
 
-e, por essa razão, sua probabilidade será $P(G)=P(E \cap F)=0$.
+\
+
+e
+
+\
+
+
+$$
+C=\{1,3,5\}
+$$
+
+\
+
+são mutuamente exclusivos, pois nenhum resultado pode ser simultaneamente par e ímpar:
+
+\
+
+
+```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Eventos mutuamente exclusivos"}
+
+knitr::include_graphics("images4/eventos_mutuamente_exclusivos.png")
+
+```
+
 
 \
 
 #### Eventos complementares
 
+\
 
-
-Definido um _evento de interesse_ qualquer pode-se observar apenas dois resultados:
+O **complemento** de um evento $B$, representado por $B^c$, contém todos os elementos de $\Omega$ que não pertencem a $B$.
 
 \
 
-1. _ocorrer_;
-2. _não ocorrer_ o sucesso.
+Como
 
 \
 
-Ou seja, um ou outro deverá forçosamente ocorrer.
+$$
+B=\{2,4,6\},
+$$
+
+\
+
+temos
+
+\
+
+$$
+B^c=\{1,3,5\}=C.
+$$
+
+\
+
+Os eventos $B$ e $C$ são complementares porque
+
+\
+
+$$
+B\cap C=\varnothing
+$$
+
+\
+
+e
+
+$$
+B\cup C=\Omega.
+$$
 
 \
 
 
-Chama-se de _evento complementar_ ($E^{c}$ ou $\stackrel{-}{E}$) a um evento ($E$) e sua probabilidade de sucesso será:
+```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="O evento $C$ é o complemento de $B$"}
+
+knitr::include_graphics("images4/eventos_complementares.png")
+
+```
+
+
+
+\
+
+
+#### Evento certo e evento impossível
+
+\
+
+Um evento igual ao espaço amostral é denominado **evento certo**. Como todo número obtido no lançamento é par ou ímpar,
+
+\
+
+$$
+G=B\cup C=\Omega.
+$$
+
+\
+
+Por outro lado, um evento igual ao conjunto vazio é denominado **evento impossível**. Como nenhum resultado é simultaneamente par e ímpar,
+
+\
+
+$$
+H=B\cap C=\varnothing.
+$$
+
+\
+
+
+
+```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Evento certo e evento impossível"}
+
+knitr::include_graphics("images4/evento_certo_impossivel.png")
+
+```
+
+\
+
+
+#### Eventos dependentes e independentes
+
+
+\
+
+Dois eventos são **independentes** quando a ocorrência de um deles não altera a probabilidade de ocorrência do outro. Caso a ocorrência de um evento altere a probabilidade do outro, eles são denominados **dependentes**. Esses conceitos serão explorados em maior detalhe nas seções posteriores.
+
+
+\
 
 
 $$
-P(E^{c}) = 1 - P(E)
+\boxed{
+\begin{aligned}
+A&=\{2\} &&\text{evento simples};\\
+B&=\{2,4,6\} &&\text{evento composto};\\
+B\cup D&=\{1,2,3,4,6\} &&\text{união};\\
+B\cap D&=\{2\} &&\text{interseção};\\
+B\cap C&=\varnothing &&\text{evento impossível};\\
+B\cup C&=\Omega &&\text{evento certo};\\
+C&=B^c &&\text{evento complementar de }B.
+\end{aligned}}
 $$
 
 
-\
-
-
-Se a probabilidade de sucesso de que ele ocorra for $P(E)=p$ e a de que ele não ocorra for $P(E^{c}= q)$ vê-se que a soma dessas quantidades deverá ser $p + q =1$, novamente antecipando um dos postulados do conceito axiomático de probabilidade.
-
-
-\
-
-
-#### Eventos independentes
-
-\
-
-
-Dois eventos são considerados _independentes_ quando a probabilidade de ocorrência de um evento de interesse em um determinado experimento aleatório não é influenciada pelo _resultado prévio_ de outro evento.
-
-\
-
->Em outras palavras, a ocorrência de um evento não altera a probabilidade do outro. Caso contrário, esses eventos são classificados como dependentes ou condicionados.
-
-\
-
-Este conceito será explorado em maior detalhe em seções posteriores.
-
-
-\
 
 ### Probabilidade
 
@@ -830,6 +1196,7 @@ onde:
 \
 
 Jakob Bernoulli in 1713
+
 \
 
 
@@ -1117,6 +1484,18 @@ mesma forma que a geometria e a álgebra, e a considerou como caso especial da _
 
 \
 
+```{r, echo=FALSE, out.width='40%', fig.align='center', fig.cap="Grundbegriffe der Wahrscheinlichkeitsrechnung (Fundamentos da Teoria da Probabilidade)"}
+
+knitr::include_graphics("images4/kolmogorov_teoria.png")
+
+```
+
+
+\
+
+
+
+Fundamentos da Teoria da Probabilidade
 
 
 
@@ -1499,9 +1878,29 @@ Se $A$ e $B$ forem **mutuamente exclusivos**, a interseção entre eles será va
 $$
 P(A \cup B) = P(A) + P(B)
 $$
+\
+
+Por extensão, para a união de três eventos quaisquer temos:
+
+\
+
+```{r, echo=FALSE, out.width='80%', fig.align='center', fig.cap="União de 3 eventos: $A$, $B$ e $C$"}
+
+knitr::include_graphics("images4/venn_uniao_tres_eventos.png")
+
+```
 
 
 \
+
+$$
+P(A \cup B \cup C ) = P(A) + P(B) + P(C) - P(A \cap B) - P(A \cap C) - P(B \cap C) + P(A \cap B \cap C)
+$$
+
+\
+
+
+
 
 Relembrando o que se denomina como _regularidade estatística dos resultados_ :
 
@@ -1620,7 +2019,7 @@ Definindo os eventos de interesse e as probabilidades associadas:
 
 \
 
-Pela regra geral da probabilidade  da união de dois eventos quaiquer sabemos que:
+Pela regra geral da probabilidade  da união de dois eventos quaisquer sabemos que:
 
 \
 
@@ -1974,7 +2373,7 @@ P(M|F) & = \frac{P(M \cap F)}{P(F)} \\
 2- Qual probabilidade de que não goste de tênis ($P(T^{c})$)?  
 3- Qual a probabilidade de que seja do sexo feminino **ou** goste de tênis: ($P(F \cup T)$)?  
 4- Sabendo-se que foi sorteada uma aluna, qual a probabilidade de que goste de tênis ($P(T|F))$?  
-5- Verifique se os eventos **$T$: "gostar de tênis"** e **$F$:"ser do sexo feminino"** são condicionados ou independentes ($P(T \cap F) \stackrel{?}{=} P(T) \times P(F)$))
+
 
 \
 
@@ -1997,12 +2396,12 @@ P(M|F) & = \frac{P(M \cap F)}{P(F)} \\
 \
 
 
-> Exemplo: Imagine que um jogador está treinando cobranças de pênaltis. Historicamente a probabilidade de acertar uma cobrança, supondo que acertou a anterior é de 60%. Mas, se ele tiver errado a anterior a probabilidade de acertar cai para 30%. Construa a distribuição de probabilidades do número de acertos em 3 tentativas de cobrança.
+> Exemplo: Imagine que um jogador está treinando cobranças de pênaltis. Historicamente, a probabilidade de acertar a primeira cobrança é de 50%; todavia, as cobranças seguintes tem probabilidades diferentes: (a) supondo que ele acertou a cobrança anterior, a probabilidade de acertar novamente sobe para 60%. Mas, se ele tiver errado a anterior a probabilidade de acertar a seguinte cai para 30%. Construa a distribuição de probabilidades do número de acertos em 3 tentativas de cobrança.
 
 \
 
 
-```{r , echo=FALSE, out.width='40%', fig.align='center', fig.cap="Diagrama em árvore das três repetições dependentes de um pênalti"}
+```{r , echo=FALSE, out.width='40%', fig.align='center', fig.cap="Diagrama em árvore das três cobranças de um pênalti com probabilidades condicionadas."}
 
 knitr::include_graphics("images4/arv_bin_2.png")
 
@@ -2011,7 +2410,23 @@ knitr::include_graphics("images4/arv_bin_2.png")
 
 \
 
-A seguir vemos a cadeia de eventos necessária para que cada contagem de gols se verifique:
+A partir do enunciado, podemos enunciar as probabilidades condicionadas de cada uma das cobranças do seguinte modo:
+
+\
+
+
+\begin{align*}
+P(A_{1}) & = 0,50 \\
+P(E_{1}) & = 0,50 \\
+P(A_{i+1}|A_{i}) & =0,60 \text{ logo, pelo complementar, } P(E_{i+1}|A_{i})=0,40\\
+P(A_{i+1}|E_{i}) & =0,30 \text{ logo, pelo complementar } P(E_{i+1}|E_{i})=0,70\\
+\end{align*}
+
+
+\
+
+
+A seguir vemos a *cadeia de eventos* necessária para que cada contagem de gols se verifique. Para que o resultado seja de nenhum (zero) gol ou três (3) gols, há apenas uma sucessão de resultados que conduzem a esses desfechos. Todavia, para um (1) ou dois (2) gols há mais de uma sucessão de resultados que igualmente conduzem ao mesmo desfecho:
 
 \
 
@@ -2025,7 +2440,7 @@ A seguir vemos a cadeia de eventos necessária para que cada contagem de gols se
 
 \
 
-A probabilidade associada a cada contagem de gols será:
+A probabilidade associada a cada desfecho (contagem final) de gols será:
 
 \
 
@@ -2038,20 +2453,6 @@ P(\text{3 GOLS}) & = P[A_{1} \cap A_{2}  \cap  A_{3}] \\
 \end{align*}
 
 
-\
-
-A partir do enunciado, podemos deduzir as probabilidades de cada um dos eventos:
-
-\
-
-
-\begin{align*}
-P(A_{1}) & = 0,50 \\
-P(E_{1}) & = 0,50\\
-P(A_{i+1}|A_{i}) & =0,60 \text{ logo, pelo complementar, } P(E_{i+1}|A_{i})=0,40\\
-P(A_{i+1}|E_{i}) & =0,30 \text{ logo, pelo complementar } P(E_{i+1}|E_{i})=0,70\\
-\end{align*}
-
 
 
 \
@@ -2059,6 +2460,7 @@ P(A_{i+1}|E_{i}) & =0,30 \text{ logo, pelo complementar } P(E_{i+1}|E_{i})=0,70\
 \begin{align*}
 P(\text{0 GOL}) & = P[E_{1} \cap E_{2} \cap E_{3}] \\
 P(\text{0 GOL}) & = P[E_{1}] \times P[E_{2}|E_{1}] \times P[E_{3}|E_{2}] \\
+& \text{Como: } P(E_{i+1}|E_{i}) = 0,70 \text{ , temos} \\
 P(\text{0 GOL}) & = 0,50 \times 0,70  \times 0,70 \\
 P(\text{0 GOL}) & = 0,245
 \end{align*}
@@ -2068,6 +2470,7 @@ P(\text{0 GOL}) & = 0,245
 \begin{align*}
 P(\text{3 GOLS}) & = P[A_{1} \cap A_{2} \cap A_{3}] \\
 P(\text{3 GOLS}) & = P[A_{1}] \times P[A_{2}|A_{1}] \times P[A_{3}|A_{2}] \\
+& \text{Como: } P(A_{i+1}|A_{i}) = 0,60 \text{ , temos} \\
 P(\text{3 GOLS}) & = 0,50 \times 0,60  \times 0,60 \\
 P(\text{3 GOLS}) & = 0,18
 \end{align*}
@@ -2079,6 +2482,9 @@ P(\text{1 GOL}) & = P\{ [A_{1} \cap E_{2} \cap E_{3}]\} + P\{ [E_{1} \cap A_{2} 
 P(\text{1 GOL}) & = P[A_{1}] \times P[E_{2}|A_{1}] \times P[E_{3}|E_{2}] +\\
 & P[E_{1}] \times P[A_{2}|E_{1}] \times P[E_{3}|A_{2}] +\\
 & P[E_{1}] \times P[E_{2}|E_{1}] \times P[A_{3}|E_{2}]\\ 
+& \text{Como: } P(E_{i+1}|A_{i}) = 0,40 \text{ e:} \\ 
+& P(E_{i+1}|E_{i}) = 0,70 \text{ e: }\\
+& P(A_{i+1}|E_{i}) = 0,30 \text{ , temos}\\
 P(\text{1 GOL}) & = 0,50 \times 0,40 \times  0,70 +\\
 & 0,50 \times 0,30 \times 0,40 +\\
 & 0,50 \times 0,70 \times 0,30 \\
@@ -2087,11 +2493,21 @@ P(\text{1 GOL}) & =0,305
 
 \
 
+>Somamos as probabilidades $P\{ [A_{1} \cap E_{2} \cap E_{3}]\} + P\{ [E_{1} \cap A_{2} \cap E_{3}]\} + P\{[E_{1} \cap E_{2} \cap A_{3}]\}$ posto $[A_{1} \cap E_{2} \cap E_{3}]$, $[E_{1} \cap A_{2} \cap E_{3}]$ e $[E_{1} \cap E_{2} \cap A_{3}]$
+serem três eventos disjuntos.
+
+\
+
+
+
 \begin{align*}
 P(\text{2 GOLS}) & = P\{ [A_{1} \cap A_{2} \cap E_{3}]\} + P\{ [E_{1} \cap A_{2} \cap A_{3}]\} + P\{[A_{1} \cap E_{2} \cap A_{3}]\}\\
 P(\text{2 GOLS}) & = P[A_{1}] \times P[A_{2}|A_{1}] \times P[E_{3}|A_{2}] +\\
 & P[E_{1}] \times P[A_{2}|E_{1}] \times P[A_{3}|A_{2}] +\\
 & P[A_{1}] \times P[E_{2}|A_{1}] \times P[A_{3}|E_{2}]\\ 
+& \text{Como: } P(E_{i+1}|A_{i}) = 0,40 \text{ e:} \\ 
+& P(E_{i+1}|E_{i}) = 0,70 \text{ e: }\\
+& P(A_{i+1}|E_{i}) = 0,30 \text{ , temos}\\
 P(\text{2 GOLS}) & = 0,50 \times 0,60 \times  0,40 +\\
 & 0,50 \times 0,30 \times 0,60 +\\
 & 0,50 \times 0,40 \times 0,30 \\
@@ -2100,7 +2516,10 @@ P(\text{2 GOLS}) & =0,27
 
 \
 
+>Somamos as probabilidades $P\{ [A_{1} \cap A_{2} \cap E_{3}]\} + P\{ [E_{1} \cap A_{2} \cap A_{3}]\} + P\{[A_{1} \cap E_{2} \cap A_{3}]\}$ posto $[A_{1} \cap A_{2} \cap E_{3}]$, $[E_{1} \cap A_{2} \cap A_{3}]$ e $[A_{1} \cap E_{2} \cap A_{3}]$
+serem três eventos disjuntos.
 
+\
 
 
 ## Dependência e independência de eventos
@@ -2147,36 +2566,161 @@ P (A \cap B)= P(A) \times P(B)
 $$
 \
 
-
-
 ### Demonstração de Independência entre Eventos
 
-Para demonstrar que dois eventos $A$ e $B$ são independentes, é suficiente verificar a igualdade:
+\
+
+Para demonstrar que dois eventos $A$ e $B$ são independentes, basta verificar a igualdade
+
+\
 
 $$
-P(A \cap B) \stackrel{?}{=} P(A) \cdot P(B)
+P(A \cap B) \overset{?}{=} P(A) \cdot P(B).
+$$
+\
+
+O procedimento consiste em calcular cada lado separadamente: obtém-se $P(A \cap B)$ diretamente a partir do espaço amostral ou dos dados do problema, e calcula-se $P(A) \cdot P(B)$ a partir das probabilidades marginais de cada evento. Ao final, comparam-se os dois valores, de preferência na forma de frações exatas, para evitar erros de arredondamento. Se a igualdade se confirma, os eventos são independentes; caso contrário, são dependentes.
+
+\
+
+**Observação:** esse procedimento se aplica quando as probabilidades são conhecidas (modelo teórico ou espaço amostral definido). Quando elas são estimadas a partir de frequências observadas em uma amostra, a verificação da independência requer um teste de hipótese, como o teste qui-quadrado de independência.
+
+\
+
+No exemplo das cartas, o evento $A \cap B$ corresponde às cartas vermelhas com figuras ($A$, $J$, $Q$ e $K$ de ouros e de copas), totalizando 8 cartas. Assim,
+
+\
+
+$$
+P(A \cap B) = \frac{8}{52} = \frac{2}{13}
 $$
 
-O procedimento consiste em calcular cada lado de forma independente: obtém-se $P(A \cap B)$ diretamente a partir do espaço amostral ou dos dados do problema,e calcula-se $P(A) \cdot P(B)$ a partir das probabilidades marginais de cada
-evento. Ao final, comparam-se os dois valores — se a igualdade se confirma,os eventos são independentes; caso contrário, são dependentes.
+\
 
+e
+
+\
+
+$$
+P(A) \cdot P(B) = \frac{26}{52} \cdot \frac{16}{52} = \frac{1}{2} \cdot \frac{4}{13} = \frac{2}{13}.
+$$
+
+\
+
+Como $P(A \cap B) = P(A) \cdot P(B)$, os eventos $A$ e $B$ são **independentes**: saber que a carta sorteada é vermelha não altera a probabilidade de ela ser uma figura.
+
+\
+
+No exemplo dos dias de sol, considere o sorteio ao acaso de um dos 10 dias observados e os eventos "ir à praia" e "fez sol". Houve ida à praia em 6 dias (2, 4, 5, 6, 9 e 10), sol em 6 dias (2, 4, 6, 7, 9 e 10) e ida à praia com sol em 5 dias (2, 4, 6, 9 e 10). Assim,
+
+\
+
+$$
+P(\text{ir à praia} \cap \text{fez sol}) = \frac{5}{10} = 0,5
+$$
+
+\
+
+e
+
+\
+
+$$
+P(\text{praia}) \cdot P(\text{sol}) = \frac{6}{10} \cdot \frac{6}{10} = 0,36.
+$$
+
+\
+
+Como $0,5 \neq 0,36$, os eventos são **dependentes**: a ocorrência de sol está associada à ida à praia.
+
+\
+
+No exemplo da telefonia, sejam $F$ o evento "a pessoa possui telefone fixo" e $M$ o evento "a pessoa possui telefone móvel". Então,
+
+\
+
+$$
+P(F \cap M) = \frac{3.000}{15.000} = \frac{1}{5} = 0,2
+$$
+
+\
+
+e
+
+\
+
+$$
+P(F) \cdot P(M) = \frac{10.000}{15.000} \cdot \frac{8.000}{15.000} = \frac{2}{3} \cdot \frac{8}{15} = \frac{16}{45} \approx 0,356.
+$$
+
+\
+
+Como $0,2 \neq \frac{16}{45}$, os eventos $F$ e $M$ são **dependentes**.
+
+\
+
+No exemplo dos alunos e da preferência por tênis, considere os eventos $T$ (gostar de tênis) e $M$ (sexo masculino). Então,
+
+\
+
+$$
+P(T \cap M) = \frac{400}{700} = \frac{4}{7} = \frac{28}{49} \approx 0,571
+$$
+
+\
+
+e
+
+\
+
+$$
+P(T) \cdot P(M) = \frac{600}{700} \cdot \frac{450}{700} = \frac{6}{7} \cdot \frac{9}{14} = \frac{27}{49} \approx 0,551.
+$$
+
+\
+
+
+Como $\frac{28}{49} \neq \frac{27}{49}$, os eventos $T$ e $M$ são **dependentes**. Verificar apenas esse par basta: se $T$ e $M$ fossem independentes, os pares formados com seus complementares ($T$ e $F$, $NT$ e $M$, $NT$ e $F$) também seriam. Logo, todos esses pares são dependentes.
+
+\
 
 
 ### Reciprocidade da Independência
 
-A independência é uma relação **recíproca**: se $A$ independe de $B$, então $B$ independe de $A$. A demonstração é direta. Assumindo: $P(A \cap B) = P(A) \cdot P(B)$ e $P(A) > 0$:
+\
+
+A independência é uma relação **recíproca**: se $A$ independe de $B$, então $B$ independe de $A$. Suponha $P(A) > 0$, $P(B) > 0$ e $P(A \mid B) = P(A)$. Então
+
+\
 
 $$
-P(B|A) = \frac{P(A \cap B)}{P(A)} = \frac{P(A) \cdot P(B)}{P(A)} = P(B)
+P(A \cap B) = P(A \mid B) \cdot P(B) = P(A) \cdot P(B),
 $$
+
+\
+
+e, portanto,
+
+\
+
+$$
+P(B \mid A) = \frac{P(A \cap B)}{P(A)} = \frac{P(A) \cdot P(B)}{P(A)} = P(B).
+$$
+
+\
 
 A simetria decorre da comutatividade da interseção ($A \cap B = B \cap A$): a condição $P(A \cap B) = P(A) \cdot P(B)$ é simétrica em $A$ e $B$, de modo que vale para o par $(A, B)$ se e somente se vale para o par $(B, A)$.
 
-Observação Importante: Independência **não deve ser confundida** com eventos **mutuamente exclusivos** (disjuntos). Se $A \cap B = \emptyset$ e ambos têm probabilidade positiva, então: 
+\
+
+**Observação importante:** independência **não deve ser confundida** com eventos **mutuamente exclusivos** (disjuntos). Se $A \cap B = \emptyset$, com $P(A) > 0$ e $P(B) > 0$, então
+
+\
 
 $$
-P(A \cap B) = 0 \neq P(A) \cdot P(B)
+P(A \cap B) = 0 < P(A) \cdot P(B).
 $$
+\
 
 Logo, eventos disjuntos com probabilidade positiva são necessariamente **dependentes**.
 
@@ -2186,6 +2730,7 @@ Logo, eventos disjuntos com probabilidade positiva são necessariamente **depend
 
 ### Exemplo clássico de eventos independentes  
 
+\
 
 
 Uma bolsa contém 5 bolas `r colFmt("vermelhas",'red')`  e 5 `r colFmt("azuis",'blue')`. Nós removemos uma bola aleatória da bolsa, registramos sua cor **e a colocamos de volta na sacola**. Em seguida, removemos outra bola aleatória da bolsa e registramos sua cor.
@@ -2643,7 +3188,23 @@ knitr::include_graphics("images4/thomas_bayes.jpg")
 
 \
 
-> Admita o espaço amostral de um experimento baseado no sorteio aleatório de um estudante de uma escola, com dois possíveis resultados quanto ao sexo:
+> Exemplo introdutório. Considere um experimento aleatório que consiste em se sortear aleatoriamente um estudante de uma escola e admita serem conhecidas as probabilidades dos seguintes eventos:
+
+\
+
+- ``M'': ser do sexo masculino: $P(M)=0,65$;
+- ``F'': ser do sexo feminino: $P(F)=0,35$.
+- ``C'': possuir um carro: 
+  - $P(C|M)=0,30$
+  - $P(C|F)=0,18$.
+
+\
+
+> Sorteado aleatoriamente um estudante da escola verificou-se possuir um carro. Qual a probabilidade de que seja do sexo feminino ($P(F|C)$)?
+
+\
+
+O espaço amostral desse experimento pode ser graficamente representado do seguinte modo:
 
 \
 
@@ -2657,7 +3218,7 @@ knitr::include_graphics("images4/BAYES1.jpg")
 \
 
 
-> Considere agora um evento definido nesse espaço amostral como sendo ``ter um carro'':
+Podemos representar a parte dos estudantes do sexo masculino e feminino que possuem carro:
 
 \
 
@@ -2682,8 +3243,26 @@ knitr::include_graphics("images4/BAYES3.jpg")
 
 \
 
+Vemos que $C$ ("ter carro") é dado pela seguinte união: 
 
-Pela  **regra da probabilidade condicionada** temos que 
+\
+
+$$
+C = (M \cap C) \cup (F \cap C).
+$$
+\
+
+A probabilidade de $C$, sendo disjuntos $(M \cap C)$ e $(F \cap C)$ será: 
+
+\
+
+$$
+P(C)=P(M \cap C) + P(F \cap C).
+$$
+\
+
+
+Pelas expressões das probabilidades condicionadas temos: 
 
 \
 
@@ -2704,7 +3283,7 @@ $$
 
 \
 
-A probabilidade de se ter um carro é dada pela regra da união de eventos que, nesse caso são disjuntos e assim:
+Assim, probabilidade de $C$ será:
 
 \
 
@@ -2716,7 +3295,7 @@ $$
 
 \
 
-> Sorteado aleatoriamente um estudante da escola verificou-se possuir um carro. Qual a probabilidade de que seja do sexo feminino ($P(F|C)$)?
+>Voltando á pergunta: sorteado aleatoriamente um estudante da escola verificou-se possuir um carro. Qual a probabilidade de que seja do sexo feminino: $P(F|C)$=?
 
 \
 
@@ -2749,27 +3328,15 @@ P(C|F).P(F) & = P(F|C).P(C)\\
 P(F|C)  & = \frac{P(C|F)P(F)}{P(C)}
 \end{align*}
 
+\
 
-uma **relação** entre duas probabilidades inversamente condicionadas conhecida como **Teorema de Bayes**.
+
+uma **relação** entre duas probabilidades *inversamente condicionadas* conhecida como **Teorema de Bayes**.
 
 \
 
 
-
-> Adimita então serem dados:
-
-\
-
-
-- ``M'': ser do sexo masculino: $P(M)=0,65$;
-- ``F'': ser do sexo feminino: $P(F)=0,35$.
-- ``C'': possuir um carro: 
-  - $P(C|M)=0,30$
-  - $P(C|F)=0,18$.
-
-\
-
-A probabilidade de se ter carro ($P(C)$) resulta de união de dois únicos e possíveis eventos condicionados ao sexo e disjuntos. Assim: 
+A probabilidade de se ter carro $P(C)$ resulta de união de dois únicos e possíveis eventos condicionados ao sexo e disjuntos. Assim: 
 
 \
 
@@ -2808,6 +3375,7 @@ Para um espaço amostral mais amplo, de modo geral consideremos, inicialmente o 
 knitr::include_graphics("images4/bayes_1.jpg")
 
 ```
+
 \
 
 Admita que $E_{1}$, $E_{2}$, $E_{3}$ e $E_{4}$ formem a partição do espaço amostral $\Omega$ (seus elementos são **mutuamente exclusivos**) como exposto na Figura \@ref(fig:fig7)
@@ -2849,86 +3417,86 @@ Isso pode ser estendido, em uma forma geral, para $i=1, \dots, n$ partições co
 
 ```{r fig10, echo=FALSE, out.width='80%', fig.align='center', fig.cap="Interseções das n partições do espaço amostral com o evento B"}
 
-knitr::include_graphics("images4/bayes_5.jpg")
+knitr::include_graphics("images4/bayes_5a.jpg")
 
 ```
 \
 
 Na representação esquemática da Figura \@ref(fig:fig10) podemos identificar:
 
+\
 
-
-1- $E_{1}$, $E_{2}$, \dots , $E_{i}$, \dots, $E_{n}$ constituem-se em partições do espaço amostral $\Omega$;  
+1- $E_{1}$, $E_{2}$, \dots , $E_{k}$, \dots, $E_{n}$, com $k \in i=\{1, \dots, n\}$, constituem-se em partições do espaço amostral $\Omega$;  
 2- Todas as partições são mutuamente exclusivas: $E_{i} \cap E_{j} = \varnothing$,$\forall$ $i \neq j$ (a interseção de quaisquer partições é vazia);  
-3- Sendo vazias as interseções entre quaisquer partições, o espaço amostral $\Omega$ será a simples união de todas elas:  $\Omega = E_{1} \cup E_{2} \cup E_{3} \cup E_{4}\cup \dots \cup E_{i} \dots \cup E_{n}$; e,  
-4- **B** é um evento qualquer definido sobre as partições de $\Omega$
+3- Sendo vazias as interseções entre quaisquer partições, o espaço amostral $\Omega$ será a simples união de todas elas:  $\Omega = E_{1} \cup E_{2} \cup E_{3} \cup E_{4}\cup \dots \cup E_{k}\cup \dots \cup E_{n}$; e,  
+4- Seja **B** um evento qualquer definido sobre as partições de $\Omega$
 
 \
 
-São conhecidas as probabilidades de ocorrência de cada um dos elementos do espaço amostral $\Omega$: 
-
-\
-
-$$
-P(E_{1}); P(E_{2}); P(E_{3}); \dots;P(E_{i}); \dots; P(E_{n})
-$$
-
-
-
-
-
-
-
-\
-
-e também as  probabilidades do evento $B$ condicionadas a cada elemento do espaço amostral:
+São conhecidas as probabilidades de ocorrência de cada uma das partições do espaço amostral $\Omega$: 
 
 \
 
 $$
-P(B|E_{1}); P(B|E_{2});\dots;P(B|E_{i});\dots; P(B|E_{n})
+P(E_{1})\\
+P(E_{2})\\
+P(E_{3})\\
+\dots\\
+P(E_{k})\\
+\dots\\
+P(E_{n})
+$$
+
+
+
+
+\
+
+e também as  probabilidades condicionadas do evento $B$ condicionadas a cada partição do espaço amostral $\Omega$:
+
+\
+
+$$
+P(B|E_{1})\\
+P(B|E_{2})\\
+\dots\\
+P(B|E_{k})\\
+\dots\\
+P(B|E_{n})
 $$   
 
 \
 
-A *probabilidade de ocorrência do evento B* é dada pela soma das probabilidades de cada uma de suas interseções com os elementos do espaço amostral $\Omega$, uma vez que essas interseções são disjuntas entre si:
+Sendo $B=  (E_{1} \cap B) \cup (E_{2} \cap B) \cup  \dots  \cup (E_{k} \cap B) \cup \dots  (E_{n} \cap B)$, a *probabilidade de sua ocorrência* sera dada pela soma das probabilidades de cada uma de suas interseções com os elementos do espaço amostral $\Omega$, uma vez que essas interseções são disjuntas entre si ($E_{i} \cap E_{j} = \varnothing$,$\forall$ $i \neq j$):
 
 \
 
 
 \begin{align*}
-P(B) & = P(E_{1} \cap B) \cup P(E_{2} \cap B) \cup  \dots  P(E_{i} \cap B) \cup \dots  P(E_{n} \cap B) \\
+P(B) & = P(E_{1} \cap B) \cup P(E_{2} \cap B) \cup  \dots  P(E_{k} \cap B) \cup \dots  P(E_{n} \cap B) \\
 P(B) & = \sum _{i=1}^{n}P\left({E}_{i}\cap B\right)
 \end{align*}
 
 \
 
-Pela *Regra do produto de eventos condicionados*, a *probabilidade de ocorrência do evento B* **posto** ter ocorrido um evento $E_{i}$ é:
+Pela *Regra do produto de eventos condicionados*, a *probabilidade de ocorrência do evento B* **posto** ter ocorrido um evento $E_{k}$ é:
 
 \
 
 \begin{align*}
-P(B|E_{i}) & = \frac{P(E_{i}\cap B)}{P(E_{i})} \\ 
-P(E_{i}\cap B) & = P(E_{i}) \times P(B|E_{i}) 
+P(B|E_{k}) & = \frac{P(E_{k}\cap B)}{P(E_{k})} \\ 
+P(E_{k}\cap B) & = P(E_{k}) \times P(B|E_{k}) 
 \end{align*}
 
 \
 
-com $P(E) > 0$ 
-
-
-
-
-\
-
-
-Aplicando-se na expressão anteriormente desenvolvida da *probabilidade de ocorrência do evento B* teremos:
+com $P(E_{k}) > 0$. Aplicando-se na expressão anteriormente desenvolvida da *probabilidade de ocorrência do evento B* teremos:
 
 \
 \begin{align*}
-P(B) & = P(E_{1} \cap B) \cup  P(E_{2} \cap B) \cup \dots \cup P(E_{i} \cap B) \cup \dots  \cup P(E_{n} \cap B) \\
+P(B) & = P(E_{1} \cap B) \cup  P(E_{2} \cap B) \cup \dots \cup P(E_{k} \cap B) \cup \dots  \cup P(E_{n} \cap B) \\
 P(B) & = P(E_{1}) \times P(B|E_{1}) + P(E_{2}) \times P(B|E_{2}) + \\
-    & \dots +P(E_{i}) \times P(B|E_{i}) + \\
+    & \dots +P(E_{k}) \times P(B|E_{k}) + \\
     & \dots  + P(E_{n}) \times P(B|E_{n}) 
 \end{align*}
 
@@ -2945,15 +3513,19 @@ $$
 
 \
 
-Pela **Regra do produto de eventos condicionados** a probabilidade de ocorrência de um evento $E_{i}$ posto ter ocorrido o evento $B$  é:
+para $i=\{1,\dots, n\}$. 
+
+\
+
+Pela **Regra do produto de eventos condicionados** a probabilidade de ocorrência de $E_{k}$ posto ter ocorrido o evento $B$  é:
 
 \
 
 
 \begin{align*}
-P(E_{i}|B) & = \frac{P(E_{i} \cap B)}{P(B)} \\
-P(E_{i} \cap B) & = P(B) \times P(E_{k}|B) \\
-P(B) & = \frac{P(E_{i}\cap B)}{P(E_{k}|B)}
+P(E_{k}|B) & = \frac{P(E_{k} \cap B)}{P(B)} \\
+P(E_{k} \cap B) & = P(B) \times P(E_{k}|B) \\
+P(B) & = \frac{P(E_{k}\cap B)}{P(E_{k}|B)}
 \end{align*}
 
 \
@@ -2968,7 +3540,7 @@ Pela **igualdade** dos dois modos de se expressar a probabilidade total do event
 
 
 $$
-P(B) = \frac{P(E_{i}\cap B)}{P(E_{i}|B)}
+P(B) = \frac{P(E_{k}\cap B)}{P(E_{k}|B)}
 $$
 
 \
@@ -2989,19 +3561,19 @@ tem-se
 \
 
 $$
-\frac{P(E_{i}\cap B)}{P(E_{i}|B)}=\sum _{i=1}^{n}\left[P\left({E}_{i}\right)\cdot P\left(B|{E}_{i}\right)\right]
+\frac{P(E_{k}\cap B)}{P(E_{k}|B)}=\sum _{i=1}^{n}\left[P\left({E}_{i}\right)\cdot P\left(B|{E}_{i}\right)\right]
 $$
 
 \
 
 
-Rearranjando-se em termos da expressão anterior para exprimir a probabilidade de ocorrência de um evento $E_{i}$ posto ter ocorrido o evento $B$ chegamos a:  
+Rearranjando-se em termos da expressão anterior para exprimir a probabilidade de ocorrência de $E_{k}$ posto ter ocorrido o evento $B$ chegamos a:  
 
 \
 
 
 $$
-P(E_{i}|B) = \frac{P(E_{i}\cap B)}{\sum _{i=1}^{n}\left[P\left({E}_{i}\right)\cdot P\left(B|{E}_{i}\right)\right]}
+P(E_{k}|B) = \frac{P(E_{k}\cap B)}{\sum _{i=1}^{n}\left[P\left({E}_{i}\right)\cdot P\left(B|{E}_{i}\right)\right]}
 $$
 
 \
@@ -3011,7 +3583,7 @@ Sendo
 \
 
 $$
-P(E_{i} \cap B) = P(B) \times P(E_{i}|B) 
+P(E_{k} \cap B) = P(B) \times P(E_{k}|B) 
 $$
 
 \
@@ -3022,38 +3594,12 @@ a expressão anterior pode ser reescrita como:
 \
 
 $$
-P(E_{i}|B) = \frac{ P(E_{i}) \times P(B|E{i})   }{  \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]  }
+P(E_{k}|B) = \frac{ P(E_{k}) \times P(B|E{k})   }{  \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]  }
 $$
 
-uma forma mais geral do **Teorema de Bayes**. 
-
 \
 
-O Teorema de Bayes é também chamado de Teorema da probabilidade a *posteriori* ao permitir que se calcule $P(E_{i}|B)$ em termos da ocorrência $P(B|E_{i})$
-
-\
-
-
-É, de certo modo, uma conjugação do *teorema na probabilidade total* e da *regra do produto* de probabilidades. 
-
-\
-
-O denominador:
-
-\
-
-$$
-P(B)=  \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]
-$$ 
-
-\
-
-é a denominada **probabilidade marginal** de ocorrência do evento $B$ no espaço amostral $\Omega$ composto por $n$ elementos (partições).
-
-\
-
-
-Na expressão do Teorema de Bayes: 
+uma forma mais geral da regra de Bayes. Na expressão acima: 
 
 \
 
@@ -3063,9 +3609,26 @@ Na expressão do Teorema de Bayes:
 - $P(E_{i})$ é a denominada probabilidade *a priori* de cada evento $E_{i}$;  
 - $P(B|E_{i})$ é a denominada probabilidade *a posteriori* do evento $B$ condicionada pela ocorrência anterior de cada evento $E_{i}$.
 
+
+
 \
 
->Exemplo: Constatou-se que o aumento nas vendas de um certo produto comercializado por uma empresa num mês **pode ocorrer somente** por uma das quatro causas **mutuamente exclusivas** a seguir: 
+O Teorema de Bayes é também chamado de Teorema da probabilidade a *posteriori* ao permitir que se calcule $P(E_{k}|B)$ sabendo-se *a priori* todas as $P(B|E_{i})$ e $P(E_{i})$, com $k \in={1, \dots, n}$. É, de certo modo, uma conjugação do *teorema na probabilidade total* e da *regra do produto* de probabilidades. O denominador:
+
+\
+
+$$
+P(B)=  \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]
+$$ 
+
+\
+
+é a denominada **probabilidade marginal** de ocorrência do evento $B$ no espaço amostral $\Omega$ composto por $n$ partições.
+
+
+\
+
+>Exemplo: Para uma determinada empresa, o incremento nas vendas de seu produto pode decorrer exclusivamente por ações que ela adotou ou fatos ocorridos na economia. 
 
 \
 
@@ -3076,23 +3639,33 @@ Na expressão do Teorema de Bayes:
 
 \
 
-A probabilidade de haver uma ação da empresa no mês focada para o *marketing* é de 40\%; e para propaganda é de 30\%; as probabilidades de ocorrerem flutuações na economia do país é de 20\% e de efeitos sazonais é de 10\%. Uma pesquisa mostrou que a probabilidade de haver um aumento nas vendas do produto devido a uma ação de *marketing* é de 7\%; devido à publicidade, de 7,5\%, por flutuações na economia do país, de 3\% e por sazonalidade de 2\%.
+Admita ainda que, em qualquer mês, apenas uma ação (ou fato na economia) possa ser tomada (ou ter ocorrido).
 
 \
 
-Em um determinado mês a empresa observou um considerável incremento nas vendas. Qual seria sua causa mais provável? Qual a probabilidade de incremento das vendas em um certo mês? 
+Sabendo-se que a probabilidade da empresa adotar uma ação focada para o *marketing* em um determinado mês aleatório é de 40\%; e em *propaganda* é de 30\% e as probabilidades de ocorrerem *flutuações na economia* do país e *efeitos sazonais* serem de 20\% e 10\% (respectivamente). Uma pesquisa copmplemmentar mostrou que a probabilidade de haver um *aumento nas vendas* do produto devido a uma ação de *marketing* é de 7\%; devido à *publicidade*, de 7,5\%, por *flutuações na economia* e *por sazonalidade* são de 3\% e 2\% (respectivamente). 
 
 
 \
 
-Inicialmente definimos um experimento aleatório como sendo "qual fato ocorreu no mês". 
+Responda:
+
+
 \
 
-Não sabemos qual fato ocorreu, mas sabemos que as possibilidades são apenas 4 (*marketing*, propaganda, flutuações na economia ou efeitos sazonais).
+
+(1) Em um determinado mês a empresa observou um *incremento nas vendas*. Qual seria sua causa mais provável? 
+(2) Qual a probabilidade de um *incremento das vendas* em um certo mês? 
+(3) Qual a probabilidade de *não ocorrer um incremento* das vendas em um certo mês?
+(4) Em um determinado mês a empresa observou que *não houve um incremento nas vendas*. Qual seria sua causa mais provável? 
+
+\
+
+Inicialmente definimos um experimento aleatório como sendo *qual ação a empresa tomou (ou fato econômico ocorreu) num mês aleatório*. Não sabemos qual foi, mas sabemos que as possibilidades são apenas 4: *marketing*, *propaganda*, *flutuações na economia* ou *efeitos sazonais*).
 
 \
  
-Podemos então conceber que esses fatos são elementos do espaço amostral do experimento aleatório: pois são eventos exaustivos e exclusivos: não pode ocorrer mais de um ao mesmo tempo e ao menos um ocorrerá. 
+Podemos então conceber que esses fatos são elementos do espaço amostral do experimento aleatório: são eventos exaustivos e exclusivos: não pode ocorrer mais de um ao mesmo tempo e ao menos um ocorrerá. 
 
 \
 
@@ -3105,7 +3678,9 @@ Assim esse espaço amostral é composto pelos seguintes "elementos" e suas proba
 - $E_{3}$ o elemento "Flutuações na economia" $\therefore \rightarrow$ $P(E_{3})=0,20$; ou,  
 - $E_{4}$ o elemento "Sazonalidade" $\therefore \rightarrow$ $P(E_{4})=0,10$.
 
-Chamemos de $B$ ao evento "ocorrer um incremento nas vendas", um evento construído sobre os elementos do espeço amostral e que apresenta diferentes probabilidades a depender de qual elemento do espaço amostral ocorreu (a probabilidade de $B$ está *condicionada* aos elementos do espaço amstral). Da leitura do enunciado extraímos as probabilidades de ocorrência de cada um dos eventos influenciadores: 
+\
+
+Denotemos por $B$ ao evento *ocorrer um incremento nas vendas*. Esse evento apresenta diferentes probabilidades de ocorrência a depender de qual *ação a empresa tomou (ou fato econômco ocorreu) num mês aleatório*: a probabilidade de $B$ está *condicionada* aos elementos desse espaço amostral. 
 
 \
 
@@ -3114,32 +3689,24 @@ As probabilidades condicionadas de ocorrer um incremento das vendas ($B$) pela o
 \
 
 
-- $P(B|E_{1}) = 0,07$ ; 
+- $P(B|E_{1}) = 0,07$; 
 - $P(B|E_{2}) = 0,075$;  
 - $P(B|E_{3}) = 0,03$; e,  
 - $P(B|E_{4}) = 0,02$. 
 
 \
 
-Para responder à indagação do problema ("Qual a causa mais provável?") podemos invertê-la e reformulá-la:
-
-\
-
-"Qual a probabilidade de ter ocorrido cada um dos quatro eventos ($E_{1}$, $E_{2}$, $E_{3}$, $E_{4}$) **posto** (dado) ter ocorrido um incremento nas vendas? 
-
-\
-
-Calculemos para cada um deles usando o Teorema de Bayes:
+(1) Para responder à primeira indagação do problema ("Qual a causa mais provável?") podemos invertê-la e reformulá-la: "Qual a probabilidade de ter ocorrido cada um dos quatro eventos ($E_{1}$, $E_{2}$, $E_{3}$, $E_{4}$) **posto** (dado) ter ocorrido um incremento nas vendas? Assim, precisamos calcular a probabilidade para cada um deles:
 
 \
 
 $$
-P(E_{i}|B) = \frac{ P(E_{i}) \times P(B|E{i})   }{  \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]  }
+P(E_{k}|B) = \frac{ P(E_{k}) \times P(B|E{k})   }{  \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]  }
 $$
 
 \
 
-Probabilidade da empresa ter realizado uma ação de *marketing*, **posto** ter ocorrido um incremento nas vendas de seu produto:
+(1a) Probabilidade da empresa ter realizado uma ação de *marketing*, **posto** ter ocorrido um *incremento nas vendas* de seu produto:
 
 \
 
@@ -3151,7 +3718,7 @@ P(E_{1}|B) & = 0,4786 \\
 
 \
 
-Probabilidade da empresa ter realizado propaganda, **posto** ter ocorrido um incremento nas vendas de seu produto:
+(1b) Probabilidade da empresa ter realizado propaganda, **posto** ter ocorrido um *incremento nas vendas* de seu produto:
 
 \
 
@@ -3163,7 +3730,7 @@ P(E_{2}|B) & = 0,3846
 
 \
 
-Probabilidade da empresa ter ocorrido flutuações na economia, **posto** ter ocorrido um incremento nas vendas de seu produto:
+(1c) Probabilidade da empresa ter ocorrido flutuações na economia, **posto** ter ocorrido um *incremento nas vendas* de seu produto:
 
 \
 
@@ -3175,26 +3742,128 @@ P(E_{3}|B) & = 0,1026
 
 \
 
-Probabilidade da empresa ter ocorrido efeitos sazonais, **posto** ter ocorrido um incremento nas vendas de seu produto:
+(1d) Probabilidade da empresa ter ocorrido efeitos sazonais, **posto** ter ocorrido um *incremento nas vendas* de seu produto:
 
 \
 \begin{align*}
 P(E_{4}|B) & = \frac{ P(E_{4}) \times P(B|E{4})   }{  \sum _{i=1}^{4}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]  } \\
 P(E_{4}|B) & = \frac{0,10 \times 0,02} { (0,40 \times 0,07) + (0,30 \times 0,075) +(0,20 \times 0,03) +(0,10 \times 0,02) } \\
-P(E_{4}|B) & = 0,03419 
+P(E_{4}|B) & = 0,0342 
 \end{align*}
 
 \
 
-Respostas:
+Verificação: $0,4786 + 0,3846 + 0,1026 + 0,0342 = 1$. Portanto, dado que houve incremento nas vendas, a causa mais provável é a **ação de marketing** ($E_{1}$), com $P(E_{1}|B) \approx 0,4786$.
 
 \
 
-1- Os cálculos indicam que o evento mais provável pelo incremento das vendas observado naquele mês foi o de uma **ação de marketing**;  
-2- A probabilidade de incremento das vendas em um determinado mês como resultado dos quatro possíveis eventos indicados é o **próprio denominador do Teorema de Bayes**: 0,0585.
+(2) A probabilidade geral de *incremento das vendas* em um determinado mês como resultado dos quatro possíveis eventos indicados é o **próprio denominador da regra de Bayes**:
+
+\
+$$
+P(B) = \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\times P\left(B|{E}_{i}\right)\right]\\
+P(B) =  (0,40 \times 0,07) + (0,30 \times 0,075) +(0,20 \times 0,03) +(0,10 \times 0,02)\\
+P(B) = 0,0585
+$$
+
+\
+
+(3) A probabilidade geral de *não incremento um das vendas* em um determinado mês é dada pelo complementar da $P(B)$:
+
+\
+
+$$
+P(\bar{B}) = 1 - P(B) \\
+P(\bar{B}) = 1 - 0,0585 \\
+P(\bar{B}) = 0,9415 \\
+$$
+
+\
+
+(4) Se determinado mês a empresa não observou um incremento nas vendas, para se determinar a ação (ou fato ocorrido) mais provável fazemos:
+
+
+\
+
+$$
+P(E_{k}|\bar{B}) = \frac{ P(E_{k}) \times P(\bar{B}|E{k})   }{  \sum _{i=1}^{n}\left[P\left({E}_{i}\right)\times P\left(\bar{B}|{E}_{i}\right)\right]  }
+$$
+
+\
+
+Se $P(B|E_{1}) = 0,07$, a probabilidade de não ocorrer o incremento será $P(\bar{B}|E_{1}) = 0,93$.
+
+Se $P(B|E_{2}) = 0,075$, a probabilidade de não ocorrer o incremento será $P(\bar{B}|E_{2}) = 0,925$.
+
+Se $P(B|E_{3}) = 0,03$, a probabilidade de não ocorrer o incremento será $P(\bar{B}|E_{3}) = 0,97$.
+
+Se $P(B|E_{4}) = 0,02$, a probabilidade de não ocorrer o incremento será $P(\bar{B}|E_{4}) = 0,98$.
+
+
+
+\
+
+\
+
+(4a) Probabilidade da empresa ter realizado uma ação de *marketing*, **posto** não ter ocorrido um *incremento nas vendas* de seu produto:
+
+\
+
+\begin{align*}
+P(E_{1}|\bar{B}) &  = \frac{ P(E_{1}) \times P(\bar{B}|E_{1})   }{  \sum _{i=1}^{4}\left[P\left({E}_{i}\right)\times P\left(\bar{B}|{E}_{i}\right)\right] } \\
+P(E_{1}|\bar{B}) & = \frac{0,40 \times 0,93} { (0,40 \times 0,93) + (0,30 \times 0,925) +(0,20 \times 0,97) +(0,10 \times 0,98) } \\
+P(E_{1}|\bar{B}) & = \frac{0,372}{0,9415} \\
+P(E_{1}|\bar{B}) & \approx 0,3951
+\end{align*}
+
+\
+
+(4b) Probabilidade da empresa ter realizado uma ação de *propaganda*, **posto** não ter ocorrido um *incremento nas vendas* de seu produto:
+
+\
+
+\begin{align*}
+P(E_{2}|\bar{B}) &  = \frac{ P(E_{2}) \times P(\bar{B}|E_{2})   }{  \sum _{i=1}^{4}\left[P\left({E}_{i}\right)\times P\left(\bar{B}|{E}_{i}\right)\right] } \\
+P(E_{2}|\bar{B}) & = \frac{0,30 \times 0,925} { (0,40 \times 0,93) + (0,30 \times 0,925) +(0,20 \times 0,97) +(0,10 \times 0,98) } \\
+P(E_{2}|\bar{B}) & = \frac{0,2775}{0,9415} \\
+P(E_{2}|\bar{B}) & \approx 0,2947
+\end{align*}
+
+\
+
+(4c) Probabilidade de terem ocorrido *flutuações na economia*, **posto** não ter ocorrido um *incremento nas vendas* de seu produto:
+
+\
+
+\begin{align*}
+P(E_{3}|\bar{B}) &  = \frac{ P(E_{3}) \times P(\bar{B}|E_{3})   }{  \sum _{i=1}^{4}\left[P\left({E}_{i}\right)\times P\left(\bar{B}|{E}_{i}\right)\right] } \\
+P(E_{3}|\bar{B}) & = \frac{0,20 \times 0,97} { (0,40 \times 0,93) + (0,30 \times 0,925) +(0,20 \times 0,97) +(0,10 \times 0,98) } \\
+P(E_{3}|\bar{B}) & = \frac{0,194}{0,9415} \\
+P(E_{3}|\bar{B}) & \approx 0,2061
+\end{align*}
+
+\
+
+(4d) Probabilidade de ter ocorrido efeito de *sazonalidade*, **posto** não ter ocorrido um *incremento nas vendas* de seu produto:
+
+\
+
+\begin{align*}
+P(E_{4}|\bar{B}) &  = \frac{ P(E_{4}) \times P(\bar{B}|E_{4})   }{  \sum _{i=1}^{4}\left[P\left({E}_{i}\right)\times P\left(\bar{B}|{E}_{i}\right)\right] } \\
+P(E_{4}|\bar{B}) & = \frac{0,10 \times 0,98} { (0,40 \times 0,93) + (0,30 \times 0,925) +(0,20 \times 0,97) +(0,10 \times 0,98) } \\
+P(E_{4}|\bar{B}) & = \frac{0,098}{0,9415} \\
+P(E_{4}|\bar{B}) & \approx 0,1041
+\end{align*}
+
+\
+
+Verificação: $0,3951 + 0,2947 + 0,2061 + 0,1041 = 1$. Portanto, dado que não houve incremento nas vendas, a causa mais provável é a **ação de marketing** ($E_{1}$), com $P(E_{1}|\bar{B}) \approx 0,3951$.
+
 
 
 > Exemplo: Considere 5 urnas, cada uma delas contendo 6 bolas. Duas dessas urnas (urnas tipo $C_{1}$) possuem 3 bolas brancas em seu interior. Duas outras (urnas tipo $C_{2}$) possuem 2 bolas brancas em seu interior e a última (urnas tipo $C_{3}$) possui 6 bolas brancas em seu interior (cf.  Figura \@ref(fig:fig11)).
+
+
 
 \
 

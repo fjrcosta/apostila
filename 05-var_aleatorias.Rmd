@@ -34,24 +34,28 @@ knitr::opts_chunk$set(echo = TRUE)
 
 \
 
-\
-
 Ao realizar um experimento aleatório frequentemente estamos interessados mais em alguma função do resultado do que no próprio resultado em si:
 
->Ao lançar dois dados, podemos estar interessados na soma "7", sem nos importar se isso foi decorrente de (1,6),(2,5),(3,4),(4,3),(5,2) ou (6,1).
+\
 
->De forma semelhante, ao lançar três vezes uma moeda, podemos estar interessados no número total de "2 caras" (KK) que ocorre, sem nos preocuparmos se isso decorreu da sequência (K,K,C),(K,C,K) ou (C,K,K).
+>Ao lançar dois dados, podemos estar interessados na soma sem nos importar de que combinação particular ela resultou.
 
->Da mesma forma, ao planejar uma família de três filhos, podemos estar interessados em ter exatamente 2 filhos do sexo masculino (MM), sem nos importar se isso resultou de  (F,M,M), (M,F,M) ou (M,M,F).
+>No lançamento por três vezes de uma moeda, podemos estar interessados no número total de "caras", sem nos preocuparmos se isso decorreu da sequência (K,K,C),(K,C,K) ou (C,K,K).
+
+>Na duração (vida útil) de uma lâmpada.
+
+>Na quantidade de chamadas que chegam a uma central telefônica num intervalo de tempo.
+
+>No numero de veículos que passam por uma praça de pedágio em uma hora. 
+
+>No número de filhos do sexo masculino, sem nos importar se isso resultou de  (F,M,M), (M,F,M) ou (M,M,F).
 
 \
 
-Essas quantidades de interesse são formalmente tratadas no contexto do espaço de probabilidade $(\Omega, \mathcal{F}, P)$, composto por três elementos: o espaço amostral $\Omega$, que contém todos os resultados 
-possíveis do experimento; a $\sigma$-álgebra $\mathcal{F}$, que é a coleção de todos os subconjuntos de $\Omega$ aos quais é *possível* atribuir probabilidade — denominados eventos; e a medida de probabilidade $P: \mathcal{F} \to [0,1]$, que associa a cada *evento* um valor em $[0,1]$. 
-
-Funções de valor real definidas sobre esse espaço, que associam cada resultado $\omega \in \Omega$ a um número real, são conhecidas como variáveis aleatórias.
+Essas quantidades de interesse são formalmente tratadas no contexto do espaço de probabilidade $(\Omega, \mathcal{F}, P)$, composto por três elementos: o espaço amostral $\Omega$, que contém todos os resultados possíveis do experimento; a $\sigma$-álgebra $\mathcal{F}$, que é a coleção de todos os subconjuntos de $\Omega$ aos quais é *possível* atribuir probabilidade — denominados eventos; e a medida de probabilidade $P: \mathcal{F} \to [0,1]$, que associa a cada *evento* um valor em $[0,1]$. 
 
 \
+
 
 ```{r, echo=FALSE, out.width='60%', fig.align='center', fig.cap="Espaço de probabilidade $(\\Omega, \\mathcal{F}, P)$"}
 
@@ -62,7 +66,7 @@ knitr::include_graphics("images5/funcao_probabilidade 2.jpg")
 
 \
 
-De forma mais rigorosa, uma variável aleatória é uma função mensurável, geralmente representada por uma letra maiúscula ($X$), definida sobre o espaço de probabilidade $(\Omega, \mathcal{F}, P)$, que associa cada elemento $\omega \in \Omega$ a um número real. 
+De forma mais rigorosa, uma *variável aleatória* é uma função mensurável, geralmente representada por uma letra maiúscula ($X$), definida sobre o espaço de probabilidade $(\Omega, \mathcal{F}, P)$, que associa cada elemento $\omega \in \Omega$ a um número real. 
 
 
 \
@@ -88,8 +92,7 @@ $\Omega=\{\omega_{1}:(FFF), \omega_{2}:(FFM),\omega_{3}:(FMF), \omega_{4}:(MFF),
 
 \
 
-Se estivermos interessados no número de nascimentos do sexo masculino, podemos definir a função $X$ para associar cada elemento $\omega_{i}$ em $\Omega$ a um valor $x_{i} \in \mathbb{R}$ que apresentará os 
-seguintes resultados:
+Se estivermos interessados no número de nascimentos do sexo masculino, podemos definir a função $X$ para associar cada elemento $\omega_{i}$ em $\Omega$ a um valor $x_{i} \in \mathbb{R}$ que apresentará os seguintes resultados:
 
 \
 
@@ -139,17 +142,17 @@ A depender do experimento aleatório podemos propor variáveis aleatórias **dis
 
 \
 
->Os valores possíveis de uma variável aleatória discreta pertencem a um conjunto finito ou infinito enumerável, como $\{0,1,2, \dots \}$. Exemplos incluem: o número de acidentes em uma semana; o número de partículas αα emitidas por uma fonte radioativa em um intervalo de tempo; ou o número de casos de uma doença em um mês. 
+>Os valores possíveis de uma **variável aleatória discreta** pertencem a um conjunto finito ou infinito enumerável, como $\{0,1,2, \dots \}$. Exemplos incluem: o número de acidentes em uma semana; o número de partículas αα emitidas por uma fonte radioativa em um intervalo de tempo; ou o número de casos de uma doença em um mês. 
 
 \
 
->Os valores possíveis de uma variável aleatória contínua pertencem a um intervalo contínuo de números reais, como $[a,b]$, $[0,\infty)$ ou $(-\infty, \infty)$. Exemplos incluem: o peso ou a altura de um grupo de pessoas; o tempo de vida de uma lâmpada; o tempo de reação a um estímulo; a concentração de álcool em um certo volume de sangue, a temperatura mínima no inverno Antártico.
+>Os valores possíveis de uma **variável aleatória contínua** pertencem a um intervalo contínuo de números reais, como $[a,b]$, $[0,\infty)$ ou $(-\infty, \infty)$. Exemplos incluem: o peso ou a altura de um grupo de pessoas; o tempo de vida de uma lâmpada; o tempo de reação a um estímulo; a concentração de álcool em um certo volume de sangue, a temperatura mínima no inverno Antártico.
 
 \
 
 
 
-## Função massa de probabilidade (*Probability Mass Function - PMF*)
+## Função massa (ou distribuição) de probabilidade (*Probability Mass Function - PMF*)
 
 
 \	
@@ -158,7 +161,7 @@ Considere $X$ uma variável aleatória discreta e seus valores possíveis $X:\{x
 
 \
 
-Uma  _função (de distribuição) de probabilidade_ $f(x)$ é assim denominada quando, aplicada a cada um dos possíveis valores $x_{i}$ que a variável aleatória $X$ assume, entregar a probabilidade de sua ocorrência: para $x = x_{i}$, $f(x_{i}) = P(X=x_{i})=p(x{i})$.  
+Uma  _função massa (ou distribuição) de probabilidade_ $f(x)$ é assim denominada quando, aplicada a cada um dos possíveis valores $x_{i}$ que a variável aleatória $X$ assume, associar a probabilidade de sua ocorrência: para $x = x_{i}$, $f(x_{i}) = P(X=x_{i})=p(x{i})$.  
 
 \	
 
@@ -174,8 +177,12 @@ $$
 
 para qualquer $x_{i} \in \mathcal{R}_{X}$, onde $\mathcal{R}_{X}$ é o contradomínio de $X$.
 
+\
+
 >Postulado do evento certo:
 
+
+\
 
 $$
 \sum _{i=1}^{n}f\left(x_{i}\right) = 1.
@@ -188,7 +195,7 @@ Equivale afirmar que a probabilidade de ocorrência de um dos valores que a vari
 \
 
 
->Observação: somente se a soma acma for finita há a posibilidade de se ter probabilidades $p(x_{i})$ iguais para todos $x_{i}$ 
+>Observação: somente se a soma acma for finita há a posibilidade de se ter probabilidades $P(x_{i})$ iguais para todos $x_{i}$ 
 
 \	
 
@@ -377,6 +384,8 @@ Propriedades:
 
 >Relação com a Função de Probabilidade:
 
+\
+
 Para uma variável aleatória discreta $X$, a **função massa de probabilidade** $f(x)$ pode ser derivada da **função de distribuição cumulativa** $F(x)$. Especificamente, para todo $x$ em $(-\infty, \infty)$):
 
 \
@@ -559,6 +568,8 @@ grid(nx = NULL, ny = NULL, col = "lightgray", lty = "dotted")
 
 
 ## Função de densidade de probabilidade (*Probability Density Function - PDF*)
+ 
+\
  
 
 

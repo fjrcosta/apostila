@@ -1122,7 +1122,7 @@ F(x) =
 <h2><span class="header-section-number">5.4</span> Função de densidade de probabilidade (<em>Probability Density Function - PDF</em>)<a href="introducao-a-variaveis-aleatorias.html#funcao-de-densidade-de-probabilidade-probability-density-function---pdf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><br />
 </p>
-<p>Considerem que os cinco alvos da imagem abaixo sejam como que espaços amostrais (<span class="math inline">\(\Omega_{1},\dots \Omega_{5}\)</span>) representativos de 5 experimentos aleatórios nos quais uma pessoa irá atirar um dardo.</p>
+<p>Considerem que os cinco alvos da imagem abaixo sejam como que espaços amostrais (<span class="math inline">\(\Omega_{1},\dots \Omega_{5}\)</span>) representativos de 5 experimentos aleatórios nos quais uma pessoa poderá acertar um dardo.</p>
 <p><br />
 </p>
 <p>Admitam também também esses espaços amostrais seja equiprováveis.</p>
@@ -1372,37 +1372,121 @@ Figure 5.12: Os valores assumidos por f(x) são <span class="math inline">\(&lt;
 </div>
 <p><br />
 </p>
+<p><br />
+</p>
 <blockquote>
-<p>Exemplo: A dureza <span class="math inline">\(X\)</span> de uma peça de aço pode ser entendida como sendo uma variável aleatória contínua uniforme no intervalo <span class="math inline">\((50,70)\)</span> da escala Rockwel. Calcule a esperança e a variâcia dessa variável aleatória e a probabilidade de que uma peça tenha dureza entre 55 e 60?</p>
+<p><strong>Exemplo:</strong> As alturas <span class="math inline">\(X\)</span> (em metros) de um grupo de indivíduos têm as seguintes estatísticas: <span class="math inline">\(a = 1,40\)</span>, <span class="math inline">\(b = 1,85\)</span> e <span class="math inline">\(c = 1,625\)</span> (alturas mínima, máxima e média).
+Determinar uma <strong>função densidade de probabilidade (PDF) triangular</strong> <span class="math inline">\(f(x)\)</span> para as alturas, com base nas estatísticas acima (o triângulo tem base no intervalo <span class="math inline">\([a, b] = [1,40;\ 1,85]\)</span> e vértice superior em <span class="math inline">\(x = c = 1,625\)</span>).<br />
+</p>
 </blockquote>
 <p><br />
 </p>
-<p>Definindo a variável aleatória contínua <span class="math inline">\(X:X \sim U(50,70)\)</span>:</p>
-<p><br />
-</p>
-<p><span class="math display">\[
-f(X=x)=
-\begin{cases}
-\frac{1}{70-50}=\frac{1}{20}, \hspace{0.6cm} \text{para } 50 \le x \le 70 \\
-0, \hspace{1cm} \text{para qualquer outro x}\\
-\end{cases}
-\]</span></p>
-<p><br />
-</p>
-<p>Sua esperança e a variância são:</p>
-<p><br />
-</p>
 <ul>
-<li>Esperança: <span class="math inline">\(E(X) = \mu = \frac{(70+50)}{2}=60\)</span>; e,<br />
-</li>
-<li>Variância: <span class="math inline">\(Var(X) =  \frac{(70-50)^{2} }{12}=33,33\)</span>.</li>
+<li>Condição de área unitária: toda <em>PDF</em> deve ter área total igual a 1:</li>
 </ul>
 <p><br />
 </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig22"></span>
-<img src="images5/exerc_15.jpg" alt="Os valores assumidos por $f(x)$ são $\ge 0$ e a área definida por $f(x)$ no intervalo $50 \le x \le 70$ é igual a 1. Por essa razão pode ser uma fdp. A probabilidade pedida equivale à área $P(60 \le x \le 55) = (60-55) .  0,05=0,25$." width="60%" />
+<p><span class="math display">\[
+\int_{-\infty}^{\infty} f(x)\,dx = 1.
+\]</span></p>
+<p><br />
+</p>
+<p>A área de um triângulo é dada por <span class="math inline">\(\dfrac{\text{base} \times \text{altura}}{2}\)</span>. Sendo <span class="math inline">\(h\)</span> a altura do triângulo (o valor de <span class="math inline">\(f(x)\)</span> no vértice):</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+\frac{(b - a) \cdot h}{2} = 1
+\quad\Longrightarrow\quad
+h = \frac{2}{b - a} = \frac{2}{1,85 - 1,40} = \frac{2}{0,45} \approx 4,444.
+\]</span></p>
+<p><br />
+</p>
+<p>A <em>PDF</em> será formada por dois segmentos de reta:</p>
+<ul>
+<li><span class="math inline">\(f_1(x)\)</span>: sobe de <span class="math inline">\((1,40;\ 0)\)</span> até <span class="math inline">\((1,625;\ 4,444)\)</span></li>
+<li><span class="math inline">\(f_2(x)\)</span>: desce de <span class="math inline">\((1,625;\ 4,444)\)</span> até <span class="math inline">\((1,85;\ 0)\)</span></li>
+</ul>
+<p><br />
+</p>
+<blockquote>
+<p>Segmento <span class="math inline">\(f_1(x)\)</span>:</p>
+</blockquote>
+<p><br />
+</p>
+<ul>
+<li>Coeficiente angular:</li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[
+b_{1} = \frac{4,444 - 0}{1,625 - 1,40} = \frac{4,444}{0,225} \approx 19,75111
+\]</span></p>
+<p><br />
+</p>
+<ul>
+<li>Coeficiente linear, usando o ponto <span class="math inline">\((1,40;\ 0)\)</span>:</li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[
+0 = 19,75111 \times 1,40 + a_1
+\quad\Longrightarrow\quad
+a_1 \approx -27,65155
+\]</span><br />
+</p>
+<p>Assim,</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+f_1(x) = a_1 + b_1 \cdot x \\
+f_1(x) = - 27,65155 + 19,75111 \cdot x
+\]</span><br />
+</p>
+<blockquote>
+<p>Segmento <span class="math inline">\(f_2(x)\)</span></p>
+</blockquote>
+<p><br />
+</p>
+<ul>
+<li>Coeficiente angular:</li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[
+b_2 = \frac{0 - 4,444}{1,85 - 1,625} = -\frac{4,444}{0,225} \approx -19,75111
+\]</span><br />
+</p>
+<ul>
+<li>Coeficiente linear, usando o ponto <span class="math inline">\((1,85;\ 0)\)</span>:<br />
+</li>
+</ul>
+<p><span class="math display">\[
+0 = -19,75111 \times 1,85 + b_2
+\quad\Longrightarrow\quad
+a_2 = \approx 36,53955
+\]</span></p>
+<p><br />
+</p>
+<p>Assim,</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+f_2(x) = a_2 + b_2 \cdot x \\
+f_2(x) = 36,53955 -19,75111 \cdot x.
+\]</span></p>
+<p><br />
+</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="introducao-a-variaveis-aleatorias.html#cb77-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NA</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">1.2</span>, <span class="fl">2.05</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">4.5</span>),</span>
+<span id="cb77-2"><a href="introducao-a-variaveis-aleatorias.html#cb77-2" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;x (alturas em m)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;f(x): densidade&quot;</span>,</span>
+<span id="cb77-3"><a href="introducao-a-variaveis-aleatorias.html#cb77-3" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;PDF Triangular&quot;</span>)</span>
+<span id="cb77-4"><a href="introducao-a-variaveis-aleatorias.html#cb77-4" tabindex="-1"></a><span class="fu">polygon</span>(<span class="fu">c</span>(<span class="fl">1.40</span>, <span class="fl">1.625</span>, <span class="fl">1.85</span>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">4.444</span>, <span class="dv">0</span>), <span class="at">col =</span> <span class="st">&quot;#DDE0E8&quot;</span>, <span class="at">border =</span> <span class="cn">NA</span>)</span>
+<span id="cb77-5"><a href="introducao-a-variaveis-aleatorias.html#cb77-5" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="fl">1.2</span>, <span class="fl">1.40</span>, <span class="fl">1.625</span>, <span class="fl">1.85</span>, <span class="fl">2.05</span>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">4.444</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="at">col =</span> <span class="st">&quot;#1F2A6B&quot;</span>, <span class="at">lwd =</span> <span class="dv">1</span>)</span>
+<span id="cb77-6"><a href="introducao-a-variaveis-aleatorias.html#cb77-6" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fl">1.625</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;grey60&quot;</span>)</span>
+<span id="cb77-7"><a href="introducao-a-variaveis-aleatorias.html#cb77-7" tabindex="-1"></a><span class="fu">points</span>(<span class="fl">1.625</span>, <span class="fl">4.444</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">&quot;#1F2A6B&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:grafico"></span>
+<img src="apostila_files/figure-html/grafico-1.png" alt="PDF triangular das alturas" width="768" />
 <p class="caption">
-Figure 5.13: Os valores assumidos por <span class="math inline">\(f(x)\)</span> são <span class="math inline">\(\ge 0\)</span> e a área definida por <span class="math inline">\(f(x)\)</span> no intervalo <span class="math inline">\(50 \le x \le 70\)</span> é igual a 1. Por essa razão pode ser uma fdp. A probabilidade pedida equivale à área <span class="math inline">\(P(60 \le x \le 55) = (60-55) .  0,05=0,25\)</span>.
+Figure 5.13: PDF triangular das alturas
 </p>
 </div>
 <p><br />
@@ -1410,8 +1494,6 @@ Figure 5.13: Os valores assumidos por <span class="math inline">\(f(x)\)</span> 
 </div>
 <div id="esperanca-e-variancia-de-uma-variavel-aleatoria-discreta" class="section level2 hasAnchor" number="5.5">
 <h2><span class="header-section-number">5.5</span> Esperança e variância de uma variável aleatória discreta<a href="introducao-a-variaveis-aleatorias.html#esperanca-e-variancia-de-uma-variavel-aleatoria-discreta" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Coletando-se dados podemos analisá-los, por exemplo, em termos de sua distribuição, pelas estatísticas da média e variância.</p>
-<p>De maneira análoga procedemos com variáveis aleatórias (discretas ou contínuas) onde dispomos das <em>probabilidades</em> de ocorrência associadas a cada um dos valores (discretos ou infinitos numeráveis) que ela pode assumir.</p>
 <p><br />
 </p>
 <p>A <em>esperança matemática</em> (valor esperado ou expectância) de uma variável aleatória discreta é dada pela <em>somatória do produto</em> de cada um dos valores que ela pode assumir pela probabilidade associada a cada um desses valores.</p>
@@ -1641,6 +1723,8 @@ Var(X) &amp; = (0-2,10)^{2}.0,10 + (1-2,10)^{2}.0,20 + (2-2,10)^{2}.0,30 + \\
 </div>
 <div id="esperanca-e-variancia-de-uma-variavel-aleatoria-continua" class="section level2 hasAnchor" number="5.6">
 <h2><span class="header-section-number">5.6</span> Esperança e variância de uma variável aleatória contínua<a href="introducao-a-variaveis-aleatorias.html#esperanca-e-variancia-de-uma-variavel-aleatoria-continua" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><br />
+</p>
 <p>A esperança e a variância de uma variável aleatória contínua são dadas, respectivamente, por:</p>
 <p><br />
 </p>
@@ -1652,6 +1736,173 @@ E(X) = \underset{-\infty }{\overset{\infty }{\int }}x.f\left(x\right)dx
 <p><span class="math display">\[
 Var(X) = E\left[ (X - E(X))^{2}  \right] = \underset{-\infty }{\overset{\infty }{\int }} (x-E(X))^{2}.f\left(x\right)dx
 \]</span></p>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: A dureza <span class="math inline">\(X\)</span> de uma peça de aço pode ser entendida como sendo uma variável aleatória contínua uniforme no intervalo <span class="math inline">\((50,70)\)</span> da escala Rockwel. Calcule a esperança e a variâcia dessa variável aleatória e a probabilidade de que uma peça tenha dureza entre 55 e 60?</p>
+</blockquote>
+<p><br />
+</p>
+<p>Definindo a variável aleatória contínua <span class="math inline">\(X:X \sim U(50,70)\)</span>:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+f(X=x)=
+\begin{cases}
+\frac{1}{70-50}=\frac{1}{20}, \hspace{0.6cm} \text{para } 50 \le x \le 70 \\
+0, \hspace{1cm} \text{para qualquer outro x}\\
+\end{cases}
+\]</span></p>
+<p><br />
+</p>
+<p>Sua esperança e a variância são:</p>
+<p><br />
+</p>
+<ul>
+<li>Esperança: <span class="math inline">\(E(X) = \mu = \frac{(70+50)}{2}=60\)</span>; e,<br />
+</li>
+<li>Variância: <span class="math inline">\(Var(X) =  \frac{(70-50)^{2} }{12}=33,33\)</span>.</li>
+</ul>
+<p><br />
+</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:fig22"></span>
+<img src="images5/exerc_15.jpg" alt="Os valores assumidos por $f(x)$ são $\ge 0$ e a área definida por $f(x)$ no intervalo $50 \le x \le 70$ é igual a 1. Por essa razão pode ser uma fdp. A probabilidade pedida equivale à área $P(60 \le x \le 55) = (60-55) .  0,05=0,25$." width="60%" />
+<p class="caption">
+Figure 5.14: Os valores assumidos por <span class="math inline">\(f(x)\)</span> são <span class="math inline">\(\ge 0\)</span> e a área definida por <span class="math inline">\(f(x)\)</span> no intervalo <span class="math inline">\(50 \le x \le 70\)</span> é igual a 1. Por essa razão pode ser uma fdp. A probabilidade pedida equivale à área <span class="math inline">\(P(60 \le x \le 55) = (60-55) .  0,05=0,25\)</span>.
+</p>
+</div>
+<p><br />
+</p>
+<blockquote>
+<p>Exemplo: calcule a E(X) e a Var(X) da <em>PDF</em> triangular determnada anteriormente.</p>
+</blockquote>
+<p><br />
+</p>
+<p>Esperança <span class="math inline">\(E(X)\)</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[
+E(X) = \int_{1,40}^{1,625} x\,f_1(x)\,dx + \int_{1,625}^{1,85} x\,f_2(x)\,dx
+\]</span></p>
+<p><br />
+</p>
+<ul>
+<li>Parte de <span class="math inline">\(f_1(x)\)</span><br />
+</li>
+</ul>
+<p><span class="math display">\[
+\int_{1,40}^{1,625} x\,(19,751111\,x - 27,651556)\,dx
+= \left[\frac{19,751111\,x^3}{3} - \frac{27,651556\,x^2}{2}\right]_{1,40}^{1,625}
+\]</span></p>
+<p><br />
+</p>
+<ul>
+<li>Avaliação em <span class="math inline">\(x = 1,625\)</span>: <span class="math inline">\(-8,257919\)</span></li>
+<li>Avaliação em <span class="math inline">\(x = 1,40\)</span>: <span class="math inline">\(-9,032841\)</span></li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[
+-8,257919 - (-9,032841) = 0,774923
+\]</span></p>
+<ul>
+<li>Parte de <span class="math inline">\(f_2(x)\)</span><br />
+</li>
+</ul>
+<p><span class="math display">\[
+\int_{1,625}^{1,85} x\,(-19,751111\,x + 36,539556)\,dx
+= \left[-\frac{19,751111\,x^3}{3} + \frac{36,539556\,x^2}{2}\right]_{1,625}^{1,85}
+\]</span><br />
+</p>
+<ul>
+<li>Avaliação em <span class="math inline">\(x = 1,85\)</span>: <span class="math inline">\(20,842771\)</span></li>
+<li>Avaliação em <span class="math inline">\(x = 1,625\)</span>: <span class="math inline">\(19,992856\)</span></li>
+</ul>
+<p><span class="math display">\[
+20,842771 - 19,992856 = 0,849915
+\]</span></p>
+<p><br />
+</p>
+<p>Assim,</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+E(X) = 0,774923 + 0,849915 = 1,624838
+\]</span><br />
+</p>
+<p>Variância <span class="math inline">\(Var(X)\)</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[
+Var(X) = \int_{1,40}^{1,625} (x - 1,624838)^2\,f_1(x)\,dx
+       + \int_{1,625}^{1,85} (x - 1,624838)^2\,f_2(x)\,dx
+\]</span></p>
+<p><br />
+</p>
+<ul>
+<li>Parte de <span class="math inline">\(f_1(x)\)</span></li>
+</ul>
+<p><br />
+</p>
+<p>Polinômio expandido:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+(x - 1,624838)^2 f_1(x) = 19,751111\,x^3 - 91,836248\,x^2 + 142,003416\,x - 73,002786
+\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[
+\left[\frac{19,751111\,x^4}{4} - \frac{91,836248\,x^3}{3} + \frac{142,003416\,x^2}{2} - 73,002786\,x\right]_{1,40}^{1,625}
+\]</span></p>
+<p><br />
+</p>
+<ul>
+<li>Avaliação em <span class="math inline">\(x = 1,625\)</span>: <span class="math inline">\(-28,066934\)</span></li>
+<li>Avaliação em <span class="math inline">\(x = 1,40\)</span>: <span class="math inline">\(-28,071140\)</span></li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[
+-28,066934 - (-28,071140) = 0,004206
+\]</span></p>
+<p><br />
+</p>
+<ul>
+<li>Parte de <span class="math inline">\(f_2(x)\)</span></li>
+</ul>
+<p><br />
+</p>
+<p>Polinômio expandido:</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+(x - 1,624838)^2 f_2(x) = -19,751111\,x^3 + 100,724248\,x^2 - 170,886527\,x + 96,467967
+\]</span></p>
+<p><br />
+</p>
+<p><span class="math display">\[
+\left[-\frac{19,751111\,x^4}{4} + \frac{100,724248\,x^3}{3} - \frac{170,886527\,x^2}{2} + 96,467967\,x\right]_{1,625}^{1,85}
+\]</span></p>
+<p><br />
+</p>
+<ul>
+<li>Avaliação em <span class="math inline">\(x = 1,85\)</span>: <span class="math inline">\(40,780200\)</span></li>
+<li>Avaliação em <span class="math inline">\(x = 1,625\)</span>: <span class="math inline">\(40,775970\)</span></li>
+</ul>
+<p><br />
+</p>
+<p><span class="math display">\[
+40,780200 - 40,775970 = 0,004231
+\]</span></p>
+<p><br />
+Assim,<br />
+</p>
+<p><span class="math display">\[
+Var(X) = 0,004206 + 0,004231 = 0,008437
+\]</span></p>
+<p><br />
+</p>
 
 </div>
 </div>

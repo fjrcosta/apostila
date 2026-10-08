@@ -34,21 +34,26 @@ knitr::opts_chunk$set(echo = TRUE)
 
 \
 
+<iframe src="assets/var_aleatorias.html" width="100%" height="500px" style="border:none;"></iframe>
+
+\
+
 Ao realizar um experimento aleatório frequentemente estamos interessados mais em alguma função do resultado do que no próprio resultado em si:
 
 \
 
->Ao lançar dois dados, podemos estar interessados na soma sem nos importar de que combinação particular ela resultou.
-
->No lançamento por três vezes de uma moeda, podemos estar interessados no número total de "caras", sem nos preocuparmos se isso decorreu da sequência (K,K,C),(K,C,K) ou (C,K,K).
-
->Na duração (vida útil) de uma lâmpada.
+>Ao lançar dois dados, podemos estar interessados na soma dos valores das suas faces, sem nos importar de que combinação particular ela resultou.
 
 >Na quantidade de chamadas que chegam a uma central telefônica num intervalo de tempo.
 
+>No lançamento por três vezes de uma moeda, podemos estar interessados no número total de "caras", sem nos preocuparmos de qual sequência particular ele decorreu.
+
+>Na duração (vida útil) de uma lâmpada.
+
+>No número de filhos do sexo masculino ao final de três gestações, sem nos importar de qual sequência particular ele foi resultado.
+
 >No numero de veículos que passam por uma praça de pedágio em uma hora. 
 
->No número de filhos do sexo masculino, sem nos importar se isso resultou de  (F,M,M), (M,F,M) ou (M,M,F).
 
 \
 
@@ -66,24 +71,50 @@ knitr::include_graphics("images5/funcao_probabilidade 2.jpg")
 
 \
 
-De forma mais rigorosa, uma *variável aleatória* é uma função mensurável, geralmente representada por uma letra maiúscula ($X$), definida sobre o espaço de probabilidade $(\Omega, \mathcal{F}, P)$, que associa cada elemento $\omega \in \Omega$ a um número real. 
+Um *espaço de probabilidade* $(\Omega, \mathcal{F}, P)$ é composto por três partes:
 
+\
+
+- $\Omega$: o espaço amostral, ou seja, todos os resultados possíveis do experimento aleatório.
+- $\mathcal{F}$: uma $\sigma$-álgebra, isto é, a coleção de subconjuntos de $\Omega$ (os eventos) aos quais podemos atribuir probabilidade.
+- $P$: a medida de probabilidade, que atribui um número em $[0,1]$ a cada evento de $\mathcal{F}$.
+
+\
+
+De forma mais rigorosa, uma *variável aleatória* é uma *função mensurável* (representada por uma letra maiúscula como $X$) definida sobre o espaço de probabilidade $(\Omega, \mathcal{F}, P)$, que associa cada elemento $\omega \in \Omega$ a um número real:
 
 \
 
 $$
-X: (\Omega, \mathcal{F}) \to (\mathbb{R}, \mathcal{B}(\mathbb{R})), 
-\quad \text{com } \mathbb{R}_{X} \subseteq \mathbb{R}
+X: (\Omega, \mathcal{F}) \to (\mathbb{R}, \mathcal{B}(\mathbb{R})),
 $$
 
 \
 
-O *domínio* dessa função é o espaço amostral $\Omega$, e seu *contradomínio* está contido em $\mathbb{R}$. 
+em que $\mathcal{B}(\mathbb{R})$ é a $\sigma$-álgebra de Borel, a menor $\sigma$-álgebra que contém todos os intervalos de $\mathbb{R}$.
+
+\
+
+Dizer que $X$ é *mensurável* significa que, para todo $B \in \mathcal{B}(\mathbb{R})$,
+
+\
+
+$$
+X^{-1}(B) = \{\omega \in \Omega : X(\omega) \in B\} \in \mathcal{F},
+$$
+
+\
+
+ou seja, a pré-imagem de qualquer boreliano é um evento. É isso que garante que probabilidades como $P(X \le x)$ ou $P(a < X \le b)$ estejam bem definidas.
+
+\
+
+O *domínio* dessa função é o espaço amostral $\Omega$, seu *contradomínio* é $\mathbb{R}$, e o conjunto dos valores efetivamente assumidos, $\mathbb{R}_X = X(\Omega)$, é um subconjunto de $\mathbb{R}$.
 
 
 \
 
->Exemplo 1: considere o espaço amostral do experimento aleatório relacionado ao sexo do bebê em três gestações bem sucedidas:
+>Exemplo 1: considere o espaço amostral do experimento aleatório relacionado ao sexo dos bebês após três gestações bem sucedidas:
 
 \
 
@@ -92,7 +123,7 @@ $\Omega=\{\omega_{1}:(FFF), \omega_{2}:(FFM),\omega_{3}:(FMF), \omega_{4}:(MFF),
 
 \
 
-Se estivermos interessados no número de nascimentos do sexo masculino, podemos definir a função $X$ para associar cada elemento $\omega_{i}$ em $\Omega$ a um valor $x_{i} \in \mathbb{R}$ que apresentará os seguintes resultados:
+Se estivermos interessados no número de nascimentos de bebês do sexo masculino, podemos definir a variável aleatória $X$ para associar cada elemento $\omega_{i}$ em $\Omega$ a um valor $x_{i} \in \mathbb{R}$, a qual apresentará os seguintes valores:
 
 \
 
@@ -120,7 +151,7 @@ Cada elemento do espaço amostral é uma sequência de quatro valores binários 
 
 \
 
-Se estivermos interessados no número de falecimentos podemos definir a função $X$ para associar cada elemento $\omega_{i}$ em $\Omega$ a um valor $x_{i} \in \mathbb{R}$ que apresentará os seguintes resultados:
+Se estivermos interessados no número de falecimentos podemos definir a variável aleatória $X$ para associar cada elemento $\omega_{i}$ em $\Omega$ a um valor $x_{i} \in \mathbb{R}$ que apresentará os seguintes resultados:
 
 \
 
@@ -137,12 +168,12 @@ $\mathbb{R}_{X}=\{x_{1}=0; x_{2}=1; x_{3}=2; x_{4}=3; x_{5}=4\}
 
 \
 
-A depender do experimento aleatório podemos propor variáveis aleatórias **discretas** ou **contínuas**:
+A depender da natureza do experimento aleatório podemos propor variáveis aleatórias **discretas** ou **contínuas**:
 
 
 \
 
->Os valores possíveis de uma **variável aleatória discreta** pertencem a um conjunto finito ou infinito enumerável, como $\{0,1,2, \dots \}$. Exemplos incluem: o número de acidentes em uma semana; o número de partículas αα emitidas por uma fonte radioativa em um intervalo de tempo; ou o número de casos de uma doença em um mês. 
+>Os valores possíveis de uma **variável aleatória discreta** pertencem a um conjunto finito ou infinito enumerável, como $\{0,1,2, \dots \}$. Exemplos incluem: o número de acidentes em uma semana; o número de partículas α emitidas por uma fonte radioativa em um intervalo de tempo; ou o número de casos de uma doença em um mês. 
 
 \
 
@@ -157,25 +188,25 @@ A depender do experimento aleatório podemos propor variáveis aleatórias **dis
 
 \	
 
-Considere $X$ uma variável aleatória discreta e seus valores possíveis $X:\{x_{1},x_{2},x_{3}, \dots x_{n} \dots\}$.
+Considere $X$ uma variável aleatória discreta e os possíveis valores que ela pode assumir $X:\{x_{1},x_{2},x_{3}, \dots x_{n} \dots\}$.
 
 \
 
-Uma  _função massa (ou distribuição) de probabilidade_ $f(x)$ é assim denominada quando, aplicada a cada um dos possíveis valores $x_{i}$ que a variável aleatória $X$ assume, associar a probabilidade de sua ocorrência: para $x = x_{i}$, $f(x_{i}) = P(X=x_{i})=p(x{i})$.  
+Uma  _função massa (ou distribuição) de probabilidade_ $f(x)$ de uma variável aleatória é assim denominada quando, aplicada a cada um dos possíveis valores $x_{i}$ que a variável aleatória $X$ assume, associar a probabilidade de sua ocorrência: para $x = x_{i}$, $f(x_{i}) = P(X=x_{i})=p(x{i})$.  
 
 \	
 
-Desse modo, sendo $f(x)$ uma **função de distribuição de probabilidade**, ela precisa **necessariamente** atender às seguintes condições:
+Desse modo, sendo $f(x)$ uma **função de distribuição de probabilidade** de uma variável aleatória ela precisa **necessariamente** atender às seguintes condições:
 
 \	
 
 >Postulado do intervalo: 
 
 $$
-0 < f(x_{i}) < 1
+0 \leq f(x_{i}) \leq 1
 $$
 
-para qualquer $x_{i} \in \mathcal{R}_{X}$, onde $\mathcal{R}_{X}$ é o contradomínio de $X$.
+para qualquer $x_{i} \in \mathbb{R}_{X}$, onde $\mathbb{R}_{X}$ é a imagem de $X$ (o conjunto dos valores que $X$ assume).
 
 \
 
@@ -190,16 +221,16 @@ $$
 
 \	
 
-Equivale afirmar que a probabilidade de ocorrência de um dos valores que a variável aleatória pode assumir está sempre compreendida no intervalo $0 \leq P(X = x_{i}) \leq 1$. E mais, que a soma das probabilidades de todos os possíveis valores de $X$ será 1.
+Equivale afirmar que a probabilidade de ocorrência de qualquer um dos valores que a variável aleatória pode assumir deve estar sempre compreendida no intervalo $0 \leq P(X = x_{i}) \leq 1$. E mais, que a soma das probabilidades de todos os possíveis valores que a variável aleatória $X$ pode assumir deve ser 1.
 
 \
 
 
->Observação: somente se a soma acma for finita há a posibilidade de se ter probabilidades $P(x_{i})$ iguais para todos $x_{i}$ 
+>Observação: somente se a soma acima for finita há a posibilidade de se ter probabilidades $P(x_{i})$ iguais para todos $x_{i}$ 
 
 \	
 
-> Exemplo: Suponha que uma moeda seja lançada duas vezes e que $X$ seja a variável aleatória que represente o número de $caras$ verificado. Defina o espaço amostral, associe para cada evento possível o valor da variável aleatória e definda uma função discreta de probabilidade correspondente.
+> Exemplo: Suponha que uma moeda seja lançada duas vezes e que $X$ seja a variável aleatória que conte o número de $caras$. Defina o espaço amostral, associe para cada evento possível o valor que a variável aleatória assume e definda uma função discreta de probabilidade correspondente.
 
 \	
 
@@ -268,6 +299,7 @@ P(coroa,coroa) & = \frac{1}{4}\\
 
 Para definir uma _função discreta de distribuição de probabilidade_ deveremos associar a cada valor que a variável aleatória $X$ assume sua correspondente _probabilidade de ocorrência_.
 
+\ 
  
 \begin{align*}
 P(X=0) & = P(coroa,coroa) = \frac{1}{4} \\ 	
@@ -360,7 +392,7 @@ abline(h = seq(0, 1, by = 0.25), col = "lightgray", lty = 2)
 \
 
 
-Uma _função de distribuição cumulativa_ $F(x)$ para uma variável aleatória $X$ exprime a probabilidade de que a variável aleatória $X$ assuma um valor _menor  ou igual a determinado $x$_ , sendo definida por:
+Uma _função de distribuição cumulativa de probabilidades_ $F(x)$ de uma variável aleatória $X$ exprime a probabilidade de que a variável aleatória $X$ assuma um valor _menor  ou igual a determinado $x$_ , sendo definida por:
 
 
 \
@@ -375,9 +407,12 @@ Propriedades:
 
 \	
 
-1- $0 \leq F(x) \leq 1$  (os valores da função estão no intervalo de probabilidade);   
+1- $0 \leq F(x) \leq 1$  (os valores da função estão no intervalo de probabilidade);  
+
 2- $F(x)$ é não decrescente: $F(x) \leq F(y)$ se $x \leq y$ (a probabilidade cumulativa nunca diminui);
-- $F(- \infty) = \underset{x\to -\infty }{lim}F\left(x\right)=0$ (a probabilidade cumulativa no limite inferior é zero); 
+
+3- $F(- \infty) = \underset{x\to -\infty }{lim}F\left(x\right)=0$ (a probabilidade cumulativa no limite inferior é zero); 
+
 4- $F(+ \infty) = \underset{x\to \infty }{lim}F\left(x\right)=1$ (a probabilidade cumulativa no limite superior é um).
 
 \	
@@ -386,16 +421,16 @@ Propriedades:
 
 \
 
-Para uma variável aleatória discreta $X$, a **função massa de probabilidade** $f(x)$ pode ser derivada da **função de distribuição cumulativa** $F(x)$. Especificamente, para todo $x$ em $(-\infty, \infty)$):
+Para uma variável aleatória discreta $X$, a **função massa de probabilidade** $f(x)$ pode ser derivada da **função de distribuição cumulativa** $F(x)$. Especificamente, para todo $x$ em $(-\infty, \infty)$:
 
 \
 
 $$
-f(x) = P(X = x) = F(x) - F(x^-),
+f(x) = P(X = x) = F(x) - F(\bar{x}),
 $$
 \
 
-onde $F(x^-)$ é o valor de $F(x)$ imediatamente **antes** de $x$, considerando a natureza discreta da variável.
+onde $F(\bar{x})$ é o valor de $F(x)$ imediatamente **antes** de $x$, considerando a natureza discreta da variável.
 
 
 \
@@ -406,7 +441,7 @@ Além disso, a definição cumulativa da função $F(x)$ para valores discretos 
 
 
 $$
-F\left(x\right)=P\left(X\le x\right)=\sum _{u\le n}f\left(u\right),
+F\left(x\right)=P\left(X\le x\right)=\sum _{u\le x}f\left(u\right),
 $$
 
 em que $u$ são os valores possíveis da variável aleatória $X$. Equivale dizer que é a soma sobre todos os valores $u$ assumidos por $X$ para os quais $u \leq x$.
@@ -445,9 +480,9 @@ Essa expressão mostra que $F(x)$ é obtida pela soma cumulativa das probabilida
 \resizebox{0.6\linewidth}{!}{
 \begin{tabular}{|c|c|c|c|}
 \hline
-$x_{k}$  & 0 & 1 &  2  \\
+$x_{i}$  & 0 & 1 &  2  \\
 \hline
-$P(X=x_{k})=f(x_{k})$ & 1/4  & 1/2 & 1/4  \\
+$f(x_{i})=P(X=x_{i})$ & 1/4  & 1/2 & 1/4  \\
 \hline
 \end{tabular}
 }
@@ -470,9 +505,9 @@ textable <- "
 \\begin{table}[]
 \\begin{tabular}{|c|c|c|c|}
 \\hline
-$x_{k}$  & 0 & 1 &  2  \\\\
+$x_{i}$  & 0 & 1 &  2  \\\\
 \\hline
-$P(X=x_{k})=f(x_{k})$ & 1/4  & 1/2 & 1/4  \\\\
+$f(x_{i})=P(X=x_{i})$ & 1/4  & 1/2 & 1/4  \\\\
 \\hline
 \\end{tabular}
 \\end{table}
@@ -519,47 +554,55 @@ p <- c(0.25, 0.5, 0.25)
 
 # Probabilidade acumulada
 p_cumulative <- cumsum(p)
+n <- length(x)
 
-# Criando o gráfico de probabilidade acumulada com linhas verticais
+# Limites do eixo x (com margem antes do primeiro e depois do último valor)
+x_min <- -1
+x_max <- 3
+
+# Valor de F(x) imediatamente antes de cada salto
+p_before <- c(0, p_cumulative[-n])
+
+# Gráfico vazio, para desenhar os degraus manualmente
 plot(
-  x,
-  p_cumulative,
-  type = "s", # Tipo "steps" para probabilidade acumulada
-  xlab = "x",
-  ylab = expression(F(x)),
+  NA,
+  xlim = c(x_min, x_max),
   ylim = c(0, 1),
-  xlim = c(0, 3), # Expandido para incluir margens
+  xlab = "x",
+  ylab = "",
   main = "Função de distribuição acumulada (CDF)",
-  col = "blue",
-  lwd = 2,
   axes = FALSE # Desabilita os eixos padrão para customização
 )
-
-# Adicionando linhas verticais para conectar os valores
-segments(
-  x0 = x[-1], # Exclui o primeiro valor (X=0)
-  y0 = c(0, p_cumulative[-length(p_cumulative)])[-1], # Exclui o valor inicial (F(0))
-  x1 = x[-1],
-  y1 = p_cumulative[-1], # Exclui o valor inicial (F(0))
-  col = "red",
-  lty = 2 # Linhas tracejadas
-)
-
-# Adicionando bolinhas abertas nos limites inferiores (apenas X > 0)
-points(x[-1], c(0, p_cumulative[-length(p_cumulative)])[-1], pch = 1, col = "blue", cex = 1.5)
-
-# Adicionando bolinhas fechadas no limite superior de cada degrau
-points(x, p_cumulative, pch = 16, col = "blue", cex = 1.5)
-
-# Customizando o eixo X
-axis(1, at = 0:3, labels = 0:3)
-
-# Customizando o eixo Y com frações
-axis(2, at = c(0, 0.25, 0.5, 0.75, 1), labels = c("0", "1/4", "1/2", "3/4", "1"), las = 1)
 
 # Adicionando grades para facilitar a interpretação
 grid(nx = NULL, ny = NULL, col = "lightgray", lty = "dotted")
 
+# Customizando o eixo X (passando por y = 0)
+axis(1, at = x_min:x_max, labels = x_min:x_max, pos = 0)
+
+# Customizando o eixo Y com frações (passando por x = 0); o rótulo "0" já aparece no eixo X
+axis(2, at = c(0, 0.25, 0.5, 0.75, 1), labels = c("", "1/4", "1/2", "3/4", "1"), las = 1, pos = 0)
+
+# Rótulo F(x) no topo do eixo Y
+mtext(expression(F(x)), side = 3, at = 0, line = 0)
+
+# F(x) = 0 antes do primeiro valor
+segments(x0 = x_min, y0 = 0, x1 = x[1], y1 = 0, col = "blue", lwd = 2)
+
+# Degraus intermediários: F(x) = F(x_i) para x_i <= x < x_{i+1}
+segments(x0 = x[-n], y0 = p_cumulative[-n], x1 = x[-1], y1 = p_cumulative[-n], col = "blue", lwd = 2)
+
+# F(x) = 1 depois do último valor
+segments(x0 = x[n], y0 = 1, x1 = x_max, y1 = 1, col = "blue", lwd = 2)
+
+# Linhas verticais tracejadas nos saltos
+segments(x0 = x, y0 = p_before, x1 = x, y1 = p_cumulative, col = "red", lty = 2)
+
+# Bolinhas abertas nos limites inferiores de cada salto
+points(x, p_before, pch = 21, bg = "white", col = "blue", cex = 1.5)
+
+# Bolinhas fechadas no limite superior de cada degrau
+points(x, p_cumulative, pch = 16, col = "blue", cex = 1.5)
 
 
 ```
@@ -573,7 +616,7 @@ grid(nx = NULL, ny = NULL, col = "lightgray", lty = "dotted")
  
 
 
-Considerem que os cinco alvos da imagem abaixo sejam como que espaços amostrais ($\Omega_{1},\dots \Omega_{5}$) representativos de 5 experimentos aleatórios nos quais uma pessoa irá atirar um dardo. 
+Considerem que os cinco alvos da imagem abaixo sejam como que espaços amostrais ($\Omega_{1},\dots \Omega_{5}$) representativos de 5 experimentos aleatórios nos quais uma pessoa poderá acertar um dardo. 
 
 \
 
@@ -952,56 +995,137 @@ knitr::include_graphics("images5/item6.jpg")
 
 \
 
-> Exemplo: A dureza $X$ de uma peça de aço pode ser entendida como sendo uma variável aleatória contínua uniforme no intervalo $(50,70)$ da escala Rockwel. Calcule a esperança e a variâcia dessa variável aleatória e a probabilidade de que uma peça tenha dureza entre 55 e 60? 
 
 \
 
 
-Definindo a variável aleatória contínua $X:X \sim U(50,70)$:
+> **Exemplo:** As alturas $X$ (em metros) de um grupo de indivíduos têm as seguintes estatísticas: $a = 1,40$, $b = 1,85$ e $c = 1,625$ (alturas mínima, máxima e média).
+> Determinar uma **função densidade de probabilidade (PDF) triangular** $f(x)$ para as alturas, com base nas estatísticas acima (o triângulo tem base no intervalo $[a, b] = [1,40;\ 1,85]$ e vértice superior em $x = c = 1,625$).
+\
+
+\
+
+- Condição de área unitária: toda *PDF* deve ter área total igual a 1:
 
 \
 
 $$
-f(X=x)=
-\begin{cases}
-\frac{1}{70-50}=\frac{1}{20}, \hspace{0.6cm} \text{para } 50 \le x \le 70 \\
-0, \hspace{1cm} \text{para qualquer outro x}\\
-\end{cases}
+\int_{-\infty}^{\infty} f(x)\,dx = 1.
 $$
 
 \
 
-Sua esperança e a variância são:
+A área de um triângulo é dada por $\dfrac{\text{base} \times \text{altura}}{2}$. Sendo $h$ a altura do triângulo (o valor de $f(x)$ no vértice):
 
 \
 
-- Esperança: $E(X) = \mu = \frac{(70+50)}{2}=60$; e,  
-- Variância: $Var(X) =  \frac{(70-50)^{2} }{12}=33,33$.
+$$
+\frac{(b - a) \cdot h}{2} = 1
+\quad\Longrightarrow\quad
+h = \frac{2}{b - a} = \frac{2}{1,85 - 1,40} = \frac{2}{0,45} \approx 4,444.
+$$
+
+\
+
+A *PDF* será formada por dois segmentos de reta:
+
+- $f_1(x)$: sobe de $(1,40;\ 0)$ até $(1,625;\ 4,444)$
+- $f_2(x)$: desce de $(1,625;\ 4,444)$ até $(1,85;\ 0)$
+
+\
+
+>Segmento $f_1(x)$: 
+
+\
+
+- Coeficiente angular:
+
+\
+
+$$
+b_{1} = \frac{4,444 - 0}{1,625 - 1,40} = \frac{4,444}{0,225} \approx 19,75111
+$$
+
+\
+
+- Coeficiente linear, usando o ponto $(1,40;\ 0)$:
+
+\
+
+$$
+0 = 19,75111 \times 1,40 + a_1
+\quad\Longrightarrow\quad
+a_1 \approx -27,65155
+$$
+\
+
+Assim, 
 
 \
 
 
-```{r fig22, echo=FALSE, out.width='60%', fig.align='center', fig.cap="Os valores assumidos por $f(x)$ são $\\ge 0$ e a área definida por $f(x)$ no intervalo $50 \\le x \\le 70$ é igual a 1. Por essa razão pode ser uma fdp. A probabilidade pedida equivale à área $P(60 \\le x \\le 55) = (60-55) .  0,05=0,25$."}
+$$
+f_1(x) = a_1 + b_1 \cdot x \\
+f_1(x) = - 27,65155 + 19,75111 \cdot x 
+$$
+\
 
-knitr::include_graphics("images5/exerc_15.jpg")
+>Segmento $f_2(x)$
+
+\
+
+- Coeficiente angular:
+
+\
+
+$$
+b_2 = \frac{0 - 4,444}{1,85 - 1,625} = -\frac{4,444}{0,225} \approx -19,75111
+$$
+\
+
+
+- Coeficiente linear, usando o ponto $(1,85;\ 0)$:
+\
+
+
+$$
+0 = -19,75111 \times 1,85 + a_2
+\quad\Longrightarrow\quad
+a_2 \approx 36,53955
+$$
+
+\
+
+Assim, 
+
+\
+
+
+$$
+f_2(x) = a_2 + b_2 \cdot x \\
+f_2(x) = 36,53955 -19,75111 \cdot x. 
+$$
+
+\
+
+```{r grafico, fig.width=8, fig.height=4, fig.cap="PDF triangular das alturas"}
+
+plot(NA, xlim = c(1.2, 2.05), ylim = c(0, 4.5),
+     xlab = "x (alturas em m)", ylab = "f(x): densidade",
+     main = "PDF Triangular")
+polygon(c(1.40, 1.625, 1.85), c(0, 4.444, 0), col = "#DDE0E8", border = NA)
+lines(c(1.2, 1.40, 1.625, 1.85, 2.05), c(0, 0, 4.444, 0, 0), col = "#1F2A6B", lwd = 1)
+abline(v = 1.625, lty = 2, col = "grey60")
+points(1.625, 4.444, pch = 19, col = "#1F2A6B")
 
 ```
 
-
 \
-
 
 
 ## Esperança e variância de uma variável aleatória discreta
 
 
-Coletando-se dados podemos analisá-los, por exemplo, em termos de sua distribuição, pelas estatísticas da média e variância.
-
-
-  
-De maneira análoga procedemos com variáveis aleatórias (discretas ou contínuas) onde dispomos das  _probabilidades_ de ocorrência associadas a cada um dos valores (discretos ou infinitos numeráveis) que ela pode assumir. 
-
- 
 \
 
 A  _esperança matemática_ (valor esperado ou expectância) de uma variável aleatória discreta é dada pela  _somatória do produto_ de cada um dos valores que ela pode assumir pela probabilidade associada a cada um desses valores.
@@ -1009,7 +1133,7 @@ A  _esperança matemática_ (valor esperado ou expectância) de uma variável al
  
 \
 
-Seja $X$ uma variável aleatória discreta que pode assumir os valores $x_{1},x_{2}, \dots x_{n}$; e sejam $P_{1},P_{2}, \dots, P_{n}$ as respectivas probabilidades associadas às suas ocorrências.
+Seja $X$ uma variável aleatória discreta que pode assumir os valores $x_{1},x_{2}, \dots x_{n}$; e sejam $P(X=x_{1}), \dots, P(X=x_{n})$ as respectivas probabilidades associadas às suas ocorrências.
 
  
 \
@@ -1019,12 +1143,12 @@ A esperança da variável $X$, denotada por $E(X)$ será:
 \
 
 $$
-E\left(X\right)=\sum _{i=1}^{n}{x}_{i} \cdot P(X=x_i)
+E\left(X\right)=\sum _{i=1}^{n}{x}_{i} \cdot P(X=x_i),
 $$
 
 \
 
-Com  _n_ sendo o número de possíveis resultados que a variável  $X$ pode assumir.
+em que _n_ é o número de possíveis valores que a variável aleatória $X$ pode assumir.
 
  
 \
@@ -1181,7 +1305,7 @@ $E(X) = \frac{1}{6} . (1+2+3+4+5+6) = 3,50$
 Var(X) & = (1-3,50)^{2}.(\frac{1}{6}) + (2-3,50)^{2}.(\frac{1}{6}) +\\
        & (3-3,50)^{2}.(\frac{1}{6}) + (4-3,50)^{2}.(\frac{1}{6}) + (5-3,50)^{2}.(\frac{1}{6}) + \\
        & (6-3,50)^{2}.(\frac{1}{6}) \\
-       & = 2,90
+       & = 2,92
 \end{align*}
 
  
@@ -1255,7 +1379,7 @@ tex2markdown(textable)
 \
 
 
-$E(X) = (0 . 0,10) + (1 . 0,20) + 2 . 0,30) + (3 . 0,30) + (4 . 0,10) = 2,10$ (caminhões por dia) 
+$E(X) = (0 . 0,10) + (1 . 0,20) + (2 . 0,30) + (3 . 0,30) + (4 . 0,10) = 2,10$ (caminhões por dia) 
 
 \
 
@@ -1272,6 +1396,7 @@ $^{1}$: (caminhões por dia)$^{2}$
 
 ## Esperança e variância de uma variável aleatória contínua
  
+\
 
 
 A esperança e a variância de uma variável aleatória contínua são dadas, respectivamente, por: 
@@ -1294,6 +1419,196 @@ $$
 
 
 
+\
+
+
+> Exemplo: A dureza $X$ de uma peça de aço pode ser entendida como sendo uma variável aleatória contínua uniforme no intervalo $(50,70)$ da escala Rockwell. Calcule a esperança e a variância dessa variável aleatória e a probabilidade de que uma peça tenha dureza entre 55 e 60? 
+
+\
+
+
+Definindo a variável aleatória contínua $X:X \sim U(50,70)$:
+
+\
+
+$$
+f(X=x)=
+\begin{cases}
+\frac{1}{70-50}=\frac{1}{20}, \hspace{0.6cm} \text{para } 50 \le x \le 70 \\
+0, \hspace{1cm} \text{para qualquer outro x}\\
+\end{cases}
+$$
+
+\
+
+Sua esperança e a variância são:
+
+\
+
+- Esperança: $E(X) = \mu = \frac{(70+50)}{2}=60$; e,  
+- Variância: $Var(X) =  \frac{(70-50)^{2} }{12}=33,33$.
+
+\
+
+
+```{r fig22, echo=FALSE, out.width='60%', fig.align='center', fig.cap="Os valores assumidos por $f(x)$ são $\\ge 0$ e a área definida por $f(x)$ no intervalo $50 \\le x \\le 70$ é igual a 1. Por essa razão pode ser uma fdp. A probabilidade pedida equivale à área $P(55 \\le x \\le 60) = (60-55) .  0,05=0,25$."}
+
+knitr::include_graphics("images5/exerc_15.jpg")
+
+```
+
+\
+
+
+>Exemplo: calcule a E(X) e a Var(X) da *PDF* triangular determnada anteriormente.
+
+
+
+\
+
+Esperança $E(X)$
+
+\
+
+$$
+E(X) = \int_{1,40}^{1,625} x\,f_1(x)\,dx + \int_{1,625}^{1,85} x\,f_2(x)\,dx
+$$
+
+\
+
+- Parte de $f_1(x)$
+\
+
+
+
+$$
+\int_{1,40}^{1,625} x\,(19,751111\,x - 27,651556)\,dx
+= \left[\frac{19,751111\,x^3}{3} - \frac{27,651556\,x^2}{2}\right]_{1,40}^{1,625}
+$$
+
+\
+
+- Avaliação em $x = 1,625$: $-8,257919$
+- Avaliação em $x = 1,40$: $-9,032841$
+
+\
+
+$$
+-8,257919 - (-9,032841) = 0,774923
+$$
+
+- Parte de $f_2(x)$
+\
+
+
+$$
+\int_{1,625}^{1,85} x\,(-19,751111\,x + 36,539556)\,dx
+= \left[-\frac{19,751111\,x^3}{3} + \frac{36,539556\,x^2}{2}\right]_{1,625}^{1,85}
+$$
+\
+
+
+- Avaliação em $x = 1,85$: $20,842771$
+- Avaliação em $x = 1,625$: $19,992856$
+
+$$
+20,842771 - 19,992856 = 0,849915
+$$
+
+\
+
+Assim,
+
+\
+
+$$
+E(X) = 0,774923 + 0,849915 = 1,624838
+$$
+\
+
+Variância $Var(X)$
+
+\
+
+$$
+Var(X) = \int_{1,40}^{1,625} (x - 1,624838)^2\,f_1(x)\,dx
+       + \int_{1,625}^{1,85} (x - 1,624838)^2\,f_2(x)\,dx
+$$
+
+\
+
+- Parte de $f_1(x)$
+
+\
+
+
+Polinômio expandido:
+
+\
+
+$$
+(x - 1,624838)^2 f_1(x) = 19,751111\,x^3 - 91,836248\,x^2 + 142,003416\,x - 73,002786
+$$
+
+\
+
+$$
+\left[\frac{19,751111\,x^4}{4} - \frac{91,836248\,x^3}{3} + \frac{142,003416\,x^2}{2} - 73,002786\,x\right]_{1,40}^{1,625}
+$$
+
+\
+
+- Avaliação em $x = 1,625$: $-28,066934$
+- Avaliação em $x = 1,40$: $-28,071140$
+
+\
+
+$$
+-28,066934 - (-28,071140) = 0,004206
+$$
+
+\
+
+- Parte de $f_2(x)$
+
+\
+
+
+Polinômio expandido:
+
+\
+
+$$
+(x - 1,624838)^2 f_2(x) = -19,751111\,x^3 + 100,724248\,x^2 - 170,886527\,x + 96,467967
+$$
+
+\
+
+$$
+\left[-\frac{19,751111\,x^4}{4} + \frac{100,724248\,x^3}{3} - \frac{170,886527\,x^2}{2} + 96,467967\,x\right]_{1,625}^{1,85}
+$$
+
+\
+
+- Avaliação em $x = 1,85$: $40,780200$
+- Avaliação em $x = 1,625$: $40,775970$
+
+\
+
+$$
+40,780200 - 40,775970 = 0,004231
+$$
+
+\
+Assim, 
+\
+
+
+$$
+Var(X) = 0,004206 + 0,004231 = 0,008437
+$$
+
+\
 
 
 

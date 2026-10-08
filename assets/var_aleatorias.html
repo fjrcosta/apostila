@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumo: Introdução a Variáveis Aleatórias</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #f8f9fa;
+            --accent-color: #2980b9;
+            --text-color: #333;
+            --sidebar-width: 260px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            background-color: #fff;
+        }
+
+        /* Sidebar */
+        nav {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background-color: var(--secondary-color);
+            border-right: 1px solid #e1e4e8;
+            position: fixed;
+            padding: 2rem 1rem;
+            overflow-y: auto;
+        }
+
+        nav h2 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li { margin-bottom: 0.7rem; }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #555;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover { color: var(--accent-color); }
+
+        /* Conteúdo */
+        main {
+            margin-left: var(--sidebar-width);
+            padding: 3rem 5rem;
+            max-width: 850px;
+        }
+
+        article {
+            font-family: 'Georgia', serif;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        h1 { font-size: 2.2rem; color: var(--primary-color); }
+        h2 {
+            color: var(--primary-color);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 1rem;
+            margin-top: 2.5rem;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        h3 { color: var(--accent-color); margin-top: 1.5rem; }
+
+        .formula {
+            background: #f4f4f4;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 1rem 0;
+            display: block;
+        }
+
+        blockquote {
+            border-left: 4px solid #ccc;
+            margin: 1.5rem 0;
+            padding-left: 1rem;
+            font-style: italic;
+            color: #555;
+        }
+
+        .highlight { font-weight: bold; color: #c0392b; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th { background-color: var(--secondary-color); }
+
+        @media (max-width: 768px) {
+            nav { display: none; }
+            main { margin-left: 0; padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <h2>Tópicos</h2>
+    <ul>
+        <li><a href="#motivacao">1. Motivação</a></li>
+        <li><a href="#espaco">2. Espaço de Probabilidade</a></li>
+        <li><a href="#definicao">3. Definição Formal</a></li>
+        <li><a href="#tipos">4. Discretas e Contínuas</a></li>
+        <li><a href="#pmf">5. Função Massa (PMF)</a></li>
+        <li><a href="#cdf">6. Função Acumulada (CDF)</a></li>
+        <li><a href="#pdf">7. Função Densidade (PDF)</a></li>
+        <li><a href="#esp-discreta">8. E(X) e Var(X): Discreta</a></li>
+        <li><a href="#esp-continua">9. E(X) e Var(X): Contínua</a></li>
+    </ul>
+</nav>
+
+<main>
+    <header>
+        <h1>Introdução a Variáveis Aleatórias</h1>
+        <p class="meta">Do resultado do experimento ao número real</p>
+    </header>
+
+    <article>
+        <section id="motivacao">
+            <h2>1. Motivação</h2>
+            <p>Ao realizar um experimento aleatório, frequentemente interessa mais uma <strong>função do resultado</strong> do que o próprio resultado:</p>
+            <ul>
+                <li>A <strong>soma</strong> das faces de dois dados, não a combinação particular que a gerou.</li>
+                <li>O <strong>número de caras</strong> em três lançamentos de uma moeda, não a sequência.</li>
+                <li>O número de chamadas numa central telefônica, a vida útil de uma lâmpada, o número de veículos num pedágio.</li>
+            </ul>
+        </section>
+
+        <section id="espaco">
+            <h2>2. Espaço de Probabilidade (Ω, 𝓕, P)</h2>
+            <ul>
+                <li><strong>Ω:</strong> espaço amostral, todos os resultados possíveis do experimento.</li>
+                <li><strong>𝓕:</strong> σ-álgebra, a coleção de subconjuntos de Ω (os <strong>eventos</strong>) aos quais podemos atribuir probabilidade.</li>
+                <li><strong>P:</strong> medida de probabilidade, que atribui a cada evento de 𝓕 um número em [0, 1].</li>
+            </ul>
+        </section>
+
+        <section id="definicao">
+            <h2>3. Definição Formal</h2>
+            <p>Uma <strong>variável aleatória</strong> X é uma <strong>função mensurável</strong> que associa cada ω ∈ Ω a um número real:</p>
+            <div class="formula">X : (Ω, 𝓕) → (ℝ, 𝓑(ℝ))</div>
+            <p>𝓑(ℝ) é a σ-álgebra de Borel: a menor σ-álgebra que contém todos os intervalos de ℝ.</p>
+            <h3>Mensurabilidade</h3>
+            <p>Para todo boreliano B ∈ 𝓑(ℝ), a pré-imagem deve ser um evento:</p>
+            <div class="formula">X⁻¹(B) = { ω ∈ Ω : X(ω) ∈ B } ∈ 𝓕</div>
+            <p>É isso que garante que <strong>P(X ≤ x)</strong> ou <strong>P(a &lt; X ≤ b)</strong> estejam bem definidas.</p>
+            <table>
+                <tr><th>Domínio</th><th>Contradomínio</th><th>Imagem</th></tr>
+                <tr><td>Ω</td><td>ℝ</td><td>ℝ<sub>X</sub> = X(Ω) ⊆ ℝ</td></tr>
+            </table>
+            <blockquote>Três gestações, X = número de meninos: X(FFF) = 0, X(FFM) = 1, …, X(MMM) = 3, logo ℝ<sub>X</sub> = {0, 1, 2, 3}.</blockquote>
+        </section>
+
+        <section id="tipos">
+            <h2>4. Discretas e Contínuas</h2>
+            <ul>
+                <li><strong>Discreta:</strong> valores num conjunto finito ou infinito enumerável, como {0, 1, 2, …}. Ex.: número de acidentes numa semana, casos de uma doença num mês.</li>
+                <li><strong>Contínua:</strong> valores num intervalo de ℝ, como [a, b] ou [0, ∞). Ex.: peso, altura, tempo de vida de uma lâmpada, temperatura.</li>
+            </ul>
+        </section>
+
+        <section id="pmf">
+            <h2>5. Função Massa de Probabilidade (PMF)</h2>
+            <p>Para X discreta, associa a cada valor x<sub>i</sub> sua probabilidade:</p>
+            <div class="formula">f(x<sub>i</sub>) = P(X = x<sub>i</sub>)</div>
+            <p>Condições necessárias:</p>
+            <ol>
+                <li><strong>Intervalo:</strong> 0 ≤ f(x<sub>i</sub>) ≤ 1 para todo x<sub>i</sub> ∈ ℝ<sub>X</sub>.</li>
+                <li><strong>Evento certo:</strong> Σ f(x<sub>i</sub>) = 1.</li>
+            </ol>
+            <h3>Exemplo: número de caras em dois lançamentos</h3>
+            <table>
+                <tr><th>x</th><td>0</td><td>1</td><td>2</td></tr>
+                <tr><th>f(x)</th><td>1/4</td><td>1/2</td><td>1/4</td></tr>
+            </table>
+        </section>
+
+        <section id="cdf">
+            <h2>6. Função de Distribuição Acumulada (CDF)</h2>
+            <div class="formula">F(x) = P(X ≤ x)</div>
+            <p>Propriedades:</p>
+            <ul>
+                <li>0 ≤ F(x) ≤ 1.</li>
+                <li>F é <strong>não decrescente</strong>: x ≤ y ⇒ F(x) ≤ F(y).</li>
+                <li>lim F(x) = 0 quando x → −∞ e lim F(x) = 1 quando x → +∞.</li>
+            </ul>
+            <h3>Caso discreto</h3>
+            <p>F(x) é a soma das probabilidades dos valores u ≤ x, e tem forma de <strong>escada</strong>. Cada salto é a própria PMF:</p>
+            <div class="formula">F(x) = Σ<sub>u ≤ x</sub> f(u) &nbsp;&nbsp;e&nbsp;&nbsp; f(x) = F(x) − F(x⁻)</div>
+            <p>No exemplo das duas moedas: F(x) = 0 para x &lt; 0; 1/4 em [0, 1); 3/4 em [1, 2); 1 para x ≥ 2.</p>
+        </section>
+
+        <section id="pdf">
+            <h2>7. Função Densidade de Probabilidade (PDF)</h2>
+            <p>Quando o espaço amostral tem infinitos pontos, a probabilidade de qualquer valor isolado tende a zero:</p>
+            <div class="formula">P(X = x) = 0 &nbsp;(X contínua)</div>
+            <p>Por isso a densidade f(x) não dá probabilidades pontuais: a probabilidade é a <strong>área sob a curva</strong> num intervalo. Condições:</p>
+            <ol>
+                <li>f(x) ≥ 0 para todo x.</li>
+                <li>∫<sub>−∞</sub><sup>∞</sup> f(x) dx = 1.</li>
+            </ol>
+            <div class="formula">P(a &lt; X &lt; b) = ∫<sub>a</sub><sup>b</sup> f(x) dx</div>
+            <p>Para X contínua, F(x) é uma curva crescente e contínua de 0 a 1.</p>
+            <blockquote>f(x) = 2x em [0, 1]: área total = 1 (triângulo de base 1 e altura 2) e P(0 ≤ X ≤ 1/2) = (1/2 · 1)/2 = 1/4.</blockquote>
+        </section>
+
+        <section id="esp-discreta">
+            <h2>8. Esperança e Variância: Caso Discreto</h2>
+            <div class="formula">E(X) = Σ x<sub>i</sub> · P(X = x<sub>i</sub>)</div>
+            <div class="formula">Var(X) = Σ [x<sub>i</sub> − E(X)]² · P(X = x<sub>i</sub>) = E(X²) − [E(X)]²</div>
+            <h3>Propriedades da esperança</h3>
+            <ul>
+                <li>E(c) = c; &nbsp;E(cX) = c · E(X); &nbsp;E(X ± c) = E(X) ± c.</li>
+                <li>E(X ± Y) = E(X) ± E(Y).</li>
+                <li>Se X e Y são <strong>independentes</strong>: E(XY) = E(X) · E(Y).</li>
+            </ul>
+            <h3>Propriedades da variância</h3>
+            <ul>
+                <li>Var(c) = 0; &nbsp;Var(cX) = c² · Var(X).</li>
+                <li>Independentes: Var(X ± Y) = Var(X) + Var(Y).</li>
+                <li>Quaisquer: Var(X ± Y) = Var(X) + Var(Y) ± 2 Cov(X, Y), com Cov(X, Y) = E(XY) − E(X)E(Y).</li>
+            </ul>
+            <blockquote>Face de um dado: E(X) = 3,5 e Var(X) = 35/12 ≈ 2,92.</blockquote>
+        </section>
+
+        <section id="esp-continua">
+            <h2>9. Esperança e Variância: Caso Contínuo</h2>
+            <p>As somas dão lugar a integrais:</p>
+            <div class="formula">E(X) = ∫<sub>−∞</sub><sup>∞</sup> x · f(x) dx</div>
+            <div class="formula">Var(X) = ∫<sub>−∞</sub><sup>∞</sup> [x − E(X)]² · f(x) dx</div>
+            <h3>Exemplo: distribuição uniforme</h3>
+            <p>Dureza de uma peça de aço, X ~ U(50, 70), com f(x) = 1/20 em [50, 70]:</p>
+            <ul>
+                <li>E(X) = (50 + 70)/2 = 60.</li>
+                <li>Var(X) = (70 − 50)²/12 ≈ 33,33.</li>
+                <li>P(55 ≤ X ≤ 60) = (60 − 55) · 1/20 = 0,25.</li>
+            </ul>
+        </section>
+    </article>
+</main>
+
+</body>
+</html>

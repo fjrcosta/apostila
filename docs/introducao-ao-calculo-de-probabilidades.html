@@ -251,8 +251,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="introducao-a-variaveis-aleatorias.html"><a href="introducao-a-variaveis-aleatorias.html#funcao-massa-ou-distribuicao-de-probabilidade-probability-mass-function---pmf"><i class="fa fa-check"></i><b>5.2</b> Função massa (ou distribuição) de probabilidade (<em>Probability Mass Function - PMF</em>)</a></li>
 <li class="chapter" data-level="5.3" data-path="introducao-a-variaveis-aleatorias.html"><a href="introducao-a-variaveis-aleatorias.html#funcao-cumulativa-de-probabilidade"><i class="fa fa-check"></i><b>5.3</b> Função cumulativa de probabilidade</a></li>
 <li class="chapter" data-level="5.4" data-path="introducao-a-variaveis-aleatorias.html"><a href="introducao-a-variaveis-aleatorias.html#funcao-de-densidade-de-probabilidade-probability-density-function---pdf"><i class="fa fa-check"></i><b>5.4</b> Função de densidade de probabilidade (<em>Probability Density Function - PDF</em>)</a></li>
-<li class="chapter" data-level="5.5" data-path="introducao-a-variaveis-aleatorias.html"><a href="introducao-a-variaveis-aleatorias.html#esperanca-e-variancia-de-uma-variavel-aleatoria-discreta"><i class="fa fa-check"></i><b>5.5</b> Esperança e variância de uma variável aleatória discreta</a></li>
-<li class="chapter" data-level="5.6" data-path="introducao-a-variaveis-aleatorias.html"><a href="introducao-a-variaveis-aleatorias.html#esperanca-e-variancia-de-uma-variavel-aleatoria-continua"><i class="fa fa-check"></i><b>5.6</b> Esperança e variância de uma variável aleatória contínua</a></li>
+<li class="chapter" data-level="5.5" data-path="introducao-a-variaveis-aleatorias.html"><a href="introducao-a-variaveis-aleatorias.html#esperanca-e-variancia-matematicas-de-uma-variavel-aleatoria-discreta"><i class="fa fa-check"></i><b>5.5</b> Esperança e variância matemáticas de uma variável aleatória discreta</a></li>
+<li class="chapter" data-level="5.6" data-path="introducao-a-variaveis-aleatorias.html"><a href="introducao-a-variaveis-aleatorias.html#esperanca-e-variancia-matematicas-de-uma-variavel-aleatoria-continua"><i class="fa fa-check"></i><b>5.6</b> Esperança e variância matemáticas de uma variável aleatória contínua</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="introducao-a-modelos-teoricos-de-probabilidade.html"><a href="introducao-a-modelos-teoricos-de-probabilidade.html"><i class="fa fa-check"></i><b>6</b> Introdução a modelos teóricos de probabilidade</a>
 <ul>
@@ -1671,9 +1671,9 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb51-14"><a href="introducao-ao-calculo-de-probabilidades.html#cb51-14" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;A frequência observada da face&quot;</span>, face_escolhida, <span class="st">&quot;foi de&quot;</span>, frequencia, <span class="st">&quot;%</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb51-15"><a href="introducao-ao-calculo-de-probabilidades.html#cb51-15" tabindex="-1"></a>}</span></code></pre></div>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb52-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 20 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 10 %</code></pre>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb54-1" tabindex="-1"></a><span class="fu">lancar_dado</span>(<span class="dv">10000</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## A frequência observada da face 3 foi de 17.25 %</code></pre>
+<pre><code>## A frequência observada da face 3 foi de 16.85 %</code></pre>
 <p><br />
 </p>
 <p>Ao simular o lançamento de um dado, por exemplo, é possível observar como as frequências relativas de todas as faces começam a se aproximar das probabilidades teóricas (<span class="math inline">\(P(1)=P(2)=P(3)=P(4)=P(5)=P(6)=\frac{1}{6}\)</span>) à medida que aumentamos o número de repetições.</p>
@@ -2257,10 +2257,10 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb63-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb63-3" tabindex="-1"></a><span class="fu">table</span>(popSim<span class="sc">$</span>Curso, popSim<span class="sc">$</span>Sexo)</span></code></pre></div>
 <pre><code>##                      
 ##                           F     M
-##   Computação           5041  9959
-##   Estatística          9959  5041
-##   Matemática aplicada  7525  7475
-##   Matemática pura     19944 35056</code></pre>
+##   Computação           4982 10018
+##   Estatística         10026  4974
+##   Matemática aplicada  7572  7428
+##   Matemática pura     19937 35063</code></pre>
 <p><br />
 </p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb65-1" tabindex="-1"></a><span class="co"># Selecionar uma amostra de 200 com reposição (simular a tabela)</span></span>
@@ -2274,27 +2274,27 @@ P\left(E\right)=\underset{n\to \infty }{lim}{\frac{F(E)}{n}}
 <span id="cb65-9"><a href="introducao-ao-calculo-de-probabilidades.html#cb65-9" tabindex="-1"></a>tab</span></code></pre></div>
 <pre><code>##                          
 ##                             M   F Total
-##   Matemática pura (M)      60  47   107
-##   Matemática aplicada (A)   8  21    29
-##   Estatística (E)          13  16    29
-##   Computação (C)           23  12    35
-##   Total                   104  96   200</code></pre>
+##   Matemática pura (M)      71  42   113
+##   Matemática aplicada (A)  19  16    35
+##   Estatística (E)           7  19    26
+##   Computação (C)           16  10    26
+##   Total                   113  87   200</code></pre>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb67-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-2" tabindex="-1"></a>pMasc<span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb67-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb67-3" tabindex="-1"></a>pMasc</span></code></pre></div>
-<pre><code>## [1] 0.52</code></pre>
+<pre><code>## [1] 0.565</code></pre>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; na amostra</span></span>
 <span id="cb69-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-2" tabindex="-1"></a>pMatAp <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span>)</span>
 <span id="cb69-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb69-3" tabindex="-1"></a>pMatAp</span></code></pre></div>
-<pre><code>## [1] 0.145</code></pre>
+<pre><code>## [1] 0.175</code></pre>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -E- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb71-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-2" tabindex="-1"></a>pMatAp_and_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">&amp;</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb71-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb71-3" tabindex="-1"></a>pMatAp_and_Masc</span></code></pre></div>
-<pre><code>## [1] 0.04</code></pre>
+<pre><code>## [1] 0.095</code></pre>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-1" tabindex="-1"></a><span class="co"># Calcular a probabilidade de cursar &quot;Matemática aplicada&quot; -OU- ser do sexo &quot;Masculino&quot; na amostra</span></span>
 <span id="cb73-2"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-2" tabindex="-1"></a>pMatAp_or_Masc <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostPop<span class="sc">$</span>Curso <span class="sc">==</span> <span class="st">&quot;Matemática aplicada&quot;</span> <span class="sc">|</span> amostPop<span class="sc">$</span>Sexo <span class="sc">==</span> <span class="st">&quot;M&quot;</span>)</span>
 <span id="cb73-3"><a href="introducao-ao-calculo-de-probabilidades.html#cb73-3" tabindex="-1"></a>pMatAp_or_Masc</span></code></pre></div>
-<pre><code>## [1] 0.625</code></pre>
+<pre><code>## [1] 0.645</code></pre>
 <p><br />
 </p>
 <blockquote>

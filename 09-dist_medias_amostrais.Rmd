@@ -130,7 +130,7 @@ em que $(\frac{N-n}{N-1})$ é denominado como fator de correção para populaç�
 \
 
 
-Para ilustrar o conceito de distribuição das médias amostrais considere uma situação onde uma empresa produz lâmpadas e a vida útil média, em horas, dessas lâmpadas segue uma distribuição Normal tal que $VU \sim N (1600, 120)$.
+Para ilustrar o conceito de distribuição das médias amostrais considere uma situação onde uma empresa produz lâmpadas e a vida útil, em horas, dessas lâmpadas segue uma distribuição Normal com média 1.600 h e desvio padrão 120 h, isto é, $VU \sim N (\mu = 1600; \sigma = 120)$.
 
 \
 
@@ -141,9 +141,18 @@ Usando conceitos já explicados em uma unidade anterior podemos determinar o tam
 - um nível de significância estabelecido: $\alpha$=0,05; e,
 - e alguma informação sobre a medida da variabilidade da variável em estudo: $\sigma$=120 horas (no caso, o desvio padrão populacional).
 
+\
+
+
+$$
+n = \left( \frac{z_{\alpha/2} \cdot \sigma}{\varepsilon} \right)^{2} = \left( \frac{1{,}96 \times 120}{20} \right)^{2} = (11{,}76)^{2} \approx 138{,}3
+$$
 
 \
 
+Como o tamanho amostral deve ser um número inteiro, arredonda-se sempre para cima, de modo a garantir que o erro não ultrapasse $\varepsilon$. Adotou-se $n$ = 140. 
+
+\
 
 ```{r, warning=FALSE, echo=FALSE}
 
@@ -156,7 +165,7 @@ IC.Na = function (N, n, mu, sigma, conf, er) {
        bty="l",
        xlab="Vida útil em horas", 
        ylab="Amostras extraídas", 
-       main=paste0("Flutuação dos valores médios obtidos em ", N," amostras de tamanho ",n,"\n(nível de confiança: ",conf,"; erro: ", er,")") , 
+       main=paste0("Scatterplot das médias obtidas de ", N," amostras") , 
        sub=paste0("Os valores da vida útil seguem uma distribuição ~ N  (\u03bc:",mu," ; \u03c3:", sigma,")"))
   abline(v=mu, col='blue', lwd=2, lty=2)
   abline(v=mu-er, col='red', lwd=2, lty=2)
@@ -191,7 +200,8 @@ return(dados)
 \
 
 
-```{r ,  out.width='100%', fig.align='center', fig.cap="Flutuação dos valores médios para diversas amostras extraídas de uma mesma população distribuição $\\sim N (\\mu; \\sigma)$", warning = FALSE, echo=FALSE}
+```{r, echo=FALSE, results='hide', warning=FALSE, out.width='90%', fig.align='center', fig.cap="Flutuação dos valores médios de diversas amostras extraídas de uma mesma população distribuição $\\sim N(\\mu; \\sigma)$, sendo $H_{0}$ verdadeira"}
+
 N=100
 n=140
 mu=1600
@@ -202,9 +212,10 @@ er=20
 IC.Na(N, n, mu, sigma, conf, er)
 
 ```
+
 \
 
-Observa-se no gráfico acima que algumas das amostras (em vermelho), numa proporção igual ao nível de significância estabelecido quando do dimensionamento (5\%), geram médias (amostrais) se afastam do valor médio na população mais que o erro estabelecido (20 h). 
+Observa-se no gráfico acima que algumas das amostras (em vermelho), numa proporção aproximadamente igual ao nível de significância estabelecido quando do dimensionamento (5\%), geram médias (amostrais) que se afastam do valor médio na população mais que o erro estabelecido (20 h). Essa proporção varia de uma simulação para outra.
 
 \
 
@@ -228,6 +239,10 @@ Raramente se dispõe de informação a respeito da variabilidade ($\sigma^{2}$) 
 
 \
 
+A justificativa formal dessa expressão, baseada na distribuição das médias amostrais e no Teorema do limite central, será apresentada na Seção \@ref(dist-medias-amostrais).
+
+\
+
 
 
 De certo modo, um intervalo de confiança reflete uma estimativa objetiva da (im)precisão e do tamanho da amostra de determinada pesquisa e, assim, podemos considerá-lo como uma medida da qualidade da amostra e da pesquisa.
@@ -239,7 +254,7 @@ O _nível de confiança_ é designado pela quantidade $(1-\alpha)$ na qual $\alp
 
 \
 
-Dependendo do _nível de confiança_ que escolhemos os limites superior e inferior do intervalo mudam para uma mesma estimativa amostral. Os intervalos de confiança mais utilizados na literatura são os de 90\%, 95\%, 99\% e menos de 99,9\%.
+Dependendo do _nível de confiança_ que escolhemos os limites superior e inferior do intervalo mudam para uma mesma estimativa amostral. Os intervalos de confiança mais utilizados na literatura são os de 90\%, 95\%, 99\% e, menos frequentemente, 99,9\%.
 
 \
 
@@ -251,6 +266,7 @@ Quanto menor for a _amplitude_ de um intervalo, maior será a _precisão_ da est
 \
 
 Intervalos de confiança podem ser construídos a quase todas as quantidades estatísticas e suas diferenças (quando se procura estudar se há ou não diferenças entre os parâmetros de duas populaçoes) como, por exemplo:
+
 \
 
 - médias;
@@ -274,19 +290,19 @@ Assim, $(1-\alpha)$ traduz o grau de confiança que se tem que um intervalo de c
 \
 
 
-```{r,  out.width='100%', fig.align='center', fig.cap="Distribuição dos erros amostrais em relação ao verdadeiro valor do parãmetro da população"}
+```{r, results='hide', echo=FALSE, warning=FALSE}
 
 
 IC.N = function (N, n, mu, sigma, conf) {
   dados=data.frame()
   plot(0, 0, 
        type="n", 
-       xlim=c(mu-0.4*mu,mu+0.4*mu), 
+       xlim=c(mu-0.12*mu,mu+0.12*mu), 
        ylim=c(0,N), 
        bty="l",
        xlab="Escala de valores da variável", 
        ylab="Intervalos amostrais construídos", 
-       main=paste0("Intervalos com iguais níveis de confiança fixados em ", 100*conf, "% \n(",N," amostras de tamanho ",n,")") , 
+       main=paste0("Intervalos com iguais níveis de confiança ", 100*conf, "%)\n (",N," amostras de tamanho ",n,")") , 
        sub=paste0("Parâmetros da distribuição da população Normal ( \u03bc, \u03c3) = (",mu,", ", sigma,")"))
   abline(v=mu, col='red', lwd=2, lty=2)
   #axis(1, at = c(mu-1*mu, mu, mu+1*mu))
@@ -316,12 +332,36 @@ return(dados)
 
 \
 
-```{r}
+```{r, results='hide', echo=FALSE, out.width='100%', fig.align='center', fig.cap="Scatterplot 1 dos intervalos de confiança em torno de cada média amostral"}
+
 
 N=100
-n=64
-mu=9.421
-sigma=4.1681
+n=140
+mu=1600
+sigma=120
+conf=0.95
+IC.N(N, n, mu, sigma, conf)
+
+```
+
+\
+
+No gráfico acima expõe os intervalos de confiança: $(1-\alpha)$=`r 100*conf`\% produzidos para as `r N` médias de amostras de tamanho `r n` extraídas de uma população com parâmetros $\mu:$ `r mu` e $\sigma:$ `r sigma`. 
+
+\
+
+A proporção de intervalos amostrais *que não contém o valor* do parâmetro populacional pode ser visualmente inspecionada pelas linhas em vermelho.    
+
+\
+
+
+```{r, results='hide', echo=FALSE, out.width='100%', fig.align='center', fig.cap="Scatterplot 2 dos intervalos de confiança em torno de cada média amostral"}
+
+
+N=100
+n=10
+mu=1600
+sigma=120
 conf=0.95
 IC.N(N, n, mu, sigma, conf)
 
@@ -330,26 +370,25 @@ IC.N(N, n, mu, sigma, conf)
 
 \
 
-
-
-O gráfico acima expõe os intervalos de confiança: $(1-\alpha)$=`r 100*conf`\% produzidos para as `r N` médias de amostras de tamanho `r n` extraídas de uma população com parâmetros $\mu:$ `r mu` e $\sigma:$ `r sigma`. 
+Esse segundo gráfico também expõe os intervalos de confiança: $(1-\alpha)$=`r 100*conf`\%, igualmente gerados para as `r N` médias de amostras extraídas da mesma população com parâmetros $\mu:$ `r mu` e $\sigma:$ `r sigma`, *todavia* as amostras tiveram um tamanho `r n`. 
 
 \
 
-A proporção de intervalos amostrais que não contém o verdadeiro valor do parâmetro populacional pode ser visualmente inspecionada pelas linhas em vermelho.    
+Observe que as diferenças entre ambos, tanto na proporção de intervalos amostrais *que não contém o valor* do parâmetro populacional quanto em sua amplitude.    
 
 \
 
 
-> Intervalos de confiança bilaterais: intervalos delimitados por dois valores: mínimo e máximo, para a proporção amostral, dentro do qual todos os valores possuem um mesmo nível de confiança de ocorrência.
+> Intervalos de confiança bilaterais: intervalos delimitados por dois valores, um mínimo e um máximo, construídos para o parâmetro de interesse. O nível de confiança refere-se ao procedimento de construção do intervalo (a proporção de intervalos que, em repetidas amostragens, conteriam o parâmetro), e não a cada um dos valores contidos no intervalo.
 
 
 
-> Intervalos de confiança unilaterais: intervalos delimitados apenas em um de seus lados, nos quais todos os valores possuem um mesmo nível de confiança. Podem ser limitados à direita por um valor máximo ou limitados à esquerda por um valor mínimo.
+> Intervalos de confiança unilaterais: intervalos delimitados apenas em um de seus lados, com a mesma interpretação do nível de confiança. Podem ser limitados à direita por um valor máximo ou limitados à esquerda por um valor mínimo.
+
+\
 
 
-
-## Distribuição das médias amostrais e seus intervalos de confiança 
+## Distribuição das médias amostrais e seus intervalos de confiança {#dist-medias-amostrais}
 
 \
 
@@ -375,7 +414,7 @@ A convergência da forma de distribuição e dos parâmetros da distribuição d
 
 \
 
-De acordo com a teoria, pelo uso de simulações computacionais consegue-se ilustrar que para uma amostra de tamanho _n_ (onde $x_{1},x_{1},...,x_{n}$ são os valores assumidos das variáveis aleatórias $X_{1},X_{1},...,X_{n}$) em amostras extraídas de uma população infinita de tamanho _N_ com média $\mu$ e variância $\sigma^{2}$) a distribuição das médias amostrais (v.a. $\stackrel{-}{X}$) segue uma distribuição com os média $=\mu$ e variância $=\frac{\sigma^{2}}{n}$ pois: 
+De acordo com a teoria, pelo uso de simulações computacionais consegue-se ilustrar que, para uma amostra de tamanho _n_ (onde $x_{1},x_{2},...,x_{n}$ são os valores assumidos das variáveis aleatórias independentes e identicamente distribuídas $X_{1},X_{2},...,X_{n}$) extraída de uma população infinita (ou com reposição) com média $\mu$ e variância $\sigma^{2}$, a distribuição das médias amostrais (v.a. $\stackrel{-}{X}$) tem média $=\mu$ e variância $=\frac{\sigma^{2}}{n}$ pois, sendo as $X_{i}$ independentes: 
 
 \
 
@@ -390,14 +429,14 @@ E(\stackrel{-}{X})  & = \frac{1}{n} \cdot \{E(X_{1})+E(X_{2})+...+E(X_{n})\} \\
 
 
 \begin{align*}
-Var(\stackrel{-}{X}) & =  \frac{1}{n^{2}} \cdot \{Var(X_{1})+Var(X_{2}+...+Var(X_{n})\} \\
+Var(\stackrel{-}{X}) & =  \frac{1}{n^{2}} \cdot \{Var(X_{1})+Var(X_{2})+...+Var(X_{n})\} \\
                      & = (\frac{1}{n^{2}}) \cdot \{\sigma^{2}+\sigma^{2}+...+\sigma^{2}\} = n \cdot \frac{\sigma^{2}}{n^{2}} = \frac{\sigma^{2}}{n}
 \end{align*}
 
 
 \
 
-Equivale afirmar que, **independentemente** da forma de distribuição da população de origem da qual são extraídas as amostras, a distribuição dos valores da variável aleatória $\stackrel{-}{X}$ tenderá a seguir uma distribuição $\sim N(\mu;\frac{\sigma^{2}}{n}$) à medida que _n_ , o tamanho da amostra aumenta, como ilustrado nas Figuras \@ref(fig:fig46) e \@ref(fig:fig48). 
+Esses resultados para a média e a variância de $\stackrel{-}{X}$ são exatos, qualquer que seja a distribuição da população. Já a **forma** da distribuição de $\stackrel{-}{X}$ é dada pelo Teorema do limite central: **independentemente** da forma de distribuição da população de origem da qual são extraídas as amostras, a distribuição dos valores da variável aleatória $\stackrel{-}{X}$ tenderá a seguir uma distribuição $\sim N(\mu;\frac{\sigma^{2}}{n})$ à medida que _n_, o tamanho da amostra, aumenta, como ilustrado nas Figuras \@ref(fig:fig46) e \@ref(fig:fig48). 
 
 \
 
@@ -406,7 +445,7 @@ O **TCL** garante a aproximação da distribuição de $\stackrel{-}{X}$ a uma d
 \
 
 
-Portanto, para populações **infinitas** ou amostragem **com reposição**:
+Portanto, para populações **infinitas** ou amostragem **com reposição**, a distribuição de $\stackrel{-}{X}$ é exatamente a indicada abaixo quando a população de origem é Normal, e aproximadamente (para $n$ grande) nos demais casos:
 
 \
 
@@ -414,16 +453,101 @@ $$
 \stackrel{-}{X} \sim N(\mu, \frac{\sigma^{2}}{n})
 $$
 
+\
+
+> Enunciados formais
+
+\
+
+Seja $X_{1}, X_{2}, \dots$ uma sequência de variáveis aleatórias independentes e identicamente distribuídas, cada uma com média finita $\mu=E(X_{i})$. A Lei forte dos grandes números (teorema) demonstra que 
+
+\
+
+$$
+\frac{X_{1} + X_{2} + \dots + X_{n}}{n} \to  \mu
+$$
+
+\
+
+quando $n \to \infty$, isto é, $P\left\{\lim_{n \to \infty}\left(\frac{X_{1} + X_{2} + \dots + X_{n}}{n}\right)=\mu\right\}=1$.
+
+\
+
+A Lei dos grandes números garante que a média amostral $\stackrel{-}{X}$ se aproxima de $\mu$ à medida que $n$ cresce; o Teorema do limite central descreve *como* $\stackrel{-}{X}$ flutua em torno de $\mu$, com dispersão $\sigma/\sqrt{n}$. Sendo as $X_{i}$ independentes e identicamente distribuídas, com média $\mu$ e variância $\sigma^{2}$ finita:
+
+\
+
+$$
+\frac{X_{1} + X_{2} + \dots + X_{n} - n \mu}{\sigma \sqrt{n}} = \frac{\stackrel{-}{X} - \mu}{\frac{\sigma}{\sqrt{n}}} \xrightarrow{d}  \mathcal{N}(0,1)
+$$
+
+\
+
+quando $n \to \infty$ (onde $\xrightarrow{d}$ indica convergência em distribuição). Assim, para $-\infty < a < \infty$, 
+
+\
+
+$$
+P \left\{ \frac{\stackrel{-}{X} - \mu}{\frac{\sigma}{\sqrt{n}}} \leq a \right\} \to \Phi(a) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{a} e^{-x^{2}/2}\, dx,
+$$
+
+\
+
+onde $\Phi$ é a função de distribuição acumulada da Normal padronizada.
+
+\
+
+> Por que a distribuição Normal é tão frequente: o erro global
+
+\
+
+Uma medida (observação) obtida em um ensaio experimental específico pode estar sujeita a erros:
+
+\
+
+- analíticos;
+- de amostragem (física, química, biológica, ...);  
+- processuais (produzidos por falhas no cumprimento das configurações exatas das condições experimentais);
+- devidos à variação de matérias-primas; e,
+- de medição (diferentes operadores de equipamentos ou equipamentos descalibrados).
+
+\
+
+O erro global de uma observação, $\delta = X - \mu$, é, portanto, uma função dos componentes de erro $\delta_{1}, \delta_{2}, \dots, \delta_{k}$. Se cada erro individual for relativamente pequeno, essa função pode ser aproximada por uma combinação linear dos componentes, onde $a_{i}$ são constantes:
+
+\
+
+$$
+\delta = a_{1}\delta_{1} +  a_{2}\delta_{2} + \dots +  a_{k}\delta_{k}
+$$ 
+
+\
+
+Sob condições quase sempre satisfeitas no mundo real da experimentação (em particular, que nenhum componente domine os demais), o Teorema do limite central assegura que a distribuição de tal combinação linear tende à distribuição Normal quando o número de componentes se torna grande, **independentemente** da distribuição de cada componente.
+
+\
+
+> Em resumo: quando, como é habitual, um erro experimental é um agregado de vários erros de componentes, sua distribuição tende para a forma Normal, mesmo que a distribuição dos componentes seja marcadamente não Normal.
+
+\
+
+> Consequência prática: robustez dos procedimentos baseados em médias
+
+\
+
+A média da amostra tende a ser distribuída Normalmente, mesmo que as observações individuais em que se baseia não o sejam. Consequentemente, métodos estatísticos que dependem, não diretamente da distribuição das observações individuais, mas da distribuição das médias, tendem a ser insensíveis ou robustos à não normalidade. Procedimentos que comparam médias (intervalos de confiança e testes de hipóteses para médias) são, por isso, geralmente robustos à não normalidade.
+
+
 
 \
 
 
-> Demostração usando amostras extraídas de uma população com distribuição $\sim U (v_{min}; v_{max})$
+> Ilustração (simulação) usando amostras extraídas de uma população com distribuição $\sim U (v_{min}; v_{max})$
 
 \
 
 
-```{r fig46,  out.width='100%', fig.align='center', fig.cap="Histograma de uma população cuja característica de interesse segue uma Distribuição Uniforme"}
+```{r fig46, echo=FALSE, out.width='100%', fig.align='center', fig.cap="Histograma de uma população cuja característica de interesse segue uma Distribuição Uniforme"}
 
 
 # Definindo os parãmetros e a amostra
@@ -492,7 +616,7 @@ m=dados$Media
 IC.N = function () {
   plot(0, 0, 
        type="n", 
-       xlim=c(min_1-0.25*min_1,max_1+0.25*max_1), 
+       xlim=c(min_1-0.005*min_1,max_1+0.005*max_1), 
        ylim=c(0,N), 
        bty="l",
        xlab="Escala de valores da variável", 
@@ -516,7 +640,7 @@ IC.N = function () {
 \
 
 
-```{r fig47,  out.width='100%', fig.align='center', fig.cap="Intervalos de confiança construídos para diversas estimativas amostrais de uma população com Distribuição $\\sim N (\\mu= \\frac{max-min}{2}; \\sigma^2=\\frac{1}{12}(max-min)^2)$", warning = FALSE, echo=FALSE}
+```{r fig47,  out.width='100%', fig.align='center', fig.cap="Intervalos de confiança construídos para diversas estimativas amostrais de uma população com Distribuição Uniforme $\\sim U (v_{min}; v_{max})$, de média $\\mu= \\frac{max+min}{2}$ e variância $\\sigma^2=\\frac{1}{12}(max-min)^2$", warning = FALSE, echo=FALSE}
 
 IC.N()
 
@@ -524,12 +648,12 @@ IC.N()
 
 \
  
-A Figura  \@ref(fig:fig47) expõe os intervalos sob nível de confiança de $(1-\alpha)$=`r 100*conf`\% produzidos para as `r N` médias de amostras de tamanho `r n` extraídas de uma população Uniforme com parâmetros $v_{max}:$ `r max_1` e $v_{min}:$ `r min_1` e, conforme assegura o **TCL**, o valor médio das médias amostrais (linha tracejada preta) converge assintoticamente para a média da população de origem (linha tracejada em vermelho) com o incremento do tamanho das amostras. 
+A Figura  \@ref(fig:fig47) expõe os intervalos sob nível de confiança de $(1-\alpha)$=`r 100*conf`\% produzidos para as `r N` médias de amostras de tamanho `r n` extraídas de uma população Uniforme com parâmetros $v_{max}:$ `r max_1` e $v_{min}:$ `r min_1`. Observa-se que o valor médio das médias amostrais (linha tracejada preta) situa-se muito próximo da média da população de origem (linha tracejada em vermelho), pois $E(\stackrel{-}{X})=\mu$; e que aproximadamente `r 100*conf`\% dos intervalos contêm essa média. 
 
 \
 
 
-```{r fig48,  out.width='100%', fig.align='center', fig.cap="Histograma da distribuição das médias de amostras extraidas de uma população com Distribuição Uniforme mostra que as mesmas seguem uma Distribuição $\\sim N (\\mu= \\frac{max-min}{2};\\sigma^2=\\frac{1}{12}(max-min)^2)$", warning = FALSE}
+```{r fig48,  echo=FALSE, out.width='100%', fig.align='center', fig.cap="Histograma da distribuição das médias de amostras extraidas de uma população com Distribuição Uniforme mostra que as mesmas seguem aproximadamente uma Distribuição $\\sim N (\\mu= \\frac{max+min}{2};\\sigma^2=\\frac{(max-min)^2}{12\\,n})$", warning = FALSE}
 
 
 meu_titulo1=paste("Distribuição das médias de", N, "amostras de tamanho n=",n,"\n população de origem sob Dist. Unif. (min: ", min_1, "; max: ", max_1, ")")
@@ -563,17 +687,17 @@ ggplot(dados, aes(m)) +
 
 \
 
-O histograma da Figura  \@ref(fig:fig48) ilustra que os valores das médias calculadas de `r n` amostras extraídas de uma população com distribuição Uniforme $\sim U (v_{min}, v_{max}$) seguem uma distribuição Normal  $\sim N (\mu= \frac{v_{max}-v_{min}}{2}; \sigma^2=\frac{1}{12}(v_{max}-v_{min})^2)$. 
+O histograma da Figura  \@ref(fig:fig48) ilustra que os valores das médias calculadas de `r N` amostras de tamanho `r n` extraídas de uma população com distribuição Uniforme $\sim U (v_{min}, v_{max})$ seguem aproximadamente uma distribuição Normal $\sim N (\mu= \frac{v_{max}+v_{min}}{2}; \sigma^2=\frac{(v_{max}-v_{min})^2}{12\,n})$. 
 
 
 \
 
-> Demostração usando amostras extraídas de uma população com distribuição $\sim N (\mu;\sigma)$
+> Ilustração (simulação) usando amostras extraídas de uma população com distribuição $\sim N (\mu;\sigma)$
 
 \
 
 
-```{r fig49,  out.width='100%', fig.align='center', fig.cap="Histograma de uma população cuja característica de interesse segue uma Distribuição Normal"}
+```{r fig49, echo=FALSE,  out.width='100%', fig.align='center', fig.cap="Histograma de uma população cuja característica de interesse segue uma Distribuição Normal"}
 
 
 # Definindo os parãmetros e a amostra
@@ -646,7 +770,7 @@ m=dados$Media
 IC.N = function () {
   plot(0, 0, 
        type="n", 
-       xlim=c(media-0.15*media, media+0.15*media), 
+       xlim=c(media-0.005*media, media+0.005*media), 
        ylim=c(0,N), 
        bty="l",
        xlab="Escala de valores da variável", 
@@ -676,14 +800,15 @@ IC.N = function () {
 IC.N()
 
 ```
-\
-
-A Figura  \@ref(fig:fig50) expõe os intervalos sob nível de confiança de $(1-\alpha)$=`r 100*conf`\% produzidos para as `r N` médias de amostras de tamanho `r n` extraídas de uma população Uniforme com parâmetros $v_{max}:$ `r max_1` e $v_{min}:$ `r min_1` e, conforme assegura o **TCL**, o valor médio das médias amostrais (linha tracejada preta) converge assintoticamente para a média da população de origem (linha tracejada em vermelho) com o incremento do tamanho das amostras. 
-
 
 \
 
-```{r fig51,  out.width='100%', fig.align='center', fig.cap='Histograma da distribuição das médias de amostras extraidas de uma população  Normal mostra que as mesmas seguem uma Distribuição $\\sim N (\\stackrel{-}{x}= \\mu; s=\\frac{\\sigma}{\\sqrt{n}})$', warning = FALSE}
+A Figura  \@ref(fig:fig50) expõe os intervalos sob nível de confiança de $(1-\alpha)$=`r 100*conf`\% produzidos para as `r N` médias de amostras de tamanho `r n` extraídas de uma população Normal com parâmetros $\mu:$ `r media` e $\sigma:$ `r desvio`. Novamente, o valor médio das médias amostrais (linha tracejada preta) situa-se muito próximo da média da população de origem (linha tracejada em vermelho). 
+
+
+\
+
+```{r fig51, echo=FALSE,  out.width='100%', fig.align='center', fig.cap='Histograma da distribuição das médias de amostras extraidas de uma população  Normal mostra que as mesmas seguem uma Distribuição Normal com média $\\mu$ e desvio padrão $\\frac{\\sigma}{\\sqrt{n}}$', warning = FALSE}
 
 
 meu_titulo1=paste("Distribuição das médias de", N, "amostras de tamanho n=",n,"\n população de origem sob Dist. Normal ( \u03bc: ", media, ", \u03c3: ", desvio, ")")
@@ -717,17 +842,16 @@ ggplot(dados, aes(m)) +
 
 \
 
-O histograma da Figura  \@ref(fig:fig51) ilustra que os valores das médias calculadas de `r n` amostras extraídas de uma população com distribuição Normal $\sim N (\mu, \sigma)$ seguem uma distribuição Normal  $\sim N (\mu= \mu; \sigma=\frac{\sigma}{\sqrt{n}})$. 
+O histograma da Figura  \@ref(fig:fig51) ilustra que os valores das médias calculadas de `r N` amostras de tamanho `r n` extraídas de uma população com distribuição Normal $\sim N (\mu, \sigma)$ seguem uma distribuição Normal com média $\mu$ e desvio padrão $\frac{\sigma}{\sqrt{n}}$. 
 
 \
 
 
-
-
-Sendo o erro amostral expresso como:  $\varepsilon=\stackrel{-}{X} - \mu$, o histograma abaixo ilustra que os valores dos erros calculados de `r n` amostras extraídas de uma população com distribuição Normal $\sim N (\mu, \sigma)$ seguem uma distribuição Normal  $\sim N (\mu= \mu; \sigma=\frac{\sigma}{\sqrt{n}})$. 
+Sendo o erro amostral expresso como $e=\stackrel{-}{X} - \mu$, o histograma abaixo ilustra que os erros calculados para amostras extraídas de uma população com distribuição Normal $\sim N (\mu, \sigma)$ seguem uma distribuição Normal com média 0 e desvio padrão $\frac{\sigma}{\sqrt{n}}$. 
 
 
 \
+
 ```{r, warning=FALSE, echo=FALSE}
 
 
@@ -735,7 +859,7 @@ IC.Na = function (N, n, mu, sigma, conf) {
   dados=data.frame()
   plot(0, 0, 
        type="n", 
-       xlim=c(mu-4,mu+4), 
+       xlim=c(mu-0.05*mu,mu+0.05*mu), 
        ylim=c(0,N), 
        bty="l",
        xlab="Escala de valores da variável", 
@@ -772,7 +896,7 @@ return(dados)
 
 
 
-```{r fig0, out.width='100%', fig.align='center', fig.cap="Histograma da distribuição dos erros de amostras de tamanho n,  extraidas de uma população com distribuição $\\sim N(\\mu; \\sigma)$ mostra que os mesmos seguem uma distribuição $\\sim N (0; s=\\frac{\\sigma}{\\sqrt{n}})$", warning = FALSE}
+```{r fig0, echo=FALSE, out.width='100%', fig.align='center', fig.cap="Histograma da distribuição dos erros de amostras de tamanho n,  extraidas de uma população com distribuição $\\sim N(\\mu; \\sigma)$ mostra que os mesmos seguem uma distribuição Normal com média 0 e desvio padrão $\\frac{\\sigma}{\\sqrt{n}}$", warning = FALSE}
 
 N=100
 n=50
@@ -836,13 +960,13 @@ Uma vez que a estatística $Z \sim N(0 ,1)$ (ela ``decorre'' da padronização d
 
 
 
-Se amostras de tamanho $n$ *sem reposição* são extraídas de uma população finita de tamanho *N* aplica-se o fator de correção para populações finitas ($\sqrt{\frac{(N-n)}{(N-1)}}$)  junto ao desvio padrão das expressões do erro máximo $\varepsilon$ anteriormente expostas: 
+Se amostras de tamanho $n$ *sem reposição* são extraídas de uma população finita de tamanho *N* aplica-se o fator de correção para populações finitas ($\sqrt{\frac{(N-n)}{(N-1)}}$)  junto ao desvio padrão das expressões do erro máximo $\varepsilon$ apresentadas adiante, na construção dos intervalos de confiança: 
 
 
 \begin{align*}
-\varepsilon & =(\stackrel{-}{x}-\mu)={z}_{(1-\frac{\alpha }{2})} \cdot \frac{\sigma}{\sqrt{n}} \cdot \sqrt{\frac{(N-n)}{(N-1)}} \\
-& =(\stackrel{-}{x}-\mu)={z}_{(1-\frac{\alpha }{2})} \cdot \frac{S}{\sqrt{n}} \cdot \sqrt{\frac{(N-n)}{(N-1)}}\\
-& =(\stackrel{-}{x}-\mu)= ({t}_{(1-\frac{\alpha }{2}, (n-1))} \cdot \frac{S}{\sqrt{n}} \cdot \sqrt{\frac{(N-n)}{(N-1)}})\\
+\varepsilon & ={z}_{(1-\frac{\alpha }{2})} \cdot \frac{\sigma}{\sqrt{n}} \cdot \sqrt{\frac{(N-n)}{(N-1)}} && (\sigma \text{ conhecido})\\
+\varepsilon & ={z}_{(1-\frac{\alpha }{2})} \cdot \frac{S}{\sqrt{n}} \cdot \sqrt{\frac{(N-n)}{(N-1)}} && (\sigma \text{ desconhecido}, n \ge 30)\\
+\varepsilon & ={t}_{(1-\frac{\alpha }{2}, (n-1))} \cdot \frac{S}{\sqrt{n}} \cdot \sqrt{\frac{(N-n)}{(N-1)}} && (\sigma \text{ desconhecido})
 \end{align*}
 
 \
@@ -860,16 +984,12 @@ $$
 \
 
 
-### Intervalo de confiança para a média de uma população Normal 
+## Intervalo de confiança para a média de uma população Normal 
 
 \
 
 
-Se, por alguma razão, a variância populacional ($\sigma^{2}$) é conhecida,  podemos utilizar $\stackrel{-}{X}$ como estimador pontual da média. 
-
-\
-
-Assim, $X$ seguirá uma distribuição Normal tal que: 
+Utilizamos $\stackrel{-}{X}$ como estimador pontual da média $\mu$. Se, por alguma razão, a variância populacional ($\sigma^{2}$) é conhecida e a população é Normal, $\stackrel{-}{X}$ seguirá uma distribuição Normal tal que: 
 
 \	
 
@@ -914,7 +1034,7 @@ Com tal substituição, a estatística $Z$ e passa a ser tal que:
 \
 
 $$
-Z = \frac{\stackrel{-}{X} - \mu}{\frac{S}{\sqrt{n}}}  \sim N(0 , 1)
+Z = \frac{\stackrel{-}{X} - \mu}{\frac{S}{\sqrt{n}}}  \approx N(0 , 1)
 $$
 
 \
@@ -931,12 +1051,12 @@ em que:
 
 \
 
-Caso a variância populacional ($\sigma^{2}$) não seja conhecida e o tamanho da amostra **não possa** ser admitido como grande ($n<30$) e sendo o estimador da variância amostral assim definido:
+Caso a variância populacional ($\sigma^{2}$) não seja conhecida e o tamanho da amostra **não possa** ser admitido como grande ($n<30$), a normalidade da população passa a ser uma suposição essencial. Sendo a população Normal e o estimador da variância amostral assim definido:
 
 \	
 
 $$
-{S}^{2}=\frac{1}{\left(n-1\right)}\sum _{i=1}^{n}{\left({X}_{i}-\stackrel{-}{{X}_{1}}\right)}^{2}
+{S}^{2}=\frac{1}{\left(n-1\right)}\sum _{i=1}^{n}{\left({X}_{i}-\stackrel{-}{X}\right)}^{2}
 $$
 
 \
@@ -962,7 +1082,7 @@ $$
 
 \
 
-segue a estatística $T$ e sua correspondente distribuição, denominada por *t* de *Student* :
+Sendo $Z$ e $Y$ independentes (o que se verifica quando a população é Normal), segue a estatística $T$ e sua correspondente distribuição, denominada por *t* de *Student*:
 
 \	
 
@@ -994,38 +1114,52 @@ em que:
 
 \
 
+Sendo a população Normal, essa distribuição é exata para qualquer tamanho de amostra; para $n$ grande, $t_{(n-1)} \approx N(0,1)$, o que justifica o uso da estatística $Z$ com $S$ no lugar de $\sigma$ quando $n \ge 30$.
+
+\
+
 As probabilidades associadas a um intervalo para um determinado valor da estatística ``t'' da distribuição de *Student* encontram-se tabeladas para variados graus de liberdade , como mais adiante se verá na constução de intervalos de confiança.     
 
 \
 
-### Intervalos de confiança para a média de uma população Normal com variância conhecida (Figura \@ref(fig:fig28))
+### Intervalo de confiança para a média populacional ($\mu$): população Normal com variância conhecida
 
-\	
+\
 
+Os intervalos de confiança para a média $\mu$ de uma população Normal com variância ($\sigma^{2}$) conhecida são construídos a partir da estatística:
 
-
+\
 
 $$
 Z = \frac{\stackrel{-}{X} - \mu}{\frac{\sigma}{\sqrt{n}}}  \sim N(0 ,1)
 $$
 
-\	
+\
 
-em que: 
+em que:
 
 \
 
-- $\stackrel{-}{X}$ é uma média amostral;  
-- $\mu$ é a média populacional;  
-- $\sigma$ é o desvio padrão populacional; 
-- $n$ é o tamanho da amostra; e, 
-- $Z$ é a estatística a ser calculada para a construção do intervalo de confiança sob o nível de significância $\alpha$ estabelecido. 
-
+- $\stackrel{-}{X}$ é a média amostral;
+- $\mu$ é a média populacional (o parâmetro para o qual se constrói o intervalo);
+- $\sigma$ é o desvio padrão populacional (conhecido); e,
+- $n$ é o tamanho da amostra.
 
 \
 
+Sendo a população Normal, a distribuição de $Z$ é exatamente $N(0,1)$, qualquer que seja o tamanho da amostra.
 
-```{r fig52,  out.width='100%', fig.align='center', fig.cap="Regiões críticas, aquém e além das quais, a probabilidade associada aos valores $Z$ é inferior a $\\frac{\\alpha}{2}$, estabelecendo assim um intervalo com nível de confiança igual a $(1-\\alpha)$", warning = FALSE}
+\
+
+> Intervalo de confiança bilateral
+
+\
+
+A Figura \@ref(fig:fig52) ilustra a região central da distribuição da estatística $Z$, delimitada por $-z_{(1-\frac{\alpha}{2})}$ e $z_{(1-\frac{\alpha}{2})}$, com probabilidade $(1-\alpha)$; cada uma das caudas tem probabilidade $\frac{\alpha}{2}$.
+
+\
+
+```{r fig52, echo=FALSE,  out.width='100%', fig.align='center', fig.cap="Distribuição da estatística $Z$: região central com probabilidade $(1-\\alpha)$ (nível de confiança) e caudas com probabilidade $\\frac{\\alpha}{2}$ cada", warning = FALSE}
 
 
 alfa=0.05
@@ -1080,115 +1214,114 @@ ggplot(NULL, aes(c(-4,4))) +
 
 \
 
-Na Figura \@ref(fig:fig52) observa-se: 
-
-\	
-
-- o nível de significância $\alpha$;   
-- o nível de confiança $(1-\alpha)$; e,   
-- o valor tabelado da estatística $Z$ para o nível de confiança fixado.
-
+Na Figura \@ref(fig:fig52) observa-se:
 
 \
 
-Assim, 
+- o nível de significância $\alpha$, repartido igualmente entre as duas caudas;
+- o nível de confiança $(1-\alpha)$; e,
+- os valores tabelados $\pm z_{(1-\frac{\alpha}{2})}$ da estatística $Z$ para o nível de confiança fixado.
 
 \
 
-
-
-\begin{align*}
-P\left[-{Z}_{(1-\frac{\alpha }{2})}\le Z \le {Z }_{(1-\frac{\alpha }{2})}\right] & = (1-\alpha) \\ 
-P\left[-{z}_{(1-\frac{\alpha }{2})}\le \frac{\stackrel{-}{x}-\mu }{\frac{\sigma}{\sqrt{n}}}
-\le {z}_{(1-\frac{\alpha }{2})}\right] & = (1-\alpha) \\
-P[\stackrel{-}{x}-({z}_{(1-\frac{\alpha }{2})} \cdot \frac{\sigma}{\sqrt{n}}) \le \mu \le \stackrel{-}{x}+({z}_{(1-\frac{\alpha }{2})} \cdot \frac{\sigma}{\sqrt{n}})     ] & = (1-\alpha)  
-\end{align*}
-
-\
-
-
-
-$$
-IC(\mu)_{(1-\alpha)} = [\stackrel{-}{x} \pm {z}_{c} \cdot \frac{\sigma}{\sqrt{n}}]
-$$
-
-
-\
-
-Assim, se $\stackrel{-}{x}$ é usado como estimativa de $\mu$, podemos afirmar estar $100.(1-\alpha)$\% confiantes de que o erro não excederá  $({z}_{(1-\frac{\alpha }{2})} \cdot \frac{\sigma}{\sqrt{n}})$.
-
-\	
-
-A quantidade $\varepsilon=(\stackrel{-}{x}-\mu)={z}_{(1-\frac{\alpha }{2})} \cdot \frac{\sigma}{\sqrt{n}}$ é chamada de Erro máximo da estimativa ao se arbitrar um nível de confiança $\alpha$ para um determinado tamanho amostral.  
-
-\
-
-
-> Exemplo: As vendas de 15 lojas de uma região do país apresentam uma média igual a US\$ 20.000,00. Sabendo-se que as vendas de todas as lojas da região é uma variável aleatória que segue uma distribuição Normal, com desvio padrão igual a US\$ 8.300,00, construa o intervalo de confiança para a média ao nível de confiança de 95\%.
-
-\
-
-Dados do problema: 
-
-\	
-
-- o tamanho da amostra: $n=15$;  
-- a média amostral: $\stackrel{-}{x}$ = US\$ 20.000;  
-- o desvio padrão populacional: $\sigma$= US\$ 8.300;  
-- nível de confiança: $(1-\alpha) = 0,95$; e, 
-- valor extraído da tabela $z=1,96$ correspondente ao nível de confiança estipulado  $(1-\alpha)=95\%$.
-
+Assim,
 
 \
 
 \begin{align*}
-P[\stackrel{-}{x}-({z}_{(1-\frac{\alpha }{2})} \cdot \frac{\sigma}{\sqrt{n}}) \le \mu \le \stackrel{-}{x}+({z}_{(1-\frac{\alpha }{2})} \cdot \frac{\sigma}{\sqrt{n}})     ] & = (1-\alpha) \\
-P[20.000 - (1,96 \cdot \frac{8.300}{\sqrt{15}})  \le \mu \le 20000 + (      1,96 \cdot \frac{8.300}{\sqrt{15}})     ] & = 0,95 \\
-P[20.000 - 4.200,38   \le \mu \le 20.000 + 4.200,38 ] & = 0,95 \\
+P\left[-{z}_{(1-\frac{\alpha }{2})}\le Z \le {z}_{(1-\frac{\alpha }{2})}\right] & = (1-\alpha) \\
+P\left[-{z}_{(1-\frac{\alpha }{2})}\le \frac{\stackrel{-}{X}-\mu }{\frac{\sigma}{\sqrt{n}}} \le {z}_{(1-\frac{\alpha }{2})}\right] & = (1-\alpha) \\
+P\left[\stackrel{-}{X}-{z}_{(1-\frac{\alpha }{2})} \cdot \frac{\sigma}{\sqrt{n}} \le \mu \le \stackrel{-}{X}+{z}_{(1-\frac{\alpha }{2})} \cdot \frac{\sigma}{\sqrt{n}}\right] & = (1-\alpha)
 \end{align*}
 
 \
 
-$$
-IC_{(1-\alpha=0,95)} = [US\$ 15.799,62; US\$ 24.200,38]
-$$
-
+e o intervalo de confiança para $\mu$ é:
 
 \
-
-Se quisermos ser rigorosos na interpretação do intervalo de confiança calculado podemos explicar que, se extrairmos um grande número de amostras de tamanho 15 dessa população, e para todas elas calcularmos intervalos de confiança como o acima definido, a proporção desses intervalos onde poderemos encontrar a média populacional de vendas será de 0,95 (95 intervalos em 100).
-
-\
-
-De uma forma mais sintética, podemos afirmar que o intervalo aleatório ]US\$ 15.799,62; US\$ 24.200,38[, é um intervalo de confiança a 95\% para a média de vendas.
-
-\
-
-De forma mais corrente, *embora menos correta* em termos teóricos, é usual afirmar que, com 95\% de confiança a média de vendas se situa entre os valores US\$ 15.799,62 e US\$ 24.200,38.
-
-
-\
-
-
-> Intervalos de confiança unilaterais para uma média amostral sob variância populacional conhecida. 
-
-\
-
-A Figura \@ref(fig:fig29) ilustra um intervalo de confiança unilateral limitado à direita por um valor máximo, dde tal sorte que a probabilidade associada ao intervalo de valores da estatística $Z$ inferiores a esse limitante é 
-
-
-\
-
-
 
 $$
-P\left [\mu \le \bar{x} + {z}_{c} \cdot  \frac{\sigma}{\sqrt{n}} \right ] = (1- \alpha)
+IC(\mu)_{(1-\alpha)} = \left[\stackrel{-}{x} \pm {z}_{(1-\frac{\alpha }{2})} \cdot \frac{\sigma}{\sqrt{n}}\right]
 $$
-
 
 \
 
-```{r fig53,  out.width='100%', fig.align='center', fig.cap="Região crítica, além da qual, a probabilidade associada aos valores $Z$ é inferior a $\\alpha$, delimitando assim, à esquerda, um intervalo aberto com nível de confiança igual a $(1-\\alpha)$", warning = FALSE}
+Observe que a probabilidade $(1-\alpha)$ acima se refere ao intervalo **aleatório**, cujos limites dependem da variável aleatória $\stackrel{-}{X}$. Uma vez calculado com os dados de uma amostra particular, o intervalo numérico resultante contém ou não contém $\mu$: não há mais probabilidade envolvida. Por isso, nos exemplos a seguir, apresentamos apenas o intervalo calculado, e o nível de confiança é interpretado como a proporção de intervalos que, em repetidas amostragens, conteriam o parâmetro.
+
+\
+
+Se $\stackrel{-}{x}$ é usado como estimativa de $\mu$, podemos afirmar estar $100(1-\alpha)$\% confiantes de que o erro não excederá a quantidade
+
+\
+
+$$
+\varepsilon={z}_{(1-\frac{\alpha }{2})} \cdot \frac{\sigma}{\sqrt{n}},
+$$
+
+\
+
+denominada erro máximo da estimativa, para o nível de confiança $(1-\alpha)$ e o tamanho amostral $n$ fixados.
+
+\
+
+> Exemplo: As vendas de 15 lojas de uma região do país apresentam uma média igual a US\$ 20.000,00. Sabendo-se que as vendas de todas as lojas da região são uma variável aleatória que segue uma distribuição Normal, com desvio padrão igual a US\$ 8.300,00, construa o intervalo de confiança para a média ao nível de confiança de 95\%.
+
+\
+
+Dados do problema:
+
+\
+
+- o tamanho da amostra: $n=15$;
+- a média amostral: $\stackrel{-}{x}$ = US\$ 20.000;
+- o desvio padrão populacional: $\sigma$ = US\$ 8.300;
+- o nível de confiança: $(1-\alpha) = 0,95$; e,
+- o valor tabelado $z_{(1-\frac{\alpha}{2})}=1,96$, correspondente ao nível de confiança estipulado.
+
+\
+
+\begin{align*}
+IC(\mu)_{(1-\alpha)} & = \left[\stackrel{-}{x} \pm {z}_{(1-\frac{\alpha }{2})} \cdot \frac{\sigma}{\sqrt{n}}\right] \\
+IC(\mu)_{0,95} & = \left[20.000 \pm 1,96 \cdot \frac{8.300}{\sqrt{15}}\right] \\
+IC(\mu)_{0,95} & = [20.000 \pm 4.200,38] \\
+IC(\mu)_{0,95} & = [\text{US\$ } 15.799,62;\ \text{US\$ } 24.200,38]
+\end{align*}
+
+\
+
+Se quisermos ser rigorosos na interpretação do intervalo de confiança calculado podemos explicar que, se extrairmos um grande número de amostras de tamanho 15 dessa população, e para todas elas calcularmos intervalos de confiança como o acima definido, a proporção desses intervalos que conterão a média populacional de vendas será de 0,95 (95 intervalos em 100).
+
+\
+
+De uma forma mais sintética, podemos afirmar que o intervalo [US\$ 15.799,62; US\$ 24.200,38], calculado a partir dos dados observados, é uma estimativa por intervalo, a 95\% de confiança, para a média de vendas.
+
+\
+
+De forma mais corrente, *embora menos correta* em termos teóricos, é usual afirmar que, com 95\% de confiança, a média de vendas se situa entre os valores US\$ 15.799,62 e US\$ 24.200,38.
+
+\
+
+> Intervalos de confiança unilaterais
+
+\
+
+Nos intervalos unilaterais, toda a probabilidade $\alpha$ fica em uma única cauda da distribuição de $Z$; por isso, o valor tabelado passa a ser $z_{(1-\alpha)}$, e não $z_{(1-\frac{\alpha}{2})}$.
+
+\
+
+*Intervalo limitado à esquerda (por um valor mínimo).* Como $P\left[Z \le z_{(1-\alpha)}\right] = (1-\alpha)$ (Figura \@ref(fig:fig53)):
+
+\
+
+$$
+P\left[\mu \ge \stackrel{-}{X} - {z}_{(1-\alpha)} \cdot \frac{\sigma}{\sqrt{n}}\right] = (1-\alpha)
+\quad \Rightarrow \quad
+IC(\mu)_{(1-\alpha)} = \left[\stackrel{-}{x} - {z}_{(1-\alpha)} \cdot \frac{\sigma}{\sqrt{n}};\ +\infty\right[
+$$
+
+\
+
+```{r fig53, echo=FALSE,  out.width='100%', fig.align='center', fig.cap="Distribuição da estatística $Z$: probabilidade $(1-\\alpha)$ abaixo de $z_{(1-\\alpha)}$ e $\\alpha$ na cauda direita (intervalo para $\\mu$ limitado à esquerda)", warning = FALSE}
 
 prob_desejada=0.95
 z_desejado=round(qnorm(prob_desejada),4)
@@ -1225,25 +1358,19 @@ ggplot(NULL, aes(c(-4,4))) +
 
 \
 
-
-
-A Figura \@ref(fig:fig54) ilustra um intervalo de confiança unilateral limitado à esquerda por um valor mínimo, de tal sorte que a probabilidade associada ao intervalo de valores da estatística $Z$ superiores a esse limitante é 
-
+*Intervalo limitado à direita (por um valor máximo).* Como $P\left[Z \ge -z_{(1-\alpha)}\right] = (1-\alpha)$ (Figura \@ref(fig:fig54)):
 
 \
 
-
-
 $$
-P\left [\mu \ge \bar{x} - {z}_{c} \cdot  \frac{\sigma}{\sqrt{n}} \right ] = (1- \alpha)
+P\left[\mu \le \stackrel{-}{X} + {z}_{(1-\alpha)} \cdot \frac{\sigma}{\sqrt{n}}\right] = (1-\alpha)
+\quad \Rightarrow \quad
+IC(\mu)_{(1-\alpha)} = \left]-\infty;\ \stackrel{-}{x} + {z}_{(1-\alpha)} \cdot \frac{\sigma}{\sqrt{n}}\right]
 $$
 
 \
 
-
-
-
-```{r fig54,  out.width='100%', fig.align='center', fig.cap="Região crítica, aquém da qual, a probabilidade associada aos valores $Z$ é inferior a $\\alpha$, delimitando assim, à direita, um intervalo aberto com nível de confiança igual a $(1-\\alpha)$", warning = FALSE}
+```{r fig54, echo=FALSE,  out.width='100%', fig.align='center', fig.cap="Distribuição da estatística $Z$: probabilidade $(1-\\alpha)$ acima de $-z_{(1-\\alpha)}$ e $\\alpha$ na cauda esquerda (intervalo para $\\mu$ limitado à direita)", warning = FALSE}
 
 
 prob_desejada=0.05
@@ -1279,34 +1406,46 @@ ggplot(NULL, aes(c(-4,4))) +
 
 ```
 
+\
 
-### Intervalos de confiança para a média de uma população Normal de variância desconhecida mas amostra não tão pequena: $n \ge 30$  (Figura \@ref(fig:fig55))
-
-\	
-
-$$
-Z = \frac{\stackrel{-}{X} - \mu}{\frac{S}{\sqrt{n}}}  \sim N(0 , 1)
-$$
-
-\	
-
-em que: 
+### Intervalo de confiança para a média populacional ($\mu$): variância desconhecida e amostra grande ($n \ge 30$)
 
 \
 
-- $\stackrel{-}{X}$ é uma média amostral;  
-- $\mu$ é a média populacional;  
-- $S$ é o desvio padrão amostral; 
-- $n$ é o tamanho da amostra; e, 
-- $Z$ é a estatística a ser calculada para a construção do intervalo de confiança sob o nível de significância $\alpha$ estabelecido. 
-
+Os intervalos de confiança para a média $\mu$ de uma população com variância ($\sigma^{2}$) desconhecida, a partir de uma amostra grande ($n \ge 30$), são construídos a partir da estatística:
 
 \
 
+$$
+Z = \frac{\stackrel{-}{X} - \mu}{\frac{S}{\sqrt{n}}}  \approx N(0 , 1)
+$$
 
+\
 
+em que:
 
-```{r fig55,  out.width='100%', fig.align='center', fig.cap="Regiões críticas, aquém e além das quais, a probabilidade associada aos valores $Z$ é inferior a $\\frac{\\alpha}{2}$, estabelecendo assim um intervalo com nível de confiança igual a $(1-\\alpha)$", warning = FALSE}
+\
+
+- $\stackrel{-}{X}$ é a média amostral;
+- $\mu$ é a média populacional (o parâmetro para o qual se constrói o intervalo);
+- $S$ é o desvio padrão amostral (estimativa de $\sigma$); e,
+- $n$ é o tamanho da amostra.
+
+\
+
+A distribuição de $Z$ é aproximada: com amostras grandes, $S$ é uma boa estimativa de $\sigma$ e, pelo Teorema do limite central, $\stackrel{-}{X}$ tem distribuição aproximadamente Normal, mesmo que a população não o seja.
+
+\
+
+> Intervalo de confiança bilateral
+
+\
+
+A Figura \@ref(fig:fig55) ilustra a região central da distribuição (aproximada) da estatística $Z$, delimitada por $-z_{(1-\frac{\alpha}{2})}$ e $z_{(1-\frac{\alpha}{2})}$, com probabilidade $(1-\alpha)$; cada uma das caudas tem probabilidade $\frac{\alpha}{2}$.
+
+\
+
+```{r fig55, echo=FALSE,  out.width='100%', fig.align='center', fig.cap="Distribuição (aproximada) da estatística $Z$: região central com probabilidade $(1-\\alpha)$ (nível de confiança) e caudas com probabilidade $\\frac{\\alpha}{2}$ cada", warning = FALSE}
 
 alfa=0.05
 
@@ -1361,46 +1500,49 @@ ggplot(NULL, aes(c(-4,4))) +
 
 \
 
-
-Na Figura \@ref(fig:fig55) observa-se: 
-
-\	
-
-- o nível de significância $\alpha$;   
-- o nível de confiança $(1-\alpha)$; e,   
-- o valor tabelado da estatística $Z(z)$ para o nível de confiança fixado.
-
+Na Figura \@ref(fig:fig55) observa-se:
 
 \
 
-Assim, 
+- o nível de significância $\alpha$, repartido igualmente entre as duas caudas;
+- o nível de confiança $(1-\alpha)$; e,
+- os valores tabelados $\pm z_{(1-\frac{\alpha}{2})}$ da estatística $Z$ para o nível de confiança fixado.
 
-\	
+\
+
+Assim,
+
+\
 
 \begin{align*}
-P\left[-{Z}_{(1-\frac{\alpha }{2})}\le Z \le {Z }_{(1-\frac{\alpha }{2})}\right] & = (1-\alpha) \\
-P\left[-{z}_{(1-\frac{\alpha }{2})}\le \frac{\stackrel{-}{x}-\mu }{(\frac{S}{\sqrt{n})}}
-\le {z}_{(1-\frac{\alpha }{2})}\right] & = (1-\alpha) \\
-P[\stackrel{-}{x}-({z}_{(1-\frac{\alpha }{2})} \cdot \frac{S}{\sqrt{n}}) \le \mu \le \stackrel{-}{x}+({z}_{(1-\frac{\alpha }{2})} \cdot \frac{S}{\sqrt{n}})     ] & = (1-\alpha) 
+P\left[-{z}_{(1-\frac{\alpha }{2})}\le Z \le {z}_{(1-\frac{\alpha }{2})}\right] & \approx (1-\alpha) \\
+P\left[-{z}_{(1-\frac{\alpha }{2})}\le \frac{\stackrel{-}{X}-\mu }{\frac{S}{\sqrt{n}}} \le {z}_{(1-\frac{\alpha }{2})}\right] & \approx (1-\alpha) \\
+P\left[\stackrel{-}{X}-{z}_{(1-\frac{\alpha }{2})} \cdot \frac{S}{\sqrt{n}} \le \mu \le \stackrel{-}{X}+{z}_{(1-\frac{\alpha }{2})} \cdot \frac{S}{\sqrt{n}}\right] & \approx (1-\alpha)
 \end{align*}
 
+\
+
+e o intervalo de confiança para $\mu$ é:
 
 \
 
 $$
-IC(\mu)_{(1-\alpha)} = [\stackrel{-}{x} \pm {z}_{c} \cdot \frac{S}{\sqrt{n}} ] 
+IC(\mu)_{(1-\alpha)} = \left[\stackrel{-}{x} \pm {z}_{(1-\frac{\alpha }{2})} \cdot \frac{s}{\sqrt{n}}\right]
 $$
 
 \
 
-Assim, se $\stackrel{-}{x}$ é usado como estimativa de $\mu$ podemos afirmar estar $100(1-\alpha)$\% confiantes de que o erro não excederá  $({z}_{(1-\frac{\alpha }{2})} \cdot \frac{S}{\sqrt{n}})$.
+Se $\stackrel{-}{x}$ é usado como estimativa de $\mu$, podemos afirmar estar $100(1-\alpha)$\% confiantes de que o erro não excederá a quantidade
 
+\
 
-\	
+$$
+\varepsilon={z}_{(1-\frac{\alpha }{2})} \cdot \frac{s}{\sqrt{n}},
+$$
 
+\
 
-A quantidade $\varepsilon=(\stackrel{-}{x}-\mu)={z}_{(1-\frac{\alpha }{2})} \cdot \frac{S}{\sqrt{n}}$ é chamada de Erro máximo da estimativa ao se arbitrar um nível de confiança $\alpha$ para um determinado tamanho amostral.  
-
+denominada erro máximo da estimativa, para o nível de confiança $(1-\alpha)$ e o tamanho amostral $n$ fixados.
 
 \
 
@@ -1408,72 +1550,60 @@ A quantidade $\varepsilon=(\stackrel{-}{x}-\mu)={z}_{(1-\frac{\alpha }{2})} \cdo
 
 \
 
-Dados do problema: 
+Dados do problema:
 
-\	
+\
 
-
-- o tamanho da amostra: $n=60$;  
-- a média amostral: $\stackrel{-}{x}=US\$ 20.000$;  
-- o desvio padrão amostral: $s=US\$ 8.300$;  
-- nível de confiança: $(1-\alpha)=0,95$; e, 
-- valor extraído da tabela $z=1,96$ correspondente ao nível de confiança estipulado  $(1-\alpha)=95\%$.
+- o tamanho da amostra: $n=60$;
+- a média amostral: $\stackrel{-}{x}$ = US\$ 20.000;
+- o desvio padrão amostral: $s$ = US\$ 8.300;
+- o nível de confiança: $(1-\alpha) = 0,95$; e,
+- o valor tabelado $z_{(1-\frac{\alpha}{2})}=1,96$, correspondente ao nível de confiança estipulado.
 
 \
 
 \begin{align*}
-P[\stackrel{-}{x}-({z}_{(1-\frac{\alpha }{2})} \cdot \frac{S}{\sqrt{n}}) \le \mu \le \stackrel{-}{x}+({z}_{(1-\frac{\alpha }{2})} \cdot \frac{S}{\sqrt{n}})     ] & = (1-\alpha) \\
-P[20.000 - (1,96 \cdot \frac{8.300}{\sqrt{60}}) \le \mu \le 20.000 + (      1,96 \cdot \frac{8.300}{\sqrt{60}})     ] & = 0,95 \\
-P[20.000 - 2.100,19  \le \mu \le 20.000 + 2.100,19 ] & = 0,95 
+IC(\mu)_{(1-\alpha)} & = \left[\stackrel{-}{x} \pm {z}_{(1-\frac{\alpha }{2})} \cdot \frac{s}{\sqrt{n}}\right] \\
+IC(\mu)_{0,95} & = \left[20.000 \pm 1,96 \cdot \frac{8.300}{\sqrt{60}}\right] \\
+IC(\mu)_{0,95} & = [20.000 \pm 2.100,19] \\
+IC(\mu)_{0,95} & = [\text{US\$ } 17.899,81;\ \text{US\$ } 22.100,19]
 \end{align*}
 
 \
 
+Se quisermos ser rigorosos na interpretação do intervalo de confiança calculado podemos explicar que, se extrairmos um grande número de amostras de tamanho 60 dessa população, e para todas elas calcularmos intervalos de confiança como o acima definido, a proporção desses intervalos que conterão a média populacional de vendas será de aproximadamente 0,95 (95 intervalos em 100).
+
+\
+
+De uma forma mais sintética, podemos afirmar que o intervalo [US\$ 17.899,81; US\$ 22.100,19], calculado a partir dos dados observados, é uma estimativa por intervalo, a 95\% de confiança, para a média de vendas.
+
+\
+
+De forma mais corrente, *embora menos correta* em termos teóricos, é usual afirmar que, com 95\% de confiança, a média de vendas se situa entre os valores US\$ 17.899,81 e US\$ 22.100,19.
+
+\
+
+> Intervalos de confiança unilaterais
+
+\
+
+Nos intervalos unilaterais, toda a probabilidade $\alpha$ fica em uma única cauda da distribuição de $Z$; por isso, o valor tabelado passa a ser $z_{(1-\alpha)}$, e não $z_{(1-\frac{\alpha}{2})}$.
+
+\
+
+*Intervalo limitado à esquerda (por um valor mínimo).* Como $P\left[Z \le z_{(1-\alpha)}\right] \approx (1-\alpha)$ (Figura \@ref(fig:fig56)):
+
+\
 
 $$
-IC_{(1-\alpha=0,95)} = [US\$ 17.899,81;US\$ 22.100,19]
+P\left[\mu \ge \stackrel{-}{X} - {z}_{(1-\alpha)} \cdot \frac{S}{\sqrt{n}}\right] \approx (1-\alpha)
+\quad \Rightarrow \quad
+IC(\mu)_{(1-\alpha)} = \left[\stackrel{-}{x} - {z}_{(1-\alpha)} \cdot \frac{s}{\sqrt{n}};\ +\infty\right[
 $$
 
-
-
 \
 
-Se quisermos ser rigorosos na interpretação do intervalo de confiança calculado podemos explicar que  se extrairmos um grande número de amostras de tamanho 60 dessa população, e para todas elas calcularmos intervalos de confiança como o acima definido, a proporção desses intervalos onde poderemos encontrar a média populacional de vendas será de 0,95 (95 intervalos em 100).
-
-\
-
-De uma forma mais sintética, podemos afirmar que o intervalo aleatório ]US\$ 17.899,81; US\$ 22.100,19[, é um intervalo de confiança a 95\% para a média de vendas.
-
-\
-
-De forma mais corrente, *embora menos correta* em termos teóricos, é usual afirmar que, com 95\% de confiança a média de vendas se situa entre os valores US\$ 17.899,81 e US\$ 22.100,19.
-
-\
-
-
-
-
-
-> Intervalos de confiança unilaterais para a média sob variância populacional desconhecida mas amostras não tão pequenas: $n \ge 30$. 
-
-\
-
-
-A Figura \@ref(fig:fig56) ilustra um intervalo de confiança unilateral limitado à direita por um valor máximo, de tal sorte que a probabilidade associada ao intervalo de valores da estatística $Z$ inferiores a esse limitante é 
-
-
-\
-
-
-
-$$
-P\left [\mu \le \bar{x} + {z}_{c} \cdot  \frac{S}{\sqrt{n}} \right ] = (1- \alpha)
-$$
-
-
-\
-
-```{r fig56,  out.width='100%', fig.align='center', fig.cap="Região crítica, além da qual, a probabilidade associada aos valores $Z$ é inferior a $\\alpha$, delimitando assim, à esquerda, um intervalo aberto com nível de confiança igual a $(1-\\alpha)$", warning = FALSE}
+```{r fig56, echo=FALSE,  out.width='100%', fig.align='center', fig.cap="Distribuição (aproximada) da estatística $Z$: probabilidade $(1-\\alpha)$ abaixo de $z_{(1-\\alpha)}$ e $\\alpha$ na cauda direita (intervalo para $\\mu$ limitado à esquerda)", warning = FALSE}
 
 prob_desejada=0.95
 z_desejado=round(qnorm(prob_desejada),4)
@@ -1510,24 +1640,19 @@ ggplot(NULL, aes(c(-4,4))) +
 
 \
 
-
-A Figura \@ref(fig:fig57) ilustra um intervalo de confiança unilateral limitado à esquerda por um valor mínimo, de tal sorte que a probabilidade associada ao intervalo de valores da estatística $Z$ superiores a esse limitante é 
-
+*Intervalo limitado à direita (por um valor máximo).* Como $P\left[Z \ge -z_{(1-\alpha)}\right] \approx (1-\alpha)$ (Figura \@ref(fig:fig57)):
 
 \
 
-
-
 $$
-P\left [\mu \ge \bar{x} - {z}_{c} \cdot  \frac{S}{\sqrt{n}} \right ] = (1- \alpha)
+P\left[\mu \le \stackrel{-}{X} + {z}_{(1-\alpha)} \cdot \frac{S}{\sqrt{n}}\right] \approx (1-\alpha)
+\quad \Rightarrow \quad
+IC(\mu)_{(1-\alpha)} = \left]-\infty;\ \stackrel{-}{x} + {z}_{(1-\alpha)} \cdot \frac{s}{\sqrt{n}}\right]
 $$
 
 \
 
-
-
-
-```{r fig57,  out.width='100%', fig.align='center', fig.cap="Região crítica, aquém da qual, a probabilidade associada aos valores $Z$ é inferior a $\\alpha$, delimitando assim, à direita, um intervalo aberto com nível de confiança igual a $(1-\\alpha)$", warning = FALSE}
+```{r fig57, echo=FALSE,  out.width='100%', fig.align='center', fig.cap="Distribuição (aproximada) da estatística $Z$: probabilidade $(1-\\alpha)$ acima de $-z_{(1-\\alpha)}$ e $\\alpha$ na cauda esquerda (intervalo para $\\mu$ limitado à direita)", warning = FALSE}
 
 
 prob_desejada=0.05
@@ -1563,35 +1688,47 @@ ggplot(NULL, aes(c(-4,4))) +
 
 ```
 
+\
 
-
-### Intervalos de confiança para a média de uma população Normal com variância desconhecida e amostra de qualquer tamanho (Figura \@ref(fig:fig58))
-
-
-
-\	
-
-$$
-T = \frac{(\stackrel{-}{X} - \mu)}{    \frac{S}{\sqrt{n}} } \sim t_{(n-1)}
-$$
-
-\	
-
-em que: 
+### Intervalo de confiança para a média populacional ($\mu$): população Normal com variância desconhecida (amostra de qualquer tamanho)
 
 \
 
-- $\stackrel{-}{X}$ é uma média amostral;  
-- $\mu$ é a média populacional;  
-- $S$ é o desvio padrão amostral;  
-- $n$ é o tamanho da amostra; e, 
-- $T$ é a estatística a ser calculada para a construção do intervalo de confiança sob o nível de significância $\alpha$ estabelecido. 
+Os intervalos de confiança para a média $\mu$ de uma população Normal com variância ($\sigma^{2}$) desconhecida, a partir de uma amostra de qualquer tamanho, são construídos a partir da estatística:
 
 \
 
+$$
+T = \frac{\stackrel{-}{X} - \mu}{\frac{S}{\sqrt{n}}} \sim t_{(n-1)}
+$$
 
+\
 
-```{r fig58,  out.width='100%', fig.align='center', fig.cap="Regiões críticas, aquém e além das quais, a probabilidade associada aos valores $T$ ($(n-1)$ graus de liberdade) é inferior a $\\frac{\\alpha}{2}$, estabelecendo assim um intervalo com nível de confiança igual a $(1-\\alpha)$", warning = FALSE}
+em que:
+
+\
+
+- $\stackrel{-}{X}$ é a média amostral;
+- $\mu$ é a média populacional (o parâmetro para o qual se constrói o intervalo);
+- $S$ é o desvio padrão amostral (estimativa de $\sigma$);
+- $n$ é o tamanho da amostra; e,
+- $(n-1)$ são os graus de liberdade da distribuição $t$.
+
+\
+
+Sendo a população Normal, a distribuição de $T$ é exatamente $t_{(n-1)}$, qualquer que seja o tamanho da amostra. Para $n$ grande, $t_{(n-1)} \approx N(0,1)$, o que justifica o uso da estatística $Z$ no caso anterior; com amostras pequenas, porém, a normalidade da população é uma suposição essencial.
+
+\
+
+> Intervalo de confiança bilateral
+
+\
+
+A Figura \@ref(fig:fig58) ilustra a região central da distribuição da estatística $T$, delimitada por $-t_{(1-\frac{\alpha}{2};\, n-1)}$ e $t_{(1-\frac{\alpha}{2};\, n-1)}$, com probabilidade $(1-\alpha)$; cada uma das caudas tem probabilidade $\frac{\alpha}{2}$.
+
+\
+
+```{r fig58, echo=FALSE,  out.width='100%', fig.align='center', fig.cap="Distribuição da estatística $T$ ($n-1$ graus de liberdade): região central com probabilidade $(1-\\alpha)$ (nível de confiança) e caudas com probabilidade $\\frac{\\alpha}{2}$ cada", warning = FALSE}
 
 
 alfa=0.05
@@ -1648,122 +1785,119 @@ ggplot(NULL, aes(c(-4,4))) +
 
 ```
 
+\
 
-
+Na Figura \@ref(fig:fig58) observa-se:
 
 \
 
-
-
-Na Figura \@ref(fig:fig58) observa-se: 
-
-\	
-
-- o nível de significância $\alpha$;   
-- o nível de confiança $(1-\alpha)$; e,   
-- o valor tabelado da estatística $T(t)$ sob $n-1$ graus de liberdade para o nível de confiança fixado.
+- o nível de significância $\alpha$, repartido igualmente entre as duas caudas;
+- o nível de confiança $(1-\alpha)$; e,
+- os valores tabelados $\pm t_{(1-\frac{\alpha}{2};\, n-1)}$ da estatística $T$, sob $(n-1)$ graus de liberdade, para o nível de confiança fixado.
 
 \
 
-Assim, 
-
-\	
-
-\begin{align*}
-P\left[-{T}_{(1-\frac{\alpha }{2}, (n-1))}\le T \le {T }_{(1-\frac{\alpha }{2}, (n-1))}\right] & = (1-\alpha) \\
-P\left[-{t}_{(1-\frac{\alpha }{2}, (n-1))}\le \frac{\stackrel{-}{x}-\mu }{\frac{S}{\sqrt{n}}}
-\le {t}_{(1-\frac{\alpha }{2}, (n-1))}\right] & = (1-\alpha) \\
-P[\stackrel{-}{x}-({t}_{(1-\frac{\alpha }{2}, (n-1))} \cdot \frac{S}{\sqrt{n}}) \le \mu \le \stackrel{-}{x}+({t}_{(1-\frac{\alpha }{2}, (n-1))} \cdot \frac{S}{\sqrt{n}})     ] & = (1-\alpha) 
-\end{align*}
-
-
-$$
-IC(\mu)_{(1-\alpha)}= [\stackrel{-}{x} \pm {t}_{c_{(n-1)}} \cdot \frac{S}{\sqrt{n}}] 
-$$
-
-\
-
-Assim, se $\stackrel{-}{x}$ é usado como estimativa de $\mu$ podemos afirmar estar $100(1-\alpha)$\% confiantes de que o erro não excederá  $({t}_{(1-\frac{\alpha }{2})} \cdot \frac{S}{\sqrt{n}})$.
-
-\	
-
-A quantidade $\varepsilon=(\stackrel{-}{x}-\mu)=      ({t}_{(1-\frac{\alpha }{2}, (n-1))} \cdot \frac{S}{\sqrt{n}})$ é chamada de Erro máximo da estimativa ao se arbitrar um nível de confiança $\alpha$,  (n-1) graus de liberdade e um determinado tamanho amostral.  
-
-\
-	
-> Exemplo: As vendas de 15 lojas de uma região do país apresentam uma média igual a US\$ 20.000,00 e desvio padrão de US\$ 8.300,00. Construa o intervalo de confiança para a média ao nível de confiança de 95\%.
-
-\
-
-Dados do problema: 
-
-\
-
-- o tamanho da amostra: $n=15$;  
-- a média amostral: $\stackrel{-}{x}=US\$ 20.000$;  
-- o desvio padrão amostral: $s=US\$ 8.300$;  
-- nível de confiança: $(1-\alpha)=0,95$; e, 
-- valor extraído da tabela da distribuição de \textit{Student} sob $(n-1=15-1=14)$ graus de liberdade $t_{c}=2,1448$ associado ao nível de confiança estipulado  $(1-\alpha)=95\%$.
-
-
+Assim,
 
 \
 
 \begin{align*}
-P[\stackrel{-}{x}-({t}_{(1-\frac{\alpha }{2})} \cdot \frac{S}{\sqrt{n}}) \le \mu \le \stackrel{-}{x}+({t}_{(1-\frac{\alpha }{2})} \cdot \frac{S}{\sqrt{n}}) ] & = (1-\alpha) \\
-P[20000 - ( 2,1448 \cdot \frac{8300}{\sqrt{15}}) \le \mu \le 20000 + ( 2,1448  \cdot \frac{8300}{\sqrt{15}}) ] & = 0,95\\
-P[20000 - 4596,41 \le \mu \le 20000 + 4596,41 ] & = 0,95
+P\left[-{t}_{(1-\frac{\alpha }{2};\, n-1)}\le T \le {t}_{(1-\frac{\alpha }{2};\, n-1)}\right] & = (1-\alpha) \\
+P\left[-{t}_{(1-\frac{\alpha }{2};\, n-1)}\le \frac{\stackrel{-}{X}-\mu }{\frac{S}{\sqrt{n}}} \le {t}_{(1-\frac{\alpha }{2};\, n-1)}\right] & = (1-\alpha) \\
+P\left[\stackrel{-}{X}-{t}_{(1-\frac{\alpha }{2};\, n-1)} \cdot \frac{S}{\sqrt{n}} \le \mu \le \stackrel{-}{X}+{t}_{(1-\frac{\alpha }{2};\, n-1)} \cdot \frac{S}{\sqrt{n}}\right] & = (1-\alpha)
 \end{align*}
 
 \
 
-$$
-IC_{(1-\alpha=0,95)} = [US\$ 15403,59 ; US\$ 24496,41]
-$$
-
+e o intervalo de confiança para $\mu$ é:
 
 \
-
-Se quisermos ser rigorosos na interpretação do intervalo de confiança calculado podemos explicar que se extrairmos um grande número de amostras de tamanho 15 dessa população, e para todas elas calcularmos intervalos de confiança como o acima definido, a proporção desses intervalos onde poderemos encontrar a média populacional de vendas será de 0,95 (95 intervalos em 100).
-
-
-\
-
-
-De uma forma mais sintética, podemos afirmar que o intervalo aleatório ]US\$ 15.403,59; US\$ 24.496,41[, é um intervalo de confiança a 95\% para a média de vendas.
-
-\
-
-
-De uma forma mais corrente, *embora menos correta* em termos teóricos, é usual afirmar que, com 95\% de confiança a média de vendas se situa entre os valores US\$ 15.403,59 e US\$ 24.496,41.
-
-\
-
-> Intervalos de confiança unilaterais para a média sob variância populacional desconhecida e amostras de qualquer tamanho 
-
-
-\
-
-
-
-A Figura \@ref(fig:fig59) ilustra um intervalo de confiança unilateral limitado à direita por um valor máximo, de tal sorte que a probabilidade associada ao intervalo de valores da estatística $T$ inferiores a esse limitante é 
-
-
-\
-
-
 
 $$
-P\left [\mu \le \bar{x} + {t}_{c_{(n-1)}} \cdot  \frac{S}{\sqrt{n}} \right ] = (1- \alpha)
+IC(\mu)_{(1-\alpha)} = \left[\stackrel{-}{x} \pm {t}_{(1-\frac{\alpha }{2};\, n-1)} \cdot \frac{s}{\sqrt{n}}\right]
 $$
-
 
 \
 
-```{r fig59,  out.width='100%', fig.align='center', fig.cap="Região crítica, além da qual, a probabilidade associada aos valores $T$ ($(n-1)$ graus de liberdade)  é inferior a $\\alpha$, delimitando assim, à esquerda, um intervalo aberto com nível de confiança igual a $(1-\\alpha)$", warning = FALSE}
+Se $\stackrel{-}{x}$ é usado como estimativa de $\mu$, podemos afirmar estar $100(1-\alpha)$\% confiantes de que o erro não excederá a quantidade
 
-alfa=0.95
-prob_desejada1=alfa
+\
+
+$$
+\varepsilon={t}_{(1-\frac{\alpha }{2};\, n-1)} \cdot \frac{s}{\sqrt{n}},
+$$
+
+\
+
+denominada erro máximo da estimativa, para o nível de confiança $(1-\alpha)$ e o tamanho amostral $n$ (com $n-1$ graus de liberdade) fixados.
+
+\
+
+> Exemplo: As vendas de 15 lojas de uma região do país apresentam uma média igual a US\$ 20.000,00 e desvio padrão de US\$ 8.300,00. Admitindo-se que as vendas sigam uma distribuição Normal, construa o intervalo de confiança para a média ao nível de confiança de 95\%.
+
+\
+
+Dados do problema:
+
+\
+
+- o tamanho da amostra: $n=15$;
+- a média amostral: $\stackrel{-}{x}$ = US\$ 20.000;
+- o desvio padrão amostral: $s$ = US\$ 8.300;
+- o nível de confiança: $(1-\alpha) = 0,95$; e,
+- o valor tabelado $t_{(1-\frac{\alpha}{2};\, 14)}=2,1448$, da distribuição de *Student* sob $(n-1=15-1=14)$ graus de liberdade, correspondente ao nível de confiança estipulado.
+
+\
+
+\begin{align*}
+IC(\mu)_{(1-\alpha)} & = \left[\stackrel{-}{x} \pm {t}_{(1-\frac{\alpha }{2};\, n-1)} \cdot \frac{s}{\sqrt{n}}\right] \\
+IC(\mu)_{0,95} & = \left[20.000 \pm 2,1448 \cdot \frac{8.300}{\sqrt{15}}\right] \\
+IC(\mu)_{0,95} & = [20.000 \pm 4.596,41] \\
+IC(\mu)_{0,95} & = [\text{US\$ } 15.403,59;\ \text{US\$ } 24.596,41]
+\end{align*}
+
+\
+
+Se quisermos ser rigorosos na interpretação do intervalo de confiança calculado podemos explicar que, se extrairmos um grande número de amostras de tamanho 15 dessa população, e para todas elas calcularmos intervalos de confiança como o acima definido, a proporção desses intervalos que conterão a média populacional de vendas será de 0,95 (95 intervalos em 100).
+
+\
+
+De uma forma mais sintética, podemos afirmar que o intervalo [US\$ 15.403,59; US\$ 24.596,41], calculado a partir dos dados observados, é uma estimativa por intervalo, a 95\% de confiança, para a média de vendas.
+
+\
+
+De forma mais corrente, *embora menos correta* em termos teóricos, é usual afirmar que, com 95\% de confiança, a média de vendas se situa entre os valores US\$ 15.403,59 e US\$ 24.596,41.
+
+\
+
+Compare este intervalo com o do primeiro exemplo (mesmos $n$, $\stackrel{-}{x}$ e desvio padrão): por ser $\sigma$ desconhecido e estimado por $s$, o valor tabelado da distribuição $t$ (2,1448) é maior que o da Normal (1,96), e o intervalo resulta mais amplo.
+
+\
+
+> Intervalos de confiança unilaterais
+
+\
+
+Nos intervalos unilaterais, toda a probabilidade $\alpha$ fica em uma única cauda da distribuição de $T$; por isso, o valor tabelado passa a ser $t_{(1-\alpha;\, n-1)}$, e não $t_{(1-\frac{\alpha}{2};\, n-1)}$.
+
+\
+
+*Intervalo limitado à esquerda (por um valor mínimo).* Como $P\left[T \le t_{(1-\alpha;\, n-1)}\right] = (1-\alpha)$ (Figura \@ref(fig:fig59)):
+
+\
+
+$$
+P\left[\mu \ge \stackrel{-}{X} - {t}_{(1-\alpha;\, n-1)} \cdot \frac{S}{\sqrt{n}}\right] = (1-\alpha)
+\quad \Rightarrow \quad
+IC(\mu)_{(1-\alpha)} = \left[\stackrel{-}{x} - {t}_{(1-\alpha;\, n-1)} \cdot \frac{s}{\sqrt{n}};\ +\infty\right[
+$$
+
+\
+
+```{r fig59, echo=FALSE,  out.width='100%', fig.align='center', fig.cap="Distribuição da estatística $T$ ($n-1$ graus de liberdade): probabilidade $(1-\\alpha)$ abaixo de $t_{(1-\\alpha;\\, n-1)}$ e $\\alpha$ na cauda direita (intervalo para $\\mu$ limitado à esquerda)", warning = FALSE}
+
+alfa=0.05
+prob_desejada1=1-alfa
 df=20
 t_desejado1=round(qt(prob_desejada1,df ),4)
 d_desejada1=dt(t_desejado1,df)
@@ -1793,7 +1927,7 @@ ggplot(NULL, aes(c(-4,4))) +
        subtitle = "P(-\U221e, t)=(1-\u03b1) em cinza \nP(t, \U221e)= \u03b1 em vermelho ")+
   geom_segment(aes(x = t_desejado1, y = 0, xend = t_desejado1, yend = d_desejada1), color="blue", lty=2, lwd=0.3)+
   annotate(geom="text", x=t_desejado1+0.5, y=d_desejada1, label="t", angle=90, vjust=0, hjust=0, color="blue",size=6)+
-  annotate(geom="text", x=t_desejado1+1, y=0.1, label="Intervalo aberto à esq. \n(probabilidade=\u03b1)", angle=0, vjust=0, hjust=0, color="blue",size=3)+
+  annotate(geom="text", x=t_desejado1+1, y=0.1, label="Intervalo aberto à dir. \n(probabilidade=\u03b1)", angle=0, vjust=0, hjust=0, color="blue",size=3)+
   annotate(geom="text", x=t_desejado1-2.5, y=0.2, label="Intervalo aberto \n(probabilidade= (1-\u03b1))", angle=0, vjust=0, hjust=0, color="blue",size=3)+  theme_bw()
 
 
@@ -1802,24 +1936,19 @@ ggplot(NULL, aes(c(-4,4))) +
 
 \
 
-
-A Figura \@ref(fig:fig60) ilustra um intervalo de confiança unilateral limitado à esquerda por um valor mínimo, de tal sorte que a probabilidade associada ao intervalo de valores da estatística $T$ superiores a esse limitante é 
-
+*Intervalo limitado à direita (por um valor máximo).* Como $P\left[T \ge -t_{(1-\alpha;\, n-1)}\right] = (1-\alpha)$ (Figura \@ref(fig:fig60)):
 
 \
 
-
-
 $$
-P\left [\mu \ge \bar{x} - {t}_{c} \cdot  \frac{S}{\sqrt{n}} \right ] = (1- \alpha)
+P\left[\mu \le \stackrel{-}{X} + {t}_{(1-\alpha;\, n-1)} \cdot \frac{S}{\sqrt{n}}\right] = (1-\alpha)
+\quad \Rightarrow \quad
+IC(\mu)_{(1-\alpha)} = \left]-\infty;\ \stackrel{-}{x} + {t}_{(1-\alpha;\, n-1)} \cdot \frac{s}{\sqrt{n}}\right]
 $$
 
 \
 
-
-
-
-```{r fig60,  out.width='100%', fig.align='center', fig.cap="Região crítica, aquém da qual, a probabilidade associada aos valores $T$ ($(n-1)$ graus de liberdade)  é inferior a $\\alpha$, delimitando assim, à direita, um intervalo aberto com nível de confiança igual a $(1-\\alpha)$", warning = FALSE}
+```{r fig60, echo=FALSE,  out.width='100%', fig.align='center', fig.cap="Distribuição da estatística $T$ ($n-1$ graus de liberdade): probabilidade $(1-\\alpha)$ acima de $-t_{(1-\\alpha;\\, n-1)}$ e $\\alpha$ na cauda esquerda (intervalo para $\\mu$ limitado à direita)", warning = FALSE}
 
 
 alfa=0.05
@@ -1860,6 +1989,7 @@ ggplot(NULL, aes(c(-4,4))) +
 
 ```
 
+\
 
 
 ### Fluxograma auxiliar
@@ -1894,7 +2024,7 @@ Conforme seções anteriores, as médias amostrais $\stackrel{-}{X}$ e $\stackre
 
 \
 
-Pode-se demonstrar, pelas propriedades da esperança e da variância, que a média e a variância de uma variável aleatória (população) que resulta da soma ou diferença de duas outras, $X$ e $Y$,  é:
+Pode-se demonstrar, pelas propriedades da esperança e da variância, que a média e a variância de uma variável aleatória (população) que resulta da soma ou diferença de duas outras, $X$ e $Y$, **independentes**, são:
 
 \
 
@@ -1906,7 +2036,7 @@ Pode-se demonstrar, pelas propriedades da esperança e da variância, que a méd
 
 \
 
-E a média e variância da soma ou diferença das distribuições amostrais das médias de  $X$ e $Y$ é:
+E a média e a variância da soma ou diferença das distribuições amostrais das médias de $X$ e $Y$, obtidas de amostras independentes, são:
 
 \
 
@@ -1917,20 +2047,20 @@ E a média e variância da soma ou diferença das distribuições amostrais das 
 
 \
 
-### Intervalos de confiança para a diferença das médias de duas populações Nomrais de variâncias conhecidas e amostras independentes de qualquer tamanho 
+### Intervalos de confiança para a diferença das médias de duas populações Normais de variâncias conhecidas e amostras independentes de qualquer tamanho 
 
 
 \
 
 
-Se $(X_{1}, X_{2},...,X{n_{1}})$  e $(Y_{1}, Y_{2},...,Y{n_{2}})$ forem amostras aleatórias simples das populações $X$ e $Y$ com médias $\mu_{1}$ e $\mu_{2}$, e variâncias  $\sigma_{1}^{2}$ e $\sigma_{2}^{2}$ conhecidas, e $\stackrel{-}{X}=\frac{(X_{1}+X_{2}+...+X{n_{1}})}{n}$ e $\stackrel{-}{Y}=\frac{(Y_{1}+Y_{2}+...+Y{n_{2}})}{n_{2}}$, então:
+Se $(X_{1}, X_{2},...,X_{n_{1}})$  e $(Y_{1}, Y_{2},...,Y_{n_{2}})$ forem amostras aleatórias simples das populações $X$ e $Y$ com médias $\mu_{1}$ e $\mu_{2}$, e variâncias  $\sigma_{1}^{2}$ e $\sigma_{2}^{2}$ conhecidas, e $\stackrel{-}{X}=\frac{(X_{1}+X_{2}+...+X_{n_{1}})}{n_{1}}$ e $\stackrel{-}{Y}=\frac{(Y_{1}+Y_{2}+...+Y_{n_{2}})}{n_{2}}$, então:
 
 \
 
 
 \begin{align*}
-{X} & \sim N( \mu_{1} ,  \frac{\sigma_{1}}{\sqrt{n_{1}}} ) \\
-{Y} & \sim N( \mu_{2} ,  \frac{\sigma_{2}}{\sqrt{n_{2}}} )
+\stackrel{-}{X} & \sim N( \mu_{1} ,  \frac{\sigma^{2}_{1}}{n_{1}} ) \\
+\stackrel{-}{Y} & \sim N( \mu_{2} ,  \frac{\sigma^{2}_{2}}{n_{2}} )
 \end{align*}
 
 
@@ -1941,7 +2071,7 @@ Demonstra-se que a diferença entre $\stackrel{-}{X} e \stackrel{-}{Y}$ é tal q
 \
 
 $$
-\stackrel{-}{X} - \stackrel{-}{Y} \sim N((\mu_{1}-\mu_{2}) ,    \sqrt{\frac{\sigma^{2}_{1}}{n_{1}} + \frac{\sigma^{2}_{2}}{n_{2}} }      )  
+\stackrel{-}{X} - \stackrel{-}{Y} \sim N\left((\mu_{1}-\mu_{2}) ,    \frac{\sigma^{2}_{1}}{n_{1}} + \frac{\sigma^{2}_{2}}{n_{2}}       \right)  
 $$
 
 \
@@ -1970,7 +2100,7 @@ em que:
 
 
 
-```{r fig61,  out.width='100%', fig.align='center', fig.cap="Regiões críticas, aquém e além das quais, a probabilidade associada aos valores da estatística $Z$ é inferior a $\\frac{\\alpha}{2}$, estabelecendo assim um intervalo com nível de confiança igual a $(1-\\alpha)$", warning = FALSE}
+```{r fig61, echo=FALSE,  out.width='100%', fig.align='center', fig.cap="Regiões críticas, aquém e além das quais, a probabilidade associada aos valores da estatística $Z$ é inferior a $\\frac{\\alpha}{2}$, estabelecendo assim um intervalo com nível de confiança igual a $(1-\\alpha)$", warning = FALSE}
 
 alfa=0.05
 
@@ -2043,9 +2173,9 @@ Assim,
 
 \begin{align*}
 P\left[-{Z}_{(1-\frac{\alpha }{2})}\le Z \le {Z }_{(1-\frac{\alpha }{2})}\right] & = (1-\alpha) \\
-P\left[-{z}_{(1-\frac{\alpha }{2})}\le    \frac{   (\stackrel{-}{x}-\stackrel{-}{y})   - (\mu_{1}-\mu_{2})}{ \sqrt{\frac{\sigma^{2}_{1}}{n_{1}} + \frac{\sigma^{2}_{2}}{n_{2}} }      }
+P\left[-{z}_{(1-\frac{\alpha }{2})}\le    \frac{   (\stackrel{-}{X}-\stackrel{-}{Y})   - (\mu_{1}-\mu_{2})}{ \sqrt{\frac{\sigma^{2}_{1}}{n_{1}} + \frac{\sigma^{2}_{2}}{n_{2}} }      }
 \le {z}_{(1-\frac{\alpha }{2})}\right] & = (1-\alpha)  \\
-P[(\stackrel{-}{x}-\stackrel{-}{y} ) -   ({z}_{(1-\frac{\alpha }{2})} \cdot  \sqrt{\frac{\sigma^{2}_{1}}{n_{1}} + \frac{\sigma^{2}_{2}}{n_{2}} }  ) \le (\mu_{1}-\mu_{2}) \le (\stackrel{-}{x}-\stackrel{-}{y})   +({z}_{(1-\frac{\alpha }{2})} \cdot    \sqrt{\frac{\sigma^{2}_{1}}{n_{1}} + \frac{\sigma^{2}_{2}}{n_{2}} }    )     ] & = (1-\alpha) 
+P[(\stackrel{-}{X}-\stackrel{-}{Y} ) -   ({z}_{(1-\frac{\alpha }{2})} \cdot  \sqrt{\frac{\sigma^{2}_{1}}{n_{1}} + \frac{\sigma^{2}_{2}}{n_{2}} }  ) \le (\mu_{1}-\mu_{2}) \le (\stackrel{-}{X}-\stackrel{-}{Y})   +({z}_{(1-\frac{\alpha }{2})} \cdot    \sqrt{\frac{\sigma^{2}_{1}}{n_{1}} + \frac{\sigma^{2}_{2}}{n_{2}} }    )     ] & = (1-\alpha) 
 \end{align*}
 
 
@@ -2060,7 +2190,7 @@ $$
 \
 
 
-> Exemplo: Uma empresa possui duas filiais (A e B). Uma amostra das vendas de 20 dias forneceu uma venda média diária de 40 unidades dessa peça a filial A e de 30 unidades da mesma peça para a filial B. Os desvios padrão das vendas diárias dessa peça são de 5 e 3, respectivamente. Admitindo que a distribuição diária das vendas dessa peça siga uma distribuição Normal, qual o intervalo de confiança para a diferença de médias das vendas nas duas filiais com um nível de confiança de 95\%?   
+> Exemplo: Uma empresa possui duas filiais (A e B). Uma amostra das vendas de 20 dias forneceu uma venda média diária de 40 unidades de uma determinada peça na filial A e de 30 unidades da mesma peça na filial B. Sabe-se que os desvios padrão populacionais das vendas diárias dessa peça são de 5 e 3, respectivamente. Admitindo que a distribuição diária das vendas dessa peça siga uma distribuição Normal, qual o intervalo de confiança para a diferença de médias das vendas nas duas filiais com um nível de confiança de 95\%?   
 
 
 \
@@ -2080,10 +2210,9 @@ Dados do problema:
 
 
 \begin{align*}
-P[(\stackrel{-}{x}-\stackrel{-}{y} ) -   ({z}_{(1-\frac{\alpha }{2})} \cdot  \sqrt{\frac{\sigma^{2}_{1}}{n_{1}} + \frac{\sigma^{2}_{2}}{n_{2}} }  ) \le (\mu_{1}-\mu_{2}) \le (\stackrel{-}{x}-\stackrel{-}{y})   +({z}_{(1-\frac{\alpha }{2})} \cdot    \sqrt{\frac{\sigma^{2}_{1}}{n_{1}} + \frac{\sigma^{2}_{2}}{n_{2}} }    )     ] & =(1-\alpha) \\
-P[(\stackrel{-}{x}-\stackrel{-}{y} ) -   ({z}_{(1-\frac{\alpha }{2})} \cdot  \sqrt{\frac{\sigma^{2}_{1}}{n_{1}} + \frac{\sigma^{2}_{2}}{n_{2}} }  ) \le (\mu_{1}-\mu_{2}) \le (\stackrel{-}{x}-\stackrel{-}{y})   +({z}_{(1-\frac{\alpha }{2})} \cdot    \sqrt{\frac{\sigma^{2}_{1}}{n_{1}} + \frac{\sigma^{2}_{2}}{n_{2}} }    )     ] & = (1-\alpha) \\
-P[10 - ( 1,96  \cdot  \sqrt{\frac{25}{20} + \frac{9}{20}}  ) \le (\mu_{1}-\mu_{2}) \le ( 10 +  ( 1,96  \cdot  \sqrt{\frac{25}{20} + \frac{9}{20} }  ) ] & = 0,95 \\
-P[10 - (1,96 \times 1,3038) \le (\mu_{1}-\mu_{2}) \le 10 + (1,96 \times  1,3038) ] & =  0,95 
+IC(\mu_{1}-\mu_{2})_{(1-\alpha)} & = [(\stackrel{-}{x}-\stackrel{-}{y} ) \pm {z}_{(1-\frac{\alpha }{2})} \cdot  \sqrt{\frac{\sigma^{2}_{1}}{n_{1}} + \frac{\sigma^{2}_{2}}{n_{2}} }] \\
+IC(\mu_{1}-\mu_{2})_{0,95} & = [10 \pm 1,96  \cdot  \sqrt{\frac{25}{20} + \frac{9}{20}}] \\
+IC(\mu_{1}-\mu_{2})_{0,95} & = [10 \pm (1,96 \times 1,3038)] = [10 \pm 2,56]
 \end{align*}
 
 
@@ -2091,7 +2220,7 @@ P[10 - (1,96 \times 1,3038) \le (\mu_{1}-\mu_{2}) \le 10 + (1,96 \times  1,3038)
 
 
 $$
-IC (\mu_{1} - \mu_{2})_{0,95} = [7; 13]
+IC (\mu_{1} - \mu_{2})_{0,95} = [7,44; 12,56]
 $$
 
 
@@ -2102,16 +2231,16 @@ Se quisermos ser rigorosos na interpretação do intervalo de confiança calcula
 
 \
 
-De uma forma mais sintética podemos afirmar que, o anterior intervalo aleatório [7 ; 13], é um intervalo de confiança a 95\% para a diferença das médias de vendas dessa peça nas duas empresa
+De uma forma mais sintética, podemos afirmar que o intervalo [7,44; 12,56], calculado a partir dos dados observados, é uma estimativa por intervalo, a 95\% de confiança, para a diferença das médias de vendas dessa peça nas duas filiais.
 
 
 \
 
-De uma forma mais corrente, *embora menos correta* em termos teóricos, é usual afirmar que, com 95\% de confiança a diferença das médias de vendas dessa peça da filial A para a filial B se situa entre os valores 7 e 13. 
+De uma forma mais corrente, *embora menos correta* em termos teóricos, é usual afirmar que, com 95\% de confiança a diferença das médias de vendas dessa peça da filial A para a filial B se situa entre os valores 7,44 e 12,56. 
 
 \
 
-Uma segunda observação se faz pertinente e se refere à natureza dos dados analisados e a forma de apresentação do resultado. Por serem dados discretos, o intervalo de confiança deverá ser apresentado em igual forma, sem ultrapassar os limites estabelecidos. Isto posto: $IC (\mu_{1} - \mu_{2})_{0,95} = [7; 13]$ \textbf{peças}.
+Uma segunda observação se faz pertinente e se refere à natureza dos dados analisados e à forma de apresentação do resultado. Embora as vendas diárias sejam contagens (dados discretos), o parâmetro estimado, a diferença entre as médias $\mu_{1}-\mu_{2}$, é uma quantidade contínua; por isso, os limites do intervalo **não** devem ser arredondados para valores inteiros: $IC (\mu_{1} - \mu_{2})_{0,95} = [7,44; 12,56]$ \textbf{peças por dia}.
 
 
 \
@@ -2142,8 +2271,22 @@ em que:
 
 - $\stackrel{-}{X}$e $\stackrel{-}{Y}$ são médias amostrais;  
 - $\mu_{1}$ e $\mu_{2}$ são as médias populacionais;  
-- $S_{1}^{2}$ e $S_{2}^{2}$ são as variâncias populacionais;  e, 
-- $n_{1}$ e $n_{2}$ são os tamanhos das amostras, necessariamente maiores que 30 
+- $S_{1}^{2}$ e $S_{2}^{2}$ são as variâncias amostrais;  e, 
+- $n_{1}$ e $n_{2}$ são os tamanhos das amostras, suficientemente grandes (na prática, $n_{1}, n_{2} \ge 30$).
+
+\
+
+Por raciocínio análogo ao da seção anterior, o intervalo de confiança é dado por:
+
+\
+
+$$
+IC(\mu_{1}-\mu_{2})_{(1-\alpha)}=[ (\stackrel{-}{x}-\stackrel{-}{y} ) \pm    {z}_{c} \cdot  \sqrt{\frac{S^{2}_{1}}{n_{1}} + \frac{S^{2}_{2}}{n_{2}} }   ]
+$$
+
+\
+
+Nesse caso, pelo Teorema do limite central, a normalidade das populações não é uma suposição essencial.
 
 
 \
@@ -2157,20 +2300,20 @@ em que:
 
 \
 
-Se $(X_{1}, X_{2},...,X{n_{1}})$  e $(Y_{1}, Y_{2},...,Y{n_{2}})$ forem amostras aleatórias simples das populações $X$ e $Y$ com médias $\mu_{1}$ e $\mu_{2}$, e variâncias  $\sigma_{1}^{2}$ e $\sigma_{2}^{2}$ desconhecidas porém iguais ($\sigma_{1}^{2}=\sigma_{2}^{2}=\sigma^{2}$), e $\stackrel{-}{X}=\frac{(X_{1}+X_{2}+...+X{n_{1}})}{n}$ e $\stackrel{-}{Y}=\frac{(Y_{1}+Y_{2}+...+Y{n_{2}})}{n_{2}}$, então:
+Se $(X_{1}, X_{2},...,X_{n_{1}})$  e $(Y_{1}, Y_{2},...,Y_{n_{2}})$ forem amostras aleatórias simples das populações $X$ e $Y$ com médias $\mu_{1}$ e $\mu_{2}$, e variâncias  $\sigma_{1}^{2}$ e $\sigma_{2}^{2}$ desconhecidas porém iguais ($\sigma_{1}^{2}=\sigma_{2}^{2}=\sigma^{2}$), e $\stackrel{-}{X}=\frac{(X_{1}+X_{2}+...+X_{n_{1}})}{n_{1}}$ e $\stackrel{-}{Y}=\frac{(Y_{1}+Y_{2}+...+Y_{n_{2}})}{n_{2}}$, então:
 
 \	
 
 \begin{align*}
-{X}  & \sim N( \mu_{1} ,  \frac{\sigma}{\sqrt{n_{1}}} )\\
-{Y}  & \sim N( \mu_{2} ,  \frac{\sigma}{\sqrt{n_{2}}} )
+\stackrel{-}{X}  & \sim N( \mu_{1} ,  \frac{\sigma^{2}}{n_{1}} )\\
+\stackrel{-}{Y}  & \sim N( \mu_{2} ,  \frac{\sigma^{2}}{n_{2}} )
 \end{align*}
 
 
 \
 
 
-Demonstra-se que a estatística $T$ pode ser assim definida, bem como sua correspondente distribuição (cf. Figura \ref{fig62}):
+Demonstra-se que a estatística $T$ pode ser assim definida, bem como sua correspondente distribuição (cf. Figura \@ref(fig:fig62)):
 
 \
 
@@ -2205,7 +2348,7 @@ $$
 \
 
 
-```{r fig62,  out.width='100%', fig.align='center', fig.cap="Regiões críticas, aquém e além das quais, a probabilidade associada aos valores da estatística $T$ ($(n-1)$ graus de liberdade) é inferior a $\\frac{\\alpha}{2}$, estabelecendo assim um intervalo com nível de confiança igual a $(1-\\alpha)$", warning = FALSE}
+```{r fig62, echo=FALSE,  out.width='100%', fig.align='center', fig.cap="Regiões críticas, aquém e além das quais, a probabilidade associada aos valores da estatística $T$ ($(n_{1}+n_{2}-2)$ graus de liberdade) é inferior a $\\frac{\\alpha}{2}$, estabelecendo assim um intervalo com nível de confiança igual a $(1-\\alpha)$", warning = FALSE}
 
 
 alfa=0.05
@@ -2284,8 +2427,8 @@ Assim,
 
 \begin{align*}
 P\left[-{T}_{(n_{1}+n_{2}-2, 1-\frac{\alpha }{2})}\le T \le {T}_{(n_{1}+n_{2}-2, 1-\frac{\alpha }{2})}\right] & = (1-\alpha) \\
-P\left[-{t}_{(n_{1}+n_{2}-2, 1-\frac{\alpha }{2})}\le \frac{   (\stackrel{-}{x}-\stackrel{-}{y})   - (\mu_{1}-\mu_{2})}{S_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}} }      } \le {t}_{(n_{1}+n_{2}-2, 1-\frac{\alpha }{2})}\right] & =(1-\alpha) \\
-P[(\stackrel{-}{x}-\stackrel{-}{y} ) -   ({t}_{(n_{1}+n_{2}-2, 1-\frac{\alpha }{2})} \cdot  S_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}} }       ) \le (\mu_{1}-\mu_{2}) \le (\stackrel{-}{x}-\stackrel{-}{y})   +({t}_{(n_{1}+n_{2}-2, 1-\frac{\alpha }{2})} \cdot  S_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}} }         )     ] & =(1-\alpha) 
+P\left[-{t}_{(n_{1}+n_{2}-2, 1-\frac{\alpha }{2})}\le \frac{   (\stackrel{-}{X}-\stackrel{-}{Y})   - (\mu_{1}-\mu_{2})}{S_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}} }      } \le {t}_{(n_{1}+n_{2}-2, 1-\frac{\alpha }{2})}\right] & =(1-\alpha) \\
+P[(\stackrel{-}{X}-\stackrel{-}{Y} ) -   ({t}_{(n_{1}+n_{2}-2, 1-\frac{\alpha }{2})} \cdot  S_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}} }       ) \le (\mu_{1}-\mu_{2}) \le (\stackrel{-}{X}-\stackrel{-}{Y})   +({t}_{(n_{1}+n_{2}-2, 1-\frac{\alpha }{2})} \cdot  S_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}} }         )     ] & =(1-\alpha) 
 \end{align*}
 
 \
@@ -2316,7 +2459,7 @@ Dados do problema:
 
 
 \begin{align*}
-P[(\stackrel{-}{x}-\stackrel{-}{y} ) -   ({t}_{(n_{1}+n_{2}-2, 1-\frac{\alpha }{2})} \cdot  S_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}} }       ) \le (\mu_{1}-\mu_{2}) \le (\stackrel{-}{x}-\stackrel{-}{y})   +({t}_{(n_{1}+n_{2}-2, 1-\frac{\alpha }{2})} \cdot  S_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}} }         )     ]=(1-\alpha) 
+P[(\stackrel{-}{X}-\stackrel{-}{Y} ) -   ({t}_{(n_{1}+n_{2}-2, 1-\frac{\alpha }{2})} \cdot  S_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}} }       ) \le (\mu_{1}-\mu_{2}) \le (\stackrel{-}{X}-\stackrel{-}{Y})   +({t}_{(n_{1}+n_{2}-2, 1-\frac{\alpha }{2})} \cdot  S_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}} }         )     ]=(1-\alpha) 
 \end{align*}
 
 
@@ -2337,9 +2480,9 @@ S_{p} & = 10,81
 \
 
 \begin{align*}
-P[(\stackrel{-}{x}-\stackrel{-}{y} ) -   ({t}_{(n_{1}+n_{2}-2, 1-\frac{\alpha }{2})} \cdot  S_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}} }       ) \le (\mu_{1}-\mu_{2}) \le (\stackrel{-}{x}-\stackrel{-}{y})   +({t}_{(n_{1}+n_{2}-2, 1-\frac{\alpha }{2})} \cdot  S_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}} }         )     ] & = (1-\alpha) \\
-P[ 14  -   ( 2,57    \cdot  10,81  \cdot \sqrt{\frac{1}{4} + \frac{1}{3} }       ) \le (\mu_{1}-\mu_{2}) \le 14   +( 2,57  \cdot  10,81  \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}} }         )     ] & = 0,95 \\
-P[ 14  -   21,23  \le (\mu_{1}-\mu_{2}) \le 14   + 21,23 ] & =0,95
+IC(\mu_{1}-\mu_{2})_{(1-\alpha)} & = [(\stackrel{-}{x}-\stackrel{-}{y} ) \pm {t}_{(n_{1}+n_{2}-2, 1-\frac{\alpha }{2})} \cdot  S_{p} \cdot \sqrt{\frac{1}{n_{1}} + \frac{1}{n_{2}} }] \\
+IC(\mu_{1}-\mu_{2})_{0,95} & = [14 \pm 2,57 \cdot 10,81 \cdot \sqrt{\frac{1}{4} + \frac{1}{3}}] \\
+IC(\mu_{1}-\mu_{2})_{0,95} & = [14 \pm 21,23]
 \end{align*}
 
 \
@@ -2352,12 +2495,12 @@ $$
 
 \
 
-Se quisermos ser rigorosos na interpretação do intervalo de confiança calculado podemos explicar que, se extrairmos um grande número de amostras dessas mesmas dimensões das vendas dessa peça nas duas empresas, e para cada uma delas calcularmos suas médias e as diferenças entre elas, e calcularmos os intervalos de confiança como o acima definido, a proporção desses intervalos onde podemos encontrar a diferença das médias de vendas dessa peça da filial A para a filial B será de 0,95 (95 intervalos em 100). 
+Se quisermos ser rigorosos na interpretação do intervalo de confiança calculado podemos explicar que, se extrairmos um grande número de amostras dessas mesmas dimensões das notas das duas turmas, e para cada par delas calcularmos suas médias e a diferença entre elas, e calcularmos os intervalos de confiança como o acima definido, a proporção desses intervalos que conterão a verdadeira diferença entre as médias das notas das duas turmas será de 0,95 (95 intervalos em 100). 
 
 
 \
 
-De uma forma mais sintética podemos afirmar que o  intervalo aleatório [-7,23; 35,23], é um intervalo de confiança a 95\% para a diferença das médias das notas dessas provas nas duas turmas.
+De uma forma mais sintética, podemos afirmar que o intervalo [-7,23; 35,23], calculado a partir dos dados observados, é uma estimativa por intervalo, a 95\% de confiança, para a diferença das médias das notas dessas provas nas duas turmas.
 
 \
 
@@ -2366,7 +2509,7 @@ De uma forma mais corrente, *embora menos correta* em termos teóricos, é usual
 
 \
 
-> Uma importante conclusão pode ser extraída ao se analisar um pouco mais atentamente o intervalo calculado [-7,23 ; 35,23]. Vê-se que encontra-se dentro desse intervalo o valor 0 indicando que a diferença entre as médias amopstrais pode ser zero sob esse nível de confiança, o que equivale dizer que sob esse nível de confiança não se pode afirmar existir diferença significativa (i.e. sob o nível de significância) entre as médias das notas dessas duas turmas.
+> Uma importante conclusão pode ser extraída ao se analisar um pouco mais atentamente o intervalo calculado [-7,23 ; 35,23]. Vê-se que o valor 0 encontra-se dentro desse intervalo, indicando que a diferença entre as médias **populacionais** pode ser zero sob esse nível de confiança, o que equivale dizer que, sob esse nível de confiança, não se pode afirmar existir diferença significativa (i.e. sob o nível de significância $\alpha$) entre as médias das notas dessas duas turmas.
 
 \
 
@@ -2379,28 +2522,28 @@ De uma forma mais corrente, *embora menos correta* em termos teóricos, é usual
 
 
 
-Se $(X_{1}, X_{2},...,X{n_{1}})$  e $(Y_{1}, Y_{2},...,Y{n_{2}})$ forem amostras aleatórias simples das populações $X$ e $Y$ com médias $\mu_{1}$ e $\mu_{2}$, e variâncias  $\sigma_{1}^{2}$ e $\sigma_{2}^{2}$ desconhecidas porém iguais ($\sigma_{1}^{2}=\sigma_{2}^{2}=\sigma^{2}$), e $\stackrel{-}{X}=\frac{(X_{1}+X_{2}+...+X{n_{1}})}{n}$ e $\stackrel{-}{Y}=\frac{(Y_{1}+Y_{2}+...+Y{n_{2}})}{n_{2}}$, então:
+Se $(X_{1}, X_{2},...,X_{n_{1}})$  e $(Y_{1}, Y_{2},...,Y_{n_{2}})$ forem amostras aleatórias simples e independentes das populações Normais $X$ e $Y$ com médias $\mu_{1}$ e $\mu_{2}$, e variâncias  $\sigma_{1}^{2}$ e $\sigma_{2}^{2}$ desconhecidas e diferentes ($\sigma_{1}^{2} \ne \sigma_{2}^{2}$), e $\stackrel{-}{X}=\frac{(X_{1}+X_{2}+...+X_{n_{1}})}{n_{1}}$ e $\stackrel{-}{Y}=\frac{(Y_{1}+Y_{2}+...+Y_{n_{2}})}{n_{2}}$, então:
 
 \	
 
 
 \begin{align*}
-{X} &  \sim N( \mu_{1} ,  \frac{\sigma}{\sqrt{n_{1}}} ) \\
-{Y} & \sim N( \mu_{2} ,  \frac{\sigma}{\sqrt{n_{2}}} )
+\stackrel{-}{X} &  \sim N( \mu_{1} ,  \frac{\sigma^{2}_{1}}{n_{1}} ) \\
+\stackrel{-}{Y} & \sim N( \mu_{2} ,  \frac{\sigma^{2}_{2}}{n_{2}} )
 \end{align*}
 
 
 \
 
 
-Demonstra-se que a estatística $T$ pode ser assim definida, bem como sua correspondente distribuição (cf. Figura \ref{fig63}):
+Demonstra-se (aproximação de Welch-Satterthwaite) que a estatística $T$ pode ser assim definida, bem como sua correspondente distribuição aproximada (cf. Figura \@ref(fig:fig63)):
 
 \	
 
 
 $$
 T = \frac{   (\stackrel{-}{X}-\stackrel{-}{Y})   - (\mu_{1}-\mu_{2})}{
-\sqrt{\frac{S^{2}_{1}}{n_{1}} + \frac{S^{2}_{2}}{n_{2}}}}  \sim t_{\nu}
+\sqrt{\frac{S^{2}_{1}}{n_{1}} + \frac{S^{2}_{2}}{n_{2}}}}  \overset{aprox.}{\sim} t_{\nu}
 $$
 
 \	
@@ -2442,7 +2585,7 @@ arredondado para o inteiro inferior mais próximo.
 
 
 
-```{r fig63,  out.width='100%', fig.align='center', fig.cap="Regiões críticas, aquém e além das quais, a probabilidade associada aos valores da estatística $T$ (com $\\nu$ graus de liberdade) é inferior a $\\frac{\\alpha}{2}$, estabelecendo assim um intervalo com nível de confiança igual a $(1-\\alpha)$", warning = FALSE}
+```{r fig63, echo=FALSE,  out.width='100%', fig.align='center', fig.cap="Regiões críticas, aquém e além das quais, a probabilidade associada aos valores da estatística $T$ (com $\\nu$ graus de liberdade) é inferior a $\\frac{\\alpha}{2}$, estabelecendo assim um intervalo com nível de confiança igual a $(1-\\alpha)$", warning = FALSE}
 
 
 alfa=0.05
@@ -2521,8 +2664,8 @@ Assim,
 
 \begin{align*}
 P\left[-{T}_{(\nu, 1-\frac{\alpha }{2})}\le T \le {T}_{( \nu, 1-\frac{\alpha }{2})}\right] & = (1-\alpha) \\
-P\left[-{t}_{( \nu, 1-\frac{\alpha }{2})}\le \frac{   (\stackrel{-}{x}-\stackrel{-}{y})   - (\mu_{1}-\mu_{2})}{\sqrt{\frac{S^{2}_{1}}{n_{1}} + \frac{S^{2}_{2}}{n_{2}} }      } \le {t}_{( \nu, 1-\frac{\alpha }{2})}\right] & = (1-\alpha) \\
-P[(\stackrel{-}{x}-\stackrel{-}{y} ) -   ({t}_{( \nu, 1-\frac{\alpha }{2})} \cdot   \sqrt{\frac{S^{2}_{1}}{n_{1}} + \frac{S^{2}_{2}}{n_{2}} }  ) \le (\mu_{1}-\mu_{2}) \le (\stackrel{-}{x}-\stackrel{-}{y})   +({t}_{( \nu, 1-\frac{\alpha }{2})} \cdot  \sqrt{\frac{S^{2}_{1}}{n_{1}} + \frac{S^{2}_{2}}{n_{2}} }        )     ] & = (1-\alpha) 
+P\left[-{t}_{( \nu, 1-\frac{\alpha }{2})}\le \frac{   (\stackrel{-}{X}-\stackrel{-}{Y})   - (\mu_{1}-\mu_{2})}{\sqrt{\frac{S^{2}_{1}}{n_{1}} + \frac{S^{2}_{2}}{n_{2}} }      } \le {t}_{( \nu, 1-\frac{\alpha }{2})}\right] & = (1-\alpha) \\
+P[(\stackrel{-}{X}-\stackrel{-}{Y} ) -   ({t}_{( \nu, 1-\frac{\alpha }{2})} \cdot   \sqrt{\frac{S^{2}_{1}}{n_{1}} + \frac{S^{2}_{2}}{n_{2}} }  ) \le (\mu_{1}-\mu_{2}) \le (\stackrel{-}{X}-\stackrel{-}{Y})   +({t}_{( \nu, 1-\frac{\alpha }{2})} \cdot  \sqrt{\frac{S^{2}_{1}}{n_{1}} + \frac{S^{2}_{2}}{n_{2}} }        )     ] & = (1-\alpha) 
 \end{align*}
 
 
@@ -2546,9 +2689,6 @@ Dados do problema:
 \	
 
 
-Dados do problema:
-
-\	
 
 - $\stackrel{-}{X}=81$ e $\stackrel{-}{Y}=77$ são as médias calculadas sobre as duas amostras (notas nas turmas);  
 - $S_{1}^{2}=2$ e $S_{2}^{2}=14,40$ são as variâncias calculadas sobre as duas amostras;e,
@@ -2573,48 +2713,47 @@ O número de graus de liberdade ($\nu$) é dado por:
 \nu  & =  \frac{ (\frac{2}{4} + \frac{14,40}{6})^{2}}{\frac{(\frac{2}{4})^{2}}{4-1}  +
 \frac{(\frac{14,40}{6})^{2}}{6-1} } \\
 \nu & =  \frac{ 2,90^{2}}{0,083  + 1,152} \\
-\nu & =  \frac{ 8,41}{1,23} = 6,83 \sim 6 \\
+\nu & =  \frac{ 8,41}{1,235} \approx 6,81 \rightarrow 6 \text{ (arredondado para baixo)} \\
 \end{align*}
 
 \
-Portanto, $t=2,44$ é o valor tabelado da estatística para um nível de significância $\alpha=5\%$ e graus de liberdade $gl=6$.
+Portanto, $t=2,447$ é o valor tabelado da estatística para um nível de significância $\alpha=5\%$ (bilateral) e graus de liberdade $gl=6$.
 
 \
 
 \begin{align*}
-P[(\stackrel{-}{x}-\stackrel{-}{y} ) -   ({t}_{( \nu, 1-\frac{\alpha }{2})} \cdot   \sqrt{\frac{S^{2}_{1}}{n_{1}} + \frac{S^{2}_{2}}{n_{2}} }  ) \le (\mu_{1}-\mu_{2}) \le (\stackrel{-}{x}-\stackrel{-}{y})   +({t}_{( \nu, 1-\frac{\alpha }{2})} \cdot  \sqrt{\frac{S^{2}_{1}}{n_{1}} + \frac{S^{2}_{2}}{n_{2}} }        )     ] & = (1-\alpha) \\
-P[ 4  -   ( 2,44  \cdot   \sqrt{\frac{ 2}{4} + \frac{14,40}{6}}  ) \le (\mu_{1}-\mu_{2}) \le  4  +( 2,44  \cdot  \sqrt{\frac{ 2}{4} + \frac{14,40}{6}}        )     ] & = 0,95 \\
-P[ 4  -   ( 2,44  \cdot   1,70   ) \le (\mu_{1}-\mu_{2}) \le  4  +( 2,44  \cdot  1,70   )     ] &  = 0,95 \\
-P[ 4  - 4,15  \le (\mu_{1}-\mu_{2}) \le  4  + 4,15  )     ] & = 0,95 \\
+IC(\mu_{1}-\mu_{2})_{(1-\alpha)} & = [(\stackrel{-}{x}-\stackrel{-}{y} ) \pm {t}_{( \nu, 1-\frac{\alpha }{2})} \cdot   \sqrt{\frac{S^{2}_{1}}{n_{1}} + \frac{S^{2}_{2}}{n_{2}} }] \\
+IC(\mu_{1}-\mu_{2})_{0,95} & = [4 \pm 2,447  \cdot   \sqrt{\frac{2}{4} + \frac{14,40}{6}}] \\
+IC(\mu_{1}-\mu_{2})_{0,95} & = [4 \pm 2,447  \cdot   1,703] = [4 \pm 4,17]
 \end{align*}
 
 
 \
 
 
-$IC (\mu_{1} - \mu_{2})_{0,95} = [-0,15 ; 8,15]$
+$IC (\mu_{1} - \mu_{2})_{0,95} = [-0,17 ; 8,17]$
 
 \
 
-Se quisermos ser rigorosos na interpretação do intervalo de confiança calculado podemos explicar que, se extrairmos um grande número de amostras dessas mesmas dimensões das notas dessas provas nas duas turmas, e para cada uma delas calcularmos suas médias e as diferenças entre elas, e calcularmos os intervalos de confiança como o acima definido, a proporção desses intervalos onde podemos encontrar a diferença das notas notas da prova de matemática para a prova de biologia será de 0,95 (95 intervalos em 100). 
-
-\
-
-
-De uma forma mais sintética podemos afirmar que, o anterior intervalo aleatório [-0,01; 8,01], é um intervalo de confiança a 95\% para a diferença das médias das notas dessas provas nas duas turmas.
+Se quisermos ser rigorosos na interpretação do intervalo de confiança calculado podemos explicar que, se extrairmos um grande número de amostras dessas mesmas dimensões das notas dessas provas nas duas turmas, e para cada uma delas calcularmos suas médias e as diferenças entre elas, e calcularmos os intervalos de confiança como o acima definido, a proporção desses intervalos onde podemos encontrar a diferença das médias das notas da prova de matemática para a prova de biologia será de 0,95 (95 intervalos em 100). 
 
 \
 
 
-De uma forma mais corrente, *embora menos correta* em termos teóricos, é usual afirmar que, com 95\% de confiança a diferença das médias das notas da prova de matemática para a prova de biologia situa entre os valores -0,01 e 8,01.
+De uma forma mais sintética, podemos afirmar que o intervalo [-0,17; 8,17], calculado a partir dos dados observados, é uma estimativa por intervalo, a 95\% de confiança, para a diferença das médias das notas dessas provas nas duas turmas.
+
+\
+
+
+De uma forma mais corrente, *embora menos correta* em termos teóricos, é usual afirmar que, com 95\% de confiança a diferença das médias das notas da prova de matemática para a prova de biologia se situa entre os valores -0,17 e 8,17.
 
 
 \
 
-> Uma importante conclusão pode ser extraída ao se analisar um pouco mais atentamente o intervalo calculado [-0,01 ; 8,01]. Vê-se que encontra-se dentro desse intervalo o valor 0 indicando que a diferença entre as médias amopstrais pode ser zero sob esse nível de confiança, o que equivale dizer que sob esse nível de confiança não se pode afirmar existir diferença significativa (i.e. sob o nível de significância) entre as médias dessas notas.
+> Uma importante conclusão pode ser extraída ao se analisar um pouco mais atentamente o intervalo calculado [-0,17 ; 8,17]. Vê-se que o valor 0 encontra-se dentro desse intervalo, indicando que a diferença entre as médias **populacionais** pode ser zero sob esse nível de confiança, o que equivale dizer que, sob esse nível de confiança, não se pode afirmar existir diferença significativa (i.e. sob o nível de significância $\alpha$) entre as médias dessas notas.
 
 
-## Distribuição das diferenças das médias de duas populações Normais com médias não independentes e seus intervalos de confiança
+## Distribuição das diferenças das médias de duas populações Normais com amostras não independentes (dados pareados) e seus intervalos de confiança
  
  
 \
@@ -2645,7 +2784,7 @@ O parâmetro da média dessa distribuição ($\mu_{D}$) será estimado a partir 
 \
 
 $$
-\mu_{D}=\stackrel{-}{D}=\sum_{i=1}^{n}D_{i}
+\hat{\mu}_{D}=\stackrel{-}{D}=\frac{1}{n}\sum_{i=1}^{n}D_{i}
 $$
 
 \
@@ -2656,7 +2795,7 @@ e a variância populacional desconhecida será aproximada por:
 
 
 $$
-S^{2}_{D}=\sum_{i=1}^{n}\frac{(D{i}-\stackrel{-}{D})^{2}}{n-1}
+S^{2}_{D}=\sum_{i=1}^{n}\frac{(D_{i}-\stackrel{-}{D})^{2}}{n-1}
 $$
 
 
@@ -2790,32 +2929,36 @@ tex2markdown(textable)
 
 \
 
+Tomando-se as diferenças $D_{i} = X_{i} - Y_{i}$ (primeira nota menos segunda nota):
+
+\
+
 $$
-\stackrel{-}{D}=\sum_{i=1}^{n}D_{i}=-4,667
+\stackrel{-}{D}=\frac{1}{n}\sum_{i=1}^{n}D_{i}=-4,667
 $$
 \
 
 \begin{align*}
-S^{2}_{D} & =\sum_{i=1}^{n}\frac{(D{i}-\stackrel{-}{D})^{2}}{n-1}=10,52354
+S^{2}_{D} & =\sum_{i=1}^{n}\frac{(D_{i}-\stackrel{-}{D})^{2}}{n-1}=10,524
 \end{align*}
 
 \
 
-Sendo o valor crítico tabelado da estatística para um nível de significância $\alpha=5\%$ e graus de liberdade $gl=(n-1)=14$ igua a 1,761, o intervalo de confiança será:
+Sendo o valor crítico tabelado da estatística para um nível de confiança de 95\% (bilateral: $\alpha/2=0,025$ em cada cauda) e graus de liberdade $gl=(n-1)=14$ igual a 2,145, o intervalo de confiança será:
 
 \
 
 
 \begin{align*}
 IC(\mu_{D})_{(1-\alpha)} & = [\stackrel{-}{D} \pm {t}_{c (n-1)} \cdot   \sqrt{\frac{S_{D}^{2}}{n} }  ]\\
-IC(\mu_{D})_{(1-\alpha)} & = [-4,667 \pm 1,761 \cdot   \sqrt{\frac{10,52354}{15} }  ]\\
-IC(\mu_{D})_{(1-\alpha)} & = [-5,396; -3,937]
+IC(\mu_{D})_{0,95} & = [-4,667 \pm 2,145 \cdot   \sqrt{\frac{10,524}{15} }  ]\\
+IC(\mu_{D})_{0,95} & = [-6,463; -2,870]
 \end{align*}
 
 
 \
 
->Sendo negativos os valores desse intervalo de confinaça deduz-se que a **primeira nota** é menor que a **segunda nota** ($X-Y < 0$) e assim, o vídeo que os alunos assistiram melhorou sua compreensão do assunto e seu desempenho no segundo teste (similar ao primeiro). Caso o valor "zero" estivesse contemplado nesse intervalo, a interpretação seria de que não há diferença estatisticamente significativa nas notas dos alunos nos dois testes (o vídeo não os ajudou em coisa alguma).
+>Sendo negativos todos os valores desse intervalo de confiança, conclui-se que, sob esse nível de confiança, a média da **primeira nota** é menor que a da **segunda nota** ($X-Y < 0$): o desempenho no segundo teste (similar ao primeiro) foi significativamente superior. Atribuir essa melhora exclusivamente ao vídeo exige cautela: sem um grupo controle (alunos que fizessem os dois testes sem assistir ao vídeo), parte da diferença pode decorrer, por exemplo, da familiaridade com o primeiro teste. Caso o valor zero estivesse contido nesse intervalo, a interpretação seria de que não há evidência de diferença estatisticamente significativa entre as notas médias nos dois testes, o que não equivale a afirmar que o vídeo não teve efeito algum.
 
 
 

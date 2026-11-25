@@ -1333,19 +1333,13 @@ Figure 11.13: Região crítica além da qual a probabilidade associada aos valor
 <h3><span class="header-section-number">11.5.1</span> Cenários possíveis<a href="introducao-a-testes-de-hipoteses.html#cenarios-possiveis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><br />
 </p>
-<ol style="list-style-type: decimal">
-<li><p>População Normal, com variância (<span class="math inline">\(\sigma^2\)</span>) conhecida e qualquer tamanho amostral (<span class="math inline">\(n\)</span>);</p></li>
-<li><p>População aproximadamente Normal, com variância (<span class="math inline">\(\sigma^2\)</span>) finita: amostra grande (convencionalmente, <span class="math inline">\(n \geq 30\)</span>);</p></li>
-<li><p>População não necessariamente Normal, com variância (<span class="math inline">\(\sigma^2\)</span>) finita: amostra pequena (<span class="math inline">\(n &lt; 30\)</span>).</p></li>
-</ol>
+<div id="estatistica-do-teste-para-o-primeiro-cenario" class="section level4 hasAnchor" number="11.5.1.1">
+<h4><span class="header-section-number">11.5.1.1</span> Estatística do teste para o primeiro cenário<a href="introducao-a-testes-de-hipoteses.html#estatistica-do-teste-para-o-primeiro-cenario" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><br />
 </p>
-<p>Em todos os casos, a distribuição indicada para a estatística do teste é válida <em>supondo a hipótese nula verdadeira</em> (<span class="math inline">\(\mu = \mu_{0}\)</span>), o que se denota por <span class="math inline">\(\overset{H_{0}}{\sim}\)</span>. É essa distribuição que permite construir as regiões de rejeição apresentadas na seção anterior.</p>
+<p>População Normal, com variância (<span class="math inline">\(\sigma^2\)</span>) conhecida e qualquer tamanho amostral (<span class="math inline">\(n\)</span>):</p>
 <p><br />
 </p>
-<blockquote>
-<p>Estatística do teste para o primeiro cenário</p>
-</blockquote>
 <p><span class="math display">\[
 Z = \frac{\bar{X} - \mu_{0}}{\frac{\sigma}{\sqrt{n}}} \overset{H_{0}}{\sim}  \mathcal{N}(0,1)
 \]</span><br />
@@ -1364,42 +1358,15 @@ Z = \frac{\bar{X} - \mu_{0}}{\frac{\sigma}{\sqrt{n}}} \overset{H_{0}}{\sim}  \ma
 </ul>
 <p><br />
 </p>
-<p>Sob <span class="math inline">\(H_{0}\)</span>, a distribuição da estatística <span class="math inline">\(Z\)</span> é <em>exatamente normal</em> padrão, independentemente do tamanho amostral (<span class="math inline">\(n\)</span>), desde que a amostra seja aleatória, a população tenha distribuição normal e a variância populacional seja conhecida.</p>
+<p>A distribuição da estatística do teste vale <em>sob a hipótese nula</em> (<span class="math inline">\(\mu = \mu_0\)</span>), o que se denota por <span class="math inline">\(\overset{H_0}{\sim}\)</span>. É essa distribuição que permite construir as regiões de rejeição apresentadas na seção anterior. No caso da estatística <span class="math inline">\(Z\)</span>, se a amostra é aleatória, a população tem distribuição normal e a variância populacional é conhecida, então <span class="math inline">\(Z \overset{H_0}{\sim} N(0,1)\)</span>. Essa distribuição é <em>exata</em>, qualquer que seja o tamanho amostral <span class="math inline">\(n\)</span>.</p>
 <p><br />
 </p>
-<blockquote>
-<p>Estatística do teste para o segundo cenário:</p>
-</blockquote>
+</div>
+<div id="estatistica-do-teste-para-o-segundo-cenario" class="section level4 hasAnchor" number="11.5.1.2">
+<h4><span class="header-section-number">11.5.1.2</span> Estatística do teste para o segundo cenário<a href="introducao-a-testes-de-hipoteses.html#estatistica-do-teste-para-o-segundo-cenario" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><br />
 </p>
-<p><span class="math display">\[
-Z = \frac{\bar{X} - \mu_{0}}{\frac{S}{\sqrt{n}}}   \overset{H_{0}}{\approx} \mathcal{N}(0,1)
-\]</span></p>
-<p><br />
-</p>
-<p>em que:</p>
-<p><br />
-</p>
-<ul>
-<li><span class="math inline">\(\bar{X}\)</span> é uma média amostral;<br />
-</li>
-<li><span class="math inline">\(\mu_{0}\)</span> o valor inferido ao parâmetro, a ser testado frente à média amostral observada;<br />
-</li>
-<li><span class="math inline">\(S\)</span> é o desvio padrão amostral; e,<br />
-</li>
-<li><span class="math inline">\(n\)</span> é o tamanho da amostra.</li>
-</ul>
-<p><br />
-</p>
-<p>Sob <span class="math inline">\(H_{0}\)</span>, a distribuição da estatística <span class="math inline">\(Z\)</span>, calculada com <span class="math inline">\(S\)</span> no lugar de <span class="math inline">\(\sigma\)</span>, é aproximadamente Normal padrão para tamanho amostral (<span class="math inline">\(n\)</span>) suficientemente grande, desde que a amostra seja aleatória e a variância populacional seja finita, ainda que desconhecida e ainda que a população não tenha distribuição Normal.</p>
-<p><br />
-</p>
-<p>Essa aproximação decorre do Teorema Limite Central e da consistência de <span class="math inline">\(S\)</span> como estimador de <span class="math inline">\(\sigma\)</span> (teorema de Slutsky). Trata-se, portanto, de um resultado assintótico, cuja precisão depende da forma da distribuição populacional: distribuições assimétricas ou de caudas pesadas exigem amostras maiores. O critério <span class="math inline">\(n \geq 30\)</span> é apenas uma convenção prática, não uma garantia de que a aproximação seja adequada.</p>
-<p><br />
-</p>
-<blockquote>
-<p>Estatística do teste para o terceiro cenário::</p>
-</blockquote>
+<p>População Normal, com variância (<span class="math inline">\(\sigma^2\)</span>) desconhecida (inferida a partir da variância amostral <span class="math inline">\(S\)</span>) e qualquer tamanho amostral (<span class="math inline">\(n\ge2\)</span>):</p>
 <p><br />
 </p>
 <p><span class="math display">\[
@@ -1420,9 +1387,43 @@ T = \frac{(\bar{X} - \mu_{0})}{    \frac{S}{\sqrt{n}} } \overset{H_{0}}{\sim} t_
 </ul>
 <p><br />
 </p>
-<p>Sob <span class="math inline">\(H_{0}\)</span>, a distribuição da estatística <span class="math inline">\(T\)</span>, calculada com <span class="math inline">\(S\)</span> no lugar de <span class="math inline">\(\sigma\)</span>, é exatamente <span class="math inline">\(t\)</span> de Student com <span class="math inline">\((n-1)\)</span> graus de liberdade, <span class="math inline">\(t_{(n-1)}\)</span>, independentemente do tamanho amostral (<span class="math inline">\(n \geq 2\)</span>), desde que a amostra seja aleatória e a população tenha distribuição Normal, ainda que a variância populacional seja desconhecida. A estatística <span class="math inline">\(T\)</span> tem a mesma expressão de <span class="math inline">\(Z\)</span> do cenário anterior; o que muda é a distribuição de referência, que agora é exata, e não assintótica.</p>
+<p>No caso da estatística <span class="math inline">\(T\)</span>, em que a variância populacional é desconhecida e <span class="math inline">\(\sigma\)</span> é estimado por <span class="math inline">\(S\)</span>, se a amostra é aleatória e a população tem distribuição normal, então <span class="math inline">\(T \overset{H_0}{\sim} t_{(n-1)}\)</span>, a distribuição <span class="math inline">\(t\)</span> de Student com <span class="math inline">\(n-1\)</span> graus de liberdade. Essa distribuição é exata para qualquer <span class="math inline">\(n \geq 2\)</span>.</p>
 <p><br />
 </p>
+</div>
+<div id="estatistica-do-teste-para-o-terceiro-cenario" class="section level4 hasAnchor" number="11.5.1.3">
+<h4><span class="header-section-number">11.5.1.3</span> Estatística do teste para o terceiro cenário<a href="introducao-a-testes-de-hipoteses.html#estatistica-do-teste-para-o-terceiro-cenario" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><br />
+</p>
+<p>População aproximadamente Normal, com variância (<span class="math inline">\(\sigma^2\)</span>) desconhecida (inferida a partir da variância amostral <span class="math inline">\(S\)</span>) e amostra grande (<span class="math inline">\(n\ge30\)</span>):</p>
+<p><br />
+</p>
+<p><span class="math display">\[
+Z = \frac{\bar{X} - \mu_{0}}{\frac{S}{\sqrt{n}}}   \overset{H_{0}}{\approx} \mathcal{N}(0,1)
+\]</span></p>
+<p><br />
+</p>
+<p>em que:</p>
+<p><br />
+</p>
+<ul>
+<li><span class="math inline">\(\bar{X}\)</span> é uma média amostral;<br />
+</li>
+<li><span class="math inline">\(\mu_{0}\)</span> o valor inferido ao parâmetro, a ser testado frente à média amostral observada;<br />
+</li>
+<li><span class="math inline">\(\sigma\)</span> é o desvio padrão populacional; e,<br />
+</li>
+<li><span class="math inline">\(n\)</span> é o tamanho da amostra.</li>
+</ul>
+<p><br />
+</p>
+<p>Quando a população não tem distribuição normal, se a amostra é aleatória e a variância populacional é finita, então <span class="math inline">\(Z \overset{H_0}{\approx} N(0,1)\)</span> para <span class="math inline">\(n\)</span> suficientemente grande. Se a variância for desconhecida, o resultado continua válido substituindo <span class="math inline">\(\sigma\)</span> por <span class="math inline">\(S\)</span> no cálculo de <span class="math inline">\(Z\)</span>. Essa aproximação decorre do Teorema Central do Limite e, quando se usa <span class="math inline">\(S\)</span>, também da consistência de <span class="math inline">\(S\)</span> como estimador de <span class="math inline">\(\sigma\)</span> (teorema de Slutsky).</p>
+<p><br />
+</p>
+<p>Trata-se, portanto, de um resultado apenas <em>aproximado</em> (assintótico), cuja precisão depende da forma da distribuição populacional: distribuições assimétricas ou de caudas pesadas exigem amostras maiores. O critério <span class="math inline">\(n \geq 30\)</span> é só uma convenção prática, não uma garantia de que a aproximação seja adequada.</p>
+<p><br />
+</p>
+</div>
 </div>
 <div id="distribuicao-t" class="section level3 hasAnchor" number="11.5.2">
 <h3><span class="header-section-number">11.5.2</span> Distribuição t<a href="introducao-a-testes-de-hipoteses.html#distribuicao-t" class="anchor-section" aria-label="Anchor link to header"></a></h3>
